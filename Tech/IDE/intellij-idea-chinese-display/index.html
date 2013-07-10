@@ -58,29 +58,23 @@
     
       <h3>1. IDE本身的中文乱码</h3>
 <p>这个问题体现在IDE本身，比如打开文件浏览目录的时候，中文名的文件或目录会显示成方块。</p>
-<p>解决方法：
-1. 进入设置页。File-&gt;Settings。<br>2. 进入IDE Settings里的File Encodings项，把IDE Encoding项设置成UTF-8。确定。<br>3. 进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</p>
+<p>解决方法：<br>1. 进入设置页。File-&gt;Settings。<br>2. 进入IDE Settings里的File Encodings项，把IDE Encoding项设置成UTF-8。确定。<br>3. 进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</p>
 <p>以上应该可以保证中文显示没有问题了。</p>
+<a name="more"></a>
+
 <h3>2. 编辑器的中文问题</h3>
 <p>这个问题体现在代码编辑区中写中文时，可能会乱码或者中文汉子全部重叠在一起。</p>
 <p>首先要确定你正在编辑的文件是UTF-8编码的，有很多文件可能默认是ANSI编码。</p>
 <p>至于中文重叠那是因为你所选用的默认中文字体不对，一直以来我写代码都是用的consolas，但是这个字体不支持中文，Intellij IDEA 12中如果使用默认的中文字体（不知道是哪个字体）就会重叠在一起，在网上找了好久，终于找到一个神一般的字体<em>Yahei Consolas Hybrid</em>，即微软雅黑和consolas的混合！</p>
 <p>于是乎，File-&gt;Settings IDE Settings-&gt;Editor-&gt;Color &amp; Fonts-&gt;Font，设置字体为Yahei Consolas Hybrid即可。</p>
 <p>神一般的字体Yahei Consolas Hybrid<a href="http://pan.baidu.com/share/link?shareid=439485&amp;uk=1023591784">下载</a></p>
-<p>如果发现安装了这个字体但是在设置中找不到的话，尝试使用以下这个方法。</p>
-<ol>
-<li>按图所示，保存为另外一个名字，由你喜欢。最好是英文字母组成，这里我们保存为Darcula1  </li>
-<li>在此路径（win7）：C:\Users\你的计算机名\.IntelliJIdea12\config\colors找到Darcula1.xml文件。  </li>
-<li><p>用记事本打开Darcula1.xml文件，把第8行</p>
-<pre><code><figure class="highlight"><pre> <span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"你之前保存的字体"</span> /&gt;</span>
+<p>如果发现安装了这个字体但是在设置中找不到的话，尝试使用以下这个方法：<br>按图所示，保存为另外一个名字，由你喜欢。最好是英文字母组成，这里我们保存为Darcula1。<br>在此路径（win7）“C:\Users\你的计算机名\.IntelliJIdea12\config\colors”找到Darcula1.xml文件。<br>用记事本打开Darcula1.xml文件，把第8行  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"你之前保存的字体"</span> /&gt;</span>
 </pre></figure></code></pre>
-<p> 改为</p>
-<pre><code><figure class="highlight"><pre> <span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"YaHei Consolas Hybrid"</span> /&gt;</span>
+<p>改为  </p>
+<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"YaHei Consolas Hybrid"</span> /&gt;</span>
 </pre></figure></code></pre>
-</li>
-<li><p>然后重启IntelliJ IDEA 12.0，中文字符问题解决。</p>
-</li>
-</ol>
+<p>然后重启IntelliJ IDEA 12.0，中文字符问题解决。</p>
 
     
   </div>
@@ -120,7 +114,11 @@
   
     <li><a href="/categories/Tech/IDE/">IDE</a><small>1</small></li>
   
-    <li><a href="/categories/Tech/">Tech</a><small>3</small></li>
+    <li><a href="/categories/Tech/Script/Lua/">Lua</a><small>1</small></li>
+  
+    <li><a href="/categories/Tech/Script/">Script</a><small>1</small></li>
+  
+    <li><a href="/categories/Tech/">Tech</a><small>4</small></li>
   
     <li><a href="/categories/daily/">daily</a><small>2</small></li>
   
@@ -145,6 +143,8 @@
   
     <li><a href="/tags/HTML5-canvas/">HTML5, canvas</a><small>1</small></li>
   
+    <li><a href="/tags/lua/">lua</a><small>1</small></li>
+  
     <li><a href="/tags/日常/">日常</a><small>3</small></li>
   
   </ul>
@@ -157,7 +157,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Comet/" style="font-size: 13.33px;">Comet</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/日常/" style="font-size: 16.67px;">日常</a>
+    <a href="/tags/Comet/" style="font-size: 12.50px;">Comet</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/lua/" style="font-size: 15.00px;">lua</a><a href="/tags/日常/" style="font-size: 17.50px;">日常</a>
   </div>
 </div>
 
@@ -170,10 +170,6 @@
   <ul class="entry">
     
       <li>
-        <a href="/daily/2013-autumn-summary/">2012年秋季学期总结</a>
-      </li>
-    
-      <li>
         <a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a>
       </li>
     
@@ -182,11 +178,15 @@
       </li>
     
       <li>
-        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
+        <a href="/daily/2013-autumn-summary/">2013年秋季学期总结</a>
       </li>
     
       <li>
-        <a href="/daily/welcome/">Welcome to Ray Taylor Lin's world</a>
+        <a href="/Tech/Script/Lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a>
+      </li>
+    
+      <li>
+        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
       </li>
     
   </ul>

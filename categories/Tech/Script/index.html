@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   
-  <title>IDE | Ray Taylor Lin's world</title>
+  <title>Script | Ray Taylor Lin's world</title>
   <meta name="author" content="Ray Taylor Lin">
   
   <meta name="description" content="This is Ray Taylor Lin's blog.">
@@ -42,7 +42,7 @@
 </nav>
 <div class="clearfix"></div></header>
     <div class="content">
-<h2 class="archive-title category">IDE</h2>
+<h2 class="archive-title category">Script</h2>
 
 
   
@@ -50,21 +50,25 @@
   <header>
     
       <div class="icon"></div>
-      <time datetime="2013-04-02T07:08:29.000Z"><a href="/Tech/IDE/intellij-idea-chinese-display/">4月 2 2013</a></time>
+      <time datetime="2013-01-05T12:13:24.000Z"><a href="/Tech/Script/Lua/lua-note-1/">1月 5 2013</a></time>
     
     
   
-    <h1 class="title"><a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a></h1>
+    <h1 class="title"><a href="/Tech/Script/Lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a></h1>
   
 
   </header>
   
   <div class="entry">
     
-      <h3>1. IDE本身的中文乱码</h3>
-<p>这个问题体现在IDE本身，比如打开文件浏览目录的时候，中文名的文件或目录会显示成方块。</p>
-<p>解决方法：<br>1. 进入设置页。File-&gt;Settings。<br>2. 进入IDE Settings里的File Encodings项，把IDE Encoding项设置成UTF-8。确定。<br>3. 进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</p>
-<p>以上应该可以保证中文显示没有问题了。</p>
+      <h1>1. 引言</h1>
+<h2>1.1 目标</h2>
+<p>Lua的目标是成为一个很容易嵌入其它语言中使用的语言。很多应用程序使用Lua作为自己的嵌入式脚本语言，以此来实现可配置性、可扩展性。这其中包括大话西游II、仙境传说、魔兽世界、轩辕剑外传汉之云、愤怒的小鸟等等。</p>
+<h2>1.2 特性</h2>
+<p>Lua是一种轻量语言，它的官方版本只包括一个精简的核心和最基本的库。这使得Lua体积小、启动速度快。Lua可以很容易地被扩展：由宿主语言（通常是C或C++）提供这些功能，Lua可以使用它们，就像是本来就内置的功能一样。</p>
+<p>Lua是一种多重编程范式的程式设计语言：它只提供了很小的一个特性集合来满足不同编辑范式的需要，而不是为某种特定的编辑范式提供繁杂的特性支持。例如，Lua并不提供继承这个特性，但是你可以用元表来模拟它。</p>
+<p>Lua原生的数据类型非常之少，它只提供了数字（缺省是双精度浮点数，可配置）、布尔量、字符串、表、子程序、协程（coroutine）以及用户自定义数据这几种。但是其处理表和字符串的效率非常之高，加上元表的支持，可以高效的模拟出需要的复杂数据类型（比如集合、数组等）。Lua是一个动态弱类型语言，支持增量式垃圾收集策略。</p>
+<p>（以上引用自维基百科）</p>
 
     
   </div>
@@ -72,7 +76,7 @@
     
       
         <div class="alignleft">
-          <a href="/Tech/IDE/intellij-idea-chinese-display/#more" class="more-link">Read More</a>
+          <a href="/Tech/Script/Lua/lua-note-1/#more" class="more-link">Read More</a>
         </div>
       
       
