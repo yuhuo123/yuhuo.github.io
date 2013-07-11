@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   
-  <title>IntelliJ IDEA 12.0中文显示问题解决方案 | Ray Taylor Lin's world</title>
+  <title>博客 | Ray Taylor Lin's world</title>
   <meta name="author" content="Ray Taylor Lin">
   
   <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
@@ -12,7 +12,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <meta property="og:title" content="IntelliJ IDEA 12.0中文显示问题解决方案"/>
+  
   <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
   <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
@@ -41,65 +41,50 @@
   <div class="clearfix"></div>
 </nav>
 <div class="clearfix"></div></header>
-    <div class="content"><article class="post">
+    <div class="content">
+<h2 class="archive-title tag">博客</h2>
+
+
+  
+    <article class="post">
   <header>
     
       <div class="icon"></div>
-      <time datetime="2013-04-02T07:08:29.000Z"><a href="/Tech/IDE/intellij-idea-chinese-display/">4月 2 2013</a></time>
+      <time datetime="2013-07-11T03:21:04.000Z"><a href="/daily/wordpress-to-hexo/">7月 11 2013</a></time>
     
     
   
-    <h1 class="title">IntelliJ IDEA 12.0中文显示问题解决方案</h1>
+    <h1 class="title"><a href="/daily/wordpress-to-hexo/">博客从Wordpress进化到Hexo啦</a></h1>
   
 
   </header>
   
   <div class="entry">
     
-      <h3>1. IDE本身的中文乱码</h3>
-<p>这个问题体现在IDE本身，比如打开文件浏览目录的时候，中文名的文件或目录会显示成方块。</p>
-<p>解决方法：<br>1. 进入设置页。File-&gt;Settings。<br>2. 进入IDE Settings里的File Encodings项，把IDE Encoding项设置成UTF-8。确定。<br>3. 进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</p>
-<p>以上应该可以保证中文显示没有问题了。</p>
-<a name="more"></a>
-
-<h3>2. 编辑器的中文问题</h3>
-<p>这个问题体现在代码编辑区中写中文时，可能会乱码或者中文汉子全部重叠在一起。</p>
-<p>首先要确定你正在编辑的文件是UTF-8编码的，有很多文件可能默认是ANSI编码。</p>
-<p>至于中文重叠那是因为你所选用的默认中文字体不对，一直以来我写代码都是用的consolas，但是这个字体不支持中文，Intellij IDEA 12中如果使用默认的中文字体（不知道是哪个字体）就会重叠在一起，在网上找了好久，终于找到一个神一般的字体<em>Yahei Consolas Hybrid</em>，即微软雅黑和consolas的混合！</p>
-<p>于是乎，File-&gt;Settings IDE Settings-&gt;Editor-&gt;Color &amp; Fonts-&gt;Font，设置字体为Yahei Consolas Hybrid即可。</p>
-<p><strong><a href="http://pan.baidu.com/share/link?shareid=439485&amp;uk=1023591784">神一般的字体Yahei Consolas Hybrid下载</a></strong></p>
-<p>如果发现安装了这个字体但是在设置中找不到的话，尝试使用以下这个方法：<br>按图所示，保存为另外一个名字，由你喜欢。最好是英文字母组成，这里我们保存为Darcula1。</p>
-<p><img src="http://storage.live.com/items/314044073BEC6D79%2151257" alt="另存为一个新的设置">  </p>
-<p>在此路径（win7）“C:\Users\你的计算机名\.IntelliJIdea12\config\colors”找到Darcula1.xml文件。<br>用记事本打开Darcula1.xml文件，把第8行  </p>
-<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"你之前保存的字体"</span> /&gt;</span>
-</pre></figure></code></pre>
-<p>改为  </p>
-<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"YaHei Consolas Hybrid"</span> /&gt;</span>
-</pre></figure></code></pre>
-<p>然后重启IntelliJ IDEA 12.0，中文字符问题解决，效果如下图。</p>
-<p><img src="http://storage.live.com/items/314044073BEC6D79!51256" alt="中文字符显示效果"></p>
+      <p>之前在衡天小张那购买的主机过期了，虽说在主机上搭建的Wordpress使用起来非常方便，不过使用了一年之后感觉那个主机响应速度略慢，所以就懒得继续掏钱了。考虑到丁基友的博客就是用静态页面托管到Github上的，简单可靠又免费，同时也想要学习一下markdown并用它来写博客，所以准备尝试转向静态博客的路。</p>
+<p>丁基友的那个博客采用的是Octopress，于是自然而然开始看起Octopress的教程来。这货居然要装RUBY，好吧为了博客只好忍了，在装了几个RUBY之后明明按照教程一步步做了结果连第一页的安装教程都继续不下去，老是卡在一个地方出错了，好吧在Windows下搞和RUBY有关的东西真的很蛋疼，只好放弃Octopress了。</p>
+<p>然后在网上查静态博客的解决方案的时候，无意中发现hexo这个东西，而且还看到有的博文说从Wordpress转向Octopress最后用上hexo之后，知道了这个东西的口碑还可以。上了官网一看目测还不错，好像是台湾人做的，教程特别简洁明了还有中文翻译。当然由于太过于简洁，有一些比较关键的细节没有谈到导致在配置的时候饶了一点弯路。在搞了大半天之后，终于成功把第一个测试页面推送到Github上并访问，总算没有白折腾。</p>
+<p>忙了两天终于把原先在Wordpress上的文章转成markdown格式并应用到实际中，现在迁移工作已经基本完成，对hexo和markdown也开始熟悉起来，接下来的工作就是把官方推荐的主题修改到自己满意为止。话说hexo这个东西确实不错，基于node.js使得它生成页面速度非常快，能支持markdown，可以很方便地部署到Github Pages上，据说还支持Octopress的插件。等博客新版上线稳定之后，我会开始整理一下用hexo搭建博客的教程，敬请期待。</p>
 
     
   </div>
-  <footer>
+  <footer class="end-sep">
     
       
-  
-  <div class="categories">
-    <a href="/categories/Tech/">Tech</a>, <a href="/categories/Tech/IDE/">IDE</a>
-  </div>
-
       
-  
-  <div class="tags">
-    <a href="/tags/IDE/">IDE</a>, <a href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a>
-  </div>
-
     
     <div class="clearfix"></div>
   </footer>
 </article>
 
+
+  
+
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 </div>
   </div>
   <div class="widget-wrapper">
