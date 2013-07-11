@@ -7,7 +7,7 @@
   <title>Canvas快速入门 | Ray Taylor Lin's world</title>
   <meta name="author" content="Ray Taylor Lin">
   
-  <meta name="description" content="This is Ray Taylor Lin's blog.">
+  <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -87,8 +87,7 @@ $(document).ready(<span class="function"><span class="keyword">function</span> <
 <p><a name="more"></a></p>
 <h1>2. 基础API</h1>
 <h2>2.1 坐标系统</h2>
-<p>Canvas 2D渲染上下文采用平面笛卡尔坐标系统，左上角为原点(0,0)，坐标系统的1个单位相当于屏幕的1个像素。具体如下图：</p>
-<p><a href="http://raytaylorlin.com/blog/canvas_quick_start/canvas_default_grid/" rel="attachment wp-att-62"><img class="alignnone size-full wp-image-62" alt="Canvas_default_grid" src="http://raytaylorlin.com/blog/wp-content/uploads/2013/01/Canvas_default_grid.png" width="220" height="220" /></a></p>
+<p>Canvas 2D渲染上下文采用平面笛卡尔坐标系统，左上角为原点(0,0)，坐标系统的1个单位相当于屏幕的1个像素。具体如下图：<br><img src="http://storage.live.com/items/314044073BEC6D79!51258" alt="HTML5 Canvas坐标系统"></p>
 <h2>2.2 绘制基本图形</h2>
 <h3>2.2.1 矩形</h3>
 <pre><code><figure class="highlight"><pre><span class="comment">//绘制一个填充矩形</span>
@@ -136,13 +135,12 @@ context.arc(x, y, radius, startAngle, endAngle, anticlockwise)
 context.fillStyle = <span class="keyword">color</span>;
 <span class="comment">//设置边框颜色</span>
 context.strokeStyle = <span class="keyword">color</span>;
-[/javascript]
-<span class="preprocessor">### 2.3.2 修改线宽</span>
-[javascript]
-<span class="comment">//指定线宽值</span>
-var value= <span class="number">3</span>;
+</pre></figure></code></pre>
+<h3>2.3.2 修改线宽</h3>
+<pre><code><figure class="highlight"><pre><span class="comment">//指定线宽值</span>
+<span class="keyword">var</span> <span class="keyword">value</span>= <span class="number">3</span>;
 <span class="comment">//设置边框颜色</span>
-context.linewidth = value;
+context.linewidth = <span class="keyword">value</span>;
 </pre></figure></code></pre>
 <p>更多样式介绍参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Applying_styles_and_colors">Applying styles and colors(MDN)</a>。</p>
 <h2>2.4 绘制文本</h2>
@@ -187,7 +185,7 @@ context<span class="variable">.drawImage</span>(image, sx, sy, sWidth, sHeight, 
 </pre></figure></code></pre>
 <p>Javascript代码：</p>
 <pre><code><figure class="highlight"><pre>function resizeCanvas() {
-//canvas由jQuery获取
+    //canvas由jQuery获取
     canvas<span class="preprocessor">.attr</span>(<span class="string">"width"</span>, $(window)<span class="preprocessor">.get</span>(<span class="number">0</span>)<span class="preprocessor">.innerWidth</span>)<span class="comment">;</span>
     canvas<span class="preprocessor">.attr</span>(<span class="string">"height"</span>, $(window)<span class="preprocessor">.get</span>(<span class="number">0</span>)<span class="preprocessor">.innerHeight</span>)<span class="comment">;</span>
     context<span class="preprocessor">.fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, canvas<span class="preprocessor">.width</span>(), canvas<span class="preprocessor">.height</span>())<span class="comment">;</span>
@@ -259,11 +257,11 @@ context<span class="variable">.rotate</span>(radius)
   
     <li><a href="/categories/Tech/IDE/">IDE</a><small>1</small></li>
   
-    <li><a href="/categories/Tech/Script/Lua/">Lua</a><small>1</small></li>
+    <li><a href="/categories/Tech/Script/Lua/">Lua</a><small>3</small></li>
   
-    <li><a href="/categories/Tech/Script/">Script</a><small>1</small></li>
+    <li><a href="/categories/Tech/Script/">Script</a><small>3</small></li>
   
-    <li><a href="/categories/Tech/">Tech</a><small>4</small></li>
+    <li><a href="/categories/Tech/">Tech</a><small>6</small></li>
   
     <li><a href="/categories/daily/">daily</a><small>2</small></li>
   
@@ -288,7 +286,7 @@ context<span class="variable">.rotate</span>(radius)
   
     <li><a href="/tags/HTML5-canvas/">HTML5, canvas</a><small>1</small></li>
   
-    <li><a href="/tags/lua/">lua</a><small>1</small></li>
+    <li><a href="/tags/lua/">lua</a><small>3</small></li>
   
     <li><a href="/tags/日常/">日常</a><small>3</small></li>
   
@@ -302,7 +300,7 @@ context<span class="variable">.rotate</span>(radius)
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Comet/" style="font-size: 12.50px;">Comet</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/lua/" style="font-size: 15.00px;">lua</a><a href="/tags/日常/" style="font-size: 17.50px;">日常</a>
+    <a href="/tags/Comet/" style="font-size: 12.50px;">Comet</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/lua/" style="font-size: 17.50px;">lua</a><a href="/tags/日常/" style="font-size: 15.00px;">日常</a>
   </div>
 </div>
 
@@ -327,11 +325,11 @@ context<span class="variable">.rotate</span>(radius)
       </li>
     
       <li>
-        <a href="/Tech/Script/Lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a>
+        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
       </li>
     
       <li>
-        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
+        <a href="/Tech/Script/Lua/lua-note-3/">Lua学习笔记（3）——Lua语句</a>
       </li>
     
   </ul>
