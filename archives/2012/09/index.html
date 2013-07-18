@@ -7,8 +7,6 @@
   <title>归档：2012/9 | Ray Taylor Lin's world</title>
   <meta name="author" content="Ray Taylor Lin">
   
-  <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -25,24 +23,26 @@
 
 
 <body>
-  <div class="wrapper">
-    <header id="header"><div class="title">
+  <div id="container">
+    <div class="wrapper">
+      <header id="header"><div class="title">
   <h1><a href="/">Ray Taylor Lin's world</a></h1>
-  <p><a href="/"></a></p>
+  <p>水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。</p>
 </div>
 <nav class="nav">
   <ul>
     
-      <li><a href="/">Home</a></li>
+      <li><a href="/">首页</a></li>
     
-      <li><a href="/categories">Category</a></li>
+      <li><a href="/archives">归档</a></li>
     
   </ul>
   <div class="clearfix"></div>
 </nav>
 <div class="clearfix"></div></header>
-    <div class="content">
-<h2 class="archive-title">2012/9</h2>
+      <div class="content">
+
+<h2 class="archive-title">你当前所在的位置：2012/9</h2>
 
 
   
@@ -61,22 +61,9 @@
   
   <div class="entry">
     
-      <h1>1. 顺序结构</h1>
-<h2>1.1. 赋值</h2>
-<p>除了普通的用“=”赋值之外，Lua还允许多重赋值，每个值和每个变量之间用逗号分隔。<strong>Lua总会将等号右边值的个数调整到与左边变量个数一致，若值个数少了，则多余的变量将赋予nil；若值个数多了，则多余的值会被丢弃。</strong>如<code>a, b = 10, 2 * x</code>，<code>x, y = y, x</code>（交换）。多重赋值一般用于交换两个变量的值，或者接受一个函数的多个返回值。</p>
-<h2>1.2. 局部变量与程序块</h2>
-<p>相对于全局变量，Lua还提供了局部变量，给变量加上限定词local即可。局部变量的作用域仅限于声明它们的那个程序块（如控制结构的执行体、函数等）。</p>
-<p><strong>注意，在交互模式中每行输入内容自身就形成了一个程序块，因此单句local声明没有效果。可以显式界定一个块，将内容放入一对do-end关键字中即可，这个方法也可以用于严格控制某些局部变量的作用域。</strong></p>
-<p>有一种习惯写法<code>local foo = foo</code>，创建一个局部变量foo并用全局变量foo的值初始化它。若后续其他函数改变全局变量foo的值，可以在这里先将其保存起来。</p>
-
-    
   </div>
   <footer class="end-sep">
     
-      
-        <div class="alignleft">
-          <a href="/Tech/Script/Lua/lua-note-3/#more" class="more-link">Read More</a>
-        </div>
       
       
     
@@ -101,26 +88,9 @@
   
   <div class="entry">
     
-      <h1>1.  Lua类型</h1>
-<h2>1.1 基本类型</h2>
-<p>Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。</p>
-<p><strong>函数type可根据一个值返回其类型名称（字符串），如<code>print(type(print))</code>，输出“function”；<code>print(type(type(X)))</code> ，输出“string”。</strong></p>
-<h2>1.2 各类型要注意的地方</h2>
-<ol>
-<li><p>关于boolean</p>
-<p> 在Lua中，false和nil视为“false”，其它值均视为“true”（包括数字0和空字符串）。</p>
-</li>
-<li><p>关于number</p>
-<p> 该类型用于表示实数（双精度double），整数也用此类型表示。</p>
- 
-    
   </div>
   <footer class="end-sep">
     
-      
-        <div class="alignleft">
-          <a href="/Tech/Script/Lua/lua-note-2/#more" class="more-link">Read More</a>
-        </div>
       
       
     
@@ -145,23 +115,9 @@
   
   <div class="entry">
     
-      <h1>1. 引言</h1>
-<h2>1.1 目标</h2>
-<p>Lua的目标是成为一个很容易嵌入其它语言中使用的语言。很多应用程序使用Lua作为自己的嵌入式脚本语言，以此来实现可配置性、可扩展性。这其中包括大话西游II、仙境传说、魔兽世界、轩辕剑外传汉之云、愤怒的小鸟等等。</p>
-<h2>1.2 特性</h2>
-<p>Lua是一种轻量语言，它的官方版本只包括一个精简的核心和最基本的库。这使得Lua体积小、启动速度快。Lua可以很容易地被扩展：由宿主语言（通常是C或C++）提供这些功能，Lua可以使用它们，就像是本来就内置的功能一样。</p>
-<p>Lua是一种多重编程范式的程式设计语言：它只提供了很小的一个特性集合来满足不同编辑范式的需要，而不是为某种特定的编辑范式提供繁杂的特性支持。例如，Lua并不提供继承这个特性，但是你可以用元表来模拟它。</p>
-<p>Lua原生的数据类型非常之少，它只提供了数字（缺省是双精度浮点数，可配置）、布尔量、字符串、表、子程序、协程（coroutine）以及用户自定义数据这几种。但是其处理表和字符串的效率非常之高，加上元表的支持，可以高效的模拟出需要的复杂数据类型（比如集合、数组等）。Lua是一个动态弱类型语言，支持增量式垃圾收集策略。</p>
-<p>（以上引用自维基百科）</p>
-
-    
   </div>
   <footer class="end-sep">
     
-      
-        <div class="alignleft">
-          <a href="/Tech/Script/Lua/lua-note-1/#more" class="more-link">Read More</a>
-        </div>
       
       
     
@@ -178,9 +134,12 @@
   <div class="clearfix"></div>
 </nav>
 </div>
-  </div>
-  <div class="widget-wrapper">
-    <aside id="sidebar">
+    </div>
+    <div class="category-tag">
+      目录
+    </div>
+    <div class="widget-wrapper">
+      <aside id="sidebar">
   
   
     
@@ -188,7 +147,7 @@
 
 <div class="widget tag first">
   <h3 class="title">分类</h3>
-  <ul class="entry">
+  <div class="entry">
   
 
   
@@ -269,99 +228,13 @@
   
       </ul>
   
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Comet/">Comet</a><small>1</small></li>
-  
-    <li><a href="/tags/HTML5-1/">HTML5</a><small>1</small></li>
-  
-    <li><a href="/tags/HTML5-canvas/">HTML5, canvas</a><small>1</small></li>
-  
-    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
-  
-    <li><a href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a><small>1</small></li>
-  
-    <li><a href="/tags/canvas/">canvas</a><small>1</small></li>
-  
-    <li><a href="/tags/lua/">lua</a><small>3</small></li>
-  
-    <li><a href="/tags/博客/">博客</a><small>1</small></li>
-  
-    <li><a href="/tags/日常/">日常</a><small>3</small></li>
-  
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget tagcloud">
-  <h3 class="title">标签云</h3>
-  <div class="entry">
-    <a href="/tags/Comet/" style="font-size: 11.00px;">Comet</a><a href="/tags/HTML5-1/" style="font-size: 16.00px;">HTML5</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/Hexo/" style="font-size: 12.00px;">Hexo</a><a href="/tags/IDE/" style="font-size: 14.00px;">IDE</a><a href="/tags/IntelliJ-IDEA/" style="font-size: 15.00px;">IntelliJ IDEA</a><a href="/tags/canvas/" style="font-size: 17.00px;">canvas</a><a href="/tags/lua/" style="font-size: 19.00px;">lua</a><a href="/tags/博客/" style="font-size: 13.00px;">博客</a><a href="/tags/日常/" style="font-size: 18.00px;">日常</a>
   </div>
-</div>
-
-  
-    
-    
-
-<div class="widget recent-posts first newline">
-  <h3 class="title">最近的文章</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/daily/wordpress-to-hexo/">博客从Wordpress进化到Hexo啦</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a>
-      </li>
-    
-      <li>
-        <a href="/daily/2013-autumn-summary/">2013年秋季学期总结</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
-      </li>
-    
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget blogroll">
-  <h3 class="title">友情链接</h3>
-  <ul class="entry">
-  
-    
-    <li><a href="http://heroicyang.com/" target="_blank">Heroic Yang's Blog</a></li>
-  
-  </ul>
 </div>
 
   
 </aside>
 <div class="clearfix"></div>
+    </div>
   </div>
   <footer id="footer"><div class="copyright">
   
@@ -377,6 +250,7 @@
   <script src="/js/scale.fix.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/animation.js"></script>
 
 
 <script type="text/javascript">

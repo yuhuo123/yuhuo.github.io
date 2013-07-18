@@ -7,8 +7,6 @@
   <title>Hexo | Ray Taylor Lin's world</title>
   <meta name="author" content="Ray Taylor Lin">
   
-  <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
-  
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -25,24 +23,26 @@
 
 
 <body>
-  <div class="wrapper">
-    <header id="header"><div class="title">
+  <div id="container">
+    <div class="wrapper">
+      <header id="header"><div class="title">
   <h1><a href="/">Ray Taylor Lin's world</a></h1>
-  <p><a href="/"></a></p>
+  <p>水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。</p>
 </div>
 <nav class="nav">
   <ul>
     
-      <li><a href="/">Home</a></li>
+      <li><a href="/">首页</a></li>
     
-      <li><a href="/categories">Category</a></li>
+      <li><a href="/archives">归档</a></li>
     
   </ul>
   <div class="clearfix"></div>
 </nav>
 <div class="clearfix"></div></header>
-    <div class="content">
-<h2 class="archive-title tag">Hexo</h2>
+      <div class="content">
+
+<h2 class="archive-title tag">你当前所在的位置：Hexo</h2>
 
 
   
@@ -60,12 +60,6 @@
   </header>
   
   <div class="entry">
-    
-      <p>之前在衡天小张那购买的主机过期了，虽说在主机上搭建的Wordpress使用起来非常方便，不过使用了一年之后感觉那个主机响应速度略慢，所以就懒得继续掏钱了。考虑到丁基友的博客就是用静态页面托管到Github上的，简单可靠又免费，同时也想要学习一下markdown并用它来写博客，所以准备尝试转向静态博客的路。</p>
-<p>丁基友的那个博客采用的是Octopress，于是自然而然开始看起Octopress的教程来。这货居然要装RUBY，好吧为了博客只好忍了，在装了几个RUBY之后明明按照教程一步步做了结果连第一页的安装教程都继续不下去，老是卡在一个地方出错了，好吧在Windows下搞和RUBY有关的东西真的很蛋疼，只好放弃Octopress了。</p>
-<p>然后在网上查静态博客的解决方案的时候，无意中发现hexo这个东西，而且还看到有的博文说从Wordpress转向Octopress最后用上hexo之后，知道了这个东西的口碑还可以。上了官网一看目测还不错，好像是台湾人做的，教程特别简洁明了还有中文翻译。当然由于太过于简洁，有一些比较关键的细节没有谈到导致在配置的时候饶了一点弯路。在搞了大半天之后，终于成功把第一个测试页面推送到Github上并访问，总算没有白折腾。</p>
-<p>忙了两天终于把原先在Wordpress上的文章转成markdown格式并应用到实际中，现在迁移工作已经基本完成，对hexo和markdown也开始熟悉起来，接下来的工作就是把官方推荐的主题修改到自己满意为止。话说hexo这个东西确实不错，基于node.js使得它生成页面速度非常快，能支持markdown，可以很方便地部署到Github Pages上，据说还支持Octopress的插件。等博客新版上线稳定之后，我会开始整理一下用hexo搭建博客的教程，敬请期待。</p>
-
     
   </div>
   <footer class="end-sep">
@@ -86,9 +80,12 @@
   <div class="clearfix"></div>
 </nav>
 </div>
-  </div>
-  <div class="widget-wrapper">
-    <aside id="sidebar">
+    </div>
+    <div class="category-tag">
+      目录
+    </div>
+    <div class="widget-wrapper">
+      <aside id="sidebar">
   
   
     
@@ -96,7 +93,7 @@
 
 <div class="widget tag first">
   <h3 class="title">分类</h3>
-  <ul class="entry">
+  <div class="entry">
   
 
   
@@ -177,99 +174,13 @@
   
       </ul>
   
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/tags/Comet/">Comet</a><small>1</small></li>
-  
-    <li><a href="/tags/HTML5-1/">HTML5</a><small>1</small></li>
-  
-    <li><a href="/tags/HTML5-canvas/">HTML5, canvas</a><small>1</small></li>
-  
-    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
-  
-    <li><a href="/tags/IDE/">IDE</a><small>1</small></li>
-  
-    <li><a href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a><small>1</small></li>
-  
-    <li><a href="/tags/canvas/">canvas</a><small>1</small></li>
-  
-    <li><a href="/tags/lua/">lua</a><small>3</small></li>
-  
-    <li><a href="/tags/博客/">博客</a><small>1</small></li>
-  
-    <li><a href="/tags/日常/">日常</a><small>3</small></li>
-  
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget tagcloud">
-  <h3 class="title">标签云</h3>
-  <div class="entry">
-    <a href="/tags/Comet/" style="font-size: 11.00px;">Comet</a><a href="/tags/HTML5-1/" style="font-size: 16.00px;">HTML5</a><a href="/tags/HTML5-canvas/" style="font-size: 10.00px;">HTML5, canvas</a><a href="/tags/Hexo/" style="font-size: 12.00px;">Hexo</a><a href="/tags/IDE/" style="font-size: 14.00px;">IDE</a><a href="/tags/IntelliJ-IDEA/" style="font-size: 15.00px;">IntelliJ IDEA</a><a href="/tags/canvas/" style="font-size: 17.00px;">canvas</a><a href="/tags/lua/" style="font-size: 19.00px;">lua</a><a href="/tags/博客/" style="font-size: 13.00px;">博客</a><a href="/tags/日常/" style="font-size: 18.00px;">日常</a>
   </div>
-</div>
-
-  
-    
-    
-
-<div class="widget recent-posts first newline">
-  <h3 class="title">最近的文章</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/daily/wordpress-to-hexo/">博客从Wordpress进化到Hexo啦</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a>
-      </li>
-    
-      <li>
-        <a href="/daily/2013-autumn-summary/">2013年秋季学期总结</a>
-      </li>
-    
-      <li>
-        <a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a>
-      </li>
-    
-  </ul>
-</div>
-
-  
-    
-    
-
-<div class="widget blogroll">
-  <h3 class="title">友情链接</h3>
-  <ul class="entry">
-  
-    
-    <li><a href="http://heroicyang.com/" target="_blank">Heroic Yang's Blog</a></li>
-  
-  </ul>
 </div>
 
   
 </aside>
 <div class="clearfix"></div>
+    </div>
   </div>
   <footer id="footer"><div class="copyright">
   
@@ -285,6 +196,7 @@
   <script src="/js/scale.fix.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/animation.js"></script>
 
 
 <script type="text/javascript">
