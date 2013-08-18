@@ -1,121 +1,101 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  
-  <title>Lua学习笔记（3）——Lua语句 | Ray Taylor Lin's world</title>
-  <meta name="author" content="Ray Taylor Lin">
-  
-  <meta name="description" content="1. 顺序结构
-1.1. 赋值
-除了普通的用“=”赋值之外，Lua还允许多重赋值，每个值和每个变量之间用逗号分隔。Lua总会将等号右边值的个数调整到与左边变量个数一致，若值个数少了，则多余的变量将赋予nil；若值个数多了，则多余的值会被丢弃。如a, b = 10, 2 * x，x, y = y, x（交换）。多重赋值一般用于交换两个变量的值，或者接受一个函数的多个返回值。
-1.2. 局部变量与程序块
-相对于全局变量，Lua还提供了局部变量，给变量加上限定词local即可。局部变量的作用域仅限于声明它们的那个程序块（如控制结构的执行体、函数等）。
-注意，在交互模式中每行输入内容自身就形成了一个程序块，因此单句local声明没有效果。可以显式界定一个块，将内容放入一对do-end关键字中即可，这个方法也可以用于严格控制某些局部变量的作用域。
-有一种习惯写法local foo = foo，创建一个局部变量foo并用全局变量foo的值初始化它。若后续其他函数改变全局变量foo的值，可以在这里先将其保存起来。">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Lua学习笔记（3）——Lua语句 | Ray Taylor Lin's world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="本文介绍了Lua的基本语句，并依次介绍了Lua程序的顺序结构和控制结构。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <meta property="og:title" content="Lua学习笔记（3）——Lua语句"/>
-  <meta property="og:site_name" content="Ray Taylor Lin's world"/>
+    <meta property="og:title" content="Lua学习笔记（3）——Lua语句"/>
+    <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
-  <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-  
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    
 </head>
 
 
 <body>
-  <div id="container">
-    <div class="wrapper">
-      <header id="header"><div class="title">
-  <h1><a href="/">Ray Taylor Lin's world</a></h1>
-  <p>水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。</p>
+    <header id="page-header"> 
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="#menu" class="menu-trigger meteocon" data-meteocon="M">
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" href="javascript:void(0)">Ray Taylor Lin's world</a></li>
+                    </ul>
+                    <div class="pull-right">
+                        
+                            <a href="/" class="btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                存档
+                            </a>
+                        
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
-<nav class="nav">
-  <ul>
-    
-      <li><a href="/">首页</a></li>
-    
-      <li><a href="/archives">归档</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div></header>
-      <div class="content"><article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <time datetime="2012-09-17T05:05:11.000Z"><a href="/Tech/Script/Lua/lua-note-3/">9月 17 2012</a></time>
-    
-    
-  
-    <h1 class="title">Lua学习笔记（3）——Lua语句</h1>
-  
 
-  </header>
-  
-  <div class="entry">
+    </header>
+    <div class="container-center">
+        <div class="row-fluid">
+            <div class="span12">
+                <article class="post">
+    <header>
+        
+            <time datetime="2012-09-17T05:05:11.000Z"><a href="/Tech/Script/Lua/lua-note-3/">2012-09-17</a></time>
+        
+        
     
-      <h1>1. 顺序结构</h1>
-<h2>1.1. 赋值</h2>
-<p>除了普通的用“=”赋值之外，Lua还允许多重赋值，每个值和每个变量之间用逗号分隔。<strong>Lua总会将等号右边值的个数调整到与左边变量个数一致，若值个数少了，则多余的变量将赋予nil；若值个数多了，则多余的值会被丢弃。</strong>如<code>a, b = 10, 2 * x</code>，<code>x, y = y, x</code>（交换）。多重赋值一般用于交换两个变量的值，或者接受一个函数的多个返回值。</p>
-<h2>1.2. 局部变量与程序块</h2>
-<p>相对于全局变量，Lua还提供了局部变量，给变量加上限定词local即可。局部变量的作用域仅限于声明它们的那个程序块（如控制结构的执行体、函数等）。</p>
-<p><strong>注意，在交互模式中每行输入内容自身就形成了一个程序块，因此单句local声明没有效果。可以显式界定一个块，将内容放入一对do-end关键字中即可，这个方法也可以用于严格控制某些局部变量的作用域。</strong></p>
-<p>有一种习惯写法<code>local foo = foo</code>，创建一个局部变量foo并用全局变量foo的值初始化它。若后续其他函数改变全局变量foo的值，可以在这里先将其保存起来。</p>
-<a name="more"></a>
-
-<h1>2. 控制结构</h1>
-<p>所有控制结构语句都有一个显示的终止符：if、for、和while以end结尾，repeat以until结尾。</p>
-<h2>2.1. if then else(elseif)语句</h2>
-<pre><code><figure class="highlight"><pre>格式：if <span class="tag">&lt;<span class="title">条件1</span>&gt;</span> then <span class="tag">&lt;<span class="title">内容1</span>&gt;</span> elseif <span class="tag">&lt;<span class="title">条件2</span>&gt;</span> then <span class="tag">&lt;<span class="title">内容2</span>&gt;</span> else <span class="tag">&lt;<span class="title">内容3</span>&gt;</span> end
-</pre></figure></code></pre>
-<p><strong>Lua中不支持switch语句，所以一连串if elseif语句是很常见的。</strong></p>
-<h2>2.2. while和repeat语句</h2>
-<pre><code><figure class="highlight"><pre>格式：while <span class="tag">&lt;<span class="title">条件</span>&gt;</span> do <span class="tag">&lt;<span class="title">循环体</span>&gt;</span> end
-
-格式：repeat <span class="tag">&lt;<span class="title">循环体</span>&gt;</span> until <span class="tag">&lt;<span class="title">条件</span>&gt;</span>
-</pre></figure></code></pre>
-<p>在Lua中，一个声明在循环体内的局部变量的作用域包括循环的条件测试。</p>
-<h2>2.3. 数字型for语句</h2>
-<pre><code><figure class="highlight"><pre>格式：<span class="keyword">for</span> <span class="keyword">var</span> = exp1, exp2, exp3 <span class="keyword">do</span> &lt;循环体&gt; <span class="keyword">end</span>
-</pre></figure></code></pre>
-<p>上式表示var从exp1变化到exp2，以exp3作为步长递增var。其中exp3是可选的，若不指定则默认步长为1。如果将exp2设为math.huge，则为无限循环。</p>
-<p>有一些细节需要注意。for的3个表达式是在循环开始前一次性求值的，以后将不再求值。另外，控制变量会被自动地声明为for语句的局部变量，仅在循环体内可见。</p>
-<h2>2.4. 泛型for语句</h2>
-<p>泛型for循环通过一个迭代器来遍历所有值，如<code>for i,v in ipairs(tableA) do print(v) end</code>，其中i被赋予索引值，而v被赋予对应的元素值。<strong>其中<code>ipairs(array)</code>函数用于遍历数组并返回数字下标-元素值对，<code>pairs(table)</code>函数用于遍历table并返回键-值对，<code>string.gmatch(string)</code>迭代字符串中的单词。</strong></p>
-<p>泛型for的一个应用是创建逆向table，即新table的键值与原table键值反转。</p>
-<h2>2.5. break和return语句</h2>
-<p>这两个语句都用于跳出当前的语句块，break结束一层循环，return结束一个函数的执行。如果刚定义了一个function然后直接要在一开始就跳出函数作为调试用，可以用一个显示的do块来包含return语句，即<code>function foo() do return end end</code>。</p>
-
+        <h1 class="article-title">Lua学习笔记（3）——Lua语句</h1>
     
-  </div>
-  <footer>
+
+    </header>
     
-      
+    <div class="entry">
+        
+    </div>
+    <footer >
+        
+            
   
   <div class="categories">
     所属目录：
     <a href="/categories/Tech/">Tech</a>, <a href="/categories/Tech/Script/">Script</a>, <a href="/categories/Tech/Script/Lua/">Lua</a>
   </div>
 
-      
+            
   
   <div class="tags">
     标签：
     lua
   </div>
 
-    
-    <div class="clearfix"></div>
-  </footer>
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
 
@@ -124,121 +104,36 @@
   <div class="ds-thread" data-title="Lua学习笔记（3）——Lua语句">
   </div>
 </section>
-</div>
+
+            </div>
+        </div>
     </div>
-    <div class="category-tag">
-      目录
+    <footer id="page-footer"><div class="container-center">
+    <div class="footer-text pull-left">
+        <div class="copyright">
+            
+            Copyright &copy; 2013 <a href="/">Ray Taylor Lin</a>
+            
+        </div>
+        <div class="theme-copyright">
+            <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+            Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+        </div>
     </div>
-    <div class="widget-wrapper">
-      <aside id="sidebar">
-  
-  
-    
-    
-
-<div class="widget tag first">
-  <h3 class="title">分类</h3>
-  <div class="entry">
-  
-
-  
-      <ul>
-
-      
-
-          <li><a href="/categories/daily/">daily</a><small>3</small></li>
-
-      
-      <ul>
-
-      
-      </ul>
-  
-
-          <li><a href="/categories/Tech/">Tech</a><small>6</small></li>
-
-      
-      <ul>
-
-      
-
-          <li><a href="/categories/Tech/web/">web</a><small>1</small></li>
-
-      
-      <ul>
-
-      
-
-          <li><a href="/categories/Tech/web/HTML5/">HTML5</a><small>1</small></li>
-
-      
-      <ul>
-
-      
-      </ul>
-  
-      </ul>
-  
-
-          <li><a href="/categories/Tech/other/">other</a><small>1</small></li>
-
-      
-      <ul>
-
-      
-      </ul>
-  
-
-          <li><a href="/categories/Tech/IDE/">IDE</a><small>1</small></li>
-
-      
-      <ul>
-
-      
-      </ul>
-  
-
-          <li><a href="/categories/Tech/Script/">Script</a><small>3</small></li>
-
-      
-      <ul>
-
-      
-
-          <li><a href="/categories/Tech/Script/Lua/">Lua</a><small>3</small></li>
-
-      
-      <ul>
-
-      
-      </ul>
-  
-      </ul>
-  
-      </ul>
-  
-      </ul>
-  
-  </div>
-</div>
-
-  
-</aside>
-<div class="clearfix"></div>
+    <div class="social-group pull-right">
+        
+        <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+        
+        
+        <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+        
+        
+        <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+        
     </div>
-  </div>
-  <footer id="footer"><div class="copyright">
-  
-  &copy; 2013 <a href="/">Ray Taylor Lin</a>
-  
-</div>
-<div class="theme-copyright">
-  Theme <strong>modernist</strong> by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
-   | 
-  Redesign by <a href="http://raytaylorlin.com/" target="_blank">Ray Taylor Lin</a>
 </div>
 <div class="clearfix"></div></footer>
-  <script src="/js/scale.fix.js"></script>
+    <!-- <script src="/js/scale.fix.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/animation.js"></script>
@@ -257,14 +152,6 @@
 </script>
 
 
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-  (function($){
-    $('.fancybox').fancybox();
-  })(jQuery);
-</script>
-
+ -->
 </body>
 </html>
