@@ -54,6 +54,11 @@
                                 存档
                             </a>
                         
+                            <a href="/about" class="btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
                     </div>
                 </nav>
             </div>
@@ -62,10 +67,11 @@
 </div>
 
     </header>
-    <div class="container-center">
-        <div class="row-fluid">
-            <div class="span12">
-                
+    <div id="content-wrapper">
+        <div class="container-center main-content">
+            <div class="row-fluid">
+                <div class="span12">
+                    
 
 <h2 class="page-sub-title archive-title">你当前所在的位置：归档</h2>
 
@@ -75,7 +81,29 @@
     <div class="row-fluid">
         <div class="span2" id="date-tags">
             <div class="date-row">
-                <time datetime="2013-07-11T03:21:04.000Z">2013-07-11</time>
+                <time datetime="2013-08-31T09:35:13.000Z">2013-08-31</time>
+            </div>
+            
+        </div>
+        <div class="span10" id="article-excerpt">
+            <div class="article-title">
+                
+    
+        <h1><a href="/daily/2013-spring-summary/">2013年春季学期总结</a></h1>
+    
+
+            </div>
+            
+        </div>
+    </div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2" id="date-tags">
+            <div class="date-row">
+                <time datetime="2013-08-25T14:10:32.000Z">2013-08-25</time>
             </div>
             
         </div>
@@ -171,7 +199,7 @@
             <div class="article-title">
                 
     
-        <h1><a href="/daily/2013-autumn-summary/">2013年秋季学期总结</a></h1>
+        <h1><a href="/daily/2012-autumn-summary/">2012年秋季学期总结</a></h1>
     
 
             </div>
@@ -269,62 +297,46 @@
 </article>
 
     
-        <article>
-    <div class="row-fluid">
-        <div class="span2" id="date-tags">
-            <div class="date-row">
-                <time datetime="2012-07-07T10:04:04.000Z">2012-07-07</time>
-            </div>
-            
-        </div>
-        <div class="span10" id="article-excerpt">
-            <div class="article-title">
-                
-    
-        <h1><a href="/daily/welcome/">Welcome to Ray Taylor Lin's world</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-</article>
-
-    
   <nav id="pagination">
   
+  
+    <a href="/archives/page/2/" class="next">下一页</a>
   
   <div class="clearfix"></div>
 </nav>
 
+                </div>
             </div>
         </div>
     </div>
-    <footer id="page-footer"><div class="container-center">
-    <div class="footer-text pull-left">
-        <div class="copyright">
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2013 <a href="/">Ray Taylor Lin</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
             
-            Copyright &copy; 2013 <a href="/">Ray Taylor Lin</a>
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
             
         </div>
-        <div class="theme-copyright">
-            <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
-            Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
-        </div>
-    </div>
-    <div class="social-group pull-right">
-        
-        <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
-        
-        
-        <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
-        
-        
-        <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
-        
+        <div class="clearfix"></div>
     </div>
 </div>
-<div class="clearfix"></div></footer>
+</footer>
     
 
 <script src="/js/prettify.js"></script>
@@ -335,5 +347,21 @@
     });
 </script>
 
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+            if(contentHeight < minHeight) {
+                $('#content-wrapper').height(minHeight);
+            }
+         };
+         $(document).ready(resizeContentWrapper);
+         $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
 </body>
 </html>
