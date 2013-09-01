@@ -78,6 +78,10 @@ hr {
   padding: 16px 0;
   background: #00529c;
 }
+.navbar .menu-trigger {
+  padding-top: 0;
+  margin-bottom: 0;
+}
 .navbar .brand {
   font-size: 40px;
   font-weight: 400;
@@ -367,6 +371,42 @@ article footer .tags:before {
 }
 .social-group a:hover {
   color: #16a085;
+}
+#jPanelMenu-menu-side {
+  display: none;
+}
+#jPanelMenu-menu .nav li {
+  border-bottom: 1px solid #333;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#jPanelMenu-menu .nav li:hover {
+  background-color: #3498db;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#jPanelMenu-menu .nav li:first-child:hover {
+  background-color: #232323;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+#jPanelMenu-menu .nav [class^="icon-"] {
+  margin-right: 10px;
+}
+#jPanelMenu-menu .nav [class*=" icon-"] {
+  margin-right: 10px;
+}
+#jPanelMenu-menu .nav>li>a.brand {
+  padding: 5px 0;
 }
 #comment {
   margin-top: 40px;

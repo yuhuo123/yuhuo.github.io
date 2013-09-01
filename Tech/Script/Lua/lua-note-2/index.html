@@ -28,23 +28,24 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-    
+    <script src="/js/jquery.jpanelmenu.js"></script>
 </head>
 
 
 <body>
-    <header id="page-header"> 
+    <header id="page-header">
         <div class="navbar inverse-navbar">
     <div class="navbar-inner">
         <div class="container-center">
-            <a href="#menu" class="menu-trigger meteocon" data-meteocon="M">
+            <a href="#menu" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
             </a>
             <div class="nav-collapse navbar-responsive-collapse collapse">
                 <nav id="menu">
                     <ul class="nav">
-                        <li><a class="brand" href="javascript:void(0)">Ray Taylor Lin's world</a></li>
+                        <li><a class="brand" href="index.html">Ray Taylor Lin's world</a></li>
                     </ul>
-                    <div class="pull-right">
+                    <div class="pull-right nav">
                         
                             <a href="/" class="btn btn-primary btn-large">
                                 <i class="icon-home icon-white"></i>
@@ -63,6 +64,33 @@
                         
                     </div>
                 </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav">
+        <li><a class="brand" href="index.html">Ray Taylor Lin's world</a></li>
+        
+            <li>
+                <a href="/">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives">
+                    <i class="icon-archive icon-white"></i>
+                    存档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</nav>
             </div>
         </div>
     </div>
@@ -232,9 +260,20 @@
             if(contentHeight < minHeight) {
                 $('#content-wrapper').height(minHeight);
             }
-         };
-         $(document).ready(resizeContentWrapper);
-         $(window).resize(resizeContentWrapper);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(window).resize(resizeContentWrapper);
     })(jQuery);
 </script>
 </body>
