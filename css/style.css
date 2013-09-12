@@ -49,8 +49,12 @@ a.btn:hover {
 li {
   line-height: 30px;
 }
-hr {
-  margin: 10px 0;
+.split-line {
+  height: 1px;
+  width: auto;
+  background: #ccc;
+  overflow: hidden;
+  margin-top: 10px;
 }
 .page-sub-title {
   font-size: 36px;
@@ -72,6 +76,12 @@ hr {
 }
 #comment {
   margin-top: 40px;
+}
+.btn-loadmore {
+  margin-top: 20px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 }
 #page-header {
   margin-bottom: 0;
