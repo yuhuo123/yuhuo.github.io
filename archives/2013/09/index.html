@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>HTML5, canvas | Ray Taylor Lin's world</title>
+    <title>Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
     
     
@@ -97,11 +97,9 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
-            <div class="row-fluid">
-                <div class="span12">
-                    
+        
 
-<h2 class="page-sub-title archive-title tag">你当前所在的位置：HTML5, canvas</h2>
+<h2 class="page-sub-title archive-title">你当前所在的位置：</h2>
 
 
     
@@ -109,7 +107,7 @@
     <div class="row-fluid">
         <div class="span2 date-tags">
             <div class="date-row">
-                <time datetime="2013-01-05T12:13:24.000Z">2013-01-05</time>
+                <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
             </div>
             
         </div>
@@ -117,13 +115,14 @@
             <div class="article-title simple-article-title">
                 
     
-        <h1><a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a></h1>
+        <h1><a href="/Tech/git/git-tutorial-1/">Git指南（1）——安装与基本用法</a></h1>
     
 
             </div>
             
         </div>
     </div>
+    <div class="split-line"></div>
 </article>
 
     
@@ -133,8 +132,6 @@
   <div class="clearfix"></div>
 </nav>
 
-                </div>
-            </div>
         </div>
     </div>
     <footer id="page-footer"><div class="footer-content">
@@ -185,6 +182,8 @@
                 minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
             if(contentHeight < minHeight) {
                 $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
             }
         };
 
@@ -197,8 +196,54 @@
             jPM.on();
         };
 
+        var pagination = function() {
+            var PER_PAGE_NUM = showNum = 5,
+                i,
+                initHeight = 0,
+                outerHeightList = [],
+                articleList = $('#content-wrapper article'),
+                articleNum = articleList.length;
+
+            for(i = 0; i < articleList.length; i++) {
+                outerHeightList.push($(articleList[i]).outerHeight());
+                if(i >= PER_PAGE_NUM) {
+                    $(articleList[i]).hide();
+                }
+            }
+
+            $('.btn-loadmore').click(function() {
+                var deltaH = 0,
+                    toShowList = [];
+                for(i = showNum, showNum += PER_PAGE_NUM; i < showNum; i++) {
+                    if(i >= articleList.length) {
+                        $('.btn-loadmore').html("已经到底啦");
+                        break;
+                    }
+                    toShowList.push($(articleList[i]));
+                    deltaH += outerHeightList[i];
+                }
+                $('body').animate({
+                    scrollTop: $('#article-list').height()
+                });
+                $('#article-list').animate({
+                    height: "+=" + deltaH
+                }, 1000, function() {
+                    for(i = 0; i < toShowList.length; i++) {
+                        toShowList[i].css({opacity: 0});
+                        toShowList[i].show();
+                        toShowList[i].animate({
+                            opacity: 1
+                        }, 1000);
+                    }
+                });
+            });
+            resizeContentWrapper();
+        };
+
+        $(document).ready(pagination);
         $(document).ready(resizeContentWrapper);
         $(document).ready(initJPanelMenu);
+        
         $(window).resize(resizeContentWrapper);
     })(jQuery);
 </script>

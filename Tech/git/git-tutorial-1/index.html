@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Welcome to Ray Taylor Lin's world | Ray Taylor Lin's world</title>
+    <title>Git指南（1）——安装与基本用法 | Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
     
-    <meta name="description" content="大家好，我是林寿山，欢迎来到我的个人博客！">
+    <meta name="description" content="现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。
+之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Welcome to Ray Taylor Lin's world"/>
+    <meta property="og:title" content="Git指南（1）——安装与基本用法"/>
     <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
@@ -103,23 +104,85 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Welcome to Ray Taylor Lin's world</h1>
+        <h1>Git指南（1）——安装与基本用法</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2012-07-07T10:04:04.000Z">2012-07-07</time>
+        <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
     </div>
 
     <div class="entry">
-        <p>大家好，我是林寿山，欢迎来到我的个人博客！</p>
-<a name="more"></a>
-
-<p>这个博客主要用于记录一些平时在技术上的心得体会，以及日常生活状况。以及涉及的一些技术的时候没有做整理，时间一长就会忘记，等到想要查阅的时候又得重新去搜索。因此为了有一个积累的过程，才萌生了开通这个博客的想法。</p>
-<p>其实很早之前就已经有了开通技术博客的想法，但一方面苦于没有很好的资源（QQ空间和人人网显然不太适合担当这个职责），另一方面是因为这学期要拼书实在没有什么时间。如今期末考试和课设都结束了，总算有一段非常空闲的时间让我好好休整一下，顺便捣腾捣腾这个博客。这里将会作为一个技术的积累和笔记，陪伴我很长一段时间。
-鉴于博客刚刚开通访问量还不是很大，我会在保持在人人网上同步这边的文章，希望大家多多支持。</p>
-<p>最后是喜闻乐见的致谢——<br>感谢Frankfang和Emanon在空间申请和域名绑定的耐心解答，没有他们这个博客就看不到啦= =|<br>感谢ozawa酱的支持和怂恿，让我下定决心买了空间挂上博客&gt;_&lt;</p>
+        <p>现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。</p>
+<p>之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）</p>
+<p><a name="more"></a></p>
+<h1>1.为什么使用Git</h1>
+<p>关于Git的优缺点，与SVN的对比网上的资料有非常多，这里只列举几点比较重要的。</p>
+<ul>
+<li>分布式版本控制，文件变更的历史记录不再存在一个集中服务器，如果服务器故障，或者没有网络，几乎所有操作都可以在本地执行，在任何地方都可以愉快地提交更改。</li>
+<li>版本的分支（branch）和合并（merge）十分方便。</li>
+<li>有一个全世界最大的开源社区——github，上面可以看到各种优秀的各种语言的代码，并且越来越多的项目由github托管。</li>
+</ul>
+<h1>2.参考材料</h1>
+<ul>
+<li>一个极其简洁明了的Git教程网站<a href="http://gitimmersion.com/">Git Immersion</a></li>
+<li><a href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a></li>
+</ul>
+<h1>3.安装</h1>
+<p>安装Git Windows客户端（命令行界面）：<a href="http://msysgit.github.io/">msysgit</a></p>
+<p>用SVN的人一定对小乌龟客户端很熟悉，Git也有对应的版本：<a href="https://code.google.com/p/tortoisegit/">GitTortoise</a></p>
+<p>Linux或Mac用户请自寻谷歌安装方法。</p>
+<h1>4.基本用法</h1>
+<h2>3.1 配置</h2>
+<p>在使用Git之前，需要打开命令行客户端</p>
+<p>1.设置名字和信箱</p>
+<pre><code><figure class="highlight"><pre><span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span>.<span class="comment">name</span> <span class="comment">"你的名字"</span>
+<span class="comment">git</span> <span class="comment">config</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">global</span> <span class="comment">user</span>.<span class="comment">email</span> <span class="comment">"your_email@whatever</span>.<span class="comment">com"
+</pre></figure></code></pre>
+<p>2.设置换行符参数</p>
+<pre><code><figure class="highlight"><pre><span class="comment"># 提交时转换为LF，检出时转换为CRLF</span>
+git config --<span class="keyword">global</span> core.autocrlf <span class="keyword">true</span>
+<span class="comment"># 拒绝提交包含混合换行符的文件</span>
+git config --<span class="keyword">global</span> core.safecrlf <span class="keyword">true</span>
+</pre></figure></code></pre>
+<h2>3.2 流程</h2>
+<p>在你的工程文件夹下，执行以下命令创建代码仓库（Repository，就是在网上经常看到的repo）</p>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> init
+</pre></figure></code></pre>
+<p>假设你的工程有一个index.html文件，以下命令将其添加到跟踪改动状态（stage）</p>
+<pre><code><figure class="highlight"><pre>git add index.html
+<span class="preprocessor"># git add . 可以跟踪所有文件</span>
+<span class="preprocessor"># 此处也可以使用git stage来跟踪改动</span>
+</pre></figure></code></pre>
+<p>查看状态</p>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> status
+<span class="comment"># 此时你应该看到输出提示add了index.html，其他状态还有modified（修改）等等</span>
+</pre></figure></code></pre>
+<p>然后提交</p>
+<pre><code><figure class="highlight"><pre><span class="comment">#</span> <span class="literal">-</span><span class="comment">a表示跟踪所有文件的改动（相当于先做了一次git</span> <span class="comment">add</span> <span class="string">.</span><span class="comment">，再commit），</span>-<span class="comment">m</span> <span class="comment">后面跟着提交的说明</span>
+<span class="comment">git</span> <span class="comment">commit</span> <span class="literal">-</span><span class="comment">a</span> <span class="literal">-</span><span class="comment">m</span> <span class="comment">"First</span> <span class="comment">Commit"
+</pre></figure></code></pre>
+<h2>3.3 需要特别注意的问题</h2>
+<p><strong>每一次你对文件做了改动（包括删除），都需要使用<code>git add</code>或<code>git stage</code>来跟踪改动，只有被跟踪改动了的文件才可以使用<code>git commit</code>提交。</strong></p>
+<p>增加跟踪改动（stage）主要有两个好处，一个是分批、分阶段递交，一个是进行快照，便于回退。</p>
+<p>1.分批提交：比如，你修改了a.py, b.py, c.py三个文件，其中a.py和c.py 是功能1的相关修改，b.py属于功能2的相关修改。那么你就可以采用以下方式分批提交。</p>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> stage a.py c.py
+<span class="title">git</span> commit -m <span class="string">"function 1"</span>
+<span class="title">git</span> stage b.py
+<span class="title">git</span> commit -m <span class="string">"function 2"</span>
+</pre></figure></code></pre>
+<p>2.分阶段提交
+比如你修改了a.py，然后<code>git stage a.py</code>，相当于对当前的a.py 做了一个快照，然后又做了一些修改，这时候，如果直接采用<code>git commit</code>递交，则只会对第一次的快照进行递交，当前内容还保存在工作区。需要再做一次 <code>git stage</code>，才能提交。</p>
+<p>3.文件快照，便于回退
+当文件加入了stage区以后，如果要从stage区删除，则使用 reset，此时工作区的文件不做任何修改，比如：</p>
+<pre><code><figure class="highlight"><pre><span class="comment"># 这个命令就是git stage a.py的反操作</span>
+<span class="title">git</span> reset a.py
+</pre></figure></code></pre>
+<p>当文件加入了 stage 区以后，后来又做了一些修改，这时发现后面的修改有问题，想回退到stage的状态，使用checkout命令</p>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> checkout a.py
+</pre></figure></code></pre>
+<p>本篇就先讲到这里，下一篇将会讲Git的历史操作。</p>
 
     </div>
     
@@ -129,13 +192,13 @@
     
     <div class="categories">
         所属目录：
-    <a href="/categories/daily/">daily</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/git/">git</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/日常/">日常</a>
+        标签：<a class="btn btn-info" href="/tags/Git/">Git</a>
     </div>
 
         
@@ -148,7 +211,7 @@
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Welcome to Ray Taylor Lin's world">
+    <div class="ds-thread" data-title="Git指南（1）——安装与基本用法">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};

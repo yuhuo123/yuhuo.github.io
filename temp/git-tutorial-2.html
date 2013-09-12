@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>第 2 页 | Ray Taylor Lin's world</title>
+    <title>Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="3.4 查看历史记录
+以下命令用来取得项目之前所有修改的列表
+git log
+
+当然，可以用很多参数来精确控制历史记录的显示方式，这里推荐一种格式输出（参数意义自行查阅）
+git log --pretty=format:&quot;%h %ad | %s%d [%an]&quot; --graph --date=sho">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -97,55 +104,77 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
-            <div class="row-fluid">
-                <div class="span12">
-                    
-
-    <article>
-    <div class="row-fluid">
-        <div class="span2 date-tags">
-            <div class="date-row">
-                <time datetime="2012-07-07T10:04:04.000Z">2012-07-07</time>
-            </div>
-            
-                <div class="tags-row">
-                
-                    <a href="/tags/日常/" class="btn btn-info">日常</a>
-                
-                </div>
-            
-        </div>
-        <div class="span10">
-            <div class="article-title simple-article-title">
-                
+        <article class="page">
+    <div class="article-title article-title-big">
+        
     
-        <h1><a href="/daily/welcome/">Welcome to Ray Taylor Lin's world</a></h1>
+        <h1></h1>
     
 
-            </div>
-            
-                <div class="entry">
-                    <p>大家好，我是林寿山，欢迎来到我的个人博客！</p>
-
-                </div>
-            
-        </div>
     </div>
+
+    <div class="date-row ">
+        <time datetime="2013-09-12T09:18:53.000Z">2013-09-12</time>
+    </div>
+
+    <div class="entry">
+        <h2>3.4 查看历史记录</h2>
+<p>以下命令用来取得项目之前所有修改的列表</p>
+<pre><code><figure class="highlight"><pre><span class="title">git</span> log
+</pre></figure></code></pre>
+<p>当然，可以用很多参数来精确控制历史记录的显示方式，这里推荐一种格式输出（参数意义自行查阅）</p>
+<pre><code><figure class="highlight"><pre>git <span class="keyword">log</span> --pretty=<span class="keyword">format</span>:<span class="string">"<span class="variable">%h</span> <span class="variable">%ad</span> | <span class="variable">%s</span><span class="variable">%d</span> [<span class="variable">%an</span>]"</span> --graph --date=short
+<span class="comment"># 输出例子：</span>
+<span class="comment"># d14ff74 2013-09-12 | First Commit (HEAD, master) [水月轻枫]</span>
+</pre></figure></code></pre>
+<p>但是每次都要输入这一长串命令太不现实了，所幸Git提供别名功能，可以简化这个命令。</p>
+<h2>3.5 别名（alias）</h2>
+<p><code>git status</code>，<code>git add</code>，<code>git commit</code>和<code>git checkout</code>这些命令太常用了，包括上面提到那个格式化的<code>git log</code>，缩写一下会大大提高效率。</p>
+<p>要使用别名，把下面的内容加到你$HOME目录下的.gitconfig文件即可（Windows下的$HOME目录一般是“C:\Users\你的Windows用户名\”）。</p>
+<pre><code><figure class="highlight"><pre>[alias]
+    co = checkout
+    cm = commit
+    st = status
+    br = branch
+    hist = <span class="keyword">log</span> --pretty=<span class="keyword">format</span>:\<span class="string">"<span class="variable">%h</span> <span class="variable">%ad</span> | <span class="variable">%s</span><span class="variable">%d</span> [<span class="variable">%an</span>]\" --graph --date=short
+</pre></figure></code></pre>
+<p>接下来，你就可以使用<code>git cm</code>来代替<code>git commit</code>，使用<code>git hist</code>来输出格式化的历史记录等等，方便吧。</p>
+
+    </div>
+    
+    <footer >
+        
+            
+            
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
 
 
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="">
 
-<nav id="pagination">
-  
-    <a href="/" class="prev">上一页</a>
-  
-  
-  <div class="clearfix"></div>
-</nav>
-                </div>
-            </div>
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
         </div>
     </div>
     <footer id="page-footer"><div class="footer-content">
@@ -196,6 +225,8 @@
                 minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
             if(contentHeight < minHeight) {
                 $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
             }
         };
 
@@ -208,8 +239,54 @@
             jPM.on();
         };
 
+        var pagination = function() {
+            var PER_PAGE_NUM = showNum = 5,
+                i,
+                initHeight = 0,
+                outerHeightList = [],
+                articleList = $('#content-wrapper article'),
+                articleNum = articleList.length;
+
+            for(i = 0; i < articleList.length; i++) {
+                outerHeightList.push($(articleList[i]).outerHeight());
+                if(i >= PER_PAGE_NUM) {
+                    $(articleList[i]).hide();
+                }
+            }
+
+            $('.btn-loadmore').click(function() {
+                var deltaH = 0,
+                    toShowList = [];
+                for(i = showNum, showNum += PER_PAGE_NUM; i < showNum; i++) {
+                    if(i >= articleList.length) {
+                        $('.btn-loadmore').html("已经到底啦");
+                        break;
+                    }
+                    toShowList.push($(articleList[i]));
+                    deltaH += outerHeightList[i];
+                }
+                $('body').animate({
+                    scrollTop: $('#article-list').height()
+                });
+                $('#article-list').animate({
+                    height: "+=" + deltaH
+                }, 1000, function() {
+                    for(i = 0; i < toShowList.length; i++) {
+                        toShowList[i].css({opacity: 0});
+                        toShowList[i].show();
+                        toShowList[i].animate({
+                            opacity: 1
+                        }, 1000);
+                    }
+                });
+            });
+            resizeContentWrapper();
+        };
+
+        $(document).ready(pagination);
         $(document).ready(resizeContentWrapper);
         $(document).ready(initJPanelMenu);
+        
         $(window).resize(resizeContentWrapper);
     })(jQuery);
 </script>
