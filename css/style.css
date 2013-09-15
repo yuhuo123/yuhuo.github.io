@@ -77,12 +77,6 @@ li {
 #comment {
   margin-top: 40px;
 }
-.btn-loadmore {
-  margin-top: 20px;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-}
 #page-header {
   margin-bottom: 0;
 }
@@ -362,6 +356,54 @@ article .entry p code {
   font-size: 40px;
   font-weight: bold;
   color: color-section-title;
+}
+.btn-loadmore {
+  margin-top: 20px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+.feature-guide-container {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+.shadow {
+  position: absolute;
+  background-color: rgba(0,0,0,0.6);
+}
+.shadow-light {
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+}
+.feature-box {
+  position: relative;
+  max-width: 300px;
+  background-color: #ffebb5;
+  padding: 16px;
+  color: #ae2341;
+}
+.feature-box .btn-i-know {
+  background-color: #f4867b;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+  margin-bottom: 0;
+}
+.feature-box .btn-i-know:hover {
+  background-color: #f5a69e;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  -ms-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+.feature-box .feature-description {
+  font-size: 1em;
 }
 figure.highlight {
   position: relative;
