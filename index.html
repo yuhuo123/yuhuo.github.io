@@ -45,17 +45,17 @@
                     </ul>
                     <div class="pull-right nav">
                         
-                            <a href="/" class="btn btn-primary btn-large">
+                            <a href="/" id="id-home" class="btn btn-primary btn-large">
                                 <i class="icon-home icon-white"></i>
                                 首页
                             </a>
                         
-                            <a href="/archives" class="btn btn-primary btn-large">
+                            <a href="/archives" id="id-archive" class="btn btn-primary btn-large">
                                 <i class="icon-archive icon-white"></i>
                                 存档
                             </a>
                         
-                            <a href="/about" class="btn btn-primary btn-large">
+                            <a href="/about" id="id-about" class="btn btn-primary btn-large">
                                 <i class="icon-user icon-white"></i>
                                 关于
                             </a>
@@ -677,11 +677,11 @@
 
             var 
                 //新功能特征值，以此识别一个功能点
-                FEATURE_CODE = '47eaea6',
-                //新功能高亮提醒的jQuery对象
-                FEATURE_DOM = $('.' + 'brand'),
+                FEATURE_CODE = '0761b88',
+                //新功能高亮提醒的jQuery查询字符串
+                FEATURE_DOM = $('#id-about'),
                 //新功能描述
-                FEATURE_DESCRIPTION = '如你所见，这是新功能导航哦。以后如果博客有新功能的话，就会通过这个来让大家知道&gt;_&lt;';
+                FEATURE_DESCRIPTION = '我的关于有新内容啦！';
 
             //存储的key
             var storageKey = 'raytaylor_world_feature_notify',
