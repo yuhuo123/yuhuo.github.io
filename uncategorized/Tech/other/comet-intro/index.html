@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>日常 | Ray Taylor Lin's world</title>
+    <title>Comet：基于 HTTP 长连接的“服务器推”技术简介 | Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="最近实验室生物信息Heatmap项目正在考虑做一个这样的功能：一个用户在heatmap（一张超大的可能是GB级别大小的图片）上做一个标注，另一个在线的用户可以马上就看得出来，相当于在线协作。其实这功能的原理就有点类似现在很多网站上的即时通讯，比如Web QQ和网页版的阿里旺旺。按照学长的指示，我开始接触到一种叫Comet的技术，也就是本文所要汇总的内容。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Comet：基于 HTTP 长连接的“服务器推”技术简介"/>
     <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
@@ -97,86 +99,74 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：</h2>
-
-
     
-        <article>
-    <div class="row-fluid">
-        <div class="span2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-08-31T09:35:13.000Z">2013-08-31</time>
-            </div>
-            
-        </div>
-        <div class="span10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/uncategorized/daily/2013-spring-summary/">2013年春季学期总结</a></h1>
+        <h1>Comet：基于 HTTP 长连接的“服务器推”技术简介</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2013-05-06T10:13:53.000Z">2013-05-06</time>
+    </div>
+
+    <div class="entry">
+        <p>最近实验室生物信息Heatmap项目正在考虑做一个这样的功能：一个用户在heatmap（一张超大的可能是GB级别大小的图片）上做一个标注，另一个在线的用户可以马上就看得出来，相当于在线协作。其实这功能的原理就有点类似现在很多网站上的即时通讯，比如Web QQ和网页版的阿里旺旺。按照学长的指示，我开始接触到一种叫Comet的技术，也就是本文所要汇总的内容。</p>
+<a id="more"></a>
+
+<p>关于Comet的入门介绍，这里有一篇很好的<a href="http://www.ibm.com/developerworks/cn/web/wa-lo-comet/" target="_blank">文章</a>。</p>
+<p>接下来是5篇很详细的博文，从Comet各种实现方式的介绍，到WebSocket，到各种常用的Comet框架介绍都有。</p>
+<ol>
+<li><a href="http://blog.csdn.net/coderjiang/article/details/8675120" target="_blank">反向Ajax第1部分——Comet介绍</a></li>
+<li><a href="http://blog.csdn.net/coderjiang/article/details/8675539" target="_blank">反向Ajax第2部分——WebSocket</a></li>
+<li><a href="http://blog.csdn.net/coderjiang/article/details/8676823" target="_blank">反向Ajax第3部分——Web服务器和Socket.IO</a></li>
+<li><a href="http://blog.csdn.net/coderjiang/article/details/8676882" target="_blank">反向Ajax第4部分——Atmosphere和CometD</a></li>
+<li><a href="http://blog.csdn.net/coderjiang/article/details/8676923" target="_blank">反向Ajax第5部分——事件驱动的Web开发</a></li>
+</ol>
+<p>以上如果想要快速了解概况以及各种技术的对比，看第1部分就够了（包括后面几部分其中涉及的Java代码基本上不用看）。第2部分涉及较新的HTML5的WebSocket也是非常强大，值得关注。第3部分介绍了Socket.IO这个很强大的js库，简单好用，也是我初步决定采用的即时通讯技术方案。最后两部分还没细看，目测也用不着。</p>
+<p>看了几天的文章之后，初步对Comet技术有了大体的认识，也了解到目前使用最多的实现方式应该是采用ajax长轮询，而较新且更强大的是使用WebSocket。而在丁基友的推荐下，我可是接触Socket.IO这个东西，貌似可以兼容大部分常见浏览器，并自动采用最佳方式来满足这种即时通讯的需要，于是决定了下一步开始对Socket.IO展开研究。</p>
+
+    </div>
+    
+    <footer >
+        
+            
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Comet/">Comet</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-        <article>
-    <div class="row-fluid">
-        <div class="span2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-01-24T07:08:29.000Z">2013-01-24</time>
-            </div>
-            
-        </div>
-        <div class="span10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/uncategorized/daily/2012-autumn-summary/">2012年秋季学期总结</a></h1>
-    
 
-            </div>
-            
-        </div>
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Comet：基于 HTTP 长连接的“服务器推”技术简介">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
     </div>
-    <div class="split-line"></div>
-</article>
+</section>
 
-    
-        <article>
-    <div class="row-fluid">
-        <div class="span2 date-tags">
-            <div class="date-row">
-                <time datetime="2012-07-07T10:04:04.000Z">2012-07-07</time>
-            </div>
-            
-        </div>
-        <div class="span10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/uncategorized/daily/welcome/">Welcome to Ray Taylor Lin's world</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 
         </div>
     </div>

@@ -1,12 +1,11 @@
 html {
   font-family: "Lato", "sans-serif", "微软雅黑", "Helvetica Neue";
   background: color-background;
-  background: color-background -webkit-gradient(linear, left top, left bottom, color-stop(0, #00ade3), color-stop(0.33333333333333326, #080046), color-stop(1, #000)) fixed;
-  background: color-background -webkit-linear-gradient(top, #00ade3 0%, #080046 33.33333333333333%, #000 100%) fixed;
-  background: color-background -moz-linear-gradient(top, #00ade3 0%, #080046 33.33333333333333%, #000 100%) fixed;
-  background: color-background -o-linear-gradient(top, #00ade3 0%, #080046 33.33333333333333%, #000 100%) fixed;
-  background: color-background -ms-linear-gradient(top, #00ade3 0%, #080046 33.33333333333333%, #000 100%) fixed;
-  background: color-background linear-gradient(top, #00ade3 0%, #080046 33.33333333333333%, #000 100%) fixed;
+  background: color-background -webkit-linear-gradient(#00ade3, #080046, #000) fixed;
+  background: color-background -moz-linear-gradient(#00ade3, #080046, #000) fixed;
+  background: color-background -o-linear-gradient(#00ade3, #080046, #000) fixed;
+  background: color-background -ms-linear-gradient(#00ade3, #080046, #000) fixed;
+  background: color-background linear-gradient(#00ade3, #080046, #000) fixed;
 }
 body {
   background: #ecf8ff;
@@ -360,8 +359,8 @@ article .entry p code {
 .btn-loadmore {
   margin-top: 20px;
   opacity: 0.5;
-  filter: alpha(opacity=50);
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
 }
 .feature-guide-container {
   display: none;
