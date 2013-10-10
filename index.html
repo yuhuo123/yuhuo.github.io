@@ -1,0 +1,842 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Ray Taylor Lin's world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <meta property="og:site_name" content="Ray Taylor Lin's world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" href="/index.html">Ray Taylor Lin's world</a></li>
+                    </ul>
+                    <div class="pull-right nav">
+                        
+                            <a href="/" id="id-home" class="btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" id="id-archive" class="btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                存档
+                            </a>
+                        
+                            <a href="/about" id="id-about" class="btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav">
+        <li><a class="brand" href="index.html">Ray Taylor Lin's world</a></li>
+        
+            <li>
+                <a href="/">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives">
+                    <i class="icon-archive icon-white"></i>
+                    存档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <div id="article-list">
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-09-17T09:18:08.000Z">2013-09-17</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/Git/" class="btn btn-info">Git</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/git/git-tutorial-2/">Git指南（2）——处理历史与错误</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>上一篇介绍了Git的一些最常用的基本命令，如果只是日常的提交，那些命令已经够用了。但是平时写代码的时候总难免会需要查看你以前写过的代码，或者当你进行了一些误操作的时候，总会希望可以安全地撤销你的操作。本篇将介绍如何处理历史记录，在各个版本之间跳转（签出），以及如何撤销你的之前的提交、更改等操作。</p>
+<p>
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/Git/" class="btn btn-info">Git</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/git/git-tutorial-1/">Git指南（1）——安装与基本用法</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。</p>
+<p>之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）</p>
+<p>
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-08-31T09:35:13.000Z">2013-08-31</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/日常/" class="btn btn-info">日常</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/daily/2013-spring-summary/">2013年春季学期总结</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>再过几天就要开始研究生的新学期了，趁着还有点时间赶紧把大四下学期回顾一下。话说回来我是把暑假也算入这个学期里头了，因此现在来回顾还不算晚。都说大四的毕业生除了混毕业论文之外，过得是最清闲最快乐的，但现在看来，这学期恰恰是我本科生涯最长的一个学期——由于暑期做某个项目而调假，我从二月初到八月底超过半年没有回过家，真心是破纪录了。这学期远远没有普遍大四毕业生过得那么潇洒，其中也发生了不少事情，现在就来把一些重要的事梳理一遍。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-08-25T14:10:32.000Z">2013-08-25</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/Hexo/" class="btn btn-info">Hexo</a>
+                
+                    <a href="/tags/博客/" class="btn btn-info">博客</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/daily/hexo-theme-raytaylorism/">新版个人博客2.0，Hexo主题Raytaylorism 1.0a上线！</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>开始使用hexo搭建博客已经一个多月了，使用hexo+markdown写博客和发博客一切都是那么流畅自然。只是这段时间一直在忙实验室各种项目，堆了一堆博文想发但都没时间写。后来在网上查hexo资料的时候，偶然发现了<a href="http://yangjian.me">yangjian.me</a>这个（目测是技术大牛）博客，其扁平化和清爽风格的主题（这个主题叫<a href="https://github.com/A-limon/pacman">Pacman</a>）一下子就吸引了我。看着自己原先使用的那个主题modernist <a href="http://heroicyang.com/">DEMO</a>突然觉得自己的博客实在是弱爆了。我开始思考自己的博客为什么不给自己设计一个主题呢？别人的博客主题虽然也是开源的，但作为一个geeker，直接拿别人的东西过来用始终有点不爽。于是我开始着手构想和设计自己的主题。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-07-11T03:21:04.000Z">2013-07-11</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/Hexo/" class="btn btn-info">Hexo</a>
+                
+                    <a href="/tags/博客/" class="btn btn-info">博客</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/daily/wordpress-to-hexo/">博客从Wordpress进化到Hexo啦</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>之前在衡天小张那购买的主机过期了，虽说在主机上搭建的Wordpress使用起来非常方便，不过使用了一年之后感觉那个主机响应速度略慢，所以就懒得继续掏钱了。考虑到丁基友的博客就是用静态页面托管到Github上的，简单可靠又免费，同时也想要学习一下markdown并用它来写博客，所以准备尝试转向静态博客的路。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-05-06T10:13:53.000Z">2013-05-06</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/Comet/" class="btn btn-info">Comet</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>最近实验室生物信息Heatmap项目正在考虑做一个这样的功能：一个用户在heatmap（一张超大的可能是GB级别大小的图片）上做一个标注，另一个在线的用户可以马上就看得出来，相当于在线协作。其实这功能的原理就有点类似现在很多网站上的即时通讯，比如Web QQ和网页版的阿里旺旺。按照学长的指示，我开始接触到一种叫Comet的技术，也就是本文所要汇总的内容。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-04-02T07:08:29.000Z">2013-04-02</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/IDE/" class="btn btn-info">IDE</a>
+                
+                    <a href="/tags/IntelliJ-IDEA/" class="btn btn-info">IntelliJ IDEA</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>IntelliJ IDEA是一个非常强大的IDE，但是只有英文版，且默认的中文显示有一定问题。本文介绍了IntelliJ IDEA 12.0中文显示问题解决方案。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-01-24T07:08:29.000Z">2013-01-24</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/日常/" class="btn btn-info">日常</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/daily/2012-autumn-summary/">2012年秋季学期总结</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>学期末了，做点简短的总结，以回顾一下这半年都做了什么东西。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2013-01-05T12:13:24.000Z">2013-01-05</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/HTML5/" class="btn btn-info">HTML5</a>
+                
+                    <a href="/tags/canvas/" class="btn btn-info">canvas</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>本文是一个Canvas快速入门，亦是<a href="http://book.douban.com/subject/7162014/">Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社</a>一书的读书笔记。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2012-09-17T05:05:11.000Z">2012-09-17</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/lua/" class="btn btn-info">lua</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/Script/Lua/lua-note-3/">Lua学习笔记（3）——Lua语句</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>本文介绍了Lua的基本语句，并依次介绍了Lua程序的顺序结构和控制结构。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2012-09-15T03:29:30.000Z">2012-09-15</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/lua/" class="btn btn-info">lua</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/Script/Lua/lua-note-2/">Lua学习笔记（2）——变量类型与表达式</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2012-09-13T03:31:24.000Z">2012-09-13</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/lua/" class="btn btn-info">lua</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/Script/Lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>Lua 是一种小巧的脚本语言。其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。本文是Lua学习笔记系列的开篇。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+        <article>
+    <div class="row-fluid">
+        <div class="span2 date-tags">
+            <div class="date-row">
+                <time datetime="2012-07-07T10:04:04.000Z">2012-07-07</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/日常/" class="btn btn-info">日常</a>
+                
+                </div>
+            
+        </div>
+        <div class="span10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/daily/welcome/">Welcome to Ray Taylor Lin's world</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>大家好，我是林寿山，欢迎来到我的个人博客！</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
+    
+</div>
+<div>
+    <a class="btn btn-funky btn-xlarge btn-block btn-loadmore" href="javascript:void(0)">点击加载更多</a>
+</div>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+            if(contentHeight < minHeight) {
+                $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
+            }
+        };
+
+        //按一定数目显示博文条目
+        var pagination = function() {
+            var PER_PAGE_NUM = showNum = 5,
+                i,
+                initHeight = 0,
+                outerHeightList = [],
+                articleList = $('#content-wrapper article'),
+                articleNum = articleList.length;
+
+            for(i = 0; i < articleList.length; i++) {
+                outerHeightList.push($(articleList[i]).outerHeight());
+                if(i >= PER_PAGE_NUM) {
+                    $(articleList[i]).hide();
+                }
+            }
+
+            $('.btn-loadmore').click(function() {
+                var deltaH = 0,
+                    toShowList = [],
+                    duration = 1000;
+                for(i = showNum, showNum += PER_PAGE_NUM; i < showNum; i++) {
+                    if(i >= articleList.length) {
+                        $('.btn-loadmore').html("已经到底啦");
+                        break;
+                    }
+                    toShowList.push($(articleList[i]));
+                    deltaH += outerHeightList[i];
+                }
+                
+                //执行文章列表高度加大动画
+                $('#article-list').animate({
+                    height: "+=" + deltaH
+                }, duration, function() {
+                    //执行完毕后，每篇文章淡入动画
+                    for(i = 0; i < toShowList.length; i++) {
+                        toShowList[i].css({opacity: 0});
+                        toShowList[i].show();
+                        toShowList[i].animate({
+                            opacity: 1
+                        }, duration);
+                    }
+                });
+                //滚动条滚动动画
+                $('body, html').animate({
+                    scrollTop: "+=" + deltaH
+                }, duration);
+            });
+            resizeContentWrapper();
+        };
+
+        $(document).ready(pagination);
+    })(jQuery);
+</script>
+
+<!-- 新功能导航 -->
+<div class="feature-guide-container">
+    <div class="shadow-container"></div>
+    <div class="feature-box">
+        <p class="feature-description"></p>
+        <a class="btn btn-i-know pull-right" href="javascript:void(0);">我知道了</a>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script>
+    (function($){
+        //检测是否有新的功能，并提示用户
+        var checkNewFeature = function() {
+            //设置本地存储
+            var setStorage = 
+            (typeof window.localStorage !== 'undefined') && (typeof window.localStorage !== 'unknown') ?
+                //若支持HTML5的localStorage则使用localStorage
+                function(key, value) {
+                    window.localStorage[key] = value;
+                } : 
+                //否则使用cookie存储
+                function(key, value){
+                    var exdate = new Date(),
+                        expireDays = 15;    //cookie过期时间15天
+                    exdate.setDate(exdate.getDate() + expireDays);
+                    document.cookie = key + '=' + escape(value) + ';expires=' + exdate.toGMTString();
+                };
+            //获取本地存储
+            var getStorage = 
+            (typeof window.localStorage !== 'undefined') && (typeof window.localStorage !== 'unknown') ?
+                function(key) {
+                    return window.localStorage[key] || null;
+                } :
+                function(key) {
+                    if (document.cookie.length > 0) {
+                        var start = document.cookie.indexOf(key + '='),
+                            end;
+                        if (start !== -1) {
+                            start = start + key.length + 1;
+                            end = document.cookie.indexOf(';', start);
+                            if (end === -1) {
+                                end = document.cookie.length;
+                            }
+                            return unescape(document.cookie.substring(start, end));
+                        } else {
+                            return null;
+                        }
+                    }
+                    return null;
+                };
+
+            var 
+                //新功能特征值，以此识别一个功能点
+                FEATURE_CODE = '085d0ce',
+                //新功能高亮提醒的jQuery查询字符串
+                FEATURE_DOM = $('#id-about'),
+                //新功能描述
+                FEATURE_DESCRIPTION = '我的关于有新内容啦！';
+
+            //存储的key
+            var storageKey = 'raytaylor_world_feature_notify',
+                lastValue = getStorage(storageKey);
+
+            //若本地存储没有特征值，或特征值与最新发布的不一致，则提示用户
+            if(lastValue === null || lastValue !== FEATURE_CODE){
+                //生成阴影div的方法
+                function newShadow(className) {
+                    var $shadow = $('<div class="' + className + '"></div>');
+                    return $shadow;
+                }
+
+                function setOffsetSize(obj, offset, size) {
+                    obj.css({left: offset.left, top: offset.top});
+                    obj.width(size.width);
+                    obj.height(size.height);
+                }
+
+                var 
+                    $featureBox = $('.feature-box'),
+                    $shadowContainer = $('.shadow-container'),
+                    $featureGuideContainer = $('.feature-guide-container'),
+                    
+                    $shadowLeft = newShadow('shadow'),
+                    $shadowTop = newShadow('shadow'),
+                    $shadowRight = newShadow('shadow'),
+                    $shadowBottom = newShadow('shadow'),
+                    $shadowLight = newShadow('shadow-light');
+
+                function resizeAllShadow() {
+                    var $body = $('body'),
+                    marginBottom = 3,    //for IE
+                    domWidth = FEATURE_DOM.outerWidth(),
+                    domHeight = FEATURE_DOM.outerHeight(),
+                    domLeft = Math.round(FEATURE_DOM.offset().left),
+                    domTop = Math.round(FEATURE_DOM.offset().top),
+                    domRight = Math.round(domLeft + domWidth),
+                    domBottom = Math.round(domTop + domHeight);
+
+                    setOffsetSize($shadowLeft, {left: 0, top: 0}, {width: domLeft, height: $body.height() - 5});
+                    setOffsetSize($shadowTop, {left: domLeft, top: 0}, {width: domWidth, height: domTop});
+                    setOffsetSize($shadowRight, {left: domRight, top: 0}, {width: $body.width() - domBottom, height: $body.height() - 5});
+                    setOffsetSize($shadowBottom, {left: domLeft, top: domBottom}, {width: domWidth, height: $body.height() - domBottom - 5});
+                    setOffsetSize($shadowLight, {left: domLeft, top: domTop}, {width: domWidth, height: domHeight});
+
+                    //填充并定位描述内容
+                    $featureBox.find('.feature-description').html(FEATURE_DESCRIPTION);
+                    $featureBox.offset({left: domLeft, top: domBottom + 20});
+                }
+
+                resizeAllShadow();
+                $(window).resize(resizeAllShadow);
+
+                //添加阴影
+                $shadowContainer.append($shadowLeft)
+                .append($shadowTop)
+                .append($shadowRight)
+                .append($shadowBottom)
+                .append($shadowLight);
+
+                //显示新功能描述
+                $featureGuideContainer.fadeIn('slow');
+                //绑定关闭按钮事件
+                $featureGuideContainer.find('.btn-i-know').click(function() {
+                    $featureGuideContainer.fadeOut('slow');
+                    setStorage(storageKey, FEATURE_CODE);
+                });
+            }
+        };
+
+        $(document).ready(checkNewFeature);
+    })(jQuery);
+</script>
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2013 <a href="/">Ray Taylor Lin</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+            if(contentHeight < minHeight) {
+                $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
+            }
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>

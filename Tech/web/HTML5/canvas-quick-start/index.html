@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Canvas快速入门 | Ray Taylor Lin's world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="本文是一个Canvas快速入门，亦是Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社一书的读书笔记。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Canvas快速入门"/>
+    <meta property="og:site_name" content="Ray Taylor Lin's world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" href="/index.html">Ray Taylor Lin's world</a></li>
+                    </ul>
+                    <div class="pull-right nav">
+                        
+                            <a href="/" id="id-home" class="btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" id="id-archive" class="btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                存档
+                            </a>
+                        
+                            <a href="/about" id="id-about" class="btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav">
+        <li><a class="brand" href="index.html">Ray Taylor Lin's world</a></li>
+        
+            <li>
+                <a href="/">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives">
+                    <i class="icon-archive icon-white"></i>
+                    存档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Canvas快速入门</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2013-01-05T12:13:24.000Z">2013-01-05</time>
+    </div>
+
+    <div class="entry">
+        <p>本文是一个Canvas快速入门，亦是<a href="http://book.douban.com/subject/7162014/">Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社</a>一书的读书笔记。</p>
+<a name="more"></a>
+
+<h1>1. Canvas元素</h1>
+<p>以下html代码定义了一个canvas元素。</p>
+<pre><code><figure class="highlight"><pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Canvas快速入门<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>/&gt;</span>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"mainCanvas"</span> <span class="attribute">width</span>=<span class="value">"640"</span> <span class="attribute">height</span>=<span class="value">"480"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</pre></figure></code></pre>
+<p>通过以下Javascript语句访问canvas元素：</p>
+<pre><code><figure class="highlight"><pre><span class="comment">//DOM写法</span>
+window.onload = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">var</span> canvas = document.getElementById(<span class="string">"mainCanvas"</span>);
+    <span class="keyword">var</span> context = canvas.getContext(<span class="string">"2d"</span>);
+};
+<span class="comment">//jQuery写法</span>
+$(document).ready(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="keyword">var</span> canvas = $(<span class="string">"#mainCanvas"</span>);
+    <span class="keyword">var</span> context = canvas.<span class="keyword">get</span>(<span class="number">0</span>).getContext(<span class="string">"2d"</span>);
+});
+<span class="comment">//接下来就可以调用context的方法来调用绘图API</span>
+</pre></figure></code></pre>
+<h1>2. 基础API</h1>
+<h2>2.1 坐标系统</h2>
+<p>Canvas 2D渲染上下文采用平面笛卡尔坐标系统，左上角为原点(0,0)，坐标系统的1个单位相当于屏幕的1个像素。具体如下图：<br><img src="http://storage.live.com/items/314044073BEC6D79!51258" alt="HTML5 Canvas坐标系统"></p>
+<h2>2.2 绘制基本图形</h2>
+<h3>2.2.1 矩形</h3>
+<pre><code><figure class="highlight"><pre><span class="comment">//绘制一个填充矩形</span>
+context<span class="variable">.fillRect</span>(x, y, width, height)
+<span class="comment">//绘制一个边框矩形</span>
+context<span class="variable">.strokeRect</span>(x, y, width, height)
+<span class="comment">//清除一个矩形区域</span>
+context<span class="variable">.clearRect</span>(x, y, width, height)
+</pre></figure></code></pre>
+<h3>2.2.2 线条</h3>
+<p>绘制线条与绘制图形有一些区别，线条实际上称为路径。要绘制一条简单的路径，首先必须调用beginPath方法，接着调用moveTo设置路径的起点坐标，然后调用lineTo设置线段终点坐标（可多次设置），再调用closePath完成路径绘制。最后调用stroke绘制轮廓（或调用fill填充路径）。以下为例子：</p>
+<pre><code><figure class="highlight"><pre><span class="comment">//示例</span>
+context<span class="variable">.beginPath</span>();    <span class="comment">//开始路径</span>
+context<span class="variable">.moveTo</span>(<span class="number">40</span>, <span class="number">40</span>);    <span class="comment">//移动到点(40,40)</span>
+context<span class="variable">.lineTo</span>(<span class="number">300</span>, <span class="number">40</span>);    <span class="comment">//画线到点(300,30)</span>
+context<span class="variable">.lineTo</span>(<span class="number">40</span>, <span class="number">300</span>);    <span class="comment">//画线到点(40,300)</span>
+context<span class="variable">.closePath</span>();    <span class="comment">//结束路径</span>
+context<span class="variable">.stroke</span>();    <span class="comment">//绘制轮廓</span>
+<span class="comment">//或者填充用context.fill();</span>
+</pre></figure></code></pre>
+<h3>2.2.3 圆形</h3>
+<p>Canvas实际上并没有专门绘制圆形的方法，可以通过画圆弧来模拟圆形。由于圆弧是一种路径，所以画圆弧的API应该包含在beginPath和closePath之间。</p>
+<pre><code><figure class="highlight"><pre><span class="comment">/* 绘制一条圆弧
+ *<span class="phpdoc"> @param</span> x,y 圆心的横纵坐标
+ *<span class="phpdoc"> @param</span> radius 圆的半径
+ *<span class="phpdoc"> @param</span> startAngle 起始角度，以弧度为单位，x轴方向为0
+ *<span class="phpdoc"> @param</span> endAngle 结束角度，以弧度为单位
+ *<span class="phpdoc"> @param</span> anticlockwise 布尔值，表示是否按逆时针方向绘制
+ */</span>
+context.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+</pre></figure></code></pre>
+<p>更多用法参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Drawing_shapes?redirectlocale=en-US&amp;redirectslug=Canvas_tutorial%2FDrawing_shapes">Drawing shapes(MDN)</a>。</p>
+<h2>2.3 样式</h2>
+<h3>2.3.1 修改线条颜色</h3>
+<pre><code><figure class="highlight"><pre>var <span class="keyword">color</span>;
+<span class="comment">//指定RGB值</span>
+<span class="keyword">color</span> = <span class="string">"rgb(255, 0, 0)"</span>;
+<span class="comment">//指定RGBA值（最后一个参数为alpha值，取值0.0~1.0）</span>
+<span class="keyword">color</span> = <span class="string">"rgba(255, 0, 0, 1)"</span>;
+<span class="comment">//指定16进制码</span>
+<span class="keyword">color</span> = <span class="string">"#FF0000"</span>;
+<span class="comment">//用单词指定</span>
+<span class="keyword">color</span> = <span class="string">"red"</span>;
+<span class="comment">//设置填充颜色</span>
+context.fillStyle = <span class="keyword">color</span>;
+<span class="comment">//设置边框颜色</span>
+context.strokeStyle = <span class="keyword">color</span>;
+</pre></figure></code></pre>
+<h3>2.3.2 修改线宽</h3>
+<pre><code><figure class="highlight"><pre><span class="comment">//指定线宽值</span>
+<span class="keyword">var</span> <span class="keyword">value</span>= <span class="number">3</span>;
+<span class="comment">//设置边框颜色</span>
+context.linewidth = <span class="keyword">value</span>;
+</pre></figure></code></pre>
+<p>更多样式介绍参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Applying_styles_and_colors">Applying styles and colors(MDN)</a>。</p>
+<h2>2.4 绘制文本</h2>
+<pre><code><figure class="highlight"><pre><span class="comment">//指定字体样式</span>
+context<span class="variable">.font</span> = <span class="string">"italic 30px 黑体"</span>;
+<span class="comment">//在点(40,40)处画文字</span>
+context<span class="variable">.fillText</span>(<span class="string">"Hello world!"</span>, <span class="number">40</span>, <span class="number">40</span>);
+</pre></figure></code></pre>
+<h2>2.5 绘制图像</h2>
+<p>在绘制图像之前，需要先定义图像并加载。</p>
+<pre><code><figure class="highlight"><pre><span class="keyword">var</span> img = <span class="keyword">new</span> Image();
+img.src = <span class="string">"myImage.png"</span>;
+img.onload = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="comment">//图像加载完毕执行</span>
+};
+</pre></figure></code></pre>
+<p>以下是drawImage API解释：</p>
+<pre><code><figure class="highlight"><pre><span class="comment">//在(x,y)出绘制图像image</span>
+context<span class="variable">.drawImage</span>(image, x, y)
+<span class="comment">//在(x,y)出绘制width*height的图像image</span>
+context<span class="variable">.drawImage</span>(image, x, y, width, height)
+<span class="comment">//在image的(sx,sy)处截取sWidth*sHeight的图像，在(dx,dy)处绘制dWidth*dHeight的图像</span>
+context<span class="variable">.drawImage</span>(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+</pre></figure></code></pre>
+<h1>3. 高级功能</h1>
+<h2>3.1 使Canvas填满浏览器窗口</h2>
+<p>最简单的方式是将canvas元素的宽度和高度精确设置为浏览器窗口的宽度和高度，用CSS消去白色空隙。</p>
+<p>CSS代码：</p>
+<pre><code><figure class="highlight"><pre>* <span class="rules">{
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span>;</span></span>
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span>;</span></span>
+<span class="rule">}</span></span>
+
+<span class="tag">html</span>, <span class="tag">body</span> <span class="rules">{
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100</span>%;</span></span>
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100</span>%;</span></span>
+<span class="rule">}</span></span>
+
+<span class="tag">canvas</span> <span class="rules">{
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> block;</span></span>
+<span class="rule">}</span></span>
+</pre></figure></code></pre>
+<p>Javascript代码：</p>
+<pre><code><figure class="highlight"><pre>function resizeCanvas() {
+    //canvas由jQuery获取
+    canvas<span class="preprocessor">.attr</span>(<span class="string">"width"</span>, $(window)<span class="preprocessor">.get</span>(<span class="number">0</span>)<span class="preprocessor">.innerWidth</span>)<span class="comment">;</span>
+    canvas<span class="preprocessor">.attr</span>(<span class="string">"height"</span>, $(window)<span class="preprocessor">.get</span>(<span class="number">0</span>)<span class="preprocessor">.innerHeight</span>)<span class="comment">;</span>
+    context<span class="preprocessor">.fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, canvas<span class="preprocessor">.width</span>(), canvas<span class="preprocessor">.height</span>())<span class="comment">;</span>
+}
+$(window)<span class="preprocessor">.resize</span>(resizeCanvas)<span class="comment">;</span>
+resizeCanvas()<span class="comment">;</span>
+</pre></figure></code></pre>
+<h2>3.2 绘图状态</h2>
+<p>在canvas中，绘图状图指的是描述某一时刻2D渲染上下文外观的整套属性，包括：变换矩阵、裁剪区域、globalAlpha、globalCompositeOperation、strokeStyle、fillStyle、lineWidth、lineCap、lineJoin、miterLimit、shadowOffsetX、shadowOffsetY、shadowBlur、shadowColor、font、textAlign和textBaseline。</p>
+<p>当需要改变画布全局状态时，一般先将当前状态保存起来——调用save方法将状态推入绘图状态栈），做完操作之后，再调用restore方法回复绘图状态。</p>
+<pre><code><figure class="highlight"><pre>//示例
+context<span class="preprocessor">.save</span>()<span class="comment">;</span>
+context<span class="preprocessor">.globalAlpha</span> = <span class="number">0.5</span><span class="comment">;</span>
+context<span class="preprocessor">.fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">100</span>)<span class="comment">;</span>
+context<span class="preprocessor">.restore</span>()<span class="comment">;</span>
+</pre></figure></code></pre>
+<h2>3.3 变形</h2>
+<h3>3.3.1 平移</h3>
+<p>将2D渲染上下文的原点从一个位置移动到另一个位置。注意，这里移动的是坐标原点即全局绘图位置，API如下：</p>
+<pre><code><figure class="highlight"><pre><span class="comment">//将坐标原点移动到(x,y)</span>
+context<span class="variable">.translate</span>(x, y)
+</pre></figure></code></pre>
+<h3>3.3.2 缩放</h3>
+<pre><code><figure class="highlight"><pre><span class="comment">//将全局横纵尺寸缩放至x,y倍（即在原有数值乘上倍乘因子）</span>
+context<span class="variable">.scale</span>(x, y)
+</pre></figure></code></pre>
+<h3>3.3.3 旋转</h3>
+<pre><code><figure class="highlight"><pre><span class="comment">//将画布绕着原点旋转radius弧度</span>
+context<span class="variable">.rotate</span>(radius)
+</pre></figure></code></pre>
+<p>更多高级特性参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Transformations?redirectlocale=en-US&amp;redirectslug=Canvas_tutorial%2FTransformations">Transformations(MDN)</a>。</p>
+<p>参考文献：<a href="http://book.douban.com/subject/7162014/">Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社</a></p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/HTML5/">HTML5</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/HTML5/">HTML5</a><a class="btn btn-info" href="/tags/canvas/">canvas</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Canvas快速入门">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2013 <a href="/">Ray Taylor Lin</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+            if(contentHeight < minHeight) {
+                $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
+            }
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
