@@ -55,6 +55,11 @@
                                 存档
                             </a>
                         
+                            <a href="/reading" id="id-reading" class="btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
                             <a href="/about" id="id-about" class="btn btn-primary btn-large">
                                 <i class="icon-user icon-white"></i>
                                 关于
@@ -77,6 +82,13 @@
                 <a href="/archives">
                     <i class="icon-archive icon-white"></i>
                     存档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
                 </a>
             </li>
         
@@ -677,11 +689,11 @@
 
             var 
                 //新功能特征值，以此识别一个功能点
-                FEATURE_CODE = '085d0ce',
+                FEATURE_CODE = 'e1d5583',
                 //新功能高亮提醒的jQuery查询字符串
-                FEATURE_DOM = $('#id-about'),
+                FEATURE_DOM = $('#id-reading'),
                 //新功能描述
-                FEATURE_DESCRIPTION = '我的关于有新内容啦！';
+                FEATURE_DESCRIPTION = '读书栏目正式上线，开卷有益，大家一起分享好书，交流读书心得。';
 
             //存储的key
             var storageKey = 'raytaylor_world_feature_notify',

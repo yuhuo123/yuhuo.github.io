@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>IntelliJ IDEA 12.0中文显示问题解决方案 | Ray Taylor Lin's world</title>
+    <title>读书 | Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
     
-    <meta name="description" content="IntelliJ IDEA是一个非常强大的IDE，但是只有英文版，且默认的中文显示有一定问题。本文介绍了IntelliJ IDEA 12.0中文显示问题解决方案。">
+    <meta name="description" content="读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="IntelliJ IDEA 12.0中文显示问题解决方案"/>
+    <meta property="og:title" content="读书"/>
     <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
@@ -111,72 +111,109 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
-        <article class="post">
-    <div class="article-title article-title-big">
         
-    
-        <h1>IntelliJ IDEA 12.0中文显示问题解决方案</h1>
-    
 
-    </div>
-
-    <div class="date-row ">
-        <time datetime="2013-04-02T07:08:29.000Z">2013-04-02</time>
+<article class="reading-page">
+    <div class="article-title article-title-big">
+        <h1>读书</h1>
     </div>
 
     <div class="entry">
-        <p>IntelliJ IDEA是一个非常强大的IDE，但是只有英文版，且默认的中文显示有一定问题。本文介绍了IntelliJ IDEA 12.0中文显示问题解决方案。</p>
-<a name="more"></a>
+        <p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
 
-<h3>1. IDE本身的中文乱码</h3>
-<p>这个问题体现在IDE本身，比如打开文件浏览目录的时候，中文名的文件或目录会显示成方块。</p>
-<p>解决方法：<br>1. 进入设置页。File-&gt;Settings。<br>2. 进入IDE Settings里的File Encodings项，把IDE Encoding项设置成UTF-8。确定。<br>3. 进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</p>
-<p>以上应该可以保证中文显示没有问题了。</p>
-<h3>2. 编辑器的中文问题</h3>
-<p>这个问题体现在代码编辑区中写中文时，可能会乱码或者中文汉子全部重叠在一起。</p>
-<p>首先要确定你正在编辑的文件是UTF-8编码的，有很多文件可能默认是ANSI编码。</p>
-<p>至于中文重叠那是因为你所选用的默认中文字体不对，一直以来我写代码都是用的consolas，但是这个字体不支持中文，Intellij IDEA 12中如果使用默认的中文字体（不知道是哪个字体）就会重叠在一起，在网上找了好久，终于找到一个神一般的字体<em>Yahei Consolas Hybrid</em>，即微软雅黑和consolas的混合！</p>
-<p>于是乎，File-&gt;Settings IDE Settings-&gt;Editor-&gt;Color &amp; Fonts-&gt;Font，设置字体为Yahei Consolas Hybrid即可。</p>
-<p><strong><a href="http://pan.baidu.com/share/link?shareid=439485&amp;uk=1023591784">神一般的字体Yahei Consolas Hybrid下载</a></strong></p>
-<p>如果发现安装了这个字体但是在设置中找不到的话，尝试使用以下这个方法：<br>按图所示，保存为另外一个名字，由你喜欢。最好是英文字母组成，这里我们保存为Darcula1。</p>
-<p><img src="http://storage.live.com/items/314044073BEC6D79%2151257" alt="另存为一个新的设置">  </p>
-<p>在此路径（win7）“C:\Users\你的计算机名\.IntelliJIdea12\config\colors”找到Darcula1.xml文件。<br>用记事本打开Darcula1.xml文件，把第8行  </p>
-<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"你之前保存的字体"</span> /&gt;</span>
-</pre></figure></code></pre>
-<p>改为  </p>
-<pre><code><figure class="highlight"><pre><span class="tag">&lt;<span class="title">option</span> <span class="attribute">name</span>=<span class="value">"EDITOR_FONT_NAME"</span> <span class="attribute">value</span>=<span class="value">"YaHei Consolas Hybrid"</span> /&gt;</span>
-</pre></figure></code></pre>
-<p>然后重启IntelliJ IDEA 12.0，中文字符问题解决，效果如下图。</p>
-<p><img src="http://storage.live.com/items/314044073BEC6D79!51256" alt="中文字符显示效果"></p>
+        <div class="reading-books-content">
+            <h1>
+                在读
+                <small class="light"><span class="book-num"></span>本</small>
+            </h1>
+            <ul class="books-content">
 
+            </ul>
+        </div>
+        <div class="readed-books-content">
+            <h1>
+                已读
+                <small class="light"><span class="book-num"></span>本</small>
+            </h1>
+            <ul class="books-content">
+
+            </ul>
+        </div>
+        <div class="wanted-books-content">
+            <h1>
+                想读
+                <small class="light"><span class="book-num"></span>本</small>
+            </h1>
+            <ul class="books-content">
+
+            </ul>
+        </div>
     </div>
-    
-    <footer >
-        
-            
-    
-    <div class="categories">
-        所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/IDE/">IDE</a>
-    </div>
-
-            
-    
-    <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/IDE/">IDE</a><a class="btn btn-info" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a>
-    </div>
-
-        
-        <div class="clearfix"></div>
-    </footer>
 </article>
+<script type="text/custom-template" id="book-item-template">
+<li>
+    <div class="book-item">
+        <div class="book-item-head">
+            <a class="book-cover" href="javascript:void(0);">
+                <img src="{{cover}}" class="img" title="{{title}}" alt="{{title}}">
+            </a>
+        </div>
+        <div class="book-item-body">
+            <p class="book-title">{{title}}</p>
+            <p class="book-review">简评：<span>{{review}}</span></p>
+            <p class="book-score">推荐指数：<span>{{score}}</span></p>
+            <a href="{{doubanLink}}" class="btn btn-warning btn-to-douban pull-right" target="blank">去豆瓣看看</a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</li>
+</script>
 
+<script> type="text/javascript">
+(function($) {
+    //当内容区内容不够长时，设置内容区域的高度使footer沉底
+    var loadBookItem = function() {
+        $.ajax({
+            type: 'GET',
+            url: '/data/reading.json',
+            dataType: 'json',
+            success: function(data) {
+                var i, bookClass, itemData, $bookItem, 
+                    $list;
+                //循环大类别
+                for(bookClass in data) {
+                    $list = $('.' + bookClass).find('.books-content');
+                    for(i in data[bookClass]) {
+                        itemData = data[bookClass][i];
+                        $bookItem = createBookItem(itemData);
+                        $list.append($bookItem);
+                    }
+                    $('.' + bookClass).find('.book-num').html(data[bookClass].length);
+                }
+                $('#content-wrapper').css('height', 'auto');
+            }
+        });
+
+        function createBookItem(data) {
+            var templateHtml = $('#book-item-template').html(),
+                key, itemRegExp;
+            for(key in data) {
+                itemRegExp = new RegExp('{{' + key + '}}', 'g');
+                templateHtml = templateHtml.replace(itemRegExp, data[key]);
+            }
+            return $(templateHtml);
+        }
+    };
+
+    $(document).ready(loadBookItem);
+})(jQuery);
+</script>
 
 
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="IntelliJ IDEA 12.0中文显示问题解决方案">
+    <div class="ds-thread" data-title="读书">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
