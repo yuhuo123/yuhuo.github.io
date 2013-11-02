@@ -531,3 +531,97 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
+.reading-page ul {
+  list-style: none;
+  margin: 0;
+}
+.reading-page ul>li {
+  display: inline-block;
+  margin: 5px 20px 0 0;
+}
+.book-item {
+  position: relative;
+}
+.book-item .book-item-head img {
+  max-width: 180px;
+  max-height: 240px;
+}
+.book-item:hover .book-item-body {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  -moz-transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  transform: rotateY(0deg);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.3s;
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.3s;
+  -o-transition: -o-transform 0.4s, opacity 0.3s;
+  -ms-transition: -ms-transform 0.4s, opacity 0.3s;
+  transition: transform 0.4s, opacity 0.3s;
+}
+.book-item-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background: #2c3e50;
+  min-height: 320px;
+  min-width: 360px;
+  z-index: 2;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -o-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+  -o-transition: -o-transform 0.4s, opacity 0.1s 0.3s;
+  -ms-transition: -ms-transform 0.4s, opacity 0.1s 0.3s;
+  transition: transform 0.4s, opacity 0.1s 0.3s;
+}
+.book-item-body p {
+  color: #fff;
+  font-size: 0.9em;
+  margin-bottom: 0;
+}
+.book-item-body .book-title {
+  color: #3498db;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+.book-item-body .book-score {
+  color: #2ecc71;
+  margin-bottom: 20px;
+}
+.book-item-body .btn-to-douban {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 15px;
+}
