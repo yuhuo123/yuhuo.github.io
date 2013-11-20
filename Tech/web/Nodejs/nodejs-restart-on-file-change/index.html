@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Ray Taylor Lin's world</title>
+    <title>修改文件后Node.js应用自动重新启动 | Ray Taylor Lin's world</title>
     <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。Node Supervisor正是这样一个可以实现这种需求的Node.js模块。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="修改文件后Node.js应用自动重新启动"/>
     <meta property="og:site_name" content="Ray Taylor Lin's world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
@@ -109,224 +111,104 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：Tech</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-11-20T01:21:33.000Z">2013-11-20</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/Nodejs/nodejs-restart-on-file-change/">修改文件后Node.js应用自动重新启动</a></h1>
+        <h1>修改文件后Node.js应用自动重新启动</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2013-11-20T01:21:33.000Z">2013-11-20</time>
+    </div>
+
+    <div class="entry">
+        <p>在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。<a href="https://github.com/isaacs/node-supervisor">Node Supervisor</a>正是这样一个可以实现这种需求的Node.js模块。</p>
+<p><a name="more"></a>
+根据Github上的说明，Node Supervisor原本是用于服务器上Node.js应用崩溃的时候，自己重新启动。当然它也可以监控你的项目的js（或CoffeeScript）文件变化，进而重启来方便我们调试应用程序。</p>
+<p>安装方法（以全局模块安装）：</p>
+<pre><code><figure class="highlight"><pre><span class="title">npm</span> install supervisor -g
+</pre></figure></code></pre>
+<p>假设你的Node.js程序主入口是app.js，那么只需要执行以下命令，即可开始监控文件变化。</p>
+<pre><code><figure class="highlight"><pre><span class="title">supervisor</span> app.js
+</pre></figure></code></pre>
+<p>Supervisor还支持多种参数，列举如下：</p>
+<pre><code><figure class="highlight"><pre><span class="comment">//要监控的文件夹或js文件，默认为'</span>.<span class="comment">'</span>
+<span class="literal">-</span><span class="comment">w|</span>-<span class="literal">-</span><span class="comment">watch</span> &lt;<span class="comment">watchItems</span>&gt;
+
+<span class="comment">//要忽略监控的文件夹或js文件</span>  
+<span class="literal">-</span><span class="comment">i|</span>-<span class="literal">-</span><span class="comment">ignore</span> &lt;<span class="comment">ignoreItems</span>&gt;
+
+<span class="comment">//监控文件变化的时间间隔（周期），默认为Node</span>.<span class="comment">js内置的时间</span>
+<span class="literal">-</span><span class="comment">p|</span>-<span class="literal">-</span><span class="comment">poll</span>-<span class="comment">interval</span> &lt;<span class="comment">milliseconds</span>&gt;
+
+<span class="comment">//要监控的文件扩展名，默认为'node|js'</span>
+<span class="literal">-</span><span class="comment">e|</span>-<span class="literal">-</span><span class="comment">extensions</span> &lt;<span class="comment">extensions</span>&gt;
+
+<span class="comment">//要执行的主应用程序，默认为'node'</span>
+<span class="literal">-</span><span class="comment">x|</span>-<span class="literal">-</span><span class="comment">exec</span> &lt;<span class="comment">executable</span>&gt;
+
+<span class="comment">//开启debug模式（用</span>-<span class="literal">-</span><span class="comment">debug</span> <span class="comment">flag来启动node）</span>
+<span class="literal">-</span><span class="literal">-</span><span class="comment">debug</span>
+
+<span class="comment">//安静模式，不显示DEBUG信息</span>
+<span class="literal">-</span><span class="comment">q|</span>-<span class="literal">-</span><span class="comment">quiet
+</pre></figure></code></pre>
+<p>例子：</p>
+<pre><code><figure class="highlight"><pre>supervisor <span class="transposed_variable">myapp.</span>js
+supervisor -w py_scripts -e <span class="string">'py'</span> -x python <span class="transposed_variable">myapp.</span>py
+supervisor -w lib, <span class="transposed_variable">server.</span>js, <span class="transposed_variable">config.</span>js, <span class="transposed_variable">server.</span>js
+</pre></figure></code></pre>
+<p>实现同样功能的类似产品还有<a href="https://github.com/DTrejo/run.js">Run.js</a>和<a href="https://github.com/remy/nodemon">Nodeman</a>，这两个我都没用过。但是从文档上来看，前者和Supervisor一样都是极简的5分钟就可以上手的那种，功能比Supervisor稍弱；后者的feature比较多，对应的文档就特别长，估计要研究透也得至少半个小时。选择哪一个，全看项目需求和个人喜好。</p>
+<p>参考文献：<a href="http://www.hacksparrow.com/node-js-restart-on-file-change.html">Node.js Restart on File Change</a></p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/Nodejs/">Node.js</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Nodejs-1/">Node.js</a><a class="btn btn-info" href="/tags/supervisor/">supervisor</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-09-17T09:18:08.000Z">2013-09-17</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/git/git-tutorial-2/">Git指南（2）——处理历史与错误</a></h1>
-    
 
-            </div>
-            
-        </div>
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="修改文件后Node.js应用自动重新启动">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
     </div>
-    <div class="split-line"></div>
-</article>
+</section>
 
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/git/git-tutorial-1/">Git指南（1）——安装与基本用法</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-05-06T10:13:53.000Z">2013-05-06</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-04-02T07:08:29.000Z">2013-04-02</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-01-05T12:13:24.000Z">2013-01-05</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/HTML5/canvas-quick-start/">Canvas快速入门</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2012-09-17T05:05:11.000Z">2012-09-17</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/Script/Lua/lua-note-3/">Lua学习笔记（3）——Lua语句</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2012-09-15T03:29:30.000Z">2012-09-15</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/Script/Lua/lua-note-2/">Lua学习笔记（2）——变量类型与表达式</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2012-09-13T03:31:24.000Z">2012-09-13</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/Script/Lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 
         </div>
     </div>
