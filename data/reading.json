@@ -1,12 +1,18 @@
 {
     "reading-books-content": [{
-        "title": "测试驱动的JavaScript开发",
-        "cover": "http://img3.douban.com/lpic/s7661956.jpg",
+        "title": "重构 : 改善既有代码的设计",
+        "cover": "http://img3.douban.com/lpic/s4157180.jpg",
         "review": "无",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/10483528/"
+        "doubanLink": "http://book.douban.com/subject/4262627/"
     }],
     "readed-books-content": [{
+        "title": "编写可维护的JavaScript",
+        "cover": "http://img3.douban.com/lpic/s26615195.jpg",
+        "review": "应该是目前为止看得最快的一本技术书了。之前被目录吸引，看完后发现没有想象中那么好。编程风格部分，对于有一定前端经验的人来说用处不大，对新手来说还是需要每一条都养成习惯的。编程实践部分应该是全书最精华的部分，诸如“UI层松耦合”“全局变量”“事件处理”“配置数据”等章节我觉得还不错，但总体来说，内容对于知道的人过于简单。自动化部分我原以为可以深入了解下，但可能因为作者是Yahoo出身，这部分全都是讲用Ant或YUI出品的东西来执行校验、合并、压缩等任务，对我个人实用性不大，所以这部分直接被我飞快地浏览过去了。总结，JS新手看前两部分对会收获很大，最后一部分有兴趣的了解下就好，我还是比较推崇用Grunt来完成；对有一定经验和积累的人，收获甚少。",
+        "score": "4",
+        "doubanLink": "http://book.douban.com/subject/21792530/"
+    }, {
         "title": "众妙之门：网站UI设计之道",
         "cover": "http://img3.douban.com/lpic/s23139051.jpg",
         "review": "很基础的关于UI设计的书，一开始是冲着UI设计入门去看的，但看完之后发现这本书其实UI和FE都可以看（需要一定CSS基础）。本书除了讲关于设计的基础知识，比如排版、字体、色彩等等，还穿插了一些与设计相关的CSS实用设计，以及网站的性能优化技术。此外，“提高访客转化率”和“把网站变成非凡品牌”也很有独特的见解。整本书看完之后对网站设计有了全面的感性认识，但要转化为实践光这本书是远远不够的。推荐非UI人士了解UI阅读。",
@@ -26,12 +32,6 @@
         "doubanLink": "http://book.douban.com/subject/11874748/"
     }],
     "wanted-books-content": [{
-        "title": "编写可维护的JavaScript",
-        "cover": "http://img3.douban.com/lpic/s26615195.jpg",
-        "review": "无",
-        "score": "???",
-        "doubanLink": "http://book.douban.com/subject/21792530/"
-    }, {
         "title": "代码整洁之道",
         "cover": "http://img3.douban.com/lpic/s4103991.jpg",
         "review": "无",
