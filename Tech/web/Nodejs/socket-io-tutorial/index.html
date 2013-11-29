@@ -176,11 +176,18 @@ io.sockets.<span class="keyword">on</span>(<span class="string">'connection'</sp
 <p>有两点要注意的：<strong>socket.io.js路径要写对</strong>，这个js文件实际放在了服务器端的node_modules文件夹中，在请求这个文件时会重定向，因此不要诧异服务器端不存在这个文件但为什么还能正常工作。<strong>当然，你可以把服务器端的socket.io.js这个文件拷贝到本地，使它成为客户端的js文件，这样就不用每次都向Node服务器请求这个js文件，增强稳定性。</strong>第二点是要用<code>var socket = io.connect(&#39;网站地址或ip&#39;);</code>来获取socket对象，接着就可以使用socket来收发事件。关于事件处理，上面的代码表示收到“news”事件后，打印收到的数据，并向服务器发送“other event”事件。</p>
 <p>注：内置默认的事件名例如“disconnect”表示客户端连接断开，“message”表示收到消息等等。自定义的事件名称，尽量不要跟Socket.IO中内置的默认事件名重名，以免造成不必要的麻烦。</p>
 <h1>4. 其他常用API</h1>
-<p>向所有客户端广播：<code>socket.broadcast.emit(&#39;broadcast message&#39;);</code></p>
-<p>进入一个房间（<strong>非常好用！相当于一个命名空间，可以对一个特定的房间广播而不影响在其他房间或不在房间的客户端</strong>）：<code>socket.join(&#39;your room name&#39;);</code></p>
-<p>向一个房间广播消息（发送者<em>收不到</em>消息）：<code>socket.broadcast.to(&#39;your room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
-<p>向一个房间广播消息（<em>包括发送者</em>都能收到消息）（<strong>这个API属于io.sockets</strong>）：<code>io.sockets.in(&#39;another room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
-<p>强制使用WebSocket通信：（客户端）<code>socket.send(&#39;hi&#39;)</code>，（服务器）用<code>socket.on(&#39;message&#39;, function(data){})</code>来接收。</p>
+<ul>
+<li><p>向所有客户端广播：<code>socket.broadcast.emit(&#39;broadcast message&#39;);</code></p>
+</li>
+<li><p>进入一个房间（<strong>非常好用！相当于一个命名空间，可以对一个特定的房间广播而不影响在其他房间或不在房间的客户端</strong>）：<code>socket.join(&#39;your room name&#39;);</code></p>
+</li>
+<li><p>向一个房间广播消息（发送者<em>收不到</em>消息）：<code>socket.broadcast.to(&#39;your room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
+</li>
+<li><p>向一个房间广播消息（<em>包括发送者</em>都能收到消息）（<strong>这个API属于io.sockets</strong>）：<code>io.sockets.in(&#39;another room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
+</li>
+<li><p>强制使用WebSocket通信：（客户端）<code>socket.send(&#39;hi&#39;)</code>，（服务器）用<code>socket.on(&#39;message&#39;, function(data){})</code>来接收。</p>
+</li>
+</ul>
 <h1>5. 使用Socket.IO构建一个聊天室</h1>
 <p>最后，我们通过一个简单的实例来结束本篇。用Socket.IO构建一个聊天室就是50行左右的代码的事情，实时聊天效果也非常好。以下贴出关键代码：</p>
 <p>Server（socketChat.js）</p>
