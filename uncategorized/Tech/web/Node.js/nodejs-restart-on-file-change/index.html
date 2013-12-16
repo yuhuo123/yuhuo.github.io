@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>修改文件后Node.js应用自动重新启动 | Ray Taylor Lin's world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。Node Supervisor正是这样一个可以实现这种需求的Node.js模块。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="修改文件后Node.js应用自动重新启动"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin's world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin's world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" href="/index.html">Ray Taylor Lin's world</a></li>
+                    </ul>
+                    <div class="pull-right nav">
+                        
+                            <a href="/" id="id-home" class="btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" id="id-archive" class="btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                存档
+                            </a>
+                        
+                            <a href="/reading" id="id-reading" class="btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" id="id-about" class="btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav">
+        <li><a class="brand" href="index.html">Ray Taylor Lin's world</a></li>
+        
+            <li>
+                <a href="/">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives">
+                    <i class="icon-archive icon-white"></i>
+                    存档
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>修改文件后Node.js应用自动重新启动</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2013-11-20T01:21:33.000Z">2013-11-20</time>
+    </div>
+
+    <div class="entry">
+        <p>在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。<a href="https://github.com/isaacs/node-supervisor" target="_blank">Node Supervisor</a>正是这样一个可以实现这种需求的Node.js模块。</p>
+<p><a id="more"></a><br>根据Github上的说明，Node Supervisor原本是用于服务器上Node.js应用崩溃的时候，自己重新启动。当然它也可以监控你的项目的js（或CoffeeScript）文件变化，进而重启来方便我们调试应用程序。</p>
+<p>安装方法（以全局模块安装）：</p>
+<pre><code><span class="title">npm</span> install supervisor -g</code></pre>
+<p>假设你的Node.js程序主入口是app.js，那么只需要执行以下命令，即可开始监控文件变化。</p>
+<pre><code><span class="title">supervisor</span> app.js</code></pre>
+<p>Supervisor还支持多种参数，列举如下：</p>
+<pre><code><span class="comment">//要监控的文件夹或js文件，默认为'</span>.<span class="comment">'</span>
+<span class="literal">-</span><span class="comment">w|</span>-<span class="literal">-</span><span class="comment">watch</span> &lt;<span class="comment">watchItems</span>&gt;
+
+<span class="comment">//要忽略监控的文件夹或js文件</span>  
+<span class="literal">-</span><span class="comment">i|</span>-<span class="literal">-</span><span class="comment">ignore</span> &lt;<span class="comment">ignoreItems</span>&gt;
+
+<span class="comment">//监控文件变化的时间间隔（周期），默认为Node</span>.<span class="comment">js内置的时间</span>
+<span class="literal">-</span><span class="comment">p|</span>-<span class="literal">-</span><span class="comment">poll</span>-<span class="comment">interval</span> &lt;<span class="comment">milliseconds</span>&gt;
+
+<span class="comment">//要监控的文件扩展名，默认为'node|js'</span>
+<span class="literal">-</span><span class="comment">e|</span>-<span class="literal">-</span><span class="comment">extensions</span> &lt;<span class="comment">extensions</span>&gt;
+
+<span class="comment">//要执行的主应用程序，默认为'node'</span>
+<span class="literal">-</span><span class="comment">x|</span>-<span class="literal">-</span><span class="comment">exec</span> &lt;<span class="comment">executable</span>&gt;
+
+<span class="comment">//开启debug模式（用</span>-<span class="literal">-</span><span class="comment">debug</span> <span class="comment">flag来启动node）</span>
+<span class="literal">-</span><span class="literal">-</span><span class="comment">debug</span>
+
+<span class="comment">//安静模式，不显示DEBUG信息</span>
+<span class="literal">-</span><span class="comment">q|</span>-<span class="literal">-</span><span class="comment">quiet</code></pre>
+<p>例子：</p>
+<pre><code>supervisor <span class="transposed_variable">myapp.</span>js
+supervisor -w py_scripts -e <span class="string">'py'</span> -x python <span class="transposed_variable">myapp.</span>py
+supervisor -w lib, <span class="transposed_variable">server.</span>js, <span class="transposed_variable">config.</span>js, <span class="transposed_variable">server.</span>js</code></pre>
+<p>实现同样功能的类似产品还有<a href="https://github.com/DTrejo/run.js" target="_blank">Run.js</a>和<a href="https://github.com/remy/nodemon" target="_blank">Nodeman</a>，这两个我都没用过。但是从文档上来看，前者和Supervisor一样都是极简的5分钟就可以上手的那种，功能比Supervisor稍弱；后者的feature比较多，对应的文档就特别长，估计要研究透也得至少半个小时。选择哪一个，全看项目需求和个人喜好。</p>
+<p>参考文献：<a href="http://www.hacksparrow.com/node-js-restart-on-file-change.html" target="_blank">Node.js Restart on File Change</a></p>
+
+    </div>
+    
+    <footer >
+        
+            
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Node.js/">Node.js</a><a class="btn btn-info" href="/tags/supervisor/">supervisor</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="修改文件后Node.js应用自动重新启动">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2013 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+            if(contentHeight < minHeight) {
+                $('#content-wrapper').height(minHeight);
+            } else {
+                $('#content-wrapper').css({height: 'auto'});
+            }
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
