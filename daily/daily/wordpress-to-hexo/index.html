@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>博客从Wordpress进化到Hexo啦 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="之前在衡天小张那购买的主机过期了，虽说在主机上搭建的Wordpress使用起来非常方便，不过使用了一年之后感觉那个主机响应速度略慢，所以就懒得继续掏钱了。考虑到丁基友的博客就是用静态页面托管到Github上的，简单可靠又免费，同时也想要学习一下markdown并用它来写博客，所以准备尝试转向静态博客的路。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="博客从Wordpress进化到Hexo啦"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(13)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(4)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(5)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node.js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node.js(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>博客从Wordpress进化到Hexo啦</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2013-07-11T03:21:04.000Z">2013-07-11</time>
+    </div>
+
+    <div class="entry">
+        <p>之前在衡天小张那购买的主机过期了，虽说在主机上搭建的Wordpress使用起来非常方便，不过使用了一年之后感觉那个主机响应速度略慢，所以就懒得继续掏钱了。考虑到丁基友的博客就是用静态页面托管到Github上的，简单可靠又免费，同时也想要学习一下markdown并用它来写博客，所以准备尝试转向静态博客的路。</p>
+<a id="more"></a>
+
+<p>丁基友的那个博客采用的是Octopress，于是自然而然开始看起Octopress的教程来。这货居然要装RUBY，好吧为了博客只好忍了，在装了几个RUBY之后明明按照教程一步步做了结果连第一页的安装教程都继续不下去，老是卡在一个地方出错了，好吧在Windows下搞和RUBY有关的东西真的很蛋疼，只好放弃Octopress了。</p>
+<p>然后在网上查静态博客的解决方案的时候，无意中发现hexo这个东西，而且还看到有的博文说从Wordpress转向Octopress最后用上hexo之后，知道了这个东西的口碑还可以。上了官网一看目测还不错，好像是台湾人做的，教程特别简洁明了还有中文翻译。当然由于太过于简洁，有一些比较关键的细节没有谈到导致在配置的时候饶了一点弯路。在搞了大半天之后，终于成功把第一个测试页面推送到Github上并访问，总算没有白折腾。</p>
+<p>忙了两天终于把原先在Wordpress上的文章转成markdown格式并应用到实际中，现在迁移工作已经基本完成，对hexo和markdown也开始熟悉起来，接下来的工作就是把官方推荐的主题修改到自己满意为止。话说hexo这个东西确实不错，基于node.js使得它生成页面速度非常快，能支持markdown，可以很方便地部署到Github Pages上，据说还支持Octopress的插件。等博客新版上线稳定之后，我会开始整理一下用hexo搭建博客的教程，敬请期待。</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/daily/">daily</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Hexo/">Hexo</a><a class="btn btn-info" href="/tags/博客/">博客</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="博客从Wordpress进化到Hexo啦">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2014 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
