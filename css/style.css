@@ -74,7 +74,7 @@ li {
   overflow: hidden;
 }
 .page-sub-title {
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: bold;
   color: #9b59b6;
   margin-top: 20px;
@@ -107,7 +107,7 @@ li {
   background: #00529c;
 }
 .navbar .menu-trigger {
-  font-size: 2em;
+  font-size: 1.6em;
   padding-top: 0;
   margin-bottom: 0;
 }
@@ -319,13 +319,24 @@ article .entry .caption:before {
 #jPanelMenu-menu-side {
   display: none;
 }
+#jPanelMenu-menu {
+  background-color: #232323;
+}
 #jPanelMenu-menu .nav li {
+  padding: 5px 15px;
   border-bottom: 1px solid #333;
   -webkit-transition: background-color 0.5s;
   -moz-transition: background-color 0.5s;
   -o-transition: background-color 0.5s;
   -ms-transition: background-color 0.5s;
   transition: background-color 0.5s;
+}
+#jPanelMenu-menu .nav li a {
+  color: #ecf0f1;
+}
+#jPanelMenu-menu .nav li a.brand {
+  font-size: 1.1em;
+  font-weight: bold;
 }
 #jPanelMenu-menu .nav li:hover {
   background-color: #3498db;
@@ -349,8 +360,14 @@ article .entry .caption:before {
 #jPanelMenu-menu .nav [class*=" icon-"] {
   margin-right: 10px;
 }
-#jPanelMenu-menu .nav>li>a.brand {
-  padding: 5px 0;
+#jPanelMenu-menu .collapse-level-0 {
+  padding-left: 0px;
+}
+#jPanelMenu-menu .collapse-level-1 {
+  padding-left: 15px;
+}
+#jPanelMenu-menu .collapse-level-2 {
+  padding-left: 30px;
 }
 #comment {
   margin-top: 40px;
@@ -359,6 +376,9 @@ article .entry .caption:before {
   font-size: 40px;
   font-weight: bold;
   color: color-section-title;
+}
+.jPanelMenu-panel {
+  overflow-y: hidden;
 }
 .btn-loadmore {
   margin-top: 20px;
