@@ -4,16 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Git指南（1）——安装与基本用法 | Ray Taylor Lin&#39;s world</title>
+    <title>Socket.IO入门 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。
-之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）">
+    <meta name="description" content="暑假的时候Heatmap项目组需要对在线即时通信和协作进行技术探索，于是我开始研究Web在线聊天的实现方式。在充分对Comet技术进行了研究之后（详见我之前写的一篇Comet简介的博文），在丁基友的提示之下决定尝试使用Socket.IO。一个是考虑以后HTML5做网络通信需要用到WebSocket现在可以提前接触一下，另外一个是这个东西的服务器端要用到Node.js，之前就对node很有兴趣正好借此提升下功力。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Git指南（1）——安装与基本用法"/>
+    <meta property="og:title" content="Socket.IO入门"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -288,76 +287,151 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Git指南（1）——安装与基本用法</h1>
+        <h1>Socket.IO入门</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
+        <time datetime="2013-11-29T02:50:16.000Z">2013-11-29</time>
     </div>
 
     <div class="entry">
-        <p>现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。</p>
-<p>之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）</p>
-<p><a id="more"></a></p>
-<h1 id="1-git">1.为什么使用Git</h1>
-<p>关于Git的优缺点，与SVN的对比网上的资料有非常多，这里只列举几点比较重要的。</p>
+        <p>暑假的时候Heatmap项目组需要对在线即时通信和协作进行技术探索，于是我开始研究Web在线聊天的实现方式。在充分对Comet技术进行了研究之后（详见我之前写的一篇<a href="/Tech/other/comet-intro/">Comet简介的博文</a>），在丁基友的提示之下决定尝试使用Socket.IO。一个是考虑以后HTML5做网络通信需要用到WebSocket现在可以提前接触一下，另外一个是这个东西的服务器端要用到Node.js，之前就对node很有兴趣正好借此提升下功力。</p>
+<a id="more"></a>
+
+<h1 id="1-">1. 简介</h1>
+<p>首先是Socket.IO的官方网站：<a href="http://socket.io" target="_blank">http://socket.io</a></p>
+<p>官网非常简洁，甚至没有API文档，只有一个简单的“How to use”可以参考。因为Socket.IO就跟官网一样简洁好用易上手。</p>
+<p>那么Socket.IO到底是什么呢？Socket.IO是一个WebSocket库，包括了客户端的js和服务器端的nodejs，它的目标是构建可以在不同浏览器和移动设备上使用的实时应用。它会自动根据浏览器从WebSocket、AJAX长轮询、Iframe流等等各种方式中选择最佳的方式来实现网络实时应用，非常方便和人性化，而且支持的浏览器最低达IE5.5，应该可以满足绝大部分需求了。</p>
+<h1 id="2-">2. 安装部署</h1>
+<h1 id="2-1-">2.1 安装</h1>
+<p>首先安装非常简单，在node.js环境下只要一句：</p>
+<pre><code>npm install socket.io
+</code></pre><h1 id="2-2-express-">2.2 结合express来构建服务器</h1>
+<p>express是一个小巧的Node.js的Web应用框架，在构建HTTP服务器时经常使用到，所以直接以Socket.IO和express为例子来讲解。</p>
+<pre><code>var express = require(&#39;express&#39;)
+    , app = express()
+    , server = require(&#39;http&#39;).createServer(app)
+    , io = require(&#39;socket.io&#39;).listen(server);
+server.listen(3001);
+</code></pre><p>若不使用express，请参考socket.io/#how-to-use</p>
+<h1 id="3-">3. 基本使用方法</h1>
+<p>主要分为服务器端和客户端两段代码，都非常简单。</p>
+<p>Server（app.js）：</p>
+<pre><code>//接上面的代码
+app.get(&#39;/&#39;, function (req, res) {
+    res.sendfile(__dirname + &#39;/index.html&#39;);});
+
+io.sockets.on(&#39;connection&#39;, function (socket) {
+    socket.emit(&#39;news&#39;, { hello: &#39;world&#39; });
+    socket.on(&#39;other event&#39;, function (data) {
+        console.log(data);
+    });
+});
+</code></pre><p>首先io.sockets.on函数接受字符串&quot;connection&quot;作为客户端发起连接的事件，当连接成功后，调用带有socket参数的回调函数。我们在使用socket.IO的时候，基本上都在这个回调函数里面处理用户的请求。</p>
+<p>socket最关键的是emit和on两个函数，前者提交（发出）一个事件（事件名称用字符串表示），事件名称可以自定义，也有一些默认的事件名称，紧接着是一个对象，表示向该socket发送的内容；后者接收一个事件（事件名称用字符串表示），紧接着是收到事件调用的回调函数，其中data是收到的数据。</p>
+<p>在上面的例子中，我们发送了news事件和收到了other event事件，那么客户端应该会有对应的接收和发送事件。没错，客户端代码和服务器正好相反，而且非常相似。</p>
+<p>Client（client.js）</p>
+<pre><code>&lt;script src=&quot;/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    var socket = io.connect(&#39;http://localhost&#39;);
+    socket.on(&#39;news&#39;, function (data) {
+        console.log(data);
+        socket.emit(&#39;other event&#39;, { my: &#39;data&#39; });
+    });
+&lt;/script&gt;
+</code></pre><p>有两点要注意的：<strong>socket.io.js路径要写对</strong>，这个js文件实际放在了服务器端的node_modules文件夹中，在请求这个文件时会重定向，因此不要诧异服务器端不存在这个文件但为什么还能正常工作。<strong>当然，你可以把服务器端的socket.io.js这个文件拷贝到本地，使它成为客户端的js文件，这样就不用每次都向Node服务器请求这个js文件，增强稳定性。</strong>第二点是要用<code>var socket = io.connect(&#39;网站地址或ip&#39;);</code>来获取socket对象，接着就可以使用socket来收发事件。关于事件处理，上面的代码表示收到“news”事件后，打印收到的数据，并向服务器发送“other event”事件。</p>
+<p>注：内置默认的事件名例如“disconnect”表示客户端连接断开，“message”表示收到消息等等。自定义的事件名称，尽量不要跟Socket.IO中内置的默认事件名重名，以免造成不必要的麻烦。</p>
+<h1 id="4-api">4. 其他常用API</h1>
 <ul>
-<li>分布式版本控制，文件变更的历史记录不再存在一个集中服务器，如果服务器故障，或者没有网络，几乎所有操作都可以在本地执行，在任何地方都可以愉快地提交更改。</li>
-<li>版本的分支（branch）和合并（merge）十分方便。</li>
-<li>有一个全世界最大的开源社区——github，上面可以看到各种优秀的各种语言的代码，并且越来越多的项目由github托管。</li>
+<li><p>向所有客户端广播：<code>socket.broadcast.emit(&#39;broadcast message&#39;);</code></p>
+</li>
+<li><p>进入一个房间（<strong>非常好用！相当于一个命名空间，可以对一个特定的房间广播而不影响在其他房间或不在房间的客户端</strong>）：<code>socket.join(&#39;your room name&#39;);</code></p>
+</li>
+<li><p>向一个房间广播消息（发送者<em>收不到</em>消息）：<code>socket.broadcast.to(&#39;your room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
+</li>
+<li><p>向一个房间广播消息（<em>包括发送者</em>都能收到消息）（<strong>这个API属于io.sockets</strong>）：<code>io.sockets.in(&#39;another room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
+</li>
+<li><p>强制使用WebSocket通信：（客户端）<code>socket.send(&#39;hi&#39;)</code>，（服务器）用<code>socket.on(&#39;message&#39;, function(data){})</code>来接收。</p>
+</li>
 </ul>
-<h1 id="2-">2.参考材料</h1>
-<ul>
-<li>一个极其简洁明了的Git教程网站<a href="http://gitimmersion.com/" target="_blank">Git Immersion</a></li>
-<li><a href="http://gitbook.liuhui998.com/index.html" target="_blank">Git Community Book 中文版</a></li>
-</ul>
-<h1 id="3-">3.安装</h1>
-<p>安装Git Windows客户端（命令行界面）：<a href="http://msysgit.github.io/" target="_blank">msysgit</a></p>
-<p>用SVN的人一定对小乌龟客户端很熟悉，Git也有对应的版本：<a href="https://code.google.com/p/tortoisegit/" target="_blank">GitTortoise</a></p>
-<p>Linux或Mac用户请自寻谷歌安装方法。</p>
-<h1 id="4-">4.基本用法</h1>
-<h2 id="3-1-">3.1 配置</h2>
-<p>在使用Git之前，需要打开命令行客户端</p>
-<p>1.设置名字和信箱</p>
-<pre><code>git config --global user.name &quot;你的名字&quot;
-git config --global user.email &quot;your_email@whatever.com&quot;
-</code></pre><p>2.设置换行符参数</p>
-<pre><code># 提交时转换为LF，检出时转换为CRLF
-git config --global core.autocrlf true
-# 拒绝提交包含混合换行符的文件
-git config --global core.safecrlf true
-</code></pre><h2 id="3-2-">3.2 流程</h2>
-<p>在你的工程文件夹下，执行以下命令创建代码仓库（Repository，就是在网上经常看到的repo）</p>
-<pre><code>git init
-</code></pre><p>假设你的工程有一个index.html文件，以下命令将其添加到跟踪改动状态（stage）</p>
-<pre><code>git add index.html
-# git add . 可以跟踪所有文件
-# 此处也可以使用git stage来跟踪改动
-</code></pre><p>查看状态</p>
-<pre><code>git status
-# 此时你应该看到输出提示add了index.html，其他状态还有modified（修改）等等
-</code></pre><p>然后提交</p>
-<pre><code># -a表示跟踪所有文件的改动（相当于先做了一次git add .，再commit），-m 后面跟着提交的说明
-git commit -a -m &quot;First Commit&quot;
-</code></pre><h2 id="3-3-">3.3 需要特别注意的问题</h2>
-<p><strong>每一次你对文件做了改动（包括删除），都需要使用<code>git add</code>或<code>git stage</code>来跟踪改动，只有被跟踪改动了的文件才可以使用<code>git commit</code>提交。</strong></p>
-<p>增加跟踪改动（stage）主要有两个好处，一个是分批、分阶段递交，一个是进行快照，便于回退。</p>
-<p>1.分批提交：比如，你修改了a.py, b.py, c.py三个文件，其中a.py和c.py 是功能1的相关修改，b.py属于功能2的相关修改。那么你就可以采用以下方式分批提交。</p>
-<pre><code>git stage a.py c.py
-git commit -m &quot;function 1&quot;
-git stage b.py
-git commit -m &quot;function 2&quot;
-</code></pre><p>2.分阶段提交
-比如你修改了a.py，然后<code>git stage a.py</code>，相当于对当前的a.py 做了一个快照，然后又做了一些修改，这时候，如果直接采用<code>git commit</code>递交，则只会对第一次的快照进行递交，当前内容还保存在工作区。需要再做一次 <code>git stage</code>，才能提交。</p>
-<p>3.文件快照，便于回退
-当文件加入了stage区以后，如果要从stage区删除，则使用 reset，此时工作区的文件不做任何修改，比如：</p>
-<pre><code># 这个命令就是git stage a.py的反操作
-git reset a.py
-</code></pre><p>当文件加入了 stage 区以后，后来又做了一些修改，这时发现后面的修改有问题，想回退到stage的状态，使用checkout命令</p>
-<pre><code>git checkout a.py
-</code></pre><p>本篇就先讲到这里，下一篇将会讲Git的历史操作。</p>
+<h1 id="5-socket-io-">5. 使用Socket.IO构建一个聊天室</h1>
+<p>最后，我们通过一个简单的实例来结束本篇。用Socket.IO构建一个聊天室就是50行左右的代码的事情，实时聊天效果也非常好。以下贴出关键代码：</p>
+<p>Server（socketChat.js）</p>
+<pre><code>//一个客户端连接的字典，当一个客户端连接到服务器时，
+//会产生一个唯一的socketId，该字典保存socketId到用户信息（昵称等）的映射
+var connectionList = {};
+
+exports.startChat = function (io) {
+    io.sockets.on(&#39;connection&#39;, function (socket) {
+        //客户端连接时，保存socketId和用户名
+        var socketId = socket.id;
+        connectionList[socketId] = {
+            socket: socket
+        };
+
+        //用户进入聊天室事件，向其他在线用户广播其用户名
+        socket.on(&#39;join&#39;, function (data) {
+            socket.broadcast.emit(&#39;broadcast_join&#39;, data);
+            connectionList[socketId].username = data.username;
+        });
+
+        //用户离开聊天室事件，向其他在线用户广播其离开
+        socket.on(&#39;disconnect&#39;, function () {
+            if (connectionList[socketId].username) {
+                socket.broadcast.emit(&#39;broadcast_quit&#39;, {
+                    username: connectionList[socketId].username
+                });
+            }
+            delete connectionList[socketId];
+        });
+
+        //用户发言事件，向其他在线用户广播其发言内容
+        socket.on(&#39;say&#39;, function (data) {
+            socket.broadcast.emit(&#39;broadcast_say&#39;,{
+                username: connectionList[socketId].username,
+                text: data.text
+            });
+        });
+    })
+};
+</code></pre><p>Client(socketChatClient.js)</p>
+<pre><code>var socket = io.connect(&#39;http://localhost&#39;);
+//连接服务器完毕后，马上提交一个“加入”事件，把自己的用户名告诉别人
+socket.emit(&#39;join&#39;, {
+    username: &#39;Username hehe&#39;
+});
+
+//收到加入聊天室广播后，显示消息
+socket.on(&#39;broadcast_join&#39;, function (data) {
+    console.log(data.username + &#39;加入了聊天室&#39;);
+});
+
+//收到离开聊天室广播后，显示消息
+socket.on(&#39;broadcast_quit&#39;, function(data) {
+    console.log(data.username + &#39;离开了聊天室&#39;);
+});
+
+//收到别人发送的消息后，显示消息
+socket.on(&#39;broadcast_say&#39;, function(data) {
+    console.log(data.username + &#39;说: &#39; + data.text);
+});
+
+//这里我们假设有一个文本框textarea和一个发送按钮.btn-send
+//使用jQuery绑定事件
+$(&#39;.btn-send&#39;).click(function(e) {
+    //获取文本框的文本
+    var text = $(&#39;textarea&#39;).val();
+    //提交一个say事件，服务器收到就会广播
+    socket.emit(&#39;say&#39;, {
+        username: &#39;Username hehe&#39;
+        text: text
+    });
+});
+</code></pre><p>这就是一个简单的聊天室DEMO，你可以根据你的需要随意扩展。Socket.IO基本上就是各种事件的提交和接收处理，思想非常简单。</p>
+<p>参考文献：<a href="http://socket.io/#how-to-use" target="_blank">Socket.IO How to use</a></p>
+<p>参考文献：<a href="https://github.com/learnboost/socket.io/wiki" target="_blank">Socket.IO官方WIKI</a></p>
 
     </div>
     
@@ -367,13 +441,13 @@ git reset a.py
     
     <div class="categories">
         所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/git/">git</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/Node.js/">Node.js</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/Git/">Git</a>
+        标签：<a class="btn btn-info" href="/tags/Socket.IO/">Socket.IO</a><a class="btn btn-info" href="/tags/Node.js/">Node.js</a>
     </div>
 
         
@@ -386,7 +460,7 @@ git reset a.py
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Git指南（1）——安装与基本用法">
+    <div class="ds-thread" data-title="Socket.IO入门">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
