@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Django学习笔记（1）——开始Django | Ray Taylor Lin&#39;s world</title>
+    <title>Django学习笔记（3）——Django的模板 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="最近需要对某个产品展示网站的数据库做一些修改，之前也听说过各种python的Web框架，正好可以拿来学习和练练手。貌似对初学者来说，django是一个比较老牌而且功能也很强大的框架，虽然它有很多缺点，但还是决定先从这个框架入手学习。本系列是一个简单的学习笔记，供以后参考。
-网站的后台原来是用PHP的CodeIgniter框架写的，数据库只有4个表，涉及最基本的产品的增删查改和切图等操作。现在换用django后，所有后台包括模板都得重写。虽然看起来工作量很大，但实际做起来也就花三天学了下django，然后再用三天把所有后台重写（不包括部署到蛋疼的SAE的繁琐过程），可见django的开发效率是如此之高。">
+    <meta name="description" content="在学习笔记（1）中，你可能已经注意到我们在例子视图hello_view中返回文本的方式有点特别。也就是说，HTML可以直接硬编码在Python代码之中。但是直接将HTML编码到Python代码中有许多坏处：对页面设计进行的任何改变都必须对Python代码进行相应的修改，站点设计的修改往往比底层Python代码的修改要频繁得多；Python代码编写和HTML设计是两项不同的工作，大多数专业的网站开发环境都将他们分配给不同的人员（甚至不同部门）来完成。
+基于这些原因，将页面的设计和Python的代码分离开会更干净简洁更容易维护。我们可以使用Django的模板系统(Template System)来实现这种模式，这就是本文要具体讨论的问题。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Django学习笔记（1）——开始Django"/>
+    <meta property="og:title" content="Django学习笔记（3）——Django的模板"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -288,76 +288,151 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Django学习笔记（1）——开始Django</h1>
+        <h1>Django学习笔记（3）——Django的模板</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2014-01-27T03:31:24.000Z">2014-01-27</time>
+        <time datetime="2014-02-09T10:07:55.000Z">2014-02-09</time>
     </div>
 
     <div class="entry">
-        <p>最近需要对某个产品展示网站的数据库做一些修改，之前也听说过各种python的Web框架，正好可以拿来学习和练练手。貌似对初学者来说，django是一个比较老牌而且功能也很强大的框架，虽然它有很多缺点，但还是决定先从这个框架入手学习。本系列是一个简单的学习笔记，供以后参考。</p>
-<p>网站的后台原来是用PHP的CodeIgniter框架写的，数据库只有4个表，涉及最基本的产品的增删查改和切图等操作。现在换用django后，所有后台包括模板都得重写。虽然看起来工作量很大，但实际做起来也就花三天学了下django，然后再用三天把所有后台重写（不包括部署到蛋疼的SAE的繁琐过程），可见django的开发效率是如此之高。</p>
+        <p>在<a href="/Tech/Script/Python/django-note-1/">学习笔记（1）</a>中，你可能已经注意到我们在例子视图hello_view中返回文本的方式有点特别。也就是说，HTML可以直接硬编码在Python代码之中。但是直接将HTML编码到Python代码中有许多坏处：对页面设计进行的任何改变都必须对Python代码进行相应的修改，站点设计的修改往往比底层Python代码的修改要频繁得多；Python代码编写和HTML设计是两项不同的工作，大多数专业的网站开发环境都将他们分配给不同的人员（甚至不同部门）来完成。</p>
+<p>基于这些原因，将页面的设计和Python的代码分离开会更干净简洁更容易维护。我们可以使用Django的模板系统(Template System)来实现这种模式，这就是本文要具体讨论的问题。</p>
 <a id="more"></a>
 
-<h1 id="1-">1. 引言</h1>
-<h2 id="1-1-">1.1 简介</h2>
-<p>Django是一个由Python写成的，开源的并采用了MVC设计模式的Web应用框架。但是在Django中，控制器接受用户输入的部分由框架自行处理，所以Django里更关注的是模型（Model）、模板(Template)和视图（Views），称为MTV模式。它们各自的职责如下：</p>
-<ul>
-<li>模型（Model），数据存取层：处理与数据相关的所有事务，即如何存取、如何验证有效性、包含哪些行为以及数据之间的关系等。</li>
-<li>模板(Template)，表现层：处理与表现相关的决定，即如何在页面或其他类型文档中进行显示。</li>
-<li>视图（View），业务逻辑层：存取模型及调取恰当模板的相关逻辑。模型与模板之间的桥梁。</li>
-</ul>
-<p>Django的MVC编程方式不同于CodeIgniter那样把业务逻辑都放在控制器中，Django的MVC控制器部分由URLconf来实现。URLconf机制是使用正则表达式匹配URL，然后调用合适的Python函数。它比MVC框架考虑的问题要深一步，因为我们程序员大都写程序在控制层。现在这个工作交给了框架，仅需写很少的调用代码，大大提高了工作效率。</p>
-<h2 id="1-2-">1.2 特性</h2>
-<p>Django框架的核心包括：一个面向对象的映射器，用作数据模型（以Python类的形式定义）和关联性数据库间的媒介；一个基于正则表达式的URL分发器；一个视图系统，用于处理请求；以及一个模板系统。核心框架中还包括：</p>
-<ul>
-<li>一个轻量级的、独立的Web服务器，用于开发和测试。</li>
-<li>一个表单序列化及验证系统，用于HTML表单和适于数据库存储的数据之间的转换。</li>
-<li>一个缓存框架，并有几种缓存方式可供选择。</li>
-<li>中间件支持，允许对请求处理的各个阶段进行干涉。</li>
-<li>内置的分发系统允许应用程序中的组件采用预定义的信号进行相互间的通信。</li>
-<li>一个序列化系统，能够生成或读取采用XML或JSON表示的Django模型实例。</li>
-<li>一个用于扩展模板引擎的能力的系统。</li>
-</ul>
-<p>（以上引用自维基百科）</p>
-<h1 id="2-">2 准备工作</h1>
-<h2 id="2-1-">2.1. 安装</h2>
-<p>我学习Django的时候都是看这本<a href="http://code.google.com/p/luaforwindows/downloads/list" target="_blank">The Django Book</a>，很适合快速入门，强烈推荐。说明：以下都是基于Windows7，<a href="http://www.python.org/download/releases/2.7.6/" target="_blank">Python 2.7.6</a>和<a href="https://www.djangoproject.com/download/" target="_blank">Django 1.6.1</a>，安装的时候注意一下系统和框架的版本。Django请按照官网所给的方式安装，数据库则以MySQL为例，其他如有出入则参照上面的Django Book吧。</p>
-<p>安装完成后打开python解释器，输入以下语句，若显示版本号则安装成功。</p>
-<pre><code>&gt;&gt;&gt; import django
-&gt;&gt;&gt; django.VERSION
-</code></pre><h2 id="2-2-django-">2.2 创建Django项目</h2>
-<p>Django安装成功后，会自带一个django-admin.py的管理脚本（默认已添加到系统变量PATH中），如果控制台无法直接运行，可以到<code>python安装目录\Scripts</code>中找到这个文件。运行命令<code>django-admin.py startproject mysite</code>。这样会在你的当前目录下创建一个目录mysite。</p>
-<p>startproject 命令创建的目录，包含4个文件：<strong>init</strong>.py（让Python把该目录当成一个开发包 ，即一组模块所需的文件。 这是一个空文件，一般你不需要修改它）、manage.py（一种命令行工具，允许你以多种方式与该 Django 项目进行交互）、settings.py（该Django项目的设置或配置）、urls.py（Django项目的URL设置，可视其为你的django网站的目录），</p>
-<p>创建完成之后，在mysite目录下运行<code>python manage.py runserver</code>启动一个本地服务器，然后在浏览器中访问<code>http://127.0.0.1:8000/</code>，就可以看到新创建项目的初始页面了。</p>
-<p>接下来一章将讲解Django最基本的URL配置。</p>
-<h1 id="3-url-">3 URL配置</h1>
-<p>首先我们在项目文件夹中创建views.py文件，以备后用。</p>
-<pre><code># views.py    
-from django.http import HttpResponse
+<h1 id="1-django-">1. Django模板系统</h1>
+<h2 id="1-1-">1.1 模板系统基础</h2>
+<p>模板是一个文本，用于分离文档的表现形式和内容。模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。下面这个模板例子描述了一个向某个公司签单人员致谢HTML页面。</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Ordering notice&lt;/title&gt;
+&lt;/head&gt;
 
-def hello_view(request):
-    return HttpResponse(&quot;Hello world&quot;)
-</code></pre><p>我们创建了一个最简单最基本的视图，只有一个名为hello的函数，并返回一个HttpResponse对象。尽管我们实际在项目中不会这么写，但它足以支持Django基本的运行：在页面显示一句“Hello world”。接下来的URL配置才是重点。</p>
-<p>URL配置就像是Django所支撑网站的目录。它的本质是URL模式以及要为该URL模式调用的视图函数之间的映射表。你就是以这种方式告诉Django，对于这个URL调用这段代码，对于那个URL调用那段代码。例如，当用户访问/foo/时，调用视图函数foo_view()，这个视图函数存在于Python模块文件view.py中。编辑urls.py并输入以下内容。</p>
-<pre><code>from django.conf.urls.defaults import *
-from mysite.views import hello_view
+&lt;body&gt;
+    &lt;h1&gt;Ordering notice&lt;/h1&gt;
+    &lt;p&gt;Dear {{ person_name }},&lt;/p&gt;
+    &lt;p&gt;Thanks for placing an order from {{ order.company }}. It&#39;s scheduled to
+    ship on {{ order.ship_date|date:&quot;F j, Y&quot; }}.&lt;/p&gt;
+    &lt;p&gt;Here are the items you&#39;ve ordered:&lt;/p&gt;
 
-urlpatterns = patterns(&#39;&#39;,
-    (&#39;^hello/$&#39;, hello_view),
+    &lt;ul&gt;
+    {% for item in item_list %}
+        &lt;li&gt;{{ item }}&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+
+    {% if ordered_warranty %}
+        &lt;p&gt;Your warranty information will be included in the packaging.&lt;/p&gt;
+    {% else %}
+        &lt;p&gt;You didn&#39;t order a warranty, so you&#39;re on your own when
+        the products inevitably stop working.&lt;/p&gt;
+    {% endif %}
+
+    &lt;p&gt;Sincerely,&lt;br /&gt;{{ company }}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>可以看出，模板跟HTML很像，事实上它就是保存成一个.html文件，它跟我们以前见到的HTML的区别就在于多了一些由双花括号<code>{{ }}</code>括起来的<strong>变量</strong>以及由<code>{% %}</code>括起来的模板标签，此外变量还可以通过过滤器（<code>|</code>管道符）转换变量输出格式。</p>
+<p>变量在这里起到了占位符的作用，一般它最终会被传入模板的数据替代，最后模板将变成真正的HTML代码展现给用户。模板标签不会输出到最终的HTML中，它们多数起到了逻辑控制的作用，例如上例中，如果传入的ordered_warranty值为True，则显示相应的p标签；标签<code>{% for %}</code>遍历传入的item_list，并依次生成结构相同但内容不同的HTML。</p>
+<p>通常来说，我们会将模板和视图一起使用，但模板本身是一个Python库，你可以在任何地方使用它，而不仅仅是在Django视图中。这里简单介绍一下单独在Python代码中使用Django模板的最基本方式：</p>
+<ol>
+<li>可以用原始的模板代码字符串创建一个Template对象，Django同样支持用指定模板文件路径的方式来创建Template对象</li>
+<li>调用模板对象的render方法，并且传入一套变量context。它将返回一个基于模板的展现字符串，模板中的变量和标签会被context值替换。示例代码如下：</li>
+</ol>
+<pre><code>from django import template
+t = template.Template(&#39;My name is {{ name }}.&#39;)
+c = template.Context({&#39;name&#39;: &#39;Adrian&#39;})
+print t.render(c)
+</code></pre><p>但实际的Django开发中我们一般不使用这种方式来渲染模板，后面将会看到更简单直接的方法。</p>
+<h2 id="1-2-">1.2 模板标签介绍</h2>
+<ol>
+<li><code>{% if %} {% endif %}</code>标签检查一个变量，如果这个变量为真（即变量存在，非空，不是布尔值假），系统会显示在<code>if</code>和<code>endif</code>之间的任何内容。此外，还有一个可选的<code>else</code>标签，但是<strong>没有</strong><code>elif</code>标签，所以如果需要多个分支条件，可以使用嵌套的<code>if</code>标签来代替。<code>if</code>标签可以接受<code>and</code>，<code>or</code>或<code>not</code>关键字来对多个变量做判断，并且<strong>不允许在同一个标签中同时使用and和or，因为逻辑上可能模糊的</strong>。</li>
+<li><code>{% for %} {% endfor %}</code>允许我们在一个序列上迭代，每一次循环中，模板系统会渲染在<code>for</code>和<code>endfor</code>之间的所有内容。每个for循环里还有一个称为<code>forloop</code>的模板变量，这个变量有一些提示循环进度信息的属性，关于这个变量的详细用法可以参照<a href="http://djangobook.py3k.cn/appendixF/" target="_blank">这篇文章</a>的for一节。下面一段示例代码给出和for标签结合使用的reverse（反向遍历）和empty（列表为空的情况）标签的用法：</li>
+</ol>
+<pre><code>{% for athlete in athlete_list reverse%}
+&lt;p&gt;{{ athlete.name }}&lt;/p&gt;
+{% empty %}
+&lt;p&gt;There are no athletes. Only computer programmers.&lt;/p&gt;
+{% endfor %}
+</code></pre><ol>
+<li><code>{% ifequal VARIABLE CONSTANT %} {% endifequal %}</code>标签比较VARIABLE和CONSTANT两个值，当他们相等时，显示在<code>ifequal</code> 和<code>endifequal</code>之中所有的值</li>
+<li><code>{# #}</code>是Django模板语言的代码注释</li>
+<li>就像前面提到的一样，模板过滤器是在变量被显示前修改它的值的一个简单方法，而且一个过滤器管道的输出又可以作为下一个管道的输入。常用的过滤器有<code>first</code>，<code>upper</code>，<code>truncatewords</code>等等，详情同样参照<a href="http://djangobook.py3k.cn/appendixF/" target="_blank">这篇文章</a>。</li>
+</ol>
+<h1 id="2-">2. 在视图中使用模板</h1>
+<h2 id="2-1-">2.1 配置模板路径</h2>
+<p>为了减少模板加载调用过程及模板本身的冗余代码，Django提供了一种使用方便且功能强大的API，用于从磁盘中加载模板，要使用此模板加载API，首先你必须将模板的保存位置告诉框架。假设项目根目录是mysite，一般会在这个目录下建立一个templates文件夹，专门存放模板。然后在setting.py中设置<code>TEMPLATE_DIRS</code>这一项。</p>
+<pre><code>TEMPLATE_DIRS = (
+    &#39;templates/&#39;,
 )
-</code></pre><p>只要在浏览器中访问<code>http://127.0.0.1:8000/hello</code>就可以看到你的第一个页面了。这里面最关键的就是用正则表达式来匹配URL，上面的模式包含了一个尖号(^)和一个美元符号($)，分别表示对字符串的头部和尾部进行匹配。例如“^hello/”，那么任何以/hello/开头的如“/hello/foo”的URL将会匹配。又比如，“^$”代表一个空串，匹配根URL。</p>
-<p>大多数动态web应用程序，URL通常都包含有相关的参数，例如你点击某个帖子跳转到该帖子的详细页面（/list/123），这里可以使用d+来匹配1个以上的数字，用\d{1,2}来匹配一或两位数字，对应的配置如下：</p>
-<pre><code>urlpatterns = patterns(&#39;&#39;,
-    (&#39;^$&#39;, index_view),
-    (&#39;^hello/$&#39;, hello_view),
-    (&#39;^list/\d{1,2}/$&#39;, list_view)
-)
-</code></pre><p>当这样设置URL的时候，相应的view函数应该增加一个参数来接收，如上例所示的view函数形如<code>def list_view(request, id): requestId = int(id)</code>。</p>
-<p>这就是URL的基本配置，结合其他正则表达式的表达方法基本可以满足日常所需，更详细的请参见<a href="http://djangobook.py3k.cn/2.0/chapter03/" target="_blank">这里</a></p>
+</code></pre><h2 id="2-2-">2.2 渲染模板</h2>
+<p>Django提供了一个捷径，让你一次性地载入某个模板文件，渲染它，然后将此作为HttpResponse返回。我们以下面这样一个模板文件（current_datetime.html）为例。</p>
+<pre><code>&lt;html&gt;&lt;body&gt;It is now {{ current_date }}.&lt;/body&gt;&lt;/html&gt;
+</code></pre><p>那么现在的视图views.py可以这样写。</p>
+<pre><code>from django.shortcuts import render_to_response
+import datetime
+
+def current_datetime_view(request):
+    # 获取填充模板的变量，这里经常会是调用Model层的方法访问数据库
+    now = datetime.datetime.now()
+    # 第一个参数是要使用的模板名称，第二个参数是一个字典，用于填充模板
+    return render_to_response(&#39;current_datetime.html&#39;, {&#39;current_date&#39;: now})
+</code></pre><p>以上模板加载、上下文创建、模板解析和HttpResponse创建工作均在对均被<code>render_to_response()</code>的调用给包办了了，因为这个函数返回了HttpResponse对象，所以我们仅需在视图中 return该值。</p>
+<h1 id="3-">3. 模板的编写原则</h1>
+<p>在介绍了模板加载机制之后，我们再介绍一个利用该机制的内建模板标签：<code>{% include %}</code> 。该标签允许在（模板中）包含其它的模板的内容。标签的参数是所要包含的模板名称，可以是一个变量，也可以是用单/双引号硬编码的字符串。每当在多个模板中出现相同的代码时，就应该考虑是否要使用<code>include</code>来减少重复，这也是为了提高代码的可重用性。</p>
+<p>在实际应用中，经常会用Django模板系统来创建整个HTML页面。这就带来一个常见的 Web 开发问题：在整个网站中，如何减少共用页面区域（比如站点导航）所引起的重复和冗余代码？</p>
+<p>解决该问题的传统做法是使用服务器端的includes，你可以先编写各小部分（比如导航栏、header、footer、各功能区块等等），然后在一个base.html中搭出网页的HTML骨架，然后用<code>include</code>像拼拼图一样各个模板组装成最后的大页面。但是用Django解决此类问题的首选方法是使用更加优雅的策略——<em>模板继承</em>。你可以对那些<strong>不同</strong>的代码段进行定义，而不是定义<strong>相同</strong>的代码段。</p>
+<p>第一步是定义<em>基础模板base.html</em>，该模板之后将由<em>子模板</em>继承。</p>
+<pre><code>{% load staticfiles %}
+&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+    &lt;title&gt;
+        {% block title %} The Default Title {% endblock %}
+    &lt;/title&gt;
+
+    {% block css %} 
+    &lt;link href=&quot;{% static &quot;css/base.css&quot; %}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;
+    {% endblock %}
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;wrapper&quot;&gt;
+        {% block header %}
+        {% include &#39;partial/header.html&#39; %}
+        {% endblock %}
+
+        {% block content %} {% endblock %}
+
+        {% block footer %}
+        {% include &#39;partial/footer.html&#39; %}
+        {% endblock %}
+    &lt;/div&gt;
+
+    {% block js %} 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;{% static &quot;js/jquery.min.js&quot; %}&quot;&gt;&lt;/script&gt;
+    {% endblock %}
+&lt;/body&gt;
+</code></pre><p>所有的<code>block</code>标签告诉模板引擎，子模板可以重载这些部分，如果子模板不重载这些部分，则将按默认的内容显示。（顺便提一下，模板中的<code>load staticfiles</code>表示加载静态资源，这个一般用于加载CSS,JS等静态文件时用到）上面的基础模板中定义了6个block，当我们的页面有变化时，随时可以对这些block做出修改，看看下面的首页index.html：</p>
+<pre><code>{% extends &quot;base.html&quot; %}
+{% load staticfiles %}
+
+{% block css %} 
+{{ block.super }}
+&lt;link href=&quot;{% static &quot;css/page/index.css&quot; %}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;
+{% endblock %}
+
+{% block content %}
+&lt;p&gt;Hello world!&lt;/p&gt;
+{% include &quot;partial/index/product_list.html&quot; %}
+{% endblock %}
+</code></pre><p>在index.html中，首先用<code>extends</code>标签声明这个模板继承的父模板（必须保证其为模板中的第一个模板标记）。接着重定义css这个block，在包含了父模板的基础上（<code>block.super</code>）引入了新的CSS文件（也就是说，这里最终会加载base.css和index.css两个文件）；替换了content这个block。这就是子模板所做的全部工作。注意：<strong>继承并不会影响到模板的上下文。换句话说，任何处在继承树上的模板都可以访问到你传到模板中的每一个模板变量。</strong></p>
+<p>最后总结一下Django模板的编写原则。你可以根据需要使用任意多的继承次数。使用继承的一种常见方式是下面的三层法：</p>
+<ol>
+<li>创建base.html模板，在其中定义站点的主要外观感受。这些都是不常修改甚至从不修改的部分。</li>
+<li>为网站的每个区域创建base_SECTION.html模板(例如, base_photos.html和base_forum.html)。这些模板对base.html进行拓展，并包含区域特定的风格与设计。</li>
+<li>为每种类型的页面创建独立的模板，例如论坛页面或者图片库。这些模板拓展相应的区域模板。</li>
+</ol>
+<p>这个方法可最大限度地重用代码，并使得向公共区域（如区域级的导航）添加内容成为一件轻松的工作。</p>
 
     </div>
     
@@ -386,7 +461,7 @@ urlpatterns = patterns(&#39;&#39;,
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Django学习笔记（1）——开始Django">
+    <div class="ds-thread" data-title="Django学习笔记（3）——Django的模板">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
