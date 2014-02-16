@@ -4,28 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Lua学习笔记（2）——变量类型与表达式 | Ray Taylor Lin&#39;s world</title>
+    <title>Django学习笔记（4）——Django的Admin后台管理 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。
-
-
-1.  Lua类型
-1.1 基本类型
-Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。
-函数type可根据一个值返回其类型名称（字符串），如print(type(print))，输出“function”；print(type(type(X))) ，输出“string”。
-1.2 各类型要注意的地方
-
-关于boolean
- 在Lua中，false和nil视为“false”，其它值均视为“true”（包括数字0和空字符串）。
-
-关于number
- 该类型用于表示实数（双精度double），整数也用此类型表示。">
+    <meta name="description" content="对于某一类网站，管理界面是基础设施中非常重要的一部分。这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。如果你用过Wordpress这款博客管理工具，一定对其管理后台很熟悉——用这个界面发布，管理博客和目录等等。但是管理界面有一问题：创建它太繁琐。当你开发对公众的功能时，网页开发是有趣的，但是创建管理界面通常是千篇一律的——你必须认证用户，显示并管理表格，验证输入的有效性诸如此类，这些都是很繁琐而且很重复的劳动。
+Django在对这些繁琐和重复的工作进行了相当大的改进，它用不能再少的代码为你做了所有的一切。本文将介绍Django的Admin自动管理界面——它读取你模式中的元数据，然后提供给你一个强大而且可以使用的界面，网站管理者可以用它立即工作。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Lua学习笔记（2）——变量类型与表达式"/>
+    <meta property="og:title" content="Django学习笔记（4）——Django的Admin后台管理"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -300,61 +288,65 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
     <div class="article-title article-title-big">
         
     
-        <h1>Lua学习笔记（2）——变量类型与表达式</h1>
+        <h1>Django学习笔记（4）——Django的Admin后台管理</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2012-09-15T03:29:30.000Z">2012-09-15</time>
+        <time datetime="2014-02-16T10:07:55.000Z">2014-02-16</time>
     </div>
 
     <div class="entry">
-        <p>本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。</p>
+        <p>对于某一类网站，管理界面是基础设施中非常重要的一部分。这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。如果你用过Wordpress这款博客管理工具，一定对其管理后台很熟悉——用这个界面发布，管理博客和目录等等。但是管理界面有一问题：创建它太繁琐。当你开发对公众的功能时，网页开发是有趣的，但是创建管理界面通常是千篇一律的——你必须认证用户，显示并管理表格，验证输入的有效性诸如此类，这些都是很繁琐而且很重复的劳动。</p>
+<p>Django在对这些繁琐和重复的工作进行了相当大的改进，它用不能再少的代码为你做了所有的一切。本文将介绍Django的Admin自动管理界面——它读取你模式中的元数据，然后提供给你一个强大而且可以使用的界面，网站管理者可以用它立即工作。</p>
 <a id="more"></a>
 
-<h1 id="1-lua-">1.  Lua类型</h1>
-<h2 id="1-1-">1.1 基本类型</h2>
-<p>Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。</p>
-<p><strong>函数type可根据一个值返回其类型名称（字符串），如<code>print(type(print))</code>，输出“function”；<code>print(type(type(X)))</code> ，输出“string”。</strong></p>
-<h2 id="1-2-">1.2 各类型要注意的地方</h2>
+<h1 id="1-">1. 想清楚用不用管理界面</h1>
+<p>在开始使用Django提供的这个强大的工具之前，有必要先认清Django Admin能干什么，应该什么时候用它什么时候不用它。</p>
+<p>Django的管理界面对非技术用户要输入他们的数据时特别有用，在Django最开始开发的新闻报道的行业应用中，有一个典型的在线自来水的水质专题报道应用，它的实现流程是这样的：</p>
 <ol>
-<li><p>关于boolean</p>
-<p> 在Lua中，false和nil视为“false”，其它值均视为“true”（包括数字0和空字符串）。</p>
-</li>
-<li><p>关于number</p>
-<p> 该类型用于表示实数（双精度double），整数也用此类型表示。</p>
- <a id="more"></a>
-</li>
-<li><p>关于string</p>
-<p> 字符串不能像C语言一样直接修改某个字符，必要时应通过string库创建一个新的字符串。字符串可以用一对匹配的单引号或双引号来界定。可以实用类C语言的转义序列。</p>
-<p> 此外，可以用双方括号<code>[[内容]]</code>来界定，其中的换行字符均被忽略，适用于包含一整段的字符串。<strong>若在左边的两个方括号间加入任意数量的等号，如<code>[===[</code>，则字符串右边应该匹配带相同数量等号的方括号，如<code>]===]</code>，这样做就可以在不加转义的情况下直接嵌入任意内容的字符串。同理注释也可以这样使用，如<code>--[==[</code>匹配<code>--]==]</code>。</strong></p>
-<p> Lua提供运行时的数字与字符串自动转换。如<code>print(&quot;10&quot;+1)</code> --&gt; 11，<code>print(10 ..20)</code> --&gt; 1020（“..”是字符串连接符，上例将数字转换成字符串并连接，<strong>数字和..之间应该留一个空格</strong>）。</p>
-<p> 建议尽量少用自动转换，如有需要可用强制转换。<strong>函数<code>tonumber(x)</code>尝试将x转换成数字，若失败则返回nil，函数<code>tostring(x)</code>将x转换成字符串。在字符串前放置“#”可获得字符串的长度，如<code>print(#&quot;length&quot;)</code> --&gt; 6</strong>。</p>
-</li>
-<li><p>关于table</p>
-<p> Table是一种具有特殊索引方式的数组，可以实用除nil外的其他类型的值作为索引，其增长与删减均通过自动内存管理来完成。<strong>Table是一个“对象”，程序仅持有一个对它们的引用，例如可以通过<code>a = {}</code>创建一个table并将它的引用存储到a，若再<code>b = a</code>，则b与a引用同一个table。</strong>若table的某个元素没有初始化，其值即为nil，可以通过赋nil来删除table的某个元素。</p>
-<p> 有一种等价写法：<code>p[“age”]</code>等价于<code>p.age</code>。<strong>注意，p.age和p[age]并不等价。</strong></p>
-<p> “#”可用于返回一个数组的最后一个索引值（或其大小）。例如<code>print(a[#a])</code>打印列表a的最后一个值，<code>a[#a+1] = io.read()</code>读入一个值并插入到列表a末尾。<strong>注意，Lua将nil作为界定数组结尾的标志，当一个数组中间含有nil时，#会认为第一个nil就是结尾，因此应避免对含“空隙”的数组使用#。</strong></p>
-<p> <strong>在Lua中，一般默认table第一个索引为1而不是C语言中的0。</strong></p>
-</li>
-<li><p>Function、userdata和thread类型留到以后再讲。</p>
-</li>
+<li>负责这个报道的记者和要处理数据的开发者碰头，提供一些数据给开发者</li>
+<li>开发者围绕这些数据设计模型然后配置一个管理界面给记者</li>
+<li>记者检查管理界面，尽早指出缺少或多余的字段。开发者来回地修改模块</li>
+<li>当模块认可后，记者就开始用管理界面输入数据。同时，程序员可以专注于开发公众访问视图和模板</li>
 </ol>
-<h1 id="2-">2. 表达式</h1>
-<h2 id="2-1-">2.1. 算术操作符</h2>
-<p>常规的操作符有：+加、-减、<em>乘、/除、^指数、%取模。其中^可用于任意实数，如<code>x ^ (-1 / 3)</code>计算x的立方根倒数。<em>*%可以这样使用：<code>x % 1</code>结果是x的小数部分，<code>x - x % 0.01</code>是x精确到小数点后两位的结果。</em></em></p>
-<h2 id="2-2-">2.2. 关系操作符</h2>
-<p>常规关系操作符有：&lt;小于、&gt;大与、&lt;=小于等于、&gt;=大于等于、==相等、~=不等。==和~=可用于任意两个值，若两个值具有不同类型则不相等，有相同类型则作正常比较（nil只与其自身相等）。对于对象则比较它们的引用。</p>
-<h2 id="2-3-">2.3. 逻辑操作符</h2>
-<p>逻辑操作符有and、or和not。<strong>对and（or）来说，若第一个操作数为假（真），就返回第一个操作数，否则返回第二个操作数。</strong>如<code>print(4 and 5)</code> --&gt; 5，<code>print(false or 5)</code> --&gt; 5。</p>
-<p><strong>有一些常用写法：x = x or v，可用在没有设置x的时候，将其设为一个默认值v。另一种写法<code>(a and b) or c</code>类似<code>a ? b : c</code>，如<code>max = (x &gt; y) and x or y</code>。</strong></p>
-<h2 id="2-4-">2.4. 字符串连接符</h2>
-<p>可用“..”（两个点）来连接两个字符串，若其中任一个为数字，Lua会自动转换，如<code>print(0 ..1)</code> --&gt; 01。连接字符串只会创建一个新字符串，不会对原操作数进行修改。</p>
-<p>Lua运算符优先级顺序如下图所示。<br><img src="http://ww1.sinaimg.cn/large/74990035gw1ecsipy67ynj20b90afgm0.jpg" alt="Lua运算符优先级顺序"></p>
-<h2 id="2-5-table-">2.5. Table构造式</h2>
-<p>除了上述直接赋予{}创建空table以外，可以初始化其值，如<code>day = {&quot;S&quot;, &quot;M&quot;, &quot;T&quot;}</code>，或者<code>point = {x = 10, y = 20}</code>（即point.x=10，point.y=20）。以上两种初始化方式可以混用，还可以用分号代替逗号，来将列表部分和记录部分明显地分隔开，如<code>polyline = {color = &quot;blue&quot;; {x = 0, y = 0}, {x = 10, y = 10}, {x = 20, y = 30}}，则</code>print(polyline[1].x)` --&gt; 10。</p>
-<p>更加通用的初始化格式，可以在方括号间声明索引值，如<code>opnames={[&quot;+&quot;] = &quot;add&quot;, [&quot;-&quot;] = &quot;minus&quot;}</code>。若某些情况真的需要以0作为一个数组的起始索引，可以这样days={[0] = &quot;S&quot;, &quot;M&quot;, &quot;T&quot;}。<strong>但是不推荐在Lua中以0作为索引起始值，因为大多数内建函数都假设数组起始于索引1。</strong></p>
+<p>也就是说，Django的管理界面为内容输入人员和编程人员都提供了便利的工具。此外，管理界面在下面这些情景中也是很有用的：</p>
+<ul>
+<li>检查模块：当你定义好了若干个模块，在管理页面中把他们调出来然后输入一些虚假的数据，这是相当有用的。有时候，它能显示数据建模的错误或者模块中其它问题。</li>
+<li>管理既得数据：如果你的应用程序依赖外部数据（来自用户输入或网络爬虫），管理界面提供了一个便捷的途径，让你检查和编辑那些数据。你可以把它看作是一个功能不那么强大，但是很方便的数据库命令行工具。</li>
+<li>临时的数据管理程序：你可以用管理工具建立自己的轻量级数据管理程序，比如说开销记录。如果你正在根据自己的，而不是公众的需要开发些什么，那么管理界面可以带给你很大的帮助。从这个意义上讲，你可以把它看作是一个增强的关系型电子表格。</li>
+</ul>
+<h1 id="2-">2. 激活管理界面</h1>
+<p>Django管理站点完全是可选择的，因为仅仅某些特殊类型的站点才需要这些功能。这意味着你需要在你的项目中花费几个步骤去激活它。</p>
+<p>首先将<code>django.contrib.admin</code>加入setting.py的INSTALLED_APPS配置中；保证INSTALLED_APPS中包含<code>django.contrib.auth</code>，<code>django.contrib.contenttypes</code>和<code>django.contrib.sessions</code>；MIDDLEWARE_CLASSES包含<code>django.middleware.common.CommonMiddleware</code> 、<code>django.contrib.sessions.middleware.SessionMiddleware</code> 和<code>django.contrib.auth.middleware.AuthenticationMiddleware</code> 。</p>
+<p>然后，运行<code>python manage.py syncdb</code>，这一步将生成管理界面使用的额外数据库表。 当你把“django.contrib.auth”加进INSTALLED_APPS后，第一次运行syncdb命令时, 系统会请你创建一个超级用户。如果你不这么做，你需要运行<code>python manage.py createsuperuser</code>来另外创建一个admin的用户帐号，否则你将不能登入admin。</p>
+<p>最后，修改urls.py将admin访问配置在URLconf中，如下所示。</p>
+<pre><code>from django.contrib import admin
+admin.autodiscover()
+urlpatterns = patterns(&#39;&#39;,
+    (r&#39;^admin/&#39;, include(admin.site.urls)),
+)
+</code></pre><p>当这一切都配置好后，启动开发服务器(<code>python manage.py runserver</code>)，然后在浏览器中访问<a href="http://localhost:8000/admin/，现在你将发现Django管理工具可以运行了。" target="_blank">http://localhost:8000/admin/，现在你将发现Django管理工具可以运行了。</a></p>
+<h1 id="3-admin-">3. 使用Admin管理你的数据</h1>
+<p>使用刚刚创建的超级账户登录admin后，你会发现仅有两个默认的管理编辑模块：用户组(Groups)和用户(Users)。因为你是用超级用户登录的，你可以创建，编辑和删除任何对象。然而，不同的环境要求有不同的权限，系统不允许所有人都是超级用户。管理工具有一个用户权限系统，通过设置用户组和用户，你可以根据用户的需要来指定他们的权限，从而达到部分访问系统的目的。</p>
+<p>现在将定义的Models加入到Admin管理中，就可以直接通过这个界面来管理数据库。这里我们引用<a href="/Tech/Script/Python/django-note-2/">学习笔记（2）</a>中定义的模型Publisher、Author和Book。在books这个app的目录下，创建<code>admin.py</code>文件，然后输入以下代码：</p>
+<pre><code>from django.contrib import admin
+from mysite.books.models import Publisher, Author, Book
+
+admin.site.register(Publisher)
+admin.site.register(Author)
+admin.site.register(Book)
+</code></pre><p>这些代码通知管理工具为这些模块逐一提供界面。完成后打开admin页面，你将可以看到一个Books区域，其中包含Authors、Books和Publishers等管理区，然后你就可以对数据进行增删查改了，所见即所得。同时admin管理界面也很智能地处理了各种外键关系，例如Book模型的publisher字段后面有一个绿色加号，可以打开一个新窗口让你快速添加相关记录，然后再回头编辑；另外，如果你的字段有类型限制（比如EmailField，max_length等），在保存修改的时候会检查管理员的输入是否符合格式，方便吧！</p>
+<p>最后再介绍一下自定义列表，这个功能可以很方便地修改admin界面特定模型的管理方式。例如在Book模型中，有title、author、publisher、publication_date四个字段，默认的admin管理会把所有字段都显示出来。看看以下代码：</p>
+<pre><code>class BookAdmin(admin.ModelAdmin):
+    # 指定要显示的字段
+    list_display = (&#39;title&#39;, &#39;publisher&#39;, &#39;publication_date&#39;)
+    # 指定列表过滤器，右边将会出现一个快捷的日期过滤选项，以方便开发人员快速地定位到想要的数据，同样你也可以指定非日期型类型的字段
+    list_filter = (&#39;publication_date&#39;,)
+    # 指定要搜索的字段，将会出现一个搜索框让管理员搜索关键词
+    search_fields = (&#39;title&#39;,)
+</code></pre><p>Admin的自定义列表和自定义编辑表单还是挺强大的，详情可以参照<a href="http://djangobook.py3k.cn/2.0/chapter06/" target="_blank">这里</a>，此处不再赘述。有了Admin这个工具，对于一些产品展示或者内容展示类型的网站，Web开发者再也不用费力气去开发一个庞大的后台管理，而可以把更多的精力投入到业务逻辑和前端开发中。</p>
 
     </div>
     
@@ -364,13 +356,13 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
     
     <div class="categories">
         所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Python/">Python</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
+        标签：<a class="btn btn-info" href="/tags/django/">django</a><a class="btn btn-info" href="/tags/python/">python</a>
     </div>
 
         
@@ -383,7 +375,7 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Lua学习笔记（2）——变量类型与表达式">
+    <div class="ds-thread" data-title="Django学习笔记（4）——Django的Admin后台管理">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
