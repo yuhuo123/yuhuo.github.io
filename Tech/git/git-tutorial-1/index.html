@@ -146,7 +146,7 @@
             <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(16)
+                    Tech(17)
                 </a>
             </li>
 
@@ -155,9 +155,9 @@
             
 
             <li collapse-level="1">
-                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    IDE(1)
+                    git(3)
                 </a>
             </li>
 
@@ -168,9 +168,9 @@
         
 
             <li collapse-level="1">
-                <a href="/categories/Tech/git/" class="collapse-level-1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    git(2)
+                    IDE(1)
                 </a>
             </li>
 
@@ -338,6 +338,10 @@ git config --global core.safecrlf true
 </code></pre><p>查看状态</p>
 <pre><code>git status
 # 此时你应该看到输出提示add了index.html，其他状态还有modified（修改）等等
+</code></pre><p>查看与上一次提交的差异（具体参考<a href="http://gitbook.liuhui998.com/3_5.html" target="_blank">这里</a>）</p>
+<pre><code>git diff
+# 加上--cached参数，git diff会显示当前你所有已跟踪的修改
+git diff branch-name    # 查看当前工作目录与指定分支的差别
 </code></pre><p>然后提交</p>
 <pre><code># -a表示跟踪所有文件的改动（相当于先做了一次git add .，再commit），-m 后面跟着提交的说明
 git commit -a -m &quot;First Commit&quot;
