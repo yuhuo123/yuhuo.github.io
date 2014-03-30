@@ -4,13 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>IDE | Ray Taylor Lin&#39;s world</title>
+    <title>Cocos2d-html5之场景转换 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="粒子系统从其本质来说就是一些点被发射出来，并在其生命周期内受到一些影响。
+这些点的信息也无非就是位置，方向，颜色等等，根据需要也可以扩充其他。
+而渲染的时候则根据粒子的信息，再结合具体的渲染类型（比如billboard）进行渲染。
+从上面可以看出粒子系统分为4各部分
+
+粒子，这里只要把他理解成一些关">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Cocos2d-html5之场景转换"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -281,40 +288,95 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="page">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（分类）IDE</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-04-02T07:08:29.000Z">2013-04-02</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/IDE/intellij-idea-chinese-display/">IntelliJ IDEA 12.0中文显示问题解决方案</a></h1>
+        <h1>Cocos2d-html5之场景转换</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2014-03-03T01:15:24.000Z">2014-03-03</time>
+    </div>
+
+    <div class="entry">
+        <a id="more"></a>
+
+<p>粒子系统从其本质来说就是一些点被发射出来，并在其生命周期内受到一些影响。
+这些点的信息也无非就是位置，方向，颜色等等，根据需要也可以扩充其他。
+而渲染的时候则根据粒子的信息，再结合具体的渲染类型（比如billboard）进行渲染。</p>
+<p>从上面可以看出粒子系统分为4各部分</p>
+<ol>
+<li>粒子，这里只要把他理解成一些关心的变量集合，比如位置，方向，颜色，纹理偏移，生命时间等</li>
+<li>发射器，其实就是一个喷嘴，把粒子发射出来。所谓发射出来，听起来挺悬的，其实就是将粒子标记为活动，并对其数据进行初始设置。</li>
+<li>影响器，对发射出来的例子数据施加影响，根据物理模型，或者其他什么规则改变粒子的数据而已。</li>
+<li>渲染器，对发射出来的粒子进行渲染绘图。</li>
+</ol>
+<p>除了这4各部分还需要有一个总的结构来对其进行总的管理，这就是ParticleSystem.ParticleSystem的主要工作就是负责管理上面提到的4各部分，做好粒子的分配和回收（使用队列，分别是活动粒子队列和空闲粒子队列），并在更新函数中调用发射器和影响器，统筹管理。</p>
+<p>在具体设计的时候需要仔细考虑的一个问题也是一个关键的问题是粒子系统是否可以发射粒子系统，听起来有些奇怪，粒子系统怎么能发射粒子系统呢。其实说白了就是将粒子系统本身作为粒子并可以被其他粒子系统发射。这将是一个非常重要的特性，可以实现嵌套发射，实现更加丰富的效果。</p>
+<p>使用已定义好的例子发射器：</p>
+<pre><code>var AppLayer=cc.Layer.extend({  
+    init:function(){  
+        this._super();  
+        var winSize = cc.Director.getInstance().getWinSize();  
+        var emitter=null;  
+        var texture = cc.TextureCache.getInstance().addImage(img_snow);  
+
+        emitter = cc.ParticleSnow.create(); //下雪效果的粒子  
+        emitter.setTexture( texture);  
+        emitter.setPosition(winSize.width/2,winSize.height/2); //设置发射器的位置  
+        emitter.setSpeed(150);//设置速度  
+
+        if(emitter.setShapeType)  
+            emitter.setShapeType(cc.PARTICLE_STAR_SHAPE); //设置形状  
+
+        this.addChild(emitter);  
+
+    }  
+});  
+</code></pre><p>粒子编辑器ParticleEditor的使用：<a href="http://www.cnblogs.com/cocos2d-x/archive/2012/06/17/2552635.html" target="_blank">http://www.cnblogs.com/cocos2d-x/archive/2012/06/17/2552635.html</a></p>
+
+    </div>
+    
+    <footer >
+        
+            
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/undefined">undefined</a><a class="btn btn-info" href="/undefined">undefined</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Cocos2d-html5之场景转换">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
 
         </div>
     </div>

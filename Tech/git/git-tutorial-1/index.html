@@ -146,7 +146,7 @@
             <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(17)
+                    Tech(18)
                 </a>
             </li>
 
@@ -157,7 +157,7 @@
             <li collapse-level="1">
                 <a href="/categories/Tech/git/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    git(3)
+                    git(4)
                 </a>
             </li>
 
@@ -310,6 +310,7 @@
 </ul>
 <h1 id="2-">2.参考材料</h1>
 <ul>
+<li><a href="http://iissnan.com/progit/index.html" target="_blank">Pro Git中文版</a></li>
 <li>一个极其简洁明了的Git教程网站<a href="http://gitimmersion.com/" target="_blank">Git Immersion</a></li>
 <li><a href="http://gitbook.liuhui998.com/index.html" target="_blank">Git Community Book 中文版</a></li>
 </ul>
@@ -361,6 +362,19 @@ git commit -m &quot;function 2&quot;
 git reset a.py
 </code></pre><p>当文件加入了 stage 区以后，后来又做了一些修改，这时发现后面的修改有问题，想回退到stage的状态，使用checkout命令</p>
 <pre><code>git checkout a.py
+</code></pre><p>4.忽略某些文件</p>
+<p>一般一个项目总会有些文件无需纳入Git的管理，比如一些自动生成的日志文件，或者编译过程中创建的临时文件等。我们可以创建一个名为<code>.gitignore</code>的文件，列出要忽略的文件模式。下面是一个例子：</p>
+<pre><code># 此为注释 – 将被 Git 忽略
+# 忽略所有 .a 结尾的文件
+*.a
+# 但 lib.a 除外
+!lib.a
+# 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+/TODO
+# 忽略 build/ 目录下的所有文件
+build/
+# 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+doc/*.txt
 </code></pre><p>本篇就先讲到这里，下一篇将会讲Git的历史操作。</p>
 
     </div>
