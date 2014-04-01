@@ -1,11 +1,18 @@
 {
     "reading-books-content": [{
-        "title": "重构 : 改善既有代码的设计",
-        "cover": "http://img3.douban.com/lpic/s4157180.jpg",
+        "title": "代码整洁之道",
+        "cover": "http://img3.douban.com/lpic/s4103991.jpg",
         "review": "无",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/4262627/"
+        "doubanLink": "http://book.douban.com/subject/4199741/"
+    }, {
+        "title": "HTTP权威指南（第一部分和第二部分）",
+        "cover": "http://img3.douban.com/lpic/s9109250.jpg",
+        "review": "无",
+        "score": "???",
+        "doubanLink": "http://book.douban.com/subject/10746113/"
     }],
+
     "readed-books-content": [{
         "title": "漫画线性代数",
         "cover": "http://img5.douban.com/lpic/s3971498.jpg",
@@ -37,11 +44,12 @@
         "score": "9.5",
         "doubanLink": "http://book.douban.com/subject/11874748/"
     }],
+
     "wanted-books-content": [{
-        "title": "代码整洁之道",
-        "cover": "http://img3.douban.com/lpic/s4103991.jpg",
-        "review": "无",
+        "title": "Pro Git中文版",
+        "cover": "http://img5.douban.com/lpic/s4245786.jpg",
+        "review": "中文版电子书：http://iissnan.com/progit/",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/4199741/"
+        "doubanLink": "http://book.douban.com/subject/3420144/"
     }]
 }
