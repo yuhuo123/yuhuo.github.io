@@ -4,16 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Git指南（4）——与远程库交互 | Ray Taylor Lin&#39;s world</title>
+    <title>TCP连接管理 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
-    
-    <meta name="description" content="前面几篇Git指南中所介绍的都是本地的（即在你自己的机器上）版本控制方法。在实际的应用中，经常会和其他人共同维护一个项目，这时可能有一个中心服务器来托管所有开发者的代码，并在不同人之间同步代码，这就需要了解Git如何在本地和远程repo之间进行交互。
-作为一个基于Git的代码托管平台，Github目前拥有140多万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。因此本文将以Github为例来说明如何与远程库交互。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Git指南（4）——与远程库交互"/>
+    
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -297,103 +294,40 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
-        <article class="post">
-    <div class="article-title article-title-big">
         
+
+<h2 class="page-sub-title archive-title">你当前所在的位置：（标签）TCP连接管理</h2>
+
+
     
-        <h1>Git指南（4）——与远程库交互</h1>
-    
-
-    </div>
-
-    <div class="date-row ">
-        <time datetime="2014-03-29T12:59:34.000Z">2014-03-29</time>
-    </div>
-
-    <div class="entry">
-        <p>前面几篇Git指南中所介绍的都是本地的（即在你自己的机器上）版本控制方法。在实际的应用中，经常会和其他人共同维护一个项目，这时可能有一个中心服务器来托管所有开发者的代码，并在不同人之间同步代码，这就需要了解Git如何在本地和远程repo之间进行交互。</p>
-<p>作为一个基于Git的代码托管平台，<a href="https://github.com" target="_blank">Github</a>目前拥有140多万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。因此本文将以Github为例来说明如何与远程库交互。</p>
-<a id="more"></a>
-
-<h1 id="1-">1. 克隆远程仓库</h1>
-<p>Github上有许多开源项目，如果你想把别人的代码下载下来自己学习或者修改，最直接的办法就是克隆一个仓库到你本地。找到你想要的仓库的存放地址（Github仓库右侧“HTTPS clone URL”一栏可以复制），在你想要存放仓库的目录打开命令行窗口，输入以下命令即可克隆一份代码到你本地（以下的仓库地址是我的<a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism" target="_blank">博客主题</a>项目）：</p>
-<pre><code>git clone https://github.com/raytaylorlin/hexo-theme-raytaylorism.git
-</code></pre><p>输入<code>git remote</code>可以列出每个远程库的简短名字，在克隆完某个项目后，至少可以看到一个名为origin的远程库，Git默认使用这个名字来标识你所克隆的原始仓库。以下命令可以看到远程库的详细信息：</p>
-<pre><code>git remote show origin
-# 使用git remote -v 可以显示对应的克隆地址
-</code></pre><h1 id="2-">2. 与远程库同步</h1>
-<p>本地repo和远程repo是两个相互独立的仓库，当别人在远程repo中做了修改后，你可以通过拉取<code>git pull</code>来获取远程库中的提交，并合并到本地仓库。注意，pull操作等价于下面先获取再合并的两步：</p>
-<pre><code>git fetch
-git merge origin/master
-</code></pre><p>你也可以通过推送<code>git push</code>把你本地的修改提交到远程库，这是git pull的反向操作。</p>
-<p>从上面的操作可以看到，本地repo和远程repo之间是有一定联系的，当你执行push或pull的操作时，本地总能与远程的仓库正确地同步，这是因为在<code>git clone</code>的过程中，git已经帮你在两个repo之间搭起了一座“桥梁”。如果你在Github上面创建了一个新的repo，然后想把你本地已经创建好的repo与Github上面的进行同步，此时两个仓库就像两个孤立的岛屿一样，这时候可以用下面的命令来“搭建桥梁”：</p>
-<pre><code>git remote add origin [远程仓库地址]
-# 建立起关联后，就可以进行push和pull了
-</code></pre><p>此外，可以用<code>git remote rename</code>命令修改某个远程仓库在本地的简称；碰到远端仓库服务器迁移，或者原来的克隆镜像不再使用，又或者某个参与者不再贡献代码，那么需要移除对应的远端仓库，可以运行<code>git remote rm</code>命令来移除。</p>
-<h1 id="2-git-">2. Git的分布式工作流程</h1>
-<p>同传统的集中式版本控制系统（CVCS）不同，开发者之间的协作方式随着Git的分布式特性而变得更为灵活多样。下面简要介绍两种常见的工作流。</p>
-<h2 id="2-1-">2.1 集中式工作流</h2>
-<p>通常，集中式工作流程使用的都是单点协作模型（如下图所示）。一个存放代码仓库的中心服务器，可以接受所有开发者提交的代码。所有的开发者都是普通的节点，作为中心集线器的消费者，平时的工作就是和中心仓库同步数据。</p>
-<p><img src="http://ntu.me/di/HN0EL/18333fig0501-tn.png" alt="Git集中式工作流示意图"></p>
-<p>如果两个开发者从中心仓库克隆代码下来，同时作了一些修订，那么只有第一个开发者可以顺利地把数据推送到共享服务器。第二个开发者在提交他的修订之前，必须先下载合并服务器上的数据，解决冲突之后才能推送数据到共享服务器上。如果团队不是很大，或者大家都已经习惯了使用集中式工作流程，完全可以采用这种简单的模式。绝大多数人都熟悉和了解这种模式的工作方式，所以使用也非常广泛。</p>
-<h2 id="2-2-">2.2 集成管理员工作流</h2>
-<p>由于Git允许使用多个远程仓库，开发者便可以建立自己的公共仓库，往里面写数据并共享给他人，而同时又可以从别人的仓库中提取他们的更新过来。在GitHub网站上使用得最多的就是这种工作流。具体的流程和示意图如下：</p>
-<ol>
-<li>项目维护者可以推送数据到公共仓库（blessed repository）。</li>
-<li>贡献者<strong>Fork</strong>此仓库，修订或编写新代码。</li>
-<li>贡献者推送数据到自己的公共仓库（developer public）。</li>
-<li>贡献者给维护者发送邮件（在Github上则是发起<strong>Pull Request</strong>），请求拉取自己的最新修订。</li>
-<li>维护者在自己本地的（integration manger）仓库中，将贡献者的仓库加为远程仓库，合并更新并做测试。</li>
-<li>维护者将合并后的更新推送到主仓库（blessed repository）。</li>
-</ol>
-<p><img src="http://ntu.me/di/P77J2/18333fig0502-tn.png" alt="Git集成管理员工作流示意图"></p>
-<p>详情参照<a href="http://iissnan.com/progit/html/zh/ch5_1.html" target="_blank">Pro Git分布式工作流程</a></p>
-
-    </div>
-    
-    <footer >
-        
+        <article>
+    <div class="row">
+        <div class="col-2 date-tags">
+            <div class="date-row">
+                <time datetime="2014-04-24T07:48:05.000Z">2014-04-24</time>
+            </div>
             
+        </div>
+        <div class="col-10">
+            <div class="article-title simple-article-title">
+                
     
-    <div class="categories">
-        所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/git/">git</a>
-    </div>
+        <h1><a href="/Tech/web/HTTP/HTTP-connection-management/">HTTP学习笔记：连接管理</a></h1>
+    
 
+            </div>
             
-    
-    <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/Git/">Git</a>
+        </div>
     </div>
-
-        
-        <div class="clearfix"></div>
-    </footer>
+    <div class="split-line"></div>
 </article>
 
-
-
-<section id="comment">
-    <h1 class="page-sub-title">留言</h1>
-    <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Git指南（4）——与远程库交互">
-
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name:"raytaylorlin"};
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = 'http://static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0] 
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- Duoshuo Comment END -->
-    </div>
-</section>
-
+    
+  <nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav>
 
         </div>
     </div>
