@@ -325,7 +325,7 @@
 <li>预发布分支release：发布正式版本之前（即合并到Master分支之前），可能需要从develop分支上分出来一个预发布的版本进行测试，预发布结束以后，必须合并进develop和master分支。分支名字可以采用<code>release-*</code>的形式命名。（此种分支一般比较少用）</li>
 </ol>
 <p>以上的功能分支、修补bug分支和预发布分支都属于临时性分支，一般使用完以后要删除掉这种分支，使得代码库的常设分支只有master和develop。最后以一张图总结一下常用的分支形式图。</p>
-<p><img src="http://ww4.sinaimg.cn/large/74990035jw1edxyy0ihiqj20hs0dcaau.jpg" alt="Git分支管理示意图"></p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/git/Git%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="Git分支管理示意图"></p>
 <h1 id="2-">2. 分支与管理命令</h1>
 <p>以下命令用来创建一个新的分支。</p>
 <pre><code>git checkout -b develop
@@ -361,7 +361,7 @@ A---B---C-----F---G   master, origin/master
 <pre><code>git checkout master
 git rebase fixbug
 </code></pre><p>拉取pull预设的行为是将远程的repo与本地的repo合并，如果本地的branch和远端的branch会同步得非常频繁（几乎是完全同步），这时候就会发现pull下来经常会冲突，然后用merge就会造成路线图变得很复杂，难以看到开发的主线，就像下图所示。这时候就会推荐使用<code>git pull --rebase</code>来进行变基拉取。</p>
-<p><img src="http://ww1.sinaimg.cn/large/74990035jw1edyw1vany9j20hr09adhe.jpg" alt="复杂的分支路线图"></p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/git/%E5%A4%8D%E6%9D%82%E7%9A%84%E5%88%86%E6%94%AF%E8%B7%AF%E7%BA%BF%E5%9B%BE.jpg" alt="复杂的分支路线图"></p>
 <p>在rebase的过程中，也许会出现冲突，Git会停止rebase并会让你去解决冲突。解决完冲突后，用<code>git-add</code>命令去更新这些内容的，只要执行以下语句（不需要提交commit）。</p>
 <pre><code>git rebase --continue
 </code></pre><p>这样git会继续应用余下的补丁。在任何时候，你可以用<code>git rebase --abort</code>来终止rebase的行动，并且分支会回退到rebase开始前的状态。</p>

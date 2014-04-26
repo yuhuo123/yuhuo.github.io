@@ -334,7 +334,7 @@ git merge origin/master
 <p>同传统的集中式版本控制系统（CVCS）不同，开发者之间的协作方式随着Git的分布式特性而变得更为灵活多样。下面简要介绍两种常见的工作流。</p>
 <h2 id="2-1-">2.1 集中式工作流</h2>
 <p>通常，集中式工作流程使用的都是单点协作模型（如下图所示）。一个存放代码仓库的中心服务器，可以接受所有开发者提交的代码。所有的开发者都是普通的节点，作为中心集线器的消费者，平时的工作就是和中心仓库同步数据。</p>
-<p><img src="http://ntu.me/di/HN0EL/18333fig0501-tn.png" alt="Git集中式工作流示意图"></p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/git/Git%E9%9B%86%E4%B8%AD%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="Git集中式工作流示意图"></p>
 <p>如果两个开发者从中心仓库克隆代码下来，同时作了一些修订，那么只有第一个开发者可以顺利地把数据推送到共享服务器。第二个开发者在提交他的修订之前，必须先下载合并服务器上的数据，解决冲突之后才能推送数据到共享服务器上。如果团队不是很大，或者大家都已经习惯了使用集中式工作流程，完全可以采用这种简单的模式。绝大多数人都熟悉和了解这种模式的工作方式，所以使用也非常广泛。</p>
 <h2 id="2-2-">2.2 集成管理员工作流</h2>
 <p>由于Git允许使用多个远程仓库，开发者便可以建立自己的公共仓库，往里面写数据并共享给他人，而同时又可以从别人的仓库中提取他们的更新过来。在GitHub网站上使用得最多的就是这种工作流。具体的流程和示意图如下：</p>
@@ -346,7 +346,7 @@ git merge origin/master
 <li>维护者在自己本地的（integration manger）仓库中，将贡献者的仓库加为远程仓库，合并更新并做测试。</li>
 <li>维护者将合并后的更新推送到主仓库（blessed repository）。</li>
 </ol>
-<p><img src="http://ntu.me/di/P77J2/18333fig0502-tn.png" alt="Git集成管理员工作流示意图"></p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/git/Git%E9%9B%86%E6%88%90%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="Git集成管理员工作流示意图"></p>
 <p>详情参照<a href="http://iissnan.com/progit/html/zh/ch5_1.html" target="_blank">Pro Git分布式工作流程</a></p>
 
     </div>

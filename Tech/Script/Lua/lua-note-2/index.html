@@ -364,7 +364,7 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
 <p><strong>有一些常用写法：x = x or v，可用在没有设置x的时候，将其设为一个默认值v。另一种写法<code>(a and b) or c</code>类似<code>a ? b : c</code>，如<code>max = (x &gt; y) and x or y</code>。</strong></p>
 <h2 id="2-4-">2.4. 字符串连接符</h2>
 <p>可用“..”（两个点）来连接两个字符串，若其中任一个为数字，Lua会自动转换，如<code>print(0 ..1)</code> --&gt; 01。连接字符串只会创建一个新字符串，不会对原操作数进行修改。</p>
-<p>Lua运算符优先级顺序如下图所示。<br><img src="http://ww1.sinaimg.cn/large/74990035gw1ecsipy67ynj20b90afgm0.jpg" alt="Lua运算符优先级顺序"></p>
+<p>Lua运算符优先级顺序如下图所示。<br><img src="http://raytaylorlin-blog.qiniudn.com/image/lua/Lua%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F.jpg" alt="Lua运算符优先级顺序"></p>
 <h2 id="2-5-table-">2.5. Table构造式</h2>
 <p>除了上述直接赋予{}创建空table以外，可以初始化其值，如<code>day = {&quot;S&quot;, &quot;M&quot;, &quot;T&quot;}</code>，或者<code>point = {x = 10, y = 20}</code>（即point.x=10，point.y=20）。以上两种初始化方式可以混用，还可以用分号代替逗号，来将列表部分和记录部分明显地分隔开，如<code>polyline = {color = &quot;blue&quot;; {x = 0, y = 0}, {x = 10, y = 10}, {x = 20, y = 30}}，则</code>print(polyline[1].x)` --&gt; 10。</p>
 <p>更加通用的初始化格式，可以在方括号间声明索引值，如<code>opnames={[&quot;+&quot;] = &quot;add&quot;, [&quot;-&quot;] = &quot;minus&quot;}</code>。若某些情况真的需要以0作为一个数组的起始索引，可以这样days={[0] = &quot;S&quot;, &quot;M&quot;, &quot;T&quot;}。<strong>但是不推荐在Lua中以0作为索引起始值，因为大多数内建函数都假设数组起始于索引1。</strong></p>
