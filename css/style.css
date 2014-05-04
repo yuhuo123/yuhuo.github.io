@@ -215,7 +215,6 @@ article header:hover {
   color: #069;
 }
 article .entry {
-  text-align: justify;
   line-height: 1.6;
 }
 article .entry h1,
@@ -248,16 +247,6 @@ article .entry blockquote {
   background: #ccc;
   background: rgba(0,0,0,0.06);
   color: #222;
-}
-article .entry img,
-article .entry video {
-  max-width: 98%;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  padding: 5px;
-  background: #fff;
-  -webkit-box-shadow: 0 0 8px #aaa;
-  box-shadow: 0 0 8px #aaa;
 }
 article .entry.nstyle {
   -webkit-border-radius: 0;
@@ -543,8 +532,8 @@ pre .deletion {
   position: relative;
 }
 .book-item .book-item-head img {
-  max-width: 180px;
-  max-height: 240px;
+  max-width: 150px;
+  max-height: 200px;
 }
 .book-item:hover .book-item-body {
   opacity: 1;
@@ -565,10 +554,26 @@ pre .deletion {
   -ms-transition: -ms-transform 0.4s, opacity 0.3s;
   transition: transform 0.4s, opacity 0.3s;
 }
+.book-item .book-cover span {
+  width: 150px;
+  height: 200px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  max-width: 98%;
+  -webkit-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 8px #aaa;
+  -webkit-box-shadow: 0 0 8px #aaa;
+  box-shadow: 0 0 8px #aaa;
+}
 .book-item-body {
   position: absolute;
   top: 0;
   left: 0;
+  margin-left: 150px;
   padding: 10px;
   background: #2c3e50;
   min-height: 320px;

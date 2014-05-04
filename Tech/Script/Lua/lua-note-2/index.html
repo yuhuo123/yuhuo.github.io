@@ -7,20 +7,7 @@
     <title>Lua学习笔记（2）——变量类型与表达式 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。
-
-
-1.  Lua类型
-1.1 基本类型
-Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。
-函数type可根据一个值返回其类型名称（字符串），如print(type(print))，输出“function”；print(type(type(X))) ，输出“string”。
-1.2 各类型要注意的地方
-
-关于boolean
- 在Lua中，false和nil视为“false”，其它值均视为“true”（包括数字0和空字符串）。
-
-关于number
- 该类型用于表示实数（双精度double），整数也用此类型表示。">
+    <meta name="description" content="本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -158,7 +145,7 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
             <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(22)
+                    Tech(23)
                 </a>
             </li>
 
@@ -247,7 +234,7 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
             <li collapse-level="1">
                 <a href="/categories/Tech/web/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    web(9)
+                    web(10)
                 </a>
             </li>
 
@@ -271,7 +258,7 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
             <li collapse-level="2">
                 <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
                     <i class="icon-caret-right"></i>
-                    HTTP(4)
+                    HTTP(5)
                 </a>
             </li>
 
@@ -323,10 +310,10 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
     </div>
 
     <div class="entry">
-        <p>本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。</p>
+        <p>本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。本文介绍了Lua的变量类型与表达式，着重强调各种类型需要注意的地方。</p>
 <a id="more"></a>
 
-<h1 id="1-lua-">1.  Lua类型</h1>
+<h1 id="1-lua-">1. Lua类型</h1>
 <h2 id="1-1-">1.1 基本类型</h2>
 <p>Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。</p>
 <p><strong>函数type可根据一个值返回其类型名称（字符串），如<code>print(type(print))</code>，输出“function”；<code>print(type(type(X)))</code> ，输出“string”。</strong></p>
@@ -337,7 +324,6 @@ Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种�
 </li>
 <li><p>关于number</p>
 <p> 该类型用于表示实数（双精度double），整数也用此类型表示。</p>
- <a id="more"></a>
 </li>
 <li><p>关于string</p>
 <p> 字符串不能像C语言一样直接修改某个字符，必要时应通过string库创建一个新的字符串。字符串可以用一对匹配的单引号或双引号来界定。可以实用类C语言的转义序列。</p>
