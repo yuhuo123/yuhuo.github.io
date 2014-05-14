@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Django学习笔记（4）——Django的Admin后台管理 | Ray Taylor Lin&#39;s world</title>
+    <title>HTTP学习笔记：缓存 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="对于某一类网站，管理界面是基础设施中非常重要的一部分。这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。如果你用过Wordpress这款博客管理工具，一定对其管理后台很熟悉——用这个界面发布，管理博客和目录等等。但是管理界面有一问题：创建它太繁琐。当你开发对公众的功能时，网页开发是有趣的，但是创建管理界面通常是千篇一律的——你必须认证用户，显示并管理表格，验证输入的有效性诸如此类，这些都是很繁琐而且很重复的劳动。
-Django在对这些繁琐和重复的工作进行了相当大的改进，它用不能再少的代码为你做了所有的一切。本文将介绍Django的Admin自动管理界面——它读取你模式中的元数据，然后提供给你一个强大而且可以使用的界面，网站管理者可以用它立即工作。">
+    <meta name="description" content="Web缓存是可以自动保存常见文档副本的HTTP设备。当Web请求抵达缓存时，如果本地有“已缓存的”副本，就可以从本地存储设备而不是原始服务器中提取这个文档。使用缓存可以减少冗余的数据传输，环节网络瓶颈的问题，降低对原始服务器的要求以及降低距离时延。
+本文解释了缓存怎样提供性能降低费用，如何去衡量其有效性以及将缓存置于何处可以发挥它的最大作用。此外还会解释HTTP如何保持已缓存副本的新鲜度，缓存如何与其他缓存和服务器通信等问题。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Django学习笔记（4）——Django的Admin后台管理"/>
+    <meta property="og:title" content="HTTP学习笔记：缓存"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -301,65 +301,89 @@ Django在对这些繁琐和重复的工作进行了相当大的改进，它用�
     <div class="article-title article-title-big">
         
     
-        <h1>Django学习笔记（4）——Django的Admin后台管理</h1>
+        <h1>HTTP学习笔记：缓存</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2014-02-16T10:07:55.000Z">2014-02-16</time>
+        <time datetime="2014-05-14T02:47:05.000Z">2014-05-14</time>
     </div>
 
     <div class="entry">
-        <p>对于某一类网站，管理界面是基础设施中非常重要的一部分。这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。如果你用过Wordpress这款博客管理工具，一定对其管理后台很熟悉——用这个界面发布，管理博客和目录等等。但是管理界面有一问题：创建它太繁琐。当你开发对公众的功能时，网页开发是有趣的，但是创建管理界面通常是千篇一律的——你必须认证用户，显示并管理表格，验证输入的有效性诸如此类，这些都是很繁琐而且很重复的劳动。</p>
-<p>Django在对这些繁琐和重复的工作进行了相当大的改进，它用不能再少的代码为你做了所有的一切。本文将介绍Django的Admin自动管理界面——它读取你模式中的元数据，然后提供给你一个强大而且可以使用的界面，网站管理者可以用它立即工作。</p>
+        <p>Web缓存是可以自动保存常见文档副本的HTTP设备。当Web请求抵达缓存时，如果本地有“已缓存的”副本，就可以从本地存储设备而不是原始服务器中提取这个文档。使用缓存可以减少冗余的数据传输，环节网络瓶颈的问题，降低对原始服务器的要求以及降低距离时延。</p>
+<p>本文解释了缓存怎样提供性能降低费用，如何去衡量其有效性以及将缓存置于何处可以发挥它的最大作用。此外还会解释HTTP如何保持已缓存副本的新鲜度，缓存如何与其他缓存和服务器通信等问题。</p>
 <a id="more"></a>
 
-<h1 id="1-">1. 想清楚用不用管理界面</h1>
-<p>在开始使用Django提供的这个强大的工具之前，有必要先认清Django Admin能干什么，应该什么时候用它什么时候不用它。</p>
-<p>Django的管理界面对非技术用户要输入他们的数据时特别有用，在Django最开始开发的新闻报道的行业应用中，有一个典型的在线自来水的水质专题报道应用，它的实现流程是这样的：</p>
-<ol>
-<li>负责这个报道的记者和要处理数据的开发者碰头，提供一些数据给开发者</li>
-<li>开发者围绕这些数据设计模型然后配置一个管理界面给记者</li>
-<li>记者检查管理界面，尽早指出缺少或多余的字段。开发者来回地修改模块</li>
-<li>当模块认可后，记者就开始用管理界面输入数据。同时，程序员可以专注于开发公众访问视图和模板</li>
-</ol>
-<p>也就是说，Django的管理界面为内容输入人员和编程人员都提供了便利的工具。此外，管理界面在下面这些情景中也是很有用的：</p>
+<h1 id="1-">1. 使用缓存的意义</h1>
+<p>很多客户端访问一个流行的原始服务器页面时，服务器会多次传输同一份文档，一些相同的字节会在网络中一遍遍地传输。这些冗余的数据传输会消耗昂贵的网络带宽，降低传输速度。有了缓存，就可以保留第一条服务器响应的副本，后继请求就可以由缓存副本来应对了。缓存还可以缓解网络的瓶颈问题，因为本地网络提供的带宽远比远程服务器的带宽要宽，所以如果本地网络中有缓存，则可以显著提高性能。此外，缓存在应对“瞬间拥塞”即短时间内访问量激增的情况显得非常重要。</p>
+<p>每台网络路由器都会增加因特网流量的时延，即使客户端和服务器之间没有太多的路由器，光速自身也会造成显著的时延。这种时延尤其体现在跨国之间的数据传输，而一份在附近机房的缓存可以将文件传输距离从数千公里缩短为数十米。</p>
+<h1 id="2-">2. 缓存命中</h1>
+<p>缓存不能保存世界上每份文档的副本。当可以用已有的副本为某些到达缓存的请求提供服务，则称为<strong>缓存命中</strong>（cache hit），到达缓存的请求可能因为没有副本可用而被转发到原始服务器，称为<strong>缓存未命中</strong>（cache miss）。原始服务器的内容可能随时发生变化，缓存要不时对其进行检测看保存的副本是否仍是服务器上最新的副本，这种“新鲜度检测”称为<strong>HTTP再验证</strong>（revalidatioin）。</p>
+<p>缓存进行再验证时，最常用的是将If-Modified-Since首部加到GET请求中。服务器收到该请求会发生以下三种情况：</p>
 <ul>
-<li>检查模块：当你定义好了若干个模块，在管理页面中把他们调出来然后输入一些虚假的数据，这是相当有用的。有时候，它能显示数据建模的错误或者模块中其它问题。</li>
-<li>管理既得数据：如果你的应用程序依赖外部数据（来自用户输入或网络爬虫），管理界面提供了一个便捷的途径，让你检查和编辑那些数据。你可以把它看作是一个功能不那么强大，但是很方便的数据库命令行工具。</li>
-<li>临时的数据管理程序：你可以用管理工具建立自己的轻量级数据管理程序，比如说开销记录。如果你正在根据自己的，而不是公众的需要开发些什么，那么管理界面可以带给你很大的帮助。从这个意义上讲，你可以把它看作是一个增强的关系型电子表格。</li>
+<li>再验证命中：如果内容未被修改，服务器会以304 Not Modified响应，只要缓存知道副本仍然有效，就会再次将副本标识为暂时新鲜，并将副本提供给客户端。</li>
+<li>再验证未命中：服务器向客户端发送一条普通的带有完整内容的HTTP 200 OK响应</li>
+<li>对象被删除：如果服务器对象已被删除，服务器会回送404 Not Found，缓存也会将副本删除。</li>
 </ul>
-<h1 id="2-">2. 激活管理界面</h1>
-<p>Django管理站点完全是可选择的，因为仅仅某些特殊类型的站点才需要这些功能。这意味着你需要在你的项目中花费几个步骤去激活它。</p>
-<p>首先将<code>django.contrib.admin</code>加入setting.py的INSTALLED_APPS配置中；保证INSTALLED_APPS中包含<code>django.contrib.auth</code>，<code>django.contrib.contenttypes</code>和<code>django.contrib.sessions</code>；MIDDLEWARE_CLASSES包含<code>django.middleware.common.CommonMiddleware</code> 、<code>django.contrib.sessions.middleware.SessionMiddleware</code> 和<code>django.contrib.auth.middleware.AuthenticationMiddleware</code> 。</p>
-<p>然后，运行<code>python manage.py syncdb</code>，这一步将生成管理界面使用的额外数据库表。 当你把“django.contrib.auth”加进INSTALLED_APPS后，第一次运行syncdb命令时, 系统会请你创建一个超级用户。如果你不这么做，你需要运行<code>python manage.py createsuperuser</code>来另外创建一个admin的用户帐号，否则你将不能登入admin。</p>
-<p>最后，修改urls.py将admin访问配置在URLconf中，如下所示。</p>
-<pre><code>from django.contrib import admin
-admin.autodiscover()
-urlpatterns = patterns(&#39;&#39;,
-    (r&#39;^admin/&#39;, include(admin.site.urls)),
-)
-</code></pre><p>当这一切都配置好后，启动开发服务器(<code>python manage.py runserver</code>)，然后在浏览器中访问<a href="http://localhost:8000/admin/，现在你将发现Django管理工具可以运行了。" target="_blank">http://localhost:8000/admin/，现在你将发现Django管理工具可以运行了。</a></p>
-<h1 id="3-admin-">3. 使用Admin管理你的数据</h1>
-<p>使用刚刚创建的超级账户登录admin后，你会发现仅有两个默认的管理编辑模块：用户组(Groups)和用户(Users)。因为你是用超级用户登录的，你可以创建，编辑和删除任何对象。然而，不同的环境要求有不同的权限，系统不允许所有人都是超级用户。管理工具有一个用户权限系统，通过设置用户组和用户，你可以根据用户的需要来指定他们的权限，从而达到部分访问系统的目的。</p>
-<p>现在将定义的Models加入到Admin管理中，就可以直接通过这个界面来管理数据库。这里我们引用<a href="/Tech/Script/Python/django-note-2/">学习笔记（2）</a>中定义的模型Publisher、Author和Book。在books这个app的目录下，创建<code>admin.py</code>文件，然后输入以下代码：</p>
-<pre><code>from django.contrib import admin
-from mysite.books.models import Publisher, Author, Book
-
-admin.site.register(Publisher)
-admin.site.register(Author)
-admin.site.register(Book)
-</code></pre><p>这些代码通知管理工具为这些模块逐一提供界面。完成后打开admin页面，你将可以看到一个Books区域，其中包含Authors、Books和Publishers等管理区，然后你就可以对数据进行增删查改了，所见即所得。同时admin管理界面也很智能地处理了各种外键关系，例如Book模型的publisher字段后面有一个绿色加号，可以打开一个新窗口让你快速添加相关记录，然后再回头编辑；另外，如果你的字段有类型限制（比如EmailField，max_length等），在保存修改的时候会检查管理员的输入是否符合格式，方便吧！</p>
-<p>最后再介绍一下自定义列表，这个功能可以很方便地修改admin界面特定模型的管理方式。例如在Book模型中，有title、author、publisher、publication_date四个字段，默认的admin管理会把所有字段都显示出来。看看以下代码：</p>
-<pre><code>class BookAdmin(admin.ModelAdmin):
-    # 指定要显示的字段
-    list_display = (&#39;title&#39;, &#39;publisher&#39;, &#39;publication_date&#39;)
-    # 指定列表过滤器，右边将会出现一个快捷的日期过滤选项，以方便开发人员快速地定位到想要的数据，同样你也可以指定非日期型类型的字段
-    list_filter = (&#39;publication_date&#39;,)
-    # 指定要搜索的字段，将会出现一个搜索框让管理员搜索关键词
-    search_fields = (&#39;title&#39;,)
-</code></pre><p>Admin的自定义列表和自定义编辑表单还是挺强大的，详情可以参照<a href="http://djangobook.py3k.cn/2.0/chapter06/" target="_blank">这里</a>，此处不再赘述。有了Admin这个工具，对于一些产品展示或者内容展示类型的网站，Web开发者再也不用费力气去开发一个庞大的后台管理，而可以把更多的精力投入到业务逻辑和前端开发中。</p>
+<p>由缓存提供服务的请求所占的比例称为<strong>缓存命中率</strong>。对现在中等规模的Web缓存来说，40%的命中率是比较合理的。还有一种<strong>字节命中率</strong>表示缓存提供的字节在传输的所有字节所占的比例。文档命中率说明阻止了多少通往外部网络的Web事务，字节命中率说明阻止了多少字节传向因特网，提高字节命中率对节省带宽很有利。</p>
+<p>HTTP没有为用户提供一种手段来区分响应是否来自缓存。可以使用Date首部来间接地判断，如果响应中的日期值比当前时间早，则可以认为这是一条缓存的响应。</p>
+<h1 id="3-">3. 缓存的拓扑结构</h1>
+<p>缓存可以是单个用户专用的私有缓存，也可以是包含某个用户团体常用页面的公有缓存。私有缓存不需要很大的存储空间，可以将其做得很小很便宜，比如很多Web浏览器都有内建的私有缓存。公有缓存是特殊的共享代理服务器，它会接受来自多个用户的访问，可以更好地减少冗余流量。</p>
+<p>在实际应用中，层次化的缓存是很有意义的。在较小的缓存中未命中的请求会被导向较大的父缓存，在靠近客户端的地方使用小型廉价缓存，更高层次中逐步采用更大，功能更强的缓存来装载多用户共享的文档。此外还有更加复杂的网状缓存，它们会根据URL在父缓存或原始服务器之间进行动态选择，也会决定选择何种路由对内容进行访问、管理和传送。</p>
+<h1 id="4-">4. 缓存的处理步骤</h1>
+<p>Web缓存的基本处理步骤包括7个步骤，如下图所示。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/Web%E7%BC%93%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4.jpg" alt="Web缓存的基本处理步骤"></p>
+<ol>
+<li>接收：缓存检测到一条网络连接上的活动，读取输入数据。高性能的缓存会同时从多条输入连接上读取数据，在整条报文抵达之前开始处理事务。</li>
+<li>解析：将请求报文解析为片段，将首部各个部分放入易于操作的数据结构中。</li>
+<li>查找：查找本地副本（可能位于内存、本地磁盘甚至另一台计算机中）。专业级的缓存会使用快速算法来确定本地缓存中是否有某个对象。</li>
+<li>新鲜度检测：缓存会将服务器文档的副本保留一段时间，在“新鲜度限值”的时间之内都认为文档是“新鲜的”。超过限值的要和服务器进行再验证，以查看文档是否发生变化。新鲜度检测是一个非常复杂的问题，本文剩余部分将讨论这个问题。</li>
+<li>创建响应：缓存会对服务器响应的基础首部进行修改和扩充，例如将低版本的HTTP转换成HTTP/1.1响应。缓存还会向首部插入新鲜度信息（Cache-Control、Age、Expires首部等）。</li>
+<li>发送：高性能缓存会尽力高效发送数据，通常可以避免在本地缓存和网络I/O缓冲区之间进行文档内容的复制。</li>
+<li>日志：保存于缓存使用有关的一些统计数据，如更新缓存命中和未命中数目数据等。</li>
+</ol>
+<h1 id="5-">5. 保持副本的新鲜</h1>
+<p>不是所有的缓存副本都与服务器上的文档一致，因为服务器上的文档可能随时都会变化，缓存数据必须要与服务器保持一致。HTTP有一些简单的机制可以在<em>不要求服务器记住有哪些缓存拥有其文档副本的情况下</em>，保持已缓存数据与服务器之间充分一致。通过特殊的HTTP <code>Cache-Control:max-age</code>（HTTP/1.1首部，定义了文档的最大试用期）和<code>Exipires</code>（HTTP/1.0+首部，指定一个绝对的过期日期）首部，原始服务器向每个文档附加一个“过期日期”，说明了再多长时间内可以将这些内容视为新鲜的。</p>
+<p>过了过期日期之后只是意味着缓存要和服务器进行再验证。若再验证显示内容发生了变化，缓存会获取一份新的副本并存储在旧文档的位置上；若没哟u发生变化，缓存只需要获取新的过期日期并更新就可以了。</p>
+<p>正如第2节所说的，缓存可以向原始服务器发送一个“条件GET”来进行再验证。最常见的缓存再验证首部是<code>If-Modified-Since:Date</code>（IMS请求）。只有自某个日期之后资源发生了变化，GET才会成功执行回送新的文档。该首部可以与<code>Last-Modified</code>服务器响应首部配合工作。原始服务器会将最后的修改日期附加到所提供的文档上去。当缓存要再验证时，就会发送携带最后修改日期的IMS请求。</p>
+<p>有一些情况仅使用最后修改日期进行再验证是不够的，例如：有的文档可能会被周期性地重写，尽管内容没变，但修改日期会变；有的文档可能被修改了，但所做修改没必要让世界范围内的缓存都重新获取数据；有的服务器无法准确判定其页面的最后修改日期；有的服务器提供的文档会在秒级以内发生变化，以一秒为粒度的修改日期可能不够用。为了解决这些问题，HTTP允许用户对<strong>实体标签ETag</strong>进行比较。当发布者对文档进行修改时，可以修改文档的实体标签来说明这个新的版本，缓存可以用<code>If-None-Match</code>条件首部来GET文档的新副本。</p>
+<p>如果服务器回送一个ETag，客户端就必须使用实体标签验证器；如果服务器只回送一个Last-Modified值，客户端就可以使用If-Modified-Since验证。如果两者都提供，客户端就应该使用两种验证方案。当服务器同时收到两种方案的请求，只有当两个条件都满足时，才能返回304 Not Modified响应。</p>
+<h1 id="6-">6. 控制缓存</h1>
+<h2 id="6-1-">6.1 响应首部</h2>
+<p>服务器可以通过HTTP定义的几种方式来指定在文档过期之前可以将其缓存多长时间。按照优先级递减的顺序，以下给出了这些控制缓存的首部。</p>
+<ul>
+<li>Cache-Control:no-store：禁止缓存对响应进行复制。缓存会向客户端转发一条no-store响应，然后删除对象。</li>
+<li>Cache-Control:no-cache：实际上可以存储在本地缓存区。只是在与原始服务器进行新鲜度再验证之前，缓存不能将其提供给客户端使用。</li>
+<li>Cache-Control:must-revalidate：缓存是可以提供一些过期的对象的（保存在缓存上的副本有多个版本）。原始服务器可以用这个首部告诉缓存，在事先没有再验证的情况下，不能提供这个对象的过期副本。缓存仍然可以随意提供新鲜的副本。</li>
+<li>Cache-Control:max-age：表示从服务器将文档传来之时起，可以认为此文档处于新鲜状态的秒数。若为0，每次访问都不缓存。</li>
+<li>Expires：指定实际（绝对）的过期日期。但由于很多服务器的时钟不同步或不正确，最好还是使用max-age剩余秒数来表示过期时间。</li>
+</ul>
+<p>如果响应中没有说明过期时间的首部，缓存可以通过一些算法来计算出一个试探性最大使用期。比如LM-Factor算法利用文档的最后修改日期来计算过期时间。</p>
+<h2 id="6-2-">6.2 请求首部</h2>
+<p>Web浏览器也可以用Cache-Control请求首部来强化或放松对过期时间的限制，下面列举这些首部。</p>
+<ul>
+<li>Cache-Control:max-stale=s：缓存可以随意提供过期的文件。如果指定了参数s，在这段时间内文档就不能过期。这条指令放松了缓存规则。</li>
+<li>Cache-Control:min-fresh=s：至少在未来s秒内文档要保持新鲜。这条指令使缓存规则更加严格。</li>
+<li>Cache-Control:no-cache：除非资源进行了再验证，否则这个客户端不会接受已缓存的资源。</li>
+<li>Cache-Control:no-store：缓存应该尽快从存储器中删除文档的所有痕迹。</li>
+<li>Cache-Control:only-if-cached：只有当缓存中有副本存在时，客户端才会获取一份副本。</li>
+</ul>
+<h2 id="6-3-apache-http-">6.3 控制Apache的HTTP首部</h2>
+<p>Apache Web服务器提供了几种设置HTTP缓存控制首部的机制，其中很多机制在默认情况下是没有启动的（需要手动启动或自行安装扩展模块）。</p>
+<ul>
+<li>mod_headers：该模块可以对单独的首部进行配置，还可以将这些配置与Apache的常用表达式及过滤器结合在一起使用</li>
+<li>mod_expires：可以自动生成带有正确过期日期的Expires首部。</li>
+<li>mod_cern_meta：可以将一个包含HTTP首部的文件与特定的对象联系起来。</li>
+</ul>
+<h2 id="6-4-html-http-equiv-html-">6.4 通过HTML的http-equiv控制HTML缓存</h2>
+<p>为了让开发者在无需与服务器配置文件进行交互的情况下，能够更容易地为所提供的HTML文档分配HTTP首部信息，可以使用一个meta标签来控制HTML缓存。例如下面的代码将HTML文档标记为非缓存的。</p>
+<pre><code>&lt;head&gt;
+    &lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-cache&quot;&gt;
+&lt;/head&gt;
+</code></pre><p>但是，通过meta标签并不是控制文档缓存特性的好方法，因为这个可选特性会增加服务器的额外负载，很多服务器或代理也不支持此特性。由经过正确配置的服务器发送的HTTP首部来交流对文档的缓存控制请求是唯一可靠的方法。</p>
+<p>注：本文略过了原书“7.11详细算法”缓存使用期和新鲜度计算算法的内容以及“7.12缓存和广告”的内容。</p>
+<p>参考文献：人民邮电出版社《HTTP权威指南》第7章</p>
 
     </div>
     
@@ -369,13 +393,13 @@ admin.site.register(Book)
     
     <div class="categories">
         所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Python/">Python</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/HTTP/">HTTP</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/django/">django</a><a class="btn btn-info" href="/tags/python/">python</a>
+        标签：<a class="btn btn-info" href="/tags/HTTP协议/">HTTP协议</a><a class="btn btn-info" href="/tags/Web缓存/">Web缓存</a>
     </div>
 
         
@@ -388,7 +412,7 @@ admin.site.register(Book)
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Django学习笔记（4）——Django的Admin后台管理">
+    <div class="ds-thread" data-title="HTTP学习笔记：缓存">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
