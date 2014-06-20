@@ -1,0 +1,565 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>算法学习笔记：渐进分析 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的渐进效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。
+本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="算法学习笔记：渐进分析"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(29)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(7)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(14)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node.js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node.js(5)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>算法学习笔记：渐进分析</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2014-06-20T08:22:05.000Z">2014-06-20</time>
+    </div>
+
+    <div class="entry">
+        <p>当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的<strong>渐进</strong>效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。</p>
+<p>本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。</p>
+<a id="more"></a>
+
+<h1 id="1-">1. 插入排序</h1>
+<h2 id="1-1-">1.1 算法描述</h2>
+<p>插入排序的工作方式就像你排序手中的扑克牌一样（假设从左到右是从小到大），一开始手中没有牌，每次拿到一张新的牌都要从右到左与每张牌比较，并将其插入到合适的位置（比它大的牌也顺势后移）。以下是Python代码：</p>
+<pre><code>def insertionSort(data):
+    # 初始化结果为第一个数
+    result = [data[0]]
+    # 从第二个数开始，从后往前找应该插入的位置
+    for key in data[1:]:
+        index = len(result) - 1
+        while index &gt;= 0 and result[index] &gt; key:
+            index -= 1
+        else:
+            result.insert(index + 1, key)
+    return result
+</code></pre><p>注：上述代码使用了Python list的insert方法在特定位置插入一个数（其他数字顺势往后移），如果是用C/C++之类普通的数组可能需要自己手动来后移其他数字。</p>
+<h2 id="1-2-">1.2 算法分析</h2>
+<p>即使对给定规模的输入，一个算法的运行时间也可能依赖于该规模下不同的输入。例如在最佳情况下，输入的数组本身就是有序的，因此不需要里层的while循环来查找插入位置，只要直接插入即可，运行时间为线性函数$an + b$；在最坏情况下，输入的数组是反序的，里层while循环必须将每个元素key与整个已排序的子数组进行比较，运行时间是二次函数$a{n^2} + bn + c$。</p>
+<p>在算法的性能分析中，我们往往关注算法在最坏情况的运行时间，这是因为：</p>
+<ul>
+<li>算法的最坏情况运行时间给出了任何输入的运行时间的一个上界。知道这个界限，就能确保该算法运行肯定不会需要更长的时间。</li>
+<li>对某些算法，最坏情况经常出现。例如检索数据库特定信息时，该信息不存在的情况（即最坏情况）是经常出现的。</li>
+<li>“平均情况”往往与最坏情况大致一样差。例如插入排序寻找插入位置时，平均来说插入的位置大致处于已排序数组的“中间”，即检查一半的元素。这种“平均情况”最终得出的运行时间也是输入规模的二次函数。</li>
+</ul>
+<p>我们真正感兴趣的是算法运行时间的<strong>增长率</strong>。当n很大时，低阶项相对来说不太重要，常量因子也不如增长率重要，所以我们只考虑公式中阶数最大的项，上述公式即是${n^2}$。我们记插入排序最坏运行时间为$T(n) = \Theta ({n^2})$。下一节将讲解这种特殊符号的真正含义。</p>
+<h1 id="2-">2. 渐近记号</h1>
+<p>上面提到插入排序最坏的运行时间为$T(n) = \Theta ({n^2})$，一般我们使用渐近记号来描述算法的运行时间。最常用的渐近记号有$\Theta $记号，大O记号和$\Omega $记号。</p>
+<ul>
+<li>$T(n) = \Theta (f(n))$：当且仅当存在正常数${c_1},{c_2},{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le {c_1}f(n) \le T(n) \le {c_2}f(n)$</li>
+<li>$T(n) = O(f(n))$：当且仅当存在正常数$c,{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le T(n) \le cf(n)$</li>
+<li>$T(n) = \Theta (f(n))$：当且仅当存在正常数$c,{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le cf(n) \le T(n)$</li>
+</ul>
+<p>由上述定义可见，其实三种符号的定义非常相像，其中$\Theta $记号渐近地给出一个函数的上界和下界，而大O记号给出的是上界，$\Omega $记号给出的是下界。因此接下来的讨论均以“较为严格”的$\Theta $记号为例。下图给出这三种记号的一个直观表示。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/algorithm/%E4%B8%89%E7%A7%8D%E6%B8%90%E8%BF%91%E8%AE%B0%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB.jpg" alt="三种渐近记号的区别"></p>
+<p>注意，由于$\Theta (f(n))$是一个集合，所以$T(n) = \Theta (f(n))$其实等价于$T(n) \in \Theta (f(n))$。$\Theta $记号的一种非形式化的概念，相当于扔掉低阶项并忽略最高阶项前的系数。</p>
+<p>例1：证明${1 \over 2}{n^2} - 3n = \Theta ({n^2})$</p>
+<p>证明：要确定${c_1},{c_2},{n_0}$，使得对所有$n \ge {n_0}$，有${c_1}{n^2} \le {1 \over 2}{n^2} - 3n \le {c_2}{n^2}$成立<br>即${c_1} \le {1 \over 2} - {3 \over n} \le {c_2}$。<br>通过选择${c_2} \ge {1 \over 2}$，可以使右边不等式对任何$n \ge 1$成立<br>通过选择${c_1} \le {1 \over {14}}$，可以使左边不等式对任何$n \ge 7$成立。QED</p>
+<p>例2：证明$6{n^3} \ne \Theta ({n^2})$</p>
+<p>证明：采用反证法。假设存在${c_2},{n_0}$，使得对所有$n \ge {n_0}$，有$6{n^3} \le {c_2}{n^2}$。用${n^2}$除该式，得$n \le {c_2}$，因为${c_2}$是常量，所以对任意大的$n$，该不等式不可能成立。QED</p>
+<p>例3：解释$2{n^2} + 3n + 1 = 2{n^2} + \Theta ({n^2}) = \Theta ({n^2})$</p>
+<p>第一个等式表明存在某个函数$f(n) \in \Theta ({n^2})$，使得对所有的$n$，有$2{n^2} + 3n + 1 = 2{n^2} + f(n)$。第二个等式表明对任意函数$g(n) \in \Theta ({n^2})$，存在某个函数$h(n) \in \Theta ({n^2})$，使得对所有的$n$，有$2{n^2} + g(n) = h(n)$。</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/algorithm/">algorithm</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/算法/">算法</a><a class="btn btn-info" href="/tags/渐进分析/">渐进分析</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="算法学习笔记：渐进分析">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2014 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>

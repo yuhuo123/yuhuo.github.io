@@ -143,13 +143,26 @@
             <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(28)
+                    Tech(29)
                 </a>
             </li>
 
             
 
             
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
 
             <li collapse-level="1">
                 <a href="/categories/Tech/git/" class="collapse-level-1">
@@ -308,6 +321,43 @@
     <div id="content-wrapper">
         <div class="container-center">
         <div id="article-list">
+    
+        <article>
+    <div class="row">
+        <div class="col-2 date-tags">
+            <div class="date-row">
+                <time datetime="2014-06-20T08:22:05.000Z">2014-06-20</time>
+            </div>
+            
+                <div class="tags-row">
+                
+                    <a href="/tags/算法/" class="btn btn-info">算法</a>
+                
+                    <a href="/tags/渐进分析/" class="btn btn-info">渐进分析</a>
+                
+                </div>
+            
+        </div>
+        <div class="col-10">
+            <div class="article-title simple-article-title">
+                
+    
+        <h1><a href="/Tech/algorithm/asymptotic-analysis/">算法学习笔记：渐进分析</a></h1>
+    
+
+            </div>
+            
+                <div class="entry">
+                    <p>当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的<strong>渐进</strong>效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。</p>
+<p>本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。</p>
+
+                </div>
+            
+        </div>
+    </div>
+    <div class="split-line"></div>
+</article>
+
     
         <article>
     <div class="row">
@@ -1784,6 +1834,15 @@
         $("pre").addClass("prettyprint");
         prettyPrint();
     });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 <script>
