@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>other | Ray Taylor Lin&#39;s world</title>
+    <title>CSS学习笔记：选择器 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="CSS学习笔记：选择器"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -333,40 +335,130 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（分类）other</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2013-05-06T10:13:53.000Z">2013-05-06</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/other/comet-intro/">Comet：基于 HTTP 长连接的“服务器推”技术简介</a></h1>
+        <h1>CSS学习笔记：选择器</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2014-07-31T14:01:34.000Z">2014-07-31</time>
+    </div>
+
+    <div class="entry">
+        <p>要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。</p>
+<a id="more"></a>
+
+<h1 id="1-css-">1. CSS选择器</h1>
+<h2 id="1-1-">1.1 常用选择器</h2>
+<ul>
+<li>类型（元素）选择器：寻找特定类型的元素，如段落或标题元素。例如：<code>p {color: black;}</code></li>
+<li>ID和类选择器：寻找具有指定ID或类名的元素，前者以井号<code>#</code>为前缀，后者以点号<code>.</code>为前缀。例如：<code>#intro {front-weight: bold;}</code>，<code>.date-posted {color: #ccc;}</code></li>
+<li>后代选择器：寻找特定元素的后代，由两个选择器之间的空格表示。结合使用类、后代、类型选择器可以减少对ID或类选择器的过度依赖。例如：<code>#main-content h2 {font-size: 1.8em;}</code></li>
+<li>通用选择器：匹配所有可用元素，由星号<code>*</code>表示。比较少用，通常用于重置全局样式。例如：<code>* {padding: 0; margin: 0;}</code>（删除浏览器默认的内外边距）</li>
+</ul>
+<h2 id="1-2-">1.2 伪类选择器</h2>
+<ul>
+<li>链接伪类：可以改变超链接默认及访问后的样式，只能应用于a标签。例如：<code>a:link {color: blue;}</code>，<code>a:visited {text-decoration: none;}</code></li>
+<li>动态伪类：<code>:hover</code>、<code>:active</code>、<code>focus</code>分别向鼠标悬停元素、激活的元素和拥有键盘输入焦点的元素提供样式。例如：<code>.btn:hover {color: blue;}</code></li>
+</ul>
+<h2 id="1-3-">1.3 高级选择器</h2>
+<ul>
+<li>子选择器：选择一个元素的所有孩子，由两个选择器之间<code>&gt;</code>分隔。<strong>后代选择器选择的是所有后代，子选择器选择的是直接后代</strong>。例如：<code>#nav&gt;li {padding-left: 20px;}</code></li>
+<li>属性选择器：根据某个属性是否存在或属性的值来寻找元素。例如：<code>input[type=text] {font-size: 1.6em;}</code></li>
+<li>毗邻元素选择器：选择一个紧跟在元素之后的第一个同胞元素，由两个选择器之间<code>+</code>分隔。例如：<code>h2+p {font-weight: bold;}</code></li>
+</ul>
+<p>还有很多其他的选择器在此不赘述，详细可以参考<a href="http://www.w3school.com.cn/cssref/css_selectors.asp" target="_blank">W3School CSS选择器</a>。</p>
+<h1 id="2-">2. 层叠与特殊性计算</h1>
+<p>CSS的选择器有这么多，要寻找同一元素可能有两个或更多的规则。CSS通过<strong>层叠</strong>（cascade）的过程来处理这种冲突。层叠给每种规则分配一个特殊性值，更特殊的选择器规则将优先被使用。如果两个规则的特殊性相同，则后定义的规则更优先。</p>
+<p>特殊性的计算采用的是比10更高的未指定的基数，这能确保非常特殊的选择器（如ID选择器）不会被大量一般选择器（如类选择器）所超越。但是为了简化，如果选择器数量少于10个，可以以10为基数计算特殊性，这在日常使用中已经够用了。选择器的特殊性分4个成份等级a、b、c、d：</p>
+<ol>
+<li>如果样式是行内样式（即写在HTML代码中，如<code>&lt;div style=&quot;display:none;&quot;&gt;&lt;/div&gt;</code>），则a等于1</li>
+<li>b等于ID选择器的总数</li>
+<li>c等于类、伪类、属性选择器的数量</li>
+<li>d等于元素（如HTML标签）和伪元素选择器的数量</li>
+</ol>
+<p>下表给出了一些特殊性的示例以加深理解。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/css/CSS%E7%89%B9%E6%AE%8A%E6%80%A7%E8%AE%A1%E7%AE%97%E7%A4%BA%E4%BE%8B.jpg" alt="CSS特殊性计算示例"></p>
+<p>通过熟记以上4条规则，可以很快地计算出复杂CSS的特殊性。例如<code>#content div#main-content h2</code>的特殊性是0,2,0,2=202，<code>body #content div[id=&quot;main-content&quot;] h2</code>的特殊性是0,1,1,3=113。如果遇到了似乎没有起作用的CSS规则，很可能是出现了特殊性冲突，此时你可能需要重构CSS代码。</p>
+<h1 id="3-">3. 关于继承</h1>
+<p>人们常常将CSS中的<strong>继承</strong>和层叠混为一谈，实际上这两个概念很不一样。应用样式的元素后代会继承样式的某些属性，如颜色和字号。比如在body上设置文本颜色为黑色，则所有元素会显示黑色的文本。当然有时可能页面上一些标题没有采用继承字号，实际上是浏览器的默认样式表设置了标题的字号，直接应用于元素的样式总会覆盖继承来的样式，因为<strong>继承而来的样式特殊性为空</strong>。</p>
+<h1 id="4-">4. 组织和维护样式表</h1>
+<p>站点越大、越复杂，CSS就越难管理。正如使用模板引擎可以将HTML拆解成多个文件，使用模块化规范可以将Javascript划分为多个模块一样，CSS也可以从一个样式表中通过<code>@import url(&#39;my_css.css&#39;);</code>这样的语句来导入其他样式表，从而HTML中只需要链接一个主样式表文件。这样虽然也可以让CSS“模块化”，但是使用import语句会使加载更慢，多个文件会导致发起更多的HTTP请求，从而影响页面的加载速度。所以还是推荐在一个页面使用尽量少的CSS文件。</p>
+<p>如果CSS文件非常长，那么寻找特定的样式就会很困难。一种改进方法对单个CSS文件分块进行必要的注释，如使用<code>/* @group typography */</code>这样带有<code>@group</code>标记的注释，并以<code>/* @group end */</code>作为结束。此外为了便于维护，最好把样式表划分为几大块，通常是把最一般的规则放在最前面，接着可能是全局重置央视，然后是链接、标题和其他元素。最后是一些特殊性样式，最后整个样式表可能像以下的结构：</p>
+<ul>
+<li>一般性样式<ul>
+<li>主体样式</li>
+<li>reset样式</li>
+<li>链接、标题、其他元素</li>
+</ul>
+</li>
+<li>辅助样式<ul>
+<li>表单</li>
+<li>通知和错误</li>
+<li>按钮、其他</li>
+</ul>
+</li>
+<li>页面结构<ul>
+<li>标题、页脚、导航</li>
+<li>布局</li>
+<li>其他页面结构元素</li>
+</ul>
+</li>
+<li>页面组件</li>
+<li>覆盖</li>
+</ul>
+<p>当站点变得特别复杂时，往往一个页面一个CSS的方式会导致这个CSS文件特别庞大（几千行甚至上万行），当有多个开发人员同时编辑这个CSS文件时，经常会产生各种冲突而降低生产力。所幸现在有一种技术方案——CSS预处理器，可以完美解决以上各种问题。其中<a href="http://www.lesscss.net/" target="_blank">LESS</a>和<a href="http://sass-lang.com/" target="_blank">Sass</a>是用得最多的两款。具体什么是CSS预处理器以及如何使用请自行搜索。CSS预处理器的出现无疑大大提高了前端开发人员的生产效率，它可以让开发人员编辑多个文件，最后合并成一个CSS文件发布，既实现“模块化”，提高可维护性，又满足性能要求。同时CSS预处理器还提供许多极其方便的语法，大大简化样式文件的编写。</p>
+<p>参考资料：精通CSS:高级Web标准解决方案（第2版）第二章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/CSS/">CSS</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/CSS/">CSS</a><a class="btn btn-info" href="/tags/选择器/">选择器</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="CSS学习笔记：选择器">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
 
         </div>
     </div>
