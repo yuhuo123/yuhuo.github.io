@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Javascript | Ray Taylor Lin&#39;s world</title>
+    <title>Node.js学习笔记：简介 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="Node.js应该是当今最火热的技术之一。本文主要介绍Node.js的特点及应用场景。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Node.js学习笔记：简介"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -333,40 +335,98 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（标签）Javascript</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2014-05-29T02:47:05.000Z">2014-05-29</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/javascript/javascript-module-presentation/">Javascript模块化实战（Presentation）</a></h1>
+        <h1>Node.js学习笔记：简介</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2014-09-30T07:00:12.000Z">2014-09-30</time>
+    </div>
+
+    <div class="entry">
+        <p>Node.js应该是当今最火热的技术之一。本文主要介绍Node.js的特点及应用场景。</p>
+<a id="more"></a>
+
+<p>Node.js是一个基于Chrome JavaScript运行时建立的一个平台，用来方便地搭建快速的 易于扩展的网络应用。Node.js借助事件驱动，非阻塞I/O模型变得轻量和高效，非常适合 运行在分布式设备的数据密集型实时应用。</p>
+<h1 id="1-">1. 特点</h1>
+<h2 id="1-1-i-o">1.1 异步I/O</h2>
+<p>所谓的异步I/O（非阻塞I/O），是相对同步I/O（阻塞I/O）而言的。程序执行过程中必然要进行很多I/O操作，如读写文件、输入输出、请求响应等等。通常来说，I/O操作是非常费时的。例如在传统的编程模式中，你要读一个几G的文件，整个线程都暂停下来，等待文件读完后继续执行。换言之，I/O操作阻塞了代码的执行，极大地降低了程序的效率。</p>
+<p>关于异步I/O，其实对于前端工程师来说并不陌生，因为发起Ajax请求就是最常见的一种“异步”调用。在Node中，以读取文件（读文件是一种耗时的I/O操作）为例，它与发起Ajax请求的写法很像：</p>
+<pre><code>var fs = require(&#39;fs&#39;);
+fs.readFile(&#39;/path&#39;, function(err, file) {
+    console.log(&#39;读取文件完成&#39;);
+});
+console.log(&#39;开始读取文件&#39;);
+</code></pre><p>上述代码在调用<code>fs.readFile</code>后，后续代码是被立即执行的，“读取文件完成”的时刻是无法预知的。当线程遇到I/O操作时不会以阻塞的方式等待I/O操作结束，而只是将I/O请求发送给操作系统，继续执行后续语句。当操作系统完成I/O操作时以事件的形式通知执行I/O操作的线程，线程会在特定时间处理这个事件。</p>
+<h2 id="1-2-">1.2 事件循环与回调函数</h2>
+<p>所谓事件循环是指Node会把所有的异步操作使用事件机制解决，有个线程在不断地循环检测事件队列。事件循环会检查事件队列中有没有未处理的事件，直到程序结束。事件的编程方式具有轻量级、松耦合、只关注事务点等优势，但是在多个异步任务的场景下，事件与事件之间各自独立，如何协作是一个问题。在Javascript中，回调函数无处不在，回调函数是最好的接受异步调用返回数据的方式。</p>
+<h2 id="1-3-">1.3 单线程</h2>
+<p>Node保持了JS在浏览器中单线程的特点。单线程的最大好处是不用像多线程编程那样出处在意状态的同步问题，没有死锁的存在，也没有线程上下文切换的开销。单线程也有其弱点，主要表现在三方面：无法利用多核CPU；错误会引起整个应用退出，应用的健壮性值得考研；大量计算会占用CPU导致无法继续调用异步I/O。</p>
+<p>为了解决上述问题，Node采用了与HTML5 Web Workers相同的思路，使用<code>child_process</code>来解决但单线程中大计算量的问题。通过将计算分发到各个子进程，可以将大量计算分解掉，然后再通过进程之间的事件消息来传递结果。</p>
+<h2 id="1-4-">1.4 跨平台</h2>
+<p>Node是跨平台的，即同样的一套JS代码都可以部署运行在Windows、Linux、OSX等平台。这主要得益于Node在操作系统与Node上层模块系统之间构建了一层平台层架构libuv。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%B9%B3%E5%8F%B0%E7%9A%84%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="Node实现跨平台的架构示意图"></p>
+<h1 id="2-">2. 应用场景</h1>
+<ul>
+<li>实时应用：如在线聊天，实时通知推送等等（如<a href="http://socket.io/" target="_blank">socket.io</a>）</li>
+<li>分布式应用：通过高效的并行I/O使用已有的数据</li>
+<li>工具类应用：海量的工具，小到前端压缩部署（如<a href="gruntjs.com">grunt</a>），大到桌面图形界面应用程序</li>
+<li>游戏类应用：游戏领域对实时和并发有很高的要求（如网易的<a href="pomelo.netease.com">pomelo</a>框架）</li>
+<li>利用稳定接口提升Web渲染能力</li>
+<li>前后端编程语言环境统一：前端开发人员可以非常快速地切入到服务器端的开发（如著名的纯Javascript全栈式<a href="http://mean.io" target="_blank">MEAN</a>架构）</li>
+</ul>
+<p>参考资料：《深入浅出NodeJS》第一章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/Node.js/">Node.js</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Node.js/">Node.js</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Node.js学习笔记：简介">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
 
         </div>
     </div>
