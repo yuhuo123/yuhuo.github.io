@@ -275,6 +275,45 @@ article .entry .caption:before {
   left: 0;
   top: 3px;
 }
+article .toc-wrap {
+  float: right;
+  -webkit-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #eee;
+  border: 1px solid #ddd;
+  margin-left: 1.5em;
+  margin-bottom: 2em;
+  padding: 15px 20px;
+  line-height: 1.6em;
+}
+article .toc-wrap >ol {
+  margin-left: 0;
+}
+article .toc-wrap ol,
+article .toc-wrap ul {
+  list-style: none;
+}
+article .toc-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 0.6em;
+  color: #2c3e50;
+}
+article .toc-number {
+  display: none;
+}
+article .toc-link {
+  color: #0e83cd;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+article .toc-link:hover {
+  text-decoration: underline;
+}
+article .toc-child {
+  margin-left: 1em;
+}
 #page-footer {
   font-size: 1em;
   background-color: #2c3e50;
@@ -436,7 +475,7 @@ article code {
 article p code,
 article li code {
   color: #fff;
-  padding: 4px;
+  padding: 3px;
 }
 code {
   background: #93aaac;

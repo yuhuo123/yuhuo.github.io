@@ -131,9 +131,22 @@
             
 
             <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(40)
+                    Tech(41)
                 </a>
             </li>
 
@@ -142,80 +155,15 @@
             
 
             <li collapse-level="1">
-                <a href="/categories/Tech/web/" class="collapse-level-1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    web(20)
+                    IDE(2)
                 </a>
             </li>
 
             
 
             
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    CSS(3)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTTP(7)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/Node.js/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    Node.js(8)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTML5(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    javascript(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
 
         
 
@@ -236,19 +184,6 @@
                 <a href="/categories/Tech/git/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
                     git(4)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="1">
-                <a href="/categories/Tech/IDE/" class="collapse-level-1">
-                    <i class="icon-caret-right"></i>
-                    IDE(2)
                 </a>
             </li>
 
@@ -310,18 +245,83 @@
 
         
 
-        
-
-            <li collapse-level="0">
-                <a href="/categories/daily/" class="collapse-level-0">
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    daily(6)
+                    web(21)
                 </a>
             </li>
 
             
 
             
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(9)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
 
         
 
@@ -349,13 +349,18 @@
         <time datetime="2014-06-27T03:11:05.000Z">2014-06-27</time>
     </div>
 
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_主方法"><span class="toc-number">1.</span> <span class="toc-text">1. 主方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_定理描述"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 定理描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_定理证明"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 定理证明</span></a></li></ol></li></ol>
+    </div>
+
     <div class="entry">
         <p>上一篇<a href="/Tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a>中，介绍了分治法及一些常见的分治法案例。其中递归式与分治方法是紧密相关的，因为使用递归式可以很自然地刻画分治算法的运行时间。一般来说，求解递归式有“代入法”，“递归树法”和“主方法”。其中主方法用于方便地求解形如$T(n)=aT(n/b)+f(n)$的递归式。</p>
 <p>本文将介绍主方法的一个“简化版本”，虽然是简化的，但它依然可以满足日常大多数的算法分析，并且更好理解其含义，最后再给出一个主方法的简要证明过程。</p>
 <a id="more"></a>
 
-<h1 id="1-">1. 主方法</h1>
-<h2 id="1-1-">1.1 定理描述</h2>
+<h1 id="1-_主方法">1. 主方法</h1>
+<h2 id="1-1_定理描述">1.1 定理描述</h2>
 <p>若算法的运行时间$T(n) \le aT({n \over b}) + O({n^d})$，其中$a \ge 1$是子问题个数，$b \ge 1$是输入规模减小的倍数，$d \ge 0$是递归过程之外的步骤的时间复杂度指数，则：</p>
 <p>$$T(n) = \begin{cases} O(n^d \log n) &amp; a = {b^d} \cr O(n^d) &amp; a &lt; {b^d} \cr O({n^{ { {\log }_b }a } }) &amp; a &gt; {b^d} \end{cases}$$</p>
 <p>可见主定理有三种情况。例如：</p>
@@ -364,7 +369,7 @@
 <li>$T(n) = 2T({n \over 2}) + O({n^2}), a=2, b=2, d=2$，则$T(n)=O({n^2})$</li>
 <li>Strassen矩阵乘法：$T(n) = 7T({n \over 2}) + O({n^2}), a=7, b=2, d=2$，则$T(n)=O({n^{ { {\log }_2 }7 } })$</li>
 </ol>
-<h2 id="1-2-">1.2 定理证明</h2>
+<h2 id="1-2_定理证明">1.2 定理证明</h2>
 <p>考虑下图中的递归树。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/algorithm/%E4%B8%BB%E5%AE%9A%E7%90%86%E8%AF%81%E6%98%8E%E9%80%92%E5%BD%92%E6%A0%91.jpg" alt="主定理证明递归树"></p>
 <ol>
@@ -381,11 +386,7 @@
 <li>主定理第二种情况：当RSP&lt;RWS时，每一层工作量逐渐减少（最大工作量在第0层），总工作量取决于第0层的工作量。注意到②式的求和部分上界为常量，所以②=$O({n^d})$  </li>
 <li>主定理第三种情况：当RSP&gt;RWS时，每一层工作量逐渐增加（最大工作量在叶子结点）。注意到②式的求和部分上界为$S \le {r^k} \cdot (1 + {1 \over {r - 1}})$，是与k有关的常量，显然最大的常量为$k = {\log _b}n$的时候。  </li>
 </ol>
-<p>$$ \eqalign{
-  &amp;  ② = O({n^d} \cdot {({a \over { {b^d}}})^{ { {\log }_b}n}})
-  &amp;  = O({n^d} \cdot {a^{ { {\log}_b}n}} \cdot {b^{ {-d} { { {\log }_b}n}}} )  \cr 
-  &amp;  = O({n^d} \cdot {a^{ { {\log }_b}n}} \cdot {n^{ - d}})  \cr 
-  &amp;  = O({a^{ { {\log}_b}n}}) = O({n^{ { {\log}_b}a}}) \cr} $$</p>
+<p>$$ \eqalign{<br>  &amp;  ② = O({n^d} \cdot {({a \over { {b^d}}})^{ { {\log }_b}n}})<br>  &amp;  = O({n^d} \cdot {a^{ { {\log}_b}n}} \cdot {b^{ {-d} { { {\log }_b}n}}} )  \cr<br>  &amp;  = O({n^d} \cdot {a^{ { {\log }_b}n}} \cdot {n^{ - d}})  \cr<br>  &amp;  = O({a^{ { {\log}_b}n}}) = O({n^{ { {\log}_b}a}}) \cr} $$</p>
 <p>显然${a^{ { {\log}_b}n}}$代表叶子结点数。最后两个等号的转换只要两边同时取对数b即可。QED</p>
 <p>总结：通过以上对主定理的简单证明，我们可以更加深入地理解分治法的本质。对于$T(n)=aT(n/b)+O({n^d})$，$a$为子问题的增长率，$b^d$为每个子问题工作量的缩减率，这两者之间的大小将决定算法时间复杂度由哪一部分起更大的主导作用。由于渐近记号会忽略各种低阶项，所以随着递归树层数的深入，当每一层工作量逐渐减少时，顶层原问题占主导地位；当每一层工作量逐渐增加时，底层子问题占主导地位；当每一层工作量都不变时，则要将每层的工作量都加起来。</p>
 <p>参考文献：机械工业出版社《算法导论（第3版）》4.5节，4.6节</p>

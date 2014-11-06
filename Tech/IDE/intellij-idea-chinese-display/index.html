@@ -130,9 +130,22 @@
             
 
             <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(40)
+                    Tech(41)
                 </a>
             </li>
 
@@ -141,80 +154,15 @@
             
 
             <li collapse-level="1">
-                <a href="/categories/Tech/web/" class="collapse-level-1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    web(20)
+                    IDE(2)
                 </a>
             </li>
 
             
 
             
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    CSS(3)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTTP(7)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/Node.js/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    Node.js(8)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTML5(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    javascript(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
 
         
 
@@ -235,19 +183,6 @@
                 <a href="/categories/Tech/git/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
                     git(4)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="1">
-                <a href="/categories/Tech/IDE/" class="collapse-level-1">
-                    <i class="icon-caret-right"></i>
-                    IDE(2)
                 </a>
             </li>
 
@@ -309,18 +244,83 @@
 
         
 
-        
-
-            <li collapse-level="0">
-                <a href="/categories/daily/" class="collapse-level-0">
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    daily(6)
+                    web(21)
                 </a>
             </li>
 
             
 
             
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(9)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
 
         
 
@@ -348,11 +348,16 @@
         <time datetime="2013-04-02T07:08:29.000Z">2013-04-02</time>
     </div>
 
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_IDE本身的中文乱码"><span class="toc-number">1.</span> <span class="toc-text">1. IDE本身的中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_编辑器的中文问题"><span class="toc-number">2.</span> <span class="toc-text">2. 编辑器的中文问题</span></a></li></ol>
+    </div>
+
     <div class="entry">
         <p>IntelliJ IDEA是一个非常强大的IDE，但是只有英文版，且默认的中文显示有一定问题。本文介绍了IntelliJ IDEA 12.0中文显示问题解决方案。</p>
 <a id="more"></a>
 
-<h3 id="1-ide-">1. IDE本身的中文乱码</h3>
+<h3 id="1-_IDE本身的中文乱码">1. IDE本身的中文乱码</h3>
 <p>这个问题体现在IDE本身，比如打开文件浏览目录的时候，中文名的文件或目录会显示成方块。</p>
 <p>解决方法：  </p>
 <ol>
@@ -361,18 +366,18 @@
 <li>进入IDE Settings里的Appearance项，选中Override default fonts by，把Name设置为你喜欢的字体（我使用的是Yahei Consolas Hybrid），Size根据自己喜好设置（我一般设为 14）。确定。</li>
 </ol>
 <p>以上应该可以保证中文显示没有问题了。</p>
-<h3 id="2-">2. 编辑器的中文问题</h3>
+<h3 id="2-_编辑器的中文问题">2. 编辑器的中文问题</h3>
 <p>这个问题体现在代码编辑区中写中文时，可能会乱码或者中文汉子全部重叠在一起。</p>
 <p>首先要确定你正在编辑的文件是UTF-8编码的，有很多文件可能默认是ANSI编码。</p>
 <p>至于中文重叠那是因为你所选用的默认中文字体不对，一直以来我写代码都是用的consolas，但是这个字体不支持中文，Intellij IDEA 12中如果使用默认的中文字体（不知道是哪个字体）就会重叠在一起，在网上找了好久，终于找到一个神一般的字体<em>Yahei Consolas Hybrid</em>，即微软雅黑和consolas的混合！</p>
 <p>于是乎，File-&gt;Settings IDE Settings-&gt;Editor-&gt;Color &amp; Fonts-&gt;Font，设置字体为Yahei Consolas Hybrid即可。</p>
-<p><strong><a href="http://pan.baidu.com/s/1c0lAVfE" target="_blank">神一般的字体Yahei Consolas Hybrid下载</a></strong></p>
+<p><strong><a href="http://pan.baidu.com/s/1c0lAVfE" target="_blank" rel="external">神一般的字体Yahei Consolas Hybrid下载</a></strong></p>
 <p>如果发现安装了这个字体但是在设置中找不到的话，尝试使用以下这个方法：<br>按图所示，保存为另外一个名字，由你喜欢。最好是英文字母组成，这里我们保存为Darcula1。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/IDE/Intellij%20IDEA%2012%20%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93.jpg" alt="Intellij IDEA 12 设置字体">  </p>
 <p>在此路径（win7）“C:\Users\你的计算机名\.IntelliJIdea12\config\colors”找到Darcula1.xml文件。<br>用记事本打开Darcula1.xml文件，把第8行  </p>
-<pre><code>&lt;option name=&quot;EDITOR_FONT_NAME&quot; value=&quot;你之前保存的字体&quot; /&gt;
+<pre><code>&lt;option <span class="variable">name=</span><span class="string">"EDITOR_FONT_NAME"</span> <span class="variable">value=</span><span class="string">"你之前保存的字体"</span> /&gt;
 </code></pre><p>改为  </p>
-<pre><code>&lt;option name=&quot;EDITOR_FONT_NAME&quot; value=&quot;YaHei Consolas Hybrid&quot; /&gt;
+<pre><code>&lt;option <span class="variable">name=</span><span class="string">"EDITOR_FONT_NAME"</span> <span class="variable">value=</span><span class="string">"YaHei Consolas Hybrid"</span> /&gt;
 </code></pre><p>然后重启IntelliJ IDEA 12.0，中文字符问题解决，效果如下图。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/IDE/Intellij%20IDEA%2012%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E6%98%BE%E7%A4%BA%E6%95%88%E6%9E%9C.jpg" alt="Intellij IDEA 12中文字符显示效果"></p>
 
@@ -390,7 +395,7 @@
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/IDE/">IDE</a><a class="btn btn-info" href="/tags/IntelliJ IDEA/">IntelliJ IDEA</a>
+        标签：<a class="btn btn-info" href="/tags/IDE/">IDE</a><a class="btn btn-info" href="/tags/IntelliJ-IDEA/">IntelliJ IDEA</a>
     </div>
 
         

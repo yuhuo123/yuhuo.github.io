@@ -136,9 +136,22 @@ var StartScene = cc.Scene.extend({
             
 
             <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(40)
+                    Tech(41)
                 </a>
             </li>
 
@@ -147,80 +160,15 @@ var StartScene = cc.Scene.extend({
             
 
             <li collapse-level="1">
-                <a href="/categories/Tech/web/" class="collapse-level-1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    web(20)
+                    IDE(2)
                 </a>
             </li>
 
             
 
             
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    CSS(3)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTTP(7)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/Node.js/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    Node.js(8)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    HTML5(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="2">
-                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
-                    <i class="icon-caret-right"></i>
-                    javascript(1)
-                </a>
-            </li>
-
-            
-
-            
-
-        
 
         
 
@@ -241,19 +189,6 @@ var StartScene = cc.Scene.extend({
                 <a href="/categories/Tech/git/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
                     git(4)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="1">
-                <a href="/categories/Tech/IDE/" class="collapse-level-1">
-                    <i class="icon-caret-right"></i>
-                    IDE(2)
                 </a>
             </li>
 
@@ -315,18 +250,83 @@ var StartScene = cc.Scene.extend({
 
         
 
-        
-
-            <li collapse-level="0">
-                <a href="/categories/daily/" class="collapse-level-0">
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    daily(6)
+                    web(21)
                 </a>
             </li>
 
             
 
             
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(9)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
 
         
 
@@ -354,26 +354,31 @@ var StartScene = cc.Scene.extend({
         <time datetime="2014-03-03T01:15:24.000Z">2014-03-03</time>
     </div>
 
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        
+    </div>
+
     <div class="entry">
         <a id="more"></a>
 
 <p>建立第一个场景</p>
-<pre><code>var StartScene = cc.Scene.extend({
-    onEnter: function () {
-        this._super();
+<pre><code><span class="keyword">var</span> StartScene = cc.Scene.extend({
+    onEnter: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+        <span class="keyword">this</span>._super();
 
-        //此处的StartSceneLayer为自定义的Layer
-        var layer = new StartSceneLayer();
+        <span class="comment">//此处的StartSceneLayer为自定义的Layer</span>
+        <span class="keyword">var</span> layer = <span class="keyword">new</span> StartSceneLayer();
         layer.init();
-        this.addChild(layer);
+        <span class="keyword">this</span>.addChild(layer);
     }
 });
 </code></pre><p>加载图片、声音等资源文件，加载完成后执行回调函数载入场景</p>
-<pre><code>cc.Loader.preload(res.loadList, function () {
-    cc.Director.getInstance().runWithScene(new this.startScene());
-}, this);
+<pre><code>cc.Loader.preload(res.loadList, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+    cc.Director.getInstance().runWithScene(<span class="keyword">new</span> <span class="keyword">this</span>.startScene());
+}, <span class="keyword">this</span>);
 </code></pre><p>runWithScene接受一个Scene的实例</p>
-<p>上面的代码根本没有使用任何过渡的方法，比较简单地完成了任务。但是在实际的需求中会有这样那样的场景切换的操作，例如：html5游戏中回城的场景切换、死亡时的虚幻等等。Cocos2d-html5引擎中提供了切换场景的一些方法，这些场景切换类都继承自<a href="http://www.cocos2d-x.org/reference/html5-js/V2.2.1/symbols/cc.TransitionScene.html" target="_blank">TransitionScene</a>。下面列举一些：</p>
+<p>上面的代码根本没有使用任何过渡的方法，比较简单地完成了任务。但是在实际的需求中会有这样那样的场景切换的操作，例如：html5游戏中回城的场景切换、死亡时的虚幻等等。Cocos2d-html5引擎中提供了切换场景的一些方法，这些场景切换类都继承自<a href="http://www.cocos2d-x.org/reference/html5-js/V2.2.1/symbols/cc.TransitionScene.html" target="_blank" rel="external">TransitionScene</a>。下面列举一些：</p>
 <ul>
 <li>cc.TransitionCrossFade.create(t, scene)   // 交叉消失两个场景使用cc.RenderTexture对象。</li>
 <li>cc.TransitionFade.create(t,scene,color)  // 淡出即将离任的场景,然后消失在传入的场景。</li>
@@ -383,19 +388,19 @@ var StartScene = cc.Scene.extend({
 <li>cc.TransitionRadialCW.create(t,scene)  // 逆时针切入</li>
 <li>cc.TransitionRotoZoom.create(t,scene)  // 转换角度替换</li>
 </ul>
-<p>上面的参数t为动画执行时间，以秒为单位；参数scene是一个Scene的实例。Cocos2d-html5提供了很多其他样式的Transition类，具体可以上<a href="http://www.cocos2d-x.org/reference/html5-js/V2.2.1/index.html" target="_blank">Cocos2d-html5 API文档</a>，搜索关键词transition，下面给出参考的集成体系图。</p>
+<p>上面的参数t为动画执行时间，以秒为单位；参数scene是一个Scene的实例。Cocos2d-html5提供了很多其他样式的Transition类，具体可以上<a href="http://www.cocos2d-x.org/reference/html5-js/V2.2.1/index.html" target="_blank" rel="external">Cocos2d-html5 API文档</a>，搜索关键词transition，下面给出参考的集成体系图。</p>
 <p><img src="http://ww2.sinaimg.cn/large/74990035gw1ee2b1vnedgj20b70hy0tu.jpg" alt="TransitionScene类继承体系"></p>
 <p>最后给出StartSceneLayer切换场景的关键代码：</p>
-<pre><code>var SpritesLayer = cc.Layer.extend({
-    init: function() {
-        /* 初始化代码 */
-        return ture;
+<pre><code><span class="keyword">var</span> SpritesLayer = cc.Layer.extend({
+    init: <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+        <span class="comment">/* 初始化代码 */</span>
+        <span class="keyword">return</span> ture;
     },
 
-    onKeyDown: function(key) {
-        // 这里以按下键盘上的ENTER键即切换到场景NextScene为例
-        if (key === ks.ENTER) {
-            var nextScene = cc.TransitionMoveInL.create(0.5, new NextScene());  
+    onKeyDown: <span class="function"><span class="keyword">function</span><span class="params">(key)</span> </span>{
+        <span class="comment">// 这里以按下键盘上的ENTER键即切换到场景NextScene为例</span>
+        <span class="keyword">if</span> (key === ks.ENTER) {
+            <span class="keyword">var</span> nextScene = cc.TransitionMoveInL.create(<span class="number">0.5</span>, <span class="keyword">new</span> NextScene());  
             cc.Director.getInstance().replaceScene(nextScene); 
         }
     }
