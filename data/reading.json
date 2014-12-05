@@ -1,10 +1,10 @@
 {
     "reading-books-content": [{
-        "title": "编译原理",
-        "cover": "http://img3.douban.com/lpic/s3392161.jpg",
-        "review": "俗称龙书，编译原理的经典之作",
+        "title": "jQuery技术内幕",
+        "cover": "http://img3.douban.com/lpic/s27215132.jpg",
+        "review": "无",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/3296317/"
+        "doubanLink": "http://book.douban.com/subject/25823709/"
     }, {
         "title": "HTTP权威指南（第一部分和第二部分）",
         "cover": "http://img3.douban.com/lpic/s9109250.jpg",
@@ -14,6 +14,18 @@
     }],
 
     "readed-books-content": [{
+        "title": "Backbone.js实战",
+        "cover": "http://img3.douban.com/lpic/s27927734.jpg",
+        "review": "由于项目重构需要而选择的Backbone入门书籍，从图书馆借来花了两天就把它看完了，因为这本书实在是写得太烂了！虽说国产的技术书多数都写得比较一般，但这种跟翔一样的书还是第一次见，还号称什么“Web开发专家撰写”。整本书都在解释Backbone每个API，每个API都附了简单到毫无实用价值的例子，还假惺惺地给每个console.log输出附上一张chrome的控制台截图。即使是model.get这种两三行代码就能解释得清楚的API，他也能扯上一两页纸。总之就是整本书就是在堆砌页数，看这本书，还不如看官网的API文档来得清晰。",
+        "score": "0.5",
+        "doubanLink": "http://book.douban.com/subject/26277093/"
+    }, {
+        "title": "深入浅出Node.js",
+        "cover": "http://img5.douban.com/lpic/s27269296.jpg",
+        "review": "深入解析Node.js内部各种运行机制以及一些最佳实践的一本好书，适合有Node基础（最好是有一点使用经验）和良好JS功底的人看。不过看完这本书之后你还是不会写Node应用，因为这本书原理偏多应用偏少，所以不建议新手看这本书。个人觉得最精彩的是异步I/O、异步编程、构建Web应用、玩转进程几章，尤其是Web应用这一章，如果你用过Express之类的框架看了就会觉得茅塞顿开。另外最后两章关于测试和产品化，和Node其实没有太大关系，但这应该都是作者在企业的一些经验和best practice，对于不了解的人来说还是一扇通向新世界的大门的。",
+        "score": "8",
+        "doubanLink": "http://book.douban.com/subject/25768396/"
+    }, {
         "title": "代码整洁之道",
         "cover": "http://img3.douban.com/lpic/s4103991.jpg",
         "review": "写出整洁的代码，并且时刻保持代码整洁非常重要！整洁的代码并不是只为了迎合那些有强迫症和完美主义倾向的程序员，而是提高代码可读性和可维护性的根本。我见过很多人写的代码充斥着“脏乱差”，它像一个没有整理的房间不仅给人不好的印象，而且找东西难，还容易滋生各种臭虫（bug）和垃圾。所以每一个想要成为好程序猿的程序猿都应该反复读一读这本书。这本书是以Java语言为例子的，但是其中的思想可以适用于任何语言。后面的章节比较偏向于专题，如“错误处理”“单元测试”“系统”等等可能现阶段不太实用我也没仔细看。如果时间不够的话，强烈推荐看前五章（不到100页），一定会受益匪浅的！",
@@ -52,10 +64,22 @@
     }],
 
     "wanted-books-content": [{
+        "title": "JavaScript框架设计",
+        "cover": "http://img3.douban.com/lpic/s27256110.jpg",
+        "review": "",
+        "score": "???",
+        "doubanLink": "http://book.douban.com/subject/25858070/"
+    }, {
         "title": "Pro Git中文版",
         "cover": "http://img5.douban.com/lpic/s4245786.jpg",
         "review": "中文版电子书：http://iissnan.com/progit/",
         "score": "???",
         "doubanLink": "http://book.douban.com/subject/3420144/"
+    }, {
+        "title": "编译原理",
+        "cover": "http://img3.douban.com/lpic/s3392161.jpg",
+        "review": "俗称龙书，编译原理的经典之作",
+        "score": "???",
+        "doubanLink": "http://book.douban.com/subject/3296317/"
     }]
 }
