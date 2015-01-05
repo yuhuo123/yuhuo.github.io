@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Ruby语言特性（上） | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Ruby语言特性（上）"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(44)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(8)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Ruby语言特性（上）</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-01-05T13:21:34.000Z">2015-01-05</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_基础"><span class="toc-number">1.</span> <span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_编程模型"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 编程模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_流程控制"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_鸭子类型"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 鸭子类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_函数"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5_数组"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6_散列表"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 散列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_面向对象"><span class="toc-number">2.</span> <span class="toc-text">2. 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_代码块"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_类"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 类</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。</p>
+<a id="more"></a>
+
+<h1 id="1-_基础">1. 基础</h1>
+<p>在Ruby交互命令行中输入以下命令（<code>&gt;&gt;</code>为命令行提示符，<code>=&gt;</code>为返回值；下文将把<code>=&gt;</code>符号和语句写在一行内表明其返回值）：</p>
+<pre><code><span class="input"><span class="prompt">&gt;&gt;</span> puts <span class="string">'hello, world'</span></span>
+hello, world
+<span class="output"><span class="status">=&gt;</span> nil</span>
+<span class="input"><span class="prompt">
+&gt;&gt;</span> language = <span class="string">'Ruby'</span></span>
+<span class="output"><span class="status">=&gt;</span> <span class="string">"Ruby"</span></span>
+<span class="input"><span class="prompt">
+&gt;&gt;</span> puts <span class="string">"hello, <span class="subst">#{language}</span>"</span></span>
+hello, <span class="constant">Ruby</span>
+<span class="output"><span class="status">=&gt;</span> nil</span>
+</code></pre><p>以上代码使用<code>puts</code>输出，给变量赋值，并用<code>#{}</code>的语法实现字符串替换。这表明Ruby是解释执行的；变量无需声明即可直接初始化和赋值；每条Ruby代码都会返回某个值；单引号包含的字符串表示它将直接被解释，双引号包含的字符串会引发字符串替换。</p>
+<h2 id="1-1_编程模型">1.1 编程模型</h2>
+<p>Ruby是一门纯面向对象语言，在Ruby中一切皆为对象，可以用“.”调用对象具有的方法，可以通过<code>class</code>和<code>methods</code>方法查看对象的类型及支持的方法，如<code>4.class =&gt; Fixnum</code>，<code>7.methods =&gt; [&quot;inspect&quot;, &quot;%&quot;, &quot;&lt;&lt;&quot;, &quot;numerator&quot;, ...]</code>，<code>false.class =&gt; FalseClass</code>（方括号表示数组）。</p>
+<h2 id="1-2_流程控制">1.2 流程控制</h2>
+<p>条件判断有正常的块形式，也有简单明了的单行形式；除了常见的if语句外，还有unless语句（等价于if not，但可读性更强）。同理，循环也有正常的块形式和单行形式。注意：<strong>除了nil和false之外，其他值都代表true，包括0！</strong></p>
+<pre><code><span class="comment"># 块形式</span>
+<span class="keyword">if</span> x == <span class="number">4</span>
+  puts <span class="string">'This is 4.'</span>
+<span class="keyword">end</span>
+<span class="comment"># 单行形式</span>
+puts <span class="string">'This is false.'</span> <span class="keyword">unless</span> <span class="keyword">true</span>
+x = x + <span class="number">1</span> <span class="keyword">while</span> x &lt; <span class="number">10</span> <span class="comment"># x的结果为10</span>
+x = x - <span class="number">1</span> <span class="keyword">until</span> x == <span class="number">1</span> <span class="comment"># x的结果为1</span>
+</code></pre><p>和其他C家族的语言差不多，Ruby的逻辑运算符<code>and</code>（<code>&amp;&amp;</code>）、<code>or</code>（<code>||</code>）都自带短路功能，若想执行整个表达式，可以用<code>&amp;</code>或<code>|</code></p>
+<h2 id="1-3_鸭子类型">1.3 鸭子类型</h2>
+<p>执行<code>4 + &#39;four</code>会出现TypeError的错误，说明Ruby是强类型语言，在发生类型冲突时，将得到一个错误。如果把个语句放在<code>def...end</code>函数定义中，则只有在调用函数时才会报错，说明Ruby在运行时而非编译时进行类型检查，这称为<strong>动态类型</strong>。Ruby的类型系统有自己的潜在优势，即多个类不必继承自相同的父类就能以“多态”的方式使用：</p>
+<pre><code><span class="operator">a</span> = [<span class="string">'100'</span>, <span class="number">100.0</span>]
+puts <span class="operator">a</span>[<span class="number">0</span>].to_i  <span class="comment"># =&gt; 100</span>
+puts <span class="operator">a</span>[<span class="number">1</span>].to_i  <span class="comment"># =&gt; 100</span>
+</code></pre><p>这就是所谓的“鸭子类型”（duck typing）。数组的第一个元素是String类型，第二个元素是Float类型，但转换成整数用的都是<code>to_i</code>。鸭子类型并不在乎其内在类型是什么，只要一个对象像鸭子一样走路，像鸭子一样嘎嘎叫，那它就是只鸭子。在面向对象设计思想中，有一个重要原则：对接口编码，不对实现编码。如果利用鸭子类型，实现这一原则只需极少的额外工作，就能轻松完成。</p>
+<h2 id="1-4_函数">1.4 函数</h2>
+<pre><code><span class="function"><span class="keyword">def</span> </span>tell_the_truth
+  <span class="keyword">true</span>
+<span class="keyword">end</span>
+</code></pre><p>每个函数都会返回结果，如果没有显式指定返回值，函数就将退出函数前最后处理的表达式的值返回。函数也是个对象，可以作为参数传给其他函数。</p>
+<h2 id="1-5_数组">1.5 数组</h2>
+<p>和Python一样，Ruby的数组也是用中括号来定义，如<code>animals = [&#39;lion&#39;, &#39;tiger&#39;, &#39;bear&#39;]</code>；负数下标可以返回倒数的元素，如<code>animals[-1] =&gt; &quot;bear&quot;</code>；通过指定一个Range对象来获取一个区段的元素，如<code>animals[1..2] =&gt; [&#39;tiger&#39;, &#39;bear&#39;]</code>。此外，数组元素可以互不相同，多为数组也不过是数组的数组。数组拥有极其丰富的API，可用其实现队列、链表、栈、集合等等。</p>
+<h2 id="1-6_散列表">1.6 散列表</h2>
+<pre><code>numbers = {<span class="number">2</span> =&gt; <span class="string">'two'</span>, <span class="number">5</span> =&gt; <span class="string">'five'</span>}
+stuff = {:<span class="keyword">array</span> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], :string =&gt; <span class="string">'Hi, mom!'</span>}
+<span class="comment"># stuff[:string] =&gt; "Hi, mom!"</span>
+</code></pre><p>散列表可以带任何类型的键，上述代码的stuff的键较为特殊——它是一个符号（symbol），前面带有冒号标识符。符号在给事物和概念命名时很好用，例如两个同值字符串在物理上不同，但相同的符号却是同一物理对象，可以通过反复调用<code>&#39;i am string&#39;.object_id</code>和<code>:symbol.object_id</code>来观察。另外，当散列表用作函数最后一个参数时，大括号可有可无，如<code>tell_the_truth :profession =&gt; :lawyer</code>。</p>
+<h1 id="2-_面向对象">2. 面向对象</h1>
+<h2 id="2-1_代码块">2.1 代码块</h2>
+<p>代码块是没有名字的函数（匿名函数），可以用作参数传递给函数。代码块只占一行时用大括号包起来，占多行是用do/end包起来，可以带若干个参数。</p>
+<pre><code><span class="number">3</span>.<span class="keyword">times</span> {puts <span class="string">'hehe'</span>}  <span class="comment"># 输出3行hehe</span>
+[<span class="string">'lion'</span>, <span class="string">'tiger'</span>, <span class="string">'bear'</span>].<span class="keyword">each</span> {|animal| puts animal} <span class="comment"># 输出列表的内容</span>
+</code></pre><p>上面的<code>times</code>实际上是Fixnum类型的方法，要自己实现这样一个方法非常容易：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span>
+  <span class="function"><span class="keyword">def</span> </span>my_times
+    i = <span class="keyword">self</span>
+      <span class="keyword">while</span> i &gt; <span class="number">0</span>
+        i = i - <span class="number">1</span>
+        <span class="keyword">yield</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+<span class="number">3</span>.my_times {puts <span class="string">'hehe'</span>}  <span class="comment"># 输出3行hehe</span>
+</code></pre><p>这段代码打开一个现有的类，向其中添加一个自定义的<code>my_times</code>方法，并用<code>yield</code>调用代码块。在Ruby中，代码块不仅可用于循环，还可用于延迟执行，即代码块中的行为只有等到调用相关的yield时才会执行。代码块充斥于Ruby的各种库，小到文件的每一行，大到在集合上进行各种复杂操作，都是由代码块来完成的。</p>
+<h2 id="2-2_类">2.2 类</h2>
+<p>调用一个对象的<code>class</code>方法可以查看其类型，调用<code>superclass</code>可以查看这个类型的父类。下图展示了数字的继承链，其中横向箭头表示右边是左边实例化的对象，纵向箭头表示下边继承于上边。Ruby的一切事物都有一个共同的祖先Object。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/Script/Ruby数字的继承链.png" alt="Ruby数字的继承链"></p>
+<p>最后通过一个完整的实例——定义一棵树，来看下Ruby的类如何定义和使用，该注意的点都写在注释里面了。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Tree</span></span>
+  <span class="comment"># 定义实例变量，使用attr或attr_accessor关键字，前者定义变量和访问变量的同名getter方法（即只读），后者定义的变量多了同名setter方法（注意这里使用了符号）</span>
+  <span class="keyword">attr_accessor</span> <span class="symbol">:children</span>, <span class="symbol">:node_name</span>
+
+  <span class="comment"># 构造方法（构造方法必须命名为initialize）</span>
+  <span class="function"><span class="keyword">def</span> </span>initialize(name, children=[])
+    <span class="variable">@node_name</span> = name
+    <span class="variable">@children</span> = children
+  <span class="keyword">end</span>
+
+  <span class="comment"># 遍历所有节点并执行代码块block，注意参数前加一个&amp;表示将代码块作为闭包传递给函数</span>
+  <span class="function"><span class="keyword">def</span> </span>visit_all(&amp;block)
+    visit &amp;block
+    children.each {|c| c.visit_all &amp;block}
+  <span class="keyword">end</span>
+
+  <span class="comment"># 访问一个节点并执行代码块block</span>
+  <span class="function"><span class="keyword">def</span> </span>visit(&amp;block)
+    block.call <span class="keyword">self</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+ruby_tree = <span class="constant">Tree</span>.new(<span class="string">"Ruby"</span>, 
+  [<span class="constant">Tree</span>.new(<span class="string">"Reia"</span>),
+   <span class="constant">Tree</span>.new(<span class="string">"MacRuby"</span>)])
+<span class="comment"># 访问一个节点</span>
+ruby_tree.visit {|node| puts node.node_name}
+<span class="comment"># 访问整棵树</span>
+ruby_tree.visit_all {|node| puts <span class="string">"Node: <span class="subst">#{node.node_name}</span>"</span>}
+</code></pre><p>最后再提一下Ruby的命名规范：</p>
+<ul>
+<li>类采用CamelCase命名法</li>
+<li>实例变量（一个对象有一个值）前必须加上@，类变量（一个类有一个值）前必须加上@@</li>
+<li>变量和方法名全小写用下划线命名法，如underscore_style</li>
+<li>常量采用全大写下划线命名法，如ALL_CAPS_STYLE</li>
+<li>用于逻辑测试的函数和方法一般要加上问号，如if test?</li>
+</ul>
+<p>参考资料：《七周七语言》第2章Ruby</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Ruby/">Ruby</a><a class="btn btn-info" href="/tags/编程范型/">编程范型</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Ruby语言特性（上）">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
