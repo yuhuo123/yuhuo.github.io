@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Ruby语言特性（上） | Ray Taylor Lin&#39;s world</title>
+    <title>Ruby语言特性（下） | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。">
+    <meta name="description" content="本文将接着上一篇《Ruby语言特性（上）》讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Ruby语言特性（上）"/>
+    <meta property="og:title" content="Ruby语言特性（下）"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -339,125 +339,167 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Ruby语言特性（上）</h1>
+        <h1>Ruby语言特性（下）</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2015-01-05T13:21:34.000Z">2015-01-05</time>
+        <time datetime="2015-01-09T08:22:50.000Z">2015-01-09</time>
     </div>
 
     <div class="toc-wrap">
         <div class="toc-title">目录</div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_基础"><span class="toc-number">1.</span> <span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_编程模型"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 编程模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_流程控制"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_鸭子类型"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 鸭子类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_函数"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5_数组"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6_散列表"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 散列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_面向对象"><span class="toc-number">2.</span> <span class="toc-text">2. 面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_代码块"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_类"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 类</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_模块与混入（Mixin）"><span class="toc-number">1.</span> <span class="toc-text">1. 模块与混入（Mixin）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_元编程（metaprogramming）"><span class="toc-number">2.</span> <span class="toc-text">2. 元编程（metaprogramming）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_开放类"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 开放类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_使用method_missing"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用method_missing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_使用模块"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 使用模块</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_总结"><span class="toc-number">3.</span> <span class="toc-text">3. 总结</span></a></li></ol>
     </div>
 
     <div class="entry">
-        <p>Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。</p>
+        <p>本文将接着上一篇《Ruby语言特性（上）》讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。</p>
 <a id="more"></a>
 
-<h1 id="1-_基础">1. 基础</h1>
-<p>在Ruby交互命令行中输入以下命令（<code>&gt;&gt;</code>为命令行提示符，<code>=&gt;</code>为返回值；下文将把<code>=&gt;</code>符号和语句写在一行内表明其返回值）：</p>
-<pre><code><span class="input"><span class="prompt">&gt;&gt;</span> puts <span class="string">'hello, world'</span></span>
-hello, world
-<span class="output"><span class="status">=&gt;</span> nil</span>
-<span class="input"><span class="prompt">
-&gt;&gt;</span> language = <span class="string">'Ruby'</span></span>
-<span class="output"><span class="status">=&gt;</span> <span class="string">"Ruby"</span></span>
-<span class="input"><span class="prompt">
-&gt;&gt;</span> puts <span class="string">"hello, <span class="subst">#{language}</span>"</span></span>
-hello, <span class="constant">Ruby</span>
-<span class="output"><span class="status">=&gt;</span> nil</span>
-</code></pre><p>以上代码使用<code>puts</code>输出，给变量赋值，并用<code>#{}</code>的语法实现字符串替换。这表明Ruby是解释执行的；变量无需声明即可直接初始化和赋值；每条Ruby代码都会返回某个值；单引号包含的字符串表示它将直接被解释，双引号包含的字符串会引发字符串替换。</p>
-<h2 id="1-1_编程模型">1.1 编程模型</h2>
-<p>Ruby是一门纯面向对象语言，在Ruby中一切皆为对象，可以用“.”调用对象具有的方法，可以通过<code>class</code>和<code>methods</code>方法查看对象的类型及支持的方法，如<code>4.class =&gt; Fixnum</code>，<code>7.methods =&gt; [&quot;inspect&quot;, &quot;%&quot;, &quot;&lt;&lt;&quot;, &quot;numerator&quot;, ...]</code>，<code>false.class =&gt; FalseClass</code>（方括号表示数组）。</p>
-<h2 id="1-2_流程控制">1.2 流程控制</h2>
-<p>条件判断有正常的块形式，也有简单明了的单行形式；除了常见的if语句外，还有unless语句（等价于if not，但可读性更强）。同理，循环也有正常的块形式和单行形式。注意：<strong>除了nil和false之外，其他值都代表true，包括0！</strong></p>
-<pre><code><span class="comment"># 块形式</span>
-<span class="keyword">if</span> x == <span class="number">4</span>
-  puts <span class="string">'This is 4.'</span>
+<h1 id="1-_模块与混入（Mixin）">1. 模块与混入（Mixin）</h1>
+<p>面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。</p>
+<pre><code><span class="comment"># 定义模块ToFile</span>
+<span class="class"><span class="keyword">module</span> <span class="title">ToFile</span></span>
+  <span class="comment"># 获取文件名</span>
+  <span class="function"><span class="keyword">def</span> </span>filename
+    <span class="string">"object_name.txt"</span>
+  <span class="keyword">end</span>
+
+  <span class="comment"># 创建文件</span>
+  <span class="function"><span class="keyword">def</span> </span>to_f
+    <span class="constant">File</span>.open(filename, <span class="string">'w'</span>) {|f| f.write(to_s)}  <span class="comment"># 注意这里to_s在其他地方定义！</span>
+  <span class="keyword">end</span>
 <span class="keyword">end</span>
-<span class="comment"># 单行形式</span>
-puts <span class="string">'This is false.'</span> <span class="keyword">unless</span> <span class="keyword">true</span>
-x = x + <span class="number">1</span> <span class="keyword">while</span> x &lt; <span class="number">10</span> <span class="comment"># x的结果为10</span>
-x = x - <span class="number">1</span> <span class="keyword">until</span> x == <span class="number">1</span> <span class="comment"># x的结果为1</span>
-</code></pre><p>和其他C家族的语言差不多，Ruby的逻辑运算符<code>and</code>（<code>&amp;&amp;</code>）、<code>or</code>（<code>||</code>）都自带短路功能，若想执行整个表达式，可以用<code>&amp;</code>或<code>|</code></p>
-<h2 id="1-3_鸭子类型">1.3 鸭子类型</h2>
-<p>执行<code>4 + &#39;four&#39;</code>会出现TypeError的错误，说明Ruby是强类型语言，在发生类型冲突时，将得到一个错误。如果把个语句放在<code>def...end</code>函数定义中，则只有在调用函数时才会报错，说明Ruby在运行时而非编译时进行类型检查，这称为<strong>动态类型</strong>。Ruby的类型系统有自己的潜在优势，即多个类不必继承自相同的父类就能以“多态”的方式使用：</p>
-<pre><code><span class="operator">a</span> = [<span class="string">'100'</span>, <span class="number">100.0</span>]
-puts <span class="operator">a</span>[<span class="number">0</span>].to_i  <span class="comment"># =&gt; 100</span>
-puts <span class="operator">a</span>[<span class="number">1</span>].to_i  <span class="comment"># =&gt; 100</span>
-</code></pre><p>这就是所谓的“鸭子类型”（duck typing）。数组的第一个元素是String类型，第二个元素是Float类型，但转换成整数用的都是<code>to_i</code>。鸭子类型并不在乎其内在类型是什么，只要一个对象像鸭子一样走路，像鸭子一样嘎嘎叫，那它就是只鸭子。在面向对象设计思想中，有一个重要原则：对接口编码，不对实现编码。如果利用鸭子类型，实现这一原则只需极少的额外工作，就能轻松完成。</p>
-<h2 id="1-4_函数">1.4 函数</h2>
-<pre><code><span class="function"><span class="keyword">def</span> </span>tell_the_truth
-  <span class="keyword">true</span>
+
+<span class="comment"># 定义用户类</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>
+  <span class="keyword">include</span> <span class="constant">ToFile</span>
+  <span class="keyword">attr_accessor</span> <span class="symbol">:name</span>
+
+  <span class="function"><span class="keyword">def</span> </span>initialize(name)
+    <span class="variable">@name</span> = name
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> </span>to_s
+    name
+  <span class="keyword">end</span>
 <span class="keyword">end</span>
-</code></pre><p>每个函数都会返回结果，如果没有显式指定返回值，函数就将退出函数前最后处理的表达式的值返回。函数也是个对象，可以作为参数传给其他函数。</p>
-<h2 id="1-5_数组">1.5 数组</h2>
-<p>和Python一样，Ruby的数组也是用中括号来定义，如<code>animals = [&#39;lion&#39;, &#39;tiger&#39;, &#39;bear&#39;]</code>；负数下标可以返回倒数的元素，如<code>animals[-1] =&gt; &quot;bear&quot;</code>；通过指定一个Range对象来获取一个区段的元素，如<code>animals[1..2] =&gt; [&#39;tiger&#39;, &#39;bear&#39;]</code>。此外，数组元素可以互不相同，多为数组也不过是数组的数组。数组拥有极其丰富的API，可用其实现队列、链表、栈、集合等等。</p>
-<h2 id="1-6_散列表">1.6 散列表</h2>
-<pre><code>numbers = {<span class="number">2</span> =&gt; <span class="string">'two'</span>, <span class="number">5</span> =&gt; <span class="string">'five'</span>}
-stuff = {:<span class="keyword">array</span> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], :string =&gt; <span class="string">'Hi, mom!'</span>}
-<span class="comment"># stuff[:string] =&gt; "Hi, mom!"</span>
-</code></pre><p>散列表可以带任何类型的键，上述代码的stuff的键较为特殊——它是一个符号（symbol），前面带有冒号标识符。符号在给事物和概念命名时很好用，例如两个同值字符串在物理上不同，但相同的符号却是同一物理对象，可以通过反复调用<code>&#39;i am string&#39;.object_id</code>和<code>:symbol.object_id</code>来观察。另外，当散列表用作函数最后一个参数时，大括号可有可无，如<code>tell_the_truth :profession =&gt; :lawyer</code>。</p>
-<h1 id="2-_面向对象">2. 面向对象</h1>
-<h2 id="2-1_代码块">2.1 代码块</h2>
-<p>代码块是没有名字的函数（匿名函数），可以用作参数传递给函数。代码块只占一行时用大括号包起来，占多行是用do/end包起来，可以带若干个参数。</p>
-<pre><code><span class="number">3</span>.<span class="keyword">times</span> {puts <span class="string">'hehe'</span>}  <span class="comment"># 输出3行hehe</span>
-[<span class="string">'lion'</span>, <span class="string">'tiger'</span>, <span class="string">'bear'</span>].<span class="keyword">each</span> {|animal| puts animal} <span class="comment"># 输出列表的内容</span>
-</code></pre><p>上面的<code>times</code>实际上是Fixnum类型的方法，要自己实现这样一个方法非常容易：</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span>
-  <span class="function"><span class="keyword">def</span> </span>my_times
-    i = <span class="keyword">self</span>
-      <span class="keyword">while</span> i &gt; <span class="number">0</span>
-        i = i - <span class="number">1</span>
-        <span class="keyword">yield</span>
+
+<span class="constant">Person</span>.new(<span class="string">'matz'</span>).to_f  <span class="comment"># 创建了一个文件object_name.txt，里面包含内容matz</span>
+</code></pre><p>上面的代码很好理解，只是有一点要注意：<code>to_s</code>在模块中使用，在类中实现，但定义模块的时候，实现它的类甚至还没有定义。这正是鸭子类型的精髓所在。<strong>写入文件的能力，和Person这个类没有一点关系（一个类就应该做属于它自己的事情）</strong>，但实际开发又需要把Person类写入文件这种额外功能，这时候mixin就可以轻松胜任这种要求。</p>
+<p>Ruby有两个重要的mixin：枚举（enumerable）和比较（comparable）。若想让类可枚举，必须实现each方法；若想让类可比较，必须实现<code>&lt;=&gt;</code>（太空船）操作符（比较a,b两操作数，返回1、0或-1）。Ruby的字符串可以这样比较：<code>&#39;begin&#39; &lt;=&gt; &#39;end =&gt; -1</code>。数组有很多好用的方法：</p>
+<pre><code><span class="operator">a</span> = [<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>]
+<span class="operator">a</span>.<span class="built_in">sort</span> =&gt; [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]  <span class="comment"># 整数已通过Fixnum类实现太空船操作符，因此可比较可排序</span>
+<span class="operator">a</span>.<span class="keyword">any</span>? {|i| i &gt; <span class="number">4</span>} =&gt; <span class="constant">true</span>
+<span class="operator">a</span>.all? {|i| i &gt; <span class="number">0</span>} =&gt; <span class="constant">true</span>
+<span class="operator">a</span>.collect {|i| i * <span class="number">2</span>} =&gt; [<span class="number">10</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">2</span>]
+<span class="operator">a</span>.select {|i| i % <span class="number">2</span> == <span class="number">0</span>} =&gt; [<span class="number">4</span>]
+<span class="operator">a</span>.member?(<span class="number">2</span>) =&gt; <span class="constant">false</span>
+<span class="operator">a</span>.inject {|product, i| product * i} =&gt; <span class="number">60</span>  <span class="comment"># 第一个参数是代码块上一次执行的结果，若不设初始值，则使用列表第一个值作为初始值</span>
+</code></pre><h1 id="2-_元编程（metaprogramming）">2. 元编程（metaprogramming）</h1>
+<p>所谓元编程，说白了就是“写能写程序的程序”，这说起来有点拗口，下面会通过实例来讲解。</p>
+<h2 id="2-1_开放类">2.1 开放类</h2>
+<p>可以重定义Ruby中的任何类，并给它们扩充任何你想要的方法，甚至能让Ruby完全瘫痪，比如重定义Class.new方法。对于开发类来说，这种权衡主要考虑了自由，有这种重定义任何类或对象的自由，就能写出即为通俗易懂的代码，但也要明白，自由越大、能力越强，担负的责任也越重。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Numeric</span></span>
+  <span class="function"><span class="keyword">def</span> </span>inches
+    <span class="keyword">self</span>
+  <span class="keyword">end</span>
+  <span class="function"><span class="keyword">def</span> </span>feet
+    <span class="keyword">self</span> * <span class="number">12</span>.inches
+  <span class="keyword">end</span>
+  <span class="function"><span class="keyword">def</span> </span>miles
+    <span class="keyword">self</span> * <span class="number">5280</span>.feet
+  <span class="keyword">end</span>
+  <span class="function"><span class="keyword">def</span> </span>back
+    <span class="keyword">self</span> * -<span class="number">1</span>
+  <span class="keyword">end</span>
+  <span class="function"><span class="keyword">def</span> </span>forward
+    <span class="keyword">self</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>上面的代码通过开放Numeric类，就可以像这样采用最简单的语法实现用英寸表示距离：<code>puts 10.miles.back</code>，<code>puts 2.feet.forward</code>。</p>
+<h2 id="2-2_使用method_missing">2.2 使用method_missing</h2>
+<p>Ruby找不到某个方法时，会调用一个特殊的回调方法<code>method_missing</code>显示诊断信息。通过覆盖这个特殊方法，可以实现一些非常有趣且强大的功能。下面这个示例展示了如何用简洁的语法来实现罗马数字。</p>
+<pre><code><span class="type">class</span> Roman
+  <span class="comment"># 覆盖self.method_missing方法</span>
+  def self.method_missing <span class="property">name</span>, *args
+    roman = <span class="property">name</span>.to_s
+    roman.gsub!(<span class="string">"IV"</span>, <span class="string">"IIII"</span>)
+    roman.gsub!(<span class="string">"IX"</span>, <span class="string">"VIIII"</span>)
+    roman.gsub!(<span class="string">"XL"</span>, <span class="string">"XXXX"</span>)
+    roman.gsub!(<span class="string">"XC"</span>, <span class="string">"LXXXX"</span>)
+
+    (roman.<span class="command">count</span>(<span class="string">"I"</span>) +
+     roman.<span class="command">count</span>(<span class="string">"V"</span>) * <span class="number">5</span> +
+     roman.<span class="command">count</span>(<span class="string">"X"</span>) * <span class="number">10</span> +
+     roman.<span class="command">count</span>(<span class="string">"L"</span>) * <span class="number">50</span> +
+     roman.<span class="command">count</span>(<span class="string">"C"</span>) * <span class="number">100</span>)
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+puts Roman.III  <span class="comment"># =&gt; 3</span>
+puts Roman.XII  <span class="comment"># =&gt; 12</span>
+</code></pre><p>我们没有给Roman类定义什么实际的方法，但已经可以Roman类来表示任何罗马数字！其原理就是在没有找到定义方法时，把方法名称和参数传给<code>method_missing</code>执行。首先调用<code>to_s</code>把方法名转为字符串，然后将罗马数字“左减”特殊形式转换为“右加”形式（更容易计数），最后统计各个符号的个数和加权。</p>
+<p>当然，如此强有力的工具也有其代价：类调试起来会更加困难，因为Ruby再也不会告诉你找不到某个方法。因此<code>method_missing</code>是一把双刃剑，它确实可以让语法大大简化，但是要以人为地加强程序的健壮性为前提。</p>
+<h2 id="2-3_使用模块">2.3 使用模块</h2>
+<p>Ruby最流行的元编程方式，非模块莫属。下面的代码讲述如何用模块的方式扩展一个可以读取csv文件的类。</p>
+<pre><code><span class="class"><span class="keyword">module</span> <span class="title">ActsAsCsv</span></span>
+
+  <span class="comment"># 只要某个模块被另一模块include，就会调用被include模块的included方法</span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.included(base)
+    base.extend <span class="constant">ClassMethods</span>
+  <span class="keyword">end</span>
+
+  <span class="class"><span class="keyword">module</span> <span class="title">ClassMethods</span></span>
+    <span class="function"><span class="keyword">def</span> </span>acts_as_csv
+      <span class="keyword">include</span> <span class="constant">InstanceMethods</span>
     <span class="keyword">end</span>
   <span class="keyword">end</span>
-<span class="keyword">end</span>
-<span class="number">3</span>.my_times {puts <span class="string">'hehe'</span>}  <span class="comment"># 输出3行hehe</span>
-</code></pre><p>这段代码打开一个现有的类，向其中添加一个自定义的<code>my_times</code>方法，并用<code>yield</code>调用代码块。在Ruby中，代码块不仅可用于循环，还可用于延迟执行，即代码块中的行为只有等到调用相关的yield时才会执行。代码块充斥于Ruby的各种库，小到文件的每一行，大到在集合上进行各种复杂操作，都是由代码块来完成的。</p>
-<h2 id="2-2_类">2.2 类</h2>
-<p>调用一个对象的<code>class</code>方法可以查看其类型，调用<code>superclass</code>可以查看这个类型的父类。下图展示了数字的继承链，其中横向箭头表示右边是左边实例化的对象，纵向箭头表示下边继承于上边。Ruby的一切事物都有一个共同的祖先Object。</p>
-<p><img src="http://raytaylorlin-blog.qiniudn.com/image/Script/Ruby数字的继承链.png" alt="Ruby数字的继承链"></p>
-<p>最后通过一个完整的实例——定义一棵树，来看下Ruby的类如何定义和使用，该注意的点都写在注释里面了。</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Tree</span></span>
-  <span class="comment"># 定义实例变量，使用attr或attr_accessor关键字，前者定义变量和访问变量的同名getter方法（即只读），后者定义的变量多了同名setter方法（注意这里使用了符号）</span>
-  <span class="keyword">attr_accessor</span> <span class="symbol">:children</span>, <span class="symbol">:node_name</span>
 
-  <span class="comment"># 构造方法（构造方法必须命名为initialize）</span>
-  <span class="function"><span class="keyword">def</span> </span>initialize(name, children=[])
-    <span class="variable">@node_name</span> = name
-    <span class="variable">@children</span> = children
+  <span class="class"><span class="keyword">module</span> <span class="title">InstanceMethods</span></span>
+    <span class="keyword">attr_accessor</span> <span class="symbol">:headers</span>, <span class="symbol">:csv_contents</span>
+
+    <span class="function"><span class="keyword">def</span> </span>initialize
+      read
+    <span class="keyword">end</span>
+
+    <span class="function"><span class="keyword">def</span> </span>read
+      <span class="variable">@csv_contents</span> = []
+      filename = <span class="keyword">self</span>.<span class="keyword">class</span>.to_s.downcase + <span class="string">'.txt'</span>
+      file = <span class="constant">File</span>.new(filename)
+      <span class="variable">@headers</span> = file.gets.chomp.split(<span class="string">', '</span>)  <span class="comment"># String的chomp方法去除字符串末尾的回车换行符</span>
+      file.each <span class="keyword">do</span> |row|
+        <span class="variable">@csv_contents</span> &lt;&lt; row.chomp.split(<span class="string">', '</span>)
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
   <span class="keyword">end</span>
 
-  <span class="comment"># 遍历所有节点并执行代码块block，注意参数前加一个&amp;表示将代码块作为闭包传递给函数</span>
-  <span class="function"><span class="keyword">def</span> </span>visit_all(&amp;block)
-    visit &amp;block
-    children.each {|c| c.visit_all &amp;block}
-  <span class="keyword">end</span>
+<span class="keyword">end</span>  <span class="comment"># end of module ActsAsCsv</span>
 
-  <span class="comment"># 访问一个节点并执行代码块block</span>
-  <span class="function"><span class="keyword">def</span> </span>visit(&amp;block)
-    block.call <span class="keyword">self</span>
-  <span class="keyword">end</span>
+<span class="class"><span class="keyword">class</span> <span class="title">RubyCsv</span>    <span class="comment"># 没有继承，可以自由添加</span></span>
+  <span class="keyword">include</span> <span class="constant">ActsAsCsv</span>
+  acts_as_csv
 <span class="keyword">end</span>
 
-ruby_tree = <span class="constant">Tree</span>.new(<span class="string">"Ruby"</span>, 
-  [<span class="constant">Tree</span>.new(<span class="string">"Reia"</span>),
-   <span class="constant">Tree</span>.new(<span class="string">"MacRuby"</span>)])
-<span class="comment"># 访问一个节点</span>
-ruby_tree.visit {|node| puts node.node_name}
-<span class="comment"># 访问整棵树</span>
-ruby_tree.visit_all {|node| puts <span class="string">"Node: <span class="subst">#{node.node_name}</span>"</span>}
-</code></pre><p>最后再提一下Ruby的命名规范：</p>
+m = <span class="constant">RubyCsv</span>.new
+puts m.headers.inspect
+puts m.csv_contents.inspect
+</code></pre><p>上述代码中RubyCsv包含了ActsAsCsv，所以ActsAsCsv的included方法中，base就指RubyCsv，ActsAsCsv模块给RubyCsv类添加了唯一一个类方法<code>acts_as_csv</code>，这个方法又打开RubyCsv类，并在类中包含了所有实例方法。如此这般，就写了一个会写程序的程序（通过模块来动态添加类方法）。</p>
+<p>一些出色的Ruby框架，如Builder和ActiveRecord，都会为了改善可读性而特别依赖元编程。借助元编程的威力，可以做到尽量缩短正确的Ruby语法与日常用于之间的距离。注意一切都是为了提升代码可读性而服务。</p>
+<h1 id="3-_总结">3. 总结</h1>
+<p>Ruby的纯面向对象可以让你用一致的方式来处理对象。鸭子类型根据对象可提供的方法，而不是对象的继承层次，实现了更切合实际的多态设计。Ruby的模块和开放类，使程序员能把行为紧密结合到语法上，大大超越了类中定义的传统方法和实例变量。</p>
+<p>核心优势：</p>
 <ul>
-<li>类采用CamelCase命名法</li>
-<li>实例变量（一个对象有一个值）前必须加上@，类变量（一个类有一个值）前必须加上@@</li>
-<li>变量和方法名全小写用下划线命名法，如underscore_style</li>
-<li>常量采用全大写下划线命名法，如ALL_CAPS_STYLE</li>
-<li>用于逻辑测试的函数和方法一般要加上问号，如if test?</li>
+<li><strong>优雅的语法和强大的灵活性</strong></li>
+<li>脚本：Ruby是一门梦幻般的脚本语言，可以出色地完成许多任务。Ruby许多语法糖可以大幅提高生产效率，各种各样的库和gem（Ruby包）可以满足绝大多数日常需要。</li>
+<li>Web开发：很多人学Ruby最终就是为了用Ruby on Rails框架来进行Web开发。作为一个极其成功的MVC框架，其有着广泛的社区支持及优雅的语法。Twitter最初就是用Ruby实现的，借助Ruby无比强大的生产力，可以快速地开发出一个可推向市场的合格产品。</li>
+</ul>
+<p>不足之处：</p>
+<ul>
+<li><strong>性能</strong>：这是Ruby的最大弱点。随着时代的发展，Ruby的速度确实是越来越快。当然，Ruby是创建目的为了改善程序员的体验，在对性能要求不高的应用场景下，性能换来生产效率的大幅提升无疑是值得的。</li>
+<li>并发和面向对象编程：面向对象是建立在状态包装一系列行为的基础上，但通常状态是会改变的。程序中存在并发时，这种编程策略就会引发严重问题。</li>
+<li>类型安全：静态类型可提供一整套工具，可以更轻松地构造语法树，也因此能实现各种IDE。对Ruby这种动态类型语言来说，实现IDE就困难得多。</li>
 </ul>
 <p>参考资料：《七周七语言》第2章Ruby</p>
 
@@ -488,7 +530,7 @@ ruby_tree.visit_all {|node| puts <span class="string">"Node: <span class="subst"
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Ruby语言特性（上）">
+    <div class="ds-thread" data-title="Ruby语言特性（下）">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};

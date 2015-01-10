@@ -469,13 +469,14 @@ article pre {
   word-wrap: break-word;
 }
 article code {
-  background: #042029;
-  font-size: 16px;
+  background: transparent;
+  font-size: 0.9em;
 }
 article p code,
 article li code {
   color: #fff;
-  padding: 3px;
+  background: rgba(44,62,80,0.9);
+  padding: 2px 6px;
 }
 code {
   background: #93aaac;
