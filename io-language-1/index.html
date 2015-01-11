@@ -4,16 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Git指南（1）——安装与基本用法 | Ray Taylor Lin&#39;s world</title>
+    <title>Io语言特性（上） | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。
-之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）">
+    <meta name="description" content="Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Git指南（1）——安装与基本用法"/>
+    <meta property="og:title" content="Io语言特性（上）"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -340,113 +339,137 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Git指南（1）——安装与基本用法</h1>
+        <h1>Io语言特性（上）</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2013-09-11T14:07:42.000Z">2013-09-11</time>
+        <time datetime="2015-01-11T13:21:34.000Z">2015-01-11</time>
     </div>
 
     <div class="toc-wrap">
         <div class="toc-title">目录</div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么使用Git"><span class="toc-number">1.</span> <span class="toc-text">1.为什么使用Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-参考材料"><span class="toc-number">2.</span> <span class="toc-text">2.参考材料</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-安装"><span class="toc-number">3.</span> <span class="toc-text">3.安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-基本用法"><span class="toc-number">4.</span> <span class="toc-text">4.基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_配置"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_流程"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3_需要特别注意的问题"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 需要特别注意的问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_基础"><span class="toc-number">1.</span> <span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_创建对象"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_原型和继承"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 原型和继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_集合"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_true、false、nil和单例"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 true、false、nil和单例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_基本控制结构"><span class="toc-number">2.</span> <span class="toc-text">2. 基本控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_循环和条件"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 循环和条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_运算符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 运算符</span></a></li></ol></li></ol>
     </div>
 
     <div class="entry">
-        <p>现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。</p>
-<p>之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）</p>
-<p><a id="more"></a></p>
-<h1 id="1-为什么使用Git">1.为什么使用Git</h1>
-<p>关于Git的优缺点，与SVN的对比网上的资料有非常多，这里只列举几点比较重要的。</p>
+        <p>Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。</p>
+<a id="more"></a>
+
+<h1 id="1-_基础">1. 基础</h1>
+<h2 id="1-1_创建对象">1.1 创建对象</h2>
+<p>面向对象语言中，通常都是通过对某个类调用new创建一个新对象，但在原型语言Io中，不区分类和对象，而是通过复制现有对象创建新对象，现有对象就是原型。</p>
+<pre><code>Io&gt; "Hello, io" print    // 输出Hello, io
+
+Io&gt; Vehicle := Object clone
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Vehicle_0x1003b61f8</span><span class="symbol">:</span></span>
+</span>  type = "Vehicle"
+Io&gt; Vehicle description := "Something to take you places"
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="string">"Something to take you places"</span></span>
+</span><span class="comment">// Vehicle nonexistingSlot = "This won't work" 对不存在的槽使用=号赋值会报错</span>
+Io&gt; Vehicle description
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Something</span> to take you places</span>
+</span>Io&gt; Vehicle slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list(<span class="string">"type"</span>, <span class="string">"description"</span>)</span></span>
+</code></pre><ol>
+<li>把print消息发送给字符串就可以输出那个字符串，Io中所有的操作都是发送消息，接收者在左边，消息在右边。</li>
+<li>Object是根对象，我们发送clone消息过去，它会返回一个新对象，并将其赋值给Vehicle。注意这里的Vehicle不是类，也不是创建对象的模板，而是实实在在的对象。</li>
+<li>对象还带有槽（slot），可以把一组槽想象成散列表，通过键可以引用到任何一个槽；可以用<code>:=</code>或<code>=</code>给槽赋值，当槽不存在时，前者可以创建出一个槽，后者则会抛出一个异常。</li>
+<li>通过向对象发送槽的名字，可以获取槽中的值。<code>slotNames</code>槽是内置的，可以获取一个槽名列表。</li>
+</ol>
+<h2 id="1-2_原型和继承">1.2 原型和继承</h2>
+<p>继续上面的代码：</p>
+<pre><code>Io&gt; Car := Vehicle clone
+Io&gt; Car slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list(<span class="string">"type"</span>)</span>
+</span>Io&gt; Car description
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="string">"Something to take you places"</span>  /<span class="regexp">/ Car没有description槽，所以Io把description消息转发给Car的原型Vehicle，并在Vehicle中找到这个槽
+</span></span></span>Io&gt; ferrari := Car clone
+Io&gt; ferrari slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list()  /<span class="regexp">/ 这下连type槽都没了，因为依照Io的惯例，其类型应以大写字母开头
+</span></span></span>Io&gt; ferrari type
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Car</span>  /<span class="regexp">/ 去父对象调用type槽，得到原型的类型</span></span></span>
+</code></pre><p>以大写字母开头的对象时类型，具有type槽，而类型的复制品则以小写字母开头。注意：<strong>类型仅仅是帮助Io程序员更好地组织代码的工具，不管是大写开头还是小写开头，它们统统都是对象，Io中没有类。</strong></p>
+<pre><code><span class="type">Io</span>&gt; <span class="keyword">method</span>(<span class="string">"I'm method."</span> println)  // 创建一个方法
+==&gt; <span class="keyword">method</span>(...)
+<span class="type">Io</span>&gt; <span class="keyword">method</span>() <span class="keyword">type</span>  // 方法也是对象，因此可以获取其类型
+==&gt; <span class="type">Block</span>
+<span class="type">Io</span>&gt; <span class="type">Car</span> drive := <span class="keyword">method</span>(<span class="string">"Vroom"</span> println)  // 方法可以赋值给一个槽
+==&gt; <span class="keyword">method</span>(...)
+<span class="type">Io</span>&gt; ferrari drive  // 调用槽就会调用对应方法
+<span class="type">Vroom</span>
+==&gt; <span class="type">Vroom</span>
+<span class="type">Io</span>&gt; ferrari getSlot(<span class="string">"drive"</span>)  // getSlot可以获取槽的内容
+<span class="type">Io</span>&gt; ferrari proto  // proto槽输出该对象的原型信息
+==&gt; <span class="type">Vehicle_0x1003b61f8</span>: ...
+<span class="type">Io</span>&gt; <span class="type">Lobby</span>  // <span class="type">Lobby</span>是主命名空间，包含所有已命名对象
+==&gt; <span class="type">Object_0x1002184e0</span>: ...
+</code></pre><h2 id="1-3_集合">1.3 集合</h2>
+<p>Io有几种类型的集合：List列表对象是任意类型对象的有序集合，Map对象时键值对的原型，如同Ruby的散列表一样。</p>
+<pre><code>Io&gt; todos := <span class="keyword">list</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)  <span class="comment">// 由Object对象的list方法可以把传入参数包装起来创建列表</span>
+Io&gt; todos size  <span class="comment">// 获取列表大小</span>
+Io&gt; todos append(<span class="number">4</span>)  <span class="comment">// 追加元素</span>
+
+Io&gt; elvis := Map <span class="keyword">clone</span>  <span class="comment">// 映射没有语法糖，所以只能从Map clone出来</span>
+Io&gt; elvis atPut(<span class="string">"home"</span>, <span class="string">"Graceland"</span>)  <span class="comment">// 创建一个键值对</span>
+Io&gt; elvis at(<span class="string">"home"</span>) ==&gt; Graceland
+Io&gt; elvis asObject  <span class="comment">// 将散列表转换为对象，key则相应转换为对象的槽</span>
+</code></pre><h2 id="1-4_true、false、nil和单例">1.4 true、false、nil和单例</h2>
+<p>Io条件判断和其他语言基本一致，都有<code>true</code>、<code>false</code>、<code>and</code>、<code>or</code>等关键字。注意：和Ruby一样0是true。有趣的地方在于，调用<code>true clone</code>依旧会返回<code>true</code>，<code>false</code>和<code>nil</code>也一样，这三个东西都是单例，对它们进行复制，返回的就是单例对象本身的值。要创建一个单例非常简单：</p>
+<pre><code><span class="constant">Singleton :</span>= Object clone
+<span class="constant">Singleton clone :</span>= Singleton
+</code></pre><p>通过重定义Singleton的clone槽，让其返回自身，而不是像往常那样让请求沿着对象原型链向上传递最终到达Object对象，这样就可以实现单例。Io也是一门灵活性极高的语言，例如<code>Object clone := &quot;broken&quot;</code>可以使得Io再也无法创建对象，这种情况无法修复，只能终止进程。同Ruby一样，高灵活性是一把双刃剑，但如果运用得好，完全可以用几行漂亮的代码就实现一些<em>领域特定语言</em>（domain-specific language, DSL）。</p>
+<h1 id="2-_基本控制结构">2. 基本控制结构</h1>
+<h2 id="2-1_循环和条件">2.1 循环和条件</h2>
+<pre><code><span class="type">Io</span>&gt; loop(<span class="string">"infinite loop"</span>, <span class="built_in">println</span>)  <span class="comment">// 无限循环输出，可以Ctrl+C中断</span>
+<span class="type">Io</span>&gt; <span class="keyword">while</span>(i &lt;= <span class="number">11</span>, i <span class="built_in">println</span>; i = i + <span class="number">1</span>)  <span class="comment">// while循环接受2个参数，一个循环条件参数和一个用来求值的消息。分号可以把两个不同的消息连接起来</span>
+<span class="type">Io</span>&gt; <span class="keyword">for</span>(i, <span class="number">1</span>, <span class="number">11</span>, <span class="number">2</span>, i <span class="built_in">println</span>)  <span class="comment">// 输出1 3 5 7 9 11</span>
+<span class="comment">// 控制结构以函数形式实现，形式为if(condition, true code, false code)</span>
+<span class="type">Io</span>&gt; <span class="keyword">if</span>(<span class="built_in">true</span>, <span class="string">"true"</span>, <span class="string">"false"</span>)
+==&gt; <span class="built_in">true</span>
+<span class="type">Io</span>&gt; <span class="keyword">if</span>(<span class="built_in">false</span>) then(<span class="string">"true"</span> <span class="built_in">println</span>) <span class="keyword">else</span>(<span class="string">"false"</span> <span class="built_in">println</span>)
+<span class="built_in">false</span>
+==&gt; <span class="built_in">nil</span>
+</code></pre><h2 id="2-2_运算符">2.2 运算符</h2>
+<p>在Io中，调用<code>OperatorTable</code>可以看到运算符表，可以看到赋值是另一种类型的运算符。运算符左边的数字代表优先级，参数优先绑定到优先级靠近0的运算符上。下面的代码自定义了一个运算符<code>xor</code>：</p>
+<pre><code><span class="type">Io</span>&gt; <span class="type">OperatorTable</span> addOperator(<span class="string">"xor"</span>, <span class="number">11</span>)
+==&gt; <span class="type">OperatorTable_0x100296098</span>
+<span class="type">Operators</span>
+  ...
+  <span class="number">10</span> &amp;&amp; <span class="keyword">and</span>
+  <span class="number">11</span> <span class="keyword">or</span> <span class="keyword">xor</span> ||
+  ...
+// 逻辑运算符相当于<span class="literal">true</span>或<span class="literal">false</span>的槽，用穷举法实现
+<span class="type">Io</span>&gt; <span class="literal">true</span> <span class="keyword">xor</span> := <span class="keyword">method</span>(<span class="type">bool</span>, <span class="keyword">if</span>(<span class="type">bool</span>, <span class="literal">false</span>, <span class="literal">true</span>))
+<span class="type">Io</span>&gt; <span class="literal">false</span> <span class="keyword">xor</span> := <span class="keyword">method</span>(<span class="type">bool</span>, <span class="keyword">if</span>(<span class="type">bool</span>, <span class="literal">true</span>, <span class="literal">false</span>))
+// 接下来就可以使用新定义的运算符了
+<span class="type">Io</span>&gt; <span class="literal">true</span> <span class="keyword">xor</span> <span class="literal">true</span>
+==&gt; <span class="literal">false</span>
+<span class="type">Io</span>&gt; <span class="literal">false</span> <span class="keyword">xor</span> <span class="literal">true</span>
+==&gt; <span class="literal">true</span>
+</code></pre><p>最后对Io语言特性做一点小结：</p>
 <ul>
-<li>分布式版本控制，文件变更的历史记录不再存在一个集中服务器，如果服务器故障，或者没有网络，几乎所有操作都可以在本地执行，在任何地方都可以愉快地提交更改。</li>
-<li>版本的分支（branch）和合并（merge）十分方便。</li>
-<li>有一个全世界最大的开源社区——github，上面可以看到各种优秀的各种语言的代码，并且越来越多的项目由github托管。</li>
+<li>所有事物都是<strong>对象</strong></li>
+<li>所有与对象交互的都是<strong>消息</strong></li>
+<li>你要做的不是实例化类，而是复制那些叫<strong>原型</strong>的对象</li>
+<li>对象会记住它的原型</li>
+<li>对象有<strong>槽</strong></li>
+<li>槽包含对象（包括方法)</li>
+<li>消息返回槽中的值，或调用槽中的方法</li>
+<li>若对象无法响应某消息，则把消息转发给自己的原型</li>
 </ul>
-<h1 id="2-参考材料">2.参考材料</h1>
-<ul>
-<li><a href="http://iissnan.com/progit/index.html" target="_blank" rel="external">Pro Git中文版</a></li>
-<li>一个极其简洁明了的Git教程网站<a href="http://gitimmersion.com/" target="_blank" rel="external">Git Immersion</a></li>
-<li><a href="http://gitbook.liuhui998.com/index.html" target="_blank" rel="external">Git Community Book 中文版</a></li>
-</ul>
-<h1 id="3-安装">3.安装</h1>
-<p>安装Git Windows客户端（命令行界面）：<a href="http://msysgit.github.io/" target="_blank" rel="external">msysgit</a></p>
-<p>用SVN的人一定对小乌龟客户端很熟悉，Git也有对应的版本：<a href="https://code.google.com/p/tortoisegit/" target="_blank" rel="external">GitTortoise</a></p>
-<p>Linux或Mac用户请自寻谷歌安装方法。</p>
-<h1 id="4-基本用法">4.基本用法</h1>
-<h2 id="3-1_配置">3.1 配置</h2>
-<p>在使用Git之前，需要打开命令行客户端</p>
-<p>1.设置名字和信箱</p>
-<pre><code>git config --global <span class="literal">user</span>.name <span class="string">"你的名字"</span>
-git config --global <span class="literal">user</span>.email <span class="string">"your_email@whatever.com"</span>
-</code></pre><p>2.设置换行符参数</p>
-<pre><code><span class="comment"># 提交时转换为LF，检出时转换为CRLF</span>
-git config --<span class="keyword">global</span> core.autocrlf <span class="keyword">true</span>
-<span class="comment"># 拒绝提交包含混合换行符的文件</span>
-git config --<span class="keyword">global</span> core.safecrlf <span class="keyword">true</span>
-</code></pre><h2 id="3-2_流程">3.2 流程</h2>
-<p>在你的工程文件夹下，执行以下命令创建代码仓库（Repository，就是在网上经常看到的repo）</p>
-<pre><code>git <span class="keyword">init</span>
-</code></pre><p>假设你的工程有一个index.html文件，以下命令将其添加到跟踪改动状态（stage）</p>
-<pre><code>git add index.html
-<span class="preprocessor"># git add . 可以跟踪所有文件</span>
-<span class="preprocessor"># 此处也可以使用git stage来跟踪改动</span>
-</code></pre><p>查看状态</p>
-<pre><code>git status
-# 此时你应该看到输出提示<span class="built_in">add</span>了<span class="built_in">index</span>.html，其他状态还有modified（修改）等等
-</code></pre><p>查看与上一次提交的差异（具体参考<a href="http://gitbook.liuhui998.com/3_5.html" target="_blank" rel="external">这里</a>）</p>
-<pre><code><span class="title">git</span> diff
-<span class="comment"># 加上--cached参数，git diff会显示当前你所有已跟踪的修改</span>
-git diff branch-name    <span class="comment"># 查看当前工作目录与指定分支的差别</span>
-</code></pre><p>然后提交</p>
-<pre><code><span class="comment"># -a表示跟踪所有文件的改动（相当于先做了一次git add .，再commit），-m 后面跟着提交的说明</span>
-git commit <span class="operator">-a</span> -m <span class="string">"First Commit"</span>
-</code></pre><h2 id="3-3_需要特别注意的问题">3.3 需要特别注意的问题</h2>
-<p><strong>每一次你对文件做了改动（包括删除），都需要使用<code>git add</code>或<code>git stage</code>来跟踪改动，只有被跟踪改动了的文件才可以使用<code>git commit</code>提交。</strong></p>
-<p>增加跟踪改动（stage）主要有两个好处，一个是分批、分阶段递交，一个是进行快照，便于回退。</p>
-<p>1.分批提交：比如，你修改了a.py, b.py, c.py三个文件，其中a.py和c.py 是功能1的相关修改，b.py属于功能2的相关修改。那么你就可以采用以下方式分批提交。</p>
-<pre><code>git stage <span class="keyword">a</span>.<span class="keyword">py</span> <span class="keyword">c</span>.<span class="keyword">py</span>
-git commit -<span class="keyword">m</span> <span class="string">"function 1"</span>
-git stage <span class="keyword">b</span>.<span class="keyword">py</span>
-git commit -<span class="keyword">m</span> <span class="string">"function 2"</span>
-</code></pre><p>2.分阶段提交<br>比如你修改了a.py，然后<code>git stage a.py</code>，相当于对当前的a.py 做了一个快照，然后又做了一些修改，这时候，如果直接采用<code>git commit</code>递交，则只会对第一次的快照进行递交，当前内容还保存在工作区。需要再做一次 <code>git stage</code>，才能提交。</p>
-<p>3.文件快照，便于回退<br>当文件加入了stage区以后，如果要从stage区删除，则使用 reset，此时工作区的文件不做任何修改，比如：</p>
-<pre><code><span class="comment"># 这个命令就是git stage a.py的反操作</span>
-git reset <span class="operator">a</span>.py
-</code></pre><p>当文件加入了 stage 区以后，后来又做了一些修改，这时发现后面的修改有问题，想回退到stage的状态，使用checkout命令</p>
-<pre><code>git checkout <span class="keyword">a</span>.<span class="keyword">py</span>
-</code></pre><p>4.忽略某些文件</p>
-<p>一般一个项目总会有些文件无需纳入Git的管理，比如一些自动生成的日志文件，或者编译过程中创建的临时文件等。我们可以创建一个名为<code>.gitignore</code>的文件，列出要忽略的文件模式。下面是一个例子：</p>
-<pre><code><span class="preprocessor"># 此为注释 – 将被 Git 忽略</span>
-<span class="preprocessor"># 忽略所有 .a 结尾的文件</span>
-*.a
-<span class="preprocessor"># 但 lib.a 除外</span>
-!lib.a
-<span class="preprocessor"># 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</span>
-/TODO
-<span class="preprocessor"># 忽略 build/ 目录下的所有文件</span>
-build/
-<span class="preprocessor"># 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span>
-doc<span class="comment">/*.txt</span>
-</code></pre><p>本篇就先讲到这里，下一篇将会讲Git的历史操作。</p>
+<p>参考资料：《七周七语言》第3章Io</p>
 
     </div>
     
     <footer >
         
             
-    
-    <div class="categories">
-        所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/git/">git</a>
-    </div>
-
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/Git/">Git</a>
+        标签：<a class="btn btn-info" href="/tags/Io/">Io</a><a class="btn btn-info" href="/tags/编程范型/">编程范型</a>
     </div>
 
         
@@ -459,7 +482,7 @@ doc<span class="comment">/*.txt</span>
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Git指南（1）——安装与基本用法">
+    <div class="ds-thread" data-title="Io语言特性（上）">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
