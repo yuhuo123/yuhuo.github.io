@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Socket.IO进阶 | Ray Taylor Lin&#39;s world</title>
+    <title>Io语言特性（上） | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="在上一篇博文Socket.IO中，我简要介绍了Socket.IO的基本使用方法并创建了一个简单的聊天室DEMO。本篇在入门篇的基础上，继续探讨Socket.IO的进阶用法。本篇将从配置、房间、事件等方面入手，介绍一些Socket.IO中实用的API和注意事项。">
+    <meta name="description" content="Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="Socket.IO进阶"/>
+    <meta property="og:title" content="Io语言特性（上）"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -339,105 +339,127 @@
     <div class="article-title article-title-big">
         
     
-        <h1>Socket.IO进阶</h1>
+        <h1>Io语言特性（上）</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2013-12-10T09:04:16.000Z">2013-12-10</time>
+        <time datetime="2015-01-11T13:21:34.000Z">2015-01-11</time>
     </div>
 
     <div class="toc-wrap">
         <div class="toc-title">目录</div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_配置"><span class="toc-number">1.</span> <span class="toc-text">1. 配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_房间"><span class="toc-number">2.</span> <span class="toc-text">2. 房间</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_事件"><span class="toc-number">3.</span> <span class="toc-text">3. 事件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_授权"><span class="toc-number">4.</span> <span class="toc-text">4. 授权</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_基础"><span class="toc-number">1.</span> <span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_创建对象"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_原型和继承"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 原型和继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_集合"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 集合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_true、false、nil和单例"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 true、false、nil和单例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_基本控制结构"><span class="toc-number">2.</span> <span class="toc-text">2. 基本控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_循环和条件"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 循环和条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_运算符"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 运算符</span></a></li></ol></li></ol>
     </div>
 
     <div class="entry">
-        <p>在上一篇博文<a href="/Tech/web/Nodejs/socket-io-tutorial">Socket.IO</a>中，我简要介绍了Socket.IO的基本使用方法并创建了一个简单的聊天室DEMO。本篇在入门篇的基础上，继续探讨Socket.IO的进阶用法。本篇将从配置、房间、事件等方面入手，介绍一些Socket.IO中实用的API和注意事项。</p>
+        <p>Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。</p>
 <a id="more"></a>
 
-<h1 id="1-_配置">1. 配置</h1>
-<p>Socket.IO提供了4个配置的API：io.configure, io.set, io.enable, io.disable。其中io.set对单项进行设置，io.enable和io.disable用于单项设置布尔型的配置。io.configure可以让你对不同的生产环境（如devlopment，test等等）配置不同的参数。以下定义了development和release两种环境下Socket.IO的不同配置：</p>
-<pre><code>var <span class="built_in">io</span> = <span class="built_in">require</span>(<span class="string">'socket.io'</span>).listen(<span class="number">80</span>);
+<h1 id="1-_基础">1. 基础</h1>
+<h2 id="1-1_创建对象">1.1 创建对象</h2>
+<p>面向对象语言中，通常都是通过对某个类调用new创建一个新对象，但在原型语言Io中，不区分类和对象，而是通过复制现有对象创建新对象，现有对象就是原型。</p>
+<pre><code>Io&gt; "Hello, io" print    // 输出Hello, io
 
-<span class="built_in">io</span>.configure(<span class="string">'development'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-    <span class="built_in">io</span>.enable(<span class="string">'browser client etag'</span>);
-    <span class="built_in">io</span>.set(<span class="string">'log level'</span>, <span class="number">1</span>);
-});
+Io&gt; Vehicle := Object clone
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Vehicle_0x1003b61f8</span><span class="symbol">:</span></span>
+</span>  type = "Vehicle"
+Io&gt; Vehicle description := "Something to take you places"
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="string">"Something to take you places"</span></span>
+</span><span class="comment">// Vehicle nonexistingSlot = "This won't work" 对不存在的槽使用=号赋值会报错</span>
+Io&gt; Vehicle description
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Something</span> to take you places</span>
+</span>Io&gt; Vehicle slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list(<span class="string">"type"</span>, <span class="string">"description"</span>)</span></span>
+</code></pre><ol>
+<li>把print消息发送给字符串就可以输出那个字符串，Io中所有的操作都是发送消息，接收者在左边，消息在右边。</li>
+<li>Object是根对象，我们发送clone消息过去，它会返回一个新对象，并将其赋值给Vehicle。注意这里的Vehicle不是类，也不是创建对象的模板，而是实实在在的对象。</li>
+<li>对象还带有槽（slot），可以把一组槽想象成散列表，通过键可以引用到任何一个槽；可以用<code>:=</code>或<code>=</code>给槽赋值，当槽不存在时，前者可以创建出一个槽，后者则会抛出一个异常。</li>
+<li>通过向对象发送槽的名字，可以获取槽中的值。<code>slotNames</code>槽是内置的，可以获取一个槽名列表。</li>
+</ol>
+<h2 id="1-2_原型和继承">1.2 原型和继承</h2>
+<p>继续上面的代码：</p>
+<pre><code>Io&gt; Car := Vehicle clone
+Io&gt; Car slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list(<span class="string">"type"</span>)</span>
+</span>Io&gt; Car description
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="string">"Something to take you places"</span>  /<span class="regexp">/ Car没有description槽，所以Io把description消息转发给Car的原型Vehicle，并在Vehicle中找到这个槽
+</span></span></span>Io&gt; ferrari := Car clone
+Io&gt; ferrari slotNames
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> list()  /<span class="regexp">/ 这下连type槽都没了，因为依照Io的惯例，其类型应以大写字母开头
+</span></span></span>Io&gt; ferrari type
+=<span class="ruby"><span class="output"><span class="status">=&gt;</span> <span class="constant">Car</span>  /<span class="regexp">/ 去父对象调用type槽，得到原型的类型</span></span></span>
+</code></pre><p>以大写字母开头的对象时类型，具有type槽，而类型的复制品则以小写字母开头。注意：<strong>类型仅仅是帮助Io程序员更好地组织代码的工具，不管是大写开头还是小写开头，它们统统都是对象，Io中没有类。</strong></p>
+<pre><code><span class="type">Io</span>&gt; <span class="keyword">method</span>(<span class="string">"I'm method."</span> println)  // 创建一个方法
+==&gt; <span class="keyword">method</span>(...)
+<span class="type">Io</span>&gt; <span class="keyword">method</span>() <span class="keyword">type</span>  // 方法也是对象，因此可以获取其类型
+==&gt; <span class="type">Block</span>
+<span class="type">Io</span>&gt; <span class="type">Car</span> drive := <span class="keyword">method</span>(<span class="string">"Vroom"</span> println)  // 方法可以赋值给一个槽
+==&gt; <span class="keyword">method</span>(...)
+<span class="type">Io</span>&gt; ferrari drive  // 调用槽就会调用对应方法
+<span class="type">Vroom</span>
+==&gt; <span class="type">Vroom</span>
+<span class="type">Io</span>&gt; ferrari getSlot(<span class="string">"drive"</span>)  // getSlot可以获取槽的内容
+<span class="type">Io</span>&gt; ferrari proto  // proto槽输出该对象的原型信息
+==&gt; <span class="type">Vehicle_0x1003b61f8</span>: ...
+<span class="type">Io</span>&gt; <span class="type">Lobby</span>  // <span class="type">Lobby</span>是主命名空间，包含所有已命名对象
+==&gt; <span class="type">Object_0x1002184e0</span>: ...
+</code></pre><h2 id="1-3_集合">1.3 集合</h2>
+<p>Io有几种类型的集合：List列表对象是任意类型对象的有序集合，Map对象时键值对的原型，如同Ruby的散列表一样。</p>
+<pre><code>Io&gt; todos := <span class="keyword">list</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)  <span class="comment">// 由Object对象的list方法可以把传入参数包装起来创建列表</span>
+Io&gt; todos size  <span class="comment">// 获取列表大小</span>
+Io&gt; todos append(<span class="number">4</span>)  <span class="comment">// 追加元素</span>
 
-<span class="built_in">io</span>.configure(<span class="string">'release'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
-    <span class="built_in">io</span>.set(<span class="string">'transports'</span>, [<span class="string">'websocket'</span>]);
-});
-</code></pre><p>下面列举一些常用的配置项，具体配置参数参见<a href="https://github.com/LearnBoost/Socket.IO/wiki/Configuring-Socket.IO" target="_blank" rel="external">官方WIKI</a></p>
+Io&gt; elvis := Map <span class="keyword">clone</span>  <span class="comment">// 映射没有语法糖，所以只能从Map clone出来</span>
+Io&gt; elvis atPut(<span class="string">"home"</span>, <span class="string">"Graceland"</span>)  <span class="comment">// 创建一个键值对</span>
+Io&gt; elvis at(<span class="string">"home"</span>) ==&gt; Graceland
+Io&gt; elvis asObject  <span class="comment">// 将散列表转换为对象，key则相应转换为对象的槽</span>
+</code></pre><h2 id="1-4_true、false、nil和单例">1.4 true、false、nil和单例</h2>
+<p>Io条件判断和其他语言基本一致，都有<code>true</code>、<code>false</code>、<code>and</code>、<code>or</code>等关键字。注意：和Ruby一样0是true。有趣的地方在于，调用<code>true clone</code>依旧会返回<code>true</code>，<code>false</code>和<code>nil</code>也一样，这三个东西都是单例，对它们进行复制，返回的就是单例对象本身的值。要创建一个单例非常简单：</p>
+<pre><code><span class="constant">Singleton :</span>= Object clone
+<span class="constant">Singleton clone :</span>= Singleton
+</code></pre><p>通过重定义Singleton的clone槽，让其返回自身，而不是像往常那样让请求沿着对象原型链向上传递最终到达Object对象，这样就可以实现单例。Io也是一门灵活性极高的语言，例如<code>Object clone := &quot;broken&quot;</code>可以使得Io再也无法创建对象，这种情况无法修复，只能终止进程。同Ruby一样，高灵活性是一把双刃剑，但如果运用得好，完全可以用几行漂亮的代码就实现一些<em>领域特定语言</em>（domain-specific language, DSL）。</p>
+<h1 id="2-_基本控制结构">2. 基本控制结构</h1>
+<h2 id="2-1_循环和条件">2.1 循环和条件</h2>
+<pre><code><span class="type">Io</span>&gt; loop(<span class="string">"infinite loop"</span>, <span class="built_in">println</span>)  <span class="comment">// 无限循环输出，可以Ctrl+C中断</span>
+<span class="type">Io</span>&gt; <span class="keyword">while</span>(i &lt;= <span class="number">11</span>, i <span class="built_in">println</span>; i = i + <span class="number">1</span>)  <span class="comment">// while循环接受2个参数，一个循环条件参数和一个用来求值的消息。分号可以把两个不同的消息连接起来</span>
+<span class="type">Io</span>&gt; <span class="keyword">for</span>(i, <span class="number">1</span>, <span class="number">11</span>, <span class="number">2</span>, i <span class="built_in">println</span>)  <span class="comment">// 输出1 3 5 7 9 11</span>
+<span class="comment">// 控制结构以函数形式实现，形式为if(condition, true code, false code)</span>
+<span class="type">Io</span>&gt; <span class="keyword">if</span>(<span class="built_in">true</span>, <span class="string">"true"</span>, <span class="string">"false"</span>)
+==&gt; <span class="built_in">true</span>
+<span class="type">Io</span>&gt; <span class="keyword">if</span>(<span class="built_in">false</span>) then(<span class="string">"true"</span> <span class="built_in">println</span>) <span class="keyword">else</span>(<span class="string">"false"</span> <span class="built_in">println</span>)
+<span class="built_in">false</span>
+==&gt; <span class="built_in">nil</span>
+</code></pre><h2 id="2-2_运算符">2.2 运算符</h2>
+<p>在Io中，调用<code>OperatorTable</code>可以看到运算符表，可以看到赋值是另一种类型的运算符。运算符左边的数字代表优先级，参数优先绑定到优先级靠近0的运算符上。下面的代码自定义了一个运算符<code>xor</code>：</p>
+<pre><code><span class="type">Io</span>&gt; <span class="type">OperatorTable</span> addOperator(<span class="string">"xor"</span>, <span class="number">11</span>)
+==&gt; <span class="type">OperatorTable_0x100296098</span>
+<span class="type">Operators</span>
+  ...
+  <span class="number">10</span> &amp;&amp; <span class="keyword">and</span>
+  <span class="number">11</span> <span class="keyword">or</span> <span class="keyword">xor</span> ||
+  ...
+// 逻辑运算符相当于<span class="literal">true</span>或<span class="literal">false</span>的槽，用穷举法实现
+<span class="type">Io</span>&gt; <span class="literal">true</span> <span class="keyword">xor</span> := <span class="keyword">method</span>(<span class="type">bool</span>, <span class="keyword">if</span>(<span class="type">bool</span>, <span class="literal">false</span>, <span class="literal">true</span>))
+<span class="type">Io</span>&gt; <span class="literal">false</span> <span class="keyword">xor</span> := <span class="keyword">method</span>(<span class="type">bool</span>, <span class="keyword">if</span>(<span class="type">bool</span>, <span class="literal">true</span>, <span class="literal">false</span>))
+// 接下来就可以使用新定义的运算符了
+<span class="type">Io</span>&gt; <span class="literal">true</span> <span class="keyword">xor</span> <span class="literal">true</span>
+==&gt; <span class="literal">false</span>
+<span class="type">Io</span>&gt; <span class="literal">false</span> <span class="keyword">xor</span> <span class="literal">true</span>
+==&gt; <span class="literal">true</span>
+</code></pre><p>最后对Io语言特性做一点小结：</p>
 <ul>
-<li>transports(默认<code>[&#39;websocket&#39;, &#39;htmlfile&#39;, &#39;xhr-polling&#39;, &#39;jsonp-polling&#39;]</code>)：一个包含通信方法类型的数组。Socket.IO支持多种实现在线即时通信的方式，如websocket、polling等等，该配置能让你自行选择备用的通信方式。</li>
-<li>log level(默认<code>3</code>)：日志输出的最低级别，0为error，1为warn，2为info，3为debug，默认即输出所有类型的日志。</li>
-<li>heartbeat interval(默认<code>25</code>秒)：心跳包发送间隔，客户端需要在此时间段之内向服务器发送一个心跳包才能保持通信。</li>
+<li>所有事物都是<strong>对象</strong></li>
+<li>所有与对象交互的都是<strong>消息</strong></li>
+<li>你要做的不是实例化类，而是复制那些叫<strong>原型</strong>的对象</li>
+<li>对象会记住它的原型</li>
+<li>对象有<strong>槽</strong></li>
+<li>槽包含对象（包括方法)</li>
+<li>消息返回槽中的值，或调用槽中的方法</li>
+<li>若对象无法响应某消息，则把消息转发给自己的原型</li>
 </ul>
-<h1 id="2-_房间">2. 房间</h1>
-<p>房间是Socket.IO提供的一个非常好用的功能。房间相当于为指定的一些客户端提供了一个命名空间，所有在房间里的广播和通信都不会影响到房间以外的客户端。</p>
-<p>在入门篇中，我们知道<code>socket.join(&#39;room name&#39;)</code>可用于客户端进入房间，<code>socket.leave(&#39;room name&#39;)</code>用于离开房间。当客户端进入一个房间之后，可以通过以下两种方式在房间里广播消息：</p>
-<pre><code><span class="comment">//1. 向my room广播一个事件，提交者会被排除在外（即不会收到消息）</span>
-io<span class="built_in">.</span>sockets<span class="built_in">.</span><span class="keyword">on</span>(<span class="string">'connection'</span>, function (socket) {
-    <span class="comment">//注意：和下面对比，这里是从客户端的角度来提交事件</span>
-    socket<span class="built_in">.</span>broadcast<span class="built_in">.</span><span class="keyword">to</span>(<span class="string">'my room'</span>)<span class="built_in">.</span>emit(<span class="string">'event_name'</span>, <span class="built_in">data</span>);
-}
-
-<span class="comment">//2. 向another room广播一个事件，在此房间所有客户端都会收到消息</span>
-<span class="comment">//注意：和上面对比，这里是从服务器的角度来提交事件</span>
-io<span class="built_in">.</span>sockets<span class="built_in">.</span><span class="keyword">in</span>(<span class="string">'another room'</span>)<span class="built_in">.</span>emit(<span class="string">'event_name'</span>, <span class="built_in">data</span>);
-
-<span class="comment">//向所有客户端广播</span>
-io<span class="built_in">.</span>sockets<span class="built_in">.</span>emit(<span class="string">'event_name'</span>, <span class="built_in">data</span>);
-</code></pre><p>除了向房间广播消息之外，还可以通过以下API来获取房间的信息。</p>
-<pre><code>//获取所有房间的信息
-//key为房间名，value为房间名对应的<span class="keyword">socket</span> ID数组
-io.sockets.manager.rooms
-
-//获取particular room中的客户端，返回所有在此房间的<span class="keyword">socket</span>实例
-io.sockets.clients(<span class="string">'particular room'</span>)
-
-//通过<span class="keyword">socket</span>.id来获取此<span class="keyword">socket</span>进入的房间信息
-io.sockets.manager.roomClients[<span class="keyword">socket</span>.id]
-</code></pre><h1 id="3-_事件">3. 事件</h1>
-<p>Socket.IO内置了一些默认事件，我们在设计事件的时候应该避开默认的事件名称，并灵活运用这些默认事件。</p>
-<p>服务器端事件：</p>
-<ul>
-<li><code>io.sockets.on(&#39;connection&#39;, function(socket) {})</code>：socket连接成功之后触发，用于初始化</li>
-<li><code>socket.on(&#39;message&#39;, function(message, callback) {})</code>：客户端通过<code>socket.send</code>来传送消息时触发此事件，message为传输的消息，callback是收到消息后要执行的回调</li>
-<li><code>socket.on(&#39;anything&#39;, function(data) {})</code>：收到任何事件时触发</li>
-<li><code>socket.on(&#39;disconnect&#39;, function() {})</code>：socket失去连接时触发（包括关闭浏览器，主动断开，掉线等任何断开连接的情况）</li>
-</ul>
-<p>客户端事件：</p>
-<ul>
-<li><code>connect</code>：连接成功</li>
-<li><code>connecting</code>：正在连接</li>
-<li><code>disconnect</code>：断开连接</li>
-<li><code>connect_failed</code>：连接失败</li>
-<li><code>error</code>：错误发生，并且无法被其他事件类型所处理</li>
-<li><code>message</code>：同服务器端message事件</li>
-<li><code>anything</code>：同服务器端anything事件</li>
-<li><code>reconnect_failed</code>：重连失败</li>
-<li><code>reconnect</code>：成功重连</li>
-<li><code>reconnecting</code>：正在重连</li>
-</ul>
-<p>在这里要提下客户端socket发起连接时的顺序。当第一次连接时，事件触发顺序为：connecting-&gt;connect；当失去连接时，事件触发顺序为：disconnect-&gt;reconnecting（可能进行多次）-&gt;connecting-&gt;reconnect-&gt;connect。</p>
-<h1 id="4-_授权">4. 授权</h1>
-<ul>
-<li><p>向所有客户端广播：<code>socket.broadcast.emit(&#39;broadcast message&#39;);</code></p>
-</li>
-<li><p>进入一个房间（<strong>非常好用！相当于一个命名空间，可以对一个特定的房间广播而不影响在其他房间或不在房间的客户端</strong>）：<code>socket.join(&#39;your room name&#39;);</code></p>
-</li>
-<li><p>向一个房间广播消息（发送者<em>收不到</em>消息）：<code>socket.broadcast.to(&#39;your room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
-</li>
-<li><p>向一个房间广播消息（<em>包括发送者</em>都能收到消息）（<strong>这个API属于io.sockets</strong>）：<code>io.sockets.in(&#39;another room name&#39;).emit(&#39;broadcast room message&#39;);</code></p>
-</li>
-<li><p>强制使用WebSocket通信：（客户端）<code>socket.send(&#39;hi&#39;)</code>，（服务器）用<code>socket.on(&#39;message&#39;, function(data){})</code>来接收。</p>
-</li>
-</ul>
-<p>Socket.IO的进阶用法介绍基本就到这里。个人感觉在日常使用的时候这些基本API已经够用了，这也体现了Socket.IO极其简洁易用的设计哲学。本文只是抛砖引玉，当在实际运用中遇到解决不了的问题时，再去查看官方详细的WIKI会比较好。</p>
-<p>参考文献：<a href="https://github.com/learnboost/socket.io/wiki" target="_blank" rel="external">Socket.IO官方WIKI</a></p>
+<p>参考资料：《七周七语言》第3章Io</p>
 
     </div>
     
@@ -447,13 +469,13 @@ io.sockets.manager.roomClients[<span class="keyword">socket</span>.id]
     
     <div class="categories">
         所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/Node-js/">Node.js</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/Socket-IO/">Socket.IO</a><a class="btn btn-info" href="/tags/Node-js/">Node.js</a>
+        标签：<a class="btn btn-info" href="/tags/Io/">Io</a><a class="btn btn-info" href="/tags/编程范型/">编程范型</a>
     </div>
 
         
@@ -466,7 +488,7 @@ io.sockets.manager.roomClients[<span class="keyword">socket</span>.id]
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="Socket.IO进阶">
+    <div class="ds-thread" data-title="Io语言特性（上）">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
