@@ -146,7 +146,7 @@
             <li collapse-level="0">
                 <a href="/categories/Tech/" class="collapse-level-0">
                     <i class="icon-caret-right"></i>
-                    Tech(46)
+                    Tech(49)
                 </a>
             </li>
 
@@ -158,6 +158,19 @@
                 <a href="/categories/Tech/IDE/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
                     IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
                 </a>
             </li>
 
@@ -181,19 +194,6 @@
         
 
             <li collapse-level="1">
-                <a href="/categories/Tech/git/" class="collapse-level-1">
-                    <i class="icon-caret-right"></i>
-                    git(4)
-                </a>
-            </li>
-
-            
-
-            
-
-        
-
-            <li collapse-level="1">
                 <a href="/categories/Tech/other/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
                     other(1)
@@ -207,9 +207,22 @@
         
 
             <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
                 <a href="/categories/Tech/Script/" class="collapse-level-1">
                     <i class="icon-caret-right"></i>
-                    Script(10)
+                    Script(11)
                 </a>
             </li>
 
@@ -389,7 +402,7 @@
 </ol>
 <h1 id="5-_保持副本的新鲜">5. 保持副本的新鲜</h1>
 <p>不是所有的缓存副本都与服务器上的文档一致，因为服务器上的文档可能随时都会变化，缓存数据必须要与服务器保持一致。HTTP有一些简单的机制可以在<em>不要求服务器记住有哪些缓存拥有其文档副本的情况下</em>，保持已缓存数据与服务器之间充分一致。通过特殊的HTTP <code>Cache-Control:max-age</code>（HTTP/1.1首部，定义了文档的最大试用期）和<code>Exipires</code>（HTTP/1.0+首部，指定一个绝对的过期日期）首部，原始服务器向每个文档附加一个“过期日期”，说明了再多长时间内可以将这些内容视为新鲜的。</p>
-<p>过了过期日期之后只是意味着缓存要和服务器进行再验证。若再验证显示内容发生了变化，缓存会获取一份新的副本并存储在旧文档的位置上；若没哟u发生变化，缓存只需要获取新的过期日期并更新就可以了。</p>
+<p>过了过期日期之后只是意味着缓存要和服务器进行再验证。若再验证显示内容发生了变化，缓存会获取一份新的副本并存储在旧文档的位置上；若没有发生变化，缓存只需要获取新的过期日期并更新就可以了。</p>
 <p>正如第2节所说的，缓存可以向原始服务器发送一个“条件GET”来进行再验证。最常见的缓存再验证首部是<code>If-Modified-Since:Date</code>（IMS请求）。只有自某个日期之后资源发生了变化，GET才会成功执行回送新的文档。该首部可以与<code>Last-Modified</code>服务器响应首部配合工作。原始服务器会将最后的修改日期附加到所提供的文档上去。当缓存要再验证时，就会发送携带最后修改日期的IMS请求。</p>
 <p>有一些情况仅使用最后修改日期进行再验证是不够的，例如：有的文档可能会被周期性地重写，尽管内容没变，但修改日期会变；有的文档可能被修改了，但所做修改没必要让世界范围内的缓存都重新获取数据；有的服务器无法准确判定其页面的最后修改日期；有的服务器提供的文档会在秒级以内发生变化，以一秒为粒度的修改日期可能不够用。为了解决这些问题，HTTP允许用户对<strong>实体标签ETag</strong>进行比较。当发布者对文档进行修改时，可以修改文档的实体标签来说明这个新的版本，缓存可以用<code>If-None-Match</code>条件首部来GET文档的新副本。</p>
 <p>如果服务器回送一个ETag，客户端就必须使用实体标签验证器；如果服务器只回送一个Last-Modified值，客户端就可以使用If-Modified-Since验证。如果两者都提供，客户端就应该使用两种验证方案。当服务器同时收到两种方案的请求，只有当两个条件都满足时，才能返回304 Not Modified响应。</p>

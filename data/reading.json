@@ -14,6 +14,12 @@
     }],
 
     "readed-books-content": [{
+        "title": "RESTful Best Practices",
+        "cover": "http://raytaylorlin-blog.qiniudn.com/image/reading/RESTful_Best_Practices.png",
+        "review": "人生第一本完整读完的英文书，纪念一下。注意这本书是电子版的，没有纸质版，下载地址在下面的（假）豆瓣链接。我看的是PDF只有40页，快的话其实一天就能看完。这本书主要讲RESTful API的一些设计原则和最佳实践，最大的优势就是没有牵扯太多的理论知识，但覆盖了几乎所有RESTful API最需要用到的点。本书以非常简洁的语言描述了概念（英文也不是很难懂），然后就讲一些实际会用到的例子。非常喜欢这种直截了当的行文，强烈推荐想要快速入门RESTful API设计并上手开发的人阅读本书。",
+        "score": "8",
+        "doubanLink": "http://www.restapitutorial.com/resources.html"
+    }, {
         "title": "Backbone.js实战",
         "cover": "http://img3.douban.com/lpic/s27927734.jpg",
         "review": "由于项目重构需要而选择的Backbone入门书籍，从图书馆借来花了两天就把它看完了，因为这本书实在是写得太烂了！虽说国产的技术书多数都写得比较一般，但这种跟翔一样的书还是第一次见，还号称什么“Web开发专家撰写”。整本书都在解释Backbone每个API，每个API都附了简单到毫无实用价值的例子，还假惺惺地给每个console.log输出附上一张chrome的控制台截图。即使是model.get这种两三行代码就能解释得清楚的API，他也能扯上一两页纸。总之就是整本书就是在堆砌页数，看这本书，还不如看官网的API文档来得清晰。",
