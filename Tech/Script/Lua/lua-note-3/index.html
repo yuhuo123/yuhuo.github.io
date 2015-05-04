@@ -388,7 +388,7 @@
 格式：repeat &lt;循环体&gt;</span> until &lt;条件&gt;</span>
 </code></pre><p>在Lua中，一个声明在循环体内的局部变量的作用域包括循环的条件测试。</p>
 <h2 id="2-3-_数字型for语句">2.3. 数字型for语句</h2>
-<pre><code>格式：<span class="keyword">for</span> var = <span class="built_in">exp1</span>, <span class="built_in">exp2</span>, exp3 <span class="built_in">do</span> &lt;循环体&gt; <span class="function"><span class="keyword">end</span></span>
+<pre><code>格式：<span class="keyword">for</span> var=<span class="built_in">exp1</span>, <span class="built_in">exp2</span>, exp3 <span class="built_in">do</span> &lt;循环体&gt; <span class="function"><span class="keyword">end</span></span>
 </code></pre><p>上式表示var从exp1变化到exp2，以exp3作为步长递增var。其中exp3是可选的，若不指定则默认步长为1。如果将exp2设为math.huge，则为无限循环。</p>
 <p>有一些细节需要注意。for的3个表达式是在循环开始前一次性求值的，以后将不再求值。另外，控制变量会被自动地声明为for语句的局部变量，仅在循环体内可见。</p>
 <h2 id="2-4-_泛型for语句">2.4. 泛型for语句</h2>
@@ -396,6 +396,7 @@
 <p>泛型for的一个应用是创建逆向table，即新table的键值与原table键值反转。</p>
 <h2 id="2-5-_break和return语句">2.5. break和return语句</h2>
 <p>这两个语句都用于跳出当前的语句块，break结束一层循环，return结束一个函数的执行。如果刚定义了一个function然后直接要在一开始就跳出函数作为调试用，可以用一个显示的do块来包含return语句，即<code>function foo() do return end end</code>。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第4章</p>
 
     </div>
     

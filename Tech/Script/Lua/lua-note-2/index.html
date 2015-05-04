@@ -373,7 +373,7 @@
 <h1 id="1-_Lua类型">1. Lua类型</h1>
 <h2 id="1-1_基本类型">1.1 基本类型</h2>
 <p>Lua是一种动态类型语言，没有类型定义的语法。Lua一共有8种基础类型：nil（空）、boolean（布尔）、number（数字）、string（字符串）、userdata（自定义类型）、function（函数）、thread（线程）、table（表）。</p>
-<p><strong>函数type可根据一个值返回其类型名称（字符串），如<code>print(type(print))</code>，输出“function”；<code>print(type(type(X)))</code> ，输出“string”。</strong></p>
+<p><strong>函数type可根据一个值返回其类型名称（字符串），如<code>print(type(print))</code>，输出“function”；<code>print(type(type(X)))</code> ，输出“string”。（这里不管X有没有定义，type(X)总是返回字符串）</strong></p>
 <h2 id="1-2_各类型要注意的地方">1.2 各类型要注意的地方</h2>
 <ol>
 <li><p>关于boolean</p>
@@ -390,7 +390,7 @@
 </li>
 <li><p>关于table</p>
 <p> Table是一种具有特殊索引方式的数组，可以实用除nil外的其他类型的值作为索引，其增长与删减均通过自动内存管理来完成。<strong>Table是一个“对象”，程序仅持有一个对它们的引用，例如可以通过<code>a = {}</code>创建一个table并将它的引用存储到a，若再<code>b = a</code>，则b与a引用同一个table。</strong>若table的某个元素没有初始化，其值即为nil，可以通过赋nil来删除table的某个元素。</p>
-<p> 有一种等价写法：<code>p[“age”]</code>等价于<code>p.age</code>。<strong>注意，p.age和p[age]并不等价。</strong></p>
+<p> 有一种等价写法：<code>p[&quot;age&quot;]</code>等价于<code>p.age</code>。<strong>注意，p.age和p[age]并不等价。</strong></p>
 <p> “#”可用于返回一个数组的最后一个索引值（或其大小）。例如<code>print(a[#a])</code>打印列表a的最后一个值，<code>a[#a+1] = io.read()</code>读入一个值并插入到列表a末尾。<strong>注意，Lua将nil作为界定数组结尾的标志，当一个数组中间含有nil时，#会认为第一个nil就是结尾，因此应避免对含“空隙”的数组使用#。</strong></p>
 <p> <strong>在Lua中，一般默认table第一个索引为1而不是C语言中的0。</strong></p>
 </li>
@@ -399,7 +399,7 @@
 </ol>
 <h1 id="2-_表达式">2. 表达式</h1>
 <h2 id="2-1-_算术操作符">2.1. 算术操作符</h2>
-<p>常规的操作符有：+加、-减、<em>乘、/除、^指数、%取模。其中^可用于任意实数，如<code>x ^ (-1 / 3)</code>计算x的立方根倒数。<em>*%可以这样使用：<code>x % 1</code>结果是x的小数部分，<code>x - x % 0.01</code>是x精确到小数点后两位的结果。</em></em></p>
+<p>常规的操作符有：+加、-减、*乘、/除、^指数、%取模。其中^可用于任意实数，如<code>x ^ (-1 / 3)</code>计算x的立方根倒数。<strong>%可以这样使用：<code>x % 1</code>结果是x的小数部分，<code>x - x % 0.01</code>是x精确到小数点后两位的结果。</strong></p>
 <h2 id="2-2-_关系操作符">2.2. 关系操作符</h2>
 <p>常规关系操作符有：&lt;小于、&gt;大与、&lt;=小于等于、&gt;=大于等于、==相等、~=不等。==和~=可用于任意两个值，若两个值具有不同类型则不相等，有相同类型则作正常比较（nil只与其自身相等）。对于对象则比较它们的引用。</p>
 <h2 id="2-3-_逻辑操作符">2.3. 逻辑操作符</h2>
@@ -409,8 +409,9 @@
 <p>可用“..”（两个点）来连接两个字符串，若其中任一个为数字，Lua会自动转换，如<code>print(0 ..1)</code> —&gt; 01。连接字符串只会创建一个新字符串，不会对原操作数进行修改。</p>
 <p>Lua运算符优先级顺序如下图所示。<br><img src="http://raytaylorlin-blog.qiniudn.com/image/lua/Lua%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E9%A1%BA%E5%BA%8F.jpg" alt="Lua运算符优先级顺序"></p>
 <h2 id="2-5-_Table构造式">2.5. Table构造式</h2>
-<p>除了上述直接赋予{}创建空table以外，可以初始化其值，如<code>day = {&quot;S&quot;, &quot;M&quot;, &quot;T&quot;}</code>，或者<code>point = {x = 10, y = 20}</code>（即point.x=10，point.y=20）。以上两种初始化方式可以混用，还可以用分号代替逗号，来将列表部分和记录部分明显地分隔开，如<code>polyline = {color = &quot;blue&quot;; {x = 0, y = 0}, {x = 10, y = 10}, {x = 20, y = 30}}，则</code>print(polyline[1].x)` —&gt; 10。</p>
-<p>更加通用的初始化格式，可以在方括号间声明索引值，如<code>opnames={[&quot;+&quot;] = &quot;add&quot;, [&quot;-&quot;] = &quot;minus&quot;}</code>。若某些情况真的需要以0作为一个数组的起始索引，可以这样days={[0] = “S”, “M”, “T”}。<strong>但是不推荐在Lua中以0作为索引起始值，因为大多数内建函数都假设数组起始于索引1。</strong></p>
+<p>除了上述直接赋予{}创建空table以外，可以初始化其值，如<code>day = {&quot;S&quot;, &quot;M&quot;, &quot;T&quot;}</code>，或者<code>point = {x = 10, y = 20}</code>（即point.x=10，point.y=20）。以上两种初始化方式可以混用，还可以用分号代替逗号，来将列表部分和记录部分明显地分隔开，如<code>polyline = {color = &quot;blue&quot;; {x = 0, y = 0}, {x = 10, y = 10}, {x = 20, y = 30}}，则</code>print(polyline[2].x)` —&gt; 10。</p>
+<p>更加通用的初始化格式，可以在方括号间声明索引值，如<code>opnames={[&quot;+&quot;] = &quot;add&quot;, [&quot;-&quot;] = &quot;minus&quot;}</code>。若某些情况真的需要以0作为一个数组的起始索引，可以这样<code>days={[0] = &quot;S&quot;, &quot;M&quot;, &quot;T&quot;}</code>。<strong>但是不推荐在Lua中以0作为索引起始值，因为大多数内建函数都假设数组起始于索引1。</strong></p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第2-3章</p>
 
     </div>
     
