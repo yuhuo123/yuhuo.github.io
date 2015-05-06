@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>Linux | Ray Taylor Lin&#39;s world</title>
+    <title>Lua学习笔记（4）——函数 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="本文介绍了Lua的函数，包括多重返回值、变长参数、具名实参，以及比较高级的主题如闭包、递归的尾调用等等。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Lua学习笔记（4）——函数"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -346,63 +348,107 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（标签）Linux</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2015-02-19T11:38:05.000Z">2015-02-19</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/Linux/linux-user-and-file-manage/">Linux学习笔记——用户及文件权限管理</a></h1>
+        <h1>Lua学习笔记（4）——函数</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2015-05-06T05:05:11.000Z">2015-05-06</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_基础知识"><span class="toc-number">1.</span> <span class="toc-text">1. 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_多重返回值"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 多重返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_变长参数"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 变长参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_高级主题"><span class="toc-number">2.</span> <span class="toc-text">2. 高级主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_closure闭合函数"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 closure闭合函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_非全局的函数"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 非全局的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_正确的尾调用"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 正确的尾调用</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>本文介绍了Lua的函数，包括多重返回值、变长参数、具名实参，以及比较高级的主题如闭包、递归的尾调用等等。</p>
+<a id="more"></a>
+
+<h1 id="1-_基础知识">1. 基础知识</h1>
+<p>调用函数都需要写圆括号，即使没有参数，但有一种特殊例外：函数若只有一个参数且参数是字面字符串或table构造式，则圆括号可有可无，如<code>dofile &#39;a.lua&#39;</code>，<code>f{x=10, y=20}</code>。</p>
+<p>Lua为面向对象式的调用提供冒号操作符的特殊语法，如<code>o.foo(o, x)</code>等价于<code>o:foo(x)</code>。和Javascript类似，调用函数时提供的实参数量可以与形参数量不同，若实参多了则舍弃，不足则多余的形参初始化为nil。</p>
+<h2 id="1-1_多重返回值">1.1 多重返回值</h2>
+<p>Lua允许函数返回多个结果，函数返回如<code>return max, index</code>，接收如<code>s, e = string.find(&quot;hello Lua world&quot;, &quot;Lua&quot;)</code>。如果一个函数调用不是一系列表达式的最后一个元素，则只产生一个值：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span></span> <span class="keyword">return</span> <span class="string">"a"</span>, <span class="string">"b"</span> <span class="keyword">end</span>
+x, y = foo(), <span class="number">20</span>    <span class="comment">-- x="a", y=20（foo的第二个返回值被丢弃）</span>
+<span class="built_in">print</span>(foo() .. <span class="string">"x"</span>)    <span class="comment">-- 输出ax，这是因为当函数出现在一个表达式中时，Lua会将其返回值数量调整为1</span>
+</code></pre><p>另外，只有当一个函数调用作为最后一个元素时，返回值才不会被调整，在其他位置都会被调整为1个，如<code>t = {foo2()}</code>则t={“a”, “b”}，<code>t = {foo2(), 4}</code>则t={“a”, 4}。</p>
+<p>特殊函数unpack接受一个数组作为参数，并从下标1开始返回该数组的所有元素，如<code>a, b = unpack({10, 20, 30})</code>，则30被丢弃。unpack的一项重要用途体现在“泛型调用”机制中。</p>
+<h2 id="1-2_变长参数">1.2 变长参数</h2>
+<p>函数参数表中3个点（…）表示该函数可接受不同数量的实参。<strong>在Lua 5.0中，没有提供“…”表达式，如果要遍历变长参数，可以访问函数内隐含的局部变量<code>arg</code>。</strong>如果还有固定参数，则必须放在变长参数之前。</p>
+<h1 id="2-_高级主题">2. 高级主题</h1>
+<h2 id="2-1_closure闭合函数">2.1 closure闭合函数</h2>
+<p>和Javascript的闭包基本是一个东西，此处不再赘述。从技术上说，Lua中只有closure，而不存在“函数”，因为函数本身就是一种特殊的closure。closure的应用很广泛，如用于高阶函数的参数、为GUI工具包创建回调、重定义函数并在新实现中调用旧实现、创建“沙盒”安全运行环境等等。</p>
+<h2 id="2-2_非全局的函数">2.2 非全局的函数</h2>
+<p>大部分Lua库都采用了将函数存储在table中的机制（如io.read，math.sin），例如下面采用了三种方式来定义table的成员函数：</p>
+<pre><code>MathLib = {
+    plus = <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span></span> <span class="keyword">return</span> x + y <span class="keyword">end</span>
+}
+MathLib.minus = <span class="function"><span class="keyword">function</span><span class="params">(x, y)</span></span> <span class="keyword">return</span> x - y <span class="keyword">end</span>
+<span class="function"><span class="keyword">function</span> <span class="title">MathLib.multiply</span><span class="params">(x, y)</span></span> <span class="keyword">return</span> x * y <span class="keyword">end</span>
+</code></pre><p>局部函数的定义：</p>
+<pre><code><span class="keyword">local</span> f = <span class="function"><span class="keyword">function</span><span class="params">(&lt;参数&gt;)</span></span> &lt;函数体&gt; <span class="keyword">end</span>
+<span class="keyword">local</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(&lt;参数&gt;)</span></span> &lt;函数体&gt; <span class="keyword">end</span>  <span class="comment">-- Lua提供的语法糖</span>
+</code></pre><p>**注意如果定义递归函数，不能使用上面第一种定义方式（因为在函数体调用f时，f尚未定义完毕），使用第二种“语法糖”则没问题；或者使用“前向声明”，先<code>local f</code>再<code>f = function ...</code>这样定义。</p>
+<h2 id="2-3_正确的尾调用">2.3 正确的尾调用</h2>
+<p>当一个函数调用时另一个函数的最后一个动作时，该调用算是一条“尾调用”，例如<code>function f(x) return g(x) end</code>。由于在尾调用后程序不要保存任何关于该函数的栈信息，所以递归调用不会耗费栈空间，可以递归调用无数次。有一些看似是“尾调用”的代码，其实都违背了这条准则：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span></span> g(x) <span class="keyword">end</span>    <span class="comment">-- 调用g后，f没有立即返回，还需要丢弃g返回的临时结果</span>
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span></span> <span class="keyword">return</span> g(x) + <span class="number">1</span>    <span class="comment">-- 还要做一次加法</span>
+<span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(x)</span></span> <span class="keyword">return</span> x <span class="keyword">or</span> g(x)    <span class="comment">-- 必须调整为一个返回值</span>
+</code></pre><p>所以，只有形如<code>return &lt;func&gt;(&lt;args&gt;)</code>这样的调用形式才算是尾调用。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第5-6章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2015-02-11T01:38:05.000Z">2015-02-11</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/Linux/linux-base/">Linux学习笔记——基本概念及操作</a></h1>
-    
 
-            </div>
-            
-        </div>
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Lua学习笔记（4）——函数">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
     </div>
-    <div class="split-line"></div>
-</article>
+</section>
 
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 
         </div>
     </div>
