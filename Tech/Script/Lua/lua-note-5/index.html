@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>TCP连接管理 | Ray Taylor Lin&#39;s world</title>
+    <title>Lua学习笔记（5）——迭代器，错误处理 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Lua学习笔记（5）——迭代器，错误处理"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -346,40 +348,128 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（标签）TCP连接管理</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2014-04-24T07:48:05.000Z">2014-04-24</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/HTTP/HTTP-connection-management/">HTTP学习笔记：连接管理</a></h1>
+        <h1>Lua学习笔记（5）——迭代器，错误处理</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2015-05-07T05:05:11.000Z">2015-05-07</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_迭代器"><span class="toc-number">1.</span> <span class="toc-text">1. 迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_泛型for原理"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 泛型for原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_迭代器的状态"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 迭代器的状态</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_编译与错误机制"><span class="toc-number">2.</span> <span class="toc-text">2. 编译与错误机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_编译"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_错误处理与异常"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 错误处理与异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_追溯错误"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 追溯错误</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。</p>
+<a id="more"></a>
+
+<h1 id="1-_迭代器">1. 迭代器</h1>
+<h2 id="1-1_泛型for原理">1.1 泛型for原理</h2>
+<p>迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">values</span><span class="params">(t)</span></span>
+    <span class="keyword">local</span> i = <span class="number">0</span>
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span> i = i + <span class="number">1</span>; <span class="keyword">return</span> t[i] <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="comment">-- 循环调用</span>
+t = {<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>}
+iter = values(t)
+<span class="keyword">while</span> <span class="keyword">true</span> <span class="keyword">do</span>
+    <span class="keyword">local</span> el = iter()
+    <span class="keyword">if</span> el == <span class="keyword">nil</span> <span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">end</span>
+    <span class="built_in">print</span>(el)
+<span class="keyword">end</span>
+
+<span class="comment">-- 泛型for调用</span>
+<span class="keyword">for</span> el <span class="keyword">in</span> values(t) <span class="keyword">do</span> <span class="built_in">print</span>(el) <span class="keyword">end</span>
+</code></pre><p>泛型for为一次迭代循环做了所有的簿记工作。它在内部保存了迭代器函数，并在每次迭代时调用迭代器，在迭代器返回nil时结束循环。实际上泛型for保存了3个值：迭代器函数f、恒定状态s、控制变量a。<strong>for做的第一件事就是对in后面的表达式求值，并返回3个值供for保存；接着for会以s和a来调用f。在循环过程中控制变量的值依次为<code>a1 = f(s, a0)</code>，<code>a2 = f(s, a1)</code>，依次类推，直至ai为nil结束循环。</strong></p>
+<h2 id="1-2_迭代器的状态">1.2 迭代器的状态</h2>
+<p>无状态的迭代器本身不保存任何状态，for循环只会用恒定状态和控制变量来调用迭代器函数。这类迭代器典型例子就是ipairs，下面是ipairs的Lua实现：</p>
+<pre><code><span class="built_in">local</span> <span class="function"><span class="keyword">function</span> <span class="title">iter</span>(<span class="title">s</span>, <span class="title">i</span>)</span>
+    i = i + <span class="number">1</span>
+    <span class="built_in">local</span> v = s[i]
+    <span class="keyword">if</span> v <span class="keyword">then</span> <span class="constant">return</span> i, v <span class="function"><span class="keyword">end</span></span>
+<span class="function"><span class="keyword">end</span></span>
+<span class="function"><span class="keyword">function</span> <span class="title">ipairs</span>(<span class="title">s</span>)</span>
+    <span class="constant">return</span> iter, s, <span class="number">0</span>
+<span class="function"><span class="keyword">end</span></span>
+</code></pre><p>当for循环调用ipairs(list)时，会获得3个值，然后Lua调用iter(list, 0)得到list, list[1]，调用iter(list, 1)得到list, list[2]，知道得到一个nil为止。</p>
+<p>虽然泛型for只提供一个恒定状态和一个控制变量用于状态的保存，但有时需要保存许多其他状态。这时可以用closure来保存，或者将所需的状态打包为一个table，并保存在恒定状态中。</p>
+<h1 id="2-_编译与错误机制">2. 编译与错误机制</h1>
+<h2 id="2-1_编译">2.1 编译</h2>
+<p>尽管Lua是一种解释型语言，但它确实允许在运行代码前，先将代码预编译为一种中间形式。其实，<strong>区别解释型语言的主要特征并不在于是否能编译它们，而在于编译器是否是语言运行时库的一部分，即是否有能力执行动态生成的代码。</strong>可以说正因为存在了诸如<code>dofile</code>这样的函数，才可以将Lua称为解释型语言。</p>
+<p><code>dofile</code>用于运行Lua代码块，而<code>loadfile</code>会从一个文件加载Lua代码块，然后编译代码，把编译结果作为一个函数返回。要注意<code>loadfile</code>不会引发错误，它只是返回错误值但不处理错误。<code>dofile</code>的基本原理如下：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">dofile</span><span class="params">(filename)</span></span>
+    <span class="keyword">local</span> f = <span class="built_in">assert</span>(<span class="built_in">loadfile</span>(filename))
+    <span class="keyword">return</span> f()
+<span class="keyword">end</span>
+</code></pre><p><code>loadstring</code>是从一个字符串读取代码，并返回一个对应的函数。注意，<code>loadstring</code>总是在全局环境中编译它的字符串。此外，这些函数不会带来任何副作用，它们只是将程序块编译为一种中间表示，然后将结果作为一个匿名函数返回。此时如果不将此匿名函数赋值给一个变量并调用，是不会产生任何结果的。</p>
+<h2 id="2-2_错误处理与异常">2.2 错误处理与异常</h2>
+<p>Lua遇到任何非预期条件都会引发一个错误，我们也可以显式地调用<code>error</code>函数并传入一个错误消息得参数来引发一个错误。像<code>if not &lt;condition&gt; then error(&lt;anything&gt;) end</code>这样的组合是非常通用的代码，所以可以用<code>assert(&lt;condition&gt;, &lt;msg&gt;)</code>来完成此类工作。另外一种处理的方式是返回错误代码（如nil）。</p>
+<p><code>pcall</code>函数以一种“保护模式”来调用它的第一个参数，并捕获所有执行中引发的错误。如果没有发生错误，pcall会返回true及函数调用的返回值，否则返回false及错误消息。因此可以用error来抛出一个异常或使用pcall来捕获异常，错误消息则可以标识出错误的类型或内容。</p>
+<pre><code><span class="keyword">if</span> <span class="built_in">pcall</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>
+    &lt;受保护的代码&gt;
+<span class="keyword">end</span>) <span class="keyword">then</span>
+    &lt;常规代码&gt;
+<span class="keyword">else</span>
+    &lt;错误处理代码&gt;
+<span class="keyword">end</span>
+</code></pre><h2 id="2-3_追溯错误">2.3 追溯错误</h2>
+<p>当<code>pcall</code>返回其错误消息时，它已经销毁了调用栈的部分内容（pcall到错误发生点之间的这部分调用）。而<code>xpcall</code>函数除了接受一个需要被调用的函数外，还接受一个<em>错误处理函数</em>。当发生错误时，Lua会在调用栈展开前调用这个错误处理函数，里面可以用debug库来获取错误的额外信息。如<code>debug.debug</code>会提供一个Lua提示符，让用户检查错误原因，<code>debug.traceback</code>获取当前执行的调用栈。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第7-8章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Lua学习笔记（5）——迭代器，错误处理">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
 
         </div>
     </div>
