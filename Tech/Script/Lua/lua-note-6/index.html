@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>HTTP学习笔记：Web服务器 | Ray Taylor Lin&#39;s world</title>
+    <title>Lua学习笔记（6）——环境与模块 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="Web服务器每天会分发出数十亿的Web页面，它是万维网的骨干。Web服务器实现了HTTP和相关的TCP连接处理，管理着Web资源，并负责提供管理功能。本文将一步一步解释Web服务器时如何处理HTTP事务的。">
+    <meta name="description" content="模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="HTTP学习笔记：Web服务器"/>
+    <meta property="og:title" content="Lua学习笔记（6）——环境与模块"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -352,62 +352,71 @@
     <div class="article-title article-title-big">
         
     
-        <h1>HTTP学习笔记：Web服务器</h1>
+        <h1>Lua学习笔记（6）——环境与模块</h1>
     
 
     </div>
 
     <div class="date-row ">
-        <time datetime="2014-05-04T07:48:05.000Z">2014-05-04</time>
+        <time datetime="2015-05-10T02:39:41.000Z">2015-05-10</time>
     </div>
 
     <div class="toc-wrap">
         <div class="toc-title">目录</div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_Web服务器基本任务"><span class="toc-number">1.</span> <span class="toc-text">1. Web服务器基本任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_接受客户端连接"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 接受客户端连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_接收请求报文"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 接收请求报文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_处理请求"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 处理请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_对资源的映射及访问"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 对资源的映射及访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1_docroot"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 docroot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2_目录列表"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 目录列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3_动态内容资源的映射"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.3 动态内容资源的映射</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5_构建响应"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 构建响应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6_发送响应和记录日志"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 发送响应和记录日志</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_环境"><span class="toc-number">1.</span> <span class="toc-text">1. 环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_模块与包"><span class="toc-number">2.</span> <span class="toc-text">2. 模块与包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_调用模块"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 调用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_使用环境"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_module函数"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 module函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4_子模块与包"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 子模块与包</span></a></li></ol></li></ol>
     </div>
 
     <div class="entry">
-        <p>Web服务器每天会分发出数十亿的Web页面，它是万维网的骨干。Web服务器实现了HTTP和相关的TCP连接处理，管理着Web资源，并负责提供管理功能。本文将一步一步解释Web服务器时如何处理HTTP事务的。</p>
+        <p>模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。</p>
 <a id="more"></a>
 
-<p>Web服务器有各种不同的形式：安装并运行通用的Web服务器软件（如开源的使用最多的Apache），购买预先打包好的软硬件解决方案即Web服务器设备，嵌入式服务器。</p>
-<p>通常来说，实际的Web服务器会进行7步（如下图所示）：建立连接，接收请求，处理请求，访问资源，构建响应，发送响应，记录事务处理过程。</p>
-<p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4.jpg" alt="Web服务器请求的基本步骤"></p>
-<h1 id="1-_Web服务器基本任务">1. Web服务器基本任务</h1>
-<h2 id="1-1_接受客户端连接">1.1 接受客户端连接</h2>
-<p>客户端请求一条到Web服务器的TCP连接时，服务器就会建立连接，判断另一端是哪个客户端，将IP地址解析出来。一旦新连接建立起来并被接受，服务器就会将新连接添加到其现存的连接列表中，做好监视连接上数据传输的准备。服务器可以随意拒绝或理解关闭任意一条连接。</p>
-<p>可以用“反向DNS”对大部分服务器进行配置，以便将客户端IP地址转换成主机名。Web服务器可以将主机名用于详细的访问控制和日志记录。但要注意的是，书籍名查找可能会花费很长时间，很多大容量的服务器要么会禁止主机名解析，要么只允许对特定内容进行解析。另外，服务器还可以通过<em>ident协议</em>找到发起HTTP连接的用户名。</p>
-<h2 id="1-2_接收请求报文">1.2 接收请求报文</h2>
-<p>连接上有数据到达时，服务器会从网络连接中按照以下步骤读取数据（有些Web服务器会用特定的数据结构来存储请求报文）：</p>
-<ul>
-<li>解析请求行，查找请求方法、URI和版本号，各项由空格分隔，并以CRLF作为行的结束</li>
-<li>读取以CRLF结尾的报文首部</li>
-<li>如果有的话，检测以CRLF结尾的标识首部结束的空行</li>
-<li>如果有的话，读取请求主体（长度由Content-Length首部指定）</li>
-</ul>
-<p>Web服务器会不停地观察有无新的Web请求。根据输入/输出结构，Web服务器分为以下几类：</p>
-<ul>
-<li>单线程：一次只处理一个请求，直到其完成为止。在处理过程中，所有其他连接都会被忽略，这会造成严重的性能问题，只适用于低负荷的服务器。</li>
-<li>多进程及多线程：可以根据需要为每条连接分配一个线程或进程来处理请求，但当服务器同时要处理成百上千的连接时，可能会消耗太多内存和系统资源，因此应该对线程/进程的最大数量做限制。</li>
-<li>复用I/O：同时监视所有连接上的活动，当连接状态发生变化时（如有数据可用，或出现错误等等），就对那条连接进行少量的处理，处理接受后将连接返回到开放连接列表中，等待下一次状态变化。</li>
-<li>复用的多线程Web服务器：总和以上<em>多线程</em>和<em>复用I/O</em>的优点</li>
-</ul>
-<h2 id="1-3_处理请求">1.3 处理请求</h2>
-<p>一旦Web服务器收到了请求，就可以根据方法、资源、首部和可选的主体部分来对请求进行处理。有些方法（如POST）要求请求报文必须带有实体主体部分的数据，有些方法则允许有也允许没有，少数方法（如GET）禁止包含实体的主体数据。</p>
-<h2 id="1-4_对资源的映射及访问">1.4 对资源的映射及访问</h2>
-<h3 id="1-4-1_docroot">1.4.1 docroot</h3>
-<p>作为资源服务器，Web服务器负责将请求报文中的URI映射为服务器上适当的内容，然后才发送预先创建好的内容。最简单的资源映射方式是以URI作为名字来访问服务器文件系统中的文件。通常Web服务器有一个特殊的文件夹专门存放Web内容，称为文档的根目录（document root）。<strong>Web服务器从请求报文中获取URI，并将其附加在docroot后面。</strong>服务器要注意不能让相对URL退到docroot之外，将文件系统的其余部分暴露出来。</p>
-<p>虚拟托管的Web服务器会在同一台服务器上提供多个站点，每个站点在服务器上都有自己独有的docroot。通过配置Apache的<code>VirtualHost</code>块，即使请求的URI完全相同，但docroot不同就可以区分开不同的内容了。</p>
-<h3 id="1-4-2_目录列表">1.4.2 目录列表</h3>
-<p>服务器可以接收对目录URL的请求，并解析成为一个目录而不是文件。可以对服务器进行配置，使其在客户端请求目录URL时采取不同的动作。默认情况下，服务器会去查找目录中名为index.html的文件来代表此目录，也可以通过配置Apache的<code>DirectoryIndex</code>来设置默认的要使用的文件名。</p>
-<p>如果没有提供默认的index文件，也没有禁止使用目录索引，很多Web服务器都会自动返回一个包含目录列表的HTML文件，可以方便浏览服务器上的文件。可以通过Apache的<code>Options-Indexes</code>禁止自动访问目录列表。</p>
-<h3 id="1-4-3_动态内容资源的映射">1.4.3 动态内容资源的映射</h3>
-<p>Web服务器还可以将URI映射为动态资源，即复杂的后端应用程序（区别于图片、HTML文件等静态资源，动态资源可能是网络摄像机网关、股票交易网关、电子商务网关等等其他应用程序）。</p>
-<h2 id="1-5_构建响应">1.5 构建响应</h2>
-<p>一旦Web服务器识别出了资源，就执行请求方法中描述的动作，并返回响应报文。如果事务处理产生了响应主体，服务器要确定主体的<a href="http://baike.baidu.com/view/160611.htm" target="_blank" rel="external">MIME</a>类型，将内容放在响应报文中回送过去。可以用文件的扩展名来说明MIME类型。服务器有时也会返回重定向响应而不是成功的报文。有关重定向的说明，可以参照<a href="http://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="external">HTTP状态码维基百科</a>中3xx系列状态码说明。</p>
-<h2 id="1-6_发送响应和记录日志">1.6 发送响应和记录日志</h2>
-<p>Web服务器通过连接发送数据时也会面临和接收数据一样的问题，它要记录连接的状态，还要特别注意对持久连接的处理（详情参见<a href="/Tech/web/HTTP/HTTP-connection-management/">HTTP学习笔记：连接管理 第2节</a>）。最后，当事务结束时，Web服务器会在日志文件中添加一个条目，来描述已执行的事务。更多细节可以参见《HTTP权威指南》第21章。</p>
-<p>参考文献：人民邮电出版社《HTTP权威指南》第5章</p>
+<h1 id="1-_环境">1. 环境</h1>
+<p>Lua将环境table保存在一个全局变量<code>_G</code>中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过<code>value = _G[varname]</code>来获得动态名字的全局变量。</p>
+<p>关于“环境”的一大问题是它是全局的，任何对它的修改都会影响程序的所有部分。Lua 5允许每个函数拥有一个子集的环境来查找全局变量，可以通过<code>setfenv</code>来改变一个函数的环境，第一个参数若是1则表示当前函数，2则表示调用当前函数的函数（依次类推），第二个参数是一个新的环境table。</p>
+<pre><code>a = <span class="number">1</span>
+<span class="built_in">setfenv</span>(<span class="number">1</span>, {})
+<span class="built_in">print</span>(a) <span class="comment">-- 会报错，print是一个nil。这是因为一旦改变环境，所有的全局访问都会使用新的table</span>
+</code></pre><p>为了避免上述问题，可以使用<code>setfenv(1, {_G = _G})</code>将原来的环境保存起来，然后用<code>_G.print</code>来引用。另一种组装新环境的方法是使用继承，下面的代码新环境从源环境中继承了print和a，任何赋值都发生在新的table中。</p>
+<pre><code>a = <span class="number">1</span>
+<span class="keyword">local</span> newgt = {}
+<span class="built_in">setmetatable</span>(newgt, {__index = <span class="built_in">_G</span>})
+<span class="built_in">setfenv</span>(<span class="number">1</span>, newgt)
+<span class="built_in">print</span>(a)
+</code></pre><h1 id="2-_模块与包">2. 模块与包</h1>
+<h2 id="2-1_调用模块">2.1 调用模块</h2>
+<p>要调用模块mod中的foo方法，可以用<code>require</code>函数来加载，如：</p>
+<pre><code><span class="built_in">require</span> <span class="string">"mod"</span>
+<span class="operator">mod</span>.foo()
+<span class="comment">-- 或者</span>
+<span class="built_in">local</span> m = <span class="built_in">require</span> <span class="string">"mod"</span>
+m.foo()
+</code></pre><p><code>require</code>函数的行为： （关于require使用的路径查找策略不赘述）<br>在<code>package.loaded</code>这个table中检查模块是否已加载<br>=&gt; 已加载，就返回相应的值（可见一个模块只会加载一次）<br>=&gt; 未加载，就试着在<code>package.preload</code>中查询传入的模块名<br>===&gt; 找到一个函数，就以该函数作为模块的加载器<br>===&gt; 找不到，则尝试从Lua文件或C程序库中加载模块<br>=====&gt; 找到Lua文件，通过<code>loadfile</code>来加载文件<br>=====&gt; 找到C程序库，通过<code>loadlib</code>来加载文件</p>
+<h2 id="2-2_使用环境">2.2 使用环境</h2>
+<p>下面的代码说明了如何用环境来创建一个复数（complex）模块：</p>
+<pre><code><span class="comment">-- 模块设置</span>
+<span class="keyword">local</span> modname = <span class="string">"complex"</span>
+<span class="keyword">local</span> M = {}
+<span class="built_in">_G</span>[modname] = M
+<span class="built_in">package</span>.loaded[modname] = M
+
+<span class="comment">-- 声明模块从外界所需的所有东西</span>
+<span class="keyword">local</span> <span class="built_in">_G</span> = <span class="built_in">_G</span>  <span class="comment">-- 保留旧环境的引用，使用时需要像_G.print这样用</span>
+<span class="keyword">local</span> <span class="built_in">io</span> = <span class="built_in">io</span>
+
+<span class="comment">-- 运行这句之后环境就变了</span>
+<span class="built_in">setfenv</span>(<span class="number">1</span>, M)
+
+<span class="function"><span class="keyword">function</span> <span class="title">new</span><span class="params">(r, i)</span></span> <span class="keyword">return</span> {r=r, i=i} <span class="keyword">end</span>
+
+<span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(c1, c2)</span></span>
+    <span class="keyword">return</span> new(c1.r + c2.r, c1.i + c2.i)
+<span class="keyword">end</span>
+</code></pre><p>这样声明函数add时，就成为了<code>complex.add</code>，调用同一模块的其他函数也不需要加前缀。</p>
+<h2 id="2-3_module函数">2.3 module函数</h2>
+<p>Lua 5.1提供了一个新函数<code>module</code>，囊括了上面一系列定义环境的功能。在开始编写一个模块时，可以直接用<code>module(&quot;modname&quot;, package.seeall)</code>来取代前面的设置代码。在一个模块文件开头有这句调用后，后续所有代码都不需要限定模块名和外部名字，同样也不需要返回模块table了。</p>
+<h2 id="2-4_子模块与包">2.4 子模块与包</h2>
+<p>Lua支持具有层级的模块名，用一个点来分隔名称中的层级。例如一个模块名为<code>mod.sub</code>，就是mod的一个子模块。一个包（package）就是一个完整的模块树，它是Lua中发型的单位。注意，当搜索一个子模块文件时，require会把点号当做目录分隔符来搜索，也就是说调用<code>require &quot;a.b&quot;</code>会尝试打开<code>./a/b.lua</code>，<code>/usr/local/lua/a/b.lua</code>，<code>/usr/local/lua/a/b/init.lua</code>。通过这种加载策略，可以将包的所有模块组织到一个目录中。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第14-15章</p>
 
     </div>
     
@@ -417,13 +426,13 @@
     
     <div class="categories">
         所属目录：
-    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/HTTP/">HTTP</a>
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
     </div>
 
             
     
     <div class="tags-row">
-        标签：<a class="btn btn-info" href="/tags/HTTP协议/">HTTP协议</a><a class="btn btn-info" href="/tags/Web服务器/">Web服务器</a>
+        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
     </div>
 
         
@@ -436,7 +445,7 @@
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="HTTP学习笔记：Web服务器">
+    <div class="ds-thread" data-title="Lua学习笔记（6）——环境与模块">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
