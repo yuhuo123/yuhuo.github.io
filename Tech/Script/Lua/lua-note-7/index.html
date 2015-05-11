@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>CSS | Ray Taylor Lin&#39;s world</title>
+    <title>Lua学习笔记（7）——面向对象编程 | Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
+    
+    <meta name="description" content="Lua中的table就是一种对象，因为它和对象一样可以拥有状态，也拥有一个独立于其值的标识（一个self），也和对象一样具有独立于创建者的生命周期。但是Lua中没有类的概念，只能用元表来实现原型，用原型来模拟类和继承等面向对象特性。本文将介绍Lua关于面向对象编程的内容。">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
+    <meta property="og:title" content="Lua学习笔记（7）——面向对象编程"/>
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -346,86 +348,120 @@
     </header>
     <div id="content-wrapper">
         <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
         
-
-<h2 class="page-sub-title archive-title">你当前所在的位置：（标签）CSS</h2>
-
-
     
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2014-08-02T13:21:34.000Z">2014-08-02</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/CSS/css-visualization-model/">CSS学习笔记：可视化格式模型</a></h1>
+        <h1>Lua学习笔记（7）——面向对象编程</h1>
     
 
-            </div>
-            
-        </div>
     </div>
-    <div class="split-line"></div>
+
+    <div class="date-row ">
+        <time datetime="2015-05-11T03:10:08.000Z">2015-05-11</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_对象与类"><span class="toc-number">1.</span> <span class="toc-text">1. 对象与类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_self与冒号语法"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 self与冒号语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_类的编写"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 类的编写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3_继承"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4_多重继承"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 多重继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5_私密性"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 私密性</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>Lua中的table就是一种对象，因为它和对象一样可以拥有状态，也拥有一个独立于其值的标识（一个self），也和对象一样具有独立于创建者的生命周期。但是Lua中没有类的概念，只能用元表来实现原型，用原型来模拟类和继承等面向对象特性。本文将介绍Lua关于面向对象编程的内容。</p>
+<a id="more"></a>
+
+<h1 id="1-_对象与类">1. 对象与类</h1>
+<h2 id="1-1_self与冒号语法">1.1 self与冒号语法</h2>
+<p>使用self参数是所有面向对象语言的一个核心，Lua只需使用冒号语法，就能隐藏该参数，例如下面两段代码是等价的。</p>
+<pre><code>Account = <span class="comment">{balance=0}</span>
+funtion Account.withdraw(<span class="keyword">self</span>, v)
+    <span class="keyword">self</span>.balance = <span class="keyword">self</span>.balance - v
+<span class="keyword">end</span>
+a1 = Account; Account = <span class="keyword">nil</span>
+a1.withdraw(a1, <span class="number">100.0</span>)  -- 注意这是可以运行的
+
+<span class="function"><span class="keyword">function</span> <span class="title">Account</span>:</span>withdraw(v)
+    <span class="keyword">self</span>.balance = <span class="keyword">self</span>.balance - v
+<span class="keyword">end</span>
+a2 = Account
+a2:withdraw(<span class="number">100.0</span>)  -- 省略了a2参数传入
+</code></pre><h2 id="1-2_类的编写">1.2 类的编写</h2>
+<p>在一些基于原型的语言中，对象是没有类型的，但每个对象都有一个原型。原型是一种常规的对象，当其他对象遇到一个未知操作时，原型会先查找它。在这种语言中要表示一个类，只需创建一个专用做其他对象的原型。Lua中实现原型很简单，只需用元表的<code>__index</code>来实现继承。</p>
+<p>（当访问一个table中不存在的字段key时，一般得到结果为nil。事实上，访问会促使解释器去查找一个叫<code>__index</code>的元方法，如果没有这个元方法，则访问结果如前述的nil，否则由这个元方法来提供结果。元方法除了是一个函数，还可以是一个table，如果是table则直接返回该table中key对应的内容。）</p>
+<p>如果有两个对象a和b，要让b作为a的一个原型，只需<code>setmetatable(a, {__index=b})</code>。a就会在b中查找它没有的操作。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Account</span>:</span><span class="keyword">new</span>(o)
+    o = o <span class="literal">or</span> {}  -- 如果用户没有提供table，则创建一个
+    setmetatable(o, <span class="variable">self</span>)
+    <span class="variable">self</span>.__index = <span class="variable">self</span>
+    <span class="keyword">return</span> o
+<span class="keyword">end</span>
+</code></pre><p>当调用<code>a = Account:new{balance = 0}</code>时，a会将Account（函数中的self）作为其元表。当调用<code>a:withdraw(100.0)</code>时，Lua无法在table a中找到条目withdraw，则进一步搜索元表的<code>__index</code>条目，即<code>getmetatable(a).__index.withdraw(a, 100.0)</code>。由于new方法中做了<code>self.__index = self</code>，所以上面的表达式又等价于<code>Account.withdraw(a, 100.0)</code>，这样就传入了a作为self参数，又调用了Account类的withdraw函数。<strong>这种创建对象的方式不仅可以作用于方法，还可以作用于所有其他新对象中没有的字段。</strong></p>
+<h2 id="1-3_继承">1.3 继承</h2>
+<p>现在要从Account类派生出一个子类SpecialAccount（以使客户能够透支），只需：</p>
+<pre><code><span class="variable">SpecialAccount =</span> Account:new()
+<span class="variable">s =</span> SpecialAccount:new{<span class="variable">limit=</span><span class="number">1000.00</span>}
+</code></pre><p>SpecialAccount从Account继承了new，当执行<code>SpecialAccount:new</code>时，其self参数为SpecialAccount，因此s的元表为SpecialAccount。当调用s不存在的字段时，会向上查找，也可以编写新的重名方法覆盖父类方法。</p>
+<h2 id="1-4_多重继承">1.4 多重继承</h2>
+<p>上面介绍中为<code>__index</code>元方法赋值一个table实现了单继承，如果要实现多重继承，可以让<code>__index</code>字段成为一个函数，在该函数中搜索多个基类的方法字段。由于这种搜索具有一定复杂性，多重继承的性能不如单一继承。还有一种改进性能的简单做法是将继承的方法复制到子类中，但这种做法的缺点是当系统运行后就较难修改方法的定义，因为这些修改不会沿着继承体系向下传播。</p>
+<h2 id="1-5_私密性">1.5 私密性</h2>
+<p>Lua在设计对象时，没有提供私密性机制（private），但其各种元机制使得程序员可以模拟对象的访问控制。这种实现不常用，因此只做基本的了解：通过两个table来表示一个对象，一个用来保存对象的状态，一个用于对象的操作（即接口）。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">newAccount</span>(</span>initialBalance)
+    <span class="keyword">local</span> <span class="variable">self</span> = {balance = initialBalance}
+    <span class="keyword">local</span> withdraw = <span class="function"><span class="keyword">function</span>(</span>v)
+        <span class="variable">self</span>.balance = <span class="variable">self</span>.balance -v
+    <span class="keyword">end</span>
+    <span class="keyword">return</span> {
+        withdraw = withdraw
+    }
+<span class="keyword">end</span>
+</code></pre><p>通过闭包的方式，将具有私密性的字段（如balance）保存在self table中，并只公开了withdraw接口，这样就能实现私密性机制。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第16章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
 
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2014-07-31T14:01:34.000Z">2014-07-31</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/CSS/css-selector/">CSS学习笔记：选择器</a></h1>
-    
 
-            </div>
-            
-        </div>
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Lua学习笔记（7）——面向对象编程">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
     </div>
-    <div class="split-line"></div>
-</article>
+</section>
 
-    
-        <article>
-    <div class="row">
-        <div class="col-2 date-tags">
-            <div class="date-row">
-                <time datetime="2014-07-29T01:38:05.000Z">2014-07-29</time>
-            </div>
-            
-        </div>
-        <div class="col-10">
-            <div class="article-title simple-article-title">
-                
-    
-        <h1><a href="/Tech/web/CSS/css-basic-principles/">CSS学习笔记：基本原则</a></h1>
-    
-
-            </div>
-            
-        </div>
-    </div>
-    <div class="split-line"></div>
-</article>
-
-    
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 
         </div>
     </div>
