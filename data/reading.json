@@ -1,19 +1,19 @@
 {
     "reading-books-content": [{
-        "title": "jQuery技术内幕",
-        "cover": "http://img3.douban.com/lpic/s27215132.jpg",
+        "title": "3D数学基础：图形与游戏开发",
+        "cover": "http://img3.douban.com/lpic/s1986494.jpg",
         "review": "无",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/25823709/"
-    }, {
-        "title": "HTTP权威指南（第一部分和第二部分）",
-        "cover": "http://img3.douban.com/lpic/s9109250.jpg",
-        "review": "无",
-        "score": "???",
-        "doubanLink": "http://book.douban.com/subject/10746113/"
+        "doubanLink": "http://book.douban.com/subject/1400419/"
     }],
 
     "readed-books-content": [{
+        "title": "Unity 4.X从入门到精通",
+        "cover": "http://img3.douban.com/lpic/s27197994.jpg",
+        "review": "土豪出品全书728页全彩印刷，光是看着那些彩图就很爽。本书将Unity方方面面的功能都简单介绍了一遍，完全符合“入门”二字，但由于内容过于浅显，和“精通”是完全扯不上关系的。总体来说，这本书对于学习Unity时查漏补缺和快速参考还是很不错的，但要更上一层楼的话，依然远远不够。",
+        "score": "6.5",
+        "doubanLink": "http://book.douban.com/subject/25808326/"
+    }, {
         "title": "Cocos2D-X权威指南（第2版）",
         "cover": "http://img3.douban.com/lpic/s27812661.jpg",
         "review": "一句话，典型的国产垃圾技术书。作者写书一点也不用心，错别字一堆，代码排版杂乱就不说了，整本书就是粘贴各种api列表，代码几乎全是copy官方示例工程的代码，很多描述看上去都不经过大脑极具口语化。初学者学框架真没必要买这本书，如果没有一点cocos2d的基础，里面粘贴的代码会让初学者找不着北，完全就是作者堆叠字数赚稿费用的。",
