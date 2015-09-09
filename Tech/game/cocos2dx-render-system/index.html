@@ -1,0 +1,624 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Cocos2d-x 3.0绘制系统 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="在Cocos2d-x 3.0之前，Cocos2d-x每个元素的绘制逻辑都分布在每个元素内部的draw()方法里，并紧密地依赖UI树的遍历。Cocos2d-x 3.0对绘制部分进行了重构，新的架构将绘制部分从UI树的遍历中分离出来，其设计更优雅、更灵活、更易于扩展。本文将介绍Cocos2d-x 3.0新绘制系统的特点、架构及绘制细节。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Cocos2d-x 3.0绘制系统"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(55)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(2)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/other/DP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    DP(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(15)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/game/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    game(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Cocos2d-x 3.0绘制系统</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-09-08T06:55:08.000Z">2015-09-08</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_新绘制系统的特点"><span class="toc-number">1.</span> <span class="toc-text">1. 新绘制系统的特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_绘制系统概览"><span class="toc-number">2.</span> <span class="toc-text">2. 绘制系统概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_RenderCommand概况"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 RenderCommand概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_RenderQueue和GroupCommand概况"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 RenderQueue和GroupCommand概况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_RenderCommand的排序"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 RenderCommand的排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_绘制系统相关机制"><span class="toc-number">3.</span> <span class="toc-text">3. 绘制系统相关机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_QuadCommand"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 QuadCommand</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_元素可见性"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 元素可见性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3_绘制时机"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 绘制时机</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>在Cocos2d-x 3.0之前，Cocos2d-x每个元素的绘制逻辑都分布在每个元素内部的draw()方法里，并紧密地依赖UI树的遍历。Cocos2d-x 3.0对绘制部分进行了重构，新的架构将绘制部分从UI树的遍历中分离出来，其设计更优雅、更灵活、更易于扩展。本文将介绍Cocos2d-x 3.0新绘制系统的特点、架构及绘制细节。</p>
+<a id="more"></a>
+
+<h1 id="1-_新绘制系统的特点">1. 新绘制系统的特点</h1>
+<ul>
+<li>将绘制逻辑从主循环中分离。</li>
+<li>采用应用程序级别的视口剪裁。如果一个UI元素在场景中的坐标位移视口之外，那么它不会发送任何绘制命令到绘制栈上。</li>
+<li>采用自动批绘制技术。如果一个场景中多个不同类型的UI元素使用相同的纹理，可以只调用一次绘制命令。</li>
+<li>更简单地实现绘制的自定义。</li>
+</ul>
+<h1 id="2-_绘制系统概览">2. 绘制系统概览</h1>
+<p>Cocos2d-x 3.0新绘制系统分为三个阶段：生成绘制命令、对绘制命令进行排序、执行绘制命令。</p>
+<p>首先，通过UI树的遍历给每个元素生成一个RenderCommand（定义了怎样绘制一个UI元素），并将该命令添加到renderer的绘制栈中，如下图所示。接着引擎使用<code>globalZOrder</code>及元素的遍历顺序对绘制命令进行排序。最后执行绘制命令，对一般的RenderCommand，按顺序执行，对Sprite使用的QuadCommand，若两个命令相邻且使用相同的纹理、着色器等，则会组合成一个命令（即自动批处理）。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/game/遍历UI树并将绘制命令发送到绘制栈.png" alt="遍历UI树并将绘制命令发送到绘制栈"></p>
+<h2 id="2-1_RenderCommand概况">2.1 RenderCommand概况</h2>
+<p>每个RenderCommand实例包含一个<code>globalOrder</code>属性，用于决定绘制顺序，实际上，它们几乎都来自Node的<code>globalZOrder</code>属性</p>
+<p>5种RenderCommand类型：</p>
+<ul>
+<li>QUAD_COMMAND：根据1个纹理和4个顶点绘制一幅图片，所有绘制图片的命令都会调用到这里，处理这个类型命令的代码就是绘制贴图的OpenGL代码。</li>
+<li>GROUP_COMMAND：用于包装多个RenderCommand的集合，可以用来实现子元素剪裁（对应ClippingNode）和绘制子元素到纹理（对应RenderTexture）。</li>
+<li>BATCH_COMMAND：用于绘制一个TextureAtalas，如Label、TileMap。这种类型的命令不能参与自动批绘制。</li>
+<li>CUSTOM_COMMAND：自定义绘制命令</li>
+<li>UNKNOWN_COMMAND：未知绘制命令</li>
+</ul>
+<h2 id="2-2_RenderQueue和GroupCommand概况">2.2 RenderQueue和GroupCommand概况</h2>
+<p>每个UI元素的RenderCommand会被发送到一个叫RenderQueue的绘制命令栈上，Renderer持有多个RenderQueue（用<code>_renderGroups</code>来存储）。<strong>但GroupCommand比较特殊，它只指向一个RenderQueue。可以认为一个RenderQueue就是一个GroupCommand，而创建一个GroupCommand时会将其作为一个普通的RenderCommand发送到当前的RenderQueue上，并在Renderer上创建一个新的RenderQueue。</strong></p>
+<h2 id="2-3_RenderCommand的排序">2.3 RenderCommand的排序</h2>
+<p>由于每一帧都可能执行数百个RenderCommand，所以Cocos2d-x对此进行了优化，每个RenderQueue只对其包含的<strong>globalOrder非0</strong>的RenderCommand进行排序，而RenderCommand被添加到RenderQueue中的顺序使由Node的<code>localZOrder</code>决定的。所以，实际上只需要对少数特殊设置了globalOrder属性的Node进行排序即可。注意，每个RenderQueue实例中实际包含了3个RenderCommand数组，分别存放globalOrder小于0、等于0和大于0的RenderCommand，这样可以最大限度地减少排序的量。</p>
+<h1 id="3-_绘制系统相关机制">3. 绘制系统相关机制</h1>
+<h2 id="3-1_QuadCommand">3.1 QuadCommand</h2>
+<p>QuadCommand用于绘制一个或多个矩形区域，每个矩形是一个纹理的一部分。这是最基础的绘制命令，包含了TextureID（使用的纹理）、Shader Program、BlendFunc（混合模式）和Quads（绘制的矩形区域的定义，包括每个点的坐标、颜色和纹理坐标）4部分内容。</p>
+<p>Cocos2d-x使用<code>Renderer::render()</code>方法进行自动批绘制的过程是：</p>
+<ol>
+<li>第一次遇到一个QuadCommand时不会理你绘制，而是将其放到一个数组中缓存起来，然后继续迭代</li>
+<li>若遇到第二个RenderCommand仍然是QuadCommand，并且使用相同的Material（纹理、着色器、混合模式等等），则继续添加到缓存数组，若不是，则首先绘制之前的缓存数组的指令。这样就能实现自动合并绘制命令。</li>
+</ol>
+<p>如何判断是否是相同的Material？<code>QuadCommand::generateMaterialID()</code>方法检查是否包含自定义的着色器（包含自定义着色器就不能参与批绘制），如果不包含就使用与着色器名称、纹理名称及混合方程相关的参数计算一个Hash值，Hash值相同表明是相同的Material。</p>
+<h2 id="3-2_元素可见性">3.2 元素可见性</h2>
+<p>在OpenGL ES的图元装配阶段，渲染管线会对每个图元执行视锥体裁剪操作，位于视锥体之外的图元会被丢弃或裁剪。所谓的自动裁剪（Auto Culling）技术，是在遍历UI树时对Sprite进行位置计算，如果发现其位于屏幕之外，则不会发送绘制命令到Renderer中。Node类还有一个visible属性，用于控制一个元素是否显示，如果为false，则该元素在遍历UI树时会被忽略。</p>
+<p>如果一个应用程序有很大的应用场景，则不应该完全依赖自动裁剪。因为自动裁剪只是减少了绘制命令调用的次数，而这些元素所使用的纹理仍然占据着内存，所以还要注意对纹理内存的管理。</p>
+<h2 id="3-3_绘制时机">3.3 绘制时机</h2>
+<p>将绘制和UI树遍历分离带来一个问题：我们不知道元素什么时候被绘制了，我们只有等到下一帧才能确定所有绘制命令被执行了。这种机制对一些操作（如RenderTexture需要等到绘制完毕后操作纹理）显得很不方便，一般有两种方法来处理这种情况：</p>
+<ol>
+<li>注册一个一次性Schedule，在下一帧被执行时读取上一帧的绘制结果，并注销该Schedule。</li>
+<li>若要精确把握绘制时机，可以添加一个CustomCommand，将其func属性重写为不包含GL命令调用的自定义回调。这样只要把CustomCommand放在合适的绘制位置（通过globalOrder或localZOrder来调节）。像RenderTexture中的saveToFile方法就是采用这种方法来控制绘制时机。</li>
+</ol>
+<p>参考文献：电子工业出版社《我所理解的Cocos2d-x》第4章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/game/">game</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Cocos2d-x/">Cocos2d-x</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Cocos2d-x 3.0绘制系统">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
