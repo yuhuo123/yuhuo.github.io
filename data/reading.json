@@ -1,19 +1,25 @@
 {
     "reading-books-content": [{
+        "title": "OpenGL编程指南(第8版)",
+        "cover": "http://img3.douban.com/lpic/s27729014.jpg",
+        "review": "",
+        "score": "???",
+        "doubanLink": "http://book.douban.com/subject/26220248/"
+    }],
+
+    "readed-books-content": [{
         "title": "DirectX 9.0 3D游戏开发编程基础",
         "cover": "http://img4.douban.com/lpic/s5819437.jpg",
-        "review": "无",
-        "score": "???",
+        "review": "平淡无奇的书，基本都是描述D3D9各种API的用法，并附带极其简单粗糙的实例。纯描述API的书无疑是枯燥无味的，但如果是了解整个计算机图形学各方面的基础知识的概况，倒也还马马虎虎。",
+        "score": "5",
         "doubanLink": "http://book.douban.com/subject/2111771/"
     }, {
         "title": "3D数学基础：图形与游戏开发",
         "cover": "http://img3.douban.com/lpic/s1986494.jpg",
-        "review": "无",
-        "score": "???",
+        "review": "应该是进军3D领域必读的一本经典书了，涵盖了基本所有的3D数学基础，其中有很多概念对于初学者来说需要反复多看几遍才能理解。本书不仅有简单的数学公式推导，还有另一个好处就是结合了很多C++代码，理论和实践结合得不错。",
+        "score": "8.5",
         "doubanLink": "http://book.douban.com/subject/1400419/"
-    }],
-
-    "readed-books-content": [{
+    }, {
         "title": "Windows游戏编程大师技巧（第2版）",
         "cover": "http://img3.douban.com/lpic/s24414001.jpg",
         "review": "本书的核心，DirectX和DirectDraw等内容对于现代游戏编程都已过时（至少10年），但依然有其价值，对于快速了解Windows编程基础、GDI、早年DirectX编程均有很大帮助。本书通用性的内容，如2D图形算法、AI、物理建模等都仅仅涉及到概论知识而几乎没有任何细节的实现。总之，本书适合快速泛读，旨在了解游戏编程各方面的知识点，其不具备实用性。",
@@ -99,11 +105,5 @@
         "doubanLink": "http://book.douban.com/subject/11874748/"
     }],
 
-    "wanted-books-content": [{
-        "title": "OpenGL编程指南(第8版)",
-        "cover": "http://img3.douban.com/lpic/s27729014.jpg",
-        "review": "",
-        "score": "???",
-        "doubanLink": "http://book.douban.com/subject/26220248/"
-    }]
+    "wanted-books-content": []
 }
