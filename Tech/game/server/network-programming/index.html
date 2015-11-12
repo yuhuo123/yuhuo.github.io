@@ -1,0 +1,649 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>网络游戏编程基础知识 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="网络游戏编程基础知识"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(56)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(2)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/other/DP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    DP(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(15)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/game/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    game(2)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/game/server/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    server(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>网络游戏编程基础知识</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-11-11T02:27:40.000Z">2015-11-11</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_开发者需了解的网络编程基础"><span class="toc-number">1.</span> <span class="toc-text">1. 开发者需了解的网络编程基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_网络游戏对应的OSI模型"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 网络游戏对应的OSI模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_网络编程特性与游戏架构的关系"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 网络编程特性与游戏架构的关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_套接字API"><span class="toc-number">2.</span> <span class="toc-text">2. 套接字API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_网络游戏中的套接字API"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 网络游戏中的套接字API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_多核处理器与网络吞吐量"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 多核处理器与网络吞吐量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_RPC通信中间件"><span class="toc-number">3.</span> <span class="toc-text">3. RPC通信中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_通信库的必要性"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 通信库的必要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_网游中使用的RPC整体结构"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 网游中使用的RPC整体结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_确保开发效率和可移植性"><span class="toc-number">4.</span> <span class="toc-text">4. 确保开发效率和可移植性</span></a></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。</p>
+<a id="more"></a>
+
+<h1 id="1-_开发者需了解的网络编程基础">1. 开发者需了解的网络编程基础</h1>
+<h2 id="1-1_网络游戏对应的OSI模型">1.1 网络游戏对应的OSI模型</h2>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png" alt="网络游戏对应的OSI模型"></p>
+<p>一般来说，第4层以下的分层，交由操作系统来处理即可。第4层大多使用TCP，只有在有必要的情况下才使用UDP（例如<strong>发送那些与可靠性相比到达速度更为重要的数据</strong>（如FPS游戏），实现NAT遍历功能等等）。由于游戏类型和策划内容千差万别无法统一，第5层及以上的功能需要网游开发人员自己实现。</p>
+<h2 id="1-2_网络编程特性与游戏架构的关系">1.2 网络编程特性与游戏架构的关系</h2>
+<ol>
+<li>C/S架构游戏（C/S MMO、C/S MO）：高性能高功能服务器端编程+一般程度的客户端编程</li>
+<li>P2P架构游戏（P2P MO）：一般程度的服务器编程+高性能高功能呢的客户端编程（因为客户端要扮演服务器的角色）</li>
+</ol>
+<p>高性能高功能服务器的特性：</p>
+<ol>
+<li>小带宽：每秒几次至20几次，达到几百位通信量的持续连接</li>
+<li>极高的连接数：每台服务器需要维持数千至数万个连接</li>
+<li>低延迟：处理并返回结果的延迟，只能在几毫秒至20毫秒以内</li>
+<li>稳定：服务器端保持游戏状态、敌人等可以移动的物体实时地持续行动</li>
+</ol>
+<p>与服务器端相比，客户端的连接数较少，但是需要进行渲染等重要处理，还必须在延迟很低的情况下进行通信，并应对网络状况的多样性（如防火墙、各ISP的策略间差异等等）。</p>
+<h1 id="2-_套接字API">2. 套接字API</h1>
+<h2 id="2-1_网络游戏中的套接字API">2.1 网络游戏中的套接字API</h2>
+<p><a href="https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97" target="_blank" rel="external">BSD套接字API</a>（即Scoket API）是为了实现互联网连接而开发的API，是在所有操作系统上进行网络开发的首选。关于套接字API编程基础可见WIKI及网上各种资料。</p>
+<p>使用第4层的套接字API，可以在不具可靠性的IP协议上实现两种类型的通信：一种是<strong>面向连接的流式（Stream）通信</strong>，在简历了连接的两台主机间维持通信线路畅通，保证通信持续进行；另一种是<strong>无连接的数据报（DGram）通信</strong>，只进行一次数据报交换，不维持主机间的通信线路。</p>
+<p>套接字API中的<code>accept()</code>函数在“新的连接请求到来前一直等待着”，显然不能满足网络游戏服务器为多个客户端同时提供服务的要求。为了解决这个问题必须处理多个并发连接，方法大致有：</p>
+<ol>
+<li>每次连接时启动一个进程：<strong>不可用</strong>，因为网络游戏中需要多个用户连接实时共享同一个游戏状态</li>
+<li>使用线程并行进行同步处理：<strong>不可用</strong>，几千个连接启动几千个线程会使服务器性能大幅下降</li>
+<li>异步多重输入输出：使用<code>select</code>函数事先查询所带的消息（数据及连接请求）是否已经到达，即轮询。（使用<code>poll</code>及更高速的<code>epoll</code>函数也可实现同样的功能</li>
+</ol>
+<p>网络游戏编程中同时处理数千个可移动物体是很平常的，因此客户端和服务器端通常都使用select（或poll/epoll）在<strong>单线程</strong>中实现简单的<strong>事件驱动</strong>的<strong>非阻塞</strong>模式。通过这种模式，还可以充分发挥出<strong>多核</strong>服务器的性能。</p>
+<p>实现服务器端的最佳程序库是<a href="http://libevent.org/" target="_blank" rel="external">libevent</a>，这是一个跨平台的基于事件和回调的库，全世界应用广泛，不管是性能还是稳定性都比较成熟。</p>
+<h2 id="2-2_多核处理器与网络吞吐量">2.2 多核处理器与网络吞吐量</h2>
+<p>服务器通常用以太网连接至数据中心的网络中，通信速度为1Gbit。但是网游中经常会发送大量的小数据包，由于以太网在发送IP数据包时会向数据包中添加IP数据意外的信息一起发送，所以实际上应用程序能够使用的带宽要更小。</p>
+<p>根据经验，将理论值的1/10作为基准，1Gbit/s以太网每秒可以发送100MB的数据，能够发送的数据包最好以每秒10W-15W为上限。如果在有10个内核的机器使用1Gbit/s以太网，每个内核可以处理大约1W个数据包，若同时连接数为每个内核1000个连接，则每个连接必须设计为发送频率限制在10次/s以内；或者，安装多个网络适配器，连接4根LAN电缆来实现4倍的吞吐量。</p>
+<h1 id="3-_RPC通信中间件">3. RPC通信中间件</h1>
+<p>远程过程调用协议RPC（Remote Procedure Call），将与通信有关的一些复杂细节封装起来，与一般的函数调用形式相同，是确保与远程主机进行简单、安全通信的一种方法。有了RPC，就不需要直接使用复杂的套接字API进行网络编程了。</p>
+<h2 id="3-1_通信库的必要性">3.1 通信库的必要性</h2>
+<p>单纯使用套接字API之所以会很复杂，是因为会根据网络状况产生这些问题：不一定能成功收发期望数据，之后需要再次调用；可能会发生错误；发送缓存满了的话，write()函数会等待；发送了不完整的内容。</p>
+<p>套接字API中的send在发送成功前不会阻塞，每次编写错误处理造成的代码重复也是引起很多错误的根源。因此需要一个能独自负责这些工作的程序库，这个库应首先针对网络的IO要求装入缓存中，接着准确地执行，再将数据发送出去直至完成，若一段时间内无法发送则返回错误信息。总而言之，通信库会对诸如<code>send</code>这样的函数进行封装，并确定像<code>[数据类型代码][数据内容]</code>的数据格式，来收发数据。</p>
+<h2 id="3-2_网游中使用的RPC整体结构">3.2 网游中使用的RPC整体结构</h2>
+<p>RPC的基本原理是在本地模拟远程主机的函数调用，主要通过将数据流进行编码后发送出去，远程主机接收数据并解码，然后调用相应的函数。下图展示了网游中RPC的基本模式。注意到调用侧应用程序调用了<code>attackAtEnemy</code>函数，该函数定义在源文件“RPC存根代码”中，存根代码是用工具自动生成的，不需要手工编写。其中“123”固定值表示要调用<code>attackAtEnemy</code>这个函数，“99”表示要攻击id为99的敌人。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏中使用的RPC模式.jpg" alt="网络游戏中使用的RPC模式"></p>
+<p>RPC存根代码文件中调用方和被调用方的函数参数列表必须完全一致，如果有大量函数，应该采用RPC工具来自动生成。通常使用Ruby或Python等很容易进行DSL（领域特定语言）定义的语言来设计<a href="https://zh.wikipedia.org/wiki/%E6%8E%A5%E5%8F%A3%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80" target="_blank" rel="external">IDL（接口描述语言）</a>，然后执行脚本生成存根函数的源代码和头文件。</p>
+<h1 id="4-_确保开发效率和可移植性">4. 确保开发效率和可移植性</h1>
+<ul>
+<li>正式服务器采用Linux，但开发环境则是在Windows下用Visual Studio以高效地开发</li>
+<li>服务器端和客户端在碰撞检测等方面使用相同的游戏处理代码，确保可移植性</li>
+</ul>
+<p>为了降低操作系统的差异性，需要对以下这些基础API进行封装以保持可移植性：</p>
+<ul>
+<li>内存管理：malloc几乎在所有的操作系统中都会使用，所以很容易封装</li>
+<li>套接字API：Windows和UNIX系统（包括iOS）有所不同</li>
+<li>线程：封装pthread的基本API即可</li>
+<li>信号：远程管理服务器的情况下需要使用信号，但这是一种可移植性很低的方法，并不推荐</li>
+<li>事件与计时：使用libevent</li>
+</ul>
+<p>网络编程中，对所有套接字调用select函数进行轮询，对于需要处理的内容执行read和write操作，调用回调函数来逐个处理；在客户端游戏编程中，对所有可移动物体以帧为单位进行轮询，对于需要进行处理的物体调用回调函数来使其行动。因此，无论是服务器端还是客户端，大多使用<strong>单线程</strong>来完成开发。</p>
+<p>参考文献：人民邮电出版社《网络游戏核心技术与实战》第0章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/game/">game</a> -> <a href="/categories/Tech/game/server/">server</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/网络游戏编程/">网络游戏编程</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="网络游戏编程基础知识">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
