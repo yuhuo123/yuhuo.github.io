@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     
-    <title>关于 | Ray Taylor Lin&#39;s world</title>
+    <title>Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="林寿山">
     
-    <meta name="description" content="About Me
-大家好，我是林寿山，人称“寿寿”。欢迎来到我的个人技术博客。
-Ray Taylor（雷·泰勒）是我的英文名。高中的时候学了一个英文单词retailer（零售商）之后就开始有很多同学这样叫我，再加上之前很喜欢神投手雷阿伦（我的篮球天赋就是射手=。=），于是结合这两者，就诞生了Ray ">
+    <meta name="description" content="在实现方面，对游戏数据做出何种妥协完全依赖于游戏的具体内容。异步实现的指导方针是：将游戏世界的基本要素分为三大类，即自己的状态，对手的状态和环境状态。
+3.1.3.1 自己和对手的关系
+保持结果一致性的方法，可以采用两种典型的覆盖方式：A、采用造成伤害那一方的结果；B、采用收到攻击的那一方的结果。这">
     
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <meta property="og:title" content="关于"/>
+    
     <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
 
     <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
@@ -389,42 +389,56 @@ Ray Taylor（雷·泰勒）是我的英文名。高中的时候学了一个英�
     </header>
     <div id="content-wrapper">
         <div class="container-center">
-        
-
-<article class="about">
+        <article class="post">
     <div class="article-title article-title-big">
-        <h1>关于</h1>
+        
+    
+        <h1></h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-11-23T08:20:59.000Z">2015-11-23</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-1_自己和对手的关系"><span class="toc-number">1.</span> <span class="toc-text">3.1.3.1 自己和对手的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-3-2_自己和环境的关系"><span class="toc-number">2.</span> <span class="toc-text">3.1.3.2 自己和环境的关系</span></a></li></ol>
     </div>
 
     <div class="entry">
-        <div class="row">
-            <div class="col-4">
-                <div style="margin-top: 30px">
-                    <img src="http://ww1.sinaimg.cn/large/74990035jw1eajaw1or63j207c0bjt9b.jpg" class="img" alt="我的头像"/>
-                </div>
-            </div>
-            <div class="col-8">
-                <h1 id="About_Me">About Me</h1>
-<p>大家好，我是林寿山，人称“寿寿”。欢迎来到我的个人技术博客。</p>
-<p>Ray Taylor（雷·泰勒）是我的英文名。高中的时候学了一个英文单词retailer（零售商）之后就开始有很多同学这样叫我，再加上之前很喜欢神投手雷阿伦（我的篮球天赋就是射手=。=），于是结合这两者，就诞生了Ray Taylor这个名字。</p>
-<p>这个博客主要记录了我平时一些关于编程技术的心得体会（或读书笔记），当然偶尔也会记录下生活总结。本人热爱技术，也喜欢ACG，未来的目标是当一个技术宅。</p>
-<p>自我评价技术前后通吃各个领域（从UI到FE到RD到移动开发）都略懂，万金油型，苦于没有一样可以称得上精通。本科搞了三年的.NET后弃暗投明，当前（及以后）的主攻技术方向是Web前端。喜欢Javascript和Python。<del>~天生毫无来由地</del>不(hen)喜(tao)欢(yan)Android编程= =| 喜欢开发游戏，却苦于没有很多空闲时间，所以只能忙里偷闲搞一搞，目前还没有什么成熟作品。</p>
-<p>熟练度较高的武(gong)器(ju)有：Intellij IDEA、Chrome、（镶嵌了Emacs快捷键宝石的）Sublime Text、Visual Studio、Fireworks。</p>
-<p>//TODO: 有时间这里补一棵技术技能树</p>
-<h1 id="Tags">Tags</h1>
-<p>技术宅  IT男  养生  疼老婆的顾家好男人</p>
-<div style="font-size: 1.6em;"><h1>友情链接</h1><p><a href="http://jfantasy.github.io/" target="_blank" rel="external">JFantasy的个人博客</a></p><p><a href="http://suta.im" target="_blank" rel="external">苏塔是没有脚的设计师</a></p><p><a href="http://pyroc.at" target="_blank" rel="external">丁基友的博客Pyrocat</a></p><p><a href="http://sicun.org" target="_blank" rel="external">思存工作室官方网站</a></p></div>
+        <p>在实现方面，对游戏数据做出何种妥协完全依赖于游戏的具体内容。异步实现的指导方针是：将游戏世界的基本要素分为三大类，即自己的状态，对手的状态和环境状态。</p>
+<h4 id="3-1-3-1_自己和对手的关系">3.1.3.1 自己和对手的关系</h4>
+<p>保持结果一致性的方法，可以采用两种典型的覆盖方式：A、采用造成伤害那一方的结果；B、采用收到攻击的那一方的结果。这两种方式都不完美，都有玩家无法接受和不合理的地方。但在实现上为了能通过游戏体验增加玩家的总体满意度，如果是不利的结果（例如玩家受到伤害），则采用承受方的结果，如果是有利的结果（如受到治疗），则采用施与方的结果。</p>
+<p>通过上面这个方针来判断只有那些“自己与对方之间存在直接的得失关系，以及游戏响应非常重要”的内容。包含这种内容的游戏主要包括格斗、FPS、竞速游戏等。这类游戏需要更为具体的，雨游戏过程相关的信息，所以需要<strong>尽可能频繁地发送抽象度较低的表示原因的数据</strong>。</p>
+<h4 id="3-1-3-2_自己和环境的关系">3.1.3.2 自己和环境的关系</h4>
+<p>“环境”包括地形、掉落物品、共同敌人、天气情况等等。而“环境”要素又根据“是否需要互斥控制”分为两大类，需要互斥控制的要素指需要互相竞争的资源（如可拾取的装备），不需要互斥控制的要素指不会减少的资源。</p>
+<p>互斥控制的实现通常采用与同步方式类似的机制来实现异步方式。对于物品复制问题（如下时序图所示），通过给物品赋予唯一ID来判断物品是否被复制是一种初步的解决方法，但是从拾取到物品开始到进行复制检查为止的这一段时间却是一个问题。更常用的解决对策是，由专门的第三方来负责协调</p>
 
-            </div>
-        </div>
     </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/game/">game</a> -> <a href="/categories/Tech/game/server/">server</a>
+    </div>
+
+            
+        
+        <div class="clearfix"></div>
+    </footer>
 </article>
+
 
 
 <section id="comment">
     <h1 class="page-sub-title">留言</h1>
     <!-- Duoshuo Comment BEGIN -->
-    <div class="ds-thread" data-title="关于">
+    <div class="ds-thread" data-title="">
 
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"raytaylorlin"};
