@@ -1,13 +1,25 @@
 {
     "reading-books-content": [{
-        "title": "OpenGL编程指南(第8版)",
-        "cover": "http://img3.douban.com/lpic/s27729014.jpg",
+        "title": "网络游戏核心技术与实战",
+        "cover": "http://img4.douban.com/lpic/s27881888.jpg",
         "review": "",
         "score": "???",
-        "doubanLink": "http://book.douban.com/subject/26220248/"
+        "doubanLink": "http://book.douban.com/subject/25850090/"
+    }, {
+        "title": "计算机程序的构造和解释",
+        "cover": "http://img4.douban.com/lpic/s1113106.jpg",
+        "review": "",
+        "score": "???",
+        "doubanLink": "http://book.douban.com/subject/1148282/"
     }],
 
     "readed-books-content": [{
+        "title": "游戏设计的100个原理",
+        "cover": "http://img3.douban.com/lpic/s28041935.jpg",
+        "review": "这是一本游戏策划（国外称为游戏设计师）必读的书，但我觉得程序员了解一下游戏的设计原理并不是坏事。本书大多和心理学、博弈论、营销的相关学科知识相结合，基本上每一个原理就一页，写得也非常通俗易懂，可以短时间内理解所讲的原理。如果玩过的游戏很多，在阅读过程中就会经常发现曾经玩过的游戏的某些细节为什么要那样设计，怎样设计才能更好地打动玩家。如果反复把书中的原理和实际的游戏相联系起来，可以加深对原理的理解。",
+        "score": "7.5",
+        "doubanLink": "http://book.douban.com/subject/26318335/"
+    }, {
         "title": "DirectX 9.0 3D游戏开发编程基础",
         "cover": "http://img4.douban.com/lpic/s5819437.jpg",
         "review": "平淡无奇的书，基本都是描述D3D9各种API的用法，并附带极其简单粗糙的实例。纯描述API的书无疑是枯燥无味的，但如果是了解整个计算机图形学各方面的基础知识的概况，倒也还马马虎虎。",
