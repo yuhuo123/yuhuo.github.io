@@ -1,0 +1,689 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Node.js学习笔记：进程与集群 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。
+本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Node.js学习笔记：进程与集群"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(58)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/game/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    game(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/game/server/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    server(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/other/DP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    DP(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(15)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Node.js学习笔记：进程与集群</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2014-11-11T02:24:05.000Z">2014-11-11</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_服务器模型的变迁"><span class="toc-number">1.</span> <span class="toc-text">1. 服务器模型的变迁</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_多进程架构"><span class="toc-number">2.</span> <span class="toc-text">2. 多进程架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_创建子进程"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 创建子进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_进程间通信"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 进程间通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_句柄传递"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 句柄传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-_构建稳定的集群"><span class="toc-number">3.</span> <span class="toc-text">3. 构建稳定的集群</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_进程事件"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 进程事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_自动重启"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 自动重启</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3_状态共享"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 状态共享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4_Cluster模块"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 Cluster模块</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。</p>
+<p>本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。</p>
+<a id="more"></a>
+
+<h1 id="1-_服务器模型的变迁">1. 服务器模型的变迁</h1>
+<p>Web服务器的架构至今已经历了几次变迁：</p>
+<ol>
+<li>同步：最早的服务器的执行模型是同步的，其一次只为一个请求服务，其余请求都处于耽误的状态。这类架构如今已基本淘汰，只在一些无并发要求的应用中存在。</li>
+<li>复制进程：每有一个连接，就复制一个进程来提供服务。这个模型不具备伸缩性，一旦并发请求过高，内存会随着进程数的增长耗尽。</li>
+<li>多线程：类似多进程模式，对每一个连接都创建一个线程去服务。线程相对进程开销要小很多，而且线程间可以共享数据。但是多线程还是会随着并发数的增多而耗尽内存，缺乏强大的伸缩性。</li>
+<li>事件驱动：单线程的事件驱动避免了不必要的内存开销和上下文切换开销，不受资源上限的影响，伸缩性远比前两者高。</li>
+</ol>
+<h1 id="2-_多进程架构">2. 多进程架构</h1>
+<h2 id="2-1_创建子进程">2.1 创建子进程</h2>
+<p>面对单进程单线程对多核利用不足的问题，前人的经验是启动多个进程即可，理想状态下每个进程各自利用一个CPU。Node提供的child_process模块的<code>fork()</code>、<code>spawn()</code>、<code>exec()</code>、<code>execFile()</code>函数可以实现子进程的创建。以下代码会根据当前机器上的CPU数复制（fork）出对应的Node进程。</p>
+<pre><code><span class="comment">/* master.js */</span>
+<span class="keyword">var</span> fork = <span class="built_in">require</span>(<span class="string">'child_process'</span>).fork;
+<span class="keyword">var</span> cpus = <span class="built_in">require</span>(<span class="string">'os'</span>).cpus();
+<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; cpus.length; i++) {
+    fork(<span class="string">'./worker.js'</span>);    <span class="comment">// worker.js为启动HTTP服务器的代码</span>
+}
+</code></pre><p>这就是著名的Master-Worker（主从）模式，是典型的分布式架构中用于处理业务的模式，具备较好的可伸缩性和稳定性。主进程只负责调度或管理工作进程，工作进程只负责具体的业务处理。</p>
+<h2 id="2-2_进程间通信">2.2 进程间通信</h2>
+<p>主从进程通过<code>send()</code>和<code>message</code>事件实现进程间通信，如下面的代码所示：</p>
+<pre><code><span class="comment">/* master.js */</span>
+<span class="keyword">var</span> subProc = <span class="built_in">require</span>(<span class="string">'child_process'</span>).fork(<span class="string">'./worker.js'</span>);
+subProc.send({hehe: <span class="string">'123'</span>});
+subProc.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(msg)</span> </span>{
+    <span class="built_in">console</span>.log(<span class="string">'MASTER got message:'</span>, msg);
+});
+
+<span class="comment">/* worker.js */</span>
+process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(msg)</span> </span>{
+    <span class="built_in">console</span>.log(<span class="string">'WORKER got message:'</span>, msg);
+});
+process.send({foo: <span class="string">'bar'</span>});
+</code></pre><p>主从进程之间的通信实际上通过IPC（Inter-Process Communication）通道来传递信息的。Node中实现IPC通道的具体细节由libuv提供，在Windows下由命名管道实现，*nix系统采用Unix Domain Socket实现。<strong>父进程在创建子进程之前，会创建IPC通道并监听它，然后才真正创建子进程，并通过环境变量NODE_CHANNEL_FD告诉子进程这个IPC通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个IPC通道，从而完成父子进程之间的链接。</strong></p>
+<h2 id="2-3_句柄传递">2.3 句柄传递</h2>
+<p>通常如果让多个进程监听同一个端口，会抛出EADDRINUE异常。要解决多进程监听同个端口，其中一种做法是主进程监听主端口（如80），对外接收所有网络请求，再分别代理到不同端口的进程上。这样既能监听同个端口，甚至可以在代理进程上做适当的负载均衡，缺点是会浪费掉一倍数量的文件描述符。</p>
+<p>为了解决上述问题，Node在版本v0.5.9引入了进程间发送句柄的功能，<code>send()</code>方法的第一个参数是要发送的数据，第二个可选参数就是句柄。目前可以发送的句柄包括：net.Socket、net.Server、net.Native、dgram.Socket、dgram.Native。</p>
+<pre><code><span class="comment">/* master.js */</span>
+<span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);
+<span class="keyword">var</span> child1 = cp.fork(<span class="string">'./worker.js'</span>);
+<span class="keyword">var</span> child2 = cp.fork(<span class="string">'./worker.js'</span>);
+
+<span class="keyword">var</span> server = <span class="built_in">require</span>(<span class="string">'net'</span>).createServer();
+server.listen(<span class="number">1337</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    child1.send(<span class="string">'server'</span>, server);
+    child2.send(<span class="string">'server'</span>, server);
+    <span class="comment">// 关掉服务器是关键</span>
+    server.close();
+});
+
+<span class="comment">/* worker.js */</span>
+<span class="keyword">var</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).createServer(<span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{
+    res.writeHead(<span class="number">200</span>, {<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>});
+    res.end(<span class="string">'Handled by child, pid = '</span> + process.pid + <span class="string">'\n'</span>);
+});
+process.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span><span class="params">(msg, tcp)</span> </span>{
+    <span class="keyword">if</span> (msg === <span class="string">'server'</span>) {
+        tcp.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span><span class="params">(socket)</span> </span>{
+            server.emit(<span class="string">'connection'</span>, socket);
+        });
+    }
+});
+</code></pre><p>启动master.js，每次请求<code>http://localhost:1337</code>时，得到的都是可能不一样的pid进程的响应，所有请求都由子进程来处理了。要特别注意的是，上述代码看似把<code>server</code>对象发送到了子进程，实际上传递的只是文件描述符和消息，子进程根据message.type创建对应的服务器对象， 然后监听到文件描述符上。</p>
+<h1 id="3-_构建稳定的集群">3. 构建稳定的集群</h1>
+<p>前面搭建集群的方法充分利用了多核CPU资源，但每个工作进程依旧是在单线程上执行的，它的稳定性还不能得到完全的保障，需要建立一个健全的机制来保障Node应用的健壮性和稳定性。</p>
+<h2 id="3-1_进程事件">3.1 进程事件</h2>
+<p>子进程对象除了message事件外，还有一些表示异常或错误的事件：</p>
+<ul>
+<li>error：子进程无法被复制创建、无法被杀死、无法发送消息时触发</li>
+<li>exit：子进程退出时触发</li>
+<li>close：在子进程的标准输入输出流中止时触发</li>
+<li>disconnect：调用<code>disconnect()</code>方法时触发，调用该方法会关闭IPC通道</li>
+</ul>
+<p>除了上一章中提到的<code>send()</code>方法外，还能通过<code>kill()</code>方法给子进程发送消息，该方法并不是真正将子进程杀死，而是给子进程发送一个系统信号SIGTERM，子进程收到后才做出约定的行为，如退出进程。</p>
+<h2 id="3-2_自动重启">3.2 自动重启</h2>
+<p>可以通过监听子进程的exit事件来获知其退出的信息。当因为有bug导致工作进程退出，需要仔细处理这种异常，最好是工作进程在得知自己要退出时，向主进程发送一个“自杀信号”，然后才停止接收新的连接，当所有连接断开后才退出。</p>
+<pre><code>process.on(<span class="string">'uncaughtException'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err)</span> </span>{
+    logger.error(err);    <span class="comment">// 记录日志，因为出现未能捕获的异常是不合格的</span>
+    process.send({act: <span class="string">'suicide'</span>});
+    <span class="comment">// 停止接收新的连接</span>
+    woker.close(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+        <span class="comment">// 所有已有连接断开后，才退出进程</span>
+        process.<span class="keyword">exit</span>(<span class="number">1</span>);
+    });
+    <span class="comment">// 设置超时时间，专门应对长连接这种情况</span>
+    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+        process.<span class="keyword">exit</span>(<span class="number">1</span>);
+    }, <span class="number">5000</span>);
+});
+</code></pre><p>此时主进程要监听message事件，一旦接收到自杀信号，就要重新启动一个新的工作进程来顶替出异常即将退出的进程，这样就能使应用平滑地应对用户的请求。工作进程也不能无限地被重启，因为如果在启动的过程或启动后收到连接就发生了错误，会导致工作进程被频繁重启，所以应该有一种机制来限制单位时间内重启的次数，超过限制就触发giveup事件告知主进程放弃重启。通常来说，giveup是比uncaughtException更严重的异常，必须严格监控并避免。</p>
+<h2 id="3-3_状态共享">3.3 状态共享</h2>
+<p>Node进程不宜存放太多数据，因为这会加重垃圾回收的负担，同时Node也不允许多个进程间共享数据。在实际业务中，解决数据共享最直接简单的方案就是使用第三方存储，如数据库、磁盘文件、缓存服务（Redis等）。如果采用这种方式，需要一种机制在数据发生改变时通知到各个子进程。一种方式是子进程去向第三方定时轮询；另一种方式是额外增加一个通知进程来轮询第三方，当有数据变化时主动通知所有子进程。主动通知机制如果按进程间信号传递，在跨多台服务器时会失效，所以可以考虑采用TCP或UDP的方案。</p>
+<h2 id="3-4_Cluster模块">3.4 Cluster模块</h2>
+<p>前文从原理层面介绍了child_process模块的一些细节，事实上Node在v0.8版本新增的cluster模块提供了更简洁强大的API来解决上述问题，详情可以参见<a href="http://nodejs.org/api/cluster.html" target="_blank" rel="external">Node cluster API文档</a>，此处不再赘述。</p>
+<p>参考资料：《深入浅出NodeJS》第九章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/web/">web</a> -> <a href="/categories/Tech/web/Node-js/">Node.js</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Node-js/">Node.js</a><a class="btn btn-info" href="/tags/进程/">进程</a><a class="btn btn-info" href="/tags/集群/">集群</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Node.js学习笔记：进程与集群">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>

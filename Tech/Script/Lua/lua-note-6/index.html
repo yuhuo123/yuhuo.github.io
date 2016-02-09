@@ -1,0 +1,640 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Lua学习笔记（6）——环境与模块 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Lua学习笔记（6）——环境与模块"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(58)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/game/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    game(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/game/server/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    server(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/other/DP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    DP(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(15)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Lua学习笔记（6）——环境与模块</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-05-10T02:39:41.000Z">2015-05-10</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_环境"><span class="toc-number">1.</span> <span class="toc-text">1. 环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_模块与包"><span class="toc-number">2.</span> <span class="toc-text">2. 模块与包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_调用模块"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 调用模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_使用环境"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 使用环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_module函数"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 module函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4_子模块与包"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 子模块与包</span></a></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。</p>
+<a id="more"></a>
+
+<h1 id="1-_环境">1. 环境</h1>
+<p>Lua将环境table保存在一个全局变量<code>_G</code>中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过<code>value = _G[varname]</code>来获得动态名字的全局变量。</p>
+<p>关于“环境”的一大问题是它是全局的，任何对它的修改都会影响程序的所有部分。Lua 5允许每个函数拥有一个子集的环境来查找全局变量，可以通过<code>setfenv</code>来改变一个函数的环境，第一个参数若是1则表示当前函数，2则表示调用当前函数的函数（依次类推），第二个参数是一个新的环境table。</p>
+<pre><code>a = <span class="number">1</span>
+<span class="built_in">setfenv</span>(<span class="number">1</span>, {})
+<span class="built_in">print</span>(a) <span class="comment">-- 会报错，print是一个nil。这是因为一旦改变环境，所有的全局访问都会使用新的table</span>
+</code></pre><p>为了避免上述问题，可以使用<code>setfenv(1, {_G = _G})</code>将原来的环境保存起来，然后用<code>_G.print</code>来引用。另一种组装新环境的方法是使用继承，下面的代码新环境从源环境中继承了print和a，任何赋值都发生在新的table中。</p>
+<pre><code>a = <span class="number">1</span>
+<span class="keyword">local</span> newgt = {}
+<span class="built_in">setmetatable</span>(newgt, {__index = <span class="built_in">_G</span>})
+<span class="built_in">setfenv</span>(<span class="number">1</span>, newgt)
+<span class="built_in">print</span>(a)
+</code></pre><h1 id="2-_模块与包">2. 模块与包</h1>
+<h2 id="2-1_调用模块">2.1 调用模块</h2>
+<p>要调用模块mod中的foo方法，可以用<code>require</code>函数来加载，如：</p>
+<pre><code><span class="built_in">require</span> <span class="string">"mod"</span>
+<span class="operator">mod</span>.foo()
+<span class="comment">-- 或者</span>
+<span class="built_in">local</span> m = <span class="built_in">require</span> <span class="string">"mod"</span>
+m.foo()
+</code></pre><p><code>require</code>函数的行为： （关于require使用的路径查找策略不赘述）<br>在<code>package.loaded</code>这个table中检查模块是否已加载<br>=&gt; 已加载，就返回相应的值（可见一个模块只会加载一次）<br>=&gt; 未加载，就试着在<code>package.preload</code>中查询传入的模块名<br>===&gt; 找到一个函数，就以该函数作为模块的加载器<br>===&gt; 找不到，则尝试从Lua文件或C程序库中加载模块<br>=====&gt; 找到Lua文件，通过<code>loadfile</code>来加载文件<br>=====&gt; 找到C程序库，通过<code>loadlib</code>来加载文件</p>
+<h2 id="2-2_使用环境">2.2 使用环境</h2>
+<p>下面的代码说明了如何用环境来创建一个复数（complex）模块：</p>
+<pre><code><span class="comment">-- 模块设置</span>
+<span class="keyword">local</span> modname = <span class="string">"complex"</span>
+<span class="keyword">local</span> M = {}
+<span class="built_in">_G</span>[modname] = M
+<span class="built_in">package</span>.loaded[modname] = M
+
+<span class="comment">-- 声明模块从外界所需的所有东西</span>
+<span class="keyword">local</span> <span class="built_in">_G</span> = <span class="built_in">_G</span>  <span class="comment">-- 保留旧环境的引用，使用时需要像_G.print这样用</span>
+<span class="keyword">local</span> <span class="built_in">io</span> = <span class="built_in">io</span>
+
+<span class="comment">-- 运行这句之后环境就变了</span>
+<span class="built_in">setfenv</span>(<span class="number">1</span>, M)
+
+<span class="function"><span class="keyword">function</span> <span class="title">new</span><span class="params">(r, i)</span></span> <span class="keyword">return</span> {r=r, i=i} <span class="keyword">end</span>
+
+<span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">(c1, c2)</span></span>
+    <span class="keyword">return</span> new(c1.r + c2.r, c1.i + c2.i)
+<span class="keyword">end</span>
+</code></pre><p>这样声明函数add时，就成为了<code>complex.add</code>，调用同一模块的其他函数也不需要加前缀。</p>
+<h2 id="2-3_module函数">2.3 module函数</h2>
+<p>Lua 5.1提供了一个新函数<code>module</code>，囊括了上面一系列定义环境的功能。在开始编写一个模块时，可以直接用<code>module(&quot;modname&quot;, package.seeall)</code>来取代前面的设置代码。在一个模块文件开头有这句调用后，后续所有代码都不需要限定模块名和外部名字，同样也不需要返回模块table了。</p>
+<h2 id="2-4_子模块与包">2.4 子模块与包</h2>
+<p>Lua支持具有层级的模块名，用一个点来分隔名称中的层级。例如一个模块名为<code>mod.sub</code>，就是mod的一个子模块。一个包（package）就是一个完整的模块树，它是Lua中发型的单位。注意，当搜索一个子模块文件时，require会把点号当做目录分隔符来搜索，也就是说调用<code>require &quot;a.b&quot;</code>会尝试打开<code>./a/b.lua</code>，<code>/usr/local/lua/a/b.lua</code>，<code>/usr/local/lua/a/b/init.lua</code>。通过这种加载策略，可以将包的所有模块组织到一个目录中。</p>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第14-15章</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a> -> <a href="/categories/Tech/Script/Lua/">Lua</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/lua/">lua</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Lua学习笔记（6）——环境与模块">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>

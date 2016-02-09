@@ -1,0 +1,749 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>Io语言特性（下） | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="林寿山">
+    
+    <meta name="description" content="本文将接着上一篇《Io语言特性（上）》，讲述Io语言的消息，反射和并发。">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <meta property="og:title" content="Io语言特性（下）"/>
+    <meta property="og:site_name" content="林寿山的技术博客 Ray Taylor Lin&#39;s world"/>
+
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/normalize.css" type="text/css">
+    <link rel="stylesheet" href="/css/lib/furatto.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify_raytaylorism.css" type="text/css">
+        
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/jquery.jpanelmenu.js"></script>
+</head>
+
+
+<body class="container-fluid">
+    <header id="page-header">
+        <div class="navbar inverse-navbar">
+    <div class="navbar-inner">
+        <div class="container-center">
+            <a href="/index.html" class="menu-trigger" data-meteocon="M">
+                <i class="icon-reorder"></i>
+            </a>
+            <div class="nav-collapse navbar-responsive-collapse collapse">
+                <nav id="menu">
+                    <ul class="nav">
+                        <li><a class="brand" id="blog-title" href="/index.html">Ray Taylor Lin&#39;s world</a></li>
+                    </ul>
+                    <div class="pull-right nav" id="nav-button-group">
+                        
+                            <a href="/" class="menu-home btn btn-primary btn-large">
+                                <i class="icon-home icon-white"></i>
+                                首页
+                            </a>
+                        
+                            <a href="/archives" class="menu-archive btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                归档
+                            </a>
+                        
+                            <a href="javascript:void(0);" class="menu-category btn btn-primary btn-large">
+                                <i class="icon-archive icon-white"></i>
+                                分类
+                            </a>
+                        
+                            <a href="/reading" class="menu-reading btn btn-primary btn-large">
+                                <i class="icon-book icon-white"></i>
+                                读书
+                            </a>
+                        
+                            <a href="/about" class="menu-about btn btn-primary btn-large">
+                                <i class="icon-user icon-white"></i>
+                                关于
+                            </a>
+                        
+                    </div>
+                </nav>
+                <nav id="jPanelMenu-menu-side">
+    <ul class="nav main-menu">
+        <li><a class="brand" href="index.html">Ray Taylor Lin&#39;s world</a></li>
+        
+            <li>
+                <a href="/" class="menu-home">
+                    <i class="icon-home icon-white"></i>
+                    首页
+                </a>
+            </li>
+        
+            <li>
+                <a href="/archives" class="menu-archive">
+                    <i class="icon-archive icon-white"></i>
+                    归档
+                </a>
+            </li>
+        
+            <li>
+                <a href="javascript:void(0);" class="menu-category">
+                    <i class="icon-archive icon-white"></i>
+                    分类
+                </a>
+            </li>
+        
+            <li>
+                <a href="/reading" class="menu-reading">
+                    <i class="icon-book icon-white"></i>
+                    读书
+                </a>
+            </li>
+        
+            <li>
+                <a href="/about" class="menu-about">
+                    <i class="icon-user icon-white"></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="nav category-menu hide">
+        <li>
+            <span><a class="brand" href="javascript:void(0);">分类目录</a></span>
+            <span><a class="btn-back brand pull-right" href="javascript:void(0);">
+                <i class="icon-arrow-left"></i>
+            </a></span>
+        </li>
+
+        
+
+        
+
+            
+
+            <li collapse-level="0">
+                <a href="/categories/Tech/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    Tech(58)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/game/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    game(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/game/server/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    server(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/other/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    other(3)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/other/DP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    DP(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/algorithm/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    algorithm(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Linux/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Linux(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/IDE/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    IDE(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/git/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    git(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/Script/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    Script(15)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Lua/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Lua(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/Script/Python/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Python(4)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+            <li collapse-level="1">
+                <a href="/categories/Tech/web/" class="collapse-level-1">
+                    <i class="icon-caret-right"></i>
+                    web(23)
+                </a>
+            </li>
+
+            
+
+            
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTTP/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTTP(7)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/HTML5/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    HTML5(2)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/CSS/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    CSS(3)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/Node-js/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    Node-js(10)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+            <li collapse-level="2">
+                <a href="/categories/Tech/web/javascript/" class="collapse-level-2">
+                    <i class="icon-caret-right"></i>
+                    javascript(1)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+
+        
+
+            <li collapse-level="0">
+                <a href="/categories/daily/" class="collapse-level-0">
+                    <i class="icon-caret-right"></i>
+                    daily(6)
+                </a>
+            </li>
+
+            
+
+            
+
+        
+
+        
+    </ul>
+</nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div id="content-wrapper">
+        <div class="container-center">
+        <article class="post">
+    <div class="article-title article-title-big">
+        
+    
+        <h1>Io语言特性（下）</h1>
+    
+
+    </div>
+
+    <div class="date-row ">
+        <time datetime="2015-01-27T08:25:34.000Z">2015-01-27</time>
+    </div>
+
+    <div class="toc-wrap">
+        <div class="toc-title">目录</div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-_消息"><span class="toc-number">1.</span> <span class="toc-text">1. 消息</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1_消息反射与call方法"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 消息反射与call方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2_对象反射"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 对象反射</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-_其他特性"><span class="toc-number">2.</span> <span class="toc-text">2. 其他特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1_领域特定语言（DSL）"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 领域特定语言（DSL）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2_forward方法"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 forward方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3_并发"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 并发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1_协程"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2_actor"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 actor</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div class="entry">
+        <p>本文将接着上一篇<a href="/Tech/Script/io-language-1/">《Io语言特性（上）》</a>，讲述Io语言的消息，反射和并发。</p>
+<a id="more"></a>
+
+<h1 id="1-_消息">1. 消息</h1>
+<h2 id="1-1_消息反射与call方法">1.1 消息反射与call方法</h2>
+<p>Io语言中除了注释符和参数之间的逗号外，<strong>一切事物都是消息</strong>。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。</p>
+<p>消息由三部分组成：发送者（sender）、目标（target）和参数（arguments），消息由发送者发送至目标，然后由目标执行该消息。可以用<code>call</code>方法访问任何消息的元信息。</p>
+<pre><code>Io&gt; postOffice := Object clone
+<span class="comment">// 下面的各个方法可以获取消息的各种元信息</span>
+Io&gt; postOffice packageSender := <span class="function"><span class="keyword">method</span><span class="params">(call sender)</span>
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageTarget</span> :</span>= <span class="function"><span class="keyword">method</span><span class="params">(call target)</span>
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageArgs</span> :</span>= <span class="function"><span class="keyword">method</span><span class="params">(call message arguments)</span>
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageName</span> :</span>= <span class="function"><span class="keyword">method</span><span class="params">(call message name)</span>
+
+// 定义一个可以发送消息的<span class="title">mailer</span>对象
+<span class="title">Io</span>&gt; <span class="title">mailer</span> :</span>= Object clone
+==&gt; Object_0x1005bfda0    <span class="comment">// 注意这里尾号为0bfda0是mailer对象</span>
+Io&gt; mailer deliver := <span class="function"><span class="keyword">method</span><span class="params">(postOffice packageSender)</span>
+<span class="title">Io</span>&gt; <span class="title">mailer</span> <span class="title">deliver</span>
+==&gt; <span class="title">Object_0x1005bfda0</span>:</span>
+  deliver = <span class="function"><span class="keyword">method</span><span class="params">(...)</span>    // 可以看出消息发送者是<span class="title">deliver</span>方法
+
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageTarget</span>
+==&gt; <span class="title">Object_0x1004ce658</span>:</span>
+  messageTarget = <span class="function"><span class="keyword">method</span><span class="params">(...)</span>
+  <span class="title">packageSender</span> = <span class="title">method</span><span class="params">(...)</span>   // 从槽名可以看出消息目标是<span class="title">postOffice</span>
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageArgs</span><span class="params">("one", 2, :three)</span>
+==&gt; <span class="title">list</span><span class="params">("one", 2, :three)</span>    // 直接输出了参数
+<span class="title">Io</span>&gt; <span class="title">postOffice</span> <span class="title">messageName</span>
+==&gt; <span class="title">messageName</span>    // 消息本身的名字</span>
+</code></pre><p>大多数语言都将参数作为栈上的值传递，例如Java在调用方法时先计算参数的每个值，然后把值放到栈上。Io就不是这样，Io传递的事消息本身和上下文，再由接收者对消息求值。Io的if，形式是<code>if(booleanExpression, trueBlock, falseBlock)</code>，现在如果要再实现一个<code>unless</code>，实现方法可以是下面这样：</p>
+<pre><code><span class="comment">// 这种方法是不行的，因为调用unless的时候，else和then都会被马上执行，实际我们需要的是当cond为true时，执行else，否则执行then</span>
+Object unless := <span class="function"><span class="keyword">method</span><span class="params">(cond, <span class="keyword">then</span>, <span class="keyword">else</span>,
+    <span class="keyword">if</span>(cond, <span class="keyword">else</span>, <span class="keyword">then</span>)</span>)
+// 正确的延迟执行实现
+<span class="title">Object</span> <span class="title">unless</span> :</span>= <span class="function"><span class="keyword">method</span><span class="params">(
+    (call sender doMessage(call message argAt(0)</span>)) <span class="title">ifFalse</span><span class="params">(
+    call sender doMessage(call message argAt(1)</span>)) <span class="title">ifTrue</span><span class="params">(
+    call sender doMessage(call message argAt(2)</span>))
+}
+<span class="title">unless</span><span class="params">(1 == 2, <span class="keyword">write</span>("One <span class="keyword">is</span> <span class="keyword">not</span> two\n")</span>, <span class="title">write</span><span class="params">("one <span class="keyword">is</span> two\n")</span>)  // 输出<span class="title">One</span> <span class="title">is</span> <span class="title">not</span> <span class="title">two</span></span>
+</code></pre><p>上面代码中的<code>doMessage</code>可以执行任意消息，有点类似于其他语言里面的<code>eval</code>。Io会对消息参数进行解释，但会延迟绑定和执行。</p>
+<h2 id="1-2_对象反射">1.2 对象反射</h2>
+<p>下面的代码给Object定义了一个ancestors方法，这个方法会沿着原型链向上查找，输出每个原型的名称以及带有的槽名，直到Object为止。</p>
+<pre><code>Object ancestors := <span class="function"><span class="keyword">method</span><span class="params">(
+    prototype := <span class="keyword">self</span> proto
+    <span class="keyword">if</span>(prototype != Object,
+        writeln("Slots <span class="keyword">of</span> ", prototype <span class="keyword">type</span>, "\n------------")</span>
+        <span class="title">prototype</span> <span class="title">slotNames</span> <span class="title">foreach</span><span class="params">(slotName, writeln(slotName)</span>)
+        <span class="title">writeln</span>
+        <span class="title">prototype</span> <span class="title">ancestors</span>
+    )
+)</span>
+</code></pre><p>1.1的例子是消息反射的例子，处理消息的发送者、目标和消息体；这个例子是对象反射的例子，处理对象和对象的槽。</p>
+<h1 id="2-_其他特性">2. 其他特性</h1>
+<h2 id="2-1_领域特定语言（DSL）">2.1 领域特定语言（DSL）</h2>
+<p>Io在定义DSL方面的能力非常强大，据说用Io实现C语言的一个子集仅需约40行代码！Io提供了非常多的控制方法来解析语言本身。假如我们想要解析一个普通的<code>test.json</code>文件：</p>
+<pre><code>{
+    "<span class="attribute">name</span>": <span class="value"><span class="string">"Ray Taylor"</span></span>,
+    "<span class="attribute">lucky_numbers</span>": <span class="value">[<span class="number">33</span>, <span class="number">6</span>]</span>,
+    "<span class="attribute">job</span>": <span class="value">{
+        "<span class="attribute">title</span>": <span class="value"><span class="string">"Web Front End Developer"</span>
+    </span>}
+</span>}
+</code></pre><p>如果是其他语言的话，可能会写一个语法分析器识别上面这段文本中不同元素，然后生成一个Io可理解的结构。但通过Io的强大特性，我们可以通过下面这段代码对Io做些改动（注释中已包含完整的解释），改动完之后Io就会认为上面这段文本的语法是正确的，并且构建出相应的散列表来。</p>
+<pre><code>// 把一个“:”运算符添加到<span class="type">Io</span>的赋值运算符表中，现在只要<span class="type">Io</span>代码遇到“:”，就会把它转换成atPutNumber。所以遇到key:value时就会转换成atPutNumber(<span class="string">"key"</span>, value)
+<span class="type">OperatorTable</span> addAssignOperator(<span class="string">":"</span>, <span class="string">"atPutNumber"</span>)  
+
+// <span class="type">Io</span>代码遇到大括号（{}），就会调用curlyBrackets方法
+curlyBrackets := <span class="keyword">method</span>(
+    // 创建一个空散列表，供存放数据
+    data := <span class="type">Map</span> clone
+    // call message正是json大括号中的代码，arguments则是由逗号“,”分隔的参数列表。循环遍历参数列表就相当于处理json对象中的每一行
+    call message arguments foreach(arg,
+        // 以第<span class="number">1</span>个arg（<span class="string">"name"</span>: <span class="string">"Ray Taylor"</span>）举例，data doMessage(arg)相当于执行data <span class="string">"name"</span>: <span class="string">"Ray Taylor"</span>，冒号翻译成atPutNumber，所以代码就相当于data atPutNumber(<span class="string">"name"</span>, <span class="string">"Ray Taylor"</span>)
+        data doMessage(arg)
+    )
+    // 最后相当于把data返回
+    data
+)
+
+// 解析中括号（[]），原理跟上面的基本一样，不再赘述
+squareBrackets := <span class="keyword">method</span>(
+    arr := list()
+    call message arguments foreach(arg,
+        arr push(call sender doMessage(arg))
+    )
+    arr
+)  
+
+// 在<span class="type">Map</span>对象上扩展一个atPutNumber
+<span class="type">Map</span> atPutNumber := <span class="keyword">method</span>(
+    // 其实算法的核心就是调用<span class="type">Map</span> atPut槽
+    self atPut(
+        // 注意key:value总是会转换为atPutNumber(<span class="string">"key"</span>, value)（key有字符串包围），所以要去掉原key的头尾字符串。由于消息是不可变的，为了去掉引号，要使用asMutable转化为一个可变值
+        call evalArgAt(<span class="number">0</span>) asMutable removePrefix(<span class="string">"\""</span>) removeSuffix(<span class="string">"\""</span>),
+        call evalArgAt(<span class="number">1</span>)
+    )
+)  
+
+// <span class="type">File</span>是<span class="type">Io</span>与文件交互的原型，<span class="keyword">with</span>指定了文件名并返回一个文件对象，openForReading打开该文件并返回该文件对象，而contents返回该文件的内容
+s := <span class="type">File</span> <span class="keyword">with</span>(<span class="string">"test.json"</span>) openForReading contents
+// doString把字符串求值为<span class="type">Io</span>代码
+json := doString(s)
+json at(<span class="string">"name"</span>) println  // <span class="type">Ray</span> <span class="type">Taylor</span>
+json at(<span class="string">"lucky_numbers"</span>) println  // list(<span class="number">6</span>, <span class="number">13</span>)
+json at(<span class="string">"job"</span>) at(<span class="string">"title"</span>) println   // <span class="type">Web</span> <span class="type">Front</span> <span class="type">End</span> <span class="type">Developer</span>
+</code></pre><p>从上面的例子可以看到Io中可以随心所欲把运算符重定义为组成DSL的符号，从而改变Io的语法。</p>
+<h2 id="2-2_forward方法">2.2 forward方法</h2>
+<p><strong>当你把消息发送给对象时，对象会计算所有参数（参数其实就是消息），获取消息的名称、目标和发送者，然后尝试用目标上的消息名称读取槽。如果槽存在，则返回其数据或触发其包含的方法；否则把消息转发给原型。</strong>当槽名不存在时，实际会调用系统的forward方法把消息转发给原型，这有点类似Ruby的method_missing，但因为Io没有类，所以改变forward会改变从Object获得基本行为的方式。所以覆盖forward方法的风险要更高一些，但如果用得恰当，会产生非常巧妙的效果。</p>
+<p>下面的代码将构造一种新语法来对XML进行处理。这种新语法及对应的XML如图所示：</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/Script/利用Io代码来表示XML.png" alt="利用Io代码来表示XML"></p>
+<pre><code>Builder := Object clone
+<span class="comment">// 覆盖forward，使其可以接收任意方法</span>
+Builder forward := method(
+    <span class="comment">// 使用消息反射，输出开标签</span>
+    writeln(<span class="string">"&lt;"</span>, call message name, <span class="string">"&gt;"</span>)
+    <span class="comment">// 遍历消息的每个参数</span>
+    call message arguments foreach(arg,
+        <span class="comment">// 递归调用</span>
+        content := <span class="keyword">self</span> doMessage(arg);
+        <span class="comment">// 如果消息是个字符串（字符串的类型是Sequence序列），则直接输出</span>
+        <span class="keyword">if</span>(content <span class="keyword">type</span> == <span class="string">"Sequence"</span>, writeln(content))
+    )
+    <span class="comment">// 使用消息反射，输出闭标签</span>
+    writeln(<span class="string">"&lt;/"</span>, call message name, <span class="string">"&gt;"</span>)
+)
+
+Builder ul(
+          li(<span class="string">"Io"</span>),
+          li(<span class="string">"Lua"</span>),
+          li(<span class="string">"Javascript"</span>))   <span class="comment">// 输出看起来像HTML ul和li标签的内容</span>
+</code></pre><p>虽然这种新语法未必比传统的XML有多大程度的提高，但这例子还是很有指导意义。你可以完全改变一个Io原型的继承运行机制，甚至定义自己的Object原型，并以这个新对象为基础创建其他原型，从而创建出一门和Io行为截然不同的新语言。</p>
+<h2 id="2-3_并发">2.3 并发</h2>
+<h3 id="2-3-1_协程">2.3.1 协程</h3>
+<p>协程是并发的基础，它提供了进程的自动挂起和恢复执行的机制。可以把协程想象为带有多个入口和出口的函数，每次遇到<code>yield</code>都会自动挂起当前进程，把控制权转到另一进程中。通过在消息前加上@或@@，可以异步触发消息，前者返回future（下文讲述），后者返回nil，并在其自身线程中触发消息。</p>
+<pre><code>lilei := Object clone
+lilei talk := <span class="function"><span class="keyword">method</span><span class="params">(
+    "Hello." println
+    <span class="keyword">yield</span>
+    "Fine, thank you. <span class="keyword">And</span> you?" println
+    <span class="keyword">yield</span>
+)</span>
+<span class="title">hanmeimei</span> :</span>= Object clone
+hanmeimei talk := <span class="function"><span class="keyword">method</span><span class="params">(
+    <span class="keyword">yield</span>
+    "How are you?" println
+    <span class="keyword">yield</span>
+    "I am fine, thanks." println
+)</span>
+
+// 异步触发两个人的方法
+<span class="title">lilei</span> @@<span class="title">talk</span>;</span> hanmeimei @@talk
+<span class="comment">// 这一行用来等待所有异步消息执行完毕，然后退出程序</span>
+Coroutine currentCoroutine pause
+</code></pre><p>上面这段程序不难理解。通过异步触发两个人的talk，使两个不相干的Object实例并发执行，用yield消息在指定时刻自动把控制权交给另一方法，从而让两个需要彼此协作的进程轻松实现“对话”任务。</p>
+<h3 id="2-3-2_actor">2.3.2 actor</h3>
+<p>actor是通用的并发原语，它可以发送消息、处理消息以及创建其它actor。actor接收到的消息是并发的。一个actor改变其自身的状态，并通过严格控制的队列接触其它actor</p>
+<p>参考资料：《七周七语言》第3章Io</p>
+
+    </div>
+    
+    <footer >
+        
+            
+    
+    <div class="categories">
+        所属目录：
+    <a href="/categories/Tech/">Tech</a> -> <a href="/categories/Tech/Script/">Script</a>
+    </div>
+
+            
+    
+    <div class="tags-row">
+        标签：<a class="btn btn-info" href="/tags/Io/">Io</a><a class="btn btn-info" href="/tags/编程范型/">编程范型</a>
+    </div>
+
+        
+        <div class="clearfix"></div>
+    </footer>
+</article>
+
+
+
+<section id="comment">
+    <h1 class="page-sub-title">留言</h1>
+    <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-title="Io语言特性（下）">
+
+    <script type="text/javascript">
+        var duoshuoQuery = {short_name:"raytaylorlin"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';
+            ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- Duoshuo Comment END -->
+    </div>
+</section>
+
+
+        </div>
+    </div>
+    <footer id="page-footer"><div class="footer-content">
+    <div class="container-center">
+        <div class="footer-text pull-left">
+            <div class="copyright">
+                
+                Copyright &copy; 2015 <a href="/">林寿山</a>
+                
+            </div>
+            <div class="theme-copyright">
+                <span>Blog powered by <a href="http://zespia.tw/hexo/zh-CN/">hexo</a></span>
+                Theme <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a> desgined by <strong>Nix</strong>
+            </div>
+        </div>
+        <div class="social-group pull-right">
+            
+            <a href="https://github.com/raytaylorlin" target="_blank" title="github"><i class="icon-github"></i></a>
+            
+            
+            <a href="http://weibo.com/1956184117" target="_blank" title="新浪微博"><i class="icon-weibo"></i></a>
+            
+            
+            <a href="http://www.renren.com/309069699" target="_blank" title="人人网"><i class="icon-renren"></i></a>
+            
+            
+            <a href="https://plus.google.com/113216251417550089742?rel=author" target="_blank" title="Google+"><i class="icon-google-plus-sign"></i></a>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-43460643-1', 'raytaylorlin.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script>
+    (function($) {
+        //当内容区内容不够长时，设置内容区域的高度使footer沉底
+        var resizeContentWrapper = function() {
+            //HACK: 用延时的方法使计算高度时候更加准确，会有一闪的情况
+            setTimeout(function() {
+                var contentHeight = Math.floor($('#content-wrapper .container-center').height()),
+                headerHeight = Math.floor($('#page-header').height()),
+                footerHeight = Math.floor($('#page-footer').height()),
+                minHeight = Math.floor($(window).height() - headerHeight - footerHeight);
+                if(contentHeight < minHeight) {
+                    $('#content-wrapper').css({height: minHeight});                    
+                } else {
+                    $('#content-wrapper').css({height: 'auto'});
+                }
+            },500);
+        };
+
+        //响应式侧边栏
+        var initJPanelMenu = function() {
+            var jPM = $.jPanelMenu({
+                menu: '#jPanelMenu-menu-side',
+                duration: 500
+            });
+            jPM.on();
+        };
+
+        //初始化目录按钮事件绑定
+        var initCategory = function() {
+            function showMainMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.category-menu').hide();
+                $jPanelMenu.find('ul.main-menu').fadeIn();
+            }
+
+            function showCategoryMenu() {
+                var $jPanelMenu = $('#jPanelMenu-menu');
+                $jPanelMenu.find('ul.main-menu').hide();
+                $jPanelMenu.find('ul.category-menu').fadeIn();
+            }
+
+            $('.menu-category').click(function() {
+                var jPM = $.jPanelMenu({
+                    duration: 500,
+                    beforeOpen: function() {
+                        showCategoryMenu();
+                    },
+                    afterClose: function() {
+                        showMainMenu();
+                    }
+                });
+                if(jPM.isOpen()) {
+                    showCategoryMenu();
+                } else {
+                    jPM.open();
+                }
+            });
+
+            $('.category-menu').on('click', '.btn-back', function() {
+                showMainMenu();
+            });
+        };
+
+        $(document).ready(resizeContentWrapper);
+        $(document).ready(initJPanelMenu);
+        $(document).ready(initCategory);
+        
+        $(window).resize(resizeContentWrapper);
+    })(jQuery);
+</script>
+</body>
+</html>
