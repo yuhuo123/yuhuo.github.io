@@ -1,0 +1,641 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Node.js学习笔记：模块机制 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Node.js学习笔记：模块机制"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/NodeJS/">NodeJS</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Node.js学习笔记：模块机制</h1>
+    
+
+
+            </div>
+            <time datetime="2014-10-08T08:22:53.000Z"><a href="/tech/web/nodejs/node-module/">2014-10-08</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+        
+            <a href="/tags/模块化/" class="article-tag green accent-4">模块化</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-_CommonJS_u6A21_u5757_u89C4_u8303"><span class="section table-of-contents-text">1. CommonJS模块规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-_Node_u6A21_u5757_u5B9E_u73B0_u8FC7_u7A0B"><span class="section table-of-contents-text">2. Node模块实现过程</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u8DEF_u5F84_u5206_u6790"><span class="section table-of-contents-text">2.1 路径分析</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u6587_u4EF6_u5B9A_u4F4D"><span class="section table-of-contents-text">2.2 文件定位</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u7F16_u8BD1_u6267_u884C"><span class="section table-of-contents-text">2.3 编译执行</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u6A21_u5757_u8C03_u7528_u6808"><span class="section table-of-contents-text">3. 模块调用栈</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-__u5305_u4E0ENPM"><span class="section table-of-contents-text">4. 包与NPM</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1__u5305_u7ED3_u6784"><span class="section table-of-contents-text">4.1 包结构</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2__u5305_u63CF_u8FF0_u6587_u4EF6"><span class="section table-of-contents-text">4.2 包描述文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3_NPM_u5E38_u7528_u529F_u80FD"><span class="section table-of-contents-text">4.3 NPM常用功能</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#4-3-1_NPM_u5305_u5B89_u88C5"><span class="section table-of-contents-text">4.3.1 NPM包安装</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#4-3-2_NPM_u5305_u7BA1_u7406"><span class="section table-of-contents-text">4.3.2 NPM包管理</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>Javascript自诞生以来，曾经没有人拿它当做一门编程语言。在Web 1.0时代，这种脚本语言主要被用来做表单验证和网页特效。直到Web 2.0时代，前端工程师利用它大大提升了网页上的用户体验，JS才被广泛重视起来。在JS逐渐流行的过程中，它大致经历了工具类库、组件库、前端框架、前端应用的变迁。Javascript先天就缺乏一项功能：模块，而CommonJS规范的出现则弥补了这一缺陷。本文将介绍CommonJS规范及Node的模块机制。</p>
+<a id="more"></a>
+<p>在其他高级语言中，Java有类文件，Python有import机制，PHP有include和require。而JS通过&lt;script&gt;标签引入代码的方式显得杂乱无章。过去人们不得不用命名空间等方式来人为地约束代码，直到<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>规范的出现，前后端的Javascript才得以实现大一统。Node借鉴了CommonJS的Modules规范实现了一套非常易用的模块系统。</p>
+<h1 id="1-_CommonJS_u6A21_u5757_u89C4_u8303"><a href="#1-_CommonJS_u6A21_u5757_u89C4_u8303" class="headerlink" title="1. CommonJS模块规范"></a>1. CommonJS模块规范</h1><p>CommonJS的模块规范分为3个部分：</p>
+<ol>
+<li>模块引用：通过<code>require()</code>方法并传入一个<strong>模块标识</strong>来引入一个模块的API到当前上下文中，如<code>var math = require(&#39;math&#39;);</code></li>
+<li>模块定义：通过<code>exports</code>对象来导出当前模块的方法或变量。模块中还存在一个<code>module</code>对象，exports实际上是module的属性。在Node中，一个文件就是一个模块，模块内的“全局变量”对外都不可见，只有挂载在exports上的属性才是公开的，如<code>exports.add = function() {}; exports.PI = 3.1415926;</code></li>
+<li>模块标识：实际上就是传递给<code>require()</code>的参数，如上述的<code>&#39;math&#39;</code>，它必须是符合camel命名法的字符串，或者是以“.”“..”开头的相对路径或绝对路径，它可以没有文件名后缀“.js”</li>
+</ol>
+<h1 id="2-_Node_u6A21_u5757_u5B9E_u73B0_u8FC7_u7A0B"><a href="#2-_Node_u6A21_u5757_u5B9E_u73B0_u8FC7_u7A0B" class="headerlink" title="2. Node模块实现过程"></a>2. Node模块实现过程</h1><p>在Node中，模块分为两类：一类是Node本身提供的核心模块，另一类是用户自己编写的文件模块。核心模块有一部分在Node源代码的编译过程中，编译成了二进制文件，在Node启动时核心模块就被直接加载进内存中，所以它的加载速度是最快的。文件模块则是在运行时动态加载，需要经历三个步骤：路径分析，文件定位，编译执行。<strong>注意，Node对引入过的模块都会进行缓存，以减少二次引入时的开销，并对相同模块的二次加载都采用最优先从缓存加载的策略。</strong></p>
+<h2 id="2-1__u8DEF_u5F84_u5206_u6790"><a href="#2-1__u8DEF_u5F84_u5206_u6790" class="headerlink" title="2.1 路径分析"></a>2.1 路径分析</h2><p>路径分析主要分析上述提到的模块标识符，主要分为以下几类：</p>
+<ul>
+<li>核心模块，如http、fs、path等</li>
+<li>.或..开始的相对路径文件模块</li>
+<li>以/开始的绝对路径文件模块</li>
+<li>自定义文件模块，可能是一个文件或包的形式。Node会根据<em>模块路径</em>数组<code>module.paths</code>来逐个尝试查找目标文件，通常是沿着当前目录逐级向上直到根目录查找名为<code>node_modules</code>的目录，所以这是查找最费时的一种方式。</li>
+</ul>
+<h2 id="2-2__u6587_u4EF6_u5B9A_u4F4D"><a href="#2-2__u6587_u4EF6_u5B9A_u4F4D" class="headerlink" title="2.2 文件定位"></a>2.2 文件定位</h2><p>在路径分析的基础上，文件定位需要注意如下细节：</p>
+<ul>
+<li>文件扩展名分析：由于CommonJS规范允许模块标识不填写扩展名，Node会按.js、.json、.node的次序不足扩展名，依次尝试</li>
+<li>目录分析和包：若通过上述文件扩展名分析后没有查找到对应文件，却得到一个目录，Node会把目录当做一个包来处理</li>
+</ul>
+<h2 id="2-3__u7F16_u8BD1_u6267_u884C"><a href="#2-3__u7F16_u8BD1_u6267_u884C" class="headerlink" title="2.3 编译执行"></a>2.3 编译执行</h2><p>定位到具体文件后，Node会新建一个模块对象，根据路径载入并编译。对于不同的扩展名，载入方法有所不同：</p>
+<ul>
+<li>.js文件：通过fs模块同步读取文件并编译执行</li>
+<li>.node文件：这是用C/C++编写的扩展文件，通过<code>dlopen()</code>方法加载</li>
+<li>.json文件：通过fs模块同步读取文件，用<code>JSON.parse()</code>解析返回结果</li>
+<li>其余扩展名文件：都被当做.js文件载入</li>
+</ul>
+<p>我们知道每个模块文件中默认都存在着require、exports、module这3个变量，甚至在Node的API文档中，我们知道每个模块还有<strong>filename、</strong>dirname这2个变量的存在，它们是从何而来的呢？Node的模块又是怎么做到声明的“全局变量”实际上是不会污染到其他模块的？事实上，<strong>Node在编译JS模块过程中会对文件内容进行头尾包装</strong>。下面是一个JS文件经过头尾包装的例子：</p>
+<pre><code>(function(exports, require, module, __filename, __dirname) {
+    /* 中间是JS文件的实际内容 */
+    var math = require(&apos;math&apos;);
+    exports.area = function(radius) {
+        return Math.PI * radius * radius;
+    };
+    /* JS文件的实际内容结束 */
+});
+</code></pre><p>这样每个模块文件之间都进行了作用域隔离，同时require、exports、module等变量也被注入到了模块的上下文当中。这就是Node对CommonJS模块规范的实现。关于C/C++模块及Node核心模块的编译过程较为复杂，不再赘述。</p>
+<h1 id="3-__u6A21_u5757_u8C03_u7528_u6808"><a href="#3-__u6A21_u5757_u8C03_u7528_u6808" class="headerlink" title="3. 模块调用栈"></a>3. 模块调用栈</h1><p>有必要明确一下Node中各种模块的调用关系，如下图所示：</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E6%A8%A1%E5%9D%97%E9%97%B4%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB.jpg" alt="Node模块间调用关系"></p>
+<p>C/C++内建模块是最底层的模块，属于核心模块，主要提供API给Javascript核心模块和第三方Javascript文件模块调用，实际中几乎不会接触到此类模块。Javascript核心模块主要职责有两种：一种是作为C/C++内建模块的封装层和桥接层供文件模块调用，另一种是纯粹的功能模块，不需要跟底层打交道。文件模块通常由第三方编写，包括普通Javascript模块和C/C++扩展模块。</p>
+<h1 id="4-__u5305_u4E0ENPM"><a href="#4-__u5305_u4E0ENPM" class="headerlink" title="4. 包与NPM"></a>4. 包与NPM</h1><h2 id="4-1__u5305_u7ED3_u6784"><a href="#4-1__u5305_u7ED3_u6784" class="headerlink" title="4.1 包结构"></a>4.1 包结构</h2><p>包本质上是一个存档文件（一般为.zip或.tar.gz），安装后解压还原为目录。CommonJS的包规范由包结构和包描述文件两部分组成。一个完全符合CommonJS规范的包结构应包含以下文件：</p>
+<ul>
+<li>package.json：包描述文件</li>
+<li>bin：存放可执行二进制文件的目录</li>
+<li>lib：存放Javascript代码的目录</li>
+<li>doc：存放文档的目录</li>
+<li>test：存放单元测试用例的目录</li>
+</ul>
+<h2 id="4-2__u5305_u63CF_u8FF0_u6587_u4EF6"><a href="#4-2__u5305_u63CF_u8FF0_u6587_u4EF6" class="headerlink" title="4.2 包描述文件"></a>4.2 包描述文件</h2><p>包描述文件是一个JSON文件——package.json，位于包的根目录下，是包的重要组成部分，用于描述包的概况信息。后面要提到的NPM的所有行为都与这个文件的字段息息相关。下面将以知名Web框架express项目的<a href="https://github.com/strongloop/express/blob/master/package.json" target="_blank" rel="external">package.json</a>文件为例说明一些常用字段的含义。</p>
+<ul>
+<li>name：包名</li>
+<li>description：包简介</li>
+<li>version：版本号，需遵照“语义化的版本控制”，参照<a href="http://semver.org/" target="_blank" rel="external">http://semver.org/</a></li>
+<li>dependencies：使用当前包所需要依赖的包列表。这个属性十分重要，NPM会通过这个属性自动加载依赖的包</li>
+<li>repositories：托管源代码的位置列表</li>
+</ul>
+<p>其余字段的用法可以参照<a href="https://www.npmjs.org/doc/files/package.json.html" target="_blank" rel="external">NPM package.json说明</a></p>
+<h2 id="4-3_NPM_u5E38_u7528_u529F_u80FD"><a href="#4-3_NPM_u5E38_u7528_u529F_u80FD" class="headerlink" title="4.3 NPM常用功能"></a>4.3 NPM常用功能</h2><p>NPM（node package manager），通常称为node包管理器。它的主要功能就是管理node包，包括：安装、卸载、更新、查看、搜索、发布等。</p>
+<h3 id="4-3-1_NPM_u5305_u5B89_u88C5"><a href="#4-3-1_NPM_u5305_u5B89_u88C5" class="headerlink" title="4.3.1 NPM包安装"></a>4.3.1 NPM包安装</h3><p>Node包的安装分两种：本地安装、全局安装。两者的区别如下：</p>
+<ul>
+<li>本地安装<code>npm install &lt;package-name&gt;</code>：package会被下载到当前所在目录，也只能在当前目录下使用。</li>
+<li>全局安装<code>npm install -g &lt;package-name&gt;</code>：package会被下载到到特定的系统目录下，安装的package能够在所有目录下使用。</li>
+</ul>
+<h3 id="4-3-2_NPM_u5305_u7BA1_u7406"><a href="#4-3-2_NPM_u5305_u7BA1_u7406" class="headerlink" title="4.3.2 NPM包管理"></a>4.3.2 NPM包管理</h3><p>下面以grunt-cli（grunt命令行工具）为例，列出常用的包管理命令：</p>
+<ul>
+<li><code>npm install</code>：安装package.json文件的dependencies和devDependencies字段声明的所有包</li>
+<li><code>npm install grunt-cli@0.1.9</code>：安装特定版本的grunt-cli</li>
+<li><code>npm install grunt-contrib-copy --save</code>：安装grunt-contrib-copy，同时保存该依赖到package.json文件</li>
+<li><code>npm uninstall grunt-cli</code>：卸载包</li>
+<li><code>npm list</code>：查看安装了哪些包</li>
+<li><code>npm publish &lt;folder&gt;</code>：发布包</li>
+</ul>
+<p>参考资料：《深入浅出NodeJS》第二章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="node-module" data-title="Node.js学习笔记：模块机制"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

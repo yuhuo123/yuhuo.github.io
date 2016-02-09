@@ -1,0 +1,608 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>算法学习笔记：顺序统计量 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="算法学习笔记：顺序统计量"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/算法/">算法</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>算法学习笔记：顺序统计量</h1>
+    
+
+
+            </div>
+            <time datetime="2014-07-14T02:24:05.000Z"><a href="/tech/algorithm/order-statistics/">2014-07-14</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/算法/" class="article-tag green accent-4">算法</a>
+        
+            <a href="/tags/顺序统计量/" class="article-tag green accent-4">顺序统计量</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u6700_u5C0F_u503C_u548C_u6700_u5927_u503C"><span class="section table-of-contents-text">1. 最小值和最大值</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u968F_u673A_u5316_u9009_u62E9_u7B97_u6CD5"><span class="section table-of-contents-text">2. 随机化选择算法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u786E_u5B9A_u6027_u9009_u62E9_u7B97_u6CD5"><span class="section table-of-contents-text">3. 确定性选择算法</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>在一个由n个元素组成的集合中，第i个<em>顺序统计量（order statistics）</em>是该集合中第i小的元素，例如第1个顺序统计量是最小值，第n/2个顺序统计量是中位数（当n是偶数时，中位数一般指i=n/2的那个数）。顺序统计量问题就是给定包含n个（互异的）数的集合和整数i，找出第i小的数。</p>
+<p>解决这个问题最直接的办法就是先排序，再直接找出第i个元素即可，排序最快的时间复杂度是$O(n \log n)$。但其实还可以更快地找到第i个顺序统计量，本文将主要介绍一个实用的随机算法和确定性算法，它们都可以在$O(n)$的时间内解决这个问题。</p>
+<a id="more"></a>
+<h1 id="1-__u6700_u5C0F_u503C_u548C_u6700_u5927_u503C"><a href="#1-__u6700_u5C0F_u503C_u548C_u6700_u5927_u503C" class="headerlink" title="1. 最小值和最大值"></a>1. 最小值和最大值</h1><p>在一个有n个元素的集合中，需要做$n-1$次比较才能确定其最小（大）元素，这确实是最好的结果。但如果要同时找出最小值和最大值，通常的做法是对每一个输入的元素都与已知的min和max作比较，这样相当于独立完成两趟查找进行$2(n-1)$次比较。</p>
+<p>事实上，只要记录已知的min和max，每次取2个元素进行比较，然后较小的和min进行比较，较大的和max进行比较，这样就实现了对每两个元素进行3次比较，总共只需要$3\left\lfloor {n/2} \right\rfloor $次比较。至于初始化min和max，如果n是奇数，可以初始化min和max都为集合的第一个数；如果n是偶数，则取前两个数进行比较，小的为min，大的为max。这种算法虽然也是渐近为$O(n)$的算法，但从比较次数来看要比暴力求解快上约25%。</p>
+<h1 id="2-__u968F_u673A_u5316_u9009_u62E9_u7B97_u6CD5"><a href="#2-__u968F_u673A_u5316_u9009_u62E9_u7B97_u6CD5" class="headerlink" title="2. 随机化选择算法"></a>2. 随机化选择算法</h1><p>下面要介绍的选择第i小的算法，是基于<a href="/Tech/algorithm/quick-sort/">快速排序</a>的。在进行主元划分之后，快速排序会递归处理划分的两边，而随机化选择算法只处理划分的其中一边。该算法的可以以$O(n)$的时间找到第i小的元素。</p>
+<p>快速排序的划分主元方法<code>partition</code>会选取一个主元pivot，并围绕着该主元实现了对子数组data[left…right]的重排。假设最终pivot会处于<strong>下标<code>pivotLastIndex</code>处（绝对位置，相对下标0而言）</strong>，以及<strong>下标<code>pivotRelativeIndex</code>处（相对位置，相对下标left而言）</strong>，则重排之后data[left…pivotLastIndex-1]的元素都会比pivot小，data[pivotLastIndex+1…right]的元素都会比pivot大。而我们要找第i小的元素，最理想的情况就是i等于pivotRelativeIndex刚好是要找的元素；要么i落在左部分，则递归地查找左部分第i小的元素；要么i落在右部分，则递归地查找右部分第i-pivotRelativeIndex小的元素。下面的代码展示了具体的随机化选择算法，因为数组下标都是从0开始的，所以要特别注意<strong>我们口头所说的第i小元素，在程序里面实际是第i-1小的元素，以及其他一些关于下标计算的细节</strong>。</p>
+<pre><code>def randomizedSelect(data, left, right, i):
+    # 递归中止条件：数组只有1个元素
+    if right == left:
+        return data[left]
+
+    # pivotLastIndex是主元在data中的索引
+    pivotLastIndex = partition(data, left, right)
+    # pivotRelativeIndex是主元在data中相对于当前left的索引
+    pivotRelativeIndex = pivotLastIndex - left
+
+    if i == pivotRelativeIndex:
+        # 主元的绝对位置刚好是要查找的第i小元素
+        return data[pivotLastIndex]
+    elif i &lt; pivotRelativeIndex:
+        # 第i小的元素位于左半部分，递归查找左半部分的第i小的元素
+        return _randomizedSelect(data, left, pivotLastIndex - 1, i)
+    else:
+        # 第i小的元素位于右半部分，递归查找右半部分的第i-pivotRelatvieIndex小的元素
+        return _randomizedSelect(data, pivotLastIndex + 1, right, i - pivotRelativeIndex - 1)
+</code></pre><p>运行时间分析：最好的情况就是每次选到的pivot都是数组的中位数。$T(n) \le T({n \over 2}) + O(n)$，根据主方法第2种情况，运行时间为$O(n)$。随机化选取基准，和随机化快排一样，平均运行时间也是$O(n)$。最坏情况下，每次划分都极不走运地总是按余下元素中最大的来进行划分，这样就会和快速排序一样退化到$O(n^2)$。</p>
+<h1 id="3-__u786E_u5B9A_u6027_u9009_u62E9_u7B97_u6CD5"><a href="#3-__u786E_u5B9A_u6027_u9009_u62E9_u7B97_u6CD5" class="headerlink" title="3. 确定性选择算法"></a>3. 确定性选择算法</h1><p>从上面的分析可以看出<code>randomizedSelect</code>算法可能出现最坏情况的原因是<code>partition</code>有可能划分得不够理想。而确定性选择算法<code>deterministicSelect</code>则对<code>partition</code>算法进行修改，使用<em>中位数的中位数</em>作为pivot，使得每次划分都尽量让pivot把数组划分成1:1的状态。</p>
+<p>在快速排序中，定义了<code>partition</code>方法大致如下：</p>
+<pre><code>def partition(data, left, right):
+    # 选取主元
+    pivotIndex = chooseRandomPivotIndex(left, right)
+    # 后面省略...
+</code></pre><p>确定性选择算法是把<code>chooseRandomPivotIndex</code>换成可以选择中位数的中位数的<code>chooseMedianPivotIndex</code>，算法流程如下：</p>
+<ol>
+<li>将n个元素划分为m=n/5组，每组5个元素（最多有一组由剩下的n mod 5个元素组成）</li>
+<li>对m组元素都进行插入排序（每组只有5个数所以很快），再找出各组的中位数，共m个</li>
+<li>m个中位数组成临时数组C，递归调用deterministicSelect找出C的中位数</li>
+<li>中位数的索引作为chooseMedianPivotIndex的返回结果</li>
+</ol>
+<p>确定性选择算法最坏情况也可以达到$O(n)$，<strong>但实际并没有随机算法快，因为它忽略的常数项更大，而且要多耗费存储空间。</strong></p>
+<p>参考文献：机械工业出版社《算法导论（第3版）》第9章  </p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="order-statistics" data-title="算法学习笔记：顺序统计量"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

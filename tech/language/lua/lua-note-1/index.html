@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Lua学习笔记（1）——开始Lua | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Lua学习笔记（1）——开始Lua"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/编程语言/">编程语言</a><a class="breadcrumb" href="/categories/技术/编程语言/Lua/">Lua</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Lua学习笔记（1）——开始Lua</h1>
+    
+
+
+            </div>
+            <time datetime="2012-09-13T03:31:24.000Z"><a href="/tech/language/lua/lua-note-1/">2012-09-13</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Lua/" class="article-tag green accent-4">Lua</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u5F15_u8A00"><span class="section table-of-contents-text">1. 引言</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1__u76EE_u6807"><span class="section table-of-contents-text">1.1 目标</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2__u7279_u6027"><span class="section table-of-contents-text">1.2 特性</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2__u51C6_u5907_u5DE5_u4F5C"><span class="section table-of-contents-text">2 准备工作</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-__u4E00_u4E9B_u5E38_u7528_u7684_u94FE_u63A5"><span class="section table-of-contents-text">2.1. 一些常用的链接</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u7A0B_u5E8F_u5757_uFF08chunk_uFF09"><span class="section table-of-contents-text">2.2 程序块（chunk）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u8BCD_u6CD5_u89C4_u8303"><span class="section table-of-contents-text">2.3 词法规范</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4__u5168_u5C40_u53D8_u91CF_u4E0E_u89E3_u91CA_u5668"><span class="section table-of-contents-text">2.4 全局变量与解释器</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>Lua 是一种小巧的脚本语言。其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。本文是Lua学习笔记系列的开篇。</p>
+<a id="more"></a>
+<h1 id="1-__u5F15_u8A00"><a href="#1-__u5F15_u8A00" class="headerlink" title="1. 引言"></a>1. 引言</h1><h2 id="1-1__u76EE_u6807"><a href="#1-1__u76EE_u6807" class="headerlink" title="1.1 目标"></a>1.1 目标</h2><p>Lua的目标是成为一个很容易嵌入其它语言中使用的语言。很多应用程序使用Lua作为自己的嵌入式脚本语言，以此来实现可配置性、可扩展性。这其中包括大话西游II、仙境传说、魔兽世界、轩辕剑外传汉之云、愤怒的小鸟等等。</p>
+<h2 id="1-2__u7279_u6027"><a href="#1-2__u7279_u6027" class="headerlink" title="1.2 特性"></a>1.2 特性</h2><p>Lua是一种轻量语言，它的官方版本只包括一个精简的核心和最基本的库。这使得Lua体积小、启动速度快。Lua可以很容易地被扩展：由宿主语言（通常是C或C++）提供这些功能，Lua可以使用它们，就像是本来就内置的功能一样。</p>
+<p>Lua是一种多重编程范式的程式设计语言：它只提供了很小的一个特性集合来满足不同编辑范式的需要，而不是为某种特定的编辑范式提供繁杂的特性支持。例如，Lua并不提供继承这个特性，但是你可以用元表来模拟它。</p>
+<p>Lua原生的数据类型非常之少，它只提供了数字（缺省是双精度浮点数，可配置）、布尔量、字符串、表、子程序、协程（coroutine）以及用户自定义数据这几种。但是其处理表和字符串的效率非常之高，加上元表的支持，可以高效的模拟出需要的复杂数据类型（比如集合、数组等）。Lua是一个动态弱类型语言，支持增量式垃圾收集策略。</p>
+<p>（以上引用自维基百科）</p>
+<h1 id="2__u51C6_u5907_u5DE5_u4F5C"><a href="#2__u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="2 准备工作"></a>2 准备工作</h1><h2 id="2-1-__u4E00_u4E9B_u5E38_u7528_u7684_u94FE_u63A5"><a href="#2-1-__u4E00_u4E9B_u5E38_u7528_u7684_u94FE_u63A5" class="headerlink" title="2.1. 一些常用的链接"></a>2.1. 一些常用的链接</h2><p><a href="http://code.google.com/p/luaforwindows/downloads/list" target="_blank" rel="external">Lua for Windows下载地址</a></p>
+<p><a href="http://manual.luaer.cn/" target="_blank" rel="external">Lua在线手册</a></p>
+<p><a href="http://www.luaer.cn/" target="_blank" rel="external">Lua中国开发者</a></p>
+<h2 id="2-2__u7A0B_u5E8F_u5757_uFF08chunk_uFF09"><a href="#2-2__u7A0B_u5E8F_u5757_uFF08chunk_uFF09" class="headerlink" title="2.2 程序块（chunk）"></a>2.2 程序块（chunk）</h2><p>一个程序块就是一连串的语句或命令。</p>
+<p>在命令行下执行“lua”即可启动解释器（安装完后一般已配置好环境变量PATH），退出解释器可调用操作系统库的exit函数<code>os.exit()</code>。</p>
+<p>有两种方式可以运行指定程序块：</p>
+<ol>
+<li>命令行启动：用命令<code>lua –i prog</code>运行后，先运行文件prog中的程序块再进入交互模式。</li>
+<li><strong>dofile函数：<code>dofile(&quot;lib.lua&quot;)</code>可加载lib.lua文件。</strong></li>
+</ol>
+<h2 id="2-3__u8BCD_u6CD5_u89C4_u8303"><a href="#2-3__u8BCD_u6CD5_u89C4_u8303" class="headerlink" title="2.3 词法规范"></a>2.3 词法规范</h2><p>Lua中的标识符可以由任意字母、数字和下划线构成的字符串，但不能以数字开头。应当尽量避免使用以一个下划线开头并跟大写字母的标识符，因为Lua将这类标识符保留用作特殊用途。</p>
+<p>行注释：以<code>--</code>开头，块注释：将代码放入<code>--[[</code>和<code>--]]</code>之间。</p>
+<h2 id="2-4__u5168_u5C40_u53D8_u91CF_u4E0E_u89E3_u91CA_u5668"><a href="#2-4__u5168_u5C40_u53D8_u91CF_u4E0E_u89E3_u91CA_u5668" class="headerlink" title="2.4 全局变量与解释器"></a>2.4 全局变量与解释器</h2><p>全局变量不需要声明，只需将一个值赋予一个变量即可以创建。<strong>若一个变量未创建，则其值为nil，可以通过赋值nil来删除某个全局变量。</strong></p>
+<p>Lua解释器程序的用法为</p>
+<pre><code>lua [选项参数] [脚本[参数]]
+</code></pre><ol>
+<li>参数-e：可以直接在-e后输入代码，需要用双引号括起，如<code>lua –e &quot;x=10&quot;</code>。</li>
+<li>参数-l：用于加载库文件，后接文件名。</li>
+<li>参数-i：运行完其他命令行参数后进入交互模式。</li>
+<li>通过修改_PROMPT全局变量可以改变命令提示符（默认<code>_PROMPT=&quot;&gt;&quot;</code>）</li>
+<li>全局变量arg可用来检索脚本的启动参数，如：<code>lua –e &quot;x=10&quot; script abc</code>，<br>则<code>arg[-3]=&quot;lua&quot;</code>  <code>arg[-2]=&quot;-e&quot;</code>  <code>arg[-1]=&quot;x=10&quot;</code>  <code>arg[0]=&quot;script&quot;</code>  <code>arg[1]=&quot;abc&quot;</code>。</li>
+</ol>
+<p>参考文献：电子工业出版社《Lua程序设计（第2版）》第1章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="lua-note-1" data-title="Lua学习笔记（1）——开始Lua"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

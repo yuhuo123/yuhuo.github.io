@@ -1,0 +1,684 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Django学习笔记（2）——Django的模型 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Django学习笔记（2）——Django的模型"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/编程语言/">编程语言</a><a class="breadcrumb" href="/categories/技术/编程语言/Python/">Python</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Django学习笔记（2）——Django的模型</h1>
+    
+
+
+            </div>
+            <time datetime="2014-02-03T07:21:11.000Z"><a href="/tech/language/python/django-note-2/">2014-02-03</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Django/" class="article-tag green accent-4">Django</a>
+        
+            <a href="/tags/Python/" class="article-tag green accent-4">Python</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u4E0D_u4F7F_u7528_u6A21_u578B_u7684_u6570_u636E_u5E93_u67E5_u8BE2_u65B9_u6CD5"><span class="section table-of-contents-text">1. 不使用模型的数据库查询方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-_Django_u7684_u6A21_u578B"><span class="section table-of-contents-text">2. Django的模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u6570_u636E_u5E93_u914D_u7F6E"><span class="section table-of-contents-text">2.1 数据库配置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u521B_u5EFA_u4E00_u4E2Aapp"><span class="section table-of-contents-text">2.2 创建一个app</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u5B9A_u4E49_u6A21_u578B"><span class="section table-of-contents-text">2.3 定义模型</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u5E38_u7528_u7684_u6570_u636E_u5E93_u64CD_u4F5C"><span class="section table-of-contents-text">3. 常用的数据库操作</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-__u7ED3_u8BED"><span class="section table-of-contents-text">4. 结语</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>在Django中，视图负责处理一些业务逻辑，然后返回响应结果。在当代Web应用中，业务逻辑经常牵涉到与数据库的交互，在后台连接数据库服务器，从中取出一些数据，然后在Web页面用漂亮的格式展示这些数据。这个网站也可能会向访问者提供修改数据库数据的方法。</p>
+<p>在这一篇博文中，我们将以MySQL数据库为例，先看看不使用Django模型的数据库查询方法，然后开始学习Django的模型。</p>
+<a id="more"></a>
+<h1 id="1-__u4E0D_u4F7F_u7528_u6A21_u578B_u7684_u6570_u636E_u5E93_u67E5_u8BE2_u65B9_u6CD5"><a href="#1-__u4E0D_u4F7F_u7528_u6A21_u578B_u7684_u6570_u636E_u5E93_u67E5_u8BE2_u65B9_u6CD5" class="headerlink" title="1. 不使用模型的数据库查询方法"></a>1. 不使用模型的数据库查询方法</h1><p>假如我们不采用Django的模型，如何从数据库中获取数据呢？通常的做法就是在视图（View）层中连接数据库，写SQL语句查询数据库，然后把数据渲染给浏览器。在本例的视图中，我们使用了MySQLdb类库（可以从<a href="http://www.djangoproject.com/r/python-mysql/" target="_blank" rel="external">这里</a>获得）来连接MySQL数据库，取回一些记录，将它们提供给模板以显示一个网页代码看起来像下面这样：</p>
+<pre><code># view.py
+from django.http import HttpResponse
+import MySQLdb
+
+def book_list_view(request):
+    db = MySQLdb.connect(user=&apos;me&apos;, db=&apos;mydb&apos;, passwd=&apos;secret&apos;, host=&apos;localhost&apos;)
+    cursor = db.cursor()
+    cursor.execute(&apos;SELECT name FROM books ORDER BY name&apos;)
+    names = [row[0] for row in cursor.fetchall()]
+    db.close()
+    return HttpResponse(names)
+</code></pre><p>这个方法可以达成目标，但存在着一些问题：将数据库连接参数硬编码于代码之中。 理想情况下，这些参数应当保存在 Django 配置中；我们不得不重复同样的代码：创建数据库连接、创建数据库游标、执行某个语句、然后关闭数据库；它把我们栓死在MySQL之上。如果过段时间，我们要从MySQL换到PostgreSQL，就不得不使用不同的数据库适配器（例如psycopg而不是MySQLdb），改变连接参数，根据SQL语句的类型可能还要修改SQL。理想情况下，应对所使用的数据库服务器进行抽象，这样一来只在一处修改即可变换数据库服务器。</p>
+<p>接下来我们将开始学习Django中的模型，它提供了一种优雅的方法来抽象数据库层面的操作。</p>
+<h1 id="2-_Django_u7684_u6A21_u578B"><a href="#2-_Django_u7684_u6A21_u578B" class="headerlink" title="2. Django的模型"></a>2. Django的模型</h1><h2 id="2-1__u6570_u636E_u5E93_u914D_u7F6E"><a href="#2-1__u6570_u636E_u5E93_u914D_u7F6E" class="headerlink" title="2.1 数据库配置"></a>2.1 数据库配置</h2><p>假定你已经完成了数据库服务器的安装，并且已经在其中创建了数据库（我是直接装了WAMP，然后启动MySQL服务）。那么只需要在settings.py文件里面设置连接数据库的参数即可，下面是以MySQL为例。</p>
+<pre><code>DATABASE_ENGINE = &apos;mysql&apos;
+DATABASE_NAME = &apos;db_my_database&apos;
+DATABASE_USER = &apos;root&apos;
+DATABASE_PASSWORD = &apos;123456&apos;
+DATABASE_HOST = &apos;127.0.0.1&apos;
+DATABASE_PORT = &apos;3306&apos;
+</code></pre><p>输入下面这些命令来测试你的数据库配置：</p>
+<pre><code>from django.db import connection
+cursor = connection.cursor()
+</code></pre><p>如果没有显示什么错误信息，那么你的数据库配置是正确的。否则，你就得查看错误信息来纠正错误。详情可参考<a href="http://djangobook.py3k.cn/2.0/chapter05/" target="_blank" rel="external">这里</a>的表5-2。</p>
+<h2 id="2-2__u521B_u5EFA_u4E00_u4E2Aapp"><a href="#2-2__u521B_u5EFA_u4E00_u4E2Aapp" class="headerlink" title="2.2 创建一个app"></a>2.2 创建一个app</h2><p>Django规定，如果要使用模型，必须要创建一个app。在上一篇中我们创建的是project，project和app的区别就是：一个project包含很多个Django app以及对它们的配置，一个app是一套Django功能的集合，通常包括模型和视图，按Python的包结构的方式存在。下面的语句创建了一个名为books的app，这个目录包含了这个app的模型models.py和视图views.py，它们都是空的。</p>
+<pre><code>python manage.py startapp books
+</code></pre><h2 id="2-3__u5B9A_u4E49_u6A21_u578B"><a href="#2-3__u5B9A_u4E49_u6A21_u578B" class="headerlink" title="2.3 定义模型"></a>2.3 定义模型</h2><p>下面我们围绕一个关于书的例子来设计数据库。想象一下这样一个最简化的保存书籍信息的数据库：<em>书</em>有“书名”“作者”“出版社”“出版日期”，<em>作者</em>有“名字”“年龄”“Email”，<em>出版社</em>有“名字”“地址”，其中<em>书</em>可以有多个<em>作者</em>（多对多关系），但只能有一个<em>出版社</em>（一对多关系）。</p>
+<p>如果你之前接触过数据库，对这些一定不陌生。首先你应该会设计3个表分别表示<em>书</em>、<em>作者</em>、<em>出版社</em>，然后开始着手写创建表的SQL语句（如果你要像我一样偷懒，甚至直接开个Navicat就开始创建表了），接下来就是常见的增删查改，你在你的网站的逻辑中写各种“INSERT INTO”“DELETE”“SELECT”“UPDATE”SQL语句来操作数据库。当网站的规模增长到一定程度，你可能会觉得不断重复写各种SQL语句会显得特别繁琐。下面我们来看看Django是如何定义模型的。</p>
+<pre><code># models.py
+from django.db import models
+
+class Publisher(models.Model):
+    name = models.CharField(max_length=30)
+    address = models.CharField(max_length=50, blank = True)  # blank为True表明可空
+
+class Author(models.Model):
+    name = models.CharField(max_length=30)
+    age = models.IntegerField()
+    email = models.EmailField()
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.ManyToManyField(Author)
+    publisher = models.ForeignKey(Publisher)
+    publication_date = models.DateField()
+</code></pre><p>看着这段代码，你可以这样理解：这里定义的每个类都继承了models.Model，代表数据库中的表；类里面的字段代表数据表中的字段，数据类型则由CharField（相当于varchar）、DateField（相当于datetime）这样显而易见的类加上属性（如max_length限定长度）来定义；表与表之间的关系则由ManyToManyField（多对多）、ForeignKey（外键，一对多）和OneToOneFiled（一对一）来限定。</p>
+<p>接下来在settings.py中找到INSTALLED_APPS这一项，如下：</p>
+<pre><code>INSTALLED_APPS = (
+    &apos;django.contrib.auth&apos;,
+    &apos;django.contrib.contenttypes&apos;,
+    &apos;django.contrib.sessions&apos;,
+    &apos;django.contrib.sites&apos;,
+    &apos;mysite.books&apos;,   # 加上这一句，mysite是project，books是app
+)
+</code></pre><p>在命令行中运行<code>python manage.py syncdb</code>，看到几行“Creating table…”的字样，你的数据表就创建好了。只要你定义了模型的类和字段，Django将全部自动帮你创建好数据库。</p>
+<p>syncdb命令是同步你的模型到数据库的一个简单方法。它会根据INSTALLED_APPS里设置的app来检查数据库，如果表不存在，它就会创建它。需要注意的是，syncdb并不能将模型的修改或删除同步到数据库；如果你修改或删除了一个模型，并想把它提交到数据库，syncdb并不会做出任何处理。如果你觉得这很不方便，可以使用一个Django的第三方的app——South——来同步数据库，使用方法可参考<a href="http://www.cnblogs.com/BeginMan/p/3324774.html" target="_blank" rel="external">这篇文章</a></p>
+<h1 id="3-__u5E38_u7528_u7684_u6570_u636E_u5E93_u64CD_u4F5C"><a href="#3-__u5E38_u7528_u7684_u6570_u636E_u5E93_u64CD_u4F5C" class="headerlink" title="3. 常用的数据库操作"></a>3. 常用的数据库操作</h1><p>下面直接在代码里面注释说明，Django设计的简洁可以让你一看代码就知道怎么通过模型去访问数据库。</p>
+<pre><code>from books.models import Publisher
+
+# 先创建对象，然后再save，相当于SQL中的INSERT
+p1 = Publisher(name=&apos;Apress&apos;, address=&apos;2855 Telegraph Avenue&apos;)
+p1.save()
+# 注意：尽管我们没有在models给表设置主键，但是Django会自动添加一个id作为主键
+
+# 通过objects这个模型管理器的all()获得所有数据行，相当于SQL中的SELECT * FROM
+publisher_list = Publisher.objects.all()
+for publisher in publisher_list:
+    # 对每个publisher做处理
+
+# 修改其中一个字段，再save，相当于SQL中的UPDATE（但这里会更新所有列）
+p1.name = &apos;Apress Publishing&apos;
+p1.save()
+# 如果只需要更新一列，可以用update方法，并应用于结果集上更新多个数据
+Publisher.objects.all().update(address=&apos;USA&apos;)
+
+# 删除掉数据库中的一行，相当于SQL中的DELETE
+p1.delete()
+
+# filter相当于SQL中的WHERE，可设置条件过滤结果
+p2 = Publisher.objects.filter(name=&apos;Apress&apos;)    #单条件查询
+p2 = Publisher.objects.filter(name=&apos;Apress&apos;, address__contains=&apos;Telegraph&apos;)    # 多条件查询，双下划线表明会进行一些魔术般的操作，contains部分会被翻译成WHERE address LIKE &apos;%Telegraph%&apos;
+
+# 用get来获取单个结果，注意如果没有结果或结果不唯一会抛异常
+try:
+    p = Publisher.objects.get(name=&apos;Apress&apos;)
+except Publisher.DoesNotExist:
+    print &quot;Apress isn&apos;t in the database yet.&quot;
+else:
+    print &quot;Apress is in the database.&quot;
+
+# 按name字段来排序，相当于SQL中的ORDER BY，如果换成&quot;-name&quot;则是逆序
+result = Publisher.objects.order_by(&quot;name&quot;)
+
+# 上面的方法可以连锁使用
+Publisher.objects.filter(country=&quot;U.S.A.&quot;).order_by(&quot;-name&quot;)
+
+# 用索引限定数据行数，相当于SQL中的OFFSET 0 LIMIT 2
+Publisher.objects.order_by(&apos;name&apos;)[0:2]
+
+# 直接通过字段外键来访问数据，这有点类似于SQL中的JOIN
+from books.models import Book
+publisher_addr = Book.objects.get(id=1).publisher.address
+
+# 对于用&quot;ForeignKey&quot;定义的关系，关系的另一端也能反向追溯回来。通过字段名加_set的方式可以访问到
+p = Publisher.objects.get(name=&apos;Apress Publishing&apos;)
+p.book_set.all()
+# 注意到Publisher类里面没有定义book这个字段，但因为定义了外键，Django已经帮我们生成了book_set这个属性
+
+# 多对多和外键工作方式相同，只不过我们处理的是QuerySet而不是模型实例
+b = Book.objects.get(id=1).author.all()
+# 反向查询还是字段名加_set，例如要查看一个作者的所有书籍
+a = Author.objects.get(name=&apos;Adrian&apos;)
+a.book_set.all()
+</code></pre><h1 id="4-__u7ED3_u8BED"><a href="#4-__u7ED3_u8BED" class="headerlink" title="4. 结语"></a>4. 结语</h1><p>从上面的介绍可以看到Django的模型已经帮我们干了非常多的事情，比如我们可以通过访问对象的属性和方法来操作数据库，这种技术叫做<a href="http://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84" target="_blank" rel="external">对象关系映射</a>（ORM，Object Relational Mapping）。本文仅仅介绍了Django模型最基础的部分，其他高级的用法比如增加额外的Manager方法，添加修改数据库字段等应用可以参照<a href="http://djangobook.py3k.cn/2.0/chapter10/" target="_blank" rel="external">这里</a>。虽然Django给我们提供了如此方便的工具，但它还是需要一定的学习成本的，比如以前你简简单单写个SQL语句就可以搞定的事情，现在要转换为对象的思维，然后去定义模型，学习模型的API。而且听别人说，在涉及到比较复杂的数据库查询和优化的时候，ORM会显得力不从心，所幸Django可以支持原始SQL查询（同样请参见上面的链接）。在日常使用和中小型应用中，使用Django的ORM已经游刃有余，毕竟开发效率才是王道。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="django-note-2" data-title="Django学习笔记（2）——Django的模型"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

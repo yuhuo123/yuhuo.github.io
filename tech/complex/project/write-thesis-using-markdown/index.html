@@ -1,0 +1,582 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>使用Markdown来写毕业论文 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="使用Markdown来写毕业论文"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/综合/">综合</a><a class="breadcrumb" href="/categories/技术/综合/项目/">项目</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>使用Markdown来写毕业论文</h1>
+    
+
+
+            </div>
+            <time datetime="2015-12-17T08:17:53.000Z"><a href="/tech/complex/project/write-thesis-using-markdown/">2015-12-17</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Markdown/" class="article-tag green accent-4">Markdown</a>
+        
+            <a href="/tags/论文/" class="article-tag green accent-4">论文</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    
+</div>
+
+
+            <div class="entry">
+                <p>最近很长一段时间没有写博客，主要是因为“学”的时间减少了，但私底下“做”的时间增加了。作为研三的老人，马上就要进入写毕业论文的阶段了，所以最近一直都在准备论文的事情，所所以博客的更新也会稍微缓一缓，估计到放假回家就可以恢复正常了。</p>
+<p>说到准备论文，最近一直都在研究如何使用Markdown来写毕业论文，而本文就是研究成果<a href="https://github.com/raytaylorlin/hust-graduation-thesis-pandoc" target="_blank" rel="external">hust-graduation-thesis-pandoc</a>的展示。项目现已放在Github上，欢迎各位使用和反馈。</p>
+<a id="more"></a>
+<p>实验室以前的学长学姐写毕业论文，都是规规矩矩地在前人的Word文档基础上修改。但是作为一个程序猿，用Word来写论文未免太不够档（zhuang）次（bi）。更重要的是用Word来写论文时，<strong>经常在格式上会出现一些莫名其妙的问题</strong>，比如保存时明明是好的下次打开时多级标题全错乱了啊，正文的字体有时会突然错乱了啊等等，而且无论怎么调都调不好，最后只能在那气得干瞪眼，然后重新找一份前人“及格”的文档重新编辑。</p>
+<p>当然，科研界的投稿，很多都是用<a href="https://zh.wikipedia.org/wiki/LaTeX" target="_blank" rel="external">Latex</a>来编写。Latex虽然超级好用，但是学习曲线太陡峭了，并不适合我们这种在一个月内就要写完论文的人士。当然，经过考验的格式编排没有问题的Latex模板网上有很多，一般拿过来直接往里面填充内容就可以了。不管怎么说，除去折腾Latex的安装和模板的制作，直接站在前人的肩膀上使用Latex模板绝对要比使用Word模板靠谱得多。</p>
+<p>但是Latex本身是“内容和样式”混排的，<a href="https://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">Markdown</a>这种简洁优雅只专注于内容的标记语言才是程序猿的最爱。至于用Markdown来写作的优势，此处就不赘述了，懂的人应该都懂的。而最近的研究成果，就是实现了一套方案，既能让人利用Markdown的语法优势快速编写内容，又能利用Latex的强大和稳定，生成漂亮的pdf论文。要注意的是，原生的Markdown提供的功能并不足以胜任论文的编写，因为论文可能会包含公式、表格、交叉引用等等。幸运的是，使用<a href="http://pandoc.org/README.html#pandocs-markdown" target="_blank" rel="external">Pandoc Markdown</a>这种增强版的Markdown语法，再混编一点点Latex指令，就可以解决我们的问题。</p>
+<p>事实上，早在几年前我的好基友<a href="https://github.com/pyrocat101" target="_blank" rel="external">@pyrocat101</a>就已经用Markdown完成了他的本科毕业论文。而我的这个项目也是参考了他的项目<a href="https://github.com/Sicun/hust-thesis-pandoc" target="_blank" rel="external">hust-thesis-pandoc</a>，同时也略微修改了同系同学<a href="https://github.com/xu-cheng" target="_blank" rel="external">@xu-cheng</a>提供的<a href="https://github.com/hust-latex/hustthesis" target="_blank" rel="external">华中科技大学毕业论文Latex模板</a>，加上自己的一套构建方法而成。所以我也要向这两位伟大的先驱者致敬。</p>
+<p>项目的使用方法和注意事项，Github项目的文档已经写得很清楚了，这里就只简单说下我所做的工作。</p>
+<ol>
+<li>@xu-cheng 提供的Latex模板适用于纯Latex用户，我运行了其提供的<code>makewin32.bat unpack</code>脚本，从<a href="https://github.com/hust-latex/hustthesis/blob/master/hustthesis/hustthesis.dtx" target="_blank" rel="external">hustthesis.dtx</a>模板中提取出了cls和bst文件，这两个才是编写latex时真正要用到的模板。</li>
+<li>用Markdown写一份论文示例，使用<a href="http://pandoc.org/" target="_blank" rel="external">Pandoc</a>这款工具，将md转换为tex。</li>
+<li>用<a href="https://www.tug.org/texlive/" target="_blank" rel="external">Tex Live</a>提供的<code>xelatex</code>工具（<code>lualatex</code>亦可），编译上述tex文件，生成最终的pdf文件。</li>
+<li>参考机油项目中的<a href="https://github.com/Sicun/hust-thesis-pandoc/blob/master/Makefile" target="_blank" rel="external">Makefile</a>，编写一份<a href="http://gulpjs.com/" target="_blank" rel="external">Gulp</a>构建脚本，将上述过程自动化。</li>
+<li>将latex模板中的个人信息、摘要、致谢等内容分离出单独的tex文件，并整理整个项目结构。</li>
+</ol>
+<p>本项目目前仍处于试验期，我会在写毕业论文期间不断维护这个项目，欢迎各位评测指正。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="write-thesis-using-markdown" data-title="使用Markdown来写毕业论文"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Git指南（2）——处理历史与错误 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Git指南（2）——处理历史与错误"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/工具/">工具</a><a class="breadcrumb" href="/categories/技术/工具/Git/">Git</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Git指南（2）——处理历史与错误</h1>
+    
+
+
+            </div>
+            <time datetime="2013-09-17T09:18:08.000Z"><a href="/tech/tool/git/git-tutorial-2/">2013-09-17</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Git/" class="article-tag green accent-4">Git</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u5904_u7406_u5386_u53F2_u8BB0_u5F55"><span class="section table-of-contents-text">1. 处理历史记录</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1__u67E5_u770B"><span class="section table-of-contents-text">1.1 查看</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2__u522B_u540D_uFF08alias_uFF09"><span class="section table-of-contents-text">1.2 别名（alias）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-3__u83B7_u53D6_u65E7_u7248_u672C"><span class="section table-of-contents-text">1.3 获取旧版本</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-4__u7ED9_u7248_u672C_u6253_u6807_u7B7E"><span class="section table-of-contents-text">1.4 给版本打标签</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u5904_u7406_u9519_u8BEF"><span class="section table-of-contents-text">2. 处理错误</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u5728_u63D0_u4EA4_u4E4B_u524D_u64A4_u9500_u66F4_u6539"><span class="section table-of-contents-text">2.1 在提交之前撤销更改</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u64A4_u9500_u5DF2_u63D0_u4EA4_u7684_u66F4_u6539"><span class="section table-of-contents-text">2.2 撤销已提交的更改</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u4FEE_u6B63_u63D0_u4EA4"><span class="section table-of-contents-text">2.3 修正提交</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>上一篇介绍了Git的一些最常用的基本命令，如果只是日常的提交，那些命令已经够用了。但是平时写代码的时候总难免会需要查看你以前写过的代码，或者当你进行了一些误操作的时候，总会希望可以安全地撤销你的操作。本篇将介绍如何处理历史记录，在各个版本之间跳转（签出），以及如何撤销你的之前的提交、更改等操作。</p>
+<a id="more"></a>
+<h1 id="1-__u5904_u7406_u5386_u53F2_u8BB0_u5F55"><a href="#1-__u5904_u7406_u5386_u53F2_u8BB0_u5F55" class="headerlink" title="1. 处理历史记录"></a>1. 处理历史记录</h1><h2 id="1-1__u67E5_u770B"><a href="#1-1__u67E5_u770B" class="headerlink" title="1.1 查看"></a>1.1 查看</h2><p>以下命令用来取得项目之前所有提交的列表</p>
+<pre><code>git log
+</code></pre><p>当然，可以用很多参数来精确控制历史记录的显示方式，这里推荐一种格式输出（参数意义自行查阅）</p>
+<pre><code>git log --pretty=format:&quot;%h %ad | %s%d [%an]&quot; --graph --date=short
+# 输出例子：
+# d14ff74 2013-09-12 | First Commit (HEAD, master) [水月轻枫]
+</code></pre><p>但是每次都要输入这一长串命令太不现实了，所幸Git提供别名功能，可以简化这个命令。</p>
+<h2 id="1-2__u522B_u540D_uFF08alias_uFF09"><a href="#1-2__u522B_u540D_uFF08alias_uFF09" class="headerlink" title="1.2 别名（alias）"></a>1.2 别名（alias）</h2><p><code>git status</code>，<code>git add</code>，<code>git commit</code>和<code>git checkout</code>这些命令太常用了，包括上面提到那个格式化的<code>git log</code>，缩写一下会大大提高效率。</p>
+<p>要使用别名，把下面的内容加到你$HOME目录下的.gitconfig文件即可（Windows下的$HOME目录一般是“C:\Users\你的Windows用户名\”）。</p>
+<pre><code>[alias]
+    co = checkout
+    cm = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\&quot;%h %ad | %s%d [%an]\&quot; --graph --date=short
+</code></pre><p>接下来，你就可以使用<code>git cm</code>来代替<code>git commit</code>，使用<code>git hist</code>来输出格式化的历史记录等等，方便吧。</p>
+<h2 id="1-3__u83B7_u53D6_u65E7_u7248_u672C"><a href="#1-3__u83B7_u53D6_u65E7_u7248_u672C" class="headerlink" title="1.3 获取旧版本"></a>1.3 获取旧版本</h2><p>如果你已经配置了上述的查看历史命令的别名<code>git hist</code>，就可以很方便地使用这个命令来查看历史提交的列表。注意到每个提交的第一项都是一串简写的SHA1 hash值（完整的hash值可以说是一次提交的唯一标识），可以用以下命令来获取旧版本</p>
+<pre><code># 此处&lt;hash&gt;只需要前几个字符即可，如d14ff74
+git checkout &lt;hash&gt;
+</code></pre><p>成功运行之后你的repo应该就处于对应的旧版本了。如果你需要返回主分支的最新版本，可以运行以下命令</p>
+<pre><code>git checkout master
+</code></pre><p>“master”是主分支默认的名字，如果checkout的是一个分支的名字，就会得到这个分支的最新版本。</p>
+<h2 id="1-4__u7ED9_u7248_u672C_u6253_u6807_u7B7E"><a href="#1-4__u7ED9_u7248_u672C_u6253_u6807_u7B7E" class="headerlink" title="1.4 给版本打标签"></a>1.4 给版本打标签</h2><p>使用以下命令</p>
+<pre><code>git tag v1
+</code></pre><p>可以给当前版本打上标签“v1”。如果需要给过去的版本打标签，应先<code>git checkout</code>出以前的版本再打标签。</p>
+<p><em>小贴士：使用<code>git checkout v1^</code>可以签出v1的<strong>上一个</strong>版本，符号“^”表示“上一个版本”</em></p>
+<p>使用以下命令可以查看有哪些可用的标签</p>
+<pre><code>git tag
+</code></pre><p>使用<code>git hist master --all</code>可以在历史记录中看到标签信息。</p>
+<h1 id="2-__u5904_u7406_u9519_u8BEF"><a href="#2-__u5904_u7406_u9519_u8BEF" class="headerlink" title="2. 处理错误"></a>2. 处理错误</h1><h2 id="2-1__u5728_u63D0_u4EA4_u4E4B_u524D_u64A4_u9500_u66F4_u6539"><a href="#2-1__u5728_u63D0_u4EA4_u4E4B_u524D_u64A4_u9500_u66F4_u6539" class="headerlink" title="2.1 在提交之前撤销更改"></a>2.1 在提交之前撤销更改</h2><p>这里假定一个场景：你刚提交了一个新版本，然后对你的文件hello.py做了一些更改，随后你对刚才的更改不满意了，想将其恢复到提交时状态。这里分为两种情况：</p>
+<ul>
+<li><p>本地修改（你还没用add或stage跟踪修改）：用<code>git checkout hello.py</code>即可恢复该文件，可见git checkout可以还原特定的文件。</p>
+</li>
+<li><p>已跟踪修改：用<code>git reset HEAD hello.py</code>把跟踪区重置到和HEAD版本一致的状态。注意：<strong>reset命令（默认）不修改当前工作目录，所以工作目录里依旧会保留你的更改。</strong>可以用git checkout命令来撤销工作目录中你不想要的修改。<strong>这里需要你头脑很清晰地分辨跟踪区和工作目录的区别。</strong></p>
+</li>
+</ul>
+<h2 id="2-2__u64A4_u9500_u5DF2_u63D0_u4EA4_u7684_u66F4_u6539"><a href="#2-2__u64A4_u9500_u5DF2_u63D0_u4EA4_u7684_u66F4_u6539" class="headerlink" title="2.2 撤销已提交的更改"></a>2.2 撤销已提交的更改</h2><p>有时你会突然意识到你刚刚提交的修改有问题，希望撤销这次提交。有好几种方法可以做到这一点，其中一种方法就是，就是再提交一次撤销了之前修改的新修改。</p>
+<pre><code># --no-edit选项指定不打开编辑器
+# 只要把HEAD换成其他hash值就可以恢复对应的版本
+git revert HEAD --no-edit
+</code></pre><p>执行之后用git hist看一下记录，会发现有一次新的提交，这次提交覆盖了上一次的提交的内容。</p>
+<p>上面这种方法虽然可以撤销更改，但是错误提交还是出现在git log里，这对于有强迫症的程序猿来说是多么不能忍！下面这个方法可以让这次错误的提交看起来像是完全没发生。</p>
+<p>假定git hist输出以下内容</p>
+<pre><code># Oops是错误提交，Revert是用revert命令撤销的提交，注意到错误提交之前的版本带有v1标签
+$ git hist
+# 输出：
+# ee1237e 2011-09-20 | Revert &quot;Oops, we didn&apos;t want this commit&quot; (HEAD, master) [Jim Weirich]
+# 8021312 2011-09-20 | Oops, we didn&apos;t want this commit [Jim Weirich]
+# 1b303b2 2011-09-20 | Added a comment (v1) [Jim Weirich]
+</code></pre><p>首先用<code>git tag oops</code>标记最后的提交，然后</p>
+<pre><code># --hard表示将当前工作目录更新到和新分支的最新版本一致
+git reset --hard v1
+</code></pre><p>这时再查看历史记录，你会发现错误提交（Oops…）和撤销提交（Revert…）已经“消失”了。当然，<strong>错误的提交并没有消失，它们还在库里。只是它们现在不会列在主分支里了，如果使用<code>git hist --all</code>还是可以看到记录。</strong></p>
+<p>最后，不要忘了删除oops那个标签，以便<strong>它所引用的提交可以被垃圾收集机制清理掉</strong></p>
+<pre><code>git tag -d oops
+# 现在你用git hist --all也看不到了
+</code></pre><h2 id="2-3__u4FEE_u6B63_u63D0_u4EA4"><a href="#2-3__u4FEE_u6B63_u63D0_u4EA4" class="headerlink" title="2.3 修正提交"></a>2.3 修正提交</h2><p>假设你刚刚用<code>git commit -m &quot;No comment&quot;</code>做了一次提交，然后马上意识到你在某个地方少添加了一句注释，但你确实不想为了这点屁大的事再做一次单独的提交，因此可以使用“修正提交”的方法。先加入你的注释，然后</p>
+<pre><code># --amend允许你修正最近一次提交
+# 不要忘记提交前git stage一下
+git commit --amend -m &quot;Now add a comment&quot;
+</code></pre><p>再查看一下历史记录，你会发现“No comment”那次提交不见了，取而代之的是“Now add a comment”这次提交。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="git-tutorial-2" data-title="Git指南（2）——处理历史与错误"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Canvas快速入门 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Canvas快速入门"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/HTML5/">HTML5</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Canvas快速入门</h1>
+    
+
+
+            </div>
+            <time datetime="2013-01-05T12:13:24.000Z"><a href="/tech/web/html5/canvas-quick-start/">2013-01-05</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Canvas/" class="article-tag green accent-4">Canvas</a>
+        
+            <a href="/tags/HTML5/" class="article-tag green accent-4">HTML5</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-_Canvas_u5143_u7D20"><span class="section table-of-contents-text">1. Canvas元素</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u57FA_u7840API"><span class="section table-of-contents-text">2. 基础API</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u5750_u6807_u7CFB_u7EDF"><span class="section table-of-contents-text">2.1 坐标系统</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u7ED8_u5236_u57FA_u672C_u56FE_u5F62"><span class="section table-of-contents-text">2.2 绘制基本图形</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-2-1__u77E9_u5F62"><span class="section table-of-contents-text">2.2.1 矩形</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-2-2__u7EBF_u6761"><span class="section table-of-contents-text">2.2.2 线条</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-2-3__u5706_u5F62"><span class="section table-of-contents-text">2.2.3 圆形</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u6837_u5F0F"><span class="section table-of-contents-text">2.3 样式</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-3-1__u4FEE_u6539_u7EBF_u6761_u989C_u8272"><span class="section table-of-contents-text">2.3.1 修改线条颜色</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-3-2__u4FEE_u6539_u7EBF_u5BBD"><span class="section table-of-contents-text">2.3.2 修改线宽</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4__u7ED8_u5236_u6587_u672C"><span class="section table-of-contents-text">2.4 绘制文本</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-5__u7ED8_u5236_u56FE_u50CF"><span class="section table-of-contents-text">2.5 绘制图像</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u9AD8_u7EA7_u529F_u80FD"><span class="section table-of-contents-text">3. 高级功能</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1__u4F7FCanvas_u586B_u6EE1_u6D4F_u89C8_u5668_u7A97_u53E3"><span class="section table-of-contents-text">3.1 使Canvas填满浏览器窗口</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2__u7ED8_u56FE_u72B6_u6001"><span class="section table-of-contents-text">3.2 绘图状态</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3__u53D8_u5F62"><span class="section table-of-contents-text">3.3 变形</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-3-1__u5E73_u79FB"><span class="section table-of-contents-text">3.3.1 平移</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-3-2__u7F29_u653E"><span class="section table-of-contents-text">3.3.2 缩放</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#3-3-3__u65CB_u8F6C"><span class="section table-of-contents-text">3.3.3 旋转</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>本文是一个Canvas快速入门，亦是<a href="http://book.douban.com/subject/7162014/" target="_blank" rel="external">Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社</a>一书的读书笔记。</p>
+<a id="more"></a>
+<h1 id="1-_Canvas_u5143_u7D20"><a href="#1-_Canvas_u5143_u7D20" class="headerlink" title="1. Canvas元素"></a>1. Canvas元素</h1><p>以下html代码定义了一个canvas元素。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Canvas快速入门&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+    &lt;canvas id=&quot;mainCanvas&quot; width=&quot;640&quot; height=&quot;480&quot;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>通过以下Javascript语句访问canvas元素：</p>
+<pre><code>//DOM写法
+window.onload = function () {
+    var canvas = document.getElementById(&quot;mainCanvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+};
+//jQuery写法
+$(document).ready(function () {
+    var canvas = $(&quot;#mainCanvas&quot;);
+    var context = canvas.get(0).getContext(&quot;2d&quot;);
+});
+//接下来就可以调用context的方法来调用绘图API
+</code></pre><h1 id="2-__u57FA_u7840API"><a href="#2-__u57FA_u7840API" class="headerlink" title="2. 基础API"></a>2. 基础API</h1><h2 id="2-1__u5750_u6807_u7CFB_u7EDF"><a href="#2-1__u5750_u6807_u7CFB_u7EDF" class="headerlink" title="2.1 坐标系统"></a>2.1 坐标系统</h2><p>Canvas 2D渲染上下文采用平面笛卡尔坐标系统，左上角为原点(0,0)，坐标系统的1个单位相当于屏幕的1个像素。具体如下图：<br><img src="http://raytaylorlin-blog.qiniudn.com/image/HTML5/HTML5%20Canvas%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F.jpg" alt="HTML5 Canvas坐标系统"></p>
+<h2 id="2-2__u7ED8_u5236_u57FA_u672C_u56FE_u5F62"><a href="#2-2__u7ED8_u5236_u57FA_u672C_u56FE_u5F62" class="headerlink" title="2.2 绘制基本图形"></a>2.2 绘制基本图形</h2><h3 id="2-2-1__u77E9_u5F62"><a href="#2-2-1__u77E9_u5F62" class="headerlink" title="2.2.1 矩形"></a>2.2.1 矩形</h3><pre><code>//绘制一个填充矩形
+context.fillRect(x, y, width, height)
+//绘制一个边框矩形
+context.strokeRect(x, y, width, height)
+//清除一个矩形区域
+context.clearRect(x, y, width, height)
+</code></pre><h3 id="2-2-2__u7EBF_u6761"><a href="#2-2-2__u7EBF_u6761" class="headerlink" title="2.2.2 线条"></a>2.2.2 线条</h3><p>绘制线条与绘制图形有一些区别，线条实际上称为路径。要绘制一条简单的路径，首先必须调用beginPath方法，接着调用moveTo设置路径的起点坐标，然后调用lineTo设置线段终点坐标（可多次设置），再调用closePath完成路径绘制。最后调用stroke绘制轮廓（或调用fill填充路径）。以下为例子：</p>
+<pre><code>//示例
+context.beginPath();    //开始路径
+context.moveTo(40, 40);    //移动到点(40,40)
+context.lineTo(300, 40);    //画线到点(300,30)
+context.lineTo(40, 300);    //画线到点(40,300)
+context.closePath();    //结束路径
+context.stroke();    //绘制轮廓
+//或者填充用context.fill();
+</code></pre><h3 id="2-2-3__u5706_u5F62"><a href="#2-2-3__u5706_u5F62" class="headerlink" title="2.2.3 圆形"></a>2.2.3 圆形</h3><p>Canvas实际上并没有专门绘制圆形的方法，可以通过画圆弧来模拟圆形。由于圆弧是一种路径，所以画圆弧的API应该包含在beginPath和closePath之间。</p>
+<pre><code>/* 绘制一条圆弧
+ * @param x,y 圆心的横纵坐标
+ * @param radius 圆的半径
+ * @param startAngle 起始角度，以弧度为单位，x轴方向为0
+ * @param endAngle 结束角度，以弧度为单位
+ * @param anticlockwise 布尔值，表示是否按逆时针方向绘制
+ */
+context.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+</code></pre><p>更多用法参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Drawing_shapes?redirectlocale=en-US&amp;redirectslug=Canvas_tutorial%2FDrawing_shapes" target="_blank" rel="external">Drawing shapes(MDN)</a>。</p>
+<h2 id="2-3__u6837_u5F0F"><a href="#2-3__u6837_u5F0F" class="headerlink" title="2.3 样式"></a>2.3 样式</h2><h3 id="2-3-1__u4FEE_u6539_u7EBF_u6761_u989C_u8272"><a href="#2-3-1__u4FEE_u6539_u7EBF_u6761_u989C_u8272" class="headerlink" title="2.3.1 修改线条颜色"></a>2.3.1 修改线条颜色</h3><pre><code>var color;
+//指定RGB值
+color = &quot;rgb(255, 0, 0)&quot;;
+//指定RGBA值（最后一个参数为alpha值，取值0.0~1.0）
+color = &quot;rgba(255, 0, 0, 1)&quot;;
+//指定16进制码
+color = &quot;#FF0000&quot;;
+//用单词指定
+color = &quot;red&quot;;
+//设置填充颜色
+context.fillStyle = color;
+//设置边框颜色
+context.strokeStyle = color;
+</code></pre><h3 id="2-3-2__u4FEE_u6539_u7EBF_u5BBD"><a href="#2-3-2__u4FEE_u6539_u7EBF_u5BBD" class="headerlink" title="2.3.2 修改线宽"></a>2.3.2 修改线宽</h3><pre><code>//指定线宽值
+var value= 3;
+//设置边框颜色
+context.linewidth = value;
+</code></pre><p>更多样式介绍参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Applying_styles_and_colors" target="_blank" rel="external">Applying styles and colors(MDN)</a>。</p>
+<h2 id="2-4__u7ED8_u5236_u6587_u672C"><a href="#2-4__u7ED8_u5236_u6587_u672C" class="headerlink" title="2.4 绘制文本"></a>2.4 绘制文本</h2><pre><code>//指定字体样式
+context.font = &quot;italic 30px 黑体&quot;;
+//在点(40,40)处画文字
+context.fillText(&quot;Hello world!&quot;, 40, 40);
+</code></pre><h2 id="2-5__u7ED8_u5236_u56FE_u50CF"><a href="#2-5__u7ED8_u5236_u56FE_u50CF" class="headerlink" title="2.5 绘制图像"></a>2.5 绘制图像</h2><p>在绘制图像之前，需要先定义图像并加载。</p>
+<pre><code>var img = new Image();
+img.src = &quot;myImage.png&quot;;
+img.onload = function () {
+    //图像加载完毕执行
+};
+</code></pre><p>以下是drawImage API解释：</p>
+<pre><code>//在(x,y)出绘制图像image
+context.drawImage(image, x, y)
+//在(x,y)出绘制width*height的图像image
+context.drawImage(image, x, y, width, height)
+//在image的(sx,sy)处截取sWidth*sHeight的图像，在(dx,dy)处绘制dWidth*dHeight的图像
+context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+</code></pre><h1 id="3-__u9AD8_u7EA7_u529F_u80FD"><a href="#3-__u9AD8_u7EA7_u529F_u80FD" class="headerlink" title="3. 高级功能"></a>3. 高级功能</h1><h2 id="3-1__u4F7FCanvas_u586B_u6EE1_u6D4F_u89C8_u5668_u7A97_u53E3"><a href="#3-1__u4F7FCanvas_u586B_u6EE1_u6D4F_u89C8_u5668_u7A97_u53E3" class="headerlink" title="3.1 使Canvas填满浏览器窗口"></a>3.1 使Canvas填满浏览器窗口</h2><p>最简单的方式是将canvas元素的宽度和高度精确设置为浏览器窗口的宽度和高度，用CSS消去白色空隙。</p>
+<p>CSS代码：</p>
+<pre><code>* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+canvas {
+    display: block;
+}
+</code></pre><p>Javascript代码：</p>
+<pre><code>function resizeCanvas() {
+    //canvas由jQuery获取
+    canvas.attr(&quot;width&quot;, $(window).get(0).innerWidth);
+    canvas.attr(&quot;height&quot;, $(window).get(0).innerHeight);
+    context.fillRect(0, 0, canvas.width(), canvas.height());
+}
+$(window).resize(resizeCanvas);
+resizeCanvas();
+</code></pre><h2 id="3-2__u7ED8_u56FE_u72B6_u6001"><a href="#3-2__u7ED8_u56FE_u72B6_u6001" class="headerlink" title="3.2 绘图状态"></a>3.2 绘图状态</h2><p>在canvas中，绘图状图指的是描述某一时刻2D渲染上下文外观的整套属性，包括：变换矩阵、裁剪区域、globalAlpha、globalCompositeOperation、strokeStyle、fillStyle、lineWidth、lineCap、lineJoin、miterLimit、shadowOffsetX、shadowOffsetY、shadowBlur、shadowColor、font、textAlign和textBaseline。</p>
+<p>当需要改变画布全局状态时，一般先将当前状态保存起来——调用save方法将状态推入绘图状态栈），做完操作之后，再调用restore方法回复绘图状态。</p>
+<pre><code>//示例
+context.save();
+context.globalAlpha = 0.5;
+context.fillRect(0, 0, 200, 100);
+context.restore();
+</code></pre><h2 id="3-3__u53D8_u5F62"><a href="#3-3__u53D8_u5F62" class="headerlink" title="3.3 变形"></a>3.3 变形</h2><h3 id="3-3-1__u5E73_u79FB"><a href="#3-3-1__u5E73_u79FB" class="headerlink" title="3.3.1 平移"></a>3.3.1 平移</h3><p>将2D渲染上下文的原点从一个位置移动到另一个位置。注意，这里移动的是坐标原点即全局绘图位置，API如下：</p>
+<pre><code>//将坐标原点移动到(x,y)
+context.translate(x, y)
+</code></pre><h3 id="3-3-2__u7F29_u653E"><a href="#3-3-2__u7F29_u653E" class="headerlink" title="3.3.2 缩放"></a>3.3.2 缩放</h3><pre><code>//将全局横纵尺寸缩放至x,y倍（即在原有数值乘上倍乘因子）
+context.scale(x, y)
+</code></pre><h3 id="3-3-3__u65CB_u8F6C"><a href="#3-3-3__u65CB_u8F6C" class="headerlink" title="3.3.3 旋转"></a>3.3.3 旋转</h3><pre><code>//将画布绕着原点旋转radius弧度
+context.rotate(radius)
+</code></pre><p>更多高级特性参见<a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Transformations?redirectlocale=en-US&amp;redirectslug=Canvas_tutorial%2FTransformations" target="_blank" rel="external">Transformations(MDN)</a>。</p>
+<p>参考文献：<a href="http://book.douban.com/subject/7162014/" target="_blank" rel="external">Rob Hawkes《HTML5 Canvas基础教程》人民邮电出版社</a></p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="canvas-quick-start" data-title="Canvas快速入门"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

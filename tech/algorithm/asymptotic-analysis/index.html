@@ -1,0 +1,606 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>算法学习笔记：渐进分析 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="算法学习笔记：渐进分析"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/算法/">算法</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>算法学习笔记：渐进分析</h1>
+    
+
+
+            </div>
+            <time datetime="2014-06-20T08:22:05.000Z"><a href="/tech/algorithm/asymptotic-analysis/">2014-06-20</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/渐进分析/" class="article-tag green accent-4">渐进分析</a>
+        
+            <a href="/tags/算法/" class="article-tag green accent-4">算法</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u63D2_u5165_u6392_u5E8F"><span class="section table-of-contents-text">1. 插入排序</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1__u7B97_u6CD5_u63CF_u8FF0"><span class="section table-of-contents-text">1.1 算法描述</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2__u7B97_u6CD5_u5206_u6790"><span class="section table-of-contents-text">1.2 算法分析</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u6E10_u8FD1_u8BB0_u53F7"><span class="section table-of-contents-text">2. 渐近记号</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的<strong>渐进</strong>效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。</p>
+<p>本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。</p>
+<a id="more"></a>
+<h1 id="1-__u63D2_u5165_u6392_u5E8F"><a href="#1-__u63D2_u5165_u6392_u5E8F" class="headerlink" title="1. 插入排序"></a>1. 插入排序</h1><h2 id="1-1__u7B97_u6CD5_u63CF_u8FF0"><a href="#1-1__u7B97_u6CD5_u63CF_u8FF0" class="headerlink" title="1.1 算法描述"></a>1.1 算法描述</h2><p>插入排序的工作方式就像你排序手中的扑克牌一样（假设从左到右是从小到大），一开始手中没有牌，每次拿到一张新的牌都要从右到左与每张牌比较，并将其插入到合适的位置（比它大的牌也顺势后移）。以下是Python代码：</p>
+<pre><code>def insertionSort(data):
+    # 初始化结果为第一个数
+    result = [data[0]]
+    # 从第二个数开始，从后往前找应该插入的位置
+    for key in data[1:]:
+        index = len(result) - 1
+        while index &gt;= 0 and result[index] &gt; key:
+            index -= 1
+        else:
+            result.insert(index + 1, key)
+    return result
+</code></pre><p>注：上述代码使用了Python list的insert方法在特定位置插入一个数（其他数字顺势往后移），如果是用C/C++之类普通的数组可能需要自己手动来后移其他数字。</p>
+<h2 id="1-2__u7B97_u6CD5_u5206_u6790"><a href="#1-2__u7B97_u6CD5_u5206_u6790" class="headerlink" title="1.2 算法分析"></a>1.2 算法分析</h2><p>即使对给定规模的输入，一个算法的运行时间也可能依赖于该规模下不同的输入。例如在最佳情况下，输入的数组本身就是有序的，因此不需要里层的while循环来查找插入位置，只要直接插入即可，运行时间为线性函数$an + b$；在最坏情况下，输入的数组是反序的，里层while循环必须将每个元素key与整个已排序的子数组进行比较，运行时间是二次函数$a{n^2} + bn + c$。</p>
+<p>在算法的性能分析中，我们往往关注算法在最坏情况的运行时间，这是因为：</p>
+<ul>
+<li>算法的最坏情况运行时间给出了任何输入的运行时间的一个上界。知道这个界限，就能确保该算法运行肯定不会需要更长的时间。</li>
+<li>对某些算法，最坏情况经常出现。例如检索数据库特定信息时，该信息不存在的情况（即最坏情况）是经常出现的。</li>
+<li>“平均情况”往往与最坏情况大致一样差。例如插入排序寻找插入位置时，平均来说插入的位置大致处于已排序数组的“中间”，即检查一半的元素。这种“平均情况”最终得出的运行时间也是输入规模的二次函数。</li>
+</ul>
+<p>我们真正感兴趣的是算法运行时间的<strong>增长率</strong>。当n很大时，低阶项相对来说不太重要，常量因子也不如增长率重要，所以我们只考虑公式中阶数最大的项，上述公式即是${n^2}$。我们记插入排序最坏运行时间为$T(n) = \Theta ({n^2})$。下一节将讲解这种特殊符号的真正含义。</p>
+<h1 id="2-__u6E10_u8FD1_u8BB0_u53F7"><a href="#2-__u6E10_u8FD1_u8BB0_u53F7" class="headerlink" title="2. 渐近记号"></a>2. 渐近记号</h1><p>上面提到插入排序最坏的运行时间为$T(n) = \Theta ({n^2})$，一般我们使用渐近记号来描述算法的运行时间。最常用的渐近记号有$\Theta $记号，大O记号和$\Omega $记号。</p>
+<ul>
+<li>$T(n) = \Theta (f(n))$：当且仅当存在正常数${c_1},{c_2},{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le {c_1}f(n) \le T(n) \le {c_2}f(n)$</li>
+<li>$T(n) = O(f(n))$：当且仅当存在正常数$c,{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le T(n) \le cf(n)$</li>
+<li>$T(n) = \Theta (f(n))$：当且仅当存在正常数$c,{n_0}$，使得对所有$n \ge {n_0}$，有$0 \le cf(n) \le T(n)$</li>
+</ul>
+<p>由上述定义可见，其实三种符号的定义非常相像，其中$\Theta $记号渐近地给出一个函数的上界和下界，而大O记号给出的是上界，$\Omega $记号给出的是下界。因此接下来的讨论均以“较为严格”的$\Theta $记号为例。下图给出这三种记号的一个直观表示。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/algorithm/%E4%B8%89%E7%A7%8D%E6%B8%90%E8%BF%91%E8%AE%B0%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB.jpg" alt="三种渐近记号的区别"></p>
+<p>注意，由于$\Theta (f(n))$是一个集合，所以$T(n) = \Theta (f(n))$其实等价于$T(n) \in \Theta (f(n))$。$\Theta $记号的一种非形式化的概念，相当于扔掉低阶项并忽略最高阶项前的系数。</p>
+<p><strong>例1：证明${1 \over 2}{n^2} - 3n = \Theta ({n^2})$</strong></p>
+<p>证明：要确定${c_1},{c_2},{n_0}$，使得对所有$n \ge {n_0}$，有${c_1}{n^2} \le {1 \over 2}{n^2} - 3n \le {c_2}{n^2}$成立<br>即${c_1} \le {1 \over 2} - {3 \over n} \le {c_2}$。<br>通过选择${c_2} \ge {1 \over 2}$，可以使右边不等式对任何$n \ge 1$成立<br>通过选择${c_1} \le {1 \over {14}}$，可以使左边不等式对任何$n \ge 7$成立。QED</p>
+<p><strong>例2：证明$6{n^3} \ne \Theta ({n^2})$</strong></p>
+<p>证明：采用反证法。假设存在${c_2},{n_0}$，使得对所有$n \ge {n_0}$，有$6{n^3} \le {c_2}{n^2}$。用${n^2}$除该式，得$n \le {c_2}$，因为${c_2}$是常量，所以对任意大的$n$，该不等式不可能成立。QED</p>
+<p><strong>例3：解释$2{n^2} + 3n + 1 = 2{n^2} + \Theta ({n^2}) = \Theta ({n^2})$</strong></p>
+<p>第一个等式表明存在某个函数$f(n) \in \Theta ({n^2})$，使得对所有的$n$，有$2{n^2} + 3n + 1 = 2{n^2} + f(n)$。第二个等式表明对任意函数$g(n) \in \Theta ({n^2})$，存在某个函数$h(n) \in \Theta ({n^2})$，使得对所有的$n$，有$2{n^2} + g(n) = h(n)$。</p>
+<p>参考文献：机械工业出版社《算法导论（第3版）》2.1节，2.2节，第3章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="asymptotic-analysis" data-title="算法学习笔记：渐进分析"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Console2：Windows命令行威力加强版 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Console2：Windows命令行威力加强版"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/工具/">工具</a><a class="breadcrumb" href="/categories/技术/工具/IDE/">IDE</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Console2：Windows命令行威力加强版</h1>
+    
+
+
+            </div>
+            <time datetime="2014-05-15T07:36:29.000Z"><a href="/tech/tool/IDE/console2-better-windows-cmd/">2014-05-15</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Shell/" class="article-tag green accent-4">Shell</a>
+        
+            <a href="/tags/控制台/" class="article-tag green accent-4">控制台</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u57FA_u672C_u914D_u7F6E"><span class="section table-of-contents-text">1. 基本配置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u4E2D_u6587_u663E_u793A_u7684_u95EE_u9898"><span class="section table-of-contents-text">2. 中文显示的问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u65E0_u6CD5_u4E2D_u6587_u8F93_u5165_u7684_u95EE_u9898"><span class="section table-of-contents-text">3. 无法中文输入的问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-__u901A_u8FC7_u53F3_u952E_u83DC_u5355_u5728_u5F53_u524D_u76EE_u5F55_u6253_u5F00_u547D_u4EE4_u884C_u7A97_u53E3"><span class="section table-of-contents-text">4. 通过右键菜单在当前目录打开命令行窗口</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>作为一个Windows重度用户+程序猿，日常开发中免不了要经常使用命令行工具。但是Windows下默认的cmd提供的功能实在有限。今天无意间发现了一款很不错的命令行工具前端Console2，瞬间就被其深深地吸引，赶紧记下来分享一下。本文将简单介绍Console2及其配置方法，让你可以快速地配置出一个类似Linux终端的装逼利器。</p>
+<a id="more"></a>
+<p>和Linux下有强大的Konsole和gnome terminal不同，Windows里的命令行工具默认是cmd.exe，其简陋程度大家都清楚。当然Windows下还有一个Powershell，但在各方面也是差强人意。Console2这个工具是cmd.exe的前端包装，它有很多突出的优点：</p>
+<ul>
+<li>支持多标签，这样就不会再任务栏里产生过多的窗口</li>
+<li>不仅可以包装cmd.exe，也可以包装其他terminal程序，如cygwin、Powershell等等</li>
+<li>支持透明背景，可配置字体和颜色，可配置热键等等</li>
+<li>完全绿色，解压即用</li>
+</ul>
+<p>官方下载地址：<a href="http://sourceforge.net/projects/console/" target="_blank" rel="external">http://sourceforge.net/projects/console/</a></p>
+<p>原版下载下来之后还需要经过一番配置才能成为装逼利器。</p>
+<h1 id="1-__u57FA_u672C_u914D_u7F6E"><a href="#1-__u57FA_u672C_u914D_u7F6E" class="headerlink" title="1. 基本配置"></a>1. 基本配置</h1><p>菜单栏<code>Edit | Settings</code>进入设置。以下列举我觉得比较重点的设置，其他的就自己摸索吧。</p>
+<ul>
+<li>Console: Shell：要包装的终端工具（默认为cmd.exe），用Powershell可以设置为<code>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe</code></li>
+<li>Console: Startup dir：默认启动的目录</li>
+<li>Console: Window size：启动时窗口的大小（也可以正常拖拽窗口右下角来调整）</li>
+<li>Console: Buffer size：缓冲区的大小（调大一点可以保留更多的内容）</li>
+<li>Apperance: 设置命令行工具的标题、字体、位置等（我设置为字体Consolas Size 15）</li>
+<li>Apperance|More: Window transparency：设置窗口激活和未激活时的窗口透明度（30, 80为佳）</li>
+<li>Behavior: Copy on select：选中文字时自动复制</li>
+<li>Hotkeys：设置快捷键。有一些非常好用的快捷键，比如<code>New Tab 1</code>设置为CTRL+T可以快速打开新标签，<code>Scroll buffer page up</code>设置为Page Up可以用键盘滚动命令行窗口，<code>Activate Console(global)</code>设置为CTRL+Shift+T可以让你在失去焦点的时候快速呼出命令行窗口，等等，各人按照各自的口味设置吧。<strong>记住设置快捷键时要点Assign才能生效</strong></li>
+<li>Mouse：鼠标快捷键：<code>Select Text</code>设置为Left可以让你像选文本一样选择文字（配合上面的Copy on select可以让你选中文字马上就复制），<code>Paste text</code>设置为Right可以点击鼠标右键就粘贴</li>
+<li>Tabs：配置标签页。这里你可以配置默认命令行窗口的标题、图标、启动程序等等。我点击Add添加了一个Python Shell程序，然后再Hotkeys设置New Tab 2的快捷键，就可以一键启动python了！</li>
+</ul>
+<h1 id="2-__u4E2D_u6587_u663E_u793A_u7684_u95EE_u9898"><a href="#2-__u4E2D_u6587_u663E_u793A_u7684_u95EE_u9898" class="headerlink" title="2. 中文显示的问题"></a>2. 中文显示的问题</h1><p>默认设置下中文字体会错位，让人很不爽。解决办法是菜单栏<code>View | Console window</code>调出原命令行窗口，然后在cmd的标题栏上<code>右键 | 属性 -&gt; 字体 -&gt; 新宋体</code>，然后确定保存。重启Console2，你会发现不会有屏幕文字偏移的问题了。</p>
+<h1 id="3-__u65E0_u6CD5_u4E2D_u6587_u8F93_u5165_u7684_u95EE_u9898"><a href="#3-__u65E0_u6CD5_u4E2D_u6587_u8F93_u5165_u7684_u95EE_u9898" class="headerlink" title="3. 无法中文输入的问题"></a>3. 无法中文输入的问题</h1><p>网上很多博客都说无法输入中文的问题暂时无解，只能通过菜单栏<code>View | Console window</code>在原生的命令行窗口中输入中文。但经过一番搜索还是有比较完美的解决方案的。Github上有好心人对Console2的源码进行了修改并编译了一份可以支持中文输入的版本，猛戳<a href="https://github.com/raytaylorlin/Console2-Chinese-Input-Capable" target="_blank" rel="external">我Fork的版本</a>将<code>Console.exe</code>下载覆盖即可。</p>
+<h1 id="4-__u901A_u8FC7_u53F3_u952E_u83DC_u5355_u5728_u5F53_u524D_u76EE_u5F55_u6253_u5F00_u547D_u4EE4_u884C_u7A97_u53E3"><a href="#4-__u901A_u8FC7_u53F3_u952E_u83DC_u5355_u5728_u5F53_u524D_u76EE_u5F55_u6253_u5F00_u547D_u4EE4_u884C_u7A97_u53E3" class="headerlink" title="4. 通过右键菜单在当前目录打开命令行窗口"></a>4. 通过右键菜单在当前目录打开命令行窗口</h1><p>在Windows7中，在任意目录下Shift+鼠标右键，在菜单中可以看到“在此处打开命令行窗口”，点击后可以在当前目录打开cmd.exe。如果想在当前目录打开Console2，需要修改注册表。如果你在我的Github上下载了可以输入中文的Console2，应该会发现里面有两个bat批处理文件，一个是替换掉cmd，另一个是还原，只要运行一下bat即可修改右键菜单。<strong>注意这两个文件要放在Console2目录下运行。</strong></p>
+<p>最后放出一张示例图，看看这逼格满满的命令行窗口。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/IDE/Console2%E7%A4%BA%E4%BE%8B%E5%9B%BE.jpg" alt="Console2示例图"></p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="console2-better-windows-cmd" data-title="Console2：Windows命令行威力加强版"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

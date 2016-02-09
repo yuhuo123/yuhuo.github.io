@@ -1,0 +1,707 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Ruby语言特性（下） | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Ruby语言特性（下）"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/编程语言/">编程语言</a><a class="breadcrumb" href="/categories/技术/编程语言/其它语言/">其它语言</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>Ruby语言特性（下）</h1>
+    
+
+
+            </div>
+            <time datetime="2015-01-09T08:22:50.000Z"><a href="/tech/language/other/ruby-language-2/">2015-01-09</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Ruby/" class="article-tag green accent-4">Ruby</a>
+        
+            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09"><span class="section table-of-contents-text">1. 模块与混入（Mixin）</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-__u5143_u7F16_u7A0B_uFF08metaprogramming_uFF09"><span class="section table-of-contents-text">2. 元编程（metaprogramming）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u5F00_u653E_u7C7B"><span class="section table-of-contents-text">2.1 开放类</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u4F7F_u7528method_missing"><span class="section table-of-contents-text">2.2 使用method_missing</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u4F7F_u7528_u6A21_u5757"><span class="section table-of-contents-text">2.3 使用模块</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-__u603B_u7ED3"><span class="section table-of-contents-text">3. 总结</span></a></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>本文将接着上一篇<a href="/tech/language/other/ruby-language-1/">《Ruby语言特性（上）》</a>讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。</p>
+<a id="more"></a>
+<h1 id="1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09"><a href="#1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09" class="headerlink" title="1. 模块与混入（Mixin）"></a>1. 模块与混入（Mixin）</h1><p>面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。</p>
+<pre><code># 定义模块ToFile
+module ToFile
+  # 获取文件名
+  def filename
+    &quot;object_name.txt&quot;
+  end
+
+  # 创建文件
+  def to_f
+    File.open(filename, &apos;w&apos;) {|f| f.write(to_s)}  # 注意这里to_s在其他地方定义！
+  end
+end
+
+# 定义用户类
+class Person
+  include ToFile
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name
+  end
+
+  def to_s
+    name
+  end
+end
+
+Person.new(&apos;matz&apos;).to_f  # 创建了一个文件object_name.txt，里面包含内容matz
+</code></pre><p>上面的代码很好理解，只是有一点要注意：<code>to_s</code>在模块中使用，在类中实现，但定义模块的时候，实现它的类甚至还没有定义。这正是鸭子类型的精髓所在。<strong>写入文件的能力，和Person这个类没有一点关系（一个类就应该做属于它自己的事情）</strong>，但实际开发又需要把Person类写入文件这种额外功能，这时候mixin就可以轻松胜任这种要求。</p>
+<p>Ruby有两个重要的mixin：枚举（enumerable）和比较（comparable）。若想让类可枚举，必须实现each方法；若想让类可比较，必须实现<code>&lt;=&gt;</code>（太空船）操作符（比较a,b两操作数，返回1、0或-1）。Ruby的字符串可以这样比较：<code>&#39;begin&#39; &lt;=&gt; &#39;end =&gt; -1</code>。数组有很多好用的方法：</p>
+<pre><code>a = [5, 3, 4, 1]
+a.sort =&gt; [1, 3, 4, 5]  # 整数已通过Fixnum类实现太空船操作符，因此可比较可排序
+a.any? {|i| i &gt; 4} =&gt; true
+a.all? {|i| i &gt; 0} =&gt; true
+a.collect {|i| i * 2} =&gt; [10, 6, 8, 2]
+a.select {|i| i % 2 == 0} =&gt; [4]
+a.member?(2) =&gt; false
+a.inject {|product, i| product * i} =&gt; 60  # 第一个参数是代码块上一次执行的结果，若不设初始值，则使用列表第一个值作为初始值
+</code></pre><h1 id="2-__u5143_u7F16_u7A0B_uFF08metaprogramming_uFF09"><a href="#2-__u5143_u7F16_u7A0B_uFF08metaprogramming_uFF09" class="headerlink" title="2. 元编程（metaprogramming）"></a>2. 元编程（metaprogramming）</h1><p>所谓元编程，说白了就是“写能写程序的程序”，这说起来有点拗口，下面会通过实例来讲解。</p>
+<h2 id="2-1__u5F00_u653E_u7C7B"><a href="#2-1__u5F00_u653E_u7C7B" class="headerlink" title="2.1 开放类"></a>2.1 开放类</h2><p>可以重定义Ruby中的任何类，并给它们扩充任何你想要的方法，甚至能让Ruby完全瘫痪，比如重定义Class.new方法。对于开发类来说，这种权衡主要考虑了自由，有这种重定义任何类或对象的自由，就能写出即为通俗易懂的代码，但也要明白，自由越大、能力越强，担负的责任也越重。</p>
+<pre><code>class Numeric
+  def inches
+    self
+  end
+  def feet
+    self * 12.inches
+  end
+  def miles
+    self * 5280.feet
+  end
+  def back
+    self * -1
+  end
+  def forward
+    self
+  end
+end
+</code></pre><p>上面的代码通过开放Numeric类，就可以像这样采用最简单的语法实现用英寸表示距离：<code>puts 10.miles.back</code>，<code>puts 2.feet.forward</code>。</p>
+<h2 id="2-2__u4F7F_u7528method_missing"><a href="#2-2__u4F7F_u7528method_missing" class="headerlink" title="2.2 使用method_missing"></a>2.2 使用method_missing</h2><p>Ruby找不到某个方法时，会调用一个特殊的回调方法<code>method_missing</code>显示诊断信息。通过覆盖这个特殊方法，可以实现一些非常有趣且强大的功能。下面这个示例展示了如何用简洁的语法来实现罗马数字。</p>
+<pre><code>class Roman
+  # 覆盖self.method_missing方法
+  def self.method_missing name, *args
+    roman = name.to_s
+    roman.gsub!(&quot;IV&quot;, &quot;IIII&quot;)
+    roman.gsub!(&quot;IX&quot;, &quot;VIIII&quot;)
+    roman.gsub!(&quot;XL&quot;, &quot;XXXX&quot;)
+    roman.gsub!(&quot;XC&quot;, &quot;LXXXX&quot;)
+
+    (roman.count(&quot;I&quot;) +
+     roman.count(&quot;V&quot;) * 5 +
+     roman.count(&quot;X&quot;) * 10 +
+     roman.count(&quot;L&quot;) * 50 +
+     roman.count(&quot;C&quot;) * 100)
+  end
+end
+
+puts Roman.III  # =&gt; 3
+puts Roman.XII  # =&gt; 12
+</code></pre><p>我们没有给Roman类定义什么实际的方法，但已经可以Roman类来表示任何罗马数字！其原理就是在没有找到定义方法时，把方法名称和参数传给<code>method_missing</code>执行。首先调用<code>to_s</code>把方法名转为字符串，然后将罗马数字“左减”特殊形式转换为“右加”形式（更容易计数），最后统计各个符号的个数和加权。</p>
+<p>当然，如此强有力的工具也有其代价：类调试起来会更加困难，因为Ruby再也不会告诉你找不到某个方法。因此<code>method_missing</code>是一把双刃剑，它确实可以让语法大大简化，但是要以人为地加强程序的健壮性为前提。</p>
+<h2 id="2-3__u4F7F_u7528_u6A21_u5757"><a href="#2-3__u4F7F_u7528_u6A21_u5757" class="headerlink" title="2.3 使用模块"></a>2.3 使用模块</h2><p>Ruby最流行的元编程方式，非模块莫属。下面的代码讲述如何用模块的方式扩展一个可以读取csv文件的类。</p>
+<pre><code>module ActsAsCsv
+
+  # 只要某个模块被另一模块include，就会调用被include模块的included方法
+  def self.included(base)
+    base.extend ClassMethods
+  end
+
+  module ClassMethods
+    def acts_as_csv
+      include InstanceMethods
+    end
+  end
+
+  module InstanceMethods
+    attr_accessor :headers, :csv_contents
+
+    def initialize
+      read
+    end
+
+    def read
+      @csv_contents = []
+      filename = self.class.to_s.downcase + &apos;.txt&apos;
+      file = File.new(filename)
+      @headers = file.gets.chomp.split(&apos;, &apos;)  # String的chomp方法去除字符串末尾的回车换行符
+      file.each do |row|
+        @csv_contents &lt;&lt; row.chomp.split(&apos;, &apos;)
+      end
+    end
+  end
+
+end  # end of module ActsAsCsv
+
+class RubyCsv    # 没有继承，可以自由添加
+  include ActsAsCsv
+  acts_as_csv
+end
+
+m = RubyCsv.new
+puts m.headers.inspect
+puts m.csv_contents.inspect
+</code></pre><p>上述代码中RubyCsv包含了ActsAsCsv，所以ActsAsCsv的included方法中，base就指RubyCsv，ActsAsCsv模块给RubyCsv类添加了唯一一个类方法<code>acts_as_csv</code>，这个方法又打开RubyCsv类，并在类中包含了所有实例方法。如此这般，就写了一个会写程序的程序（通过模块来动态添加类方法）。</p>
+<p>一些出色的Ruby框架，如Builder和ActiveRecord，都会为了改善可读性而特别依赖元编程。借助元编程的威力，可以做到尽量缩短正确的Ruby语法与日常用于之间的距离。注意一切都是为了提升代码可读性而服务。</p>
+<h1 id="3-__u603B_u7ED3"><a href="#3-__u603B_u7ED3" class="headerlink" title="3. 总结"></a>3. 总结</h1><p>Ruby的纯面向对象可以让你用一致的方式来处理对象。鸭子类型根据对象可提供的方法，而不是对象的继承层次，实现了更切合实际的多态设计。Ruby的模块和开放类，使程序员能把行为紧密结合到语法上，大大超越了类中定义的传统方法和实例变量。</p>
+<p>核心优势：</p>
+<ul>
+<li><strong>优雅的语法和强大的灵活性</strong></li>
+<li>脚本：Ruby是一门梦幻般的脚本语言，可以出色地完成许多任务。Ruby许多语法糖可以大幅提高生产效率，各种各样的库和gem（Ruby包）可以满足绝大多数日常需要。</li>
+<li>Web开发：很多人学Ruby最终就是为了用Ruby on Rails框架来进行Web开发。作为一个极其成功的MVC框架，其有着广泛的社区支持及优雅的语法。Twitter最初就是用Ruby实现的，借助Ruby无比强大的生产力，可以快速地开发出一个可推向市场的合格产品。</li>
+</ul>
+<p>不足之处：</p>
+<ul>
+<li><strong>性能</strong>：这是Ruby的最大弱点。随着时代的发展，Ruby的速度确实是越来越快。当然，Ruby是创建目的为了改善程序员的体验，在对性能要求不高的应用场景下，性能换来生产效率的大幅提升无疑是值得的。</li>
+<li>并发和面向对象编程：面向对象是建立在状态包装一系列行为的基础上，但通常状态是会改变的。程序中存在并发时，这种编程策略就会引发严重问题。</li>
+<li>类型安全：静态类型可提供一整套工具，可以更轻松地构造语法树，也因此能实现各种IDE。对Ruby这种动态类型语言来说，实现IDE就困难得多。</li>
+</ul>
+<p>参考资料：《七周七语言》第2章Ruby</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="ruby-language-2" data-title="Ruby语言特性（下）"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

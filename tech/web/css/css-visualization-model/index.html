@@ -1,0 +1,603 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>CSS学习笔记：可视化格式模型 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="CSS学习笔记：可视化格式模型"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/CSS/">CSS</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>CSS学习笔记：可视化格式模型</h1>
+    
+
+
+            </div>
+            <time datetime="2014-08-02T13:21:34.000Z"><a href="/tech/web/css/css-visualization-model/">2014-08-02</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/CSS/" class="article-tag green accent-4">CSS</a>
+        
+            <a href="/tags/盒模型/" class="article-tag green accent-4">盒模型</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-__u76D2_u6A21_u578B"><span class="section table-of-contents-text">1. 盒模型</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1__u6982_u8FF0"><span class="section table-of-contents-text">1.1 概述</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2_IE_u7684_u76D2_u6A21_u578B"><span class="section table-of-contents-text">1.2 IE的盒模型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-3__u5916_u8FB9_u8DDD_u53E0_u52A0"><span class="section table-of-contents-text">1.3 外边距叠加</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-_CSS_u5B9A_u4F4D_u673A_u5236"><span class="section table-of-contents-text">2. CSS定位机制</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1__u5757_u548C_u884C_u5185_u5143_u7D20"><span class="section table-of-contents-text">2.1 块和行内元素</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2__u76F8_u5BF9_u5B9A_u4F4D_u548C_u7EDD_u5BF9_u5B9A_u4F4D"><span class="section table-of-contents-text">2.2 相对定位和绝对定位</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3__u6D6E_u52A8"><span class="section table-of-contents-text">2.3 浮动</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>浮动、定位和盒模型是CSS三个最重要的基础概念，也是非常容易混淆和难掌握的概念。这些概念用于控制在页面上摆放和显示元素的方式，形成CSS基本布局。本文将介绍盒模型概念，外边距叠加，绝对定位和相对定位的差异，以及浮动和清理如何工作等。</p>
+<a id="more"></a>
+<h1 id="1-__u76D2_u6A21_u578B"><a href="#1-__u76D2_u6A21_u578B" class="headerlink" title="1. 盒模型"></a>1. 盒模型</h1><h2 id="1-1__u6982_u8FF0"><a href="#1-1__u6982_u8FF0" class="headerlink" title="1.1 概述"></a>1.1 概述</h2><p>CSS盒模型指定元素如何显示以及在某种程度上如何相互交互。页面上的每个元素都被看做是一个矩形框，这个框由元素的内容、内边距、边框和外边距组成，如下图所示。如果使用Chrome的DevTools审查元素功能，鼠标指向页面随意一个元素，可以看到蓝色部分是内容，绿色部分是内边距，橙色部分是外边距。CSS中，width和height指的是内容区域的宽度和高度，增加padding、border、margin都不会影响内容区域的尺寸，但是<strong>会增加元素框的总尺寸</strong>。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/css/CSS%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.jpg" alt="CSS标准盒模型"></p>
+<ul>
+<li>内边距padding：如果在元素上添加背景（<code>background</code>属性），背景会应用于内容和内边距组成的区域。</li>
+<li>边框border：在内边距的区域外边加一条线，可以有实线、虚线、点线等。</li>
+<li>外边距：透明，一般用于控制元素之间的间隔。</li>
+</ul>
+<h2 id="1-2_IE_u7684_u76D2_u6A21_u578B"><a href="#1-2_IE_u7684_u76D2_u6A21_u578B" class="headerlink" title="1.2 IE的盒模型"></a>1.2 IE的盒模型</h2><p>IE的早期版本（包括IE6）在混杂模式中使用自己<strong>不符合标准</strong>的盒模型，即这些浏览器的width属性不是内容的宽度，而是内容、内边距和边框的宽度总和。这种不标准的设定会引起很多麻烦，也是早期前端开发人员极其厌恶IE的原因。尽管它是不标准的，但是了解IE的盒模型对于建立兼容老式浏览器的网站还是很有帮助的。（CSS3的box-sizing属性可以定义要使用哪种盒模型）</p>
+<h2 id="1-3__u5916_u8FB9_u8DDD_u53E0_u52A0"><a href="#1-3__u5916_u8FB9_u8DDD_u53E0_u52A0" class="headerlink" title="1.3 外边距叠加"></a>1.3 外边距叠加</h2><p>当两个或更多<strong>垂直</strong>外边距相遇时，它们的实际效果只形成<strong>一个</strong>外边距，其高度等于多个发生叠加外边距的最大者。例如，当两个元素垂直排列，上面元素的margin-bottom会合下面元素的margin-top发生叠加。外边距叠加实际还有很多种情形，包括空元素的外边距叠加等等，详情及外边距合并的意义参见<a href="http://www.w3school.com.cn/css/css_margin_collapsing.asp" target="_blank" rel="external">W3School CSS外边距叠加</a>。注意：只有普通文档流中块框的垂直外边距才会发生外边距合并，行内框、浮动框或绝对定位之间的外边距不会合并。</p>
+<h1 id="2-_CSS_u5B9A_u4F4D_u673A_u5236"><a href="#2-_CSS_u5B9A_u4F4D_u673A_u5236" class="headerlink" title="2. CSS定位机制"></a>2. CSS定位机制</h1><p>CSS有三种基本的定位机制：普通流、绝对定位和浮动。默认为普通流，即元素框的位置由元素在HTML中的位置决定。</p>
+<h2 id="2-1__u5757_u548C_u884C_u5185_u5143_u7D20"><a href="#2-1__u5757_u548C_u884C_u5185_u5143_u7D20" class="headerlink" title="2.1 块和行内元素"></a>2.1 块和行内元素</h2><p>p、h1、div等元素常常称为块级元素（块框），它们显示为一块内容；i、span等元素称为行内元素（行内框），它们的内容显示在一行中。可以使用CSS的display属性改变生成框的类型，例如给span设置<code>display:block</code>可以让其行为变得和块框一样。块框从上到下垂直排列，行内框在一行中水平排列，默认垂直内外边距和边框不影响行内框的高度，不过如果使用<code>display:inline-block</code>可以让元素既像行内元素一样水平排列，又符合块级框的行为。</p>
+<p>如果将一些文本添加到一个块级元素（如div）的开头时，这些文字会被当做块级元素处理，这个块框称为匿名块框，而且无法直接应用样式。如下面代码中的“some text”就是这种文字。</p>
+<pre><code>&lt;div&gt;
+    some text
+    &lt;p&gt;more&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><h2 id="2-2__u76F8_u5BF9_u5B9A_u4F4D_u548C_u7EDD_u5BF9_u5B9A_u4F4D"><a href="#2-2__u76F8_u5BF9_u5B9A_u4F4D_u548C_u7EDD_u5BF9_u5B9A_u4F4D" class="headerlink" title="2.2 相对定位和绝对定位"></a>2.2 相对定位和绝对定位</h2><p>相对定位概念参见<a href="http://www.w3school.com.cn/css/css_positioning_relative.asp" target="_blank" rel="external">W3School CSS相对定位</a>，绝对定位概念参见<a href="http://www.w3school.com.cn/css/css_positioning_absolute.asp" target="_blank" rel="external">W3School CSS绝对定位</a>。基本概念此处不再赘述。</p>
+<p>要注意相对定位的元素被看做普通流的一部分，但<strong>绝对定位会使元素脱离文档流，不占据空间</strong>。并且绝对定位元素的位置是相对于最近的已定位的祖先元素的，通常使用<code>position:absolute</code>的元素会被包含在<code>position:relative</code>的父元素之中。</p>
+<h2 id="2-3__u6D6E_u52A8"><a href="#2-3__u6D6E_u52A8" class="headerlink" title="2.3 浮动"></a>2.3 浮动</h2><p>浮动概念参见<a href="http://www.w3school.com.cn/css/css_positioning_floating.asp" target="_blank" rel="external">W3School CSS浮动</a>。</p>
+<p>浮动的元素会脱离文档流（不占据空间），为了使父元素在视觉上包围浮动元素，W3School中给出的示例介绍了一种使用一个空元素来清理浮动的方法：<code>&lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;</code>，<code>.clearfix {clear:both;}</code>。这个方法的缺点是会添加一个无意义的标签。</p>
+<p>现在更常用的方法是在父容器上应用<code>.clearfix</code>类，HTML结构如下：</p>
+<pre><code>&lt;div class=&quot;news clearfix&quot;&gt;
+    &lt;img src=&quot;/img/news.jpg&quot; class=&quot;pull-left&quot;&gt;
+    &lt;p class=&quot;pull-right&quot;&gt;Some text&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>对应的clearfix类CSS代码：</p>
+<pre><code>.clear:after {
+    content: &quot;.&quot;;
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+</code></pre><p>这个方法结合使用<code>:after</code>伪类在父容器末尾添加一个不引人注意的字符“.”（其他字符也可以，因为height为0且visibility为hidden是看不到的），然后通过将display设为block使被清理的元素在它们的margin-top添加了空间。这样设置之后就可以对生成的内容进行清理，又避免了添加空元素。这个方法除了IE6意外，在多数现代浏览器中是有效的。</p>
+<p>参考资料：精通CSS:高级Web标准解决方案（第2版）第三章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="css-visualization-model" data-title="CSS学习笔记：可视化格式模型"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>

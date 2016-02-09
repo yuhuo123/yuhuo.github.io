@@ -1,0 +1,596 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>HTTP学习笔记：Web服务器 | Ray Taylor Lin&#39;s world</title>
+    <meta name="author" content="Ray Taylor Lin">
+    
+    <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="HTTP学习笔记：Web服务器"/>
+    <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link href="/favicon.png" rel="icon">
+    <link rel="alternate" href="/atom.xml" title="Ray Taylor Lin&#39;s world" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+        
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="container">
+            <a href="/" class="brand-logo hide-on-small-only">Ray Taylor Lin&#39;s world</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="" href="/" >
+                            <i class="fa fa-home "></i>
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/reading" >
+                            <i class="fa fa-book "></i>
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="" href="/about" >
+                            <i class="fa fa-user "></i>
+                            关于
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav" id="main-menu">
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4">
+                    <img class="avatar-image circle responsive-img" src="http://tp2.sinaimg.cn/1956184117/180/5674436546/1" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper">
+                    <div class="valign">
+                        <p class="name">林寿山</p>
+                        <p class="desc">Web前端/游戏开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/" >
+                    <i class="fa fa-home "></i>
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect " href="/about" >
+                    <i class="fa fa-user "></i>
+                    关于
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav collection with-header" id="category-menu">
+        <li class="collection-header">
+            <h5 class="black-text">分类目录</h5>
+        </li>
+
+    
+
+            
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/技术">
+                    技术 <span class="right">58 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Web前端">
+                    Web前端 <span class="right">21 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/NodeJS">
+                    NodeJS <span class="right">9 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTTP协议">
+                    HTTP协议 <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/HTML5">
+                    HTML5 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/Web前端/CSS">
+                    CSS <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/工具">
+                    工具 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/Git">
+                    Git <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/工具/IDE">
+                    IDE <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/Linux">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/编程语言">
+                    编程语言 <span class="right">15 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Python">
+                    Python <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/其它语言">
+                    其它语言 <span class="right">4 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/编程语言/Lua">
+                    Lua <span class="right">7 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/游戏开发">
+                    游戏开发 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/服务器端">
+                    服务器端 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/游戏开发/客户端">
+                    客户端 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/综合">
+                    综合 <span class="right">5 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/项目">
+                    项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/演示">
+                    演示 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/杂项">
+                    杂项 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="2">
+                <a class="waves-effect collapse-level-2" href="/categories/技术/综合/设计模式">
+                    设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="1">
+                <a class="waves-effect collapse-level-1" href="/categories/技术/算法">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collection-item no-padding" collapse-level="0">
+                <a class="waves-effect collapse-level-0" href="/categories/日常">
+                    日常 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+        
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+    <main>
+        <div class="container main-container">
+    <nav>
+    <div class="nav-wrapper indigo lighten-1">
+        <span class="breadcrumb">当前位置（目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/HTTP协议/">HTTP协议</a>
+
+
+        
+        
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+            
+            <div class="article-title">
+                
+    
+        <h1>HTTP学习笔记：Web服务器</h1>
+    
+
+
+            </div>
+            <time datetime="2014-05-04T07:48:05.000Z"><a href="/tech/web/http/HTTP-web-server/">2014-05-04</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+        
+            <a href="/tags/Web服务器/" class="article-tag green accent-4">Web服务器</a>
+        
+    </div>
+
+
+            <div class="toc hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-_Web_u670D_u52A1_u5668_u57FA_u672C_u4EFB_u52A1"><span class="section table-of-contents-text">1. Web服务器基本任务</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1__u63A5_u53D7_u5BA2_u6237_u7AEF_u8FDE_u63A5"><span class="section table-of-contents-text">1.1 接受客户端连接</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2__u63A5_u6536_u8BF7_u6C42_u62A5_u6587"><span class="section table-of-contents-text">1.2 接收请求报文</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-3__u5904_u7406_u8BF7_u6C42"><span class="section table-of-contents-text">1.3 处理请求</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-4__u5BF9_u8D44_u6E90_u7684_u6620_u5C04_u53CA_u8BBF_u95EE"><span class="section table-of-contents-text">1.4 对资源的映射及访问</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-4-1_docroot"><span class="section table-of-contents-text">1.4.1 docroot</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-4-2__u76EE_u5F55_u5217_u8868"><span class="section table-of-contents-text">1.4.2 目录列表</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-4-3__u52A8_u6001_u5185_u5BB9_u8D44_u6E90_u7684_u6620_u5C04"><span class="section table-of-contents-text">1.4.3 动态内容资源的映射</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-5__u6784_u5EFA_u54CD_u5E94"><span class="section table-of-contents-text">1.5 构建响应</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-6__u53D1_u9001_u54CD_u5E94_u548C_u8BB0_u5F55_u65E5_u5FD7"><span class="section table-of-contents-text">1.6 发送响应和记录日志</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry">
+                <p>Web服务器每天会分发出数十亿的Web页面，它是万维网的骨干。Web服务器实现了HTTP和相关的TCP连接处理，管理着Web资源，并负责提供管理功能。本文将一步一步解释Web服务器时如何处理HTTP事务的。</p>
+<a id="more"></a>
+<p>Web服务器有各种不同的形式：安装并运行通用的Web服务器软件（如开源的使用最多的Apache），购买预先打包好的软硬件解决方案即Web服务器设备，嵌入式服务器。</p>
+<p>通常来说，实际的Web服务器会进行7步（如下图所示）：建立连接，接收请求，处理请求，访问资源，构建响应，发送响应，记录事务处理过程。</p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4.jpg" alt="Web服务器请求的基本步骤"></p>
+<h1 id="1-_Web_u670D_u52A1_u5668_u57FA_u672C_u4EFB_u52A1"><a href="#1-_Web_u670D_u52A1_u5668_u57FA_u672C_u4EFB_u52A1" class="headerlink" title="1. Web服务器基本任务"></a>1. Web服务器基本任务</h1><h2 id="1-1__u63A5_u53D7_u5BA2_u6237_u7AEF_u8FDE_u63A5"><a href="#1-1__u63A5_u53D7_u5BA2_u6237_u7AEF_u8FDE_u63A5" class="headerlink" title="1.1 接受客户端连接"></a>1.1 接受客户端连接</h2><p>客户端请求一条到Web服务器的TCP连接时，服务器就会建立连接，判断另一端是哪个客户端，将IP地址解析出来。一旦新连接建立起来并被接受，服务器就会将新连接添加到其现存的连接列表中，做好监视连接上数据传输的准备。服务器可以随意拒绝或理解关闭任意一条连接。</p>
+<p>可以用“反向DNS”对大部分服务器进行配置，以便将客户端IP地址转换成主机名。Web服务器可以将主机名用于详细的访问控制和日志记录。但要注意的是，书籍名查找可能会花费很长时间，很多大容量的服务器要么会禁止主机名解析，要么只允许对特定内容进行解析。另外，服务器还可以通过<em>ident协议</em>找到发起HTTP连接的用户名。</p>
+<h2 id="1-2__u63A5_u6536_u8BF7_u6C42_u62A5_u6587"><a href="#1-2__u63A5_u6536_u8BF7_u6C42_u62A5_u6587" class="headerlink" title="1.2 接收请求报文"></a>1.2 接收请求报文</h2><p>连接上有数据到达时，服务器会从网络连接中按照以下步骤读取数据（有些Web服务器会用特定的数据结构来存储请求报文）：</p>
+<ul>
+<li>解析请求行，查找请求方法、URI和版本号，各项由空格分隔，并以CRLF作为行的结束</li>
+<li>读取以CRLF结尾的报文首部</li>
+<li>如果有的话，检测以CRLF结尾的标识首部结束的空行</li>
+<li>如果有的话，读取请求主体（长度由Content-Length首部指定）</li>
+</ul>
+<p>Web服务器会不停地观察有无新的Web请求。根据输入/输出结构，Web服务器分为以下几类：</p>
+<ul>
+<li>单线程：一次只处理一个请求，直到其完成为止。在处理过程中，所有其他连接都会被忽略，这会造成严重的性能问题，只适用于低负荷的服务器。</li>
+<li>多进程及多线程：可以根据需要为每条连接分配一个线程或进程来处理请求，但当服务器同时要处理成百上千的连接时，可能会消耗太多内存和系统资源，因此应该对线程/进程的最大数量做限制。</li>
+<li>复用I/O：同时监视所有连接上的活动，当连接状态发生变化时（如有数据可用，或出现错误等等），就对那条连接进行少量的处理，处理接受后将连接返回到开放连接列表中，等待下一次状态变化。</li>
+<li>复用的多线程Web服务器：总和以上<em>多线程</em>和<em>复用I/O</em>的优点</li>
+</ul>
+<h2 id="1-3__u5904_u7406_u8BF7_u6C42"><a href="#1-3__u5904_u7406_u8BF7_u6C42" class="headerlink" title="1.3 处理请求"></a>1.3 处理请求</h2><p>一旦Web服务器收到了请求，就可以根据方法、资源、首部和可选的主体部分来对请求进行处理。有些方法（如POST）要求请求报文必须带有实体主体部分的数据，有些方法则允许有也允许没有，少数方法（如GET）禁止包含实体的主体数据。</p>
+<h2 id="1-4__u5BF9_u8D44_u6E90_u7684_u6620_u5C04_u53CA_u8BBF_u95EE"><a href="#1-4__u5BF9_u8D44_u6E90_u7684_u6620_u5C04_u53CA_u8BBF_u95EE" class="headerlink" title="1.4 对资源的映射及访问"></a>1.4 对资源的映射及访问</h2><h3 id="1-4-1_docroot"><a href="#1-4-1_docroot" class="headerlink" title="1.4.1 docroot"></a>1.4.1 docroot</h3><p>作为资源服务器，Web服务器负责将请求报文中的URI映射为服务器上适当的内容，然后才发送预先创建好的内容。最简单的资源映射方式是以URI作为名字来访问服务器文件系统中的文件。通常Web服务器有一个特殊的文件夹专门存放Web内容，称为文档的根目录（document root）。<strong>Web服务器从请求报文中获取URI，并将其附加在docroot后面。</strong>服务器要注意不能让相对URL退到docroot之外，将文件系统的其余部分暴露出来。</p>
+<p>虚拟托管的Web服务器会在同一台服务器上提供多个站点，每个站点在服务器上都有自己独有的docroot。通过配置Apache的<code>VirtualHost</code>块，即使请求的URI完全相同，但docroot不同就可以区分开不同的内容了。</p>
+<h3 id="1-4-2__u76EE_u5F55_u5217_u8868"><a href="#1-4-2__u76EE_u5F55_u5217_u8868" class="headerlink" title="1.4.2 目录列表"></a>1.4.2 目录列表</h3><p>服务器可以接收对目录URL的请求，并解析成为一个目录而不是文件。可以对服务器进行配置，使其在客户端请求目录URL时采取不同的动作。默认情况下，服务器会去查找目录中名为index.html的文件来代表此目录，也可以通过配置Apache的<code>DirectoryIndex</code>来设置默认的要使用的文件名。</p>
+<p>如果没有提供默认的index文件，也没有禁止使用目录索引，很多Web服务器都会自动返回一个包含目录列表的HTML文件，可以方便浏览服务器上的文件。可以通过Apache的<code>Options-Indexes</code>禁止自动访问目录列表。</p>
+<h3 id="1-4-3__u52A8_u6001_u5185_u5BB9_u8D44_u6E90_u7684_u6620_u5C04"><a href="#1-4-3__u52A8_u6001_u5185_u5BB9_u8D44_u6E90_u7684_u6620_u5C04" class="headerlink" title="1.4.3 动态内容资源的映射"></a>1.4.3 动态内容资源的映射</h3><p>Web服务器还可以将URI映射为动态资源，即复杂的后端应用程序（区别于图片、HTML文件等静态资源，动态资源可能是网络摄像机网关、股票交易网关、电子商务网关等等其他应用程序）。</p>
+<h2 id="1-5__u6784_u5EFA_u54CD_u5E94"><a href="#1-5__u6784_u5EFA_u54CD_u5E94" class="headerlink" title="1.5 构建响应"></a>1.5 构建响应</h2><p>一旦Web服务器识别出了资源，就执行请求方法中描述的动作，并返回响应报文。如果事务处理产生了响应主体，服务器要确定主体的<a href="http://baike.baidu.com/view/160611.htm" target="_blank" rel="external">MIME</a>类型，将内容放在响应报文中回送过去。可以用文件的扩展名来说明MIME类型。服务器有时也会返回重定向响应而不是成功的报文。有关重定向的说明，可以参照<a href="http://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81" target="_blank" rel="external">HTTP状态码维基百科</a>中3xx系列状态码说明。</p>
+<h2 id="1-6__u53D1_u9001_u54CD_u5E94_u548C_u8BB0_u5F55_u65E5_u5FD7"><a href="#1-6__u53D1_u9001_u54CD_u5E94_u548C_u8BB0_u5F55_u65E5_u5FD7" class="headerlink" title="1.6 发送响应和记录日志"></a>1.6 发送响应和记录日志</h2><p>Web服务器通过连接发送数据时也会面临和接收数据一样的问题，它要记录连接的状态，还要特别注意对持久连接的处理（详情参见<a href="/Tech/web/HTTP/HTTP-connection-management/">HTTP学习笔记：连接管理 第2节</a>）。最后，当事务结束时，Web服务器会在日志文件中添加一个条目，来描述已执行的事务。更多细节可以参见《HTTP权威指南》第21章。</p>
+<p>参考文献：人民邮电出版社《HTTP权威指南》第5章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="HTTP-web-server" data-title="HTTP学习笔记：Web服务器"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: "undefined"
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+            </div>
+            
+            
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
+                
+                    <a class="social-link" href="http://neoyeelf.github.io/" target="_blank">屌刘neoye的博客</a>
+                
+                    <a class="social-link" href="http://diao.li/" target="_blank">李伟涛的博客</a>
+                
+                    <a class="social-link" href="http://suta.im/" target="_blank">苏塔是没有脚的设计师</a>
+                
+                    <a class="social-link" href="http://jfantasy.github.io/" target="_blank">JFantasy的个人博客</a>
+                
+                    <a class="social-link" href="http://pyroc.at/" target="_blank">丁基友的博客</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 raytaylorlin.com, All rights reserved.
+        </div>
+    </div>
+</footer>
+
+    
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image');
+            
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed')
+                .each(function(i, el) {
+                    $(this).attr('data-caption', $(this).attr('alt'));
+                }).materialbox();
+            
+            // 首页幻灯片
+            $('.slider').slider({
+                indicators: false,
+                full_width: true
+            });
+            
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+            
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+            
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({scrollTop: 0}, 500);
+            });
+        });
+    })(jQuery);
+</script>
+
+
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+</body>
+</html>
