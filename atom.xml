@@ -4,9 +4,9 @@
   <subtitle>林寿山的技术博客 Ray Taylor Lin&#39;s world</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://raytaylorlin.github.io/"/>
+  <link href="http://raytaylorlin.com/"/>
   <updated>2016-02-09T12:31:39.838Z</updated>
-  <id>http://raytaylorlin.github.io/</id>
+  <id>http://raytaylorlin.com/</id>
   
   <author>
     <name>Ray Taylor Lin</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>使用Markdown来写毕业论文</title>
-    <link href="http://raytaylorlin.github.io/tech/complex/project/write-thesis-using-markdown/"/>
-    <id>http://raytaylorlin.github.io/tech/complex/project/write-thesis-using-markdown/</id>
+    <link href="http://raytaylorlin.com/tech/complex/project/write-thesis-using-markdown/"/>
+    <id>http://raytaylorlin.com/tech/complex/project/write-thesis-using-markdown/</id>
     <published>2015-12-17T08:17:53.000Z</published>
     <updated>2016-02-09T12:31:39.838Z</updated>
     
@@ -47,23 +47,23 @@
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="综合" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
     
-      <category term="项目" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
+      <category term="项目" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
     
     
-      <category term="Markdown" scheme="http://raytaylorlin.github.io/tags/Markdown/"/>
+      <category term="Markdown" scheme="http://raytaylorlin.com/tags/Markdown/"/>
     
-      <category term="论文" scheme="http://raytaylorlin.github.io/tags/%E8%AE%BA%E6%96%87/"/>
+      <category term="论文" scheme="http://raytaylorlin.com/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
   <entry>
     <title>网络游戏的基本架构</title>
-    <link href="http://raytaylorlin.github.io/tech/game/server/network-game-architecture/"/>
-    <id>http://raytaylorlin.github.io/tech/game/server/network-game-architecture/</id>
+    <link href="http://raytaylorlin.com/tech/game/server/network-game-architecture/"/>
+    <id>http://raytaylorlin.com/tech/game/server/network-game-architecture/</id>
     <published>2015-11-23T08:09:57.000Z</published>
     <updated>2016-02-09T13:12:29.195Z</updated>
     
@@ -123,21 +123,21 @@
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="游戏开发" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
     
-      <category term="服务器端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
+      <category term="服务器端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
     
     
-      <category term="网络游戏编程" scheme="http://raytaylorlin.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
+      <category term="网络游戏编程" scheme="http://raytaylorlin.com/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>网络游戏编程基础知识</title>
-    <link href="http://raytaylorlin.github.io/tech/game/server/network-programming/"/>
-    <id>http://raytaylorlin.github.io/tech/game/server/network-programming/</id>
+    <link href="http://raytaylorlin.com/tech/game/server/network-programming/"/>
+    <id>http://raytaylorlin.com/tech/game/server/network-programming/</id>
     <published>2015-11-11T02:27:40.000Z</published>
     <updated>2016-02-09T12:31:39.857Z</updated>
     
@@ -197,21 +197,21 @@
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="游戏开发" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
     
-      <category term="服务器端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
+      <category term="服务器端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
     
     
-      <category term="网络游戏编程" scheme="http://raytaylorlin.github.io/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
+      <category term="网络游戏编程" scheme="http://raytaylorlin.com/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Cocos2d-x 3.0绘制系统</title>
-    <link href="http://raytaylorlin.github.io/tech/game/client/cocos2dx-render-system/"/>
-    <id>http://raytaylorlin.github.io/tech/game/client/cocos2dx-render-system/</id>
+    <link href="http://raytaylorlin.com/tech/game/client/cocos2dx-render-system/"/>
+    <id>http://raytaylorlin.com/tech/game/client/cocos2dx-render-system/</id>
     <published>2015-09-08T06:55:08.000Z</published>
     <updated>2016-02-09T12:31:39.844Z</updated>
     
@@ -260,21 +260,21 @@
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="游戏开发" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
     
-      <category term="客户端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
+      <category term="客户端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
     
     
-      <category term="Cocos2d-x" scheme="http://raytaylorlin.github.io/tags/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://raytaylorlin.com/tags/Cocos2d-x/"/>
     
   </entry>
   
   <entry>
     <title>设计模式六大原则</title>
-    <link href="http://raytaylorlin.github.io/tech/complex/DP/design-pattern-principles/"/>
-    <id>http://raytaylorlin.github.io/tech/complex/DP/design-pattern-principles/</id>
+    <link href="http://raytaylorlin.com/tech/complex/DP/design-pattern-principles/"/>
+    <id>http://raytaylorlin.com/tech/complex/DP/design-pattern-principles/</id>
     <published>2015-05-15T12:22:31.000Z</published>
     <updated>2016-02-09T12:31:39.801Z</updated>
     
@@ -323,21 +323,21 @@
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="综合" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
     
-      <category term="设计模式" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-      <category term="设计模式" scheme="http://raytaylorlin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="http://raytaylorlin.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Lua学习笔记（7）——面向对象编程</title>
-    <link href="http://raytaylorlin.github.io/tech/language/lua/lua-note-7/"/>
-    <id>http://raytaylorlin.github.io/tech/language/lua/lua-note-7/</id>
+    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-7/"/>
+    <id>http://raytaylorlin.com/tech/language/lua/lua-note-7/</id>
     <published>2015-05-11T03:10:08.000Z</published>
     <updated>2016-02-09T12:31:39.898Z</updated>
     
@@ -391,21 +391,21 @@ end
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
     
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/tags/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
     
   </entry>
   
   <entry>
     <title>Lua学习笔记（6）——环境与模块</title>
-    <link href="http://raytaylorlin.github.io/tech/language/lua/lua-note-6/"/>
-    <id>http://raytaylorlin.github.io/tech/language/lua/lua-note-6/</id>
+    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-6/"/>
+    <id>http://raytaylorlin.com/tech/language/lua/lua-note-6/</id>
     <published>2015-05-10T02:39:41.000Z</published>
     <updated>2016-02-09T12:31:39.892Z</updated>
     
@@ -460,21 +460,21 @@ end
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
     
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/tags/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
     
   </entry>
   
   <entry>
     <title>Lua学习笔记（5）——迭代器，错误处理</title>
-    <link href="http://raytaylorlin.github.io/tech/language/lua/lua-note-5/"/>
-    <id>http://raytaylorlin.github.io/tech/language/lua/lua-note-5/</id>
+    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-5/"/>
+    <id>http://raytaylorlin.com/tech/language/lua/lua-note-5/</id>
     <published>2015-05-07T05:05:11.000Z</published>
     <updated>2016-02-09T12:31:39.886Z</updated>
     
@@ -535,21 +535,21 @@ end
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
     
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/tags/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
     
   </entry>
   
   <entry>
     <title>Lua学习笔记（4）——函数</title>
-    <link href="http://raytaylorlin.github.io/tech/language/lua/lua-note-4/"/>
-    <id>http://raytaylorlin.github.io/tech/language/lua/lua-note-4/</id>
+    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-4/"/>
+    <id>http://raytaylorlin.com/tech/language/lua/lua-note-4/</id>
     <published>2015-05-06T05:05:11.000Z</published>
     <updated>2016-02-09T12:31:39.881Z</updated>
     
@@ -589,21 +589,21 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
     
     
-      <category term="Lua" scheme="http://raytaylorlin.github.io/tags/Lua/"/>
+      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
     
   </entry>
   
   <entry>
     <title>Linux学习笔记——用户及文件权限管理</title>
-    <link href="http://raytaylorlin.github.io/tech/linux/linux-user-and-file-manage/"/>
-    <id>http://raytaylorlin.github.io/tech/linux/linux-user-and-file-manage/</id>
+    <link href="http://raytaylorlin.com/tech/linux/linux-user-and-file-manage/"/>
+    <id>http://raytaylorlin.com/tech/linux/linux-user-and-file-manage/</id>
     <published>2015-02-19T11:38:05.000Z</published>
     <updated>2016-02-09T12:31:39.965Z</updated>
     
@@ -667,19 +667,19 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Linux" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
+      <category term="Linux" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
     
     
-      <category term="Linux" scheme="http://raytaylorlin.github.io/tags/Linux/"/>
+      <category term="Linux" scheme="http://raytaylorlin.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Linux学习笔记——基本概念及操作</title>
-    <link href="http://raytaylorlin.github.io/tech/linux/linux-base/"/>
-    <id>http://raytaylorlin.github.io/tech/linux/linux-base/</id>
+    <link href="http://raytaylorlin.com/tech/linux/linux-base/"/>
+    <id>http://raytaylorlin.com/tech/linux/linux-base/</id>
     <published>2015-02-11T01:38:05.000Z</published>
     <updated>2016-02-09T12:31:39.959Z</updated>
     
@@ -801,19 +801,19 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Linux" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
+      <category term="Linux" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
     
     
-      <category term="Linux" scheme="http://raytaylorlin.github.io/tags/Linux/"/>
+      <category term="Linux" scheme="http://raytaylorlin.com/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Io语言特性（下）</title>
-    <link href="http://raytaylorlin.github.io/tech/language/other/io-language-2/"/>
-    <id>http://raytaylorlin.github.io/tech/language/other/io-language-2/</id>
+    <link href="http://raytaylorlin.com/tech/language/other/io-language-2/"/>
+    <id>http://raytaylorlin.com/tech/language/other/io-language-2/</id>
     <published>2015-01-27T08:25:34.000Z</published>
     <updated>2016-02-09T12:31:39.912Z</updated>
     
@@ -974,23 +974,23 @@ Coroutine currentCoroutine pause
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="其它语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
+      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Io language" scheme="http://raytaylorlin.github.io/tags/Io-language/"/>
+      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
     
-      <category term="编程范型" scheme="http://raytaylorlin.github.io/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>Io语言特性（上）</title>
-    <link href="http://raytaylorlin.github.io/tech/language/other/io-language-1/"/>
-    <id>http://raytaylorlin.github.io/tech/language/other/io-language-1/</id>
+    <link href="http://raytaylorlin.com/tech/language/other/io-language-1/"/>
+    <id>http://raytaylorlin.com/tech/language/other/io-language-1/</id>
     <published>2015-01-11T13:21:34.000Z</published>
     <updated>2016-02-09T12:31:39.906Z</updated>
     
@@ -1099,23 +1099,23 @@ Io&amp;gt; false xor true
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="其它语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
+      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Io language" scheme="http://raytaylorlin.github.io/tags/Io-language/"/>
+      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
     
-      <category term="编程范型" scheme="http://raytaylorlin.github.io/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>Ruby语言特性（下）</title>
-    <link href="http://raytaylorlin.github.io/tech/language/other/ruby-language-2/"/>
-    <id>http://raytaylorlin.github.io/tech/language/other/ruby-language-2/</id>
+    <link href="http://raytaylorlin.com/tech/language/other/ruby-language-2/"/>
+    <id>http://raytaylorlin.com/tech/language/other/ruby-language-2/</id>
     <published>2015-01-09T08:22:50.000Z</published>
     <updated>2016-02-09T12:31:39.924Z</updated>
     
@@ -1268,23 +1268,23 @@ puts m.csv_contents.inspect
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="其它语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
+      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Ruby" scheme="http://raytaylorlin.github.io/tags/Ruby/"/>
+      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
     
-      <category term="编程范型" scheme="http://raytaylorlin.github.io/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>Ruby语言特性（上）</title>
-    <link href="http://raytaylorlin.github.io/tech/language/other/ruby-language-1/"/>
-    <id>http://raytaylorlin.github.io/tech/language/other/ruby-language-1/</id>
+    <link href="http://raytaylorlin.com/tech/language/other/ruby-language-1/"/>
+    <id>http://raytaylorlin.com/tech/language/other/ruby-language-1/</id>
     <published>2015-01-05T13:21:34.000Z</published>
     <updated>2016-02-09T12:31:39.918Z</updated>
     
@@ -1391,23 +1391,23 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="编程语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
-      <category term="其它语言" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
+      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Ruby" scheme="http://raytaylorlin.github.io/tags/Ruby/"/>
+      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
     
-      <category term="编程范型" scheme="http://raytaylorlin.github.io/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>HTML5高性能基础</title>
-    <link href="http://raytaylorlin.github.io/tech/web/html5/pro-html5-performance-base/"/>
-    <id>http://raytaylorlin.github.io/tech/web/html5/pro-html5-performance-base/</id>
+    <link href="http://raytaylorlin.com/tech/web/html5/pro-html5-performance-base/"/>
+    <id>http://raytaylorlin.com/tech/web/html5/pro-html5-performance-base/</id>
     <published>2014-12-05T08:22:53.000Z</published>
     <updated>2016-02-09T12:31:40.044Z</updated>
     
@@ -1444,23 +1444,23 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Web前端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
+      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="HTML5" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/HTML5/"/>
+      <category term="HTML5" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/HTML5/"/>
     
     
-      <category term="HTML5" scheme="http://raytaylorlin.github.io/tags/HTML5/"/>
+      <category term="HTML5" scheme="http://raytaylorlin.com/tags/HTML5/"/>
     
-      <category term="高性能" scheme="http://raytaylorlin.github.io/tags/%E9%AB%98%E6%80%A7%E8%83%BD/"/>
+      <category term="高性能" scheme="http://raytaylorlin.com/tags/%E9%AB%98%E6%80%A7%E8%83%BD/"/>
     
   </entry>
   
   <entry>
     <title>Node.js学习笔记：进程与集群</title>
-    <link href="http://raytaylorlin.github.io/tech/web/nodejs/node-process-and-cluster/"/>
-    <id>http://raytaylorlin.github.io/tech/web/nodejs/node-process-and-cluster/</id>
+    <link href="http://raytaylorlin.com/tech/web/nodejs/node-process-and-cluster/"/>
+    <id>http://raytaylorlin.com/tech/web/nodejs/node-process-and-cluster/</id>
     <published>2014-11-11T02:24:05.000Z</published>
     <updated>2016-02-09T12:31:40.127Z</updated>
     
@@ -1560,23 +1560,23 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Web前端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
+      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="NodeJS" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
+      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
     
     
-      <category term="Node.js" scheme="http://raytaylorlin.github.io/tags/Node-js/"/>
+      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
     
-      <category term="进程" scheme="http://raytaylorlin.github.io/tags/%E8%BF%9B%E7%A8%8B/"/>
+      <category term="进程" scheme="http://raytaylorlin.com/tags/%E8%BF%9B%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Node.js学习笔记：内存控制</title>
-    <link href="http://raytaylorlin.github.io/tech/web/nodejs/node-memory-control/"/>
-    <id>http://raytaylorlin.github.io/tech/web/nodejs/node-memory-control/</id>
+    <link href="http://raytaylorlin.com/tech/web/nodejs/node-memory-control/"/>
+    <id>http://raytaylorlin.com/tech/web/nodejs/node-memory-control/</id>
     <published>2014-11-06T02:22:49.000Z</published>
     <updated>2016-02-09T12:31:40.113Z</updated>
     
@@ -1620,21 +1620,21 @@ exports.leak = function() {
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Web前端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
+      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="NodeJS" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
+      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
     
     
-      <category term="Node.js" scheme="http://raytaylorlin.github.io/tags/Node-js/"/>
+      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
     
   </entry>
   
   <entry>
     <title>Node.js学习笔记：异步I/O</title>
-    <link href="http://raytaylorlin.github.io/tech/web/nodejs/node-asynchronous-io/"/>
-    <id>http://raytaylorlin.github.io/tech/web/nodejs/node-asynchronous-io/</id>
+    <link href="http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/"/>
+    <id>http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/</id>
     <published>2014-10-13T01:32:49.000Z</published>
     <updated>2016-02-09T12:31:40.099Z</updated>
     
@@ -1685,23 +1685,23 @@ exports.leak = function() {
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Web前端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
+      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="NodeJS" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
+      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
     
     
-      <category term="Node.js" scheme="http://raytaylorlin.github.io/tags/Node-js/"/>
+      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
     
-      <category term="异步I/O" scheme="http://raytaylorlin.github.io/tags/%E5%BC%82%E6%AD%A5I-O/"/>
+      <category term="异步I/O" scheme="http://raytaylorlin.com/tags/%E5%BC%82%E6%AD%A5I-O/"/>
     
   </entry>
   
   <entry>
     <title>Node.js学习笔记：模块机制</title>
-    <link href="http://raytaylorlin.github.io/tech/web/nodejs/node-module/"/>
-    <id>http://raytaylorlin.github.io/tech/web/nodejs/node-module/</id>
+    <link href="http://raytaylorlin.com/tech/web/nodejs/node-module/"/>
+    <id>http://raytaylorlin.com/tech/web/nodejs/node-module/</id>
     <published>2014-10-08T08:22:53.000Z</published>
     <updated>2016-02-09T12:31:40.121Z</updated>
     
@@ -1788,16 +1788,16 @@ exports.leak = function() {
     
     </summary>
     
-      <category term="技术" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Web前端" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
+      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="NodeJS" scheme="http://raytaylorlin.github.io/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
+      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
     
     
-      <category term="Node.js" scheme="http://raytaylorlin.github.io/tags/Node-js/"/>
+      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
     
-      <category term="模块化" scheme="http://raytaylorlin.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+      <category term="模块化" scheme="http://raytaylorlin.com/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
   </entry>
   
