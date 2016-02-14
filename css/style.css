@@ -41,6 +41,10 @@ ul,
 ol {
   padding-left: 20px;
 }
+ul.tabs,
+ol.tabs {
+  padding-left: 0;
+}
 ul,
 ul li {
   list-style-type: disc;
@@ -629,113 +633,39 @@ figure.highlight figcaption a {
 figure.highlight .gutter {
   width: 5%;
 }
-.reading-page ul {
-  list-style: none;
-  margin: 0;
-}
-.reading-page ul>li {
-  display: inline-block;
-  margin: 5px 20px 0 0;
-}
 .book-item {
+  display: inline-block;
   position: relative;
 }
-.book-item .book-item-head img {
-  max-width: 150px;
-  max-height: 200px;
+.book-item img {
+  padding: 0;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
-.book-item:hover .book-item-body {
-  opacity: 1;
-  -ms-filter: none;
-  filter: none;
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -webkit-transform: rotateY(0deg);
-  -moz-transform: rotateY(0deg);
-  -o-transform: rotateY(0deg);
-  -ms-transform: rotateY(0deg);
-  transform: rotateY(0deg);
-  -webkit-transition: -webkit-transform 0.4s, opacity 0.3s;
-  -moz-transition: -moz-transform 0.4s, opacity 0.3s;
-  -webkit-transition: -webkit-transform 0.4s, opacity 0.3s;
-  -moz-transition: -moz-transform 0.4s, opacity 0.3s;
-  -o-transition: -o-transform 0.4s, opacity 0.3s;
-  -ms-transition: -ms-transform 0.4s, opacity 0.3s;
-  transition: transform 0.4s, opacity 0.3s;
+.book-item:hover img {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
 }
-.book-item .book-cover span {
-  width: 150px;
-  height: 200px;
-  display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-  max-width: 98%;
-  -webkit-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background: #fff;
-  -webkit-box-shadow: 0 0 8px #aaa;
-  -webkit-box-shadow: 0 0 8px #aaa;
-  box-shadow: 0 0 8px #aaa;
+.book-item .card-content {
+  padding: 15px;
 }
-.book-item-body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 150px;
-  padding: 10px;
-  background: #2c3e50;
-  min-height: 320px;
-  min-width: 360px;
-  z-index: 2;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -webkit-transform-origin: 0 0;
-  -moz-transform-origin: 0 0;
-  -o-transform-origin: 0 0;
-  -ms-transform-origin: 0 0;
-  transform-origin: 0 0;
-  -webkit-transform: rotateY(-90deg);
-  -moz-transform: rotateY(-90deg);
-  -webkit-transform: rotateY(-90deg);
-  -moz-transform: rotateY(-90deg);
-  -o-transform: rotateY(-90deg);
-  -ms-transform: rotateY(-90deg);
-  transform: rotateY(-90deg);
-  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-  -webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
-  -moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
-  -o-transition: -o-transform 0.4s, opacity 0.1s 0.3s;
-  -ms-transition: -ms-transform 0.4s, opacity 0.1s 0.3s;
-  transition: transform 0.4s, opacity 0.1s 0.3s;
+.book-item .card-content .card-title {
+  line-height: initial;
+  font-size: 1.4em;
 }
-.book-item-body p {
-  color: #fff;
-  font-size: 0.9em;
-  margin-bottom: 0;
+.book-item .card.small .card-image {
+  min-height: 70%;
+  max-height: 70%;
 }
-.book-item-body .book-title {
-  color: #3498db;
-  margin-bottom: 10px;
+.book-item .card.small .card-content {
+  max-height: 30%;
+}
+.book-item .external-link {
   font-size: 1.2em;
-}
-.book-item-body .book-score {
-  color: #2ecc71;
-  margin-bottom: 20px;
-}
-.book-item-body .btn-to-douban {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 15px;
 }

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-02-09T12:31:39.838Z</updated>
+  <updated>2016-02-14T05:51:54.054Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2015年秋季学期总结</title>
+    <link href="http://raytaylorlin.com/daily/2015-autumn-summary/"/>
+    <id>http://raytaylorlin.com/daily/2015-autumn-summary/</id>
+    <published>2016-02-14T05:28:13.000Z</published>
+    <updated>2016-02-14T05:51:54.054Z</updated>
+    
+    <content type="html">&lt;p&gt;好久没有写学期总结了。2015年秋季学期是我研究生阶段的倒数第二个学期，时间线上主要由实习、找工作、学（zhuang）习（bi）和写论文组成。由于这学期找完工作之后导师没有给我安排什么实验室的工作，所以有比较大段的自由时间可以支配。在外人看来我好像这学期过得很悠闲，实际上是在自己的合理安排下过得非常充实，现在写篇简短的文章总结一下。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;u5173_u4E8E_u5B9E_u4E60&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u5B9E_u4E60&quot; class=&quot;headerlink&quot; title=&quot;关于实习&quot;&gt;&lt;/a&gt;关于实习&lt;/h1&gt;&lt;p&gt;本学期比较特殊，要从七八两个月份的实习开始说起，而这次实习也可以说是我择业的转折点。本来原先在实验室一直从事的是Web前端开发，在这个领域也小有建树，但不知道从什么时候起，早些年内心里埋下的游戏开发的种子就开始生根发芽快速成长，直到15年的五月份找实习时，开始打定主意抛弃前端，只找游戏开发的岗位，而且是&lt;strong&gt;只找广州和深圳的游戏开发岗&lt;/strong&gt;。如此一来，其实真正理想的就只有腾讯和网易游戏两家可选。拿许总的话讲，就是“谈了多年的女孩到谈婚论嫁的时候，突然发现其实深爱的是另一个人”“自己给自己挖了一个巨大的坑”。突然的转行导致找实习乃至后面正式找工作都非常不顺，网易游戏是简历直接挂，腾讯游戏则是二面被刷。所幸后来拿到了多益网络的offer，抱着刷个游戏公司实习经历的想法，便果断放弃阿里的前端内推offer，义无反顾地投身到游戏开发的行业。&lt;/p&gt;
+&lt;p&gt;许多同学在其他互联网公司实习后都觉得没什么太大收获，但是我却在多益实习收获了许多。技术方面，是提高了Python和Cocos2d-x引擎的熟练度，项目经历让我第一次真正接触到了游戏真机性能优化的过程；项目方面，积累了项目管理和带小团队（3程序3策划）的经验，产出了2D游戏作品《跳跳格鲁特》（&lt;a href=&quot;http://pan.baidu.com/s/1kTYrNfD&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码8mm5】&lt;/a&gt;），以及利用下班时间个人打造的日式3D RPG demo《Fantasy Adventure》（&lt;a href=&quot;http://pan.baidu.com/s/1bnVkv9P&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码dg67】&lt;/a&gt;），这两个作品也成为后面找工作时简历打动面试官的重要筹码；人脉方面，结识了一帮热爱游戏的志同道合的朋友，即使实习结束后也还经常联系交流，其中甚至有好几位还即将成为我未来的同事。当然，公司待我们不薄，我也可以很负责任地为多益正一下名，基本上没有知乎上说的那么离谱，具体情况嘛，想去多益的倒是可以私底下找我了解。总而言之，多益实习的生活丰富多彩，确实是一段难忘的经历。&lt;/p&gt;
+&lt;h1 id=&quot;u5173_u4E8E_u627E_u5DE5_u4F5C&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u627E_u5DE5_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;关于找工作&quot;&gt;&lt;/a&gt;关于找工作&lt;/h1&gt;&lt;p&gt;实习结束回校之后，马上就开始投身到找工作的浪潮，目标依旧是腾讯和网易游戏。然而即使认真准备了C++、算法、Cocos2d-x源码、Unity3D的深入知识，即使有了游戏公司实习经历的光环，即使有两个较为成型游戏作品的加持，面对腾讯面试依旧是浑身使不上力的感觉，依旧挂在二面。所幸网易游戏看得起我，给了第一份理想的offer，让我解了游戏开发道路的后顾之忧。后来又经贵人相助，得到了直面腾讯天美的机会，几经折腾最终是拿到了理想公司的理想部门的理想岗位。到国庆，终于华丽转身，找工作尘埃落定。当然，整个过程就只找了两家公司，没有体验过offer收割机的快感，也算是小小的遗憾。&lt;/p&gt;
+&lt;h1 id=&quot;u81EA_u7531_u5B66_u4E60_u671F&quot;&gt;&lt;a href=&quot;#u81EA_u7531_u5B66_u4E60_u671F&quot; class=&quot;headerlink&quot; title=&quot;自由学习期&quot;&gt;&lt;/a&gt;自由学习期&lt;/h1&gt;&lt;p&gt;可能是因为我的offer是大转行，找完工作后导师也没有安排什么任务给我，所以国庆过后两个月开始进入了一段相对较长的自由学（zhuang）习（bi）期。这段时期就是看书看书再看书，看似悠哉，其实产出还是比较大的，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;看完《Windows游戏编程大师技巧（第2版）》&lt;/li&gt;
+&lt;li&gt;看完《DirectX 9.0 3D游戏开发编程基础》&lt;/li&gt;
+&lt;li&gt;看完《3D数学基础：图形与游戏开发》&lt;/li&gt;
+&lt;li&gt;看完《武器屋》&lt;/li&gt;
+&lt;li&gt;看完《圣剑传说》&lt;/li&gt;
+&lt;li&gt;看完《游戏设计的100个原理》&lt;/li&gt;
+&lt;li&gt;看完《Web全栈工程师的自我修养》&lt;/li&gt;
+&lt;li&gt;看一部分《网络游戏核心技术与实战》&lt;/li&gt;
+&lt;li&gt;看一部分DirectX 11 Tutorial&lt;/li&gt;
+&lt;li&gt;其他杂七杂八的资料……&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;u5173_u4E8E_u5B9E_u9A8C_u5BA4_u57F9_u8BAD&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u5B9E_u9A8C_u5BA4_u57F9_u8BAD&quot; class=&quot;headerlink&quot; title=&quot;关于实验室培训&quot;&gt;&lt;/a&gt;关于实验室培训&lt;/h1&gt;&lt;p&gt;学习期间，大概是导师看我实在太闲，便让我开始培训实验室一批新人Web前端。早在两年以前，我便在Github上建立了&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ELWG前端学习&lt;/a&gt;项目，旨在推行一套比较规范的流程，来作为实验室一代又一代新人的Web前端入门培训。趁着这一次机会，我精练了整个前端培训项目，再加入一些后端的知识，形成了新的培训项目&lt;a href=&quot;https://github.com/ITEC-ELWG/WebSystemIntroduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web系统导论&lt;/a&gt;。在此基础上，本学期我在实验室一共开了8次课（其中3次后端课由屌刘同学主讲），并有7位新人培训毕业上了课程的&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study/blob/master/hero.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英雄榜&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;当然，带新人之余也不能忘了实验室中坚力量的培养。做完新人培训之后，经过一番酝酿终于收了两个真正意义上的徒弟（邱邱和刘贵）。我在实验室所剩时间不多，现在又转行不再做Web前端，因此希望在毕业前能够将他们培养成前端大神兼接班人。既然是要往大神方向培养，那就得按照大神的标准来训练，打字、编辑器、计算机科学素养、前端基础、前端进阶、后端基础、设计基础等等一个都不能少。如今两个徒弟按照我初步制定的&lt;a href=&quot;https://www.processon.com/view/566543b8e4b0fd9299902eb4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;前端大神培养计划&lt;/a&gt;稳步成长，我内心也甚是欣慰。&lt;/p&gt;
+&lt;p&gt;除了实验室这两条培养主线之外，还有许许多多其他的带新人支线，比如带一位新生学C#、面向对象和Unity3D，带点团队移动组两位新人学入门前端，协同两位徒弟开办了若干次技术交流会等等。虽然事情都比较小，但也要分散不少精力去备课，设计教程和题目，心虽累，但仍收获颇丰，乐在其中。&lt;/p&gt;
+&lt;h1 id=&quot;u5173_u4E8E_u6BD5_u4E1A_u8BBA_u6587&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u6BD5_u4E1A_u8BBA_u6587&quot; class=&quot;headerlink&quot; title=&quot;关于毕业论文&quot;&gt;&lt;/a&gt;关于毕业论文&lt;/h1&gt;&lt;p&gt;到了十二月份，就开始考虑写论文的事情了。早在写本科毕业论文的时候，就受尽了垃圾Word的折磨，比如混乱的多级标题、低效率的多级交叉引用、经常出问题的目录生成等等。同理，配套的画图工具Visio也是用户体验特别差。既然是程序员，那写论文最好也要按照程序员的基本法。一般科研界的论文用的是Latex，而程序员则惯用markdown。于是我在前人的基础上推陈出新，建立了一个开源项目&lt;a href=&quot;https://github.com/raytaylorlin/hust-graduation-thesis-pandoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hust-graduation-thesis-pandoc&lt;/a&gt;可以使用markdown来华科的毕业论文，具体可以参见我之前的博文&lt;a href=&quot;/tech/complex/project/write-thesis-using-markdown/&quot;&gt;《使用markdown来写毕业论文》&lt;/a&gt;。Anyway，Word辣鸡，Visio辣鸡。&lt;/p&gt;
+&lt;p&gt;Markdown在手，写起论文正文自然专注，正文还可以按章节拆分成多个md文件，用Git做版本控制，用&lt;a href=&quot;https://coding.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coding.net&lt;/a&gt;做私有仓库托管。画图用&lt;a href=&quot;https://www.processon.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ProcessOn&lt;/a&gt;，打开浏览器即用，随时云端存储，又能导出矢量PDF，基本上可以抛弃Visio。绘制表格可以用&lt;a href=&quot;http://www.tablesgenerator.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TablesGenerator&lt;/a&gt;在线可视化编辑再生成Latex粘贴到正文。交叉引用用&lt;code&gt;\label&lt;/code&gt;和&lt;code&gt;\ref&lt;/code&gt;设置，文献引用则用Google学术复制出bibtex来管理。经过了一个月的实践考验，学期结束的时候论文完成度已经达到90%，这套解决方案被证明是可行的，撰写体验也是愉悦的。&lt;/p&gt;
+&lt;h1 id=&quot;u5173_u4E8E_u65B0_u7248_u535A_u5BA2&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u65B0_u7248_u535A_u5BA2&quot; class=&quot;headerlink&quot; title=&quot;关于新版博客&quot;&gt;&lt;/a&gt;关于新版博客&lt;/h1&gt;&lt;p&gt;新版博客大概计划在11月，但实施起来已经是寒假在家的时候了。这一次博客改版为了兼容最新版本的Hexo3（老版仅能支持Hexo2是一大痛点），几乎推翻了原有主题raytaylorism的所有设计，UI上采用全新的Material Design风格，内部结构和配置也重写以提高稳定性。大家看到这篇总结的时候，正是新版博客第一次正式亮相，也意味着hexo主题raytaylorism开始进入内测阶段（目前内测人员已招募完毕）。在内测过程中，我还会继续完善和优化这个项目，并计划推出全新的个人简介页面，等一两周之后再在Github上发布主题，敬请期待。&lt;/p&gt;
+&lt;h1 id=&quot;u7ED3_u8BED&quot;&gt;&lt;a href=&quot;#u7ED3_u8BED&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h1&gt;&lt;p&gt;回首上一学期，总体来说还是过得比较愉快和充实。下学期是研究生阶段的最后一个学期，除了正常的修改论文和答辩之外，基本上也没什么事了，所以计划还是以学习为主，毕业旅行为辅。抓紧最后的大段自由时光多打好技术基础，将会是下学期的主旋律。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;好久没有写学期总结了。2015年秋季学期是我研究生阶段的倒数第二个学期，时间线上主要由实习、找工作、学（zhuang）习（bi）和写论文组成。由于这学期找完工作之后导师没有给我安排什么实验室的工作，所以有比较大段的自由时间可以支配。在外人看来我好像这学期过得很悠闲，实际上是在自己的合理安排下过得非常充实，现在写篇简短的文章总结一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日常" scheme="http://raytaylorlin.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="日常" scheme="http://raytaylorlin.com/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Markdown来写毕业论文</title>
@@ -1636,13 +1683,13 @@ exports.leak = function() {
     <link href="http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/"/>
     <id>http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/</id>
     <published>2014-10-13T01:32:49.000Z</published>
-    <updated>2016-02-09T12:31:40.099Z</updated>
+    <updated>2016-02-13T07:01:45.387Z</updated>
     
     <content type="html">&lt;p&gt;“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。&lt;/p&gt;
 &lt;p&gt;在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;1-__u57FA_u672C_u6982_u5FF5&quot;&gt;&lt;a href=&quot;#1-__u57FA_u672C_u6982_u5FF5&quot; class=&quot;headerlink&quot; title=&quot;1. 基本概念&quot;&gt;&lt;/a&gt;1. 基本概念&lt;/h1&gt;&lt;p&gt;“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。&lt;/p&gt;
-&lt;h2 id=&quot;1-1__u963B_u585EI/O_u4E0E_u975E_u963B_u585EI/O&quot;&gt;&lt;a href=&quot;#1-1__u963B_u585EI/O_u4E0E_u975E_u963B_u585EI/O&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞I/O与非阻塞I/O&quot;&gt;&lt;/a&gt;1.1 阻塞I/O与非阻塞I/O&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
+&lt;h2 id=&quot;1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot;&gt;&lt;a href=&quot;#1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞IO与非阻塞IO&quot;&gt;&lt;/a&gt;1.1 阻塞IO与非阻塞IO&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
 &lt;p&gt;阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。非阻塞I/O的特点就是&lt;strong&gt;调用之后会立即返回，返回后CPU的时间片可以用来处理其他事务&lt;/strong&gt;。由于完整的I/O并没有完成，立即返回的并不是业务层期待的数据，而仅仅是当前调用的状态。为了获取完整的数据，应用程序需要重复调用I/O操作来确认是否完成（即轮询）。轮询技术要以下几种：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;read：通过重复调用来检查I/O状态，是最原始性能最低的一种方式&lt;/li&gt;
@@ -1651,15 +1698,15 @@ exports.leak = function() {
 &lt;li&gt;epoll：进入轮询时若没有检查到I/O事件，将会进行休眠，直到事件发生将其唤醒。这是当前Linux下效率最高的I/O事件通知机制&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;轮询满足了非阻塞I/O确保获取完整数据的需求，但对于应用程序而言，它仍然只能算作一种同步，因为依然需要等待I/O完全返回。等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待事件发生。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65I/O&quot;&gt;&lt;a href=&quot;#1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65I/O&quot; class=&quot;headerlink&quot; title=&quot;1.2 理想与现实中的异步I/O&quot;&gt;&lt;/a&gt;1.2 理想与现实中的异步I/O&lt;/h2&gt;&lt;p&gt;完美的异步I/O应该是应用程序发起非阻塞调用，无需通过轮询就可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序即可。&lt;/p&gt;
+&lt;h2 id=&quot;1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65IO&quot;&gt;&lt;a href=&quot;#1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65IO&quot; class=&quot;headerlink&quot; title=&quot;1.2 理想与现实中的异步IO&quot;&gt;&lt;/a&gt;1.2 理想与现实中的异步IO&lt;/h2&gt;&lt;p&gt;完美的异步I/O应该是应用程序发起非阻塞调用，无需通过轮询就可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序即可。&lt;/p&gt;
 &lt;p&gt;现实中的异步I/O在不同操作系统下有不同的实现，如*nix平台采用自定义的线程池，Windows平台采用IOCP模型。Node提供了libuv作为抽象封装层来封装平台兼容性判断，并保证上层Node与下层各平台异步I/O的实现各自独立。另外需要强调的是我们经常提到Node是单线程的，这仅仅是指Javascript的执行在单线程中，实际在Node内部完成I/O任务的都另有线程池。&lt;/p&gt;
-&lt;h1 id=&quot;2-_Node_u7684_u5F02_u6B65I/O&quot;&gt;&lt;a href=&quot;#2-_Node_u7684_u5F02_u6B65I/O&quot; class=&quot;headerlink&quot; title=&quot;2. Node的异步I/O&quot;&gt;&lt;/a&gt;2. Node的异步I/O&lt;/h1&gt;&lt;h2 id=&quot;2-1__u4E8B_u4EF6_u5FAA_u73AF&quot;&gt;&lt;a href=&quot;#2-1__u4E8B_u4EF6_u5FAA_u73AF&quot; class=&quot;headerlink&quot; title=&quot;2.1 事件循环&quot;&gt;&lt;/a&gt;2.1 事件循环&lt;/h2&gt;&lt;p&gt;Node的执行模型实际上是&lt;strong&gt;事件循环&lt;/strong&gt;。在进程启动时，Node会创建一个无限循环，每一次执行循环体的过程成为一次Tick。每个Tick过程就是查看是否有事件等待处理，如果有则取出事件及其相关的回调函数，若存在关联的回调函数则执行它们，然后进入下一个循环。如果不再有事件处理，就退出进程。&lt;/p&gt;
+&lt;h1 id=&quot;2-_Node_u7684_u5F02_u6B65IO&quot;&gt;&lt;a href=&quot;#2-_Node_u7684_u5F02_u6B65IO&quot; class=&quot;headerlink&quot; title=&quot;2. Node的异步IO&quot;&gt;&lt;/a&gt;2. Node的异步IO&lt;/h1&gt;&lt;h2 id=&quot;2-1__u4E8B_u4EF6_u5FAA_u73AF&quot;&gt;&lt;a href=&quot;#2-1__u4E8B_u4EF6_u5FAA_u73AF&quot; class=&quot;headerlink&quot; title=&quot;2.1 事件循环&quot;&gt;&lt;/a&gt;2.1 事件循环&lt;/h2&gt;&lt;p&gt;Node的执行模型实际上是&lt;strong&gt;事件循环&lt;/strong&gt;。在进程启动时，Node会创建一个无限循环，每一次执行循环体的过程成为一次Tick。每个Tick过程就是查看是否有事件等待处理，如果有则取出事件及其相关的回调函数，若存在关联的回调函数则执行它们，然后进入下一个循环。如果不再有事件处理，就退出进程。&lt;/p&gt;
 &lt;h2 id=&quot;2-2__u89C2_u5BDF_u8005&quot;&gt;&lt;a href=&quot;#2-2__u89C2_u5BDF_u8005&quot; class=&quot;headerlink&quot; title=&quot;2.2 观察者&quot;&gt;&lt;/a&gt;2.2 观察者&lt;/h2&gt;&lt;p&gt;每个事件循环中有若干个&lt;strong&gt;观察者&lt;/strong&gt;，通过向这些观察者询问来判断是否有事件要处理。事件循环是一个典型的&lt;em&gt;生产者/消费者模型&lt;/em&gt;。在Node中，事件主要来源于网络请求、文件I/O等，这些事件都有对应的网络I/O观察者、文件I/O观察者等，事件循环则从观察者那里取出事件并处理。&lt;/p&gt;
 &lt;h2 id=&quot;2-3__u8BF7_u6C42_u5BF9_u8C61&quot;&gt;&lt;a href=&quot;#2-3__u8BF7_u6C42_u5BF9_u8C61&quot; class=&quot;headerlink&quot; title=&quot;2.3 请求对象&quot;&gt;&lt;/a&gt;2.3 请求对象&lt;/h2&gt;&lt;p&gt;从Javascript发起调用到内核执行完I/O操作的过渡过程中，存在一种中间产物，叫做&lt;strong&gt;请求对象&lt;/strong&gt;。以最简单的Windows下&lt;code&gt;fs.open()&lt;/code&gt;方法（根据指定路径和参数去打开一个文件并得到一个文件描述符）为例，从JS调用到内建模块通过libuv进行系统调用，实际上是调用了&lt;code&gt;uv_fs_open()&lt;/code&gt;方法。在调用过程中，创建了一个&lt;code&gt;FSReqWrap&lt;/code&gt;请求对象，从JS层传入的参数和方法都封装在这个请求对象中，其中我们最为关注的回调函数被设置在这个对象的&lt;code&gt;oncompete_sym&lt;/code&gt;属性上。对象包装完毕后，将&lt;code&gt;FSReqWrap&lt;/code&gt;对象推入线程池中等待执行。&lt;/p&gt;
 &lt;p&gt;至此，JS调用立即返回，JS线程可以继续执行后续操作。当前的I/O操作在线程池中等待执行，这就完成了异步调用的第一阶段。&lt;/p&gt;
 &lt;h2 id=&quot;2-4__u6267_u884C_u56DE_u8C03&quot;&gt;&lt;a href=&quot;#2-4__u6267_u884C_u56DE_u8C03&quot; class=&quot;headerlink&quot; title=&quot;2.4 执行回调&quot;&gt;&lt;/a&gt;2.4 执行回调&lt;/h2&gt;&lt;p&gt;回调通知是异步I/O的第二阶段。线程池中的I/O操作调用完毕后，会将获取的结果储存起来，然后通知IOCP当前对象操作已完成，并将线程归还线程池。在每次Tick的执行中，事件循环的I/O观察者会调用相关的方法检查线程池中是否有执行完的请求，如果存在，会将请求对象加入到I/O观察者的队列中，然后将其当做事件处理。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E5%BC%82%E6%AD%A5IO%E6%B5%81%E7%A8%8B.jpg&quot; alt=&quot;Node异步I/O流程&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;3-__u975EI/O_u7684_u5F02_u6B65API&quot;&gt;&lt;a href=&quot;#3-__u975EI/O_u7684_u5F02_u6B65API&quot; class=&quot;headerlink&quot; title=&quot;3. 非I/O的异步API&quot;&gt;&lt;/a&gt;3. 非I/O的异步API&lt;/h1&gt;&lt;p&gt;Node中还存在一些与I/O无关的异步API，例如定时器&lt;code&gt;setTimeout()&lt;/code&gt;、&lt;code&gt;setInterval()&lt;/code&gt;，立即异步执行任务的&lt;code&gt;process.nextTick()&lt;/code&gt;和&lt;code&gt;setImmdiate()&lt;/code&gt;等，这里略微介绍一下。&lt;/p&gt;
+&lt;h1 id=&quot;3-__u975EIO_u7684_u5F02_u6B65API&quot;&gt;&lt;a href=&quot;#3-__u975EIO_u7684_u5F02_u6B65API&quot; class=&quot;headerlink&quot; title=&quot;3. 非IO的异步API&quot;&gt;&lt;/a&gt;3. 非IO的异步API&lt;/h1&gt;&lt;p&gt;Node中还存在一些与I/O无关的异步API，例如定时器&lt;code&gt;setTimeout()&lt;/code&gt;、&lt;code&gt;setInterval()&lt;/code&gt;，立即异步执行任务的&lt;code&gt;process.nextTick()&lt;/code&gt;和&lt;code&gt;setImmdiate()&lt;/code&gt;等，这里略微介绍一下。&lt;/p&gt;
 &lt;h2 id=&quot;3-1__u5B9A_u65F6_u5668API&quot;&gt;&lt;a href=&quot;#3-1__u5B9A_u65F6_u5668API&quot; class=&quot;headerlink&quot; title=&quot;3.1 定时器API&quot;&gt;&lt;/a&gt;3.1 定时器API&lt;/h2&gt;&lt;p&gt;&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;浏览器端的API是一致的，它们的实现原理与异步I/O类似，只是不需要I/O线程池的参与。调用定时器API创建的定时器会被插入到定时器观察者内部的一棵红黑树中，每次事件循环的Tick都会从红黑树中迭代取出定时器对象，检查是否超过定时时间，若超过就形成一个事件，回调函数立即被执行。定时器的主要问题在于它的定时时间并非特别精确（毫秒级，在容忍范围内）。&lt;/p&gt;
 &lt;h2 id=&quot;3-2__u7ACB_u5373_u5F02_u6B65_u6267_u884C_u4EFB_u52A1API&quot;&gt;&lt;a href=&quot;#3-2__u7ACB_u5373_u5F02_u6B65_u6267_u884C_u4EFB_u52A1API&quot; class=&quot;headerlink&quot; title=&quot;3.2 立即异步执行任务API&quot;&gt;&lt;/a&gt;3.2 立即异步执行任务API&lt;/h2&gt;&lt;p&gt;在Node出现之前，很多人也许为了立即异步执行一个任务，会这样调用：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;setTimeout(function() {
@@ -1695,109 +1742,6 @@ exports.leak = function() {
       <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
     
       <category term="异步I/O" scheme="http://raytaylorlin.com/tags/%E5%BC%82%E6%AD%A5I-O/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node.js学习笔记：模块机制</title>
-    <link href="http://raytaylorlin.com/tech/web/nodejs/node-module/"/>
-    <id>http://raytaylorlin.com/tech/web/nodejs/node-module/</id>
-    <published>2014-10-08T08:22:53.000Z</published>
-    <updated>2016-02-09T12:31:40.121Z</updated>
-    
-    <content type="html">&lt;p&gt;Javascript自诞生以来，曾经没有人拿它当做一门编程语言。在Web 1.0时代，这种脚本语言主要被用来做表单验证和网页特效。直到Web 2.0时代，前端工程师利用它大大提升了网页上的用户体验，JS才被广泛重视起来。在JS逐渐流行的过程中，它大致经历了工具类库、组件库、前端框架、前端应用的变迁。Javascript先天就缺乏一项功能：模块，而CommonJS规范的出现则弥补了这一缺陷。本文将介绍CommonJS规范及Node的模块机制。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;在其他高级语言中，Java有类文件，Python有import机制，PHP有include和require。而JS通过&amp;lt;script&amp;gt;标签引入代码的方式显得杂乱无章。过去人们不得不用命名空间等方式来人为地约束代码，直到&lt;a href=&quot;http://wiki.commonjs.org/wiki/CommonJS&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CommonJS&lt;/a&gt;规范的出现，前后端的Javascript才得以实现大一统。Node借鉴了CommonJS的Modules规范实现了一套非常易用的模块系统。&lt;/p&gt;
-&lt;h1 id=&quot;1-_CommonJS_u6A21_u5757_u89C4_u8303&quot;&gt;&lt;a href=&quot;#1-_CommonJS_u6A21_u5757_u89C4_u8303&quot; class=&quot;headerlink&quot; title=&quot;1. CommonJS模块规范&quot;&gt;&lt;/a&gt;1. CommonJS模块规范&lt;/h1&gt;&lt;p&gt;CommonJS的模块规范分为3个部分：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;模块引用：通过&lt;code&gt;require()&lt;/code&gt;方法并传入一个&lt;strong&gt;模块标识&lt;/strong&gt;来引入一个模块的API到当前上下文中，如&lt;code&gt;var math = require(&amp;#39;math&amp;#39;);&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;模块定义：通过&lt;code&gt;exports&lt;/code&gt;对象来导出当前模块的方法或变量。模块中还存在一个&lt;code&gt;module&lt;/code&gt;对象，exports实际上是module的属性。在Node中，一个文件就是一个模块，模块内的“全局变量”对外都不可见，只有挂载在exports上的属性才是公开的，如&lt;code&gt;exports.add = function() {}; exports.PI = 3.1415926;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;模块标识：实际上就是传递给&lt;code&gt;require()&lt;/code&gt;的参数，如上述的&lt;code&gt;&amp;#39;math&amp;#39;&lt;/code&gt;，它必须是符合camel命名法的字符串，或者是以“.”“..”开头的相对路径或绝对路径，它可以没有文件名后缀“.js”&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;2-_Node_u6A21_u5757_u5B9E_u73B0_u8FC7_u7A0B&quot;&gt;&lt;a href=&quot;#2-_Node_u6A21_u5757_u5B9E_u73B0_u8FC7_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;2. Node模块实现过程&quot;&gt;&lt;/a&gt;2. Node模块实现过程&lt;/h1&gt;&lt;p&gt;在Node中，模块分为两类：一类是Node本身提供的核心模块，另一类是用户自己编写的文件模块。核心模块有一部分在Node源代码的编译过程中，编译成了二进制文件，在Node启动时核心模块就被直接加载进内存中，所以它的加载速度是最快的。文件模块则是在运行时动态加载，需要经历三个步骤：路径分析，文件定位，编译执行。&lt;strong&gt;注意，Node对引入过的模块都会进行缓存，以减少二次引入时的开销，并对相同模块的二次加载都采用最优先从缓存加载的策略。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;2-1__u8DEF_u5F84_u5206_u6790&quot;&gt;&lt;a href=&quot;#2-1__u8DEF_u5F84_u5206_u6790&quot; class=&quot;headerlink&quot; title=&quot;2.1 路径分析&quot;&gt;&lt;/a&gt;2.1 路径分析&lt;/h2&gt;&lt;p&gt;路径分析主要分析上述提到的模块标识符，主要分为以下几类：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;核心模块，如http、fs、path等&lt;/li&gt;
-&lt;li&gt;.或..开始的相对路径文件模块&lt;/li&gt;
-&lt;li&gt;以/开始的绝对路径文件模块&lt;/li&gt;
-&lt;li&gt;自定义文件模块，可能是一个文件或包的形式。Node会根据&lt;em&gt;模块路径&lt;/em&gt;数组&lt;code&gt;module.paths&lt;/code&gt;来逐个尝试查找目标文件，通常是沿着当前目录逐级向上直到根目录查找名为&lt;code&gt;node_modules&lt;/code&gt;的目录，所以这是查找最费时的一种方式。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-2__u6587_u4EF6_u5B9A_u4F4D&quot;&gt;&lt;a href=&quot;#2-2__u6587_u4EF6_u5B9A_u4F4D&quot; class=&quot;headerlink&quot; title=&quot;2.2 文件定位&quot;&gt;&lt;/a&gt;2.2 文件定位&lt;/h2&gt;&lt;p&gt;在路径分析的基础上，文件定位需要注意如下细节：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;文件扩展名分析：由于CommonJS规范允许模块标识不填写扩展名，Node会按.js、.json、.node的次序不足扩展名，依次尝试&lt;/li&gt;
-&lt;li&gt;目录分析和包：若通过上述文件扩展名分析后没有查找到对应文件，却得到一个目录，Node会把目录当做一个包来处理&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3__u7F16_u8BD1_u6267_u884C&quot;&gt;&lt;a href=&quot;#2-3__u7F16_u8BD1_u6267_u884C&quot; class=&quot;headerlink&quot; title=&quot;2.3 编译执行&quot;&gt;&lt;/a&gt;2.3 编译执行&lt;/h2&gt;&lt;p&gt;定位到具体文件后，Node会新建一个模块对象，根据路径载入并编译。对于不同的扩展名，载入方法有所不同：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;.js文件：通过fs模块同步读取文件并编译执行&lt;/li&gt;
-&lt;li&gt;.node文件：这是用C/C++编写的扩展文件，通过&lt;code&gt;dlopen()&lt;/code&gt;方法加载&lt;/li&gt;
-&lt;li&gt;.json文件：通过fs模块同步读取文件，用&lt;code&gt;JSON.parse()&lt;/code&gt;解析返回结果&lt;/li&gt;
-&lt;li&gt;其余扩展名文件：都被当做.js文件载入&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我们知道每个模块文件中默认都存在着require、exports、module这3个变量，甚至在Node的API文档中，我们知道每个模块还有&lt;strong&gt;filename、&lt;/strong&gt;dirname这2个变量的存在，它们是从何而来的呢？Node的模块又是怎么做到声明的“全局变量”实际上是不会污染到其他模块的？事实上，&lt;strong&gt;Node在编译JS模块过程中会对文件内容进行头尾包装&lt;/strong&gt;。下面是一个JS文件经过头尾包装的例子：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;(function(exports, require, module, __filename, __dirname) {
-    /* 中间是JS文件的实际内容 */
-    var math = require(&amp;apos;math&amp;apos;);
-    exports.area = function(radius) {
-        return Math.PI * radius * radius;
-    };
-    /* JS文件的实际内容结束 */
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样每个模块文件之间都进行了作用域隔离，同时require、exports、module等变量也被注入到了模块的上下文当中。这就是Node对CommonJS模块规范的实现。关于C/C++模块及Node核心模块的编译过程较为复杂，不再赘述。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u6A21_u5757_u8C03_u7528_u6808&quot;&gt;&lt;a href=&quot;#3-__u6A21_u5757_u8C03_u7528_u6808&quot; class=&quot;headerlink&quot; title=&quot;3. 模块调用栈&quot;&gt;&lt;/a&gt;3. 模块调用栈&lt;/h1&gt;&lt;p&gt;有必要明确一下Node中各种模块的调用关系，如下图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E6%A8%A1%E5%9D%97%E9%97%B4%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB.jpg&quot; alt=&quot;Node模块间调用关系&quot;&gt;&lt;/p&gt;
-&lt;p&gt;C/C++内建模块是最底层的模块，属于核心模块，主要提供API给Javascript核心模块和第三方Javascript文件模块调用，实际中几乎不会接触到此类模块。Javascript核心模块主要职责有两种：一种是作为C/C++内建模块的封装层和桥接层供文件模块调用，另一种是纯粹的功能模块，不需要跟底层打交道。文件模块通常由第三方编写，包括普通Javascript模块和C/C++扩展模块。&lt;/p&gt;
-&lt;h1 id=&quot;4-__u5305_u4E0ENPM&quot;&gt;&lt;a href=&quot;#4-__u5305_u4E0ENPM&quot; class=&quot;headerlink&quot; title=&quot;4. 包与NPM&quot;&gt;&lt;/a&gt;4. 包与NPM&lt;/h1&gt;&lt;h2 id=&quot;4-1__u5305_u7ED3_u6784&quot;&gt;&lt;a href=&quot;#4-1__u5305_u7ED3_u6784&quot; class=&quot;headerlink&quot; title=&quot;4.1 包结构&quot;&gt;&lt;/a&gt;4.1 包结构&lt;/h2&gt;&lt;p&gt;包本质上是一个存档文件（一般为.zip或.tar.gz），安装后解压还原为目录。CommonJS的包规范由包结构和包描述文件两部分组成。一个完全符合CommonJS规范的包结构应包含以下文件：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;package.json：包描述文件&lt;/li&gt;
-&lt;li&gt;bin：存放可执行二进制文件的目录&lt;/li&gt;
-&lt;li&gt;lib：存放Javascript代码的目录&lt;/li&gt;
-&lt;li&gt;doc：存放文档的目录&lt;/li&gt;
-&lt;li&gt;test：存放单元测试用例的目录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;4-2__u5305_u63CF_u8FF0_u6587_u4EF6&quot;&gt;&lt;a href=&quot;#4-2__u5305_u63CF_u8FF0_u6587_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;4.2 包描述文件&quot;&gt;&lt;/a&gt;4.2 包描述文件&lt;/h2&gt;&lt;p&gt;包描述文件是一个JSON文件——package.json，位于包的根目录下，是包的重要组成部分，用于描述包的概况信息。后面要提到的NPM的所有行为都与这个文件的字段息息相关。下面将以知名Web框架express项目的&lt;a href=&quot;https://github.com/strongloop/express/blob/master/package.json&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;package.json&lt;/a&gt;文件为例说明一些常用字段的含义。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;name：包名&lt;/li&gt;
-&lt;li&gt;description：包简介&lt;/li&gt;
-&lt;li&gt;version：版本号，需遵照“语义化的版本控制”，参照&lt;a href=&quot;http://semver.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://semver.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;dependencies：使用当前包所需要依赖的包列表。这个属性十分重要，NPM会通过这个属性自动加载依赖的包&lt;/li&gt;
-&lt;li&gt;repositories：托管源代码的位置列表&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;其余字段的用法可以参照&lt;a href=&quot;https://www.npmjs.org/doc/files/package.json.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NPM package.json说明&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;4-3_NPM_u5E38_u7528_u529F_u80FD&quot;&gt;&lt;a href=&quot;#4-3_NPM_u5E38_u7528_u529F_u80FD&quot; class=&quot;headerlink&quot; title=&quot;4.3 NPM常用功能&quot;&gt;&lt;/a&gt;4.3 NPM常用功能&lt;/h2&gt;&lt;p&gt;NPM（node package manager），通常称为node包管理器。它的主要功能就是管理node包，包括：安装、卸载、更新、查看、搜索、发布等。&lt;/p&gt;
-&lt;h3 id=&quot;4-3-1_NPM_u5305_u5B89_u88C5&quot;&gt;&lt;a href=&quot;#4-3-1_NPM_u5305_u5B89_u88C5&quot; class=&quot;headerlink&quot; title=&quot;4.3.1 NPM包安装&quot;&gt;&lt;/a&gt;4.3.1 NPM包安装&lt;/h3&gt;&lt;p&gt;Node包的安装分两种：本地安装、全局安装。两者的区别如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;本地安装&lt;code&gt;npm install &amp;lt;package-name&amp;gt;&lt;/code&gt;：package会被下载到当前所在目录，也只能在当前目录下使用。&lt;/li&gt;
-&lt;li&gt;全局安装&lt;code&gt;npm install -g &amp;lt;package-name&amp;gt;&lt;/code&gt;：package会被下载到到特定的系统目录下，安装的package能够在所有目录下使用。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;4-3-2_NPM_u5305_u7BA1_u7406&quot;&gt;&lt;a href=&quot;#4-3-2_NPM_u5305_u7BA1_u7406&quot; class=&quot;headerlink&quot; title=&quot;4.3.2 NPM包管理&quot;&gt;&lt;/a&gt;4.3.2 NPM包管理&lt;/h3&gt;&lt;p&gt;下面以grunt-cli（grunt命令行工具）为例，列出常用的包管理命令：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;npm install&lt;/code&gt;：安装package.json文件的dependencies和devDependencies字段声明的所有包&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm install grunt-cli@0.1.9&lt;/code&gt;：安装特定版本的grunt-cli&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm install grunt-contrib-copy --save&lt;/code&gt;：安装grunt-contrib-copy，同时保存该依赖到package.json文件&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm uninstall grunt-cli&lt;/code&gt;：卸载包&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm list&lt;/code&gt;：查看安装了哪些包&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm publish &amp;lt;folder&amp;gt;&lt;/code&gt;：发布包&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考资料：《深入浅出NodeJS》第二章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Javascript自诞生以来，曾经没有人拿它当做一门编程语言。在Web 1.0时代，这种脚本语言主要被用来做表单验证和网页特效。直到Web 2.0时代，前端工程师利用它大大提升了网页上的用户体验，JS才被广泛重视起来。在JS逐渐流行的过程中，它大致经历了工具类库、组件库、前端框架、前端应用的变迁。Javascript先天就缺乏一项功能：模块，而CommonJS规范的出现则弥补了这一缺陷。本文将介绍CommonJS规范及Node的模块机制。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
-    
-    
-      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
-    
-      <category term="模块化" scheme="http://raytaylorlin.com/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
   </entry>
   
