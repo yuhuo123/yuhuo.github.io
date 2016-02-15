@@ -347,6 +347,32 @@
     <main>
         
 
+<div class="slider">
+    <ul class="slides">
+    
+       <li>
+           <a href="/daily/2015-autumn-summary/">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2F2015summary.png">
+               <div class="caption center-align">
+                 <h4>2015年秋季学期总结</h3>
+                 <h5 class="light grey-text text-lighten-3"></h5>
+               </div>
+           </a>
+       </li>
+    
+       <li>
+           <a href="javascript:;">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2Fblogv3.png">
+               <div class="caption left-align">
+                 <h4>个人博客v3正式上线！</h3>
+                 <h5 class="light grey-text text-lighten-3">清爽简约，新年再续高B格</h5>
+               </div>
+           </a>
+       </li>
+    
+   </ul>
+ </div>
+
 
 
 <div id="article-list" class="container main-container">
@@ -772,7 +798,7 @@
     </li>
     
     
-        <li class="active green"><a href="/">1</a></li>fixed-action-btn
+        <li class="active green"><a href="/">1</a></li>
     
         <li class="waves-effect"><a href="/page/2">2</a></li>
     
@@ -794,7 +820,15 @@
 
 </div>
 
-
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large green">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect blue" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
 
     </main>
     <footer class="page-footer indigo darken-1">
@@ -858,6 +892,90 @@
 
 
 <script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+(function($) {
+    $(document).ready(function() {
+        // 隐藏禁用javascript（针对微信内置浏览器）的提示
+        $('.noscript').hide();
+
+        // 图片缩放效果
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+
+        // 给图片加上点击放大效果（materialbox插件）
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt'));
+            }).materialbox();
+
+        // 首页幻灯片
+        $('.slider').slider({
+            indicators: false,
+            full_width: true
+        });
+
+        $(".button-collapse").sideNav();
+        $(".category-menu").sideNav();
+
+        // 针对gallery post
+        $('.carousel').carousel({
+            full_width: true
+        });
+        $('.carousel-control.prev').click(function() {
+            $('.carousel').carousel('prev');
+        });
+        $('.carousel-control.next').click(function() {
+            $('.carousel').carousel('next');
+        });
+
+        // 文章目录
+        $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+        // 针对移动端做的优化：FAB按钮点击一下收回
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $('.fixed-action-btn').addClass('click-to-toggle');
+        }
+        // 回到顶部
+        $('.btn-return-top').click(function() {
+            $('body, html').animate({
+                scrollTop: 0
+            }, 500);
+        });
+
+        // 重置读书页面的Tab标签页的颜色
+        $('li.tab a').hover(function() {
+            $(this).toggleClass('text-lighten-4');
+        });
+        $('.indicator').addClass('green lighten-2');
+
+        // 添加new标签
+        $('.menu-reading').append('<span class="new badge pink"></span>');
+    });
+})(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </body>
