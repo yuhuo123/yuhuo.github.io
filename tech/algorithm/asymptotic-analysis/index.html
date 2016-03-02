@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/渐进分析/" class="article-tag green accent-4">渐进分析</a>
+            <a href="/tags/渐进分析/" class="chip green accent-4">渐进分析</a>
         
-            <a href="/tags/算法/" class="article-tag green accent-4">算法</a>
+            <a href="/tags/算法/" class="chip green accent-4">算法</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的<strong>渐进</strong>效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。</p>
 <p>本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。</p>
 <a id="more"></a>
+
 <h1 id="1-__u63D2_u5165_u6392_u5E8F"><a href="#1-__u63D2_u5165_u6392_u5E8F" class="headerlink" title="1. 插入排序"></a>1. 插入排序</h1><h2 id="1-1__u7B97_u6CD5_u63CF_u8FF0"><a href="#1-1__u7B97_u6CD5_u63CF_u8FF0" class="headerlink" title="1.1 算法描述"></a>1.1 算法描述</h2><p>插入排序的工作方式就像你排序手中的扑克牌一样（假设从左到右是从小到大），一开始手中没有牌，每次拿到一张新的牌都要从右到左与每张牌比较，并将其插入到合适的位置（比它大的牌也顺势后移）。以下是Python代码：</p>
 <pre><code>def insertionSort(data):
     # 初始化结果为第一个数
@@ -554,7 +555,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -603,7 +604,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -617,17 +618,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

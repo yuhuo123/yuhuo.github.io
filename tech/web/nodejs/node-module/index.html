@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/模块化/" class="article-tag green accent-4">模块化</a>
+            <a href="/tags/模块化/" class="chip green accent-4">模块化</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>Javascript自诞生以来，曾经没有人拿它当做一门编程语言。在Web 1.0时代，这种脚本语言主要被用来做表单验证和网页特效。直到Web 2.0时代，前端工程师利用它大大提升了网页上的用户体验，JS才被广泛重视起来。在JS逐渐流行的过程中，它大致经历了工具类库、组件库、前端框架、前端应用的变迁。Javascript先天就缺乏一项功能：模块，而CommonJS规范的出现则弥补了这一缺陷。本文将介绍CommonJS规范及Node的模块机制。</p>
 <a id="more"></a>
+
 <p>在其他高级语言中，Java有类文件，Python有import机制，PHP有include和require。而JS通过&lt;script&gt;标签引入代码的方式显得杂乱无章。过去人们不得不用命名空间等方式来人为地约束代码，直到<a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>规范的出现，前后端的Javascript才得以实现大一统。Node借鉴了CommonJS的Modules规范实现了一套非常易用的模块系统。</p>
 <h1 id="1-_CommonJS_u6A21_u5757_u89C4_u8303"><a href="#1-_CommonJS_u6A21_u5757_u89C4_u8303" class="headerlink" title="1. CommonJS模块规范"></a>1. CommonJS模块规范</h1><p>CommonJS的模块规范分为3个部分：</p>
 <ol>
@@ -589,7 +590,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -638,7 +639,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -652,17 +653,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

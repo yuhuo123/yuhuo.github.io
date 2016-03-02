@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Git/" class="article-tag green accent-4">Git</a>
+            <a href="/tags/Git/" class="chip green accent-4">Git</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>几乎每一种版本控制系统都以某种形式支持分支。使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。相比同类软件，Git很显著的一个优点，就是版本的分支（branch）和合并（merge）十分方便。有人把Git的分支模型称为“必杀技特性”，因为它的分支可谓是难以置信的轻量级。理解分支的概念并熟练运用后，你才会意识到为什么Git是一个如此强大而独特的工具，并从此真正改变你的开发方式。本文将简单介绍Git的分支与合并的基本知识。</p>
 <a id="more"></a>
+
 <h1 id="1-_Git_u5206_u652F_u7BA1_u7406_u7B56_u7565"><a href="#1-_Git_u5206_u652F_u7BA1_u7406_u7B56_u7565" class="headerlink" title="1. Git分支管理策略"></a>1. Git分支管理策略</h1><p>Git的新建分支操作几乎可以在瞬间完成，并且在不同分支间切换起来也差不多一样快。和许多其他版本控制系统不同，Git鼓励在工作流程中频繁使用分支与合并，哪怕一天之内进行许多次都没有关系。</p>
 <p>但是太方便了也会产生副作用。如果你不加注意，很可能会留下一个枝节蔓生、四处开放的版本库，到处都是分支，完全看不出主干发展的脉络。所以在学习Git的分支之前，有必要先了解一下常用的分支管理策略。</p>
 <p>（本节参考自<a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">阮一峰的《Git分支管理策略》</a>）</p>
@@ -565,7 +566,7 @@ git rebase fixbug
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -614,7 +615,7 @@ git rebase fixbug
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -628,17 +629,6 @@ git rebase fixbug
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

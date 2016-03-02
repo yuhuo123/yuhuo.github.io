@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/Socket-IO/" class="article-tag green accent-4">Socket.IO</a>
+            <a href="/tags/Socket-IO/" class="chip green accent-4">Socket.IO</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>暑假的时候Heatmap项目组需要对在线即时通信和协作进行技术探索，于是我开始研究Web在线聊天的实现方式。在充分对Comet技术进行了研究之后（详见我之前写的一篇<a href="/Tech/other/comet-intro/">Comet简介的博文</a>），在丁基友的提示之下决定尝试使用Socket.IO。一个是考虑以后HTML5做网络通信需要用到WebSocket现在可以提前接触一下，另外一个是这个东西的服务器端要用到Node.js，之前就对node很有兴趣正好借此提升下功力。</p>
 <a id="more"></a>
+
 <h1 id="1-__u7B80_u4ECB"><a href="#1-__u7B80_u4ECB" class="headerlink" title="1. 简介"></a>1. 简介</h1><p>首先是Socket.IO的官方网站：<a href="http://socket.io" target="_blank" rel="external">http://socket.io</a></p>
 <p>官网非常简洁，甚至没有API文档，只有一个简单的“How to use”可以参考。因为Socket.IO就跟官网一样简洁好用易上手。</p>
 <p>那么Socket.IO到底是什么呢？Socket.IO是一个WebSocket库，包括了客户端的js和服务器端的nodejs，它的目标是构建可以在不同浏览器和移动设备上使用的实时应用。它会自动根据浏览器从WebSocket、AJAX长轮询、Iframe流等等各种方式中选择最佳的方式来实现网络实时应用，非常方便和人性化，而且支持的浏览器最低达IE5.5，应该可以满足绝大部分需求了。</p>
@@ -641,7 +642,7 @@ $(&apos;.btn-send&apos;).click(function(e) {
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -690,7 +691,7 @@ $(&apos;.btn-send&apos;).click(function(e) {
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -704,17 +705,6 @@ $(&apos;.btn-send&apos;).click(function(e) {
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

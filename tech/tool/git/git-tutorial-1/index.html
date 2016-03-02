@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Git/" class="article-tag green accent-4">Git</a>
+            <a href="/tags/Git/" class="chip green accent-4">Git</a>
         
     </div>
 
@@ -393,7 +393,7 @@
             <div class="entry">
                 <p>现在很多开发团队，包括我所在实验室，使用的版本控制系统都是SVN。Git作为一个新兴的快速的分布式版本控制系统，却很少有人知道或使用。我使用Git的时间不长，平时使用的命令也就那么几个，但深知Git是一个前途无量的东西，因此决定尝试着坚持使用并让更多的人知道它。</p>
 <p>之前从来没有对Git进行过系统的学习，只了解其中的一点皮毛原理和使用方式。这次正好借这个机会完整地学习一下，并把本系列作为一个教程或学习笔记。如果你对Git有兴趣，这个系列可以作为入门的参考指南。（注：本系列均以Windows版本为例，Linux或Mac下的命令可能有点不同，请自行查阅；另外，本系列所讲的都是Git的命令行，如果你使用小乌龟客户端GitTortoise，那么只需要动几下鼠标就可以完成操作）</p>
-<a id="more"></a>
+<p><a id="more"></a></p>
 <h1 id="1-__u4E3A_u4EC0_u4E48_u4F7F_u7528Git"><a href="#1-__u4E3A_u4EC0_u4E48_u4F7F_u7528Git" class="headerlink" title="1. 为什么使用Git"></a>1. 为什么使用Git</h1><p>关于Git的优缺点，与SVN的对比网上的资料有非常多，这里只列举几点比较重要的。</p>
 <ul>
 <li>分布式版本控制，文件变更的历史记录不再存在一个集中服务器，如果服务器故障，或者没有网络，几乎所有操作都可以在本地执行，在任何地方都可以愉快地提交更改。</li>
@@ -581,7 +581,7 @@ doc/*.txt
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -630,7 +630,7 @@ doc/*.txt
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -644,17 +644,6 @@ doc/*.txt
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

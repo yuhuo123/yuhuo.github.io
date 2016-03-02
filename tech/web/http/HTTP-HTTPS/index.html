@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
-            <a href="/tags/HTTPS/" class="article-tag green accent-4">HTTPS</a>
+            <a href="/tags/HTTPS/" class="chip green accent-4">HTTPS</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>HTTPS是最常见的HTTP安全版本。HTTPS将HTTP协议与一组强大的对称、非对称和基于证书的加密技术结合在一起，使得HTTPS不仅很安全，而且很灵活，很容易在处于无序状态的、分散的全球互联网上进行管理，因此得到很广泛的应用。</p>
 <p>目前它得到很广泛的应用，所有主要的商业浏览器和服务器都提供HTTPS。目前它已经成为基于Web的电子商务快速成长的主要推动力。本文将介绍HTTPS的相关知识。</p>
 <a id="more"></a>
+
 <h1 id="1-__u6982_u8FF0"><a href="#1-__u6982_u8FF0" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>HTTPS是在安全的传输层上发送的HTTP，它在将HTTP报文发送给TCP之前，先将其发送给了一个安全层对其进行加密。现在，HTTP安全层是通过SSL及其代替协议TLS来实现的。下图给出了HTTP和HTTPS层次的对比。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/HTTP%E4%B8%8EHTTPS%E5%B1%82%E6%AC%A1%E5%AF%B9%E6%AF%94.jpg" alt="HTTP与HTTPS层次对比"></p>
 <p>众所周知，在安全的HTTPS协议中，URL的方案前缀为https，如<code>https://github.com/</code>。HTTP的默认服务器端口号是80，而HTTPS的端口号是443。在未加密的HTTP中，客户端会打开一条到Web服务器80端口的TCP连接，发送一条请求报文，接收一条响应报文，最后关闭连接。而由于SSL安全层的存在，HTTPS中首先客户端打开一条到Web服务器端口443的连接。一旦建立TCP连接，就会初始化SSL层，对加密参数进行沟通，并交换密钥（这个过程成为SSL握手）。握手完成之后，SSL初始化就完成了，客户端就可以将请求报文进行加密然后发送给安全层。</p>
@@ -539,7 +540,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -588,7 +589,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -602,17 +603,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

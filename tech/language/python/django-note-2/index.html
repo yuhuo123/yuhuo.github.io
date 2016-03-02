@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Django/" class="article-tag green accent-4">Django</a>
+            <a href="/tags/Django/" class="chip green accent-4">Django</a>
         
-            <a href="/tags/Python/" class="article-tag green accent-4">Python</a>
+            <a href="/tags/Python/" class="chip green accent-4">Python</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>在Django中，视图负责处理一些业务逻辑，然后返回响应结果。在当代Web应用中，业务逻辑经常牵涉到与数据库的交互，在后台连接数据库服务器，从中取出一些数据，然后在Web页面用漂亮的格式展示这些数据。这个网站也可能会向访问者提供修改数据库数据的方法。</p>
 <p>在这一篇博文中，我们将以MySQL数据库为例，先看看不使用Django模型的数据库查询方法，然后开始学习Django的模型。</p>
 <a id="more"></a>
+
 <h1 id="1-__u4E0D_u4F7F_u7528_u6A21_u578B_u7684_u6570_u636E_u5E93_u67E5_u8BE2_u65B9_u6CD5"><a href="#1-__u4E0D_u4F7F_u7528_u6A21_u578B_u7684_u6570_u636E_u5E93_u67E5_u8BE2_u65B9_u6CD5" class="headerlink" title="1. 不使用模型的数据库查询方法"></a>1. 不使用模型的数据库查询方法</h1><p>假如我们不采用Django的模型，如何从数据库中获取数据呢？通常的做法就是在视图（View）层中连接数据库，写SQL语句查询数据库，然后把数据渲染给浏览器。在本例的视图中，我们使用了MySQLdb类库（可以从<a href="http://www.djangoproject.com/r/python-mysql/" target="_blank" rel="external">这里</a>获得）来连接MySQL数据库，取回一些记录，将它们提供给模板以显示一个网页代码看起来像下面这样：</p>
 <pre><code># view.py
 from django.http import HttpResponse
@@ -632,7 +633,7 @@ a.book_set.all()
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -681,7 +682,7 @@ a.book_set.all()
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -695,17 +696,6 @@ a.book_set.all()
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

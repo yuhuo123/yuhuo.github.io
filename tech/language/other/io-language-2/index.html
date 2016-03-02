@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Io-language/" class="article-tag green accent-4">Io language</a>
+            <a href="/tags/Io-language/" class="chip green accent-4">Io language</a>
         
-            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+            <a href="/tags/编程范型/" class="chip green accent-4">编程范型</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>本文将接着上一篇<a href="/tech/language/other/io-language-1/">《Io语言特性（上）》</a>，讲述Io语言的消息，反射和并发。</p>
 <a id="more"></a>
+
 <h1 id="1-__u6D88_u606F"><a href="#1-__u6D88_u606F" class="headerlink" title="1. 消息"></a>1. 消息</h1><h2 id="1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5"><a href="#1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5" class="headerlink" title="1.1 消息反射与call方法"></a>1.1 消息反射与call方法</h2><p>Io语言中除了注释符和参数之间的逗号外，<strong>一切事物都是消息</strong>。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。</p>
 <p>消息由三部分组成：发送者（sender）、目标（target）和参数（arguments），消息由发送者发送至目标，然后由目标执行该消息。可以用<code>call</code>方法访问任何消息的元信息。</p>
 <pre><code>Io&gt; postOffice := Object clone
@@ -663,7 +664,7 @@ Coroutine currentCoroutine pause
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -712,7 +713,7 @@ Coroutine currentCoroutine pause
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -726,17 +727,6 @@ Coroutine currentCoroutine pause
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

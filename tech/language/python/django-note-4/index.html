@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Django/" class="article-tag green accent-4">Django</a>
+            <a href="/tags/Django/" class="chip green accent-4">Django</a>
         
-            <a href="/tags/Python/" class="article-tag green accent-4">Python</a>
+            <a href="/tags/Python/" class="chip green accent-4">Python</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>对于某一类网站，管理界面是基础设施中非常重要的一部分。这是以网页和有限的可信任管理者为基础的界面，它可以让你添加，编辑和删除网站内容。如果你用过Wordpress这款博客管理工具，一定对其管理后台很熟悉——用这个界面发布，管理博客和目录等等。但是管理界面有一问题：创建它太繁琐。当你开发对公众的功能时，网页开发是有趣的，但是创建管理界面通常是千篇一律的——你必须认证用户，显示并管理表格，验证输入的有效性诸如此类，这些都是很繁琐而且很重复的劳动。</p>
 <p>Django在对这些繁琐和重复的工作进行了相当大的改进，它用不能再少的代码为你做了所有的一切。本文将介绍Django的Admin自动管理界面——它读取你模式中的元数据，然后提供给你一个强大而且可以使用的界面，网站管理者可以用它立即工作。</p>
 <a id="more"></a>
+
 <h1 id="1-__u60F3_u6E05_u695A_u7528_u4E0D_u7528_u7BA1_u7406_u754C_u9762"><a href="#1-__u60F3_u6E05_u695A_u7528_u4E0D_u7528_u7BA1_u7406_u754C_u9762" class="headerlink" title="1. 想清楚用不用管理界面"></a>1. 想清楚用不用管理界面</h1><p>在开始使用Django提供的这个强大的工具之前，有必要先认清Django Admin能干什么，应该什么时候用它什么时候不用它。</p>
 <p>Django的管理界面对非技术用户要输入他们的数据时特别有用，在Django最开始开发的新闻报道的行业应用中，有一个典型的在线自来水的水质专题报道应用，它的实现流程是这样的：</p>
 <ol>
@@ -559,7 +560,7 @@ admin.site.register(Book)
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -608,7 +609,7 @@ admin.site.register(Book)
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -622,17 +623,6 @@ admin.site.register(Book)
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

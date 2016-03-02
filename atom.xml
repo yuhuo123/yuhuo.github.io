@@ -24,6 +24,7 @@
     
     <content type="html">&lt;p&gt;好久没有写学期总结了。2015年秋季学期是我研究生阶段的倒数第二个学期，时间线上主要由实习、找工作、学（zhuang）习（bi）和写论文组成。由于这学期找完工作之后导师没有给我安排什么实验室的工作，所以有比较大段的自由时间可以支配。在外人看来我好像这学期过得很悠闲，实际上是在自己的合理安排下过得非常充实，现在写篇简短的文章总结一下。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;u5173_u4E8E_u5B9E_u4E60&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u5B9E_u4E60&quot; class=&quot;headerlink&quot; title=&quot;关于实习&quot;&gt;&lt;/a&gt;关于实习&lt;/h1&gt;&lt;p&gt;本学期比较特殊，要从七八两个月份的实习开始说起，而这次实习也可以说是我择业的转折点。本来原先在实验室一直从事的是Web前端开发，在这个领域也小有建树，但不知道从什么时候起，早些年内心里埋下的游戏开发的种子就开始生根发芽快速成长，直到15年的五月份找实习时，开始打定主意抛弃前端，只找游戏开发的岗位，而且是&lt;strong&gt;只找广州和深圳的游戏开发岗&lt;/strong&gt;。如此一来，其实真正理想的就只有腾讯和网易游戏两家可选。拿许总的话讲，就是“谈了多年的女孩到谈婚论嫁的时候，突然发现其实深爱的是另一个人”“自己给自己挖了一个巨大的坑”。突然的转行导致找实习乃至后面正式找工作都非常不顺，网易游戏是简历直接挂，腾讯游戏则是二面被刷。所幸后来拿到了多益网络的offer，抱着刷个游戏公司实习经历的想法，便果断放弃阿里的前端内推offer，义无反顾地投身到游戏开发的行业。&lt;/p&gt;
 &lt;p&gt;许多同学在其他互联网公司实习后都觉得没什么太大收获，但是我却在多益实习收获了许多。技术方面，是提高了Python和Cocos2d-x引擎的熟练度，项目经历让我第一次真正接触到了游戏真机性能优化的过程；项目方面，积累了项目管理和带小团队（3程序3策划）的经验，产出了2D游戏作品《跳跳格鲁特》（&lt;a href=&quot;http://pan.baidu.com/s/1kTYrNfD&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码8mm5】&lt;/a&gt;），以及利用下班时间个人打造的日式3D RPG demo《Fantasy Adventure》（&lt;a href=&quot;http://pan.baidu.com/s/1bnVkv9P&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码dg67】&lt;/a&gt;），这两个作品也成为后面找工作时简历打动面试官的重要筹码；人脉方面，结识了一帮热爱游戏的志同道合的朋友，即使实习结束后也还经常联系交流，其中甚至有好几位还即将成为我未来的同事。当然，公司待我们不薄，我也可以很负责任地为多益正一下名，基本上没有知乎上说的那么离谱，具体情况嘛，想去多益的倒是可以私底下找我了解。总而言之，多益实习的生活丰富多彩，确实是一段难忘的经历。&lt;/p&gt;
 &lt;h1 id=&quot;u5173_u4E8E_u627E_u5DE5_u4F5C&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u627E_u5DE5_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;关于找工作&quot;&gt;&lt;/a&gt;关于找工作&lt;/h1&gt;&lt;p&gt;实习结束回校之后，马上就开始投身到找工作的浪潮，目标依旧是腾讯和网易游戏。然而即使认真准备了C++、算法、Cocos2d-x源码、Unity3D的深入知识，即使有了游戏公司实习经历的光环，即使有两个较为成型游戏作品的加持，面对腾讯面试依旧是浑身使不上力的感觉，依旧挂在二面。所幸网易游戏看得起我，给了第一份理想的offer，让我解了游戏开发道路的后顾之忧。后来又经贵人相助，得到了直面腾讯天美的机会，几经折腾最终是拿到了理想公司的理想部门的理想岗位。到国庆，终于华丽转身，找工作尘埃落定。当然，整个过程就只找了两家公司，没有体验过offer收割机的快感，也算是小小的遗憾。&lt;/p&gt;
@@ -72,6 +73,7 @@
     <content type="html">&lt;p&gt;最近很长一段时间没有写博客，主要是因为“学”的时间减少了，但私底下“做”的时间增加了。作为研三的老人，马上就要进入写毕业论文的阶段了，所以最近一直都在准备论文的事情，所所以博客的更新也会稍微缓一缓，估计到放假回家就可以恢复正常了。&lt;/p&gt;
 &lt;p&gt;说到准备论文，最近一直都在研究如何使用Markdown来写毕业论文，而本文就是研究成果&lt;a href=&quot;https://github.com/raytaylorlin/hust-graduation-thesis-pandoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hust-graduation-thesis-pandoc&lt;/a&gt;的展示。项目现已放在Github上，欢迎各位使用和反馈。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;p&gt;实验室以前的学长学姐写毕业论文，都是规规矩矩地在前人的Word文档基础上修改。但是作为一个程序猿，用Word来写论文未免太不够档（zhuang）次（bi）。更重要的是用Word来写论文时，&lt;strong&gt;经常在格式上会出现一些莫名其妙的问题&lt;/strong&gt;，比如保存时明明是好的下次打开时多级标题全错乱了啊，正文的字体有时会突然错乱了啊等等，而且无论怎么调都调不好，最后只能在那气得干瞪眼，然后重新找一份前人“及格”的文档重新编辑。&lt;/p&gt;
 &lt;p&gt;当然，科研界的投稿，很多都是用&lt;a href=&quot;https://zh.wikipedia.org/wiki/LaTeX&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Latex&lt;/a&gt;来编写。Latex虽然超级好用，但是学习曲线太陡峭了，并不适合我们这种在一个月内就要写完论文的人士。当然，经过考验的格式编排没有问题的Latex模板网上有很多，一般拿过来直接往里面填充内容就可以了。不管怎么说，除去折腾Latex的安装和模板的制作，直接站在前人的肩膀上使用Latex模板绝对要比使用Word模板靠谱得多。&lt;/p&gt;
 &lt;p&gt;但是Latex本身是“内容和样式”混排的，&lt;a href=&quot;https://zh.wikipedia.org/wiki/Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Markdown&lt;/a&gt;这种简洁优雅只专注于内容的标记语言才是程序猿的最爱。至于用Markdown来写作的优势，此处就不赘述了，懂的人应该都懂的。而最近的研究成果，就是实现了一套方案，既能让人利用Markdown的语法优势快速编写内容，又能利用Latex的强大和稳定，生成漂亮的pdf论文。要注意的是，原生的Markdown提供的功能并不足以胜任论文的编写，因为论文可能会包含公式、表格、交叉引用等等。幸运的是，使用&lt;a href=&quot;http://pandoc.org/README.html#pandocs-markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pandoc Markdown&lt;/a&gt;这种增强版的Markdown语法，再混编一点点Latex指令，就可以解决我们的问题。&lt;/p&gt;
@@ -116,6 +118,7 @@
     
     <content type="html">&lt;p&gt;游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027&quot;&gt;&lt;a href=&quot;#1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;1. 网络游戏编程的特性&quot;&gt;&lt;/a&gt;1. 网络游戏编程的特性&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot;&gt;&lt;a href=&quot;#1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;1.1 游戏客户端的特性&quot;&gt;&lt;/a&gt;1.1 游戏客户端的特性&lt;/h2&gt;&lt;p&gt;视频游戏的最大特点是：为了最大限度发挥其可玩性，必须流畅地持续进行实时的高速处理，网络游戏程序还必须始终保持高速响应。为了达到这种要求，一般会将实时的数据存放在内存中（而不是在数据库中），这是因为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;游戏数据要在“16毫秒”即1帧这一短暂的时间内持续变化&lt;/li&gt;
@@ -190,6 +193,7 @@
     
     <content type="html">&lt;p&gt;本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 开发者需了解的网络编程基础&quot;&gt;&lt;/a&gt;1. 开发者需了解的网络编程基础&lt;/h1&gt;&lt;h2 id=&quot;1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B&quot;&gt;&lt;a href=&quot;#1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B&quot; class=&quot;headerlink&quot; title=&quot;1.1 网络游戏对应的OSI模型&quot;&gt;&lt;/a&gt;1.1 网络游戏对应的OSI模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png&quot; alt=&quot;网络游戏对应的OSI模型&quot;&gt;&lt;/p&gt;
 &lt;p&gt;一般来说，第4层以下的分层，交由操作系统来处理即可。第4层大多使用TCP，只有在有必要的情况下才使用UDP（例如&lt;strong&gt;发送那些与可靠性相比到达速度更为重要的数据&lt;/strong&gt;（如FPS游戏），实现NAT遍历功能等等）。由于游戏类型和策划内容千差万别无法统一，第5层及以上的功能需要网游开发人员自己实现。&lt;/p&gt;
 &lt;h2 id=&quot;1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB&quot;&gt;&lt;a href=&quot;#1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络编程特性与游戏架构的关系&quot;&gt;&lt;/a&gt;1.2 网络编程特性与游戏架构的关系&lt;/h2&gt;&lt;ol&gt;
@@ -264,6 +268,7 @@
     
     <content type="html">&lt;p&gt;在Cocos2d-x 3.0之前，Cocos2d-x每个元素的绘制逻辑都分布在每个元素内部的draw()方法里，并紧密地依赖UI树的遍历。Cocos2d-x 3.0对绘制部分进行了重构，新的架构将绘制部分从UI树的遍历中分离出来，其设计更优雅、更灵活、更易于扩展。本文将介绍Cocos2d-x 3.0新绘制系统的特点、架构及绘制细节。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u65B0_u7ED8_u5236_u7CFB_u7EDF_u7684_u7279_u70B9&quot;&gt;&lt;a href=&quot;#1-__u65B0_u7ED8_u5236_u7CFB_u7EDF_u7684_u7279_u70B9&quot; class=&quot;headerlink&quot; title=&quot;1. 新绘制系统的特点&quot;&gt;&lt;/a&gt;1. 新绘制系统的特点&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;将绘制逻辑从主循环中分离。&lt;/li&gt;
 &lt;li&gt;采用应用程序级别的视口剪裁。如果一个UI元素在场景中的坐标位移视口之外，那么它不会发送任何绘制命令到绘制栈上。&lt;/li&gt;
@@ -328,6 +333,7 @@
     <content type="html">&lt;p&gt;设计模式除了常见的23种模式之外，还有六大原则。对这六个原则的遵守并非是和否的问题，而是多和少的问题。制定这六个原则的目的并不是要我们刻板的遵守，而需要根据实际情况灵活运用。&lt;/p&gt;
 &lt;p&gt;设计模式经常要涉及到UML类图，这里附上&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;图说设计模式&lt;/a&gt;中的一章&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/read_uml.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;看懂UML类图和时序图&lt;/a&gt;，以方便快速复习UML类图中各种符号的含义。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u5355_u4E00_u804C_u8D23_u539F_u5219_uFF08SRP_29&quot;&gt;&lt;a href=&quot;#1-__u5355_u4E00_u804C_u8D23_u539F_u5219_uFF08SRP_29&quot; class=&quot;headerlink&quot; title=&quot;1. 单一职责原则（SRP)&quot;&gt;&lt;/a&gt;1. 单一职责原则（SRP)&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义： 就一个类而言，应该仅有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受到意向不到的破坏。如果能够想到多于一个的动机去改变一个类，那么这个类就具有多于一个的职责。&lt;/p&gt;
 &lt;h1 id=&quot;2-__u91CC_u6C0F_u66FF_u6362_u539F_u5219&quot;&gt;&lt;a href=&quot;#2-__u91CC_u6C0F_u66FF_u6362_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;2. 里氏替换原则&quot;&gt;&lt;/a&gt;2. 里氏替换原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：子类必须能够替换掉它们的父类&lt;/strong&gt;&lt;/p&gt;
@@ -390,6 +396,7 @@
     
     <content type="html">&lt;p&gt;Lua中的table就是一种对象，因为它和对象一样可以拥有状态，也拥有一个独立于其值的标识（一个self），也和对象一样具有独立于创建者的生命周期。但是Lua中没有类的概念，只能用元表来实现原型，用原型来模拟类和继承等面向对象特性。本文将介绍Lua关于面向对象编程的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u5BF9_u8C61_u4E0E_u7C7B&quot;&gt;&lt;a href=&quot;#1-__u5BF9_u8C61_u4E0E_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;1. 对象与类&quot;&gt;&lt;/a&gt;1. 对象与类&lt;/h1&gt;&lt;h2 id=&quot;1-1_self_u4E0E_u5192_u53F7_u8BED_u6CD5&quot;&gt;&lt;a href=&quot;#1-1_self_u4E0E_u5192_u53F7_u8BED_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.1 self与冒号语法&quot;&gt;&lt;/a&gt;1.1 self与冒号语法&lt;/h2&gt;&lt;p&gt;使用self参数是所有面向对象语言的一个核心，Lua只需使用冒号语法，就能隐藏该参数，例如下面两段代码是等价的。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Account = {balance=0}
 funtion Account.withdraw(self, v)
@@ -458,6 +465,7 @@ end
     
     <content type="html">&lt;p&gt;模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u73AF_u5883&quot;&gt;&lt;a href=&quot;#1-__u73AF_u5883&quot; class=&quot;headerlink&quot; title=&quot;1. 环境&quot;&gt;&lt;/a&gt;1. 环境&lt;/h1&gt;&lt;p&gt;Lua将环境table保存在一个全局变量&lt;code&gt;_G&lt;/code&gt;中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过&lt;code&gt;value = _G[varname]&lt;/code&gt;来获得动态名字的全局变量。&lt;/p&gt;
 &lt;p&gt;关于“环境”的一大问题是它是全局的，任何对它的修改都会影响程序的所有部分。Lua 5允许每个函数拥有一个子集的环境来查找全局变量，可以通过&lt;code&gt;setfenv&lt;/code&gt;来改变一个函数的环境，第一个参数若是1则表示当前函数，2则表示调用当前函数的函数（依次类推），第二个参数是一个新的环境table。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;a = 1
@@ -527,6 +535,7 @@ end
     
     <content type="html">&lt;p&gt;本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u8FED_u4EE3_u5668&quot;&gt;&lt;a href=&quot;#1-__u8FED_u4EE3_u5668&quot; class=&quot;headerlink&quot; title=&quot;1. 迭代器&quot;&gt;&lt;/a&gt;1. 迭代器&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6CDB_u578Bfor_u539F_u7406&quot;&gt;&lt;a href=&quot;#1-1__u6CDB_u578Bfor_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;1.1 泛型for原理&quot;&gt;&lt;/a&gt;1.1 泛型for原理&lt;/h2&gt;&lt;p&gt;迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function values(t)
     local i = 0
@@ -602,6 +611,7 @@ end
     
     <content type="html">&lt;p&gt;本文介绍了Lua的函数，包括多重返回值、变长参数、具名实参，以及比较高级的主题如闭包、递归的尾调用等等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u57FA_u7840_u77E5_u8BC6&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840_u77E5_u8BC6&quot; class=&quot;headerlink&quot; title=&quot;1. 基础知识&quot;&gt;&lt;/a&gt;1. 基础知识&lt;/h1&gt;&lt;p&gt;调用函数都需要写圆括号，即使没有参数，但有一种特殊例外：函数若只有一个参数且参数是字面字符串或table构造式，则圆括号可有可无，如&lt;code&gt;dofile &amp;#39;a.lua&amp;#39;&lt;/code&gt;，&lt;code&gt;f{x=10, y=20}&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;Lua为面向对象式的调用提供冒号操作符的特殊语法，如&lt;code&gt;o.foo(o, x)&lt;/code&gt;等价于&lt;code&gt;o:foo(x)&lt;/code&gt;。和Javascript类似，调用函数时提供的实参数量可以与形参数量不同，若实参多了则舍弃，不足则多余的形参初始化为nil。&lt;/p&gt;
 &lt;h2 id=&quot;1-1__u591A_u91CD_u8FD4_u56DE_u503C&quot;&gt;&lt;a href=&quot;#1-1__u591A_u91CD_u8FD4_u56DE_u503C&quot; class=&quot;headerlink&quot; title=&quot;1.1 多重返回值&quot;&gt;&lt;/a&gt;1.1 多重返回值&lt;/h2&gt;&lt;p&gt;Lua允许函数返回多个结果，函数返回如&lt;code&gt;return max, index&lt;/code&gt;，接收如&lt;code&gt;s, e = string.find(&amp;quot;hello Lua world&amp;quot;, &amp;quot;Lua&amp;quot;)&lt;/code&gt;。如果一个函数调用不是一系列表达式的最后一个元素，则只产生一个值：&lt;/p&gt;
@@ -656,6 +666,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;Linux是一个可以实现多用户登录的操作系统，本文记录了Linux的用户管理，包括查看、创建用户和用户组，以及文件的权限机制。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;p&gt;Linux是一个可以实现多用户登录的操作系统，比如李雷和韩梅梅都可以同时登陆同一台主机，他们共享一些主机的资源，但他们也分别有自己的用户空间，用于存放各自的文件。实际上他们的文件都是放在同一个物理磁盘上的甚至同一个逻辑分区或者目录里，但他们互相不可以看到或操作对方的文件，这正是Linux用户管理和权限机制。&lt;/p&gt;
 &lt;h1 id=&quot;Linux_u7528_u6237_u7BA1_u7406&quot;&gt;&lt;a href=&quot;#Linux_u7528_u6237_u7BA1_u7406&quot; class=&quot;headerlink&quot; title=&quot;Linux用户管理&quot;&gt;&lt;/a&gt;Linux用户管理&lt;/h1&gt;&lt;h2 id=&quot;u67E5_u770B_u7528_u6237&quot;&gt;&lt;a href=&quot;#u67E5_u770B_u7528_u6237&quot; class=&quot;headerlink&quot; title=&quot;查看用户&quot;&gt;&lt;/a&gt;查看用户&lt;/h2&gt;&lt;p&gt;直接使用&lt;code&gt;whoami&lt;/code&gt;命令可以查看当前登录用户的用户名，此外还有&lt;code&gt;who&lt;/code&gt;命令可以查看更多详细的信息。&lt;/p&gt;
 &lt;h2 id=&quot;u521B_u5EFA_u7528_u6237&quot;&gt;&lt;a href=&quot;#u521B_u5EFA_u7528_u6237&quot; class=&quot;headerlink&quot; title=&quot;创建用户&quot;&gt;&lt;/a&gt;创建用户&lt;/h2&gt;&lt;p&gt;root权限，是系统权限的一种。root是Linux和unix系统中的超级管理员用户帐户，该帐户拥有整个系统至高无上的权力，所有对象他都可以操作，所以很多黑客在入侵系统的时候，都要把权限提升到root权限。root账户就相当于Linux的“上帝”。&lt;/p&gt;
@@ -732,6 +743,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;本文记录了Linux终端的一些常用快捷键，通配符意义及如何在命令行中获取帮助。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;Linux_u7EC8_u7AEF&quot;&gt;&lt;a href=&quot;#Linux_u7EC8_u7AEF&quot; class=&quot;headerlink&quot; title=&quot;Linux终端&quot;&gt;&lt;/a&gt;Linux终端&lt;/h1&gt;&lt;h2 id=&quot;u5E38_u7528_u5FEB_u6377_u952E&quot;&gt;&lt;a href=&quot;#u5E38_u7528_u5FEB_u6377_u952E&quot; class=&quot;headerlink&quot; title=&quot;常用快捷键&quot;&gt;&lt;/a&gt;常用快捷键&lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -839,7 +851,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
 &lt;li&gt;EXAMPLES（示例）：常用的一些示例。&lt;/li&gt;
 &lt;li&gt;SEE ALSO（参见）：相关命令或函数的列表。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用–help参数，大部分命令都会带有这个参数。&lt;/p&gt;
+&lt;p&gt;想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用—help参数，大部分命令都会带有这个参数。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -866,6 +878,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/io-language-1/&quot;&gt;《Io语言特性（上）》&lt;/a&gt;，讲述Io语言的消息，反射和并发。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u6D88_u606F&quot;&gt;&lt;a href=&quot;#1-__u6D88_u606F&quot; class=&quot;headerlink&quot; title=&quot;1. 消息&quot;&gt;&lt;/a&gt;1. 消息&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.1 消息反射与call方法&quot;&gt;&lt;/a&gt;1.1 消息反射与call方法&lt;/h2&gt;&lt;p&gt;Io语言中除了注释符和参数之间的逗号外，&lt;strong&gt;一切事物都是消息&lt;/strong&gt;。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。&lt;/p&gt;
 &lt;p&gt;消息由三部分组成：发送者（sender）、目标（target）和参数（arguments），消息由发送者发送至目标，然后由目标执行该消息。可以用&lt;code&gt;call&lt;/code&gt;方法访问任何消息的元信息。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; postOffice := Object clone
@@ -1043,6 +1056,7 @@ Coroutine currentCoroutine pause
     
     <content type="html">&lt;p&gt;Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;h2 id=&quot;1-1__u521B_u5EFA_u5BF9_u8C61&quot;&gt;&lt;a href=&quot;#1-1__u521B_u5EFA_u5BF9_u8C61&quot; class=&quot;headerlink&quot; title=&quot;1.1 创建对象&quot;&gt;&lt;/a&gt;1.1 创建对象&lt;/h2&gt;&lt;p&gt;面向对象语言中，通常都是通过对某个类调用new创建一个新对象，但在原型语言Io中，不区分类和对象，而是通过复制现有对象创建新对象，现有对象就是原型。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; &amp;quot;Hello, io&amp;quot; print    // 输出Hello, io
 
@@ -1168,6 +1182,7 @@ Io&amp;gt; false xor true
     
     <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/ruby-language-1/&quot;&gt;《Ruby语言特性（上）》&lt;/a&gt;讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09&quot;&gt;&lt;a href=&quot;#1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09&quot; class=&quot;headerlink&quot; title=&quot;1. 模块与混入（Mixin）&quot;&gt;&lt;/a&gt;1. 模块与混入（Mixin）&lt;/h1&gt;&lt;p&gt;面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# 定义模块ToFile
 module ToFile
@@ -1337,6 +1352,7 @@ puts m.csv_contents.inspect
     
     <content type="html">&lt;p&gt;Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;p&gt;在Ruby交互命令行中输入以下命令（&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;为命令行提示符，&lt;code&gt;=&amp;gt;&lt;/code&gt;为返回值；下文将把&lt;code&gt;=&amp;gt;&lt;/code&gt;符号和语句写在一行内表明其返回值）：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt; puts &amp;apos;hello, world&amp;apos;
 hello, world
@@ -1460,6 +1476,7 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     
     <content type="html">&lt;p&gt;当谈到Web的“高性能”时，很多人想到的是&lt;em&gt;页面加载时间&lt;/em&gt;，但其实性能不仅仅是指加载时间，还包括&lt;em&gt;浏览器性能&lt;/em&gt;、&lt;em&gt;网络性能&lt;/em&gt;、&lt;em&gt;开发效率&lt;/em&gt;。在Web前端开发中，性能是一个非常重要的需要考虑的点。本文将介绍一些开发原则和性能准则，这些都是提高Web前端性能的基础。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u5F00_u53D1_u539F_u5219&quot;&gt;&lt;a href=&quot;#1-__u5F00_u53D1_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;1. 开发原则&quot;&gt;&lt;/a&gt;1. 开发原则&lt;/h1&gt;&lt;h2 id=&quot;1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801&quot;&gt;&lt;a href=&quot;#1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801&quot; class=&quot;headerlink&quot; title=&quot;1.1 编写符合当代浏览器性能的代码&quot;&gt;&lt;/a&gt;1.1 编写符合当代浏览器性能的代码&lt;/h2&gt;&lt;p&gt;如果想提高前端性能，就必须理解浏览器的工作原理，哪怕是个大概，这样才能知道性能瓶颈在哪里以及如何优化。下图展示了Webkit浏览器从代码（HTML+CSS）到用户最终看到页面的处理过程。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/HTML5/Webkit浏览器解析代码和渲染的过程.png&quot; alt=&quot;Webkit浏览器解析代码和渲染的过程&quot;&gt;&lt;/p&gt;
 &lt;p&gt;为什么浏览器要在第一时间下载页面的HTML内容？首先HTML被解析成一棵&lt;em&gt;DOM树&lt;/em&gt;，其次HTML包含了展示页面的其他所有资源文件（样式、脚本、图片）。然后DOM树和CSS样式表（包括自定义的和浏览器默认的）合起来构成&lt;em&gt;渲染树&lt;/em&gt;，浏览器开始根据这棵渲染树“画”到屏幕上。&lt;/p&gt;
@@ -1514,6 +1531,7 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     <content type="html">&lt;p&gt;Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。&lt;/p&gt;
 &lt;p&gt;本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1&quot;&gt;&lt;a href=&quot;#1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1&quot; class=&quot;headerlink&quot; title=&quot;1. 服务器模型的变迁&quot;&gt;&lt;/a&gt;1. 服务器模型的变迁&lt;/h1&gt;&lt;p&gt;Web服务器的架构至今已经历了几次变迁：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;同步：最早的服务器的执行模型是同步的，其一次只为一个请求服务，其余请求都处于耽误的状态。这类架构如今已基本淘汰，只在一些无并发要求的应用中存在。&lt;/li&gt;
@@ -1630,6 +1648,7 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
     <content type="html">&lt;p&gt;在过去很长一段时间内，Javascript开发者很少会在开发过程中遇到需要对内存精确控制的场景，也缺乏控制的手段。那些短时间执行的场景，如网页应用、命令行工具等，运行时间短内存很快地释放，即使内存使用过多或内存泄漏也只会影响到终端用户。但随着Node在服务器端的广泛应用，内存控制问题就暴露出来了。&lt;/p&gt;
 &lt;p&gt;基于无阻塞、事件驱动的Node服务，具有内存消耗低，适合处理海量网络请求的优点。服务器端的资源向来是寸土寸金，要为海量用户服务，就得使一切资源都要高效利用。本文将介绍Node如何合理高效地使用内存。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236_u4E0E_u5185_u5B58_u9650_u5236&quot;&gt;&lt;a href=&quot;#1-_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236_u4E0E_u5185_u5B58_u9650_u5236&quot; class=&quot;headerlink&quot; title=&quot;1. V8的垃圾回收机制与内存限制&quot;&gt;&lt;/a&gt;1. V8的垃圾回收机制与内存限制&lt;/h1&gt;&lt;p&gt;Javascript与Java一样，由垃圾回收机制在来进行自动内存管理，开发者不需要像C/C++程序员那样时刻关注内存的分配和释放问题。在Node中，内存管理的好坏，垃圾回收状况是否优良，都与Node的Javascript执行引擎V8息息相关。&lt;/p&gt;
 &lt;h2 id=&quot;1-1_V8_u7684_u5BF9_u8C61_u5206_u914D&quot;&gt;&lt;a href=&quot;#1-1_V8_u7684_u5BF9_u8C61_u5206_u914D&quot; class=&quot;headerlink&quot; title=&quot;1.1 V8的对象分配&quot;&gt;&lt;/a&gt;1.1 V8的对象分配&lt;/h2&gt;&lt;p&gt;在V8中，所有JS对象都是通过堆来分配。在Node命令行下执行&lt;code&gt;process.memoryUsage()&lt;/code&gt;可以查看内存信息，返回的结果中&lt;code&gt;heapTotal&lt;/code&gt;是已申请到的堆内存，&lt;code&gt;heapUsed&lt;/code&gt;是当前使用的量。如果已申请的堆空闲内存不够分配新的对象，将继续申请堆内存，知道超过V8的限制为止。&lt;/p&gt;
 &lt;p&gt;V8对单个进程的Node有内存限制（64位系统约1.4GB，32位系统约0.7GB）。表层原因是V8最初为浏览器设计，不太可能遇到大量内存的场景，深层原因是V8垃圾回收需要一定的开销，内存限制放得过大会使性能和响应能力下降。当然，这个限制是可以打开的，Node在启动时可以传递两个参数来调整内存限制的大小（注意参数只在初始化时生效，之后无法动态改变）：&lt;/p&gt;
@@ -1688,6 +1707,7 @@ exports.leak = function() {
     <content type="html">&lt;p&gt;“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。&lt;/p&gt;
 &lt;p&gt;在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+
 &lt;h1 id=&quot;1-__u57FA_u672C_u6982_u5FF5&quot;&gt;&lt;a href=&quot;#1-__u57FA_u672C_u6982_u5FF5&quot; class=&quot;headerlink&quot; title=&quot;1. 基本概念&quot;&gt;&lt;/a&gt;1. 基本概念&lt;/h1&gt;&lt;p&gt;“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。&lt;/p&gt;
 &lt;h2 id=&quot;1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot;&gt;&lt;a href=&quot;#1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞IO与非阻塞IO&quot;&gt;&lt;/a&gt;1.1 阻塞IO与非阻塞IO&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
 &lt;p&gt;阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。非阻塞I/O的特点就是&lt;strong&gt;调用之后会立即返回，返回后CPU的时间片可以用来处理其他事务&lt;/strong&gt;。由于完整的I/O并没有完成，立即返回的并不是业务层期待的数据，而仅仅是当前调用的状态。为了获取完整的数据，应用程序需要重复调用I/O操作来确认是否完成（即轮询）。轮询技术要以下几种：&lt;/p&gt;

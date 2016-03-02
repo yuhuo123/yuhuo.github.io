@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/Socket-IO/" class="article-tag green accent-4">Socket.IO</a>
+            <a href="/tags/Socket-IO/" class="chip green accent-4">Socket.IO</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>在上一篇博文<a href="/Tech/web/Nodejs/socket-io-tutorial">Socket.IO</a>中，我简要介绍了Socket.IO的基本使用方法并创建了一个简单的聊天室DEMO。本篇在入门篇的基础上，继续探讨Socket.IO的进阶用法。本篇将从配置、房间、事件等方面入手，介绍一些Socket.IO中实用的API和注意事项。</p>
 <a id="more"></a>
+
 <h1 id="1-__u914D_u7F6E"><a href="#1-__u914D_u7F6E" class="headerlink" title="1. 配置"></a>1. 配置</h1><p>Socket.IO提供了4个配置的API：io.configure, io.set, io.enable, io.disable。其中io.set对单项进行设置，io.enable和io.disable用于单项设置布尔型的配置。io.configure可以让你对不同的生产环境（如devlopment，test等等）配置不同的参数。以下定义了development和release两种环境下Socket.IO的不同配置：</p>
 <pre><code>var io = require(&apos;socket.io&apos;).listen(80);
 
@@ -593,7 +594,7 @@ io.sockets.manager.roomClients[socket.id]
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -642,7 +643,7 @@ io.sockets.manager.roomClients[socket.id]
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -656,17 +657,6 @@ io.sockets.manager.roomClients[socket.id]
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

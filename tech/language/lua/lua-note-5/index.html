@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Lua/" class="article-tag green accent-4">Lua</a>
+            <a href="/tags/Lua/" class="chip green accent-4">Lua</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。</p>
 <a id="more"></a>
+
 <h1 id="1-__u8FED_u4EE3_u5668"><a href="#1-__u8FED_u4EE3_u5668" class="headerlink" title="1. 迭代器"></a>1. 迭代器</h1><h2 id="1-1__u6CDB_u578Bfor_u539F_u7406"><a href="#1-1__u6CDB_u578Bfor_u539F_u7406" class="headerlink" title="1.1 泛型for原理"></a>1.1 泛型for原理</h2><p>迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：</p>
 <pre><code>function values(t)
     local i = 0
@@ -561,7 +562,7 @@ end
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -610,7 +611,7 @@ end
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -624,17 +625,6 @@ end
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/进程/" class="article-tag green accent-4">进程</a>
+            <a href="/tags/进程/" class="chip green accent-4">进程</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。</p>
 <p>本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。</p>
 <a id="more"></a>
+
 <h1 id="1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1"><a href="#1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1" class="headerlink" title="1. 服务器模型的变迁"></a>1. 服务器模型的变迁</h1><p>Web服务器的架构至今已经历了几次变迁：</p>
 <ol>
 <li>同步：最早的服务器的执行模型是同步的，其一次只为一个请求服务，其余请求都处于耽误的状态。这类架构如今已基本淘汰，只在一些无并发要求的应用中存在。</li>
@@ -601,7 +602,7 @@ process.on(&apos;message&apos;, function(msg, tcp) {
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -650,7 +651,7 @@ process.on(&apos;message&apos;, function(msg, tcp) {
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -664,17 +665,6 @@ process.on(&apos;message&apos;, function(msg, tcp) {
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

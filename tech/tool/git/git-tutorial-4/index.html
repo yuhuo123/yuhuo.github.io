@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Git/" class="article-tag green accent-4">Git</a>
+            <a href="/tags/Git/" class="chip green accent-4">Git</a>
         
     </div>
 
@@ -394,6 +394,7 @@
                 <p>前面几篇Git指南中所介绍的都是本地的（即在你自己的机器上）版本控制方法。在实际的应用中，经常会和其他人共同维护一个项目，这时可能有一个中心服务器来托管所有开发者的代码，并在不同人之间同步代码，这就需要了解Git如何在本地和远程repo之间进行交互。</p>
 <p>作为一个基于Git的代码托管平台，<a href="https://github.com" target="_blank" rel="external">Github</a>目前拥有140多万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。因此本文将以Github为例来说明如何与远程库交互。</p>
 <a id="more"></a>
+
 <h1 id="1-__u514B_u9686_u8FDC_u7A0B_u4ED3_u5E93"><a href="#1-__u514B_u9686_u8FDC_u7A0B_u4ED3_u5E93" class="headerlink" title="1. 克隆远程仓库"></a>1. 克隆远程仓库</h1><p>Github上有许多开源项目，如果你想把别人的代码下载下来自己学习或者修改，最直接的办法就是克隆一个仓库到你本地。找到你想要的仓库的存放地址（Github仓库右侧“HTTPS clone URL”一栏可以复制），在你想要存放仓库的目录打开命令行窗口，输入以下命令即可克隆一份代码到你本地（以下的仓库地址是我的<a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism" target="_blank" rel="external">博客主题</a>项目）：</p>
 <pre><code>git clone https://github.com/raytaylorlin/hexo-theme-raytaylorism.git
 </code></pre><p>输入<code>git remote</code>可以列出每个远程库的简短名字，在克隆完某个项目后，至少可以看到一个名为origin的远程库，Git默认使用这个名字来标识你所克隆的原始仓库。以下命令可以看到远程库的详细信息：</p>
@@ -543,7 +544,7 @@ git merge origin/master
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -592,7 +593,7 @@ git merge origin/master
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -606,17 +607,6 @@ git merge origin/master
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

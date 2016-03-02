@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/日常/" class="article-tag green accent-4">日常</a>
+            <a href="/tags/日常/" class="chip green accent-4">日常</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>再过几天就要开始研究生的新学期了，趁着还有点时间赶紧把大四下学期回顾一下。话说回来我是把暑假也算入这个学期里头了，因此现在来回顾还不算晚。都说大四的毕业生除了混毕业论文之外，过得是最清闲最快乐的，但现在看来，这学期恰恰是我本科生涯最长的一个学期——由于暑期做某个项目而调假，我从二月初到八月底超过半年没有回过家，真心是破纪录了。这学期远远没有普遍大四毕业生过得那么潇洒，其中也发生了不少事情，现在就来把一些重要的事梳理一遍。</p>
 <a id="more"></a>
+
 <h1 id="u8FD8_u662F_u5173_u4E8E_u5B9E_u9A8C_u5BA4"><a href="#u8FD8_u662F_u5173_u4E8E_u5B9E_u9A8C_u5BA4" class="headerlink" title="还是关于实验室"></a>还是关于实验室</h1><p>过完了短暂的两周的寒假，我们实验室在约定好的二月份全员到齐，开始新学期的工作。虽然是大四下学期，不过既然是保研进来的，我也得开始按正式研究生的时间开始了周一到周五“朝九晚五”，周末休息的“上班”生活了。关于“上班”时间实验室还是比较人道的，只要求早上九点准时到，其他时间都不做要求，中午休息的时间亦有了一定保障。当然，“上班”则意味着规律的生活，以及更少的自由时间，还有偶尔的晚上或周末加班，这也算是提前适应未来真正的上班生活吧。</p>
 <h1 id="u9996_u4E2A_u6B63_u5F0FAndroid_u9879_u76EE_u2014_u2014_u6B22_u559C_u6DD8"><a href="#u9996_u4E2A_u6B63_u5F0FAndroid_u9879_u76EE_u2014_u2014_u6B22_u559C_u6DD8" class="headerlink" title="首个正式Android项目——欢喜淘"></a>首个正式Android项目——欢喜淘</h1><p>到二月底的时候，向来Idea超多的老师某一天突然提出了开发一个针对学生的校园二手市场APP的想法，并展开了一系列调研。从最开始提出这个产品的概念到最后确定产品的定义，也就花了不到两周的时间，期间开了N次会议讨论诸如“学生到底需要什么样的二手市场”“能吸引学生使用的亮点”之类的问题。最后确定下来的这个APP叫做“欢喜淘”，大概就是主要面向本校的学生，特别是我们这群即将毕业的大四学生，在毕业季的时候会有很多东西要甩卖，这个时候推出肯定能吸引很多学生使用，让学生淘得欢喜。再加上一个所谓的创新亮点——赠送抽奖功能——可以通过使用这个APP来赠送那些不想要又不舍得丢的东西，其他人可以向这件赠送品投入金币（下注），最后就开奖以决定谁可以获得这件赠送品。通过这种游戏的互动，使用户参与度更高。</p>
 <p>作为一个专注于技术开发的人，我对产品本身没有太大的兴趣，即使它的潜在用户是我这种毕业生。既然老师如此上心，我只要乖乖照着干就是了。我们的开发团队有一位靠谱的产品经理LYY学长，一位靠谱的UI设计师学姐，一位靠谱的技术大神松老师，再加上还是Android开发新手的我，阵容也还不错。像这种普通的APP，编码人员维持在一两个的水平是比较稳妥的。</p>
@@ -535,7 +536,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -584,7 +585,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -598,17 +599,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

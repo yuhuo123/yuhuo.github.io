@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>Node.js应该是当今最火热的技术之一。本文主要介绍Node.js的特点及应用场景。</p>
 <a id="more"></a>
+
 <p>Node.js是一个基于Chrome JavaScript运行时建立的一个平台，用来方便地搭建快速的 易于扩展的网络应用。Node.js借助事件驱动，非阻塞I/O模型变得轻量和高效，非常适合 运行在分布式设备的数据密集型实时应用。</p>
 <h1 id="1-__u7279_u70B9"><a href="#1-__u7279_u70B9" class="headerlink" title="1. 特点"></a>1. 特点</h1><h2 id="1-1__u5F02_u6B65I/O"><a href="#1-1__u5F02_u6B65I/O" class="headerlink" title="1.1 异步I/O"></a>1.1 异步I/O</h2><p>所谓的异步I/O，是相对同步I/O而言的。程序执行过程中必然要进行很多I/O操作，如读写文件、输入输出、请求响应等等。通常来说，I/O操作是非常费时的。例如在传统的编程模式中，你要读一个几G的文件，整个线程都暂停下来，等待文件读完后继续执行。换言之，I/O操作阻塞了代码的执行，极大地降低了程序的效率。</p>
 <p>关于异步I/O，其实对于前端工程师来说并不陌生，因为发起Ajax请求就是最常见的一种“异步”调用。在Node中，以读取文件（读文件是一种耗时的I/O操作）为例，它与发起Ajax请求的写法很像：</p>
@@ -537,7 +538,7 @@ console.log(&apos;开始读取文件&apos;);
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -586,7 +587,7 @@ console.log(&apos;开始读取文件&apos;);
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -600,17 +601,6 @@ console.log(&apos;开始读取文件&apos;);
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

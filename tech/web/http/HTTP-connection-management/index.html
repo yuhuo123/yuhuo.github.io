@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
-            <a href="/tags/TCP/" class="article-tag green accent-4">TCP</a>
+            <a href="/tags/TCP/" class="chip green accent-4">TCP</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>HTTP规范对HTTP报文解释得很清楚，但对HTTP连接介绍并不多，而HTTP连接时HTTP报文传输的关键通道。本文将介绍HTTP是如何使用TCP连接，HTTP的优化以及管理连接时应该注意的问题等。</p>
 <a id="more"></a>
+
 <h1 id="1-_TCP_u8FDE_u63A5"><a href="#1-_TCP_u8FDE_u63A5" class="headerlink" title="1. TCP连接"></a>1. TCP连接</h1><p>世界上几乎所有的HTTP通信都是由TCP/IP承载的，TCP/IP是一种常用的分组交换网络分层协议集。客户端应用程序可以打开一条TCP/IP连接，连接到服务器应用程序。一旦连接建立，客户端和服务器计算机之间交换报文就永远不会丢失、受损或失序。</p>
 <p>TCP为HTTP提供了一条可靠的比特传输管道。从TCP连接一端流入的字节会从另一端以原有的顺序正确地传送出来。TCP的数据是通过名为IP分组的小数据块来发送的。每个TCP段由IP分组承载，IP分组包括：IP分组首部、TCP段首部、TCP数据块。在任意时刻计算机都可以有几条TCP连接处于打开状态。TCP是通过端口号来保持所有连接正常运行的，它由<code>&lt;源IP地址、源端口号、目的IP地址、目的端口号&gt;</code>唯一确定。</p>
 <p>操作系统通常提供了一些用套接字操纵TCP连接的API，允许用户创建TCP的端点数据结构，与远程服务器的TCP端点进行连接，并对数据流进行读写。TCP API隐藏了所有底层网络协议细节。下图展示了客户端和服务器如何通过TCP套接字接口进行通信，至于套接字API编程则不再赘述。</p>
@@ -545,7 +546,7 @@ Keep-Alive: max=5, timeout=120
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -594,7 +595,7 @@ Keep-Alive: max=5, timeout=120
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -608,17 +609,6 @@ Keep-Alive: max=5, timeout=120
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

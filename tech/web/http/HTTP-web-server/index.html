@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
-            <a href="/tags/Web服务器/" class="article-tag green accent-4">Web服务器</a>
+            <a href="/tags/Web服务器/" class="chip green accent-4">Web服务器</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>Web服务器每天会分发出数十亿的Web页面，它是万维网的骨干。Web服务器实现了HTTP和相关的TCP连接处理，管理着Web资源，并负责提供管理功能。本文将一步一步解释Web服务器时如何处理HTTP事务的。</p>
 <a id="more"></a>
+
 <p>Web服务器有各种不同的形式：安装并运行通用的Web服务器软件（如开源的使用最多的Apache），购买预先打包好的软硬件解决方案即Web服务器设备，嵌入式服务器。</p>
 <p>通常来说，实际的Web服务器会进行7步（如下图所示）：建立连接，接收请求，处理请求，访问资源，构建响应，发送响应，记录事务处理过程。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4.jpg" alt="Web服务器请求的基本步骤"></p>
@@ -544,7 +545,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -593,7 +594,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -607,17 +608,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

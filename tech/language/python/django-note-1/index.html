@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Django/" class="article-tag green accent-4">Django</a>
+            <a href="/tags/Django/" class="chip green accent-4">Django</a>
         
-            <a href="/tags/Python/" class="article-tag green accent-4">Python</a>
+            <a href="/tags/Python/" class="chip green accent-4">Python</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>最近需要对某个产品展示网站的数据库做一些修改，之前也听说过各种python的Web框架，正好可以拿来学习和练练手。貌似对初学者来说，django是一个比较老牌而且功能也很强大的框架，虽然它有很多缺点，但还是决定先从这个框架入手学习。本系列是一个简单的学习笔记，供以后参考。</p>
 <p>网站的后台原来是用PHP的CodeIgniter框架写的，数据库只有4个表，涉及最基本的产品的增删查改和切图等操作。现在换用django后，所有后台包括模板都得重写。虽然看起来工作量很大，但实际做起来也就花三天学了下django，然后再用三天把所有后台重写（不包括部署到蛋疼的SAE的繁琐过程），可见django的开发效率是如此之高。</p>
 <a id="more"></a>
+
 <h1 id="1-__u5F15_u8A00"><a href="#1-__u5F15_u8A00" class="headerlink" title="1. 引言"></a>1. 引言</h1><h2 id="1-1__u7B80_u4ECB"><a href="#1-1__u7B80_u4ECB" class="headerlink" title="1.1 简介"></a>1.1 简介</h2><p>Django是一个由Python写成的，开源的并采用了MVC设计模式的Web应用框架。但是在Django中，控制器接受用户输入的部分由框架自行处理，所以Django里更关注的是模型（Model）、模板(Template)和视图（Views），称为MTV模式。它们各自的职责如下：</p>
 <ul>
 <li>模型（Model），数据存取层：处理与数据相关的所有事务，即如何存取、如何验证有效性、包含哪些行为以及数据之间的关系等。</li>
@@ -566,7 +567,7 @@ urlpatterns = patterns(&apos;&apos;,
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -615,7 +616,7 @@ urlpatterns = patterns(&apos;&apos;,
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -629,17 +630,6 @@ urlpatterns = patterns(&apos;&apos;,
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

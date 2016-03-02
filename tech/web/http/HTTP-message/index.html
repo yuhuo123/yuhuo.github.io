@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>如果说HTTP是因特网的信使，那么HTTP报文就是运送的包裹。所有的HTTP程序都是通过互相发送报文来完成工作的。本文将介绍HTTP报文的流动方式，报文的组成部分，请求和响应报文之间的区别等。</p>
 <a id="more"></a>
+
 <h1 id="1-__u62A5_u6587_u6D41"><a href="#1-__u62A5_u6587_u6D41" class="headerlink" title="1. 报文流"></a>1. 报文流</h1><p>HTTP报文是在HTTP应用程序之间发送的数据块，这些数据块以文本形式存在，以描述了报文的内容及含义的元信息开头，后面跟着可选的数据部分。这些报文在客户端、服务器和代理之间流动。一般来说，报文流根据流向引用以下三种术语：报文流入（inbound）向服务器，工作完成之后，会流出（outbound）向客户端或用户Agent代理；不管是请求报文还是响应宝安温，所有报文的接收者都在发送者的下游（downstream），报文只会向下游流动。</p>
 <h1 id="2-__u62A5_u6587_u7684_u7EC4_u6210_u90E8_u5206"><a href="#2-__u62A5_u6587_u7684_u7EC4_u6210_u90E8_u5206" class="headerlink" title="2. 报文的组成部分"></a>2. 报文的组成部分</h1><p>报文由起始行、首部，以及可选的包含数据的主体三个部分组成。所有的HTTP报文分为两类：请求（request）报文和响应（response）报文，如下图示例。前者会向Web服务器请求对资源进行一些操作，后者承载了状态信息和操作产生的所有结果数据，把结果返回给客户端。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%A4%BA%E4%BE%8B.jpg" alt="请求和响应报文示例"></p>
@@ -592,7 +593,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -641,7 +642,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -655,17 +656,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

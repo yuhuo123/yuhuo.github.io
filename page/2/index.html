@@ -351,6 +351,16 @@
     <ul class="slides">
     
        <li>
+           <a href="/about">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2Fabout.png">
+               <div class="caption right-align">
+                 <h4>新版“关于”页面</h3>
+                 <h5 class="light grey-text text-lighten-3">了解我的技术之路</h5>
+               </div>
+           </a>
+       </li>
+    
+       <li>
            <a href="/daily/2015-autumn-summary/">
                <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2F2015summary_1.png">
                <div class="caption center-align">
@@ -395,7 +405,7 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Linux/" class="article-tag green accent-4">Linux</a>
+            <a href="/tags/Linux/" class="chip green accent-4">Linux</a>
         
     </div>
 
@@ -436,7 +446,7 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Linux/" class="article-tag green accent-4">Linux</a>
+            <a href="/tags/Linux/" class="chip green accent-4">Linux</a>
         
     </div>
 
@@ -477,9 +487,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Io-language/" class="article-tag green accent-4">Io language</a>
+            <a href="/tags/Io-language/" class="chip green accent-4">Io language</a>
         
-            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+            <a href="/tags/编程范型/" class="chip green accent-4">编程范型</a>
         
     </div>
 
@@ -520,9 +530,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Io-language/" class="article-tag green accent-4">Io language</a>
+            <a href="/tags/Io-language/" class="chip green accent-4">Io language</a>
         
-            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+            <a href="/tags/编程范型/" class="chip green accent-4">编程范型</a>
         
     </div>
 
@@ -563,9 +573,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Ruby/" class="article-tag green accent-4">Ruby</a>
+            <a href="/tags/Ruby/" class="chip green accent-4">Ruby</a>
         
-            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+            <a href="/tags/编程范型/" class="chip green accent-4">编程范型</a>
         
     </div>
 
@@ -606,9 +616,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Ruby/" class="article-tag green accent-4">Ruby</a>
+            <a href="/tags/Ruby/" class="chip green accent-4">Ruby</a>
         
-            <a href="/tags/编程范型/" class="article-tag green accent-4">编程范型</a>
+            <a href="/tags/编程范型/" class="chip green accent-4">编程范型</a>
         
     </div>
 
@@ -649,9 +659,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/HTML5/" class="article-tag green accent-4">HTML5</a>
+            <a href="/tags/HTML5/" class="chip green accent-4">HTML5</a>
         
-            <a href="/tags/高性能/" class="article-tag green accent-4">高性能</a>
+            <a href="/tags/高性能/" class="chip green accent-4">高性能</a>
         
     </div>
 
@@ -692,9 +702,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/进程/" class="article-tag green accent-4">进程</a>
+            <a href="/tags/进程/" class="chip green accent-4">进程</a>
         
     </div>
 
@@ -736,7 +746,7 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
     </div>
 
@@ -778,9 +788,9 @@
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/异步I-O/" class="article-tag green accent-4">异步I/O</a>
+            <a href="/tags/异步I-O/" class="chip green accent-4">异步I/O</a>
         
     </div>
 
@@ -914,7 +924,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -963,7 +973,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -977,17 +987,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

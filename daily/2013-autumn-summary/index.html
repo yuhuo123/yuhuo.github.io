@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/日常/" class="article-tag green accent-4">日常</a>
+            <a href="/tags/日常/" class="chip green accent-4">日常</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>我们实验室正常来说应该是1月24日放假，但由于我之前暑假没有放假，所以调了一周加在寒假上得以提前一周放假。但由于在火车上实在是太无聊了，只好掏出电脑趴在床上写写学期总结。</p>
 <a id="more"></a>
+
 <h1 id="u5E73_u6DE1_u65E0_u5947_u7684_u7814_u7A76_u751F_u751F_u6D3B"><a href="#u5E73_u6DE1_u65E0_u5947_u7684_u7814_u7A76_u751F_u751F_u6D3B" class="headerlink" title="平淡无奇的研究生生活"></a>平淡无奇的研究生生活</h1><p>这学期开始真正进入了研究生生活。但实际谈起来却也是平淡无奇，每天基本上都是寝室、实验室、食堂三点一线，大部分时间都是泡在实验室（包括正常工作和晚上娱乐）。很多人问研究生不是要上课么？只能说研究生的课程比本科生还要坑爹。但是，我喜欢！这样意味着90%以上的时间都可以在实验室做真正有意义的事情而不是在课堂上浪费时间（除了一些经常要点名的课非去不可）。整个学期大概五六门课，只有矩阵论是真正需要突击复习一两周的；像中特、自然辩证法这种文科课是开卷考试而且考前给一个论述题，先写好大概1500字打印出来带进去抄就完事；剩下的就都是交篇综述性论文的类型。研究生嘛，主题还是放在跟着导师学姿势上，理论课什么的真心都是渣渣。</p>
 <h1 id="Heatmap_u5230Markboom_u7684_u8715_u53D8"><a href="#Heatmap_u5230Markboom_u7684_u8715_u53D8" class="headerlink" title="Heatmap到Markboom的蜕变"></a>Heatmap到Markboom的蜕变</h1><p>可以说整个学期的工作全部投入到了这个项目的开发，也就是之前说的Heatmap 2.0 到3.0（后暂定新名称为Markboom）的升级。从当初最核心的在大图上做标记和在线聊天的功能，逐渐扩展外围成为一个真正的Web系统；从完成原型稿到UI设计稿和交互的优化，耗时将近4个月。直到我放假的前一天，还一直在调优，改bug和交接。最后向BOSS展示最新的产品成果，各种酷炫的UI效果一展示出来，大家都觉得长期的努力总算没有白费。</p>
 <p>这个项目延续了暑期的工作，从国庆我放假回来后，开发团队算是定型下来：我、橘子、张曼、苏塔可（设计师）、赵老板（后台），其中前三个都是前端开发人员，可见这个项目的前端是有多重。在产品的原型稿出来之后，我主要负责前端核心功能的开发，诸如把大图控件从IIPImage换成OpenSeadragon，在大图控件上打标记，完善在线聊天的功能，还有后来老板提出的最新功能——用WebRTC实现在线视频聊天等等。在项目V0.1 release出来之后，我还研究了一下用grunt这个神器来优化整个前端项目。最后一个月UI设计稿出来后还挑起了一部分传统前端的改版工作。总之，这个学期虽然所有时间都投入到了一个项目上面，但是我的前端技术能力可谓是突飞猛进，也坚定了以后走前端的路线。</p>
@@ -524,7 +525,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -573,7 +574,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -587,17 +588,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

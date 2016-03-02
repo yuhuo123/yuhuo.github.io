@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/网络游戏编程/" class="article-tag green accent-4">网络游戏编程</a>
+            <a href="/tags/网络游戏编程/" class="chip green accent-4">网络游戏编程</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。</p>
 <a id="more"></a>
+
 <h1 id="1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840"><a href="#1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840" class="headerlink" title="1. 开发者需了解的网络编程基础"></a>1. 开发者需了解的网络编程基础</h1><h2 id="1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B"><a href="#1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B" class="headerlink" title="1.1 网络游戏对应的OSI模型"></a>1.1 网络游戏对应的OSI模型</h2><p><img src="http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png" alt="网络游戏对应的OSI模型"></p>
 <p>一般来说，第4层以下的分层，交由操作系统来处理即可。第4层大多使用TCP，只有在有必要的情况下才使用UDP（例如<strong>发送那些与可靠性相比到达速度更为重要的数据</strong>（如FPS游戏），实现NAT遍历功能等等）。由于游戏类型和策划内容千差万别无法统一，第5层及以上的功能需要网游开发人员自己实现。</p>
 <h2 id="1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB"><a href="#1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB" class="headerlink" title="1.2 网络编程特性与游戏架构的关系"></a>1.2 网络编程特性与游戏架构的关系</h2><ol>
@@ -560,7 +561,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -609,7 +610,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -623,17 +624,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

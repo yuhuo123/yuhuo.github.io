@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/异步I-O/" class="article-tag green accent-4">异步I/O</a>
+            <a href="/tags/异步I-O/" class="chip green accent-4">异步I/O</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。</p>
 <p>在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。</p>
 <a id="more"></a>
+
 <h1 id="1-__u57FA_u672C_u6982_u5FF5"><a href="#1-__u57FA_u672C_u6982_u5FF5" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><p>“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。</p>
 <h2 id="1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO"><a href="#1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO" class="headerlink" title="1.1 阻塞IO与非阻塞IO"></a>1.1 阻塞IO与非阻塞IO</h2><p>阻塞I/O的一个特点是<strong>调用之后一定要等到系统内核层面完成所有操作后，调用才结束</strong>。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。</p>
 <p>阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。非阻塞I/O的特点就是<strong>调用之后会立即返回，返回后CPU的时间片可以用来处理其他事务</strong>。由于完整的I/O并没有完成，立即返回的并不是业务层期待的数据，而仅仅是当前调用的状态。为了获取完整的数据，应用程序需要重复调用I/O操作来确认是否完成（即轮询）。轮询技术要以下几种：</p>
@@ -552,7 +553,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -601,7 +602,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -615,17 +616,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

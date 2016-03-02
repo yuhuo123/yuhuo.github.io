@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/CSS/" class="article-tag green accent-4">CSS</a>
+            <a href="/tags/CSS/" class="chip green accent-4">CSS</a>
         
-            <a href="/tags/选择器/" class="article-tag green accent-4">选择器</a>
+            <a href="/tags/选择器/" class="chip green accent-4">选择器</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。</p>
 <a id="more"></a>
+
 <h1 id="1-_CSS_u9009_u62E9_u5668"><a href="#1-_CSS_u9009_u62E9_u5668" class="headerlink" title="1. CSS选择器"></a>1. CSS选择器</h1><h2 id="1-1__u5E38_u7528_u9009_u62E9_u5668"><a href="#1-1__u5E38_u7528_u9009_u62E9_u5668" class="headerlink" title="1.1 常用选择器"></a>1.1 常用选择器</h2><ul>
 <li>类型（元素）选择器：寻找特定类型的元素，如段落或标题元素。例如：<code>p {color: black;}</code></li>
 <li>ID和类选择器：寻找具有指定ID或类名的元素，前者以井号<code>#</code>为前缀，后者以点号<code>.</code>为前缀。例如：<code>#intro {front-weight: bold;}</code>，<code>.date-posted {color: #ccc;}</code></li>
@@ -570,7 +571,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -619,7 +620,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -633,17 +634,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

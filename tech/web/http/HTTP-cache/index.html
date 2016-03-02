@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
-            <a href="/tags/缓存/" class="article-tag green accent-4">缓存</a>
+            <a href="/tags/缓存/" class="chip green accent-4">缓存</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>Web缓存是可以自动保存常见文档副本的HTTP设备。当Web请求抵达缓存时，如果本地有“已缓存的”副本，就可以从本地存储设备而不是原始服务器中提取这个文档。使用缓存可以减少冗余的数据传输，环节网络瓶颈的问题，降低对原始服务器的要求以及降低距离时延。</p>
 <p>本文解释了缓存怎样提供性能降低费用，如何去衡量其有效性以及将缓存置于何处可以发挥它的最大作用。此外还会解释HTTP如何保持已缓存副本的新鲜度，缓存如何与其他缓存和服务器通信等问题。</p>
 <a id="more"></a>
+
 <h1 id="1-__u4F7F_u7528_u7F13_u5B58_u7684_u610F_u4E49"><a href="#1-__u4F7F_u7528_u7F13_u5B58_u7684_u610F_u4E49" class="headerlink" title="1. 使用缓存的意义"></a>1. 使用缓存的意义</h1><p>很多客户端访问一个流行的原始服务器页面时，服务器会多次传输同一份文档，一些相同的字节会在网络中一遍遍地传输。这些冗余的数据传输会消耗昂贵的网络带宽，降低传输速度。有了缓存，就可以保留第一条服务器响应的副本，后继请求就可以由缓存副本来应对了。缓存还可以缓解网络的瓶颈问题，因为本地网络提供的带宽远比远程服务器的带宽要宽，所以如果本地网络中有缓存，则可以显著提高性能。此外，缓存在应对“瞬间拥塞”即短时间内访问量激增的情况显得非常重要。</p>
 <p>每台网络路由器都会增加因特网流量的时延，即使客户端和服务器之间没有太多的路由器，光速自身也会造成显著的时延。这种时延尤其体现在跨国之间的数据传输，而一份在附近机房的缓存可以将文件传输距离从数千公里缩短为数十米。</p>
 <h1 id="2-__u7F13_u5B58_u547D_u4E2D"><a href="#2-__u7F13_u5B58_u547D_u4E2D" class="headerlink" title="2. 缓存命中"></a>2. 缓存命中</h1><p>缓存不能保存世界上每份文档的副本。当可以用已有的副本为某些到达缓存的请求提供服务，则称为<strong>缓存命中</strong>（cache hit），到达缓存的请求可能因为没有副本可用而被转发到原始服务器，称为<strong>缓存未命中</strong>（cache miss）。原始服务器的内容可能随时发生变化，缓存要不时对其进行检测看保存的副本是否仍是服务器上最新的副本，这种“新鲜度检测”称为<strong>HTTP再验证</strong>（revalidatioin）。</p>
@@ -576,7 +577,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -625,7 +626,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -639,17 +640,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

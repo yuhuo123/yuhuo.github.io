@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Markdown/" class="article-tag green accent-4">Markdown</a>
+            <a href="/tags/Markdown/" class="chip green accent-4">Markdown</a>
         
-            <a href="/tags/论文/" class="article-tag green accent-4">论文</a>
+            <a href="/tags/论文/" class="chip green accent-4">论文</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>最近很长一段时间没有写博客，主要是因为“学”的时间减少了，但私底下“做”的时间增加了。作为研三的老人，马上就要进入写毕业论文的阶段了，所以最近一直都在准备论文的事情，所所以博客的更新也会稍微缓一缓，估计到放假回家就可以恢复正常了。</p>
 <p>说到准备论文，最近一直都在研究如何使用Markdown来写毕业论文，而本文就是研究成果<a href="https://github.com/raytaylorlin/hust-graduation-thesis-pandoc" target="_blank" rel="external">hust-graduation-thesis-pandoc</a>的展示。项目现已放在Github上，欢迎各位使用和反馈。</p>
 <a id="more"></a>
+
 <p>实验室以前的学长学姐写毕业论文，都是规规矩矩地在前人的Word文档基础上修改。但是作为一个程序猿，用Word来写论文未免太不够档（zhuang）次（bi）。更重要的是用Word来写论文时，<strong>经常在格式上会出现一些莫名其妙的问题</strong>，比如保存时明明是好的下次打开时多级标题全错乱了啊，正文的字体有时会突然错乱了啊等等，而且无论怎么调都调不好，最后只能在那气得干瞪眼，然后重新找一份前人“及格”的文档重新编辑。</p>
 <p>当然，科研界的投稿，很多都是用<a href="https://zh.wikipedia.org/wiki/LaTeX" target="_blank" rel="external">Latex</a>来编写。Latex虽然超级好用，但是学习曲线太陡峭了，并不适合我们这种在一个月内就要写完论文的人士。当然，经过考验的格式编排没有问题的Latex模板网上有很多，一般拿过来直接往里面填充内容就可以了。不管怎么说，除去折腾Latex的安装和模板的制作，直接站在前人的肩膀上使用Latex模板绝对要比使用Word模板靠谱得多。</p>
 <p>但是Latex本身是“内容和样式”混排的，<a href="https://zh.wikipedia.org/wiki/Markdown" target="_blank" rel="external">Markdown</a>这种简洁优雅只专注于内容的标记语言才是程序猿的最爱。至于用Markdown来写作的优势，此处就不赘述了，懂的人应该都懂的。而最近的研究成果，就是实现了一套方案，既能让人利用Markdown的语法优势快速编写内容，又能利用Latex的强大和稳定，生成漂亮的pdf论文。要注意的是，原生的Markdown提供的功能并不足以胜任论文的编写，因为论文可能会包含公式、表格、交叉引用等等。幸运的是，使用<a href="http://pandoc.org/README.html#pandocs-markdown" target="_blank" rel="external">Pandoc Markdown</a>这种增强版的Markdown语法，再混编一点点Latex指令，就可以解决我们的问题。</p>
@@ -530,7 +531,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -579,7 +580,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -593,17 +594,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

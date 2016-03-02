@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/网络游戏编程/" class="article-tag green accent-4">网络游戏编程</a>
+            <a href="/tags/网络游戏编程/" class="chip green accent-4">网络游戏编程</a>
         
     </div>
 
@@ -393,6 +393,7 @@
             <div class="entry">
                 <p>游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。</p>
 <a id="more"></a>
+
 <h1 id="1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027"><a href="#1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027" class="headerlink" title="1. 网络游戏编程的特性"></a>1. 网络游戏编程的特性</h1><h2 id="1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027"><a href="#1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027" class="headerlink" title="1.1 游戏客户端的特性"></a>1.1 游戏客户端的特性</h2><p>视频游戏的最大特点是：为了最大限度发挥其可玩性，必须流畅地持续进行实时的高速处理，网络游戏程序还必须始终保持高速响应。为了达到这种要求，一般会将实时的数据存放在内存中（而不是在数据库中），这是因为：</p>
 <ul>
 <li>游戏数据要在“16毫秒”即1帧这一短暂的时间内持续变化</li>
@@ -560,7 +561,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -609,7 +610,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -623,17 +624,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

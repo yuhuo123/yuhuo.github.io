@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="article-tag green accent-4">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green accent-4">HTTP</a>
         
-            <a href="/tags/代理/" class="article-tag green accent-4">代理</a>
+            <a href="/tags/代理/" class="chip green accent-4">代理</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>Web代理（proxy）服务器时网络的中间实体。代理位于客户端和服务器之间，扮演“中间人”的角色，在各端点之间来回传送HTTP报文。本文介绍与HTTP代理服务器有关的内容，包括：代理能做什么，代理一般位于何处，与代理请求有关的一些问题以及如何追踪报文等等。</p>
 <a id="more"></a>
+
 <h1 id="1-_Web_u7684_u4E2D_u95F4_u5B9E_u4F53"><a href="#1-_Web_u7684_u4E2D_u95F4_u5B9E_u4F53" class="headerlink" title="1. Web的中间实体"></a>1. Web的中间实体</h1><p>Web上的代理服务器是代表客户端完成事务处理的中间人。有了代理，客户端就可以与代理进行对话，然后由代理代表客户端与服务器进行交流，客户端仍然会完成对事务的处理，但它是通过代理服务器提供的优质服务来实现的。注意代理服务器既是Web服务器又是Web客户端，必须正确地处理请求和连接。</p>
 <p>代理服务器可以是某个客户端专用，称为<em>私有代理</em>。私有代理比较少见，一般用于扩展浏览器特性，提高性能，或为免费ISP服务提供主机广告灯。大多数代理都是众多客户端共享的<em>公共代理</em>。某些代理应用，比如高速缓存代理服务器，会利用用户间共同的请求，当汇入同一个代理服务器的用户越多，它就越有用。</p>
 <p>严格来说，代理连接的是多个<strong>使用相同协议</strong>的应用程序，而网关连接的则是多个<strong>使用不同协议</strong>的端点。例如HTTP代理与客户端和服务器之间都使用HTTP协议，而HTTP/E-mail网关则把HTTP前台与POP E-mail的后端连接起来，很多基于Web的E-mail程序都是HTTP/E-mail网关。</p>
@@ -543,7 +544,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -592,7 +593,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -606,17 +607,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

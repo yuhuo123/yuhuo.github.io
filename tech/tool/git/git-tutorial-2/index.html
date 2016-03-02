@@ -380,7 +380,7 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Git/" class="article-tag green accent-4">Git</a>
+            <a href="/tags/Git/" class="chip green accent-4">Git</a>
         
     </div>
 
@@ -392,7 +392,7 @@
 
             <div class="entry">
                 <p>上一篇介绍了Git的一些最常用的基本命令，如果只是日常的提交，那些命令已经够用了。但是平时写代码的时候总难免会需要查看你以前写过的代码，或者当你进行了一些误操作的时候，总会希望可以安全地撤销你的操作。本篇将介绍如何处理历史记录，在各个版本之间跳转（签出），以及如何撤销你的之前的提交、更改等操作。</p>
-<a id="more"></a>
+<p><a id="more"></a></p>
 <h1 id="1-__u5904_u7406_u5386_u53F2_u8BB0_u5F55"><a href="#1-__u5904_u7406_u5386_u53F2_u8BB0_u5F55" class="headerlink" title="1. 处理历史记录"></a>1. 处理历史记录</h1><h2 id="1-1__u67E5_u770B"><a href="#1-1__u67E5_u770B" class="headerlink" title="1.1 查看"></a>1.1 查看</h2><p>以下命令用来取得项目之前所有提交的列表</p>
 <pre><code>git log
 </code></pre><p>当然，可以用很多参数来精确控制历史记录的显示方式，这里推荐一种格式输出（参数意义自行查阅）</p>
@@ -575,7 +575,7 @@ git commit --amend -m &quot;Now add a comment&quot;
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -624,7 +624,7 @@ git commit --amend -m &quot;Now add a comment&quot;
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -638,17 +638,6 @@ git commit --amend -m &quot;Now add a comment&quot;
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Django/" class="article-tag green accent-4">Django</a>
+            <a href="/tags/Django/" class="chip green accent-4">Django</a>
         
-            <a href="/tags/Python/" class="article-tag green accent-4">Python</a>
+            <a href="/tags/Python/" class="chip green accent-4">Python</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>在<a href="/Tech/Script/Python/django-note-1/">学习笔记（1）</a>中，你可能已经注意到我们在例子视图hello_view中返回文本的方式有点特别。也就是说，HTML可以直接硬编码在Python代码之中。但是直接将HTML编码到Python代码中有许多坏处：对页面设计进行的任何改变都必须对Python代码进行相应的修改，站点设计的修改往往比底层Python代码的修改要频繁得多；Python代码编写和HTML设计是两项不同的工作，大多数专业的网站开发环境都将他们分配给不同的人员（甚至不同部门）来完成。</p>
 <p>基于这些原因，将页面的设计和Python的代码分离开会更干净简洁更容易维护。我们可以使用Django的模板系统(Template System)来实现这种模式，这就是本文要具体讨论的问题。</p>
 <a id="more"></a>
+
 <h1 id="1-_Django_u6A21_u677F_u7CFB_u7EDF"><a href="#1-_Django_u6A21_u677F_u7CFB_u7EDF" class="headerlink" title="1. Django模板系统"></a>1. Django模板系统</h1><h2 id="1-1__u6A21_u677F_u7CFB_u7EDF_u57FA_u7840"><a href="#1-1__u6A21_u677F_u7CFB_u7EDF_u57FA_u7840" class="headerlink" title="1.1 模板系统基础"></a>1.1 模板系统基础</h2><p>模板是一个文本，用于分离文档的表现形式和内容。模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。下面这个模板例子描述了一个向某个公司签单人员致谢HTML页面。</p>
 
     <html>
@@ -427,6 +428,7 @@
     </body>
     </html>
 
+
 <p>可以看出，模板跟HTML很像，事实上它就是保存成一个.html文件，它跟我们以前见到的HTML的区别就在于多了一些由双花括号<code>{{ }}</code>括起来的<strong>变量</strong>以及由<code>{% %} </code>括起来的模板标签，此外变量还可以通过过滤器（<code>|</code>管道符）转换变量输出格式。</p>
 <p>变量在这里起到了占位符的作用，一般它最终会被传入模板的数据替代，最后模板将变成真正的HTML代码展现给用户。模板标签不会输出到最终的HTML中，它们多数起到了逻辑控制的作用，例如上例中，如果传入的ordered_warranty值为True，则显示相应的p标签；标签<code>{% for %}</code>遍历传入的item_list，并依次生成结构相同但内容不同的HTML。</p>
 <p>通常来说，我们会将模板和视图一起使用，但模板本身是一个Python库，你可以在任何地方使用它，而不仅仅是在Django视图中。这里简单介绍一下单独在Python代码中使用Django模板的最基本方式：</p>
@@ -439,6 +441,7 @@
     t = template.Template('My name is {{ name }}.')
     c = template.Context({'name': 'Adrian'})
     print t.render(c)
+
 
 <p>但实际的Django开发中我们一般不使用这种方式来渲染模板，后面将会看到更简单直接的方法。</p>
 <h2 id="1-2__u6A21_u677F_u6807_u7B7E_u4ECB_u7ECD"><a href="#1-2__u6A21_u677F_u6807_u7B7E_u4ECB_u7ECD" class="headerlink" title="1.2 模板标签介绍"></a>1.2 模板标签介绍</h2><ol>
@@ -464,6 +467,7 @@
 </code></pre><h2 id="2-2__u6E32_u67D3_u6A21_u677F"><a href="#2-2__u6E32_u67D3_u6A21_u677F" class="headerlink" title="2.2 渲染模板"></a>2.2 渲染模板</h2><p>Django提供了一个捷径，让你一次性地载入某个模板文件，渲染它，然后将此作为HttpResponse返回。我们以下面这样一个模板文件（current_datetime.html）为例。</p>
 
     <html><body>It is now {{ current_date }}.</body></html>
+
 
 <p>那么现在的视图views.py可以这样写。</p>
 <pre><code>from django.shortcuts import render_to_response
@@ -509,6 +513,7 @@ def current_datetime_view(request):
         {% endblock %}
     </body>
 
+
 <p>所有的<code>block</code>标签告诉模板引擎，子模板可以重载这些部分，如果子模板不重载这些部分，则将按默认的内容显示。（顺便提一下，模板中的<code>load staticfiles</code>表示加载静态资源，这个一般用于加载CSS,JS等静态文件时用到）上面的基础模板中定义了6个block，当我们的页面有变化时，随时可以对这些block做出修改，看看下面的首页index.html：</p>
 
     {% extends "base.html" %}
@@ -523,6 +528,7 @@ def current_datetime_view(request):
     <p>Hello world!</p>
     {% include "partial/index/product_list.html" %}
     {% endblock %}
+
 
 <p>在index.html中，首先用<code>extends</code>标签声明这个模板继承的父模板（必须保证其为模板中的第一个模板标记）。接着重定义css这个block，在包含了父模板的基础上（<code>block.super</code>）引入了新的CSS文件（也就是说，这里最终会加载base.css和index.css两个文件）；替换了content这个block。这就是子模板所做的全部工作。注意：<strong>继承并不会影响到模板的上下文。换句话说，任何处在继承树上的模板都可以访问到你传到模板中的每一个模板变量。</strong></p>
 <p>最后总结一下Django模板的编写原则。你可以根据需要使用任意多的继承次数。使用继承的一种常见方式是下面的三层法：</p>
@@ -653,7 +659,7 @@ def current_datetime_view(request):
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -702,7 +708,7 @@ def current_datetime_view(request):
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -716,17 +722,6 @@ def current_datetime_view(request):
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

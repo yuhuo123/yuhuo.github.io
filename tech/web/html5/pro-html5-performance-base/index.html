@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/HTML5/" class="article-tag green accent-4">HTML5</a>
+            <a href="/tags/HTML5/" class="chip green accent-4">HTML5</a>
         
-            <a href="/tags/高性能/" class="article-tag green accent-4">高性能</a>
+            <a href="/tags/高性能/" class="chip green accent-4">高性能</a>
         
     </div>
 
@@ -395,6 +395,7 @@
             <div class="entry">
                 <p>当谈到Web的“高性能”时，很多人想到的是<em>页面加载时间</em>，但其实性能不仅仅是指加载时间，还包括<em>浏览器性能</em>、<em>网络性能</em>、<em>开发效率</em>。在Web前端开发中，性能是一个非常重要的需要考虑的点。本文将介绍一些开发原则和性能准则，这些都是提高Web前端性能的基础。</p>
 <a id="more"></a>
+
 <h1 id="1-__u5F00_u53D1_u539F_u5219"><a href="#1-__u5F00_u53D1_u539F_u5219" class="headerlink" title="1. 开发原则"></a>1. 开发原则</h1><h2 id="1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801"><a href="#1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801" class="headerlink" title="1.1 编写符合当代浏览器性能的代码"></a>1.1 编写符合当代浏览器性能的代码</h2><p>如果想提高前端性能，就必须理解浏览器的工作原理，哪怕是个大概，这样才能知道性能瓶颈在哪里以及如何优化。下图展示了Webkit浏览器从代码（HTML+CSS）到用户最终看到页面的处理过程。</p>
 <p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTML5/Webkit浏览器解析代码和渲染的过程.png" alt="Webkit浏览器解析代码和渲染的过程"></p>
 <p>为什么浏览器要在第一时间下载页面的HTML内容？首先HTML被解析成一棵<em>DOM树</em>，其次HTML包含了展示页面的其他所有资源文件（样式、脚本、图片）。然后DOM树和CSS样式表（包括自定义的和浏览器默认的）合起来构成<em>渲染树</em>，浏览器开始根据这棵渲染树“画”到屏幕上。</p>
@@ -539,7 +540,7 @@
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -588,7 +589,7 @@
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -602,17 +603,6 @@
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

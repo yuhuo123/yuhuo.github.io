@@ -380,11 +380,11 @@
             
     <div class="tags-row">
         
-            <a href="/tags/Grunt/" class="article-tag green accent-4">Grunt</a>
+            <a href="/tags/Grunt/" class="chip green accent-4">Grunt</a>
         
-            <a href="/tags/Node-js/" class="article-tag green accent-4">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green accent-4">Node.js</a>
         
-            <a href="/tags/自动化构建工具/" class="article-tag green accent-4">自动化构建工具</a>
+            <a href="/tags/自动化构建工具/" class="chip green accent-4">自动化构建工具</a>
         
     </div>
 
@@ -397,6 +397,7 @@
             <div class="entry">
                 <p>Java世界里的Maven提供了强大的包依赖管理和构建生命周期管理。在JavaScript的世界里，随着Node.js的流行，JavaScript原生的构建工具已经成为可能。Grunt的生态系统在迅速的成长，目前已经有上百种插件发布在NPM上可供选择。同时，任何人都可以方便的发布自己的插件到NPM上供其他人使用。通过提供通用的接口以进行代码规范检验（Lint）、合并、压缩、测试及版本控制等任务，Grunt使入门门槛大大降低了。</p>
 <a id="more"></a>
+
 <h1 id="1-__u5173_u4E8EGrunt"><a href="#1-__u5173_u4E8EGrunt" class="headerlink" title="1. 关于Grunt"></a>1. 关于Grunt</h1><p>一言以蔽之，Grunt是一个基于Node.js的Javascript任务运行器。当你完成前端项目的开发之后，你需要将代码部署并发布，这时候你可能会重复地执行像压缩，编译，单元测试，代码检查，打包发布的任务。在一个项目过程中，我们不仅要专注于编写代码，还要处理这些重复而枯燥的琐事，实在是不能忍！于是我们需要一个自动化的构建工具，而Grunt就是这样一款可以让我们脱离苦海的自动化构建工具。</p>
 <p>你所需要做的只是选择你需要的Grunt插件，配置好Grunt，然后把前端自动化构建的工作交给Grunt来完成即可。</p>
 <p><a href="http://gruntjs.com/" target="_blank" rel="external">Grunt官方网站</a><br><a href="http://gruntjs.cn/" target="_blank" rel="external">Grunt中文网</a></p>
@@ -437,7 +438,7 @@
 <li>grunt-contrib-htmlmin: 用于HTML压缩</li>
 <li>grunt-contrib-imagemin: 用于压缩PNG、JPEG、GIF等图像<br>……</li>
 </ul>
-<p>每个Grunt插件都是一个Node.js模块，都可以用<code>npm install &lt;module&gt; --save-dev</code>命令来安装（使用–save-dev参数可以在安装模块的同时将依赖关系添加到package.json中的devDependencies）。</p>
+<p>每个Grunt插件都是一个Node.js模块，都可以用<code>npm install &lt;module&gt; --save-dev</code>命令来安装（使用—save-dev参数可以在安装模块的同时将依赖关系添加到package.json中的devDependencies）。</p>
 <h1 id="5-__u914D_u7F6EGruntfile"><a href="#5-__u914D_u7F6EGruntfile" class="headerlink" title="5. 配置Gruntfile"></a>5. 配置Gruntfile</h1><p>安装完插件后，需要配置Gruntfile来添加你所需要的自动化任务。Gruntfile一般由这几部分组成：“wrapper”函数，项目和任务配置，要加载的插件，自定义任务。Gruntfile文件的结构最后应该是类似下面这样四个部分：</p>
 <pre><code>// 1. wrapper函数，你的所有Grunt代码都必须写在这个函数里面
 module.exports = function(grunt) {
@@ -607,7 +608,7 @@ module.exports = function(grunt) {
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -656,7 +657,7 @@ module.exports = function(grunt) {
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -670,17 +671,6 @@ module.exports = function(grunt) {
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 

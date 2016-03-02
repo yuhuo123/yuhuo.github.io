@@ -380,9 +380,9 @@
             
     <div class="tags-row">
         
-            <a href="/tags/快速排序/" class="article-tag green accent-4">快速排序</a>
+            <a href="/tags/快速排序/" class="chip green accent-4">快速排序</a>
         
-            <a href="/tags/算法/" class="article-tag green accent-4">算法</a>
+            <a href="/tags/算法/" class="chip green accent-4">算法</a>
         
     </div>
 
@@ -396,6 +396,7 @@
                 <p>通常算法初学者都会接触到形形色色的排序算法，例如插入排序、选择排序、冒泡排序等等，这些排序算法都非常容易理解和上手，但是它们的时间复杂度是$O(n^2)$的。本文将介绍快速排序，同归并排序一样，它的时间复杂度是$O(n \log n)$。</p>
 <p>对于包含n个数的输入数组来说，快速排序是一种最坏情况运行时间为$O(n^2)$的算法，但<strong>它通常是实际应用中最常用的排序算法</strong>，因为它的平均性能是$O(n \log n)$的，而且隐含的常数因子非常小，并能够进行原址排序。</p>
 <a id="more"></a>
+
 <h1 id="1-__u5FEB_u901F_u6392_u5E8F_u601D_u60F3"><a href="#1-__u5FEB_u901F_u6392_u5E8F_u601D_u60F3" class="headerlink" title="1. 快速排序思想"></a>1. 快速排序思想</h1><p>与归并排序一样，快速排序也使用了分治法的思想，依然遵循分治法三部曲：</p>
 <ul>
 <li>分解：选定数组A中一个元素A[m]，A[l…r]被划分为两个（可能为空）子数组，其中数组A[l…m-1]所有元素都小于等于A[m]，数组A[m+1…r]所有元素都大于等于A[m]。计算下标m也是分解过程的一部分。</li>
@@ -574,7 +575,7 @@ def chooseFirstPivotIndex(left, right):
         $('.noscript').hide();
 
         // 图片缩放效果
-        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image');
+        var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
         $imgs.addClass('materialboxed')
@@ -623,7 +624,7 @@ def chooseFirstPivotIndex(left, right):
         $('.indicator').addClass('green lighten-2');
 
         // 添加new标签
-        $('.menu-reading').append('<span class="new badge pink"></span>');
+        $('.menu-about').append('<span class="new badge pink"></span>');
     });
 })(jQuery);
 </script>
@@ -637,17 +638,6 @@ def chooseFirstPivotIndex(left, right):
     });
 </script>
 
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-43460643-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 
 
 
