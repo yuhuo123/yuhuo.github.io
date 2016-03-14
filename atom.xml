@@ -24,11 +24,10 @@
     
     <content type="html">&lt;p&gt;好久没有写学期总结了。2015年秋季学期是我研究生阶段的倒数第二个学期，时间线上主要由实习、找工作、学（zhuang）习（bi）和写论文组成。由于这学期找完工作之后导师没有给我安排什么实验室的工作，所以有比较大段的自由时间可以支配。在外人看来我好像这学期过得很悠闲，实际上是在自己的合理安排下过得非常充实，现在写篇简短的文章总结一下。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;u5173_u4E8E_u5B9E_u4E60&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u5B9E_u4E60&quot; class=&quot;headerlink&quot; title=&quot;关于实习&quot;&gt;&lt;/a&gt;关于实习&lt;/h1&gt;&lt;p&gt;本学期比较特殊，要从七八两个月份的实习开始说起，而这次实习也可以说是我择业的转折点。本来原先在实验室一直从事的是Web前端开发，在这个领域也小有建树，但不知道从什么时候起，早些年内心里埋下的游戏开发的种子就开始生根发芽快速成长，直到15年的五月份找实习时，开始打定主意抛弃前端，只找游戏开发的岗位，而且是&lt;strong&gt;只找广州和深圳的游戏开发岗&lt;/strong&gt;。如此一来，其实真正理想的就只有腾讯和网易游戏两家可选。拿许总的话讲，就是“谈了多年的女孩到谈婚论嫁的时候，突然发现其实深爱的是另一个人”“自己给自己挖了一个巨大的坑”。突然的转行导致找实习乃至后面正式找工作都非常不顺，网易游戏是简历直接挂，腾讯游戏则是二面被刷。所幸后来拿到了多益网络的offer，抱着刷个游戏公司实习经历的想法，便果断放弃阿里的前端内推offer，义无反顾地投身到游戏开发的行业。&lt;/p&gt;
+&lt;h1 id=&quot;关于实习&quot;&gt;&lt;a href=&quot;#关于实习&quot; class=&quot;headerlink&quot; title=&quot;关于实习&quot;&gt;&lt;/a&gt;关于实习&lt;/h1&gt;&lt;p&gt;本学期比较特殊，要从七八两个月份的实习开始说起，而这次实习也可以说是我择业的转折点。本来原先在实验室一直从事的是Web前端开发，在这个领域也小有建树，但不知道从什么时候起，早些年内心里埋下的游戏开发的种子就开始生根发芽快速成长，直到15年的五月份找实习时，开始打定主意抛弃前端，只找游戏开发的岗位，而且是&lt;strong&gt;只找广州和深圳的游戏开发岗&lt;/strong&gt;。如此一来，其实真正理想的就只有腾讯和网易游戏两家可选。拿许总的话讲，就是“谈了多年的女孩到谈婚论嫁的时候，突然发现其实深爱的是另一个人”“自己给自己挖了一个巨大的坑”。突然的转行导致找实习乃至后面正式找工作都非常不顺，网易游戏是简历直接挂，腾讯游戏则是二面被刷。所幸后来拿到了多益网络的offer，抱着刷个游戏公司实习经历的想法，便果断放弃阿里的前端内推offer，义无反顾地投身到游戏开发的行业。&lt;/p&gt;
 &lt;p&gt;许多同学在其他互联网公司实习后都觉得没什么太大收获，但是我却在多益实习收获了许多。技术方面，是提高了Python和Cocos2d-x引擎的熟练度，项目经历让我第一次真正接触到了游戏真机性能优化的过程；项目方面，积累了项目管理和带小团队（3程序3策划）的经验，产出了2D游戏作品《跳跳格鲁特》（&lt;a href=&quot;http://pan.baidu.com/s/1kTYrNfD&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码8mm5】&lt;/a&gt;），以及利用下班时间个人打造的日式3D RPG demo《Fantasy Adventure》（&lt;a href=&quot;http://pan.baidu.com/s/1bnVkv9P&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示视频【密码dg67】&lt;/a&gt;），这两个作品也成为后面找工作时简历打动面试官的重要筹码；人脉方面，结识了一帮热爱游戏的志同道合的朋友，即使实习结束后也还经常联系交流，其中甚至有好几位还即将成为我未来的同事。当然，公司待我们不薄，我也可以很负责任地为多益正一下名，基本上没有知乎上说的那么离谱，具体情况嘛，想去多益的倒是可以私底下找我了解。总而言之，多益实习的生活丰富多彩，确实是一段难忘的经历。&lt;/p&gt;
-&lt;h1 id=&quot;u5173_u4E8E_u627E_u5DE5_u4F5C&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u627E_u5DE5_u4F5C&quot; class=&quot;headerlink&quot; title=&quot;关于找工作&quot;&gt;&lt;/a&gt;关于找工作&lt;/h1&gt;&lt;p&gt;实习结束回校之后，马上就开始投身到找工作的浪潮，目标依旧是腾讯和网易游戏。然而即使认真准备了C++、算法、Cocos2d-x源码、Unity3D的深入知识，即使有了游戏公司实习经历的光环，即使有两个较为成型游戏作品的加持，面对腾讯面试依旧是浑身使不上力的感觉，依旧挂在二面。所幸网易游戏看得起我，给了第一份理想的offer，让我解了游戏开发道路的后顾之忧。后来又经贵人相助，得到了直面腾讯天美的机会，几经折腾最终是拿到了理想公司的理想部门的理想岗位。到国庆，终于华丽转身，找工作尘埃落定。当然，整个过程就只找了两家公司，没有体验过offer收割机的快感，也算是小小的遗憾。&lt;/p&gt;
-&lt;h1 id=&quot;u81EA_u7531_u5B66_u4E60_u671F&quot;&gt;&lt;a href=&quot;#u81EA_u7531_u5B66_u4E60_u671F&quot; class=&quot;headerlink&quot; title=&quot;自由学习期&quot;&gt;&lt;/a&gt;自由学习期&lt;/h1&gt;&lt;p&gt;可能是因为我的offer是大转行，找完工作后导师也没有安排什么任务给我，所以国庆过后两个月开始进入了一段相对较长的自由学（zhuang）习（bi）期。这段时期就是看书看书再看书，看似悠哉，其实产出还是比较大的，比如：&lt;/p&gt;
+&lt;h1 id=&quot;关于找工作&quot;&gt;&lt;a href=&quot;#关于找工作&quot; class=&quot;headerlink&quot; title=&quot;关于找工作&quot;&gt;&lt;/a&gt;关于找工作&lt;/h1&gt;&lt;p&gt;实习结束回校之后，马上就开始投身到找工作的浪潮，目标依旧是腾讯和网易游戏。然而即使认真准备了C++、算法、Cocos2d-x源码、Unity3D的深入知识，即使有了游戏公司实习经历的光环，即使有两个较为成型游戏作品的加持，面对腾讯面试依旧是浑身使不上力的感觉，依旧挂在二面。所幸网易游戏看得起我，给了第一份理想的offer，让我解了游戏开发道路的后顾之忧。后来又经贵人相助，得到了直面腾讯天美的机会，几经折腾最终是拿到了理想公司的理想部门的理想岗位。到国庆，终于华丽转身，找工作尘埃落定。当然，整个过程就只找了两家公司，没有体验过offer收割机的快感，也算是小小的遗憾。&lt;/p&gt;
+&lt;h1 id=&quot;自由学习期&quot;&gt;&lt;a href=&quot;#自由学习期&quot; class=&quot;headerlink&quot; title=&quot;自由学习期&quot;&gt;&lt;/a&gt;自由学习期&lt;/h1&gt;&lt;p&gt;可能是因为我的offer是大转行，找完工作后导师也没有安排什么任务给我，所以国庆过后两个月开始进入了一段相对较长的自由学（zhuang）习（bi）期。这段时期就是看书看书再看书，看似悠哉，其实产出还是比较大的，比如：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;看完《Windows游戏编程大师技巧（第2版）》&lt;/li&gt;
 &lt;li&gt;看完《DirectX 9.0 3D游戏开发编程基础》&lt;/li&gt;
@@ -41,13 +40,13 @@
 &lt;li&gt;看一部分DirectX 11 Tutorial&lt;/li&gt;
 &lt;li&gt;其他杂七杂八的资料……&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;u5173_u4E8E_u5B9E_u9A8C_u5BA4_u57F9_u8BAD&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u5B9E_u9A8C_u5BA4_u57F9_u8BAD&quot; class=&quot;headerlink&quot; title=&quot;关于实验室培训&quot;&gt;&lt;/a&gt;关于实验室培训&lt;/h1&gt;&lt;p&gt;学习期间，大概是导师看我实在太闲，便让我开始培训实验室一批新人Web前端。早在两年以前，我便在Github上建立了&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ELWG前端学习&lt;/a&gt;项目，旨在推行一套比较规范的流程，来作为实验室一代又一代新人的Web前端入门培训。趁着这一次机会，我精练了整个前端培训项目，再加入一些后端的知识，形成了新的培训项目&lt;a href=&quot;https://github.com/ITEC-ELWG/WebSystemIntroduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web系统导论&lt;/a&gt;。在此基础上，本学期我在实验室一共开了8次课（其中3次后端课由屌刘同学主讲），并有7位新人培训毕业上了课程的&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study/blob/master/hero.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英雄榜&lt;/a&gt;。&lt;/p&gt;
+&lt;h1 id=&quot;关于实验室培训&quot;&gt;&lt;a href=&quot;#关于实验室培训&quot; class=&quot;headerlink&quot; title=&quot;关于实验室培训&quot;&gt;&lt;/a&gt;关于实验室培训&lt;/h1&gt;&lt;p&gt;学习期间，大概是导师看我实在太闲，便让我开始培训实验室一批新人Web前端。早在两年以前，我便在Github上建立了&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ELWG前端学习&lt;/a&gt;项目，旨在推行一套比较规范的流程，来作为实验室一代又一代新人的Web前端入门培训。趁着这一次机会，我精练了整个前端培训项目，再加入一些后端的知识，形成了新的培训项目&lt;a href=&quot;https://github.com/ITEC-ELWG/WebSystemIntroduction&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Web系统导论&lt;/a&gt;。在此基础上，本学期我在实验室一共开了8次课（其中3次后端课由屌刘同学主讲），并有7位新人培训毕业上了课程的&lt;a href=&quot;https://github.com/ITEC-ELWG/FE-Study/blob/master/hero.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英雄榜&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;当然，带新人之余也不能忘了实验室中坚力量的培养。做完新人培训之后，经过一番酝酿终于收了两个真正意义上的徒弟（邱邱和刘贵）。我在实验室所剩时间不多，现在又转行不再做Web前端，因此希望在毕业前能够将他们培养成前端大神兼接班人。既然是要往大神方向培养，那就得按照大神的标准来训练，打字、编辑器、计算机科学素养、前端基础、前端进阶、后端基础、设计基础等等一个都不能少。如今两个徒弟按照我初步制定的&lt;a href=&quot;https://www.processon.com/view/566543b8e4b0fd9299902eb4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;前端大神培养计划&lt;/a&gt;稳步成长，我内心也甚是欣慰。&lt;/p&gt;
 &lt;p&gt;除了实验室这两条培养主线之外，还有许许多多其他的带新人支线，比如带一位新生学C#、面向对象和Unity3D，带点团队移动组两位新人学入门前端，协同两位徒弟开办了若干次技术交流会等等。虽然事情都比较小，但也要分散不少精力去备课，设计教程和题目，心虽累，但仍收获颇丰，乐在其中。&lt;/p&gt;
-&lt;h1 id=&quot;u5173_u4E8E_u6BD5_u4E1A_u8BBA_u6587&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u6BD5_u4E1A_u8BBA_u6587&quot; class=&quot;headerlink&quot; title=&quot;关于毕业论文&quot;&gt;&lt;/a&gt;关于毕业论文&lt;/h1&gt;&lt;p&gt;到了十二月份，就开始考虑写论文的事情了。早在写本科毕业论文的时候，就受尽了垃圾Word的折磨，比如混乱的多级标题、低效率的多级交叉引用、经常出问题的目录生成等等。同理，配套的画图工具Visio也是用户体验特别差。既然是程序员，那写论文最好也要按照程序员的基本法。一般科研界的论文用的是Latex，而程序员则惯用markdown。于是我在前人的基础上推陈出新，建立了一个开源项目&lt;a href=&quot;https://github.com/raytaylorlin/hust-graduation-thesis-pandoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hust-graduation-thesis-pandoc&lt;/a&gt;可以使用markdown来华科的毕业论文，具体可以参见我之前的博文&lt;a href=&quot;/tech/complex/project/write-thesis-using-markdown/&quot;&gt;《使用markdown来写毕业论文》&lt;/a&gt;。Anyway，Word辣鸡，Visio辣鸡。&lt;/p&gt;
+&lt;h1 id=&quot;关于毕业论文&quot;&gt;&lt;a href=&quot;#关于毕业论文&quot; class=&quot;headerlink&quot; title=&quot;关于毕业论文&quot;&gt;&lt;/a&gt;关于毕业论文&lt;/h1&gt;&lt;p&gt;到了十二月份，就开始考虑写论文的事情了。早在写本科毕业论文的时候，就受尽了垃圾Word的折磨，比如混乱的多级标题、低效率的多级交叉引用、经常出问题的目录生成等等。同理，配套的画图工具Visio也是用户体验特别差。既然是程序员，那写论文最好也要按照程序员的基本法。一般科研界的论文用的是Latex，而程序员则惯用markdown。于是我在前人的基础上推陈出新，建立了一个开源项目&lt;a href=&quot;https://github.com/raytaylorlin/hust-graduation-thesis-pandoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hust-graduation-thesis-pandoc&lt;/a&gt;可以使用markdown来华科的毕业论文，具体可以参见我之前的博文&lt;a href=&quot;/tech/complex/project/write-thesis-using-markdown/&quot;&gt;《使用markdown来写毕业论文》&lt;/a&gt;。Anyway，Word辣鸡，Visio辣鸡。&lt;/p&gt;
 &lt;p&gt;Markdown在手，写起论文正文自然专注，正文还可以按章节拆分成多个md文件，用Git做版本控制，用&lt;a href=&quot;https://coding.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coding.net&lt;/a&gt;做私有仓库托管。画图用&lt;a href=&quot;https://www.processon.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ProcessOn&lt;/a&gt;，打开浏览器即用，随时云端存储，又能导出矢量PDF，基本上可以抛弃Visio。绘制表格可以用&lt;a href=&quot;http://www.tablesgenerator.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TablesGenerator&lt;/a&gt;在线可视化编辑再生成Latex粘贴到正文。交叉引用用&lt;code&gt;\label&lt;/code&gt;和&lt;code&gt;\ref&lt;/code&gt;设置，文献引用则用Google学术复制出bibtex来管理。经过了一个月的实践考验，学期结束的时候论文完成度已经达到90%，这套解决方案被证明是可行的，撰写体验也是愉悦的。&lt;/p&gt;
-&lt;h1 id=&quot;u5173_u4E8E_u65B0_u7248_u535A_u5BA2&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u65B0_u7248_u535A_u5BA2&quot; class=&quot;headerlink&quot; title=&quot;关于新版博客&quot;&gt;&lt;/a&gt;关于新版博客&lt;/h1&gt;&lt;p&gt;新版博客大概计划在11月，但实施起来已经是寒假在家的时候了。这一次博客改版为了兼容最新版本的Hexo3（老版仅能支持Hexo2是一大痛点），几乎推翻了原有主题raytaylorism的所有设计，UI上采用全新的Material Design风格，内部结构和配置也重写以提高稳定性。大家看到这篇总结的时候，正是新版博客第一次正式亮相，也意味着hexo主题raytaylorism开始进入内测阶段（目前内测人员已招募完毕）。在内测过程中，我还会继续完善和优化这个项目，并计划推出全新的个人简介页面，等一两周之后再在Github上发布主题，敬请期待。&lt;/p&gt;
-&lt;h1 id=&quot;u7ED3_u8BED&quot;&gt;&lt;a href=&quot;#u7ED3_u8BED&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h1&gt;&lt;p&gt;回首上一学期，总体来说还是过得比较愉快和充实。下学期是研究生阶段的最后一个学期，除了正常的修改论文和答辩之外，基本上也没什么事了，所以计划还是以学习为主，毕业旅行为辅。抓紧最后的大段自由时光多打好技术基础，将会是下学期的主旋律。&lt;/p&gt;
+&lt;h1 id=&quot;关于新版博客&quot;&gt;&lt;a href=&quot;#关于新版博客&quot; class=&quot;headerlink&quot; title=&quot;关于新版博客&quot;&gt;&lt;/a&gt;关于新版博客&lt;/h1&gt;&lt;p&gt;新版博客大概计划在11月，但实施起来已经是寒假在家的时候了。这一次博客改版为了兼容最新版本的Hexo3（老版仅能支持Hexo2是一大痛点），几乎推翻了原有主题raytaylorism的所有设计，UI上采用全新的Material Design风格，内部结构和配置也重写以提高稳定性。大家看到这篇总结的时候，正是新版博客第一次正式亮相，也意味着hexo主题raytaylorism开始进入内测阶段（目前内测人员已招募完毕）。在内测过程中，我还会继续完善和优化这个项目，并计划推出全新的个人简介页面，等一两周之后再在Github上发布主题，敬请期待。&lt;/p&gt;
+&lt;h1 id=&quot;结语&quot;&gt;&lt;a href=&quot;#结语&quot; class=&quot;headerlink&quot; title=&quot;结语&quot;&gt;&lt;/a&gt;结语&lt;/h1&gt;&lt;p&gt;回首上一学期，总体来说还是过得比较愉快和充实。下学期是研究生阶段的最后一个学期，除了正常的修改论文和答辩之外，基本上也没什么事了，所以计划还是以学习为主，毕业旅行为辅。抓紧最后的大段自由时光多打好技术基础，将会是下学期的主旋律。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -73,7 +72,6 @@
     <content type="html">&lt;p&gt;最近很长一段时间没有写博客，主要是因为“学”的时间减少了，但私底下“做”的时间增加了。作为研三的老人，马上就要进入写毕业论文的阶段了，所以最近一直都在准备论文的事情，所所以博客的更新也会稍微缓一缓，估计到放假回家就可以恢复正常了。&lt;/p&gt;
 &lt;p&gt;说到准备论文，最近一直都在研究如何使用Markdown来写毕业论文，而本文就是研究成果&lt;a href=&quot;https://github.com/raytaylorlin/hust-graduation-thesis-pandoc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hust-graduation-thesis-pandoc&lt;/a&gt;的展示。项目现已放在Github上，欢迎各位使用和反馈。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
 &lt;p&gt;实验室以前的学长学姐写毕业论文，都是规规矩矩地在前人的Word文档基础上修改。但是作为一个程序猿，用Word来写论文未免太不够档（zhuang）次（bi）。更重要的是用Word来写论文时，&lt;strong&gt;经常在格式上会出现一些莫名其妙的问题&lt;/strong&gt;，比如保存时明明是好的下次打开时多级标题全错乱了啊，正文的字体有时会突然错乱了啊等等，而且无论怎么调都调不好，最后只能在那气得干瞪眼，然后重新找一份前人“及格”的文档重新编辑。&lt;/p&gt;
 &lt;p&gt;当然，科研界的投稿，很多都是用&lt;a href=&quot;https://zh.wikipedia.org/wiki/LaTeX&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Latex&lt;/a&gt;来编写。Latex虽然超级好用，但是学习曲线太陡峭了，并不适合我们这种在一个月内就要写完论文的人士。当然，经过考验的格式编排没有问题的Latex模板网上有很多，一般拿过来直接往里面填充内容就可以了。不管怎么说，除去折腾Latex的安装和模板的制作，直接站在前人的肩膀上使用Latex模板绝对要比使用Word模板靠谱得多。&lt;/p&gt;
 &lt;p&gt;但是Latex本身是“内容和样式”混排的，&lt;a href=&quot;https://zh.wikipedia.org/wiki/Markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Markdown&lt;/a&gt;这种简洁优雅只专注于内容的标记语言才是程序猿的最爱。至于用Markdown来写作的优势，此处就不赘述了，懂的人应该都懂的。而最近的研究成果，就是实现了一套方案，既能让人利用Markdown的语法优势快速编写内容，又能利用Latex的强大和稳定，生成漂亮的pdf论文。要注意的是，原生的Markdown提供的功能并不足以胜任论文的编写，因为论文可能会包含公式、表格、交叉引用等等。幸运的是，使用&lt;a href=&quot;http://pandoc.org/README.html#pandocs-markdown&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pandoc Markdown&lt;/a&gt;这种增强版的Markdown语法，再混编一点点Latex指令，就可以解决我们的问题。&lt;/p&gt;
@@ -118,14 +116,13 @@
     
     <content type="html">&lt;p&gt;游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027&quot;&gt;&lt;a href=&quot;#1-__u7F51_u7EDC_u6E38_u620F_u7F16_u7A0B_u7684_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;1. 网络游戏编程的特性&quot;&gt;&lt;/a&gt;1. 网络游戏编程的特性&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot;&gt;&lt;a href=&quot;#1-1__u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;1.1 游戏客户端的特性&quot;&gt;&lt;/a&gt;1.1 游戏客户端的特性&lt;/h2&gt;&lt;p&gt;视频游戏的最大特点是：为了最大限度发挥其可玩性，必须流畅地持续进行实时的高速处理，网络游戏程序还必须始终保持高速响应。为了达到这种要求，一般会将实时的数据存放在内存中（而不是在数据库中），这是因为：&lt;/p&gt;
+&lt;h1 id=&quot;1-网络游戏编程的特性&quot;&gt;&lt;a href=&quot;#1-网络游戏编程的特性&quot; class=&quot;headerlink&quot; title=&quot;1. 网络游戏编程的特性&quot;&gt;&lt;/a&gt;1. 网络游戏编程的特性&lt;/h1&gt;&lt;h2 id=&quot;1-1-游戏客户端的特性&quot;&gt;&lt;a href=&quot;#1-1-游戏客户端的特性&quot; class=&quot;headerlink&quot; title=&quot;1.1 游戏客户端的特性&quot;&gt;&lt;/a&gt;1.1 游戏客户端的特性&lt;/h2&gt;&lt;p&gt;视频游戏的最大特点是：为了最大限度发挥其可玩性，必须流畅地持续进行实时的高速处理，网络游戏程序还必须始终保持高速响应。为了达到这种要求，一般会将实时的数据存放在内存中（而不是在数据库中），这是因为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;游戏数据要在“16毫秒”即1帧这一短暂的时间内持续变化&lt;/li&gt;
 &lt;li&gt;需要同时显示大量对象&lt;/li&gt;
 &lt;li&gt;不知道玩家会在什么时候进行操作，所以无法事先计算&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;1-2__u7F51_u7EDC_u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot;&gt;&lt;a href=&quot;#1-2__u7F51_u7EDC_u6E38_u620F_u5BA2_u6237_u7AEF_u7684_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络游戏客户端的特性&quot;&gt;&lt;/a&gt;1.2 网络游戏客户端的特性&lt;/h2&gt;&lt;ul&gt;
+&lt;h2 id=&quot;1-2-网络游戏客户端的特性&quot;&gt;&lt;a href=&quot;#1-2-网络游戏客户端的特性&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络游戏客户端的特性&quot;&gt;&lt;/a&gt;1.2 网络游戏客户端的特性&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;通信延迟低：不同类型的游戏对延迟的要求不同，但均无法避免由地域距离所带来的延迟&lt;/li&gt;
 &lt;li&gt;控制带宽传输量：C/S MMO每人10kbit/s~100kbit/s，P2P MO为前者的3倍&lt;/li&gt;
 &lt;li&gt;服务器成本估算：C/S MMO每台服务器有1000~3000个并发连接，P2P MO为前者的3~5倍&lt;/li&gt;
@@ -136,28 +133,28 @@
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;2-__u7269_u7406_u67B6_u6784_u8BE6_u89E3&quot;&gt;&lt;a href=&quot;#2-__u7269_u7406_u67B6_u6784_u8BE6_u89E3&quot; class=&quot;headerlink&quot; title=&quot;2. 物理架构详解&quot;&gt;&lt;/a&gt;2. 物理架构详解&lt;/h1&gt;&lt;p&gt;主流的网络游戏物理架构，大致可以分为C/S架构和P2P架构。网络拓扑结构主要使用星型（包括总线型）以及全网状结构（每个节点均和其他所有节点连接）。采用这些结构，主要是因为相对于游戏的容错性和吞吐量，优先级最高的还是要把通信延迟降至最低。&lt;/p&gt;
+&lt;h1 id=&quot;2-物理架构详解&quot;&gt;&lt;a href=&quot;#2-物理架构详解&quot; class=&quot;headerlink&quot; title=&quot;2. 物理架构详解&quot;&gt;&lt;/a&gt;2. 物理架构详解&lt;/h1&gt;&lt;p&gt;主流的网络游戏物理架构，大致可以分为C/S架构和P2P架构。网络拓扑结构主要使用星型（包括总线型）以及全网状结构（每个节点均和其他所有节点连接）。采用这些结构，主要是因为相对于游戏的容错性和吞吐量，优先级最高的还是要把通信延迟降至最低。&lt;/p&gt;
 &lt;p&gt;对于C/S架构，又分为纯服务器型和反射型，前者服务器会对各个客户端发送来的数据进行检测，后者只是单纯转发数据。对于P2P架构，有同步和异步两种方式。此外，还有C/S+P2P混合型架构和ad-hoc模式，因为比较少见，不赘述。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u903B_u8F91_u67B6_u6784_u8BE6_u89E3&quot;&gt;&lt;a href=&quot;#3-__u903B_u8F91_u67B6_u6784_u8BE6_u89E3&quot; class=&quot;headerlink&quot; title=&quot;3. 逻辑架构详解&quot;&gt;&lt;/a&gt;3. 逻辑架构详解&lt;/h1&gt;&lt;ul&gt;
+&lt;h1 id=&quot;3-逻辑架构详解&quot;&gt;&lt;a href=&quot;#3-逻辑架构详解&quot; class=&quot;headerlink&quot; title=&quot;3. 逻辑架构详解&quot;&gt;&lt;/a&gt;3. 逻辑架构详解&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;MO（Multiplayer Online）：同时在线人数2~100人，游戏时间较短，一般在几个小时，每次开始游戏时，游戏状态都会被重置，游戏数据时一次性的。适用于FPS、RTS等在线人数较少，实时性很高的游戏。&lt;/li&gt;
 &lt;li&gt;MMO（Massively Multiplayer Online）：同时在线人数达数百、数千以上，游戏时间长达几十个小时，也不能重置游戏数据，游戏数据时永久性的。&lt;/li&gt;
 &lt;li&gt;MMO和MO混合：根据游戏策划内容，有时需要采用这种混合架构，例如在MMO游戏的某些供少数人在短时间内重复进行游戏的特殊地图，会采用MO架构。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;3-1_MO_u67B6_u6784&quot;&gt;&lt;a href=&quot;#3-1_MO_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;3.1 MO架构&quot;&gt;&lt;/a&gt;3.1 MO架构&lt;/h2&gt;&lt;h3 id=&quot;3-1-1__u540C_u6B65_u65B9_u5F0F_u4E0E_u5168_u7F51_u72B6_u67B6_u6784&quot;&gt;&lt;a href=&quot;#3-1-1__u540C_u6B65_u65B9_u5F0F_u4E0E_u5168_u7F51_u72B6_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 同步方式与全网状架构&quot;&gt;&lt;/a&gt;3.1.1 同步方式与全网状架构&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;参与游戏的所有终端都拥有主数据，这些终端只互相传输所有的控制设备输入信息&lt;/strong&gt;，在获得所有终端的输入数据之前，游戏始终处于等待状态。这种架构要成立，必须满足这些条件：初始状态完全相同；所有输入信息数据包都确确实实毫无遗漏地发送到其他所有终端；游戏过程数据不会随机变化（伪随机数没有问题）；游戏过程数据变化不会发生波动。要满足这些条件并不苦难，但这种架构依旧有如下问题：&lt;/p&gt;
+&lt;h2 id=&quot;3-1-MO架构&quot;&gt;&lt;a href=&quot;#3-1-MO架构&quot; class=&quot;headerlink&quot; title=&quot;3.1 MO架构&quot;&gt;&lt;/a&gt;3.1 MO架构&lt;/h2&gt;&lt;h3 id=&quot;3-1-1-同步方式与全网状架构&quot;&gt;&lt;a href=&quot;#3-1-1-同步方式与全网状架构&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 同步方式与全网状架构&quot;&gt;&lt;/a&gt;3.1.1 同步方式与全网状架构&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;参与游戏的所有终端都拥有主数据，这些终端只互相传输所有的控制设备输入信息&lt;/strong&gt;，在获得所有终端的输入数据之前，游戏始终处于等待状态。这种架构要成立，必须满足这些条件：初始状态完全相同；所有输入信息数据包都确确实实毫无遗漏地发送到其他所有终端；游戏过程数据不会随机变化（伪随机数没有问题）；游戏过程数据变化不会发生波动。要满足这些条件并不苦难，但这种架构依旧有如下问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;人数增加后，收发信息完整性极易崩溃。根据“混沌理论”，即使是细微的差异，经过不断重复单纯的规则，最终也会产生截然不同的结果。&lt;/li&gt;
 &lt;li&gt;最慢的终端会拖长整体的传输时间（同步方式都会存在）&lt;/li&gt;
 &lt;li&gt;不能中途加入游戏（同步方式都会存在）。因为在中途加入游戏的一刻，为了传输游戏状态数据，所有玩家都必须长时间暂停游戏。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;3-1-2__u540C_u6B65_u65B9_u5F0F_u4E0E_u661F_u578B_u67B6_u6784&quot;&gt;&lt;a href=&quot;#3-1-2__u540C_u6B65_u65B9_u5F0F_u4E0E_u661F_u578B_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;3.1.2 同步方式与星型架构&quot;&gt;&lt;/a&gt;3.1.2 同步方式与星型架构&lt;/h3&gt;&lt;p&gt;网络中的一个玩家终端A充当服务器，客户端将控制设备上的输入信息发送至服务器，服务器在接收完所有数据前一直处于等待状态，接收完成后将信息同时发送给所有客户端。这种方式的最大优点就是，所需增加的传输线路与所增加的玩家数成正比，传输线路不会爆发性增长。但依旧有如下问题：&lt;/p&gt;
+&lt;h3 id=&quot;3-1-2-同步方式与星型架构&quot;&gt;&lt;a href=&quot;#3-1-2-同步方式与星型架构&quot; class=&quot;headerlink&quot; title=&quot;3.1.2 同步方式与星型架构&quot;&gt;&lt;/a&gt;3.1.2 同步方式与星型架构&lt;/h3&gt;&lt;p&gt;网络中的一个玩家终端A充当服务器，客户端将控制设备上的输入信息发送至服务器，服务器在接收完所有数据前一直处于等待状态，接收完成后将信息同时发送给所有客户端。这种方式的最大优点就是，所需增加的传输线路与所增加的玩家数成正比，传输线路不会爆发性增长。但依旧有如下问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;响应较慢&lt;/li&gt;
 &lt;li&gt;若玩家A中途离线，游戏无法恢复，只能强行终止&lt;/li&gt;
 &lt;li&gt;程序结构比全网状结构稍微复杂&lt;/li&gt;
 &lt;li&gt;玩家A终端上的传输负荷比其他终端高出很多，不公平&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;3-1-3__u5F02_u6B65_u65B9_u5F0F&quot;&gt;&lt;a href=&quot;#3-1-3__u5F02_u6B65_u65B9_u5F0F&quot; class=&quot;headerlink&quot; title=&quot;3.1.3 异步方式&quot;&gt;&lt;/a&gt;3.1.3 异步方式&lt;/h3&gt;&lt;p&gt;异步方式下，各个终端的游戏状态是不同的，必须在游戏数据的一致性方面做出妥协。由于这种妥协，异步方式下可以使用更加不稳定和延迟更大的传输线路，也可以支持更多的同时在线数。另一方面，程序相比同步方式会略显复杂，且有些情况下游戏体验更差一些。在实现方面，对游戏数据做出何种妥协完全依赖于游戏的具体内容。异步实现的指导方针是：将游戏世界的基本要素分为三大类，即自己的状态，对手的状态和环境状态。这三大类之间的两两关系又需要分别对待处理，此处不赘述。（具体参见《网络游戏核心技术与实战》3.4.7-3.4.13）&lt;/p&gt;
-&lt;h2 id=&quot;3-2_MMO_u67B6_u6784_u2014_u2014_u6D4F_u89C8_u5668_u65B9_u5F0F&quot;&gt;&lt;a href=&quot;#3-2_MMO_u67B6_u6784_u2014_u2014_u6D4F_u89C8_u5668_u65B9_u5F0F&quot; class=&quot;headerlink&quot; title=&quot;3.2 MMO架构——浏览器方式&quot;&gt;&lt;/a&gt;3.2 MMO架构——浏览器方式&lt;/h2&gt;&lt;p&gt;MMO游戏也被称为“持久的游戏”，因为其累计的游戏时长可能高达数千个小时。为此必须在服务器的内存和磁盘上准确无误地完整地保存各种游戏数据，当玩家需要时瞬间取出来展现给玩家。因为数据一致性方面的要求非常严苛，所以在构建系统时要&lt;strong&gt;将客户端和服务器完全分离&lt;/strong&gt;。在MMO架构中，&lt;strong&gt;客户端将控制设备输入信息发送给服务器，服务器只想客户端发送游戏过程中的结果，客户端则把游戏结果可视化展现给玩家。&lt;/strong&gt;这就是逻辑架构中所谓的浏览器方式。&lt;/p&gt;
+&lt;h3 id=&quot;3-1-3-异步方式&quot;&gt;&lt;a href=&quot;#3-1-3-异步方式&quot; class=&quot;headerlink&quot; title=&quot;3.1.3 异步方式&quot;&gt;&lt;/a&gt;3.1.3 异步方式&lt;/h3&gt;&lt;p&gt;异步方式下，各个终端的游戏状态是不同的，必须在游戏数据的一致性方面做出妥协。由于这种妥协，异步方式下可以使用更加不稳定和延迟更大的传输线路，也可以支持更多的同时在线数。另一方面，程序相比同步方式会略显复杂，且有些情况下游戏体验更差一些。在实现方面，对游戏数据做出何种妥协完全依赖于游戏的具体内容。异步实现的指导方针是：将游戏世界的基本要素分为三大类，即自己的状态，对手的状态和环境状态。这三大类之间的两两关系又需要分别对待处理，此处不赘述。（具体参见《网络游戏核心技术与实战》3.4.7-3.4.13）&lt;/p&gt;
+&lt;h2 id=&quot;3-2-MMO架构——浏览器方式&quot;&gt;&lt;a href=&quot;#3-2-MMO架构——浏览器方式&quot; class=&quot;headerlink&quot; title=&quot;3.2 MMO架构——浏览器方式&quot;&gt;&lt;/a&gt;3.2 MMO架构——浏览器方式&lt;/h2&gt;&lt;p&gt;MMO游戏也被称为“持久的游戏”，因为其累计的游戏时长可能高达数千个小时。为此必须在服务器的内存和磁盘上准确无误地完整地保存各种游戏数据，当玩家需要时瞬间取出来展现给玩家。因为数据一致性方面的要求非常严苛，所以在构建系统时要&lt;strong&gt;将客户端和服务器完全分离&lt;/strong&gt;。在MMO架构中，&lt;strong&gt;客户端将控制设备输入信息发送给服务器，服务器只想客户端发送游戏过程中的结果，客户端则把游戏结果可视化展现给玩家。&lt;/strong&gt;这就是逻辑架构中所谓的浏览器方式。&lt;/p&gt;
 &lt;p&gt;在这种架构下，即使没有客户端，游戏也会在服务器上持续运行，所有的逻辑都在服务器上处理，而客户端只进行与渲染、音效、输入有关的处理。&lt;/p&gt;
 &lt;p&gt;最后，总结比较一下3种逻辑架构之间的差异：&lt;/p&gt;
 &lt;ul&gt;
@@ -193,10 +190,9 @@
     
     <content type="html">&lt;p&gt;本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u5F00_u53D1_u8005_u9700_u4E86_u89E3_u7684_u7F51_u7EDC_u7F16_u7A0B_u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 开发者需了解的网络编程基础&quot;&gt;&lt;/a&gt;1. 开发者需了解的网络编程基础&lt;/h1&gt;&lt;h2 id=&quot;1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B&quot;&gt;&lt;a href=&quot;#1-1__u7F51_u7EDC_u6E38_u620F_u5BF9_u5E94_u7684OSI_u6A21_u578B&quot; class=&quot;headerlink&quot; title=&quot;1.1 网络游戏对应的OSI模型&quot;&gt;&lt;/a&gt;1.1 网络游戏对应的OSI模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png&quot; alt=&quot;网络游戏对应的OSI模型&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-开发者需了解的网络编程基础&quot;&gt;&lt;a href=&quot;#1-开发者需了解的网络编程基础&quot; class=&quot;headerlink&quot; title=&quot;1. 开发者需了解的网络编程基础&quot;&gt;&lt;/a&gt;1. 开发者需了解的网络编程基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-网络游戏对应的OSI模型&quot;&gt;&lt;a href=&quot;#1-1-网络游戏对应的OSI模型&quot; class=&quot;headerlink&quot; title=&quot;1.1 网络游戏对应的OSI模型&quot;&gt;&lt;/a&gt;1.1 网络游戏对应的OSI模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png&quot; alt=&quot;网络游戏对应的OSI模型&quot;&gt;&lt;/p&gt;
 &lt;p&gt;一般来说，第4层以下的分层，交由操作系统来处理即可。第4层大多使用TCP，只有在有必要的情况下才使用UDP（例如&lt;strong&gt;发送那些与可靠性相比到达速度更为重要的数据&lt;/strong&gt;（如FPS游戏），实现NAT遍历功能等等）。由于游戏类型和策划内容千差万别无法统一，第5层及以上的功能需要网游开发人员自己实现。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB&quot;&gt;&lt;a href=&quot;#1-2__u7F51_u7EDC_u7F16_u7A0B_u7279_u6027_u4E0E_u6E38_u620F_u67B6_u6784_u7684_u5173_u7CFB&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络编程特性与游戏架构的关系&quot;&gt;&lt;/a&gt;1.2 网络编程特性与游戏架构的关系&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&quot;1-2-网络编程特性与游戏架构的关系&quot;&gt;&lt;a href=&quot;#1-2-网络编程特性与游戏架构的关系&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络编程特性与游戏架构的关系&quot;&gt;&lt;/a&gt;1.2 网络编程特性与游戏架构的关系&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;C/S架构游戏（C/S MMO、C/S MO）：高性能高功能服务器端编程+一般程度的客户端编程&lt;/li&gt;
 &lt;li&gt;P2P架构游戏（P2P MO）：一般程度的服务器编程+高性能高功能呢的客户端编程（因为客户端要扮演服务器的角色）&lt;/li&gt;
 &lt;/ol&gt;
@@ -208,7 +204,7 @@
 &lt;li&gt;稳定：服务器端保持游戏状态、敌人等可以移动的物体实时地持续行动&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;与服务器端相比，客户端的连接数较少，但是需要进行渲染等重要处理，还必须在延迟很低的情况下进行通信，并应对网络状况的多样性（如防火墙、各ISP的策略间差异等等）。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u5957_u63A5_u5B57API&quot;&gt;&lt;a href=&quot;#2-__u5957_u63A5_u5B57API&quot; class=&quot;headerlink&quot; title=&quot;2. 套接字API&quot;&gt;&lt;/a&gt;2. 套接字API&lt;/h1&gt;&lt;h2 id=&quot;2-1__u7F51_u7EDC_u6E38_u620F_u4E2D_u7684_u5957_u63A5_u5B57API&quot;&gt;&lt;a href=&quot;#2-1__u7F51_u7EDC_u6E38_u620F_u4E2D_u7684_u5957_u63A5_u5B57API&quot; class=&quot;headerlink&quot; title=&quot;2.1 网络游戏中的套接字API&quot;&gt;&lt;/a&gt;2.1 网络游戏中的套接字API&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BSD套接字API&lt;/a&gt;（即Scoket API）是为了实现互联网连接而开发的API，是在所有操作系统上进行网络开发的首选。关于套接字API编程基础可见WIKI及网上各种资料。&lt;/p&gt;
+&lt;h1 id=&quot;2-套接字API&quot;&gt;&lt;a href=&quot;#2-套接字API&quot; class=&quot;headerlink&quot; title=&quot;2. 套接字API&quot;&gt;&lt;/a&gt;2. 套接字API&lt;/h1&gt;&lt;h2 id=&quot;2-1-网络游戏中的套接字API&quot;&gt;&lt;a href=&quot;#2-1-网络游戏中的套接字API&quot; class=&quot;headerlink&quot; title=&quot;2.1 网络游戏中的套接字API&quot;&gt;&lt;/a&gt;2.1 网络游戏中的套接字API&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BSD套接字API&lt;/a&gt;（即Scoket API）是为了实现互联网连接而开发的API，是在所有操作系统上进行网络开发的首选。关于套接字API编程基础可见WIKI及网上各种资料。&lt;/p&gt;
 &lt;p&gt;使用第4层的套接字API，可以在不具可靠性的IP协议上实现两种类型的通信：一种是&lt;strong&gt;面向连接的流式（Stream）通信&lt;/strong&gt;，在简历了连接的两台主机间维持通信线路畅通，保证通信持续进行；另一种是&lt;strong&gt;无连接的数据报（DGram）通信&lt;/strong&gt;，只进行一次数据报交换，不维持主机间的通信线路。&lt;/p&gt;
 &lt;p&gt;套接字API中的&lt;code&gt;accept()&lt;/code&gt;函数在“新的连接请求到来前一直等待着”，显然不能满足网络游戏服务器为多个客户端同时提供服务的要求。为了解决这个问题必须处理多个并发连接，方法大致有：&lt;/p&gt;
 &lt;ol&gt;
@@ -218,15 +214,15 @@
 &lt;/ol&gt;
 &lt;p&gt;网络游戏编程中同时处理数千个可移动物体是很平常的，因此客户端和服务器端通常都使用select（或poll/epoll）在&lt;strong&gt;单线程&lt;/strong&gt;中实现简单的&lt;strong&gt;事件驱动&lt;/strong&gt;的&lt;strong&gt;非阻塞&lt;/strong&gt;模式。通过这种模式，还可以充分发挥出&lt;strong&gt;多核&lt;/strong&gt;服务器的性能。&lt;/p&gt;
 &lt;p&gt;实现服务器端的最佳程序库是&lt;a href=&quot;http://libevent.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;libevent&lt;/a&gt;，这是一个跨平台的基于事件和回调的库，全世界应用广泛，不管是性能还是稳定性都比较成熟。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u591A_u6838_u5904_u7406_u5668_u4E0E_u7F51_u7EDC_u541E_u5410_u91CF&quot;&gt;&lt;a href=&quot;#2-2__u591A_u6838_u5904_u7406_u5668_u4E0E_u7F51_u7EDC_u541E_u5410_u91CF&quot; class=&quot;headerlink&quot; title=&quot;2.2 多核处理器与网络吞吐量&quot;&gt;&lt;/a&gt;2.2 多核处理器与网络吞吐量&lt;/h2&gt;&lt;p&gt;服务器通常用以太网连接至数据中心的网络中，通信速度为1Gbit。但是网游中经常会发送大量的小数据包，由于以太网在发送IP数据包时会向数据包中添加IP数据意外的信息一起发送，所以实际上应用程序能够使用的带宽要更小。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-多核处理器与网络吞吐量&quot;&gt;&lt;a href=&quot;#2-2-多核处理器与网络吞吐量&quot; class=&quot;headerlink&quot; title=&quot;2.2 多核处理器与网络吞吐量&quot;&gt;&lt;/a&gt;2.2 多核处理器与网络吞吐量&lt;/h2&gt;&lt;p&gt;服务器通常用以太网连接至数据中心的网络中，通信速度为1Gbit。但是网游中经常会发送大量的小数据包，由于以太网在发送IP数据包时会向数据包中添加IP数据意外的信息一起发送，所以实际上应用程序能够使用的带宽要更小。&lt;/p&gt;
 &lt;p&gt;根据经验，将理论值的1/10作为基准，1Gbit/s以太网每秒可以发送100MB的数据，能够发送的数据包最好以每秒10W-15W为上限。如果在有10个内核的机器使用1Gbit/s以太网，每个内核可以处理大约1W个数据包，若同时连接数为每个内核1000个连接，则每个连接必须设计为发送频率限制在10次/s以内；或者，安装多个网络适配器，连接4根LAN电缆来实现4倍的吞吐量。&lt;/p&gt;
-&lt;h1 id=&quot;3-_RPC_u901A_u4FE1_u4E2D_u95F4_u4EF6&quot;&gt;&lt;a href=&quot;#3-_RPC_u901A_u4FE1_u4E2D_u95F4_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;3. RPC通信中间件&quot;&gt;&lt;/a&gt;3. RPC通信中间件&lt;/h1&gt;&lt;p&gt;远程过程调用协议RPC（Remote Procedure Call），将与通信有关的一些复杂细节封装起来，与一般的函数调用形式相同，是确保与远程主机进行简单、安全通信的一种方法。有了RPC，就不需要直接使用复杂的套接字API进行网络编程了。&lt;/p&gt;
-&lt;h2 id=&quot;3-1__u901A_u4FE1_u5E93_u7684_u5FC5_u8981_u6027&quot;&gt;&lt;a href=&quot;#3-1__u901A_u4FE1_u5E93_u7684_u5FC5_u8981_u6027&quot; class=&quot;headerlink&quot; title=&quot;3.1 通信库的必要性&quot;&gt;&lt;/a&gt;3.1 通信库的必要性&lt;/h2&gt;&lt;p&gt;单纯使用套接字API之所以会很复杂，是因为会根据网络状况产生这些问题：不一定能成功收发期望数据，之后需要再次调用；可能会发生错误；发送缓存满了的话，write()函数会等待；发送了不完整的内容。&lt;/p&gt;
+&lt;h1 id=&quot;3-RPC通信中间件&quot;&gt;&lt;a href=&quot;#3-RPC通信中间件&quot; class=&quot;headerlink&quot; title=&quot;3. RPC通信中间件&quot;&gt;&lt;/a&gt;3. RPC通信中间件&lt;/h1&gt;&lt;p&gt;远程过程调用协议RPC（Remote Procedure Call），将与通信有关的一些复杂细节封装起来，与一般的函数调用形式相同，是确保与远程主机进行简单、安全通信的一种方法。有了RPC，就不需要直接使用复杂的套接字API进行网络编程了。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-通信库的必要性&quot;&gt;&lt;a href=&quot;#3-1-通信库的必要性&quot; class=&quot;headerlink&quot; title=&quot;3.1 通信库的必要性&quot;&gt;&lt;/a&gt;3.1 通信库的必要性&lt;/h2&gt;&lt;p&gt;单纯使用套接字API之所以会很复杂，是因为会根据网络状况产生这些问题：不一定能成功收发期望数据，之后需要再次调用；可能会发生错误；发送缓存满了的话，write()函数会等待；发送了不完整的内容。&lt;/p&gt;
 &lt;p&gt;套接字API中的send在发送成功前不会阻塞，每次编写错误处理造成的代码重复也是引起很多错误的根源。因此需要一个能独自负责这些工作的程序库，这个库应首先针对网络的IO要求装入缓存中，接着准确地执行，再将数据发送出去直至完成，若一段时间内无法发送则返回错误信息。总而言之，通信库会对诸如&lt;code&gt;send&lt;/code&gt;这样的函数进行封装，并确定像&lt;code&gt;[数据类型代码][数据内容]&lt;/code&gt;的数据格式，来收发数据。&lt;/p&gt;
-&lt;h2 id=&quot;3-2__u7F51_u6E38_u4E2D_u4F7F_u7528_u7684RPC_u6574_u4F53_u7ED3_u6784&quot;&gt;&lt;a href=&quot;#3-2__u7F51_u6E38_u4E2D_u4F7F_u7528_u7684RPC_u6574_u4F53_u7ED3_u6784&quot; class=&quot;headerlink&quot; title=&quot;3.2 网游中使用的RPC整体结构&quot;&gt;&lt;/a&gt;3.2 网游中使用的RPC整体结构&lt;/h2&gt;&lt;p&gt;RPC的基本原理是在本地模拟远程主机的函数调用，主要通过将数据流进行编码后发送出去，远程主机接收数据并解码，然后调用相应的函数。下图展示了网游中RPC的基本模式。注意到调用侧应用程序调用了&lt;code&gt;attackAtEnemy&lt;/code&gt;函数，该函数定义在源文件“RPC存根代码”中，存根代码是用工具自动生成的，不需要手工编写。其中“123”固定值表示要调用&lt;code&gt;attackAtEnemy&lt;/code&gt;这个函数，“99”表示要攻击id为99的敌人。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-网游中使用的RPC整体结构&quot;&gt;&lt;a href=&quot;#3-2-网游中使用的RPC整体结构&quot; class=&quot;headerlink&quot; title=&quot;3.2 网游中使用的RPC整体结构&quot;&gt;&lt;/a&gt;3.2 网游中使用的RPC整体结构&lt;/h2&gt;&lt;p&gt;RPC的基本原理是在本地模拟远程主机的函数调用，主要通过将数据流进行编码后发送出去，远程主机接收数据并解码，然后调用相应的函数。下图展示了网游中RPC的基本模式。注意到调用侧应用程序调用了&lt;code&gt;attackAtEnemy&lt;/code&gt;函数，该函数定义在源文件“RPC存根代码”中，存根代码是用工具自动生成的，不需要手工编写。其中“123”固定值表示要调用&lt;code&gt;attackAtEnemy&lt;/code&gt;这个函数，“99”表示要攻击id为99的敌人。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏中使用的RPC模式.jpg&quot; alt=&quot;网络游戏中使用的RPC模式&quot;&gt;&lt;/p&gt;
 &lt;p&gt;RPC存根代码文件中调用方和被调用方的函数参数列表必须完全一致，如果有大量函数，应该采用RPC工具来自动生成。通常使用Ruby或Python等很容易进行DSL（领域特定语言）定义的语言来设计&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%8E%A5%E5%8F%A3%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IDL（接口描述语言）&lt;/a&gt;，然后执行脚本生成存根函数的源代码和头文件。&lt;/p&gt;
-&lt;h1 id=&quot;4-__u786E_u4FDD_u5F00_u53D1_u6548_u7387_u548C_u53EF_u79FB_u690D_u6027&quot;&gt;&lt;a href=&quot;#4-__u786E_u4FDD_u5F00_u53D1_u6548_u7387_u548C_u53EF_u79FB_u690D_u6027&quot; class=&quot;headerlink&quot; title=&quot;4. 确保开发效率和可移植性&quot;&gt;&lt;/a&gt;4. 确保开发效率和可移植性&lt;/h1&gt;&lt;ul&gt;
+&lt;h1 id=&quot;4-确保开发效率和可移植性&quot;&gt;&lt;a href=&quot;#4-确保开发效率和可移植性&quot; class=&quot;headerlink&quot; title=&quot;4. 确保开发效率和可移植性&quot;&gt;&lt;/a&gt;4. 确保开发效率和可移植性&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;正式服务器采用Linux，但开发环境则是在Windows下用Visual Studio以高效地开发&lt;/li&gt;
 &lt;li&gt;服务器端和客户端在碰撞检测等方面使用相同的游戏处理代码，确保可移植性&lt;/li&gt;
 &lt;/ul&gt;
@@ -268,17 +264,16 @@
     
     <content type="html">&lt;p&gt;在Cocos2d-x 3.0之前，Cocos2d-x每个元素的绘制逻辑都分布在每个元素内部的draw()方法里，并紧密地依赖UI树的遍历。Cocos2d-x 3.0对绘制部分进行了重构，新的架构将绘制部分从UI树的遍历中分离出来，其设计更优雅、更灵活、更易于扩展。本文将介绍Cocos2d-x 3.0新绘制系统的特点、架构及绘制细节。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u65B0_u7ED8_u5236_u7CFB_u7EDF_u7684_u7279_u70B9&quot;&gt;&lt;a href=&quot;#1-__u65B0_u7ED8_u5236_u7CFB_u7EDF_u7684_u7279_u70B9&quot; class=&quot;headerlink&quot; title=&quot;1. 新绘制系统的特点&quot;&gt;&lt;/a&gt;1. 新绘制系统的特点&lt;/h1&gt;&lt;ul&gt;
+&lt;h1 id=&quot;1-新绘制系统的特点&quot;&gt;&lt;a href=&quot;#1-新绘制系统的特点&quot; class=&quot;headerlink&quot; title=&quot;1. 新绘制系统的特点&quot;&gt;&lt;/a&gt;1. 新绘制系统的特点&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;将绘制逻辑从主循环中分离。&lt;/li&gt;
 &lt;li&gt;采用应用程序级别的视口剪裁。如果一个UI元素在场景中的坐标位移视口之外，那么它不会发送任何绘制命令到绘制栈上。&lt;/li&gt;
 &lt;li&gt;采用自动批绘制技术。如果一个场景中多个不同类型的UI元素使用相同的纹理，可以只调用一次绘制命令。&lt;/li&gt;
 &lt;li&gt;更简单地实现绘制的自定义。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&quot;2-__u7ED8_u5236_u7CFB_u7EDF_u6982_u89C8&quot;&gt;&lt;a href=&quot;#2-__u7ED8_u5236_u7CFB_u7EDF_u6982_u89C8&quot; class=&quot;headerlink&quot; title=&quot;2. 绘制系统概览&quot;&gt;&lt;/a&gt;2. 绘制系统概览&lt;/h1&gt;&lt;p&gt;Cocos2d-x 3.0新绘制系统分为三个阶段：生成绘制命令、对绘制命令进行排序、执行绘制命令。&lt;/p&gt;
+&lt;h1 id=&quot;2-绘制系统概览&quot;&gt;&lt;a href=&quot;#2-绘制系统概览&quot; class=&quot;headerlink&quot; title=&quot;2. 绘制系统概览&quot;&gt;&lt;/a&gt;2. 绘制系统概览&lt;/h1&gt;&lt;p&gt;Cocos2d-x 3.0新绘制系统分为三个阶段：生成绘制命令、对绘制命令进行排序、执行绘制命令。&lt;/p&gt;
 &lt;p&gt;首先，通过UI树的遍历给每个元素生成一个RenderCommand（定义了怎样绘制一个UI元素），并将该命令添加到renderer的绘制栈中，如下图所示。接着引擎使用&lt;code&gt;globalZOrder&lt;/code&gt;及元素的遍历顺序对绘制命令进行排序。最后执行绘制命令，对一般的RenderCommand，按顺序执行，对Sprite使用的QuadCommand，若两个命令相邻且使用相同的纹理、着色器等，则会组合成一个命令（即自动批处理）。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/game/遍历UI树并将绘制命令发送到绘制栈.png&quot; alt=&quot;遍历UI树并将绘制命令发送到绘制栈&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;2-1_RenderCommand_u6982_u51B5&quot;&gt;&lt;a href=&quot;#2-1_RenderCommand_u6982_u51B5&quot; class=&quot;headerlink&quot; title=&quot;2.1 RenderCommand概况&quot;&gt;&lt;/a&gt;2.1 RenderCommand概况&lt;/h2&gt;&lt;p&gt;每个RenderCommand实例包含一个&lt;code&gt;globalOrder&lt;/code&gt;属性，用于决定绘制顺序，实际上，它们几乎都来自Node的&lt;code&gt;globalZOrder&lt;/code&gt;属性&lt;/p&gt;
+&lt;h2 id=&quot;2-1-RenderCommand概况&quot;&gt;&lt;a href=&quot;#2-1-RenderCommand概况&quot; class=&quot;headerlink&quot; title=&quot;2.1 RenderCommand概况&quot;&gt;&lt;/a&gt;2.1 RenderCommand概况&lt;/h2&gt;&lt;p&gt;每个RenderCommand实例包含一个&lt;code&gt;globalOrder&lt;/code&gt;属性，用于决定绘制顺序，实际上，它们几乎都来自Node的&lt;code&gt;globalZOrder&lt;/code&gt;属性&lt;/p&gt;
 &lt;p&gt;5种RenderCommand类型：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;QUAD_COMMAND：根据1个纹理和4个顶点绘制一幅图片，所有绘制图片的命令都会调用到这里，处理这个类型命令的代码就是绘制贴图的OpenGL代码。&lt;/li&gt;
@@ -287,18 +282,18 @@
 &lt;li&gt;CUSTOM_COMMAND：自定义绘制命令&lt;/li&gt;
 &lt;li&gt;UNKNOWN_COMMAND：未知绘制命令&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;2-2_RenderQueue_u548CGroupCommand_u6982_u51B5&quot;&gt;&lt;a href=&quot;#2-2_RenderQueue_u548CGroupCommand_u6982_u51B5&quot; class=&quot;headerlink&quot; title=&quot;2.2 RenderQueue和GroupCommand概况&quot;&gt;&lt;/a&gt;2.2 RenderQueue和GroupCommand概况&lt;/h2&gt;&lt;p&gt;每个UI元素的RenderCommand会被发送到一个叫RenderQueue的绘制命令栈上，Renderer持有多个RenderQueue（用&lt;code&gt;_renderGroups&lt;/code&gt;来存储）。&lt;strong&gt;但GroupCommand比较特殊，它只指向一个RenderQueue。可以认为一个RenderQueue就是一个GroupCommand，而创建一个GroupCommand时会将其作为一个普通的RenderCommand发送到当前的RenderQueue上，并在Renderer上创建一个新的RenderQueue。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;2-3_RenderCommand_u7684_u6392_u5E8F&quot;&gt;&lt;a href=&quot;#2-3_RenderCommand_u7684_u6392_u5E8F&quot; class=&quot;headerlink&quot; title=&quot;2.3 RenderCommand的排序&quot;&gt;&lt;/a&gt;2.3 RenderCommand的排序&lt;/h2&gt;&lt;p&gt;由于每一帧都可能执行数百个RenderCommand，所以Cocos2d-x对此进行了优化，每个RenderQueue只对其包含的&lt;strong&gt;globalOrder非0&lt;/strong&gt;的RenderCommand进行排序，而RenderCommand被添加到RenderQueue中的顺序使由Node的&lt;code&gt;localZOrder&lt;/code&gt;决定的。所以，实际上只需要对少数特殊设置了globalOrder属性的Node进行排序即可。注意，每个RenderQueue实例中实际包含了3个RenderCommand数组，分别存放globalOrder小于0、等于0和大于0的RenderCommand，这样可以最大限度地减少排序的量。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u7ED8_u5236_u7CFB_u7EDF_u76F8_u5173_u673A_u5236&quot;&gt;&lt;a href=&quot;#3-__u7ED8_u5236_u7CFB_u7EDF_u76F8_u5173_u673A_u5236&quot; class=&quot;headerlink&quot; title=&quot;3. 绘制系统相关机制&quot;&gt;&lt;/a&gt;3. 绘制系统相关机制&lt;/h1&gt;&lt;h2 id=&quot;3-1_QuadCommand&quot;&gt;&lt;a href=&quot;#3-1_QuadCommand&quot; class=&quot;headerlink&quot; title=&quot;3.1 QuadCommand&quot;&gt;&lt;/a&gt;3.1 QuadCommand&lt;/h2&gt;&lt;p&gt;QuadCommand用于绘制一个或多个矩形区域，每个矩形是一个纹理的一部分。这是最基础的绘制命令，包含了TextureID（使用的纹理）、Shader Program、BlendFunc（混合模式）和Quads（绘制的矩形区域的定义，包括每个点的坐标、颜色和纹理坐标）4部分内容。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-RenderQueue和GroupCommand概况&quot;&gt;&lt;a href=&quot;#2-2-RenderQueue和GroupCommand概况&quot; class=&quot;headerlink&quot; title=&quot;2.2 RenderQueue和GroupCommand概况&quot;&gt;&lt;/a&gt;2.2 RenderQueue和GroupCommand概况&lt;/h2&gt;&lt;p&gt;每个UI元素的RenderCommand会被发送到一个叫RenderQueue的绘制命令栈上，Renderer持有多个RenderQueue（用&lt;code&gt;_renderGroups&lt;/code&gt;来存储）。&lt;strong&gt;但GroupCommand比较特殊，它只指向一个RenderQueue。可以认为一个RenderQueue就是一个GroupCommand，而创建一个GroupCommand时会将其作为一个普通的RenderCommand发送到当前的RenderQueue上，并在Renderer上创建一个新的RenderQueue。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-3-RenderCommand的排序&quot;&gt;&lt;a href=&quot;#2-3-RenderCommand的排序&quot; class=&quot;headerlink&quot; title=&quot;2.3 RenderCommand的排序&quot;&gt;&lt;/a&gt;2.3 RenderCommand的排序&lt;/h2&gt;&lt;p&gt;由于每一帧都可能执行数百个RenderCommand，所以Cocos2d-x对此进行了优化，每个RenderQueue只对其包含的&lt;strong&gt;globalOrder非0&lt;/strong&gt;的RenderCommand进行排序，而RenderCommand被添加到RenderQueue中的顺序使由Node的&lt;code&gt;localZOrder&lt;/code&gt;决定的。所以，实际上只需要对少数特殊设置了globalOrder属性的Node进行排序即可。注意，每个RenderQueue实例中实际包含了3个RenderCommand数组，分别存放globalOrder小于0、等于0和大于0的RenderCommand，这样可以最大限度地减少排序的量。&lt;/p&gt;
+&lt;h1 id=&quot;3-绘制系统相关机制&quot;&gt;&lt;a href=&quot;#3-绘制系统相关机制&quot; class=&quot;headerlink&quot; title=&quot;3. 绘制系统相关机制&quot;&gt;&lt;/a&gt;3. 绘制系统相关机制&lt;/h1&gt;&lt;h2 id=&quot;3-1-QuadCommand&quot;&gt;&lt;a href=&quot;#3-1-QuadCommand&quot; class=&quot;headerlink&quot; title=&quot;3.1 QuadCommand&quot;&gt;&lt;/a&gt;3.1 QuadCommand&lt;/h2&gt;&lt;p&gt;QuadCommand用于绘制一个或多个矩形区域，每个矩形是一个纹理的一部分。这是最基础的绘制命令，包含了TextureID（使用的纹理）、Shader Program、BlendFunc（混合模式）和Quads（绘制的矩形区域的定义，包括每个点的坐标、颜色和纹理坐标）4部分内容。&lt;/p&gt;
 &lt;p&gt;Cocos2d-x使用&lt;code&gt;Renderer::render()&lt;/code&gt;方法进行自动批绘制的过程是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;第一次遇到一个QuadCommand时不会理你绘制，而是将其放到一个数组中缓存起来，然后继续迭代&lt;/li&gt;
 &lt;li&gt;若遇到第二个RenderCommand仍然是QuadCommand，并且使用相同的Material（纹理、着色器、混合模式等等），则继续添加到缓存数组，若不是，则首先绘制之前的缓存数组的指令。这样就能实现自动合并绘制命令。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;如何判断是否是相同的Material？&lt;code&gt;QuadCommand::generateMaterialID()&lt;/code&gt;方法检查是否包含自定义的着色器（包含自定义着色器就不能参与批绘制），如果不包含就使用与着色器名称、纹理名称及混合方程相关的参数计算一个Hash值，Hash值相同表明是相同的Material。&lt;/p&gt;
-&lt;h2 id=&quot;3-2__u5143_u7D20_u53EF_u89C1_u6027&quot;&gt;&lt;a href=&quot;#3-2__u5143_u7D20_u53EF_u89C1_u6027&quot; class=&quot;headerlink&quot; title=&quot;3.2 元素可见性&quot;&gt;&lt;/a&gt;3.2 元素可见性&lt;/h2&gt;&lt;p&gt;在OpenGL ES的图元装配阶段，渲染管线会对每个图元执行视锥体裁剪操作，位于视锥体之外的图元会被丢弃或裁剪。所谓的自动裁剪（Auto Culling）技术，是在遍历UI树时对Sprite进行位置计算，如果发现其位于屏幕之外，则不会发送绘制命令到Renderer中。Node类还有一个visible属性，用于控制一个元素是否显示，如果为false，则该元素在遍历UI树时会被忽略。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-元素可见性&quot;&gt;&lt;a href=&quot;#3-2-元素可见性&quot; class=&quot;headerlink&quot; title=&quot;3.2 元素可见性&quot;&gt;&lt;/a&gt;3.2 元素可见性&lt;/h2&gt;&lt;p&gt;在OpenGL ES的图元装配阶段，渲染管线会对每个图元执行视锥体裁剪操作，位于视锥体之外的图元会被丢弃或裁剪。所谓的自动裁剪（Auto Culling）技术，是在遍历UI树时对Sprite进行位置计算，如果发现其位于屏幕之外，则不会发送绘制命令到Renderer中。Node类还有一个visible属性，用于控制一个元素是否显示，如果为false，则该元素在遍历UI树时会被忽略。&lt;/p&gt;
 &lt;p&gt;如果一个应用程序有很大的应用场景，则不应该完全依赖自动裁剪。因为自动裁剪只是减少了绘制命令调用的次数，而这些元素所使用的纹理仍然占据着内存，所以还要注意对纹理内存的管理。&lt;/p&gt;
-&lt;h2 id=&quot;3-3__u7ED8_u5236_u65F6_u673A&quot;&gt;&lt;a href=&quot;#3-3__u7ED8_u5236_u65F6_u673A&quot; class=&quot;headerlink&quot; title=&quot;3.3 绘制时机&quot;&gt;&lt;/a&gt;3.3 绘制时机&lt;/h2&gt;&lt;p&gt;将绘制和UI树遍历分离带来一个问题：我们不知道元素什么时候被绘制了，我们只有等到下一帧才能确定所有绘制命令被执行了。这种机制对一些操作（如RenderTexture需要等到绘制完毕后操作纹理）显得很不方便，一般有两种方法来处理这种情况：&lt;/p&gt;
+&lt;h2 id=&quot;3-3-绘制时机&quot;&gt;&lt;a href=&quot;#3-3-绘制时机&quot; class=&quot;headerlink&quot; title=&quot;3.3 绘制时机&quot;&gt;&lt;/a&gt;3.3 绘制时机&lt;/h2&gt;&lt;p&gt;将绘制和UI树遍历分离带来一个问题：我们不知道元素什么时候被绘制了，我们只有等到下一帧才能确定所有绘制命令被执行了。这种机制对一些操作（如RenderTexture需要等到绘制完毕后操作纹理）显得很不方便，一般有两种方法来处理这种情况：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;注册一个一次性Schedule，在下一帧被执行时读取上一帧的绘制结果，并注销该Schedule。&lt;/li&gt;
 &lt;li&gt;若要精确把握绘制时机，可以添加一个CustomCommand，将其func属性重写为不包含GL命令调用的自定义回调。这样只要把CustomCommand放在合适的绘制位置（通过globalOrder或localZOrder来调节）。像RenderTexture中的saveToFile方法就是采用这种方法来控制绘制时机。&lt;/li&gt;
@@ -333,24 +328,23 @@
     <content type="html">&lt;p&gt;设计模式除了常见的23种模式之外，还有六大原则。对这六个原则的遵守并非是和否的问题，而是多和少的问题。制定这六个原则的目的并不是要我们刻板的遵守，而需要根据实际情况灵活运用。&lt;/p&gt;
 &lt;p&gt;设计模式经常要涉及到UML类图，这里附上&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;图说设计模式&lt;/a&gt;中的一章&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/read_uml.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;看懂UML类图和时序图&lt;/a&gt;，以方便快速复习UML类图中各种符号的含义。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u5355_u4E00_u804C_u8D23_u539F_u5219_uFF08SRP_29&quot;&gt;&lt;a href=&quot;#1-__u5355_u4E00_u804C_u8D23_u539F_u5219_uFF08SRP_29&quot; class=&quot;headerlink&quot; title=&quot;1. 单一职责原则（SRP)&quot;&gt;&lt;/a&gt;1. 单一职责原则（SRP)&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义： 就一个类而言，应该仅有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;1-单一职责原则（SRP&quot;&gt;&lt;a href=&quot;#1-单一职责原则（SRP&quot; class=&quot;headerlink&quot; title=&quot;1. 单一职责原则（SRP)&quot;&gt;&lt;/a&gt;1. 单一职责原则（SRP)&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义： 就一个类而言，应该仅有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受到意向不到的破坏。如果能够想到多于一个的动机去改变一个类，那么这个类就具有多于一个的职责。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u91CC_u6C0F_u66FF_u6362_u539F_u5219&quot;&gt;&lt;a href=&quot;#2-__u91CC_u6C0F_u66FF_u6362_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;2. 里氏替换原则&quot;&gt;&lt;/a&gt;2. 里氏替换原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：子类必须能够替换掉它们的父类&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-里氏替换原则&quot;&gt;&lt;a href=&quot;#2-里氏替换原则&quot; class=&quot;headerlink&quot; title=&quot;2. 里氏替换原则&quot;&gt;&lt;/a&gt;2. 里氏替换原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：子类必须能够替换掉它们的父类&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;软件里把父类替换成它的子类，程序的行为没有变化。只有当子类可以替换掉父类，软件单位的功能不受到影响时，父类才能真正被复用，而子类也能够在父类的基础上增加新的行为。&lt;/p&gt;
 &lt;p&gt;例子：一个鸟类，一个企鹅类。鸟有“飞”的行为，企鹅不会飞，所以企鹅不能以父类——鸟的身份出现，即企鹅类不能继承鸟类。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u4F9D_u8D56_u5012_u7F6E_u539F_u5219&quot;&gt;&lt;a href=&quot;#3-__u4F9D_u8D56_u5012_u7F6E_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;3. 依赖倒置原则&quot;&gt;&lt;/a&gt;3. 依赖倒置原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：高层模块不应该依赖底层模块，两者都应该依赖抽象；抽象不应该依赖细节，细节应该依赖抽象。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3-依赖倒置原则&quot;&gt;&lt;a href=&quot;#3-依赖倒置原则&quot; class=&quot;headerlink&quot; title=&quot;3. 依赖倒置原则&quot;&gt;&lt;/a&gt;3. 依赖倒置原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：高层模块不应该依赖底层模块，两者都应该依赖抽象；抽象不应该依赖细节，细节应该依赖抽象。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;要针对接口编程，不要对实现编程。在Java或C#语言中的表现就是：实现类之间不发生直接的依赖关系，依赖关系是通过接口产生的。依赖倒置是面向对象设计的标志，如果程序中所有的依赖关系都终止于抽象类或接口，就是面向对象的设计。&lt;/p&gt;
 &lt;p&gt;例子：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;CPU、内存等都是针对接口设计的，如果针对实现来设计，内存就要对应到具体的某个品牌的主板，就会出现换内存也要把主板换了的尴尬。&lt;/li&gt;
 &lt;li&gt;做项目大多要访问数据库，把访问数据库的代码写成函数，每次做新项目时去调用这些函数，这就叫高层模块依赖低层模块。做新项目时，发现业务逻辑的高层模块都是一样的额，但客户却希望使用不同的数据库，高层模块与低层的访问数据库绑定在一起，没办法复用高层模块。应该两者都依赖约定的接口。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&quot;4-__u63A5_u53E3_u9694_u79BB_u539F_u5219&quot;&gt;&lt;a href=&quot;#4-__u63A5_u53E3_u9694_u79BB_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;4. 接口隔离原则&quot;&gt;&lt;/a&gt;4. 接口隔离原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：客户端不应该依赖它不需要的接口（接口尽量细化），类见的依赖关系应该建立在最小的接口上。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;4-接口隔离原则&quot;&gt;&lt;a href=&quot;#4-接口隔离原则&quot; class=&quot;headerlink&quot; title=&quot;4. 接口隔离原则&quot;&gt;&lt;/a&gt;4. 接口隔离原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：客户端不应该依赖它不需要的接口（接口尽量细化），类见的依赖关系应该建立在最小的接口上。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;接口“小”是要有限度的，首先不能违反单一职责原则，其次是要高内聚。一个接口只服务于一个子模块或业务逻辑，通过业务逻辑压缩接口中的public方法。&lt;/p&gt;
-&lt;h1 id=&quot;5-__u8FEA_u7C73_u7279_u6CD5_u5219&quot;&gt;&lt;a href=&quot;#5-__u8FEA_u7C73_u7279_u6CD5_u5219&quot; class=&quot;headerlink&quot; title=&quot;5. 迪米特法则&quot;&gt;&lt;/a&gt;5. 迪米特法则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：如果两个类不必彼此直接通信，那么这两个类就不应该发生直接的相互作用。一个对象应该对其他对象有最少的了解。&lt;/strong&gt;如果一个类需要调用另一个类的某一个方法，可以通过第三者转发这个调用。&lt;/p&gt;
+&lt;h1 id=&quot;5-迪米特法则&quot;&gt;&lt;a href=&quot;#5-迪米特法则&quot; class=&quot;headerlink&quot; title=&quot;5. 迪米特法则&quot;&gt;&lt;/a&gt;5. 迪米特法则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：如果两个类不必彼此直接通信，那么这两个类就不应该发生直接的相互作用。一个对象应该对其他对象有最少的了解。&lt;/strong&gt;如果一个类需要调用另一个类的某一个方法，可以通过第三者转发这个调用。&lt;/p&gt;
 &lt;p&gt;该法则的根本思想，是强调了类之间的松耦合。一个类公开的public属性或方法越多，修改时涉及的面和风险也就越大。在设计时需要反复衡量：是否还可以再减少public方法和属性。&lt;em&gt;实践中，如果一个类跳转两次以上才能访问到另一个类，就说明系统过于复杂，需要想办法进行重构了。&lt;/em&gt;&lt;/p&gt;
-&lt;h1 id=&quot;6-__u5F00_u95ED_u539F_u5219&quot;&gt;&lt;a href=&quot;#6-__u5F00_u95ED_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;6. 开闭原则&quot;&gt;&lt;/a&gt;6. 开闭原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：软件实体（类、模块、函数等等）应该可以扩展开放，对修改封闭。&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;6-开闭原则&quot;&gt;&lt;a href=&quot;#6-开闭原则&quot; class=&quot;headerlink&quot; title=&quot;6. 开闭原则&quot;&gt;&lt;/a&gt;6. 开闭原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：软件实体（类、模块、函数等等）应该可以扩展开放，对修改封闭。&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;面对需求变化，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。但在最初编写代码时，难以预测到变化的产生，这就要求变化发生时，就创建抽象来隔离以后发生的同类变化。开发人员应该仅对程序中呈现出频繁变化的那些部分作出抽象，拒绝不成熟的抽象和抽象本身一样重要。&lt;/p&gt;
 &lt;p&gt;例子：书店管理图书，&lt;code&gt;IBook&lt;/code&gt;接口有&lt;code&gt;getName&lt;/code&gt;、&lt;code&gt;getPrice&lt;/code&gt;、&lt;code&gt;getAuthor&lt;/code&gt;方法，实现类&lt;code&gt;NovelBook&lt;/code&gt;实现&lt;code&gt;IBook&lt;/code&gt;接口，客户端类&lt;code&gt;BookStore&lt;/code&gt;关联&lt;code&gt;IBook&lt;/code&gt;接口。&lt;/p&gt;
 &lt;ol&gt;
@@ -396,8 +390,7 @@
     
     <content type="html">&lt;p&gt;Lua中的table就是一种对象，因为它和对象一样可以拥有状态，也拥有一个独立于其值的标识（一个self），也和对象一样具有独立于创建者的生命周期。但是Lua中没有类的概念，只能用元表来实现原型，用原型来模拟类和继承等面向对象特性。本文将介绍Lua关于面向对象编程的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u5BF9_u8C61_u4E0E_u7C7B&quot;&gt;&lt;a href=&quot;#1-__u5BF9_u8C61_u4E0E_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;1. 对象与类&quot;&gt;&lt;/a&gt;1. 对象与类&lt;/h1&gt;&lt;h2 id=&quot;1-1_self_u4E0E_u5192_u53F7_u8BED_u6CD5&quot;&gt;&lt;a href=&quot;#1-1_self_u4E0E_u5192_u53F7_u8BED_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.1 self与冒号语法&quot;&gt;&lt;/a&gt;1.1 self与冒号语法&lt;/h2&gt;&lt;p&gt;使用self参数是所有面向对象语言的一个核心，Lua只需使用冒号语法，就能隐藏该参数，例如下面两段代码是等价的。&lt;/p&gt;
+&lt;h1 id=&quot;1-对象与类&quot;&gt;&lt;a href=&quot;#1-对象与类&quot; class=&quot;headerlink&quot; title=&quot;1. 对象与类&quot;&gt;&lt;/a&gt;1. 对象与类&lt;/h1&gt;&lt;h2 id=&quot;1-1-self与冒号语法&quot;&gt;&lt;a href=&quot;#1-1-self与冒号语法&quot; class=&quot;headerlink&quot; title=&quot;1.1 self与冒号语法&quot;&gt;&lt;/a&gt;1.1 self与冒号语法&lt;/h2&gt;&lt;p&gt;使用self参数是所有面向对象语言的一个核心，Lua只需使用冒号语法，就能隐藏该参数，例如下面两段代码是等价的。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Account = {balance=0}
 funtion Account.withdraw(self, v)
     self.balance = self.balance - v
@@ -410,7 +403,7 @@ function Account:withdraw(v)
 end
 a2 = Account
 a2:withdraw(100.0)  -- 省略了a2参数传入
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2__u7C7B_u7684_u7F16_u5199&quot;&gt;&lt;a href=&quot;#1-2__u7C7B_u7684_u7F16_u5199&quot; class=&quot;headerlink&quot; title=&quot;1.2 类的编写&quot;&gt;&lt;/a&gt;1.2 类的编写&lt;/h2&gt;&lt;p&gt;在一些基于原型的语言中，对象是没有类型的，但每个对象都有一个原型。原型是一种常规的对象，当其他对象遇到一个未知操作时，原型会先查找它。在这种语言中要表示一个类，只需创建一个专用做其他对象的原型。Lua中实现原型很简单，只需用元表的&lt;code&gt;__index&lt;/code&gt;来实现继承。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2-类的编写&quot;&gt;&lt;a href=&quot;#1-2-类的编写&quot; class=&quot;headerlink&quot; title=&quot;1.2 类的编写&quot;&gt;&lt;/a&gt;1.2 类的编写&lt;/h2&gt;&lt;p&gt;在一些基于原型的语言中，对象是没有类型的，但每个对象都有一个原型。原型是一种常规的对象，当其他对象遇到一个未知操作时，原型会先查找它。在这种语言中要表示一个类，只需创建一个专用做其他对象的原型。Lua中实现原型很简单，只需用元表的&lt;code&gt;__index&lt;/code&gt;来实现继承。&lt;/p&gt;
 &lt;p&gt;（当访问一个table中不存在的字段key时，一般得到结果为nil。事实上，访问会促使解释器去查找一个叫&lt;code&gt;__index&lt;/code&gt;的元方法，如果没有这个元方法，则访问结果如前述的nil，否则由这个元方法来提供结果。元方法除了是一个函数，还可以是一个table，如果是table则直接返回该table中key对应的内容。）&lt;/p&gt;
 &lt;p&gt;如果有两个对象a和b，要让b作为a的一个原型，只需&lt;code&gt;setmetatable(a, {__index=b})&lt;/code&gt;。a就会在b中查找它没有的操作。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function Account:new(o)
@@ -420,12 +413,12 @@ a2:withdraw(100.0)  -- 省略了a2参数传入
     return o
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当调用&lt;code&gt;a = Account:new{balance = 0}&lt;/code&gt;时，a会将Account（函数中的self）作为其元表。当调用&lt;code&gt;a:withdraw(100.0)&lt;/code&gt;时，Lua无法在table a中找到条目withdraw，则进一步搜索元表的&lt;code&gt;__index&lt;/code&gt;条目，即&lt;code&gt;getmetatable(a).__index.withdraw(a, 100.0)&lt;/code&gt;。由于new方法中做了&lt;code&gt;self.__index = self&lt;/code&gt;，所以上面的表达式又等价于&lt;code&gt;Account.withdraw(a, 100.0)&lt;/code&gt;，这样就传入了a作为self参数，又调用了Account类的withdraw函数。&lt;strong&gt;这种创建对象的方式不仅可以作用于方法，还可以作用于所有其他新对象中没有的字段。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;1-3__u7EE7_u627F&quot;&gt;&lt;a href=&quot;#1-3__u7EE7_u627F&quot; class=&quot;headerlink&quot; title=&quot;1.3 继承&quot;&gt;&lt;/a&gt;1.3 继承&lt;/h2&gt;&lt;p&gt;现在要从Account类派生出一个子类SpecialAccount（以使客户能够透支），只需：&lt;/p&gt;
+&lt;h2 id=&quot;1-3-继承&quot;&gt;&lt;a href=&quot;#1-3-继承&quot; class=&quot;headerlink&quot; title=&quot;1.3 继承&quot;&gt;&lt;/a&gt;1.3 继承&lt;/h2&gt;&lt;p&gt;现在要从Account类派生出一个子类SpecialAccount（以使客户能够透支），只需：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;SpecialAccount = Account:new()
 s = SpecialAccount:new{limit=1000.00}
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;SpecialAccount从Account继承了new，当执行&lt;code&gt;SpecialAccount:new&lt;/code&gt;时，其self参数为SpecialAccount，因此s的元表为SpecialAccount。当调用s不存在的字段时，会向上查找，也可以编写新的重名方法覆盖父类方法。&lt;/p&gt;
-&lt;h2 id=&quot;1-4__u591A_u91CD_u7EE7_u627F&quot;&gt;&lt;a href=&quot;#1-4__u591A_u91CD_u7EE7_u627F&quot; class=&quot;headerlink&quot; title=&quot;1.4 多重继承&quot;&gt;&lt;/a&gt;1.4 多重继承&lt;/h2&gt;&lt;p&gt;上面介绍中为&lt;code&gt;__index&lt;/code&gt;元方法赋值一个table实现了单继承，如果要实现多重继承，可以让&lt;code&gt;__index&lt;/code&gt;字段成为一个函数，在该函数中搜索多个基类的方法字段。由于这种搜索具有一定复杂性，多重继承的性能不如单一继承。还有一种改进性能的简单做法是将继承的方法复制到子类中，但这种做法的缺点是当系统运行后就较难修改方法的定义，因为这些修改不会沿着继承体系向下传播。&lt;/p&gt;
-&lt;h2 id=&quot;1-5__u79C1_u5BC6_u6027&quot;&gt;&lt;a href=&quot;#1-5__u79C1_u5BC6_u6027&quot; class=&quot;headerlink&quot; title=&quot;1.5 私密性&quot;&gt;&lt;/a&gt;1.5 私密性&lt;/h2&gt;&lt;p&gt;Lua在设计对象时，没有提供私密性机制（private），但其各种元机制使得程序员可以模拟对象的访问控制。这种实现不常用，因此只做基本的了解：通过两个table来表示一个对象，一个用来保存对象的状态，一个用于对象的操作（即接口）。&lt;/p&gt;
+&lt;h2 id=&quot;1-4-多重继承&quot;&gt;&lt;a href=&quot;#1-4-多重继承&quot; class=&quot;headerlink&quot; title=&quot;1.4 多重继承&quot;&gt;&lt;/a&gt;1.4 多重继承&lt;/h2&gt;&lt;p&gt;上面介绍中为&lt;code&gt;__index&lt;/code&gt;元方法赋值一个table实现了单继承，如果要实现多重继承，可以让&lt;code&gt;__index&lt;/code&gt;字段成为一个函数，在该函数中搜索多个基类的方法字段。由于这种搜索具有一定复杂性，多重继承的性能不如单一继承。还有一种改进性能的简单做法是将继承的方法复制到子类中，但这种做法的缺点是当系统运行后就较难修改方法的定义，因为这些修改不会沿着继承体系向下传播。&lt;/p&gt;
+&lt;h2 id=&quot;1-5-私密性&quot;&gt;&lt;a href=&quot;#1-5-私密性&quot; class=&quot;headerlink&quot; title=&quot;1.5 私密性&quot;&gt;&lt;/a&gt;1.5 私密性&lt;/h2&gt;&lt;p&gt;Lua在设计对象时，没有提供私密性机制（private），但其各种元机制使得程序员可以模拟对象的访问控制。这种实现不常用，因此只做基本的了解：通过两个table来表示一个对象，一个用来保存对象的状态，一个用于对象的操作（即接口）。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function newAccount(initialBalance)
     local self = {balance = initialBalance}
     local withdraw = function(v)
@@ -465,8 +458,7 @@ end
     
     <content type="html">&lt;p&gt;模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u73AF_u5883&quot;&gt;&lt;a href=&quot;#1-__u73AF_u5883&quot; class=&quot;headerlink&quot; title=&quot;1. 环境&quot;&gt;&lt;/a&gt;1. 环境&lt;/h1&gt;&lt;p&gt;Lua将环境table保存在一个全局变量&lt;code&gt;_G&lt;/code&gt;中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过&lt;code&gt;value = _G[varname]&lt;/code&gt;来获得动态名字的全局变量。&lt;/p&gt;
+&lt;h1 id=&quot;1-环境&quot;&gt;&lt;a href=&quot;#1-环境&quot; class=&quot;headerlink&quot; title=&quot;1. 环境&quot;&gt;&lt;/a&gt;1. 环境&lt;/h1&gt;&lt;p&gt;Lua将环境table保存在一个全局变量&lt;code&gt;_G&lt;/code&gt;中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过&lt;code&gt;value = _G[varname]&lt;/code&gt;来获得动态名字的全局变量。&lt;/p&gt;
 &lt;p&gt;关于“环境”的一大问题是它是全局的，任何对它的修改都会影响程序的所有部分。Lua 5允许每个函数拥有一个子集的环境来查找全局变量，可以通过&lt;code&gt;setfenv&lt;/code&gt;来改变一个函数的环境，第一个参数若是1则表示当前函数，2则表示调用当前函数的函数（依次类推），第二个参数是一个新的环境table。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;a = 1
 setfenv(1, {})
@@ -477,14 +469,14 @@ local newgt = {}
 setmetatable(newgt, {__index = _G})
 setfenv(1, newgt)
 print(a)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-__u6A21_u5757_u4E0E_u5305&quot;&gt;&lt;a href=&quot;#2-__u6A21_u5757_u4E0E_u5305&quot; class=&quot;headerlink&quot; title=&quot;2. 模块与包&quot;&gt;&lt;/a&gt;2. 模块与包&lt;/h1&gt;&lt;h2 id=&quot;2-1__u8C03_u7528_u6A21_u5757&quot;&gt;&lt;a href=&quot;#2-1__u8C03_u7528_u6A21_u5757&quot; class=&quot;headerlink&quot; title=&quot;2.1 调用模块&quot;&gt;&lt;/a&gt;2.1 调用模块&lt;/h2&gt;&lt;p&gt;要调用模块mod中的foo方法，可以用&lt;code&gt;require&lt;/code&gt;函数来加载，如：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-模块与包&quot;&gt;&lt;a href=&quot;#2-模块与包&quot; class=&quot;headerlink&quot; title=&quot;2. 模块与包&quot;&gt;&lt;/a&gt;2. 模块与包&lt;/h1&gt;&lt;h2 id=&quot;2-1-调用模块&quot;&gt;&lt;a href=&quot;#2-1-调用模块&quot; class=&quot;headerlink&quot; title=&quot;2.1 调用模块&quot;&gt;&lt;/a&gt;2.1 调用模块&lt;/h2&gt;&lt;p&gt;要调用模块mod中的foo方法，可以用&lt;code&gt;require&lt;/code&gt;函数来加载，如：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;require &amp;quot;mod&amp;quot;
 mod.foo()
 -- 或者
 local m = require &amp;quot;mod&amp;quot;
 m.foo()
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;require&lt;/code&gt;函数的行为： （关于require使用的路径查找策略不赘述）&lt;br&gt;在&lt;code&gt;package.loaded&lt;/code&gt;这个table中检查模块是否已加载&lt;br&gt;=&amp;gt; 已加载，就返回相应的值（可见一个模块只会加载一次）&lt;br&gt;=&amp;gt; 未加载，就试着在&lt;code&gt;package.preload&lt;/code&gt;中查询传入的模块名&lt;br&gt;===&amp;gt; 找到一个函数，就以该函数作为模块的加载器&lt;br&gt;===&amp;gt; 找不到，则尝试从Lua文件或C程序库中加载模块&lt;br&gt;=====&amp;gt; 找到Lua文件，通过&lt;code&gt;loadfile&lt;/code&gt;来加载文件&lt;br&gt;=====&amp;gt; 找到C程序库，通过&lt;code&gt;loadlib&lt;/code&gt;来加载文件&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u4F7F_u7528_u73AF_u5883&quot;&gt;&lt;a href=&quot;#2-2__u4F7F_u7528_u73AF_u5883&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用环境&quot;&gt;&lt;/a&gt;2.2 使用环境&lt;/h2&gt;&lt;p&gt;下面的代码说明了如何用环境来创建一个复数（complex）模块：&lt;/p&gt;
+&lt;h2 id=&quot;2-2-使用环境&quot;&gt;&lt;a href=&quot;#2-2-使用环境&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用环境&quot;&gt;&lt;/a&gt;2.2 使用环境&lt;/h2&gt;&lt;p&gt;下面的代码说明了如何用环境来创建一个复数（complex）模块：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;-- 模块设置
 local modname = &amp;quot;complex&amp;quot;
 local M = {}
@@ -504,8 +496,8 @@ function add(c1, c2)
     return new(c1.r + c2.r, c1.i + c2.i)
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样声明函数add时，就成为了&lt;code&gt;complex.add&lt;/code&gt;，调用同一模块的其他函数也不需要加前缀。&lt;/p&gt;
-&lt;h2 id=&quot;2-3_module_u51FD_u6570&quot;&gt;&lt;a href=&quot;#2-3_module_u51FD_u6570&quot; class=&quot;headerlink&quot; title=&quot;2.3 module函数&quot;&gt;&lt;/a&gt;2.3 module函数&lt;/h2&gt;&lt;p&gt;Lua 5.1提供了一个新函数&lt;code&gt;module&lt;/code&gt;，囊括了上面一系列定义环境的功能。在开始编写一个模块时，可以直接用&lt;code&gt;module(&amp;quot;modname&amp;quot;, package.seeall)&lt;/code&gt;来取代前面的设置代码。在一个模块文件开头有这句调用后，后续所有代码都不需要限定模块名和外部名字，同样也不需要返回模块table了。&lt;/p&gt;
-&lt;h2 id=&quot;2-4__u5B50_u6A21_u5757_u4E0E_u5305&quot;&gt;&lt;a href=&quot;#2-4__u5B50_u6A21_u5757_u4E0E_u5305&quot; class=&quot;headerlink&quot; title=&quot;2.4 子模块与包&quot;&gt;&lt;/a&gt;2.4 子模块与包&lt;/h2&gt;&lt;p&gt;Lua支持具有层级的模块名，用一个点来分隔名称中的层级。例如一个模块名为&lt;code&gt;mod.sub&lt;/code&gt;，就是mod的一个子模块。一个包（package）就是一个完整的模块树，它是Lua中发型的单位。注意，当搜索一个子模块文件时，require会把点号当做目录分隔符来搜索，也就是说调用&lt;code&gt;require &amp;quot;a.b&amp;quot;&lt;/code&gt;会尝试打开&lt;code&gt;./a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b/init.lua&lt;/code&gt;。通过这种加载策略，可以将包的所有模块组织到一个目录中。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-module函数&quot;&gt;&lt;a href=&quot;#2-3-module函数&quot; class=&quot;headerlink&quot; title=&quot;2.3 module函数&quot;&gt;&lt;/a&gt;2.3 module函数&lt;/h2&gt;&lt;p&gt;Lua 5.1提供了一个新函数&lt;code&gt;module&lt;/code&gt;，囊括了上面一系列定义环境的功能。在开始编写一个模块时，可以直接用&lt;code&gt;module(&amp;quot;modname&amp;quot;, package.seeall)&lt;/code&gt;来取代前面的设置代码。在一个模块文件开头有这句调用后，后续所有代码都不需要限定模块名和外部名字，同样也不需要返回模块table了。&lt;/p&gt;
+&lt;h2 id=&quot;2-4-子模块与包&quot;&gt;&lt;a href=&quot;#2-4-子模块与包&quot; class=&quot;headerlink&quot; title=&quot;2.4 子模块与包&quot;&gt;&lt;/a&gt;2.4 子模块与包&lt;/h2&gt;&lt;p&gt;Lua支持具有层级的模块名，用一个点来分隔名称中的层级。例如一个模块名为&lt;code&gt;mod.sub&lt;/code&gt;，就是mod的一个子模块。一个包（package）就是一个完整的模块树，它是Lua中发型的单位。注意，当搜索一个子模块文件时，require会把点号当做目录分隔符来搜索，也就是说调用&lt;code&gt;require &amp;quot;a.b&amp;quot;&lt;/code&gt;会尝试打开&lt;code&gt;./a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b/init.lua&lt;/code&gt;。通过这种加载策略，可以将包的所有模块组织到一个目录中。&lt;/p&gt;
 &lt;p&gt;参考文献：电子工业出版社《Lua程序设计（第2版）》第14-15章&lt;/p&gt;
 </content>
     
@@ -535,8 +527,7 @@ end
     
     <content type="html">&lt;p&gt;本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u8FED_u4EE3_u5668&quot;&gt;&lt;a href=&quot;#1-__u8FED_u4EE3_u5668&quot; class=&quot;headerlink&quot; title=&quot;1. 迭代器&quot;&gt;&lt;/a&gt;1. 迭代器&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6CDB_u578Bfor_u539F_u7406&quot;&gt;&lt;a href=&quot;#1-1__u6CDB_u578Bfor_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;1.1 泛型for原理&quot;&gt;&lt;/a&gt;1.1 泛型for原理&lt;/h2&gt;&lt;p&gt;迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：&lt;/p&gt;
+&lt;h1 id=&quot;1-迭代器&quot;&gt;&lt;a href=&quot;#1-迭代器&quot; class=&quot;headerlink&quot; title=&quot;1. 迭代器&quot;&gt;&lt;/a&gt;1. 迭代器&lt;/h1&gt;&lt;h2 id=&quot;1-1-泛型for原理&quot;&gt;&lt;a href=&quot;#1-1-泛型for原理&quot; class=&quot;headerlink&quot; title=&quot;1.1 泛型for原理&quot;&gt;&lt;/a&gt;1.1 泛型for原理&lt;/h2&gt;&lt;p&gt;迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function values(t)
     local i = 0
     return function() i = i + 1; return t[i] end
@@ -554,7 +545,7 @@ end
 -- 泛型for调用
 for el in values(t) do print(el) end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;泛型for为一次迭代循环做了所有的簿记工作。它在内部保存了迭代器函数，并在每次迭代时调用迭代器，在迭代器返回nil时结束循环。实际上泛型for保存了3个值：迭代器函数f、恒定状态s、控制变量a。&lt;strong&gt;for做的第一件事就是对in后面的表达式求值，并返回3个值供for保存；接着for会以s和a来调用f。在循环过程中控制变量的值依次为&lt;code&gt;a1 = f(s, a0)&lt;/code&gt;，&lt;code&gt;a2 = f(s, a1)&lt;/code&gt;，依次类推，直至ai为nil结束循环。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u8FED_u4EE3_u5668_u7684_u72B6_u6001&quot;&gt;&lt;a href=&quot;#1-2__u8FED_u4EE3_u5668_u7684_u72B6_u6001&quot; class=&quot;headerlink&quot; title=&quot;1.2 迭代器的状态&quot;&gt;&lt;/a&gt;1.2 迭代器的状态&lt;/h2&gt;&lt;p&gt;无状态的迭代器本身不保存任何状态，for循环只会用恒定状态和控制变量来调用迭代器函数。这类迭代器典型例子就是ipairs，下面是ipairs的Lua实现：&lt;/p&gt;
+&lt;h2 id=&quot;1-2-迭代器的状态&quot;&gt;&lt;a href=&quot;#1-2-迭代器的状态&quot; class=&quot;headerlink&quot; title=&quot;1.2 迭代器的状态&quot;&gt;&lt;/a&gt;1.2 迭代器的状态&lt;/h2&gt;&lt;p&gt;无状态的迭代器本身不保存任何状态，for循环只会用恒定状态和控制变量来调用迭代器函数。这类迭代器典型例子就是ipairs，下面是ipairs的Lua实现：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;local function iter(s, i)
     i = i + 1
     local v = s[i]
@@ -565,14 +556,14 @@ function ipairs(s)
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当for循环调用ipairs(list)时，会获得3个值，然后Lua调用iter(list, 0)得到list, list[1]，调用iter(list, 1)得到list, list[2]，知道得到一个nil为止。&lt;/p&gt;
 &lt;p&gt;虽然泛型for只提供一个恒定状态和一个控制变量用于状态的保存，但有时需要保存许多其他状态。这时可以用closure来保存，或者将所需的状态打包为一个table，并保存在恒定状态中。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u7F16_u8BD1_u4E0E_u9519_u8BEF_u673A_u5236&quot;&gt;&lt;a href=&quot;#2-__u7F16_u8BD1_u4E0E_u9519_u8BEF_u673A_u5236&quot; class=&quot;headerlink&quot; title=&quot;2. 编译与错误机制&quot;&gt;&lt;/a&gt;2. 编译与错误机制&lt;/h1&gt;&lt;h2 id=&quot;2-1__u7F16_u8BD1&quot;&gt;&lt;a href=&quot;#2-1__u7F16_u8BD1&quot; class=&quot;headerlink&quot; title=&quot;2.1 编译&quot;&gt;&lt;/a&gt;2.1 编译&lt;/h2&gt;&lt;p&gt;尽管Lua是一种解释型语言，但它确实允许在运行代码前，先将代码预编译为一种中间形式。其实，&lt;strong&gt;区别解释型语言的主要特征并不在于是否能编译它们，而在于编译器是否是语言运行时库的一部分，即是否有能力执行动态生成的代码。&lt;/strong&gt;可以说正因为存在了诸如&lt;code&gt;dofile&lt;/code&gt;这样的函数，才可以将Lua称为解释型语言。&lt;/p&gt;
+&lt;h1 id=&quot;2-编译与错误机制&quot;&gt;&lt;a href=&quot;#2-编译与错误机制&quot; class=&quot;headerlink&quot; title=&quot;2. 编译与错误机制&quot;&gt;&lt;/a&gt;2. 编译与错误机制&lt;/h1&gt;&lt;h2 id=&quot;2-1-编译&quot;&gt;&lt;a href=&quot;#2-1-编译&quot; class=&quot;headerlink&quot; title=&quot;2.1 编译&quot;&gt;&lt;/a&gt;2.1 编译&lt;/h2&gt;&lt;p&gt;尽管Lua是一种解释型语言，但它确实允许在运行代码前，先将代码预编译为一种中间形式。其实，&lt;strong&gt;区别解释型语言的主要特征并不在于是否能编译它们，而在于编译器是否是语言运行时库的一部分，即是否有能力执行动态生成的代码。&lt;/strong&gt;可以说正因为存在了诸如&lt;code&gt;dofile&lt;/code&gt;这样的函数，才可以将Lua称为解释型语言。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;dofile&lt;/code&gt;用于运行Lua代码块，而&lt;code&gt;loadfile&lt;/code&gt;会从一个文件加载Lua代码块，然后编译代码，把编译结果作为一个函数返回。要注意&lt;code&gt;loadfile&lt;/code&gt;不会引发错误，它只是返回错误值但不处理错误。&lt;code&gt;dofile&lt;/code&gt;的基本原理如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function dofile(filename)
     local f = assert(loadfile(filename))
     return f()
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;loadstring&lt;/code&gt;是从一个字符串读取代码，并返回一个对应的函数。注意，&lt;code&gt;loadstring&lt;/code&gt;总是在全局环境中编译它的字符串。此外，这些函数不会带来任何副作用，它们只是将程序块编译为一种中间表示，然后将结果作为一个匿名函数返回。此时如果不将此匿名函数赋值给一个变量并调用，是不会产生任何结果的。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u9519_u8BEF_u5904_u7406_u4E0E_u5F02_u5E38&quot;&gt;&lt;a href=&quot;#2-2__u9519_u8BEF_u5904_u7406_u4E0E_u5F02_u5E38&quot; class=&quot;headerlink&quot; title=&quot;2.2 错误处理与异常&quot;&gt;&lt;/a&gt;2.2 错误处理与异常&lt;/h2&gt;&lt;p&gt;Lua遇到任何非预期条件都会引发一个错误，我们也可以显式地调用&lt;code&gt;error&lt;/code&gt;函数并传入一个错误消息得参数来引发一个错误。像&lt;code&gt;if not &amp;lt;condition&amp;gt; then error(&amp;lt;anything&amp;gt;) end&lt;/code&gt;这样的组合是非常通用的代码，所以可以用&lt;code&gt;assert(&amp;lt;condition&amp;gt;, &amp;lt;msg&amp;gt;)&lt;/code&gt;来完成此类工作。另外一种处理的方式是返回错误代码（如nil）。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-错误处理与异常&quot;&gt;&lt;a href=&quot;#2-2-错误处理与异常&quot; class=&quot;headerlink&quot; title=&quot;2.2 错误处理与异常&quot;&gt;&lt;/a&gt;2.2 错误处理与异常&lt;/h2&gt;&lt;p&gt;Lua遇到任何非预期条件都会引发一个错误，我们也可以显式地调用&lt;code&gt;error&lt;/code&gt;函数并传入一个错误消息得参数来引发一个错误。像&lt;code&gt;if not &amp;lt;condition&amp;gt; then error(&amp;lt;anything&amp;gt;) end&lt;/code&gt;这样的组合是非常通用的代码，所以可以用&lt;code&gt;assert(&amp;lt;condition&amp;gt;, &amp;lt;msg&amp;gt;)&lt;/code&gt;来完成此类工作。另外一种处理的方式是返回错误代码（如nil）。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;pcall&lt;/code&gt;函数以一种“保护模式”来调用它的第一个参数，并捕获所有执行中引发的错误。如果没有发生错误，pcall会返回true及函数调用的返回值，否则返回false及错误消息。因此可以用error来抛出一个异常或使用pcall来捕获异常，错误消息则可以标识出错误的类型或内容。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;if pcall(function()
     &amp;lt;受保护的代码&amp;gt;
@@ -581,7 +572,7 @@ end) then
 else
     &amp;lt;错误处理代码&amp;gt;
 end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-3__u8FFD_u6EAF_u9519_u8BEF&quot;&gt;&lt;a href=&quot;#2-3__u8FFD_u6EAF_u9519_u8BEF&quot; class=&quot;headerlink&quot; title=&quot;2.3 追溯错误&quot;&gt;&lt;/a&gt;2.3 追溯错误&lt;/h2&gt;&lt;p&gt;当&lt;code&gt;pcall&lt;/code&gt;返回其错误消息时，它已经销毁了调用栈的部分内容（pcall到错误发生点之间的这部分调用）。而&lt;code&gt;xpcall&lt;/code&gt;函数除了接受一个需要被调用的函数外，还接受一个&lt;em&gt;错误处理函数&lt;/em&gt;。当发生错误时，Lua会在调用栈展开前调用这个错误处理函数，里面可以用debug库来获取错误的额外信息。如&lt;code&gt;debug.debug&lt;/code&gt;会提供一个Lua提示符，让用户检查错误原因，&lt;code&gt;debug.traceback&lt;/code&gt;获取当前执行的调用栈。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-3-追溯错误&quot;&gt;&lt;a href=&quot;#2-3-追溯错误&quot; class=&quot;headerlink&quot; title=&quot;2.3 追溯错误&quot;&gt;&lt;/a&gt;2.3 追溯错误&lt;/h2&gt;&lt;p&gt;当&lt;code&gt;pcall&lt;/code&gt;返回其错误消息时，它已经销毁了调用栈的部分内容（pcall到错误发生点之间的这部分调用）。而&lt;code&gt;xpcall&lt;/code&gt;函数除了接受一个需要被调用的函数外，还接受一个&lt;em&gt;错误处理函数&lt;/em&gt;。当发生错误时，Lua会在调用栈展开前调用这个错误处理函数，里面可以用debug库来获取错误的额外信息。如&lt;code&gt;debug.debug&lt;/code&gt;会提供一个Lua提示符，让用户检查错误原因，&lt;code&gt;debug.traceback&lt;/code&gt;获取当前执行的调用栈。&lt;/p&gt;
 &lt;p&gt;参考文献：电子工业出版社《Lua程序设计（第2版）》第7-8章&lt;/p&gt;
 </content>
     
@@ -611,18 +602,17 @@ end
     
     <content type="html">&lt;p&gt;本文介绍了Lua的函数，包括多重返回值、变长参数、具名实参，以及比较高级的主题如闭包、递归的尾调用等等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u57FA_u7840_u77E5_u8BC6&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840_u77E5_u8BC6&quot; class=&quot;headerlink&quot; title=&quot;1. 基础知识&quot;&gt;&lt;/a&gt;1. 基础知识&lt;/h1&gt;&lt;p&gt;调用函数都需要写圆括号，即使没有参数，但有一种特殊例外：函数若只有一个参数且参数是字面字符串或table构造式，则圆括号可有可无，如&lt;code&gt;dofile &amp;#39;a.lua&amp;#39;&lt;/code&gt;，&lt;code&gt;f{x=10, y=20}&lt;/code&gt;。&lt;/p&gt;
+&lt;h1 id=&quot;1-基础知识&quot;&gt;&lt;a href=&quot;#1-基础知识&quot; class=&quot;headerlink&quot; title=&quot;1. 基础知识&quot;&gt;&lt;/a&gt;1. 基础知识&lt;/h1&gt;&lt;p&gt;调用函数都需要写圆括号，即使没有参数，但有一种特殊例外：函数若只有一个参数且参数是字面字符串或table构造式，则圆括号可有可无，如&lt;code&gt;dofile &amp;#39;a.lua&amp;#39;&lt;/code&gt;，&lt;code&gt;f{x=10, y=20}&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;Lua为面向对象式的调用提供冒号操作符的特殊语法，如&lt;code&gt;o.foo(o, x)&lt;/code&gt;等价于&lt;code&gt;o:foo(x)&lt;/code&gt;。和Javascript类似，调用函数时提供的实参数量可以与形参数量不同，若实参多了则舍弃，不足则多余的形参初始化为nil。&lt;/p&gt;
-&lt;h2 id=&quot;1-1__u591A_u91CD_u8FD4_u56DE_u503C&quot;&gt;&lt;a href=&quot;#1-1__u591A_u91CD_u8FD4_u56DE_u503C&quot; class=&quot;headerlink&quot; title=&quot;1.1 多重返回值&quot;&gt;&lt;/a&gt;1.1 多重返回值&lt;/h2&gt;&lt;p&gt;Lua允许函数返回多个结果，函数返回如&lt;code&gt;return max, index&lt;/code&gt;，接收如&lt;code&gt;s, e = string.find(&amp;quot;hello Lua world&amp;quot;, &amp;quot;Lua&amp;quot;)&lt;/code&gt;。如果一个函数调用不是一系列表达式的最后一个元素，则只产生一个值：&lt;/p&gt;
+&lt;h2 id=&quot;1-1-多重返回值&quot;&gt;&lt;a href=&quot;#1-1-多重返回值&quot; class=&quot;headerlink&quot; title=&quot;1.1 多重返回值&quot;&gt;&lt;/a&gt;1.1 多重返回值&lt;/h2&gt;&lt;p&gt;Lua允许函数返回多个结果，函数返回如&lt;code&gt;return max, index&lt;/code&gt;，接收如&lt;code&gt;s, e = string.find(&amp;quot;hello Lua world&amp;quot;, &amp;quot;Lua&amp;quot;)&lt;/code&gt;。如果一个函数调用不是一系列表达式的最后一个元素，则只产生一个值：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function foo() return &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; end
 x, y = foo(), 20    -- x=&amp;quot;a&amp;quot;, y=20（foo的第二个返回值被丢弃）
 print(foo() .. &amp;quot;x&amp;quot;)    -- 输出ax，这是因为当函数出现在一个表达式中时，Lua会将其返回值数量调整为1
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;另外，只有当一个函数调用作为最后一个元素时，返回值才不会被调整，在其他位置都会被调整为1个，如&lt;code&gt;t = {foo2()}&lt;/code&gt;则t={“a”, “b”}，&lt;code&gt;t = {foo2(), 4}&lt;/code&gt;则t={“a”, 4}。&lt;/p&gt;
 &lt;p&gt;特殊函数unpack接受一个数组作为参数，并从下标1开始返回该数组的所有元素，如&lt;code&gt;a, b = unpack({10, 20, 30})&lt;/code&gt;，则30被丢弃。unpack的一项重要用途体现在“泛型调用”机制中。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u53D8_u957F_u53C2_u6570&quot;&gt;&lt;a href=&quot;#1-2__u53D8_u957F_u53C2_u6570&quot; class=&quot;headerlink&quot; title=&quot;1.2 变长参数&quot;&gt;&lt;/a&gt;1.2 变长参数&lt;/h2&gt;&lt;p&gt;函数参数表中3个点（…）表示该函数可接受不同数量的实参。&lt;strong&gt;在Lua 5.0中，没有提供“…”表达式，如果要遍历变长参数，可以访问函数内隐含的局部变量&lt;code&gt;arg&lt;/code&gt;。&lt;/strong&gt;如果还有固定参数，则必须放在变长参数之前。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u9AD8_u7EA7_u4E3B_u9898&quot;&gt;&lt;a href=&quot;#2-__u9AD8_u7EA7_u4E3B_u9898&quot; class=&quot;headerlink&quot; title=&quot;2. 高级主题&quot;&gt;&lt;/a&gt;2. 高级主题&lt;/h1&gt;&lt;h2 id=&quot;2-1_closure_u95ED_u5408_u51FD_u6570&quot;&gt;&lt;a href=&quot;#2-1_closure_u95ED_u5408_u51FD_u6570&quot; class=&quot;headerlink&quot; title=&quot;2.1 closure闭合函数&quot;&gt;&lt;/a&gt;2.1 closure闭合函数&lt;/h2&gt;&lt;p&gt;和Javascript的闭包基本是一个东西，此处不再赘述。从技术上说，Lua中只有closure，而不存在“函数”，因为函数本身就是一种特殊的closure。closure的应用很广泛，如用于高阶函数的参数、为GUI工具包创建回调、重定义函数并在新实现中调用旧实现、创建“沙盒”安全运行环境等等。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u975E_u5168_u5C40_u7684_u51FD_u6570&quot;&gt;&lt;a href=&quot;#2-2__u975E_u5168_u5C40_u7684_u51FD_u6570&quot; class=&quot;headerlink&quot; title=&quot;2.2 非全局的函数&quot;&gt;&lt;/a&gt;2.2 非全局的函数&lt;/h2&gt;&lt;p&gt;大部分Lua库都采用了将函数存储在table中的机制（如io.read，math.sin），例如下面采用了三种方式来定义table的成员函数：&lt;/p&gt;
+&lt;h2 id=&quot;1-2-变长参数&quot;&gt;&lt;a href=&quot;#1-2-变长参数&quot; class=&quot;headerlink&quot; title=&quot;1.2 变长参数&quot;&gt;&lt;/a&gt;1.2 变长参数&lt;/h2&gt;&lt;p&gt;函数参数表中3个点（…）表示该函数可接受不同数量的实参。&lt;strong&gt;在Lua 5.0中，没有提供“…”表达式，如果要遍历变长参数，可以访问函数内隐含的局部变量&lt;code&gt;arg&lt;/code&gt;。&lt;/strong&gt;如果还有固定参数，则必须放在变长参数之前。&lt;/p&gt;
+&lt;h1 id=&quot;2-高级主题&quot;&gt;&lt;a href=&quot;#2-高级主题&quot; class=&quot;headerlink&quot; title=&quot;2. 高级主题&quot;&gt;&lt;/a&gt;2. 高级主题&lt;/h1&gt;&lt;h2 id=&quot;2-1-closure闭合函数&quot;&gt;&lt;a href=&quot;#2-1-closure闭合函数&quot; class=&quot;headerlink&quot; title=&quot;2.1 closure闭合函数&quot;&gt;&lt;/a&gt;2.1 closure闭合函数&lt;/h2&gt;&lt;p&gt;和Javascript的闭包基本是一个东西，此处不再赘述。从技术上说，Lua中只有closure，而不存在“函数”，因为函数本身就是一种特殊的closure。closure的应用很广泛，如用于高阶函数的参数、为GUI工具包创建回调、重定义函数并在新实现中调用旧实现、创建“沙盒”安全运行环境等等。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-非全局的函数&quot;&gt;&lt;a href=&quot;#2-2-非全局的函数&quot; class=&quot;headerlink&quot; title=&quot;2.2 非全局的函数&quot;&gt;&lt;/a&gt;2.2 非全局的函数&lt;/h2&gt;&lt;p&gt;大部分Lua库都采用了将函数存储在table中的机制（如io.read，math.sin），例如下面采用了三种方式来定义table的成员函数：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;MathLib = {
     plus = function(x, y) return x + y end
 }
@@ -632,7 +622,7 @@ function MathLib.multiply(x, y) return x * y end
 &lt;pre&gt;&lt;code&gt;local f = function(&amp;lt;参数&amp;gt;) &amp;lt;函数体&amp;gt; end
 local function f(&amp;lt;参数&amp;gt;) &amp;lt;函数体&amp;gt; end  -- Lua提供的语法糖
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;**注意如果定义递归函数，不能使用上面第一种定义方式（因为在函数体调用f时，f尚未定义完毕），使用第二种“语法糖”则没问题；或者使用“前向声明”，先&lt;code&gt;local f&lt;/code&gt;再&lt;code&gt;f = function ...&lt;/code&gt;这样定义。&lt;/p&gt;
-&lt;h2 id=&quot;2-3__u6B63_u786E_u7684_u5C3E_u8C03_u7528&quot;&gt;&lt;a href=&quot;#2-3__u6B63_u786E_u7684_u5C3E_u8C03_u7528&quot; class=&quot;headerlink&quot; title=&quot;2.3 正确的尾调用&quot;&gt;&lt;/a&gt;2.3 正确的尾调用&lt;/h2&gt;&lt;p&gt;当一个函数调用时另一个函数的最后一个动作时，该调用算是一条“尾调用”，例如&lt;code&gt;function f(x) return g(x) end&lt;/code&gt;。由于在尾调用后程序不要保存任何关于该函数的栈信息，所以递归调用不会耗费栈空间，可以递归调用无数次。有一些看似是“尾调用”的代码，其实都违背了这条准则：&lt;/p&gt;
+&lt;h2 id=&quot;2-3-正确的尾调用&quot;&gt;&lt;a href=&quot;#2-3-正确的尾调用&quot; class=&quot;headerlink&quot; title=&quot;2.3 正确的尾调用&quot;&gt;&lt;/a&gt;2.3 正确的尾调用&lt;/h2&gt;&lt;p&gt;当一个函数调用时另一个函数的最后一个动作时，该调用算是一条“尾调用”，例如&lt;code&gt;function f(x) return g(x) end&lt;/code&gt;。由于在尾调用后程序不要保存任何关于该函数的栈信息，所以递归调用不会耗费栈空间，可以递归调用无数次。有一些看似是“尾调用”的代码，其实都违背了这条准则：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;function f(x) g(x) end    -- 调用g后，f没有立即返回，还需要丢弃g返回的临时结果
 function f(x) return g(x) + 1    -- 还要做一次加法
 function f(x) return x or g(x)    -- 必须调整为一个返回值
@@ -666,24 +656,23 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;Linux是一个可以实现多用户登录的操作系统，本文记录了Linux的用户管理，包括查看、创建用户和用户组，以及文件的权限机制。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
 &lt;p&gt;Linux是一个可以实现多用户登录的操作系统，比如李雷和韩梅梅都可以同时登陆同一台主机，他们共享一些主机的资源，但他们也分别有自己的用户空间，用于存放各自的文件。实际上他们的文件都是放在同一个物理磁盘上的甚至同一个逻辑分区或者目录里，但他们互相不可以看到或操作对方的文件，这正是Linux用户管理和权限机制。&lt;/p&gt;
-&lt;h1 id=&quot;Linux_u7528_u6237_u7BA1_u7406&quot;&gt;&lt;a href=&quot;#Linux_u7528_u6237_u7BA1_u7406&quot; class=&quot;headerlink&quot; title=&quot;Linux用户管理&quot;&gt;&lt;/a&gt;Linux用户管理&lt;/h1&gt;&lt;h2 id=&quot;u67E5_u770B_u7528_u6237&quot;&gt;&lt;a href=&quot;#u67E5_u770B_u7528_u6237&quot; class=&quot;headerlink&quot; title=&quot;查看用户&quot;&gt;&lt;/a&gt;查看用户&lt;/h2&gt;&lt;p&gt;直接使用&lt;code&gt;whoami&lt;/code&gt;命令可以查看当前登录用户的用户名，此外还有&lt;code&gt;who&lt;/code&gt;命令可以查看更多详细的信息。&lt;/p&gt;
-&lt;h2 id=&quot;u521B_u5EFA_u7528_u6237&quot;&gt;&lt;a href=&quot;#u521B_u5EFA_u7528_u6237&quot; class=&quot;headerlink&quot; title=&quot;创建用户&quot;&gt;&lt;/a&gt;创建用户&lt;/h2&gt;&lt;p&gt;root权限，是系统权限的一种。root是Linux和unix系统中的超级管理员用户帐户，该帐户拥有整个系统至高无上的权力，所有对象他都可以操作，所以很多黑客在入侵系统的时候，都要把权限提升到root权限。root账户就相当于Linux的“上帝”。&lt;/p&gt;
+&lt;h1 id=&quot;Linux用户管理&quot;&gt;&lt;a href=&quot;#Linux用户管理&quot; class=&quot;headerlink&quot; title=&quot;Linux用户管理&quot;&gt;&lt;/a&gt;Linux用户管理&lt;/h1&gt;&lt;h2 id=&quot;查看用户&quot;&gt;&lt;a href=&quot;#查看用户&quot; class=&quot;headerlink&quot; title=&quot;查看用户&quot;&gt;&lt;/a&gt;查看用户&lt;/h2&gt;&lt;p&gt;直接使用&lt;code&gt;whoami&lt;/code&gt;命令可以查看当前登录用户的用户名，此外还有&lt;code&gt;who&lt;/code&gt;命令可以查看更多详细的信息。&lt;/p&gt;
+&lt;h2 id=&quot;创建用户&quot;&gt;&lt;a href=&quot;#创建用户&quot; class=&quot;headerlink&quot; title=&quot;创建用户&quot;&gt;&lt;/a&gt;创建用户&lt;/h2&gt;&lt;p&gt;root权限，是系统权限的一种。root是Linux和unix系统中的超级管理员用户帐户，该帐户拥有整个系统至高无上的权力，所有对象他都可以操作，所以很多黑客在入侵系统的时候，都要把权限提升到root权限。root账户就相当于Linux的“上帝”。&lt;/p&gt;
 &lt;p&gt;一般登录系统时都是以普通账户的身份登录的（即“凡人”）。如果要添加一个用户（上帝造人），那么需要“借用”一下上帝的权力，即使用&lt;code&gt;sudo&lt;/code&gt;命令。使用这个命令有两个大前提，一是你要知道当前登录用户的密码，二是&lt;strong&gt;当前用户必须在sudo用户组&lt;/strong&gt;。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;sudo adduser &amp;lt;user&amp;gt;&lt;/code&gt;：创建一个新用户（默认会自动创建一个同名的用户组），同时会在&lt;code&gt;/home&lt;/code&gt;目录下创建一个对应的文件夹&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;su -l &amp;lt;user&amp;gt;&lt;/code&gt;：切换登录用户&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;exit&lt;/code&gt;（或CTRL+D）：退出当前登录用户&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;u7528_u6237_u7EC4&quot;&gt;&lt;a href=&quot;#u7528_u6237_u7EC4&quot; class=&quot;headerlink&quot; title=&quot;用户组&quot;&gt;&lt;/a&gt;用户组&lt;/h2&gt;&lt;p&gt;在linux里面每个用户都有一个归属（用户组），用户组简单地理解就是一组用户的集合，它们共享一些资源和权限，同时拥有私有资源。一个用户可以属于多个用户组。&lt;/p&gt;
+&lt;h2 id=&quot;用户组&quot;&gt;&lt;a href=&quot;#用户组&quot; class=&quot;headerlink&quot; title=&quot;用户组&quot;&gt;&lt;/a&gt;用户组&lt;/h2&gt;&lt;p&gt;在linux里面每个用户都有一个归属（用户组），用户组简单地理解就是一组用户的集合，它们共享一些资源和权限，同时拥有私有资源。一个用户可以属于多个用户组。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;groups &amp;lt;user&amp;gt;&lt;/code&gt;：查看user属于哪个用户组。输出内容冒号之前表示用户，之后表示该用户所属的用户组。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;cat /etc/group |sort&lt;/code&gt;：输出如下所示。&lt;code&gt;/etc/group&lt;/code&gt;文件内容包括用户组（Group）、用户组口令、GID及该用户组所包含的用户（User），每个用户组一条记录。格式为&lt;code&gt;group_name:password:GID:user_list&lt;/code&gt;，其中密码字段为&lt;em&gt;表示密码不可见。&lt;br&gt; daemon:&lt;/em&gt;:1:root&lt;br&gt; kmem:&lt;em&gt;:2:root&lt;br&gt; sys:&lt;/em&gt;:3:root ……&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;usermod -G &amp;lt;group&amp;gt; &amp;lt;user&amp;gt;&lt;/code&gt;：为用户添加用户组（需要root权限）。可以用这个命令把用户加入sudo组，这样这个用户就能借用root权限。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;deluser &amp;lt;user&amp;gt; --remove-home&lt;/code&gt;：删除用户（需要root权限）。&lt;code&gt;--remove-home&lt;/code&gt;参数表示连带删除home目录下的文件夹。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&quot;Linux_u6587_u4EF6_u6743_u9650&quot;&gt;&lt;a href=&quot;#Linux_u6587_u4EF6_u6743_u9650&quot; class=&quot;headerlink&quot; title=&quot;Linux文件权限&quot;&gt;&lt;/a&gt;Linux文件权限&lt;/h1&gt;&lt;p&gt;&lt;code&gt;ls&lt;/code&gt;命令可以列出当前文件夹的文件，附带参数说明如下：&lt;/p&gt;
+&lt;h1 id=&quot;Linux文件权限&quot;&gt;&lt;a href=&quot;#Linux文件权限&quot; class=&quot;headerlink&quot; title=&quot;Linux文件权限&quot;&gt;&lt;/a&gt;Linux文件权限&lt;/h1&gt;&lt;p&gt;&lt;code&gt;ls&lt;/code&gt;命令可以列出当前文件夹的文件，附带参数说明如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;-l&lt;/code&gt;：以较详细的格式列出文件（如下所示）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-A&lt;/code&gt;：显示除了&lt;code&gt;.&lt;/code&gt;(当前目录)，&lt;code&gt;..&lt;/code&gt;上一级目录之外的包含隐藏文件的所有文件（Linux下以&lt;code&gt;.&lt;/code&gt;开头的文件为隐藏文件）&lt;/li&gt;
@@ -743,8 +732,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;本文记录了Linux终端的一些常用快捷键，通配符意义及如何在命令行中获取帮助。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;Linux_u7EC8_u7AEF&quot;&gt;&lt;a href=&quot;#Linux_u7EC8_u7AEF&quot; class=&quot;headerlink&quot; title=&quot;Linux终端&quot;&gt;&lt;/a&gt;Linux终端&lt;/h1&gt;&lt;h2 id=&quot;u5E38_u7528_u5FEB_u6377_u952E&quot;&gt;&lt;a href=&quot;#u5E38_u7528_u5FEB_u6377_u952E&quot; class=&quot;headerlink&quot; title=&quot;常用快捷键&quot;&gt;&lt;/a&gt;常用快捷键&lt;/h2&gt;&lt;table&gt;
+&lt;h1 id=&quot;Linux终端&quot;&gt;&lt;a href=&quot;#Linux终端&quot; class=&quot;headerlink&quot; title=&quot;Linux终端&quot;&gt;&lt;/a&gt;Linux终端&lt;/h1&gt;&lt;h2 id=&quot;常用快捷键&quot;&gt;&lt;a href=&quot;#常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;常用快捷键&quot;&gt;&lt;/a&gt;常用快捷键&lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&quot;text-align:left&quot;&gt;按键&lt;/th&gt;
@@ -790,7 +778,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id=&quot;u901A_u914D_u7B26&quot;&gt;&lt;a href=&quot;#u901A_u914D_u7B26&quot; class=&quot;headerlink&quot; title=&quot;通配符&quot;&gt;&lt;/a&gt;通配符&lt;/h2&gt;&lt;p&gt;终端里面输入的通配符是由shell处理的，不是由所涉及到命令语句处理的，它只会出现在命令的“参数值”里。当shell在“参数值”中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行代换（路径扩展）；否则就将该通配符作为一个普通字符传递给“命令”，然后再由命令进行处理。总之，通配符 实际上就是一种shell实现的路径扩展功能。在通配符被处理后，shell会先完成该命令的重组，然后再继续处理重组后的命令，直至执行该命令。&lt;/p&gt;
+&lt;h2 id=&quot;通配符&quot;&gt;&lt;a href=&quot;#通配符&quot; class=&quot;headerlink&quot; title=&quot;通配符&quot;&gt;&lt;/a&gt;通配符&lt;/h2&gt;&lt;p&gt;终端里面输入的通配符是由shell处理的，不是由所涉及到命令语句处理的，它只会出现在命令的“参数值”里。当shell在“参数值”中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行代换（路径扩展）；否则就将该通配符作为一个普通字符传递给“命令”，然后再由命令进行处理。总之，通配符 实际上就是一种shell实现的路径扩展功能。在通配符被处理后，shell会先完成该命令的重组，然后再继续处理重组后的命令，直至执行该命令。&lt;/p&gt;
 &lt;p&gt;例如：&lt;code&gt;touch love_{1..10}_linux.txt&lt;/code&gt;可以创建love_1_linux.txt到love_10_linux.txt共10个文件。&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -830,7 +818,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id=&quot;u5728_u547D_u4EE4_u884C_u4E2D_u83B7_u53D6_u5E2E_u52A9&quot;&gt;&lt;a href=&quot;#u5728_u547D_u4EE4_u884C_u4E2D_u83B7_u53D6_u5E2E_u52A9&quot; class=&quot;headerlink&quot; title=&quot;在命令行中获取帮助&quot;&gt;&lt;/a&gt;在命令行中获取帮助&lt;/h2&gt;&lt;p&gt;&lt;code&gt;$ man &amp;lt;command_name&amp;gt;&lt;/code&gt;可以获得某个命令的说明和使用方式的详细介绍。&lt;code&gt;man&lt;/code&gt;命令是Manual page的缩写。使用这个命令显示手册时会进入一个类似VIM的编辑界面，可以使用VIM的快捷键来导航，如&lt;code&gt;/&amp;lt;你要搜索的关键字&amp;gt;&lt;/code&gt;，查找到后你可以使用&lt;code&gt;n&lt;/code&gt;键切换到下一个关键字所在处，&lt;code&gt;shift+n&lt;/code&gt;为上一个关键字所在处。使用&lt;code&gt;Space&lt;/code&gt;翻页，&lt;code&gt;Enter&lt;/code&gt;向下滚动一行，或者使用&lt;code&gt;j&lt;/code&gt;或&lt;code&gt;k&lt;/code&gt;（vim编辑器的移动键）进行向前向后滚动一行。按下&lt;code&gt;h&lt;/code&gt;键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下&lt;code&gt;q&lt;/code&gt;退出。&lt;/p&gt;
+&lt;h2 id=&quot;在命令行中获取帮助&quot;&gt;&lt;a href=&quot;#在命令行中获取帮助&quot; class=&quot;headerlink&quot; title=&quot;在命令行中获取帮助&quot;&gt;&lt;/a&gt;在命令行中获取帮助&lt;/h2&gt;&lt;p&gt;&lt;code&gt;$ man &amp;lt;command_name&amp;gt;&lt;/code&gt;可以获得某个命令的说明和使用方式的详细介绍。&lt;code&gt;man&lt;/code&gt;命令是Manual page的缩写。使用这个命令显示手册时会进入一个类似VIM的编辑界面，可以使用VIM的快捷键来导航，如&lt;code&gt;/&amp;lt;你要搜索的关键字&amp;gt;&lt;/code&gt;，查找到后你可以使用&lt;code&gt;n&lt;/code&gt;键切换到下一个关键字所在处，&lt;code&gt;shift+n&lt;/code&gt;为上一个关键字所在处。使用&lt;code&gt;Space&lt;/code&gt;翻页，&lt;code&gt;Enter&lt;/code&gt;向下滚动一行，或者使用&lt;code&gt;j&lt;/code&gt;或&lt;code&gt;k&lt;/code&gt;（vim编辑器的移动键）进行向前向后滚动一行。按下&lt;code&gt;h&lt;/code&gt;键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下&lt;code&gt;q&lt;/code&gt;退出。&lt;/p&gt;
 &lt;p&gt;man手册的内容很多，为了便于查找，是做了分册（分区段）处理的，在Research Unix、BSD、OS X和Linux中，手册通常被分为8个区段，安排如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一般命令&lt;/li&gt;
@@ -851,7 +839,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
 &lt;li&gt;EXAMPLES（示例）：常用的一些示例。&lt;/li&gt;
 &lt;li&gt;SEE ALSO（参见）：相关命令或函数的列表。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用—help参数，大部分命令都会带有这个参数。&lt;/p&gt;
+&lt;p&gt;想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用–help参数，大部分命令都会带有这个参数。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -878,8 +866,7 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/io-language-1/&quot;&gt;《Io语言特性（上）》&lt;/a&gt;，讲述Io语言的消息，反射和并发。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u6D88_u606F&quot;&gt;&lt;a href=&quot;#1-__u6D88_u606F&quot; class=&quot;headerlink&quot; title=&quot;1. 消息&quot;&gt;&lt;/a&gt;1. 消息&lt;/h1&gt;&lt;h2 id=&quot;1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#1-1__u6D88_u606F_u53CD_u5C04_u4E0Ecall_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.1 消息反射与call方法&quot;&gt;&lt;/a&gt;1.1 消息反射与call方法&lt;/h2&gt;&lt;p&gt;Io语言中除了注释符和参数之间的逗号外，&lt;strong&gt;一切事物都是消息&lt;/strong&gt;。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。&lt;/p&gt;
+&lt;h1 id=&quot;1-消息&quot;&gt;&lt;a href=&quot;#1-消息&quot; class=&quot;headerlink&quot; title=&quot;1. 消息&quot;&gt;&lt;/a&gt;1. 消息&lt;/h1&gt;&lt;h2 id=&quot;1-1-消息反射与call方法&quot;&gt;&lt;a href=&quot;#1-1-消息反射与call方法&quot; class=&quot;headerlink&quot; title=&quot;1.1 消息反射与call方法&quot;&gt;&lt;/a&gt;1.1 消息反射与call方法&lt;/h2&gt;&lt;p&gt;Io语言中除了注释符和参数之间的逗号外，&lt;strong&gt;一切事物都是消息&lt;/strong&gt;。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。&lt;/p&gt;
 &lt;p&gt;消息由三部分组成：发送者（sender）、目标（target）和参数（arguments），消息由发送者发送至目标，然后由目标执行该消息。可以用&lt;code&gt;call&lt;/code&gt;方法访问任何消息的元信息。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; postOffice := Object clone
 // 下面的各个方法可以获取消息的各种元信息
@@ -916,7 +903,7 @@ Object unless := method(
 }
 unless(1 == 2, write(&amp;quot;One is not two\n&amp;quot;), write(&amp;quot;one is two\n&amp;quot;))  // 输出One is not two
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面代码中的&lt;code&gt;doMessage&lt;/code&gt;可以执行任意消息，有点类似于其他语言里面的&lt;code&gt;eval&lt;/code&gt;。Io会对消息参数进行解释，但会延迟绑定和执行。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u5BF9_u8C61_u53CD_u5C04&quot;&gt;&lt;a href=&quot;#1-2__u5BF9_u8C61_u53CD_u5C04&quot; class=&quot;headerlink&quot; title=&quot;1.2 对象反射&quot;&gt;&lt;/a&gt;1.2 对象反射&lt;/h2&gt;&lt;p&gt;下面的代码给Object定义了一个ancestors方法，这个方法会沿着原型链向上查找，输出每个原型的名称以及带有的槽名，直到Object为止。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-对象反射&quot;&gt;&lt;a href=&quot;#1-2-对象反射&quot; class=&quot;headerlink&quot; title=&quot;1.2 对象反射&quot;&gt;&lt;/a&gt;1.2 对象反射&lt;/h2&gt;&lt;p&gt;下面的代码给Object定义了一个ancestors方法，这个方法会沿着原型链向上查找，输出每个原型的名称以及带有的槽名，直到Object为止。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Object ancestors := method(
     prototype := self proto
     if(prototype != Object,
@@ -927,7 +914,7 @@ unless(1 == 2, write(&amp;quot;One is not two\n&amp;quot;), write(&amp;quot;one 
     )
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;1.1的例子是消息反射的例子，处理消息的发送者、目标和消息体；这个例子是对象反射的例子，处理对象和对象的槽。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u5176_u4ED6_u7279_u6027&quot;&gt;&lt;a href=&quot;#2-__u5176_u4ED6_u7279_u6027&quot; class=&quot;headerlink&quot; title=&quot;2. 其他特性&quot;&gt;&lt;/a&gt;2. 其他特性&lt;/h1&gt;&lt;h2 id=&quot;2-1__u9886_u57DF_u7279_u5B9A_u8BED_u8A00_uFF08DSL_uFF09&quot;&gt;&lt;a href=&quot;#2-1__u9886_u57DF_u7279_u5B9A_u8BED_u8A00_uFF08DSL_uFF09&quot; class=&quot;headerlink&quot; title=&quot;2.1 领域特定语言（DSL）&quot;&gt;&lt;/a&gt;2.1 领域特定语言（DSL）&lt;/h2&gt;&lt;p&gt;Io在定义DSL方面的能力非常强大，据说用Io实现C语言的一个子集仅需约40行代码！Io提供了非常多的控制方法来解析语言本身。假如我们想要解析一个普通的&lt;code&gt;test.json&lt;/code&gt;文件：&lt;/p&gt;
+&lt;h1 id=&quot;2-其他特性&quot;&gt;&lt;a href=&quot;#2-其他特性&quot; class=&quot;headerlink&quot; title=&quot;2. 其他特性&quot;&gt;&lt;/a&gt;2. 其他特性&lt;/h1&gt;&lt;h2 id=&quot;2-1-领域特定语言（DSL）&quot;&gt;&lt;a href=&quot;#2-1-领域特定语言（DSL）&quot; class=&quot;headerlink&quot; title=&quot;2.1 领域特定语言（DSL）&quot;&gt;&lt;/a&gt;2.1 领域特定语言（DSL）&lt;/h2&gt;&lt;p&gt;Io在定义DSL方面的能力非常强大，据说用Io实现C语言的一个子集仅需约40行代码！Io提供了非常多的控制方法来解析语言本身。假如我们想要解析一个普通的&lt;code&gt;test.json&lt;/code&gt;文件：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;{
     &amp;quot;name&amp;quot;: &amp;quot;Ray Taylor&amp;quot;,
     &amp;quot;lucky_numbers&amp;quot;: [33, 6],
@@ -979,7 +966,7 @@ json at(&amp;quot;name&amp;quot;) println  // Ray Taylor
 json at(&amp;quot;lucky_numbers&amp;quot;) println  // list(6, 13)
 json at(&amp;quot;job&amp;quot;) at(&amp;quot;title&amp;quot;) println   // Web Front End Developer
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从上面的例子可以看到Io中可以随心所欲把运算符重定义为组成DSL的符号，从而改变Io的语法。&lt;/p&gt;
-&lt;h2 id=&quot;2-2_forward_u65B9_u6CD5&quot;&gt;&lt;a href=&quot;#2-2_forward_u65B9_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;2.2 forward方法&quot;&gt;&lt;/a&gt;2.2 forward方法&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;当你把消息发送给对象时，对象会计算所有参数（参数其实就是消息），获取消息的名称、目标和发送者，然后尝试用目标上的消息名称读取槽。如果槽存在，则返回其数据或触发其包含的方法；否则把消息转发给原型。&lt;/strong&gt;当槽名不存在时，实际会调用系统的forward方法把消息转发给原型，这有点类似Ruby的method_missing，但因为Io没有类，所以改变forward会改变从Object获得基本行为的方式。所以覆盖forward方法的风险要更高一些，但如果用得恰当，会产生非常巧妙的效果。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-forward方法&quot;&gt;&lt;a href=&quot;#2-2-forward方法&quot; class=&quot;headerlink&quot; title=&quot;2.2 forward方法&quot;&gt;&lt;/a&gt;2.2 forward方法&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;当你把消息发送给对象时，对象会计算所有参数（参数其实就是消息），获取消息的名称、目标和发送者，然后尝试用目标上的消息名称读取槽。如果槽存在，则返回其数据或触发其包含的方法；否则把消息转发给原型。&lt;/strong&gt;当槽名不存在时，实际会调用系统的forward方法把消息转发给原型，这有点类似Ruby的method_missing，但因为Io没有类，所以改变forward会改变从Object获得基本行为的方式。所以覆盖forward方法的风险要更高一些，但如果用得恰当，会产生非常巧妙的效果。&lt;/p&gt;
 &lt;p&gt;下面的代码将构造一种新语法来对XML进行处理。这种新语法及对应的XML如图所示：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/Script/利用Io代码来表示XML.png&quot; alt=&quot;利用Io代码来表示XML&quot;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Builder := Object clone
@@ -1003,7 +990,7 @@ Builder ul(
           li(&amp;quot;Lua&amp;quot;),
           li(&amp;quot;Javascript&amp;quot;))   // 输出看起来像HTML ul和li标签的内容
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然这种新语法未必比传统的XML有多大程度的提高，但这例子还是很有指导意义。你可以完全改变一个Io原型的继承运行机制，甚至定义自己的Object原型，并以这个新对象为基础创建其他原型，从而创建出一门和Io行为截然不同的新语言。&lt;/p&gt;
-&lt;h2 id=&quot;2-3__u5E76_u53D1&quot;&gt;&lt;a href=&quot;#2-3__u5E76_u53D1&quot; class=&quot;headerlink&quot; title=&quot;2.3 并发&quot;&gt;&lt;/a&gt;2.3 并发&lt;/h2&gt;&lt;h3 id=&quot;2-3-1__u534F_u7A0B&quot;&gt;&lt;a href=&quot;#2-3-1__u534F_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;2.3.1 协程&quot;&gt;&lt;/a&gt;2.3.1 协程&lt;/h3&gt;&lt;p&gt;协程是并发的基础，它提供了进程的自动挂起和恢复执行的机制。可以把协程想象为带有多个入口和出口的函数，每次遇到&lt;code&gt;yield&lt;/code&gt;都会自动挂起当前进程，把控制权转到另一进程中。通过在消息前加上@或@@，可以异步触发消息，前者返回future（下文讲述），后者返回nil，并在其自身线程中触发消息。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-并发&quot;&gt;&lt;a href=&quot;#2-3-并发&quot; class=&quot;headerlink&quot; title=&quot;2.3 并发&quot;&gt;&lt;/a&gt;2.3 并发&lt;/h2&gt;&lt;h3 id=&quot;2-3-1-协程&quot;&gt;&lt;a href=&quot;#2-3-1-协程&quot; class=&quot;headerlink&quot; title=&quot;2.3.1 协程&quot;&gt;&lt;/a&gt;2.3.1 协程&lt;/h3&gt;&lt;p&gt;协程是并发的基础，它提供了进程的自动挂起和恢复执行的机制。可以把协程想象为带有多个入口和出口的函数，每次遇到&lt;code&gt;yield&lt;/code&gt;都会自动挂起当前进程，把控制权转到另一进程中。通过在消息前加上@或@@，可以异步触发消息，前者返回future（下文讲述），后者返回nil，并在其自身线程中触发消息。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;lilei := Object clone
 lilei talk := method(
     &amp;quot;Hello.&amp;quot; println
@@ -1024,7 +1011,7 @@ lilei @@talk; hanmeimei @@talk
 // 这一行用来等待所有异步消息执行完毕，然后退出程序
 Coroutine currentCoroutine pause
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面这段程序不难理解。通过异步触发两个人的talk，使两个不相干的Object实例并发执行，用yield消息在指定时刻自动把控制权交给另一方法，从而让两个需要彼此协作的进程轻松实现“对话”任务。&lt;/p&gt;
-&lt;h3 id=&quot;2-3-2_actor&quot;&gt;&lt;a href=&quot;#2-3-2_actor&quot; class=&quot;headerlink&quot; title=&quot;2.3.2 actor&quot;&gt;&lt;/a&gt;2.3.2 actor&lt;/h3&gt;&lt;p&gt;actor是通用的并发原语，它可以发送消息、处理消息以及创建其它actor。actor接收到的消息是并发的。一个actor改变其自身的状态，并通过严格控制的队列接触其它actor&lt;/p&gt;
+&lt;h3 id=&quot;2-3-2-actor&quot;&gt;&lt;a href=&quot;#2-3-2-actor&quot; class=&quot;headerlink&quot; title=&quot;2.3.2 actor&quot;&gt;&lt;/a&gt;2.3.2 actor&lt;/h3&gt;&lt;p&gt;actor是通用的并发原语，它可以发送消息、处理消息以及创建其它actor。actor接收到的消息是并发的。一个actor改变其自身的状态，并通过严格控制的队列接触其它actor&lt;/p&gt;
 &lt;p&gt;参考资料：《七周七语言》第3章Io&lt;/p&gt;
 </content>
     
@@ -1041,9 +1028,9 @@ Coroutine currentCoroutine pause
       <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
-    
       <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+    
+      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
     
   </entry>
   
@@ -1056,8 +1043,7 @@ Coroutine currentCoroutine pause
     
     <content type="html">&lt;p&gt;Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;h2 id=&quot;1-1__u521B_u5EFA_u5BF9_u8C61&quot;&gt;&lt;a href=&quot;#1-1__u521B_u5EFA_u5BF9_u8C61&quot; class=&quot;headerlink&quot; title=&quot;1.1 创建对象&quot;&gt;&lt;/a&gt;1.1 创建对象&lt;/h2&gt;&lt;p&gt;面向对象语言中，通常都是通过对某个类调用new创建一个新对象，但在原型语言Io中，不区分类和对象，而是通过复制现有对象创建新对象，现有对象就是原型。&lt;/p&gt;
+&lt;h1 id=&quot;1-基础&quot;&gt;&lt;a href=&quot;#1-基础&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-创建对象&quot;&gt;&lt;a href=&quot;#1-1-创建对象&quot; class=&quot;headerlink&quot; title=&quot;1.1 创建对象&quot;&gt;&lt;/a&gt;1.1 创建对象&lt;/h2&gt;&lt;p&gt;面向对象语言中，通常都是通过对某个类调用new创建一个新对象，但在原型语言Io中，不区分类和对象，而是通过复制现有对象创建新对象，现有对象就是原型。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; &amp;quot;Hello, io&amp;quot; print    // 输出Hello, io
 
 Io&amp;gt; Vehicle := Object clone
@@ -1076,7 +1062,7 @@ Io&amp;gt; Vehicle slotNames
 &lt;li&gt;对象还带有槽（slot），可以把一组槽想象成散列表，通过键可以引用到任何一个槽；可以用&lt;code&gt;:=&lt;/code&gt;或&lt;code&gt;=&lt;/code&gt;给槽赋值，当槽不存在时，前者可以创建出一个槽，后者则会抛出一个异常。&lt;/li&gt;
 &lt;li&gt;通过向对象发送槽的名字，可以获取槽中的值。&lt;code&gt;slotNames&lt;/code&gt;槽是内置的，可以获取一个槽名列表。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&quot;1-2__u539F_u578B_u548C_u7EE7_u627F&quot;&gt;&lt;a href=&quot;#1-2__u539F_u578B_u548C_u7EE7_u627F&quot; class=&quot;headerlink&quot; title=&quot;1.2 原型和继承&quot;&gt;&lt;/a&gt;1.2 原型和继承&lt;/h2&gt;&lt;p&gt;继续上面的代码：&lt;/p&gt;
+&lt;h2 id=&quot;1-2-原型和继承&quot;&gt;&lt;a href=&quot;#1-2-原型和继承&quot; class=&quot;headerlink&quot; title=&quot;1.2 原型和继承&quot;&gt;&lt;/a&gt;1.2 原型和继承&lt;/h2&gt;&lt;p&gt;继续上面的代码：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; Car := Vehicle clone
 Io&amp;gt; Car slotNames
 ==&amp;gt; list(&amp;quot;type&amp;quot;)
@@ -1102,7 +1088,7 @@ Io&amp;gt; ferrari proto  // proto槽输出该对象的原型信息
 ==&amp;gt; Vehicle_0x1003b61f8: ...
 Io&amp;gt; Lobby  // Lobby是主命名空间，包含所有已命名对象
 ==&amp;gt; Object_0x1002184e0: ...
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-3__u96C6_u5408&quot;&gt;&lt;a href=&quot;#1-3__u96C6_u5408&quot; class=&quot;headerlink&quot; title=&quot;1.3 集合&quot;&gt;&lt;/a&gt;1.3 集合&lt;/h2&gt;&lt;p&gt;Io有几种类型的集合：List列表对象是任意类型对象的有序集合，Map对象时键值对的原型，如同Ruby的散列表一样。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-3-集合&quot;&gt;&lt;a href=&quot;#1-3-集合&quot; class=&quot;headerlink&quot; title=&quot;1.3 集合&quot;&gt;&lt;/a&gt;1.3 集合&lt;/h2&gt;&lt;p&gt;Io有几种类型的集合：List列表对象是任意类型对象的有序集合，Map对象时键值对的原型，如同Ruby的散列表一样。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; todos := list(1, 2, 3)  // 由Object对象的list方法可以把传入参数包装起来创建列表
 Io&amp;gt; todos size  // 获取列表大小
 Io&amp;gt; todos append(4)  // 追加元素
@@ -1111,11 +1097,11 @@ Io&amp;gt; elvis := Map clone  // 映射没有语法糖，所以只能从Map clo
 Io&amp;gt; elvis atPut(&amp;quot;home&amp;quot;, &amp;quot;Graceland&amp;quot;)  // 创建一个键值对
 Io&amp;gt; elvis at(&amp;quot;home&amp;quot;) ==&amp;gt; Graceland
 Io&amp;gt; elvis asObject  // 将散列表转换为对象，key则相应转换为对象的槽
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-4_true_u3001false_u3001nil_u548C_u5355_u4F8B&quot;&gt;&lt;a href=&quot;#1-4_true_u3001false_u3001nil_u548C_u5355_u4F8B&quot; class=&quot;headerlink&quot; title=&quot;1.4 true、false、nil和单例&quot;&gt;&lt;/a&gt;1.4 true、false、nil和单例&lt;/h2&gt;&lt;p&gt;Io条件判断和其他语言基本一致，都有&lt;code&gt;true&lt;/code&gt;、&lt;code&gt;false&lt;/code&gt;、&lt;code&gt;and&lt;/code&gt;、&lt;code&gt;or&lt;/code&gt;等关键字。注意：和Ruby一样0是true。有趣的地方在于，调用&lt;code&gt;true clone&lt;/code&gt;依旧会返回&lt;code&gt;true&lt;/code&gt;，&lt;code&gt;false&lt;/code&gt;和&lt;code&gt;nil&lt;/code&gt;也一样，这三个东西都是单例，对它们进行复制，返回的就是单例对象本身的值。要创建一个单例非常简单：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-4-true、false、nil和单例&quot;&gt;&lt;a href=&quot;#1-4-true、false、nil和单例&quot; class=&quot;headerlink&quot; title=&quot;1.4 true、false、nil和单例&quot;&gt;&lt;/a&gt;1.4 true、false、nil和单例&lt;/h2&gt;&lt;p&gt;Io条件判断和其他语言基本一致，都有&lt;code&gt;true&lt;/code&gt;、&lt;code&gt;false&lt;/code&gt;、&lt;code&gt;and&lt;/code&gt;、&lt;code&gt;or&lt;/code&gt;等关键字。注意：和Ruby一样0是true。有趣的地方在于，调用&lt;code&gt;true clone&lt;/code&gt;依旧会返回&lt;code&gt;true&lt;/code&gt;，&lt;code&gt;false&lt;/code&gt;和&lt;code&gt;nil&lt;/code&gt;也一样，这三个东西都是单例，对它们进行复制，返回的就是单例对象本身的值。要创建一个单例非常简单：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Singleton := Object clone
 Singleton clone := Singleton
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通过重定义Singleton的clone槽，让其返回自身，而不是像往常那样让请求沿着对象原型链向上传递最终到达Object对象，这样就可以实现单例。Io也是一门灵活性极高的语言，例如&lt;code&gt;Object clone := &amp;quot;broken&amp;quot;&lt;/code&gt;可以使得Io再也无法创建对象，这种情况无法修复，只能终止进程。同Ruby一样，高灵活性是一把双刃剑，但如果运用得好，完全可以用几行漂亮的代码就实现一些&lt;em&gt;领域特定语言&lt;/em&gt;（domain-specific language, DSL）。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u57FA_u672C_u63A7_u5236_u7ED3_u6784&quot;&gt;&lt;a href=&quot;#2-__u57FA_u672C_u63A7_u5236_u7ED3_u6784&quot; class=&quot;headerlink&quot; title=&quot;2. 基本控制结构&quot;&gt;&lt;/a&gt;2. 基本控制结构&lt;/h1&gt;&lt;h2 id=&quot;2-1__u5FAA_u73AF_u548C_u6761_u4EF6&quot;&gt;&lt;a href=&quot;#2-1__u5FAA_u73AF_u548C_u6761_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;2.1 循环和条件&quot;&gt;&lt;/a&gt;2.1 循环和条件&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Io&amp;gt; loop(&amp;quot;infinite loop&amp;quot;, println)  // 无限循环输出，可以Ctrl+C中断
+&lt;h1 id=&quot;2-基本控制结构&quot;&gt;&lt;a href=&quot;#2-基本控制结构&quot; class=&quot;headerlink&quot; title=&quot;2. 基本控制结构&quot;&gt;&lt;/a&gt;2. 基本控制结构&lt;/h1&gt;&lt;h2 id=&quot;2-1-循环和条件&quot;&gt;&lt;a href=&quot;#2-1-循环和条件&quot; class=&quot;headerlink&quot; title=&quot;2.1 循环和条件&quot;&gt;&lt;/a&gt;2.1 循环和条件&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Io&amp;gt; loop(&amp;quot;infinite loop&amp;quot;, println)  // 无限循环输出，可以Ctrl+C中断
 Io&amp;gt; while(i &amp;lt;= 11, i println; i = i + 1)  // while循环接受2个参数，一个循环条件参数和一个用来求值的消息。分号可以把两个不同的消息连接起来
 Io&amp;gt; for(i, 1, 11, 2, i println)  // 输出1 3 5 7 9 11
 // 控制结构以函数形式实现，形式为if(condition, true code, false code)
@@ -1124,7 +1110,7 @@ Io&amp;gt; if(true, &amp;quot;true&amp;quot;, &amp;quot;false&amp;quot;)
 Io&amp;gt; if(false) then(&amp;quot;true&amp;quot; println) else(&amp;quot;false&amp;quot; println)
 false
 ==&amp;gt; nil
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-2__u8FD0_u7B97_u7B26&quot;&gt;&lt;a href=&quot;#2-2__u8FD0_u7B97_u7B26&quot; class=&quot;headerlink&quot; title=&quot;2.2 运算符&quot;&gt;&lt;/a&gt;2.2 运算符&lt;/h2&gt;&lt;p&gt;在Io中，调用&lt;code&gt;OperatorTable&lt;/code&gt;可以看到运算符表，可以看到赋值是另一种类型的运算符。运算符左边的数字代表优先级，参数优先绑定到优先级靠近0的运算符上。下面的代码自定义了一个运算符&lt;code&gt;xor&lt;/code&gt;：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-2-运算符&quot;&gt;&lt;a href=&quot;#2-2-运算符&quot; class=&quot;headerlink&quot; title=&quot;2.2 运算符&quot;&gt;&lt;/a&gt;2.2 运算符&lt;/h2&gt;&lt;p&gt;在Io中，调用&lt;code&gt;OperatorTable&lt;/code&gt;可以看到运算符表，可以看到赋值是另一种类型的运算符。运算符左边的数字代表优先级，参数优先绑定到优先级靠近0的运算符上。下面的代码自定义了一个运算符&lt;code&gt;xor&lt;/code&gt;：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Io&amp;gt; OperatorTable addOperator(&amp;quot;xor&amp;quot;, 11)
 ==&amp;gt; OperatorTable_0x100296098
 Operators
@@ -1167,9 +1153,9 @@ Io&amp;gt; false xor true
       <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
-    
       <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+    
+      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
     
   </entry>
   
@@ -1182,8 +1168,7 @@ Io&amp;gt; false xor true
     
     <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/ruby-language-1/&quot;&gt;《Ruby语言特性（上）》&lt;/a&gt;讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09&quot;&gt;&lt;a href=&quot;#1-__u6A21_u5757_u4E0E_u6DF7_u5165_uFF08Mixin_uFF09&quot; class=&quot;headerlink&quot; title=&quot;1. 模块与混入（Mixin）&quot;&gt;&lt;/a&gt;1. 模块与混入（Mixin）&lt;/h1&gt;&lt;p&gt;面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。&lt;/p&gt;
+&lt;h1 id=&quot;1-模块与混入（Mixin）&quot;&gt;&lt;a href=&quot;#1-模块与混入（Mixin）&quot; class=&quot;headerlink&quot; title=&quot;1. 模块与混入（Mixin）&quot;&gt;&lt;/a&gt;1. 模块与混入（Mixin）&lt;/h1&gt;&lt;p&gt;面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# 定义模块ToFile
 module ToFile
   # 获取文件名
@@ -1222,8 +1207,8 @@ a.collect {|i| i * 2} =&amp;gt; [10, 6, 8, 2]
 a.select {|i| i % 2 == 0} =&amp;gt; [4]
 a.member?(2) =&amp;gt; false
 a.inject {|product, i| product * i} =&amp;gt; 60  # 第一个参数是代码块上一次执行的结果，若不设初始值，则使用列表第一个值作为初始值
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-__u5143_u7F16_u7A0B_uFF08metaprogramming_uFF09&quot;&gt;&lt;a href=&quot;#2-__u5143_u7F16_u7A0B_uFF08metaprogramming_uFF09&quot; class=&quot;headerlink&quot; title=&quot;2. 元编程（metaprogramming）&quot;&gt;&lt;/a&gt;2. 元编程（metaprogramming）&lt;/h1&gt;&lt;p&gt;所谓元编程，说白了就是“写能写程序的程序”，这说起来有点拗口，下面会通过实例来讲解。&lt;/p&gt;
-&lt;h2 id=&quot;2-1__u5F00_u653E_u7C7B&quot;&gt;&lt;a href=&quot;#2-1__u5F00_u653E_u7C7B&quot; class=&quot;headerlink&quot; title=&quot;2.1 开放类&quot;&gt;&lt;/a&gt;2.1 开放类&lt;/h2&gt;&lt;p&gt;可以重定义Ruby中的任何类，并给它们扩充任何你想要的方法，甚至能让Ruby完全瘫痪，比如重定义Class.new方法。对于开发类来说，这种权衡主要考虑了自由，有这种重定义任何类或对象的自由，就能写出即为通俗易懂的代码，但也要明白，自由越大、能力越强，担负的责任也越重。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-元编程（metaprogramming）&quot;&gt;&lt;a href=&quot;#2-元编程（metaprogramming）&quot; class=&quot;headerlink&quot; title=&quot;2. 元编程（metaprogramming）&quot;&gt;&lt;/a&gt;2. 元编程（metaprogramming）&lt;/h1&gt;&lt;p&gt;所谓元编程，说白了就是“写能写程序的程序”，这说起来有点拗口，下面会通过实例来讲解。&lt;/p&gt;
+&lt;h2 id=&quot;2-1-开放类&quot;&gt;&lt;a href=&quot;#2-1-开放类&quot; class=&quot;headerlink&quot; title=&quot;2.1 开放类&quot;&gt;&lt;/a&gt;2.1 开放类&lt;/h2&gt;&lt;p&gt;可以重定义Ruby中的任何类，并给它们扩充任何你想要的方法，甚至能让Ruby完全瘫痪，比如重定义Class.new方法。对于开发类来说，这种权衡主要考虑了自由，有这种重定义任何类或对象的自由，就能写出即为通俗易懂的代码，但也要明白，自由越大、能力越强，担负的责任也越重。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Numeric
   def inches
     self
@@ -1242,7 +1227,7 @@ a.inject {|product, i| product * i} =&amp;gt; 60  # 第一个参数是代码块�
   end
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的代码通过开放Numeric类，就可以像这样采用最简单的语法实现用英寸表示距离：&lt;code&gt;puts 10.miles.back&lt;/code&gt;，&lt;code&gt;puts 2.feet.forward&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u4F7F_u7528method_missing&quot;&gt;&lt;a href=&quot;#2-2__u4F7F_u7528method_missing&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用method_missing&quot;&gt;&lt;/a&gt;2.2 使用method_missing&lt;/h2&gt;&lt;p&gt;Ruby找不到某个方法时，会调用一个特殊的回调方法&lt;code&gt;method_missing&lt;/code&gt;显示诊断信息。通过覆盖这个特殊方法，可以实现一些非常有趣且强大的功能。下面这个示例展示了如何用简洁的语法来实现罗马数字。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-使用method-missing&quot;&gt;&lt;a href=&quot;#2-2-使用method-missing&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用method_missing&quot;&gt;&lt;/a&gt;2.2 使用method_missing&lt;/h2&gt;&lt;p&gt;Ruby找不到某个方法时，会调用一个特殊的回调方法&lt;code&gt;method_missing&lt;/code&gt;显示诊断信息。通过覆盖这个特殊方法，可以实现一些非常有趣且强大的功能。下面这个示例展示了如何用简洁的语法来实现罗马数字。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Roman
   # 覆盖self.method_missing方法
   def self.method_missing name, *args
@@ -1264,7 +1249,7 @@ puts Roman.III  # =&amp;gt; 3
 puts Roman.XII  # =&amp;gt; 12
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们没有给Roman类定义什么实际的方法，但已经可以Roman类来表示任何罗马数字！其原理就是在没有找到定义方法时，把方法名称和参数传给&lt;code&gt;method_missing&lt;/code&gt;执行。首先调用&lt;code&gt;to_s&lt;/code&gt;把方法名转为字符串，然后将罗马数字“左减”特殊形式转换为“右加”形式（更容易计数），最后统计各个符号的个数和加权。&lt;/p&gt;
 &lt;p&gt;当然，如此强有力的工具也有其代价：类调试起来会更加困难，因为Ruby再也不会告诉你找不到某个方法。因此&lt;code&gt;method_missing&lt;/code&gt;是一把双刃剑，它确实可以让语法大大简化，但是要以人为地加强程序的健壮性为前提。&lt;/p&gt;
-&lt;h2 id=&quot;2-3__u4F7F_u7528_u6A21_u5757&quot;&gt;&lt;a href=&quot;#2-3__u4F7F_u7528_u6A21_u5757&quot; class=&quot;headerlink&quot; title=&quot;2.3 使用模块&quot;&gt;&lt;/a&gt;2.3 使用模块&lt;/h2&gt;&lt;p&gt;Ruby最流行的元编程方式，非模块莫属。下面的代码讲述如何用模块的方式扩展一个可以读取csv文件的类。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-使用模块&quot;&gt;&lt;a href=&quot;#2-3-使用模块&quot; class=&quot;headerlink&quot; title=&quot;2.3 使用模块&quot;&gt;&lt;/a&gt;2.3 使用模块&lt;/h2&gt;&lt;p&gt;Ruby最流行的元编程方式，非模块莫属。下面的代码讲述如何用模块的方式扩展一个可以读取csv文件的类。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;module ActsAsCsv
 
   # 只要某个模块被另一模块include，就会调用被include模块的included方法
@@ -1308,7 +1293,7 @@ puts m.headers.inspect
 puts m.csv_contents.inspect
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上述代码中RubyCsv包含了ActsAsCsv，所以ActsAsCsv的included方法中，base就指RubyCsv，ActsAsCsv模块给RubyCsv类添加了唯一一个类方法&lt;code&gt;acts_as_csv&lt;/code&gt;，这个方法又打开RubyCsv类，并在类中包含了所有实例方法。如此这般，就写了一个会写程序的程序（通过模块来动态添加类方法）。&lt;/p&gt;
 &lt;p&gt;一些出色的Ruby框架，如Builder和ActiveRecord，都会为了改善可读性而特别依赖元编程。借助元编程的威力，可以做到尽量缩短正确的Ruby语法与日常用于之间的距离。注意一切都是为了提升代码可读性而服务。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u603B_u7ED3&quot;&gt;&lt;a href=&quot;#3-__u603B_u7ED3&quot; class=&quot;headerlink&quot; title=&quot;3. 总结&quot;&gt;&lt;/a&gt;3. 总结&lt;/h1&gt;&lt;p&gt;Ruby的纯面向对象可以让你用一致的方式来处理对象。鸭子类型根据对象可提供的方法，而不是对象的继承层次，实现了更切合实际的多态设计。Ruby的模块和开放类，使程序员能把行为紧密结合到语法上，大大超越了类中定义的传统方法和实例变量。&lt;/p&gt;
+&lt;h1 id=&quot;3-总结&quot;&gt;&lt;a href=&quot;#3-总结&quot; class=&quot;headerlink&quot; title=&quot;3. 总结&quot;&gt;&lt;/a&gt;3. 总结&lt;/h1&gt;&lt;p&gt;Ruby的纯面向对象可以让你用一致的方式来处理对象。鸭子类型根据对象可提供的方法，而不是对象的继承层次，实现了更切合实际的多态设计。Ruby的模块和开放类，使程序员能把行为紧密结合到语法上，大大超越了类中定义的传统方法和实例变量。&lt;/p&gt;
 &lt;p&gt;核心优势：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;优雅的语法和强大的灵活性&lt;/strong&gt;&lt;/li&gt;
@@ -1337,9 +1322,9 @@ puts m.csv_contents.inspect
       <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
-    
       <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+    
+      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
     
   </entry>
   
@@ -1352,8 +1337,7 @@ puts m.csv_contents.inspect
     
     <content type="html">&lt;p&gt;Ruby是一种解释型、面向对象、动态类型的语言。Ruby采取的策略是在灵活性和运行时安全之间寻找平衡点。随着Rails框架的出现，Ruby也在2006年前后一鸣惊人，同时也指引人们重新找回编程乐趣。尽管从执行速度上说，Ruby谈不上有多高效，但它却能让程序员的编程效率大幅提高。本文将讲述Ruby语言的基础语言特性，包括基本的语法及代码块和类的定义。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u57FA_u7840&quot;&gt;&lt;a href=&quot;#1-__u57FA_u7840&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;p&gt;在Ruby交互命令行中输入以下命令（&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;为命令行提示符，&lt;code&gt;=&amp;gt;&lt;/code&gt;为返回值；下文将把&lt;code&gt;=&amp;gt;&lt;/code&gt;符号和语句写在一行内表明其返回值）：&lt;/p&gt;
+&lt;h1 id=&quot;1-基础&quot;&gt;&lt;a href=&quot;#1-基础&quot; class=&quot;headerlink&quot; title=&quot;1. 基础&quot;&gt;&lt;/a&gt;1. 基础&lt;/h1&gt;&lt;p&gt;在Ruby交互命令行中输入以下命令（&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;为命令行提示符，&lt;code&gt;=&amp;gt;&lt;/code&gt;为返回值；下文将把&lt;code&gt;=&amp;gt;&lt;/code&gt;符号和语句写在一行内表明其返回值）：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt; puts &amp;apos;hello, world&amp;apos;
 hello, world
 =&amp;gt; nil
@@ -1365,8 +1349,8 @@ hello, world
 hello, Ruby
 =&amp;gt; nil
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上代码使用&lt;code&gt;puts&lt;/code&gt;输出，给变量赋值，并用&lt;code&gt;#{}&lt;/code&gt;的语法实现字符串替换。这表明Ruby是解释执行的；变量无需声明即可直接初始化和赋值；每条Ruby代码都会返回某个值；单引号包含的字符串表示它将直接被解释，双引号包含的字符串会引发字符串替换。&lt;/p&gt;
-&lt;h2 id=&quot;1-1__u7F16_u7A0B_u6A21_u578B&quot;&gt;&lt;a href=&quot;#1-1__u7F16_u7A0B_u6A21_u578B&quot; class=&quot;headerlink&quot; title=&quot;1.1 编程模型&quot;&gt;&lt;/a&gt;1.1 编程模型&lt;/h2&gt;&lt;p&gt;Ruby是一门纯面向对象语言，在Ruby中一切皆为对象，可以用“.”调用对象具有的方法，可以通过&lt;code&gt;class&lt;/code&gt;和&lt;code&gt;methods&lt;/code&gt;方法查看对象的类型及支持的方法，如&lt;code&gt;4.class =&amp;gt; Fixnum&lt;/code&gt;，&lt;code&gt;7.methods =&amp;gt; [&amp;quot;inspect&amp;quot;, &amp;quot;%&amp;quot;, &amp;quot;&amp;lt;&amp;lt;&amp;quot;, &amp;quot;numerator&amp;quot;, ...]&lt;/code&gt;，&lt;code&gt;false.class =&amp;gt; FalseClass&lt;/code&gt;（方括号表示数组）。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u6D41_u7A0B_u63A7_u5236&quot;&gt;&lt;a href=&quot;#1-2__u6D41_u7A0B_u63A7_u5236&quot; class=&quot;headerlink&quot; title=&quot;1.2 流程控制&quot;&gt;&lt;/a&gt;1.2 流程控制&lt;/h2&gt;&lt;p&gt;条件判断有正常的块形式，也有简单明了的单行形式；除了常见的if语句外，还有unless语句（等价于if not，但可读性更强）。同理，循环也有正常的块形式和单行形式。注意：&lt;strong&gt;除了nil和false之外，其他值都代表true，包括0！&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-1-编程模型&quot;&gt;&lt;a href=&quot;#1-1-编程模型&quot; class=&quot;headerlink&quot; title=&quot;1.1 编程模型&quot;&gt;&lt;/a&gt;1.1 编程模型&lt;/h2&gt;&lt;p&gt;Ruby是一门纯面向对象语言，在Ruby中一切皆为对象，可以用“.”调用对象具有的方法，可以通过&lt;code&gt;class&lt;/code&gt;和&lt;code&gt;methods&lt;/code&gt;方法查看对象的类型及支持的方法，如&lt;code&gt;4.class =&amp;gt; Fixnum&lt;/code&gt;，&lt;code&gt;7.methods =&amp;gt; [&amp;quot;inspect&amp;quot;, &amp;quot;%&amp;quot;, &amp;quot;&amp;lt;&amp;lt;&amp;quot;, &amp;quot;numerator&amp;quot;, ...]&lt;/code&gt;，&lt;code&gt;false.class =&amp;gt; FalseClass&lt;/code&gt;（方括号表示数组）。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-流程控制&quot;&gt;&lt;a href=&quot;#1-2-流程控制&quot; class=&quot;headerlink&quot; title=&quot;1.2 流程控制&quot;&gt;&lt;/a&gt;1.2 流程控制&lt;/h2&gt;&lt;p&gt;条件判断有正常的块形式，也有简单明了的单行形式；除了常见的if语句外，还有unless语句（等价于if not，但可读性更强）。同理，循环也有正常的块形式和单行形式。注意：&lt;strong&gt;除了nil和false之外，其他值都代表true，包括0！&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# 块形式
 if x == 4
   puts &amp;apos;This is 4.&amp;apos;
@@ -1376,21 +1360,21 @@ puts &amp;apos;This is false.&amp;apos; unless true
 x = x + 1 while x &amp;lt; 10 # x的结果为10
 x = x - 1 until x == 1 # x的结果为1
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;和其他C家族的语言差不多，Ruby的逻辑运算符&lt;code&gt;and&lt;/code&gt;（&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;）、&lt;code&gt;or&lt;/code&gt;（&lt;code&gt;||&lt;/code&gt;）都自带短路功能，若想执行整个表达式，可以用&lt;code&gt;&amp;amp;&lt;/code&gt;或&lt;code&gt;|&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&quot;1-3__u9E2D_u5B50_u7C7B_u578B&quot;&gt;&lt;a href=&quot;#1-3__u9E2D_u5B50_u7C7B_u578B&quot; class=&quot;headerlink&quot; title=&quot;1.3 鸭子类型&quot;&gt;&lt;/a&gt;1.3 鸭子类型&lt;/h2&gt;&lt;p&gt;执行&lt;code&gt;4 + &amp;#39;four&amp;#39;&lt;/code&gt;会出现TypeError的错误，说明Ruby是强类型语言，在发生类型冲突时，将得到一个错误。如果把个语句放在&lt;code&gt;def...end&lt;/code&gt;函数定义中，则只有在调用函数时才会报错，说明Ruby在运行时而非编译时进行类型检查，这称为&lt;strong&gt;动态类型&lt;/strong&gt;。Ruby的类型系统有自己的潜在优势，即多个类不必继承自相同的父类就能以“多态”的方式使用：&lt;/p&gt;
+&lt;h2 id=&quot;1-3-鸭子类型&quot;&gt;&lt;a href=&quot;#1-3-鸭子类型&quot; class=&quot;headerlink&quot; title=&quot;1.3 鸭子类型&quot;&gt;&lt;/a&gt;1.3 鸭子类型&lt;/h2&gt;&lt;p&gt;执行&lt;code&gt;4 + &amp;#39;four&amp;#39;&lt;/code&gt;会出现TypeError的错误，说明Ruby是强类型语言，在发生类型冲突时，将得到一个错误。如果把个语句放在&lt;code&gt;def...end&lt;/code&gt;函数定义中，则只有在调用函数时才会报错，说明Ruby在运行时而非编译时进行类型检查，这称为&lt;strong&gt;动态类型&lt;/strong&gt;。Ruby的类型系统有自己的潜在优势，即多个类不必继承自相同的父类就能以“多态”的方式使用：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;a = [&amp;apos;100&amp;apos;, 100.0]
 puts a[0].to_i  # =&amp;gt; 100
 puts a[1].to_i  # =&amp;gt; 100
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这就是所谓的“鸭子类型”（duck typing）。数组的第一个元素是String类型，第二个元素是Float类型，但转换成整数用的都是&lt;code&gt;to_i&lt;/code&gt;。鸭子类型并不在乎其内在类型是什么，只要一个对象像鸭子一样走路，像鸭子一样嘎嘎叫，那它就是只鸭子。在面向对象设计思想中，有一个重要原则：对接口编码，不对实现编码。如果利用鸭子类型，实现这一原则只需极少的额外工作，就能轻松完成。&lt;/p&gt;
-&lt;h2 id=&quot;1-4__u51FD_u6570&quot;&gt;&lt;a href=&quot;#1-4__u51FD_u6570&quot; class=&quot;headerlink&quot; title=&quot;1.4 函数&quot;&gt;&lt;/a&gt;1.4 函数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;def tell_the_truth
+&lt;h2 id=&quot;1-4-函数&quot;&gt;&lt;a href=&quot;#1-4-函数&quot; class=&quot;headerlink&quot; title=&quot;1.4 函数&quot;&gt;&lt;/a&gt;1.4 函数&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;def tell_the_truth
   true
 end
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;每个函数都会返回结果，如果没有显式指定返回值，函数就将退出函数前最后处理的表达式的值返回。函数也是个对象，可以作为参数传给其他函数。&lt;/p&gt;
-&lt;h2 id=&quot;1-5__u6570_u7EC4&quot;&gt;&lt;a href=&quot;#1-5__u6570_u7EC4&quot; class=&quot;headerlink&quot; title=&quot;1.5 数组&quot;&gt;&lt;/a&gt;1.5 数组&lt;/h2&gt;&lt;p&gt;和Python一样，Ruby的数组也是用中括号来定义，如&lt;code&gt;animals = [&amp;#39;lion&amp;#39;, &amp;#39;tiger&amp;#39;, &amp;#39;bear&amp;#39;]&lt;/code&gt;；负数下标可以返回倒数的元素，如&lt;code&gt;animals[-1] =&amp;gt; &amp;quot;bear&amp;quot;&lt;/code&gt;；通过指定一个Range对象来获取一个区段的元素，如&lt;code&gt;animals[1..2] =&amp;gt; [&amp;#39;tiger&amp;#39;, &amp;#39;bear&amp;#39;]&lt;/code&gt;。此外，数组元素可以互不相同，多为数组也不过是数组的数组。数组拥有极其丰富的API，可用其实现队列、链表、栈、集合等等。&lt;/p&gt;
-&lt;h2 id=&quot;1-6__u6563_u5217_u8868&quot;&gt;&lt;a href=&quot;#1-6__u6563_u5217_u8868&quot; class=&quot;headerlink&quot; title=&quot;1.6 散列表&quot;&gt;&lt;/a&gt;1.6 散列表&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;numbers = {2 =&amp;gt; &amp;apos;two&amp;apos;, 5 =&amp;gt; &amp;apos;five&amp;apos;}
+&lt;h2 id=&quot;1-5-数组&quot;&gt;&lt;a href=&quot;#1-5-数组&quot; class=&quot;headerlink&quot; title=&quot;1.5 数组&quot;&gt;&lt;/a&gt;1.5 数组&lt;/h2&gt;&lt;p&gt;和Python一样，Ruby的数组也是用中括号来定义，如&lt;code&gt;animals = [&amp;#39;lion&amp;#39;, &amp;#39;tiger&amp;#39;, &amp;#39;bear&amp;#39;]&lt;/code&gt;；负数下标可以返回倒数的元素，如&lt;code&gt;animals[-1] =&amp;gt; &amp;quot;bear&amp;quot;&lt;/code&gt;；通过指定一个Range对象来获取一个区段的元素，如&lt;code&gt;animals[1..2] =&amp;gt; [&amp;#39;tiger&amp;#39;, &amp;#39;bear&amp;#39;]&lt;/code&gt;。此外，数组元素可以互不相同，多为数组也不过是数组的数组。数组拥有极其丰富的API，可用其实现队列、链表、栈、集合等等。&lt;/p&gt;
+&lt;h2 id=&quot;1-6-散列表&quot;&gt;&lt;a href=&quot;#1-6-散列表&quot; class=&quot;headerlink&quot; title=&quot;1.6 散列表&quot;&gt;&lt;/a&gt;1.6 散列表&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;numbers = {2 =&amp;gt; &amp;apos;two&amp;apos;, 5 =&amp;gt; &amp;apos;five&amp;apos;}
 stuff = {:array =&amp;gt; [1, 2, 3], :string =&amp;gt; &amp;apos;Hi, mom!&amp;apos;}
 # stuff[:string] =&amp;gt; &amp;quot;Hi, mom!&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;散列表可以带任何类型的键，上述代码的stuff的键较为特殊——它是一个符号（symbol），前面带有冒号标识符。符号在给事物和概念命名时很好用，例如两个同值字符串在物理上不同，但相同的符号却是同一物理对象，可以通过反复调用&lt;code&gt;&amp;#39;i am string&amp;#39;.object_id&lt;/code&gt;和&lt;code&gt;:symbol.object_id&lt;/code&gt;来观察。另外，当散列表用作函数最后一个参数时，大括号可有可无，如&lt;code&gt;tell_the_truth :profession =&amp;gt; :lawyer&lt;/code&gt;。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u9762_u5411_u5BF9_u8C61&quot;&gt;&lt;a href=&quot;#2-__u9762_u5411_u5BF9_u8C61&quot; class=&quot;headerlink&quot; title=&quot;2. 面向对象&quot;&gt;&lt;/a&gt;2. 面向对象&lt;/h1&gt;&lt;h2 id=&quot;2-1__u4EE3_u7801_u5757&quot;&gt;&lt;a href=&quot;#2-1__u4EE3_u7801_u5757&quot; class=&quot;headerlink&quot; title=&quot;2.1 代码块&quot;&gt;&lt;/a&gt;2.1 代码块&lt;/h2&gt;&lt;p&gt;代码块是没有名字的函数（匿名函数），可以用作参数传递给函数。代码块只占一行时用大括号包起来，占多行是用do/end包起来，可以带若干个参数。&lt;/p&gt;
+&lt;h1 id=&quot;2-面向对象&quot;&gt;&lt;a href=&quot;#2-面向对象&quot; class=&quot;headerlink&quot; title=&quot;2. 面向对象&quot;&gt;&lt;/a&gt;2. 面向对象&lt;/h1&gt;&lt;h2 id=&quot;2-1-代码块&quot;&gt;&lt;a href=&quot;#2-1-代码块&quot; class=&quot;headerlink&quot; title=&quot;2.1 代码块&quot;&gt;&lt;/a&gt;2.1 代码块&lt;/h2&gt;&lt;p&gt;代码块是没有名字的函数（匿名函数），可以用作参数传递给函数。代码块只占一行时用大括号包起来，占多行是用do/end包起来，可以带若干个参数。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;3.times {puts &amp;apos;hehe&amp;apos;}  # 输出3行hehe
 [&amp;apos;lion&amp;apos;, &amp;apos;tiger&amp;apos;, &amp;apos;bear&amp;apos;].each {|animal| puts animal} # 输出列表的内容
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的&lt;code&gt;times&lt;/code&gt;实际上是Fixnum类型的方法，要自己实现这样一个方法非常容易：&lt;/p&gt;
@@ -1405,7 +1389,7 @@ stuff = {:array =&amp;gt; [1, 2, 3], :string =&amp;gt; &amp;apos;Hi, mom!&amp;ap
 end
 3.my_times {puts &amp;apos;hehe&amp;apos;}  # 输出3行hehe
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这段代码打开一个现有的类，向其中添加一个自定义的&lt;code&gt;my_times&lt;/code&gt;方法，并用&lt;code&gt;yield&lt;/code&gt;调用代码块。在Ruby中，代码块不仅可用于循环，还可用于延迟执行，即代码块中的行为只有等到调用相关的yield时才会执行。代码块充斥于Ruby的各种库，小到文件的每一行，大到在集合上进行各种复杂操作，都是由代码块来完成的。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u7C7B&quot;&gt;&lt;a href=&quot;#2-2__u7C7B&quot; class=&quot;headerlink&quot; title=&quot;2.2 类&quot;&gt;&lt;/a&gt;2.2 类&lt;/h2&gt;&lt;p&gt;调用一个对象的&lt;code&gt;class&lt;/code&gt;方法可以查看其类型，调用&lt;code&gt;superclass&lt;/code&gt;可以查看这个类型的父类。下图展示了数字的继承链，其中横向箭头表示右边是左边实例化的对象，纵向箭头表示下边继承于上边。Ruby的一切事物都有一个共同的祖先Object。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-类&quot;&gt;&lt;a href=&quot;#2-2-类&quot; class=&quot;headerlink&quot; title=&quot;2.2 类&quot;&gt;&lt;/a&gt;2.2 类&lt;/h2&gt;&lt;p&gt;调用一个对象的&lt;code&gt;class&lt;/code&gt;方法可以查看其类型，调用&lt;code&gt;superclass&lt;/code&gt;可以查看这个类型的父类。下图展示了数字的继承链，其中横向箭头表示右边是左边实例化的对象，纵向箭头表示下边继承于上边。Ruby的一切事物都有一个共同的祖先Object。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/Script/Ruby数字的继承链.png&quot; alt=&quot;Ruby数字的继承链&quot;&gt;&lt;/p&gt;
 &lt;p&gt;最后通过一个完整的实例——定义一棵树，来看下Ruby的类如何定义和使用，该注意的点都写在注释里面了。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;class Tree
@@ -1461,9 +1445,9 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
       <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
-    
       <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
+    
+      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
     
   </entry>
   
@@ -1476,18 +1460,17 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     
     <content type="html">&lt;p&gt;当谈到Web的“高性能”时，很多人想到的是&lt;em&gt;页面加载时间&lt;/em&gt;，但其实性能不仅仅是指加载时间，还包括&lt;em&gt;浏览器性能&lt;/em&gt;、&lt;em&gt;网络性能&lt;/em&gt;、&lt;em&gt;开发效率&lt;/em&gt;。在Web前端开发中，性能是一个非常重要的需要考虑的点。本文将介绍一些开发原则和性能准则，这些都是提高Web前端性能的基础。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u5F00_u53D1_u539F_u5219&quot;&gt;&lt;a href=&quot;#1-__u5F00_u53D1_u539F_u5219&quot; class=&quot;headerlink&quot; title=&quot;1. 开发原则&quot;&gt;&lt;/a&gt;1. 开发原则&lt;/h1&gt;&lt;h2 id=&quot;1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801&quot;&gt;&lt;a href=&quot;#1-1__u7F16_u5199_u7B26_u5408_u5F53_u4EE3_u6D4F_u89C8_u5668_u6027_u80FD_u7684_u4EE3_u7801&quot; class=&quot;headerlink&quot; title=&quot;1.1 编写符合当代浏览器性能的代码&quot;&gt;&lt;/a&gt;1.1 编写符合当代浏览器性能的代码&lt;/h2&gt;&lt;p&gt;如果想提高前端性能，就必须理解浏览器的工作原理，哪怕是个大概，这样才能知道性能瓶颈在哪里以及如何优化。下图展示了Webkit浏览器从代码（HTML+CSS）到用户最终看到页面的处理过程。&lt;/p&gt;
+&lt;h1 id=&quot;1-开发原则&quot;&gt;&lt;a href=&quot;#1-开发原则&quot; class=&quot;headerlink&quot; title=&quot;1. 开发原则&quot;&gt;&lt;/a&gt;1. 开发原则&lt;/h1&gt;&lt;h2 id=&quot;1-1-编写符合当代浏览器性能的代码&quot;&gt;&lt;a href=&quot;#1-1-编写符合当代浏览器性能的代码&quot; class=&quot;headerlink&quot; title=&quot;1.1 编写符合当代浏览器性能的代码&quot;&gt;&lt;/a&gt;1.1 编写符合当代浏览器性能的代码&lt;/h2&gt;&lt;p&gt;如果想提高前端性能，就必须理解浏览器的工作原理，哪怕是个大概，这样才能知道性能瓶颈在哪里以及如何优化。下图展示了Webkit浏览器从代码（HTML+CSS）到用户最终看到页面的处理过程。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/HTML5/Webkit浏览器解析代码和渲染的过程.png&quot; alt=&quot;Webkit浏览器解析代码和渲染的过程&quot;&gt;&lt;/p&gt;
 &lt;p&gt;为什么浏览器要在第一时间下载页面的HTML内容？首先HTML被解析成一棵&lt;em&gt;DOM树&lt;/em&gt;，其次HTML包含了展示页面的其他所有资源文件（样式、脚本、图片）。然后DOM树和CSS样式表（包括自定义的和浏览器默认的）合起来构成&lt;em&gt;渲染树&lt;/em&gt;，浏览器开始根据这棵渲染树“画”到屏幕上。&lt;/p&gt;
 &lt;p&gt;要改进浏览器性能，可以从&lt;strong&gt;减少HTML中元素的数量&lt;/strong&gt;及&lt;strong&gt;减少重绘&lt;/strong&gt;两方面入手。前者很好理解，不要滥用HTML标签，应该用最少量但是必需的HTML去语义化地布局。后者对提高性能的作用更加明显。&lt;strong&gt;在元素完成绘制后，动态更改DOM结构或CSS样式都会引发浏览器重绘。重绘的性能耗损直接取决于动态改动的范围。&lt;/strong&gt;例如改动一个元素的位置或新增一个元素，都会引起大量的重绘，因为它影响了所有的兄弟元素；又例如动态添加一个列表时，不要一个一个把&lt;code&gt;li&lt;/code&gt;加进去，因为每添加一次都会导致一次重绘，而是把所有的项拼在一起再添加。此外，减少重绘的一些准则还有&lt;em&gt;规定img元素的宽高&lt;/em&gt;，&lt;em&gt;不要用表格来布局&lt;/em&gt;，&lt;em&gt;在&lt;code&gt;head&lt;/code&gt;标签内定义字符集&lt;/em&gt;等等。&lt;/p&gt;
 &lt;p&gt;通常来说，改动的元素在DOM树中的深度越深，对其他节点影响就越小；如果要对DOM进行多次操作，尽量合并到一次做完，例如要修改一个DOM元素的多种样式时，不要反复给&lt;code&gt;element.style&lt;/code&gt;下的各种属性赋值，而是将要变化的多种样式写在一个CSS类中，再赋予该DOM元素这个类。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u7528CSS_u6765_u5E03_u5C40_u5E76_u5904_u7406_u8FB9_u754C&quot;&gt;&lt;a href=&quot;#1-2__u7528CSS_u6765_u5E03_u5C40_u5E76_u5904_u7406_u8FB9_u754C&quot; class=&quot;headerlink&quot; title=&quot;1.2 用CSS来布局并处理边界&quot;&gt;&lt;/a&gt;1.2 用CSS来布局并处理边界&lt;/h2&gt;&lt;p&gt;浏览器渲染页面其实是在渲染一系列“盒子”，而且这些“盒子”都可以嵌套。在用CSS做布局的时候，应该注重语义化，把一组元素都包在一个盒子里，而不是把部分元素丢到盒子外面。如下图所示，要用CSS来实现这种简单的两列布局，较好的做法是给右栏设置一个&lt;code&gt;padding-left&lt;/code&gt;，并把左栏图标绝对定位到&lt;code&gt;left:0&lt;/code&gt;，这样就有了一个所有内容都包含在内部的盒子。错误的做法是给右栏设置&lt;code&gt;margin-left&lt;/code&gt;，并把左栏图标绝对定位到&lt;code&gt;left: -50px&lt;/code&gt;，这种做法把图标放到了盒子外，而且还定义了一个负坐标，这不仅不符合语义（把应该包含的元素放到了盒子外），出现负数这种不协调的代码感，而且这种布局还有可能在旧浏览器上出问题。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-用CSS来布局并处理边界&quot;&gt;&lt;a href=&quot;#1-2-用CSS来布局并处理边界&quot; class=&quot;headerlink&quot; title=&quot;1.2 用CSS来布局并处理边界&quot;&gt;&lt;/a&gt;1.2 用CSS来布局并处理边界&lt;/h2&gt;&lt;p&gt;浏览器渲染页面其实是在渲染一系列“盒子”，而且这些“盒子”都可以嵌套。在用CSS做布局的时候，应该注重语义化，把一组元素都包在一个盒子里，而不是把部分元素丢到盒子外面。如下图所示，要用CSS来实现这种简单的两列布局，较好的做法是给右栏设置一个&lt;code&gt;padding-left&lt;/code&gt;，并把左栏图标绝对定位到&lt;code&gt;left:0&lt;/code&gt;，这样就有了一个所有内容都包含在内部的盒子。错误的做法是给右栏设置&lt;code&gt;margin-left&lt;/code&gt;，并把左栏图标绝对定位到&lt;code&gt;left: -50px&lt;/code&gt;，这种做法把图标放到了盒子外，而且还定义了一个负坐标，这不仅不符合语义（把应该包含的元素放到了盒子外），出现负数这种不协调的代码感，而且这种布局还有可能在旧浏览器上出问题。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/HTML5/CSS布局示例.jpg&quot; alt=&quot;CSS布局示例&quot;&gt;&lt;/p&gt;
 &lt;p&gt;使用CSS写样式时，还应该多考虑模块化和可复用性。如果你写的代码是独立于内容的，它就是可复用的。另外从CSS类的命名上也经常可以看出问题，我的经验是尽量以元素的样式，而不是元素的功能去命名，例如给一个发送邮件按钮添加样式CSS类时，&lt;code&gt;.btn-confirm&lt;/code&gt;就比&lt;code&gt;.btn-send-mail&lt;/code&gt;好一些，前者可以复用到任何确认操作的按钮上（当然&lt;code&gt;.btn-send-mail&lt;/code&gt;这个类也可以用于做js事件绑定用，只要它不绑定任何样式）。&lt;/p&gt;
-&lt;h2 id=&quot;1-3__u6E10_u8FDB_u5F0F_u589E_u5F3A&quot;&gt;&lt;a href=&quot;#1-3__u6E10_u8FDB_u5F0F_u589E_u5F3A&quot; class=&quot;headerlink&quot; title=&quot;1.3 渐进式增强&quot;&gt;&lt;/a&gt;1.3 渐进式增强&lt;/h2&gt;&lt;p&gt;渐进式增强指的是首先有一个基本的设计是可以兼容所有浏览器的，然后再为较新式的浏览器做加强的样式或功能（渐进式）。例如设置渐变背景颜色时，可以先定义一条&lt;code&gt;background-color&lt;/code&gt;属性（退化样式），再设置其他&lt;code&gt;linear-gradient&lt;/code&gt;属性，这样可以确保在浏览器不支持CSS3的时候，也可以正常显示一个背景颜色。&lt;/p&gt;
+&lt;h2 id=&quot;1-3-渐进式增强&quot;&gt;&lt;a href=&quot;#1-3-渐进式增强&quot; class=&quot;headerlink&quot; title=&quot;1.3 渐进式增强&quot;&gt;&lt;/a&gt;1.3 渐进式增强&lt;/h2&gt;&lt;p&gt;渐进式增强指的是首先有一个基本的设计是可以兼容所有浏览器的，然后再为较新式的浏览器做加强的样式或功能（渐进式）。例如设置渐变背景颜色时，可以先定义一条&lt;code&gt;background-color&lt;/code&gt;属性（退化样式），再设置其他&lt;code&gt;linear-gradient&lt;/code&gt;属性，这样可以确保在浏览器不支持CSS3的时候，也可以正常显示一个背景颜色。&lt;/p&gt;
 &lt;p&gt;强烈建议不要用判断浏览器类型或版本号的方式来判断是否支持某个功能，而是用&lt;strong&gt;特征检测&lt;/strong&gt;来判断。关于特征检测，推荐用第三方库&lt;a href=&quot;http://modernizr.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Modernizr&lt;/a&gt;。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u6027_u80FD_u51C6_u5219&quot;&gt;&lt;a href=&quot;#2-__u6027_u80FD_u51C6_u5219&quot; class=&quot;headerlink&quot; title=&quot;2. 性能准则&quot;&gt;&lt;/a&gt;2. 性能准则&lt;/h1&gt;&lt;p&gt;前端开发人员不仅要给用户提供最好的界面体验，还要关心页面的加载时间。2010年4月，谷歌把页面加载的快慢列入了搜索排名的考虑因素，有很多研究数据表明用户流量和加载速度呈正相关关系，可见页面加载速度的优化是何等重要。以下是一些性能准则，根据对页面加载时间的影响强弱排序。&lt;/p&gt;
+&lt;h1 id=&quot;2-性能准则&quot;&gt;&lt;a href=&quot;#2-性能准则&quot; class=&quot;headerlink&quot; title=&quot;2. 性能准则&quot;&gt;&lt;/a&gt;2. 性能准则&lt;/h1&gt;&lt;p&gt;前端开发人员不仅要给用户提供最好的界面体验，还要关心页面的加载时间。2010年4月，谷歌把页面加载的快慢列入了搜索排名的考虑因素，有很多研究数据表明用户流量和加载速度呈正相关关系，可见页面加载速度的优化是何等重要。以下是一些性能准则，根据对页面加载时间的影响强弱排序。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;减少HTTP请求：HTTP请求数量是影响前端性能最明显的一个方面。现代很多浏览器支持4个并行连接，理解浏览器的并行连接机制，把资源文件分发到不同的域名下利用浏览器并发，可以提高加载效率。加载少量的大文件优于加载大量的小文件，因此线上的网站应尽可能合并CSS和JS文件。另外，使用图片精灵（CSS Sprite，俗称雪碧图）把许多图标之类的小图片合并到一个大图片，可以减少大量的图片HTTP请求。&lt;/li&gt;
 &lt;li&gt;使用CDN加速：如果有能力的话，把静态资源文件如图片、字体、JS库等放到CDN可以大幅提高访问速度。使用CDN应该给每个文件引用加一个时间戳，这样就不用担心缓存在CDN服务器上过期对用户产生影响。&lt;/li&gt;
@@ -1531,15 +1514,14 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
     <content type="html">&lt;p&gt;Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。&lt;/p&gt;
 &lt;p&gt;本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1&quot;&gt;&lt;a href=&quot;#1-__u670D_u52A1_u5668_u6A21_u578B_u7684_u53D8_u8FC1&quot; class=&quot;headerlink&quot; title=&quot;1. 服务器模型的变迁&quot;&gt;&lt;/a&gt;1. 服务器模型的变迁&lt;/h1&gt;&lt;p&gt;Web服务器的架构至今已经历了几次变迁：&lt;/p&gt;
+&lt;h1 id=&quot;1-服务器模型的变迁&quot;&gt;&lt;a href=&quot;#1-服务器模型的变迁&quot; class=&quot;headerlink&quot; title=&quot;1. 服务器模型的变迁&quot;&gt;&lt;/a&gt;1. 服务器模型的变迁&lt;/h1&gt;&lt;p&gt;Web服务器的架构至今已经历了几次变迁：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;同步：最早的服务器的执行模型是同步的，其一次只为一个请求服务，其余请求都处于耽误的状态。这类架构如今已基本淘汰，只在一些无并发要求的应用中存在。&lt;/li&gt;
 &lt;li&gt;复制进程：每有一个连接，就复制一个进程来提供服务。这个模型不具备伸缩性，一旦并发请求过高，内存会随着进程数的增长耗尽。&lt;/li&gt;
 &lt;li&gt;多线程：类似多进程模式，对每一个连接都创建一个线程去服务。线程相对进程开销要小很多，而且线程间可以共享数据。但是多线程还是会随着并发数的增多而耗尽内存，缺乏强大的伸缩性。&lt;/li&gt;
 &lt;li&gt;事件驱动：单线程的事件驱动避免了不必要的内存开销和上下文切换开销，不受资源上限的影响，伸缩性远比前两者高。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&quot;2-__u591A_u8FDB_u7A0B_u67B6_u6784&quot;&gt;&lt;a href=&quot;#2-__u591A_u8FDB_u7A0B_u67B6_u6784&quot; class=&quot;headerlink&quot; title=&quot;2. 多进程架构&quot;&gt;&lt;/a&gt;2. 多进程架构&lt;/h1&gt;&lt;h2 id=&quot;2-1__u521B_u5EFA_u5B50_u8FDB_u7A0B&quot;&gt;&lt;a href=&quot;#2-1__u521B_u5EFA_u5B50_u8FDB_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;2.1 创建子进程&quot;&gt;&lt;/a&gt;2.1 创建子进程&lt;/h2&gt;&lt;p&gt;面对单进程单线程对多核利用不足的问题，前人的经验是启动多个进程即可，理想状态下每个进程各自利用一个CPU。Node提供的child_process模块的&lt;code&gt;fork()&lt;/code&gt;、&lt;code&gt;spawn()&lt;/code&gt;、&lt;code&gt;exec()&lt;/code&gt;、&lt;code&gt;execFile()&lt;/code&gt;函数可以实现子进程的创建。以下代码会根据当前机器上的CPU数复制（fork）出对应的Node进程。&lt;/p&gt;
+&lt;h1 id=&quot;2-多进程架构&quot;&gt;&lt;a href=&quot;#2-多进程架构&quot; class=&quot;headerlink&quot; title=&quot;2. 多进程架构&quot;&gt;&lt;/a&gt;2. 多进程架构&lt;/h1&gt;&lt;h2 id=&quot;2-1-创建子进程&quot;&gt;&lt;a href=&quot;#2-1-创建子进程&quot; class=&quot;headerlink&quot; title=&quot;2.1 创建子进程&quot;&gt;&lt;/a&gt;2.1 创建子进程&lt;/h2&gt;&lt;p&gt;面对单进程单线程对多核利用不足的问题，前人的经验是启动多个进程即可，理想状态下每个进程各自利用一个CPU。Node提供的child_process模块的&lt;code&gt;fork()&lt;/code&gt;、&lt;code&gt;spawn()&lt;/code&gt;、&lt;code&gt;exec()&lt;/code&gt;、&lt;code&gt;execFile()&lt;/code&gt;函数可以实现子进程的创建。以下代码会根据当前机器上的CPU数复制（fork）出对应的Node进程。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;/* master.js */
 var fork = require(&amp;apos;child_process&amp;apos;).fork;
 var cpus = require(&amp;apos;os&amp;apos;).cpus();
@@ -1547,7 +1529,7 @@ for (var i = 0; i &amp;lt; cpus.length; i++) {
     fork(&amp;apos;./worker.js&amp;apos;);    // worker.js为启动HTTP服务器的代码
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这就是著名的Master-Worker（主从）模式，是典型的分布式架构中用于处理业务的模式，具备较好的可伸缩性和稳定性。主进程只负责调度或管理工作进程，工作进程只负责具体的业务处理。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u8FDB_u7A0B_u95F4_u901A_u4FE1&quot;&gt;&lt;a href=&quot;#2-2__u8FDB_u7A0B_u95F4_u901A_u4FE1&quot; class=&quot;headerlink&quot; title=&quot;2.2 进程间通信&quot;&gt;&lt;/a&gt;2.2 进程间通信&lt;/h2&gt;&lt;p&gt;主从进程通过&lt;code&gt;send()&lt;/code&gt;和&lt;code&gt;message&lt;/code&gt;事件实现进程间通信，如下面的代码所示：&lt;/p&gt;
+&lt;h2 id=&quot;2-2-进程间通信&quot;&gt;&lt;a href=&quot;#2-2-进程间通信&quot; class=&quot;headerlink&quot; title=&quot;2.2 进程间通信&quot;&gt;&lt;/a&gt;2.2 进程间通信&lt;/h2&gt;&lt;p&gt;主从进程通过&lt;code&gt;send()&lt;/code&gt;和&lt;code&gt;message&lt;/code&gt;事件实现进程间通信，如下面的代码所示：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;/* master.js */
 var subProc = require(&amp;apos;child_process&amp;apos;).fork(&amp;apos;./worker.js&amp;apos;);
 subProc.send({hehe: &amp;apos;123&amp;apos;});
@@ -1561,7 +1543,7 @@ process.on(&amp;apos;message&amp;apos;, function(msg) {
 });
 process.send({foo: &amp;apos;bar&amp;apos;});
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;主从进程之间的通信实际上通过IPC（Inter-Process Communication）通道来传递信息的。Node中实现IPC通道的具体细节由libuv提供，在Windows下由命名管道实现，*nix系统采用Unix Domain Socket实现。&lt;strong&gt;父进程在创建子进程之前，会创建IPC通道并监听它，然后才真正创建子进程，并通过环境变量NODE_CHANNEL_FD告诉子进程这个IPC通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个IPC通道，从而完成父子进程之间的链接。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;2-3__u53E5_u67C4_u4F20_u9012&quot;&gt;&lt;a href=&quot;#2-3__u53E5_u67C4_u4F20_u9012&quot; class=&quot;headerlink&quot; title=&quot;2.3 句柄传递&quot;&gt;&lt;/a&gt;2.3 句柄传递&lt;/h2&gt;&lt;p&gt;通常如果让多个进程监听同一个端口，会抛出EADDRINUE异常。要解决多进程监听同个端口，其中一种做法是主进程监听主端口（如80），对外接收所有网络请求，再分别代理到不同端口的进程上。这样既能监听同个端口，甚至可以在代理进程上做适当的负载均衡，缺点是会浪费掉一倍数量的文件描述符。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-句柄传递&quot;&gt;&lt;a href=&quot;#2-3-句柄传递&quot; class=&quot;headerlink&quot; title=&quot;2.3 句柄传递&quot;&gt;&lt;/a&gt;2.3 句柄传递&lt;/h2&gt;&lt;p&gt;通常如果让多个进程监听同一个端口，会抛出EADDRINUE异常。要解决多进程监听同个端口，其中一种做法是主进程监听主端口（如80），对外接收所有网络请求，再分别代理到不同端口的进程上。这样既能监听同个端口，甚至可以在代理进程上做适当的负载均衡，缺点是会浪费掉一倍数量的文件描述符。&lt;/p&gt;
 &lt;p&gt;为了解决上述问题，Node在版本v0.5.9引入了进程间发送句柄的功能，&lt;code&gt;send()&lt;/code&gt;方法的第一个参数是要发送的数据，第二个可选参数就是句柄。目前可以发送的句柄包括：net.Socket、net.Server、net.Native、dgram.Socket、dgram.Native。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;/* master.js */
 var cp = require(&amp;apos;child_process&amp;apos;);
@@ -1589,8 +1571,8 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
     }
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;启动master.js，每次请求&lt;code&gt;http://localhost:1337&lt;/code&gt;时，得到的都是可能不一样的pid进程的响应，所有请求都由子进程来处理了。要特别注意的是，上述代码看似把&lt;code&gt;server&lt;/code&gt;对象发送到了子进程，实际上传递的只是文件描述符和消息，子进程根据message.type创建对应的服务器对象， 然后监听到文件描述符上。&lt;/p&gt;
-&lt;h1 id=&quot;3-__u6784_u5EFA_u7A33_u5B9A_u7684_u96C6_u7FA4&quot;&gt;&lt;a href=&quot;#3-__u6784_u5EFA_u7A33_u5B9A_u7684_u96C6_u7FA4&quot; class=&quot;headerlink&quot; title=&quot;3. 构建稳定的集群&quot;&gt;&lt;/a&gt;3. 构建稳定的集群&lt;/h1&gt;&lt;p&gt;前面搭建集群的方法充分利用了多核CPU资源，但每个工作进程依旧是在单线程上执行的，它的稳定性还不能得到完全的保障，需要建立一个健全的机制来保障Node应用的健壮性和稳定性。&lt;/p&gt;
-&lt;h2 id=&quot;3-1__u8FDB_u7A0B_u4E8B_u4EF6&quot;&gt;&lt;a href=&quot;#3-1__u8FDB_u7A0B_u4E8B_u4EF6&quot; class=&quot;headerlink&quot; title=&quot;3.1 进程事件&quot;&gt;&lt;/a&gt;3.1 进程事件&lt;/h2&gt;&lt;p&gt;子进程对象除了message事件外，还有一些表示异常或错误的事件：&lt;/p&gt;
+&lt;h1 id=&quot;3-构建稳定的集群&quot;&gt;&lt;a href=&quot;#3-构建稳定的集群&quot; class=&quot;headerlink&quot; title=&quot;3. 构建稳定的集群&quot;&gt;&lt;/a&gt;3. 构建稳定的集群&lt;/h1&gt;&lt;p&gt;前面搭建集群的方法充分利用了多核CPU资源，但每个工作进程依旧是在单线程上执行的，它的稳定性还不能得到完全的保障，需要建立一个健全的机制来保障Node应用的健壮性和稳定性。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-进程事件&quot;&gt;&lt;a href=&quot;#3-1-进程事件&quot; class=&quot;headerlink&quot; title=&quot;3.1 进程事件&quot;&gt;&lt;/a&gt;3.1 进程事件&lt;/h2&gt;&lt;p&gt;子进程对象除了message事件外，还有一些表示异常或错误的事件：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;error：子进程无法被复制创建、无法被杀死、无法发送消息时触发&lt;/li&gt;
 &lt;li&gt;exit：子进程退出时触发&lt;/li&gt;
@@ -1598,7 +1580,7 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
 &lt;li&gt;disconnect：调用&lt;code&gt;disconnect()&lt;/code&gt;方法时触发，调用该方法会关闭IPC通道&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;除了上一章中提到的&lt;code&gt;send()&lt;/code&gt;方法外，还能通过&lt;code&gt;kill()&lt;/code&gt;方法给子进程发送消息，该方法并不是真正将子进程杀死，而是给子进程发送一个系统信号SIGTERM，子进程收到后才做出约定的行为，如退出进程。&lt;/p&gt;
-&lt;h2 id=&quot;3-2__u81EA_u52A8_u91CD_u542F&quot;&gt;&lt;a href=&quot;#3-2__u81EA_u52A8_u91CD_u542F&quot; class=&quot;headerlink&quot; title=&quot;3.2 自动重启&quot;&gt;&lt;/a&gt;3.2 自动重启&lt;/h2&gt;&lt;p&gt;可以通过监听子进程的exit事件来获知其退出的信息。当因为有bug导致工作进程退出，需要仔细处理这种异常，最好是工作进程在得知自己要退出时，向主进程发送一个“自杀信号”，然后才停止接收新的连接，当所有连接断开后才退出。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-自动重启&quot;&gt;&lt;a href=&quot;#3-2-自动重启&quot; class=&quot;headerlink&quot; title=&quot;3.2 自动重启&quot;&gt;&lt;/a&gt;3.2 自动重启&lt;/h2&gt;&lt;p&gt;可以通过监听子进程的exit事件来获知其退出的信息。当因为有bug导致工作进程退出，需要仔细处理这种异常，最好是工作进程在得知自己要退出时，向主进程发送一个“自杀信号”，然后才停止接收新的连接，当所有连接断开后才退出。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;process.on(&amp;apos;uncaughtException&amp;apos;, function(err) {
     logger.error(err);    // 记录日志，因为出现未能捕获的异常是不合格的
     process.send({act: &amp;apos;suicide&amp;apos;});
@@ -1613,8 +1595,8 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
     }, 5000);
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时主进程要监听message事件，一旦接收到自杀信号，就要重新启动一个新的工作进程来顶替出异常即将退出的进程，这样就能使应用平滑地应对用户的请求。工作进程也不能无限地被重启，因为如果在启动的过程或启动后收到连接就发生了错误，会导致工作进程被频繁重启，所以应该有一种机制来限制单位时间内重启的次数，超过限制就触发giveup事件告知主进程放弃重启。通常来说，giveup是比uncaughtException更严重的异常，必须严格监控并避免。&lt;/p&gt;
-&lt;h2 id=&quot;3-3__u72B6_u6001_u5171_u4EAB&quot;&gt;&lt;a href=&quot;#3-3__u72B6_u6001_u5171_u4EAB&quot; class=&quot;headerlink&quot; title=&quot;3.3 状态共享&quot;&gt;&lt;/a&gt;3.3 状态共享&lt;/h2&gt;&lt;p&gt;Node进程不宜存放太多数据，因为这会加重垃圾回收的负担，同时Node也不允许多个进程间共享数据。在实际业务中，解决数据共享最直接简单的方案就是使用第三方存储，如数据库、磁盘文件、缓存服务（Redis等）。如果采用这种方式，需要一种机制在数据发生改变时通知到各个子进程。一种方式是子进程去向第三方定时轮询；另一种方式是额外增加一个通知进程来轮询第三方，当有数据变化时主动通知所有子进程。主动通知机制如果按进程间信号传递，在跨多台服务器时会失效，所以可以考虑采用TCP或UDP的方案。&lt;/p&gt;
-&lt;h2 id=&quot;3-4_Cluster_u6A21_u5757&quot;&gt;&lt;a href=&quot;#3-4_Cluster_u6A21_u5757&quot; class=&quot;headerlink&quot; title=&quot;3.4 Cluster模块&quot;&gt;&lt;/a&gt;3.4 Cluster模块&lt;/h2&gt;&lt;p&gt;前文从原理层面介绍了child_process模块的一些细节，事实上Node在v0.8版本新增的cluster模块提供了更简洁强大的API来解决上述问题，详情可以参见&lt;a href=&quot;http://nodejs.org/api/cluster.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node cluster API文档&lt;/a&gt;，此处不再赘述。&lt;/p&gt;
+&lt;h2 id=&quot;3-3-状态共享&quot;&gt;&lt;a href=&quot;#3-3-状态共享&quot; class=&quot;headerlink&quot; title=&quot;3.3 状态共享&quot;&gt;&lt;/a&gt;3.3 状态共享&lt;/h2&gt;&lt;p&gt;Node进程不宜存放太多数据，因为这会加重垃圾回收的负担，同时Node也不允许多个进程间共享数据。在实际业务中，解决数据共享最直接简单的方案就是使用第三方存储，如数据库、磁盘文件、缓存服务（Redis等）。如果采用这种方式，需要一种机制在数据发生改变时通知到各个子进程。一种方式是子进程去向第三方定时轮询；另一种方式是额外增加一个通知进程来轮询第三方，当有数据变化时主动通知所有子进程。主动通知机制如果按进程间信号传递，在跨多台服务器时会失效，所以可以考虑采用TCP或UDP的方案。&lt;/p&gt;
+&lt;h2 id=&quot;3-4-Cluster模块&quot;&gt;&lt;a href=&quot;#3-4-Cluster模块&quot; class=&quot;headerlink&quot; title=&quot;3.4 Cluster模块&quot;&gt;&lt;/a&gt;3.4 Cluster模块&lt;/h2&gt;&lt;p&gt;前文从原理层面介绍了child_process模块的一些细节，事实上Node在v0.8版本新增的cluster模块提供了更简洁强大的API来解决上述问题，详情可以参见&lt;a href=&quot;http://nodejs.org/api/cluster.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node cluster API文档&lt;/a&gt;，此处不再赘述。&lt;/p&gt;
 &lt;p&gt;参考资料：《深入浅出NodeJS》第九章&lt;/p&gt;
 </content>
     
@@ -1648,34 +1630,33 @@ process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
     <content type="html">&lt;p&gt;在过去很长一段时间内，Javascript开发者很少会在开发过程中遇到需要对内存精确控制的场景，也缺乏控制的手段。那些短时间执行的场景，如网页应用、命令行工具等，运行时间短内存很快地释放，即使内存使用过多或内存泄漏也只会影响到终端用户。但随着Node在服务器端的广泛应用，内存控制问题就暴露出来了。&lt;/p&gt;
 &lt;p&gt;基于无阻塞、事件驱动的Node服务，具有内存消耗低，适合处理海量网络请求的优点。服务器端的资源向来是寸土寸金，要为海量用户服务，就得使一切资源都要高效利用。本文将介绍Node如何合理高效地使用内存。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236_u4E0E_u5185_u5B58_u9650_u5236&quot;&gt;&lt;a href=&quot;#1-_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236_u4E0E_u5185_u5B58_u9650_u5236&quot; class=&quot;headerlink&quot; title=&quot;1. V8的垃圾回收机制与内存限制&quot;&gt;&lt;/a&gt;1. V8的垃圾回收机制与内存限制&lt;/h1&gt;&lt;p&gt;Javascript与Java一样，由垃圾回收机制在来进行自动内存管理，开发者不需要像C/C++程序员那样时刻关注内存的分配和释放问题。在Node中，内存管理的好坏，垃圾回收状况是否优良，都与Node的Javascript执行引擎V8息息相关。&lt;/p&gt;
-&lt;h2 id=&quot;1-1_V8_u7684_u5BF9_u8C61_u5206_u914D&quot;&gt;&lt;a href=&quot;#1-1_V8_u7684_u5BF9_u8C61_u5206_u914D&quot; class=&quot;headerlink&quot; title=&quot;1.1 V8的对象分配&quot;&gt;&lt;/a&gt;1.1 V8的对象分配&lt;/h2&gt;&lt;p&gt;在V8中，所有JS对象都是通过堆来分配。在Node命令行下执行&lt;code&gt;process.memoryUsage()&lt;/code&gt;可以查看内存信息，返回的结果中&lt;code&gt;heapTotal&lt;/code&gt;是已申请到的堆内存，&lt;code&gt;heapUsed&lt;/code&gt;是当前使用的量。如果已申请的堆空闲内存不够分配新的对象，将继续申请堆内存，知道超过V8的限制为止。&lt;/p&gt;
+&lt;h1 id=&quot;1-V8的垃圾回收机制与内存限制&quot;&gt;&lt;a href=&quot;#1-V8的垃圾回收机制与内存限制&quot; class=&quot;headerlink&quot; title=&quot;1. V8的垃圾回收机制与内存限制&quot;&gt;&lt;/a&gt;1. V8的垃圾回收机制与内存限制&lt;/h1&gt;&lt;p&gt;Javascript与Java一样，由垃圾回收机制在来进行自动内存管理，开发者不需要像C/C++程序员那样时刻关注内存的分配和释放问题。在Node中，内存管理的好坏，垃圾回收状况是否优良，都与Node的Javascript执行引擎V8息息相关。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-V8的对象分配&quot;&gt;&lt;a href=&quot;#1-1-V8的对象分配&quot; class=&quot;headerlink&quot; title=&quot;1.1 V8的对象分配&quot;&gt;&lt;/a&gt;1.1 V8的对象分配&lt;/h2&gt;&lt;p&gt;在V8中，所有JS对象都是通过堆来分配。在Node命令行下执行&lt;code&gt;process.memoryUsage()&lt;/code&gt;可以查看内存信息，返回的结果中&lt;code&gt;heapTotal&lt;/code&gt;是已申请到的堆内存，&lt;code&gt;heapUsed&lt;/code&gt;是当前使用的量。如果已申请的堆空闲内存不够分配新的对象，将继续申请堆内存，知道超过V8的限制为止。&lt;/p&gt;
 &lt;p&gt;V8对单个进程的Node有内存限制（64位系统约1.4GB，32位系统约0.7GB）。表层原因是V8最初为浏览器设计，不太可能遇到大量内存的场景，深层原因是V8垃圾回收需要一定的开销，内存限制放得过大会使性能和响应能力下降。当然，这个限制是可以打开的，Node在启动时可以传递两个参数来调整内存限制的大小（注意参数只在初始化时生效，之后无法动态改变）：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;node --max-old-space-size=1700 test.js // 单位为MB
 node --max-new-space-size=1024 test.js // 单位为KB
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236&quot;&gt;&lt;a href=&quot;#1-2_V8_u7684_u5783_u573E_u56DE_u6536_u673A_u5236&quot; class=&quot;headerlink&quot; title=&quot;1.2 V8的垃圾回收机制&quot;&gt;&lt;/a&gt;1.2 V8的垃圾回收机制&lt;/h2&gt;&lt;h3 id=&quot;1-2-1__u5185_u5B58_u5206_u4EE3&quot;&gt;&lt;a href=&quot;#1-2-1__u5185_u5B58_u5206_u4EE3&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 内存分代&quot;&gt;&lt;/a&gt;1.2.1 内存分代&lt;/h3&gt;&lt;p&gt;V8的垃圾回收策略主要基于分代式，主要将内存分为&lt;em&gt;新生代&lt;/em&gt;和&lt;em&gt;老生代&lt;/em&gt;，前者存放存活时间较短的对象，后者存放存活时间较长或常驻内存的对象。V8堆的整体大小就是两代内存空间之和，上面提到的两个参数中带有“old”和“new”，就是用于放宽新老生代的内存限制。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-2__u65B0_u751F_u4EE3_u7684Scavenge_u7B97_u6CD5&quot;&gt;&lt;a href=&quot;#1-2-2__u65B0_u751F_u4EE3_u7684Scavenge_u7B97_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 新生代的Scavenge算法&quot;&gt;&lt;/a&gt;1.2.2 新生代的Scavenge算法&lt;/h3&gt;&lt;p&gt;Scavenge算法将堆内存对半分为两个semispace空间，只有一个处于使用中，称为From空间，另一个处于闲置状态，称为To空间。分配对象时先从From空间分配，当开始垃圾回收时，会将From空间中的存活对象复制到To空间中，非存活对象占用的空间会被释放。完成复制后，From和To空间对换，开始下一轮的垃圾回收。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2-V8的垃圾回收机制&quot;&gt;&lt;a href=&quot;#1-2-V8的垃圾回收机制&quot; class=&quot;headerlink&quot; title=&quot;1.2 V8的垃圾回收机制&quot;&gt;&lt;/a&gt;1.2 V8的垃圾回收机制&lt;/h2&gt;&lt;h3 id=&quot;1-2-1-内存分代&quot;&gt;&lt;a href=&quot;#1-2-1-内存分代&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 内存分代&quot;&gt;&lt;/a&gt;1.2.1 内存分代&lt;/h3&gt;&lt;p&gt;V8的垃圾回收策略主要基于分代式，主要将内存分为&lt;em&gt;新生代&lt;/em&gt;和&lt;em&gt;老生代&lt;/em&gt;，前者存放存活时间较短的对象，后者存放存活时间较长或常驻内存的对象。V8堆的整体大小就是两代内存空间之和，上面提到的两个参数中带有“old”和“new”，就是用于放宽新老生代的内存限制。&lt;/p&gt;
+&lt;h3 id=&quot;1-2-2-新生代的Scavenge算法&quot;&gt;&lt;a href=&quot;#1-2-2-新生代的Scavenge算法&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 新生代的Scavenge算法&quot;&gt;&lt;/a&gt;1.2.2 新生代的Scavenge算法&lt;/h3&gt;&lt;p&gt;Scavenge算法将堆内存对半分为两个semispace空间，只有一个处于使用中，称为From空间，另一个处于闲置状态，称为To空间。分配对象时先从From空间分配，当开始垃圾回收时，会将From空间中的存活对象复制到To空间中，非存活对象占用的空间会被释放。完成复制后，From和To空间对换，开始下一轮的垃圾回收。&lt;/p&gt;
 &lt;p&gt;该算法的缺点是只能使用堆内存的一半，是典型的牺牲空间换取时间的算法，所以无法大规模地应用到所有的垃圾回收中，但这个算法很适合应用在新生代中，因为新生代的对象生命周期都较短。&lt;/p&gt;
 &lt;p&gt;当一个对象经过多次复制依然存活时，它就会被认为是生命周期较长的对象，其随后会被移动到老生代中采用新的算法管理，这个过程称为晋升。晋升的条件主要有两个，一个是对象是否经过Scavenge回收，一个是To空间的内存占用比超过25%的限制。设置25%的限制是因为当此次Scavenge回收完成后，这个To空间会变成From空间，如果占比过高会影响后续的内存分配。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-3__u8001_u751F_u4EE3_u7684Mark-Sweep_u548CMark-Compact_u7B97_u6CD5&quot;&gt;&lt;a href=&quot;#1-2-3__u8001_u751F_u4EE3_u7684Mark-Sweep_u548CMark-Compact_u7B97_u6CD5&quot; class=&quot;headerlink&quot; title=&quot;1.2.3 老生代的Mark-Sweep和Mark-Compact算法&quot;&gt;&lt;/a&gt;1.2.3 老生代的Mark-Sweep和Mark-Compact算法&lt;/h3&gt;&lt;p&gt;Mark-Sweep是标记清除的意思，该算法在&lt;em&gt;标记阶段&lt;/em&gt;遍历堆中所有对象，并标记活着的对象，接下来在&lt;em&gt;清除阶段&lt;/em&gt;只清除没有被标记的对象。可以看出，活对象在新生代只占小部分，Scavenge只复制活对象；死对象在老生代只占小部分，Mark-Sweep只清理死对象，这就是两种回收方式能高效运作的原因。&lt;/p&gt;
+&lt;h3 id=&quot;1-2-3-老生代的Mark-Sweep和Mark-Compact算法&quot;&gt;&lt;a href=&quot;#1-2-3-老生代的Mark-Sweep和Mark-Compact算法&quot; class=&quot;headerlink&quot; title=&quot;1.2.3 老生代的Mark-Sweep和Mark-Compact算法&quot;&gt;&lt;/a&gt;1.2.3 老生代的Mark-Sweep和Mark-Compact算法&lt;/h3&gt;&lt;p&gt;Mark-Sweep是标记清除的意思，该算法在&lt;em&gt;标记阶段&lt;/em&gt;遍历堆中所有对象，并标记活着的对象，接下来在&lt;em&gt;清除阶段&lt;/em&gt;只清除没有被标记的对象。可以看出，活对象在新生代只占小部分，Scavenge只复制活对象；死对象在老生代只占小部分，Mark-Sweep只清理死对象，这就是两种回收方式能高效运作的原因。&lt;/p&gt;
 &lt;p&gt;Mark-Sweep最大的问题是进行一次标记清除后，内存空间会出现不连续的状态，这很可能会造成无法分配一个大对象的问题。而Mark-Compact则是一种改进，它在清除阶段将活着的对象往一端移动，移动完成后，直接清理掉边界外的内存。但由于Mark-Compact需要移动对象，执行速度不可能很快，所以再取舍上，V8主要使用Mark-Sweep，在空间不足以分配时才使用Mark-Compact。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-4__u589E_u91CF_u6807_u8BB0&quot;&gt;&lt;a href=&quot;#1-2-4__u589E_u91CF_u6807_u8BB0&quot; class=&quot;headerlink&quot; title=&quot;1.2.4 增量标记&quot;&gt;&lt;/a&gt;1.2.4 增量标记&lt;/h3&gt;&lt;p&gt;为了避免出现JS应用逻辑与垃圾回收器看到的不一致的情况，垃圾回收的3种基本算法都需要将应用逻辑暂停下来，这种暂停成为“全停顿”。V8老生代通常配置得很大，且存活对象较多，全堆垃圾回收的各种动作造成的停顿会比较可怕，需要设法改善。V8先从标记阶段入手，将原本一口气停顿完成的动作改为增量标记，也就是拆分为许多小“步进”，没做完一步就让JS应用逻辑执行一小会儿。这种垃圾回收与应用逻辑交替执行直到标记完成，可以让最大停顿时间减少5倍左右。&lt;/p&gt;
-&lt;h2 id=&quot;1-3__u67E5_u770B_u5783_u573E_u56DE_u6536_u65E5_u5FD7&quot;&gt;&lt;a href=&quot;#1-3__u67E5_u770B_u5783_u573E_u56DE_u6536_u65E5_u5FD7&quot; class=&quot;headerlink&quot; title=&quot;1.3 查看垃圾回收日志&quot;&gt;&lt;/a&gt;1.3 查看垃圾回收日志&lt;/h2&gt;&lt;p&gt;用命令行启动node时，加入&lt;code&gt;--trace_gc&lt;/code&gt;可以输出垃圾回收的日志信息，&lt;code&gt;--prof&lt;/code&gt;可以得到V8执行时的性能分析数据。通过分析日志，可以找出垃圾回收的哪些阶段比较耗时，触发的原因是什么。不过，通过&lt;code&gt;--prof&lt;/code&gt;得到的log不具备可读性，可以使用Node自带的&lt;code&gt;windows-tick-processor.bat&lt;/code&gt;工具来分析。&lt;/p&gt;
-&lt;h1 id=&quot;2-__u9AD8_u6548_u4F7F_u7528_u5185_u5B58&quot;&gt;&lt;a href=&quot;#2-__u9AD8_u6548_u4F7F_u7528_u5185_u5B58&quot; class=&quot;headerlink&quot; title=&quot;2. 高效使用内存&quot;&gt;&lt;/a&gt;2. 高效使用内存&lt;/h1&gt;&lt;h2 id=&quot;2-1__u5185_u5B58_u6CC4_u6F0F&quot;&gt;&lt;a href=&quot;#2-1__u5185_u5B58_u6CC4_u6F0F&quot; class=&quot;headerlink&quot; title=&quot;2.1 内存泄漏&quot;&gt;&lt;/a&gt;2.1 内存泄漏&lt;/h2&gt;&lt;p&gt;Node对内存泄漏十分敏感，一旦线上应用有成千上万的流量，哪怕是一个字节的内存泄漏也会造成堆积。在V8的垃圾回收机制机制下，在通常的代码编写中，很少会出现内存泄漏，但内存泄漏通常产生于无意间，较难排查。一旦发生，其实质只有一个：当回收的对象出现意外没有被回收变成了常驻在老生代的对象。造成内存泄漏的原因有这么几个：缓存，队列消费不及时，作用域未释放。&lt;/p&gt;
+&lt;h3 id=&quot;1-2-4-增量标记&quot;&gt;&lt;a href=&quot;#1-2-4-增量标记&quot; class=&quot;headerlink&quot; title=&quot;1.2.4 增量标记&quot;&gt;&lt;/a&gt;1.2.4 增量标记&lt;/h3&gt;&lt;p&gt;为了避免出现JS应用逻辑与垃圾回收器看到的不一致的情况，垃圾回收的3种基本算法都需要将应用逻辑暂停下来，这种暂停成为“全停顿”。V8老生代通常配置得很大，且存活对象较多，全堆垃圾回收的各种动作造成的停顿会比较可怕，需要设法改善。V8先从标记阶段入手，将原本一口气停顿完成的动作改为增量标记，也就是拆分为许多小“步进”，没做完一步就让JS应用逻辑执行一小会儿。这种垃圾回收与应用逻辑交替执行直到标记完成，可以让最大停顿时间减少5倍左右。&lt;/p&gt;
+&lt;h2 id=&quot;1-3-查看垃圾回收日志&quot;&gt;&lt;a href=&quot;#1-3-查看垃圾回收日志&quot; class=&quot;headerlink&quot; title=&quot;1.3 查看垃圾回收日志&quot;&gt;&lt;/a&gt;1.3 查看垃圾回收日志&lt;/h2&gt;&lt;p&gt;用命令行启动node时，加入&lt;code&gt;--trace_gc&lt;/code&gt;可以输出垃圾回收的日志信息，&lt;code&gt;--prof&lt;/code&gt;可以得到V8执行时的性能分析数据。通过分析日志，可以找出垃圾回收的哪些阶段比较耗时，触发的原因是什么。不过，通过&lt;code&gt;--prof&lt;/code&gt;得到的log不具备可读性，可以使用Node自带的&lt;code&gt;windows-tick-processor.bat&lt;/code&gt;工具来分析。&lt;/p&gt;
+&lt;h1 id=&quot;2-高效使用内存&quot;&gt;&lt;a href=&quot;#2-高效使用内存&quot; class=&quot;headerlink&quot; title=&quot;2. 高效使用内存&quot;&gt;&lt;/a&gt;2. 高效使用内存&lt;/h1&gt;&lt;h2 id=&quot;2-1-内存泄漏&quot;&gt;&lt;a href=&quot;#2-1-内存泄漏&quot; class=&quot;headerlink&quot; title=&quot;2.1 内存泄漏&quot;&gt;&lt;/a&gt;2.1 内存泄漏&lt;/h2&gt;&lt;p&gt;Node对内存泄漏十分敏感，一旦线上应用有成千上万的流量，哪怕是一个字节的内存泄漏也会造成堆积。在V8的垃圾回收机制机制下，在通常的代码编写中，很少会出现内存泄漏，但内存泄漏通常产生于无意间，较难排查。一旦发生，其实质只有一个：当回收的对象出现意外没有被回收变成了常驻在老生代的对象。造成内存泄漏的原因有这么几个：缓存，队列消费不及时，作用域未释放。&lt;/p&gt;
 &lt;p&gt;JS开发者通常喜欢使用对象的键值对来当缓存，但严格意义上的缓存有着完善的过期策略，而普通对象的键值对并没有。所以在Node中，试图拿内存当缓存的行为应该受到限制，小心而为之。除了用对象来当缓存的案例之外，还有一种案例是模块机制。Node的模块都会通过编译执行并缓存起来常驻于老生代，由于通过&lt;code&gt;exports&lt;/code&gt;导出的函数可以访问文件模块的私有变量，所以每个文件模块中被导出函数引用的变量不会被释放。在设计模块时，一定要十分小心内存泄漏的出现。下面的代码每次调用leak()方法时，都导致局部变量leakArray不停增加内存占用，不被释放：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var leakArray = [];
 exports.leak = function() {
     leakArray.push(&amp;apos;leak&amp;apos; + Math.random());
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果要大量使用缓存，目前比较好的做法是采用进程外缓存，如Redis和Memcached。这样Node进程自身不存储状态减少内存泄漏的可能性，进程之间也可以共享缓存。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u5185_u5B58_u6CC4_u6F0F_u6392_u67E5&quot;&gt;&lt;a href=&quot;#2-2__u5185_u5B58_u6CC4_u6F0F_u6392_u67E5&quot; class=&quot;headerlink&quot; title=&quot;2.2 内存泄漏排查&quot;&gt;&lt;/a&gt;2.2 内存泄漏排查&lt;/h2&gt;&lt;p&gt;可以使用以下一些常见的工具来定位Node应用的内存泄漏：&lt;/p&gt;
+&lt;h2 id=&quot;2-2-内存泄漏排查&quot;&gt;&lt;a href=&quot;#2-2-内存泄漏排查&quot; class=&quot;headerlink&quot; title=&quot;2.2 内存泄漏排查&quot;&gt;&lt;/a&gt;2.2 内存泄漏排查&lt;/h2&gt;&lt;p&gt;可以使用以下一些常见的工具来定位Node应用的内存泄漏：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;node-heapdump：来自Node核心贡献者之一的模块，允许对V8堆内存抓取快照，用于事后分析&lt;/li&gt;
 &lt;li&gt;node-memwatch：用法和node-heapdump类似，来自于Mozilla成员贡献的模块&lt;/li&gt;
 &lt;li&gt;node-mtrace：使用了GCC的mtrace工具来分析堆的使用&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;2-3__u5927_u5185_u5B58_u5E94_u7528&quot;&gt;&lt;a href=&quot;#2-3__u5927_u5185_u5B58_u5E94_u7528&quot; class=&quot;headerlink&quot; title=&quot;2.3 大内存应用&quot;&gt;&lt;/a&gt;2.3 大内存应用&lt;/h2&gt;&lt;p&gt;由于Node的内存限制，操作大文件时要小心，好在Node提供了原生stream模块用于处理大文件。不能通过&lt;code&gt;fs.readFile()&lt;/code&gt;和&lt;code&gt;fs.writeFile()&lt;/code&gt;来直接进行大文件操作，应该使用&lt;code&gt;fs.createReadStream()&lt;/code&gt;和&lt;code&gt;fs.createWriteStream()&lt;/code&gt;通过流的方式来读写大文件。若不需要进行字符串层面的操作，可以尝试使用&lt;code&gt;Buffer&lt;/code&gt;来操作，这不会受到V8堆内存的限制，但依然会受到物理内存限制。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-大内存应用&quot;&gt;&lt;a href=&quot;#2-3-大内存应用&quot; class=&quot;headerlink&quot; title=&quot;2.3 大内存应用&quot;&gt;&lt;/a&gt;2.3 大内存应用&lt;/h2&gt;&lt;p&gt;由于Node的内存限制，操作大文件时要小心，好在Node提供了原生stream模块用于处理大文件。不能通过&lt;code&gt;fs.readFile()&lt;/code&gt;和&lt;code&gt;fs.writeFile()&lt;/code&gt;来直接进行大文件操作，应该使用&lt;code&gt;fs.createReadStream()&lt;/code&gt;和&lt;code&gt;fs.createWriteStream()&lt;/code&gt;通过流的方式来读写大文件。若不需要进行字符串层面的操作，可以尝试使用&lt;code&gt;Buffer&lt;/code&gt;来操作，这不会受到V8堆内存的限制，但依然会受到物理内存限制。&lt;/p&gt;
 &lt;p&gt;参考资料：《深入浅出NodeJS》第五章&lt;/p&gt;
 </content>
     
@@ -1707,9 +1688,8 @@ exports.leak = function() {
     <content type="html">&lt;p&gt;“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。&lt;/p&gt;
 &lt;p&gt;在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-&lt;h1 id=&quot;1-__u57FA_u672C_u6982_u5FF5&quot;&gt;&lt;a href=&quot;#1-__u57FA_u672C_u6982_u5FF5&quot; class=&quot;headerlink&quot; title=&quot;1. 基本概念&quot;&gt;&lt;/a&gt;1. 基本概念&lt;/h1&gt;&lt;p&gt;“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。&lt;/p&gt;
-&lt;h2 id=&quot;1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot;&gt;&lt;a href=&quot;#1-1__u963B_u585EIO_u4E0E_u975E_u963B_u585EIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞IO与非阻塞IO&quot;&gt;&lt;/a&gt;1.1 阻塞IO与非阻塞IO&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
+&lt;h1 id=&quot;1-基本概念&quot;&gt;&lt;a href=&quot;#1-基本概念&quot; class=&quot;headerlink&quot; title=&quot;1. 基本概念&quot;&gt;&lt;/a&gt;1. 基本概念&lt;/h1&gt;&lt;p&gt;“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-阻塞IO与非阻塞IO&quot;&gt;&lt;a href=&quot;#1-1-阻塞IO与非阻塞IO&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞IO与非阻塞IO&quot;&gt;&lt;/a&gt;1.1 阻塞IO与非阻塞IO&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
 &lt;p&gt;阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。非阻塞I/O的特点就是&lt;strong&gt;调用之后会立即返回，返回后CPU的时间片可以用来处理其他事务&lt;/strong&gt;。由于完整的I/O并没有完成，立即返回的并不是业务层期待的数据，而仅仅是当前调用的状态。为了获取完整的数据，应用程序需要重复调用I/O操作来确认是否完成（即轮询）。轮询技术要以下几种：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;read：通过重复调用来检查I/O状态，是最原始性能最低的一种方式&lt;/li&gt;
@@ -1718,23 +1698,23 @@ exports.leak = function() {
 &lt;li&gt;epoll：进入轮询时若没有检查到I/O事件，将会进行休眠，直到事件发生将其唤醒。这是当前Linux下效率最高的I/O事件通知机制&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;轮询满足了非阻塞I/O确保获取完整数据的需求，但对于应用程序而言，它仍然只能算作一种同步，因为依然需要等待I/O完全返回。等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待事件发生。&lt;/p&gt;
-&lt;h2 id=&quot;1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65IO&quot;&gt;&lt;a href=&quot;#1-2__u7406_u60F3_u4E0E_u73B0_u5B9E_u4E2D_u7684_u5F02_u6B65IO&quot; class=&quot;headerlink&quot; title=&quot;1.2 理想与现实中的异步IO&quot;&gt;&lt;/a&gt;1.2 理想与现实中的异步IO&lt;/h2&gt;&lt;p&gt;完美的异步I/O应该是应用程序发起非阻塞调用，无需通过轮询就可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序即可。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-理想与现实中的异步IO&quot;&gt;&lt;a href=&quot;#1-2-理想与现实中的异步IO&quot; class=&quot;headerlink&quot; title=&quot;1.2 理想与现实中的异步IO&quot;&gt;&lt;/a&gt;1.2 理想与现实中的异步IO&lt;/h2&gt;&lt;p&gt;完美的异步I/O应该是应用程序发起非阻塞调用，无需通过轮询就可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序即可。&lt;/p&gt;
 &lt;p&gt;现实中的异步I/O在不同操作系统下有不同的实现，如*nix平台采用自定义的线程池，Windows平台采用IOCP模型。Node提供了libuv作为抽象封装层来封装平台兼容性判断，并保证上层Node与下层各平台异步I/O的实现各自独立。另外需要强调的是我们经常提到Node是单线程的，这仅仅是指Javascript的执行在单线程中，实际在Node内部完成I/O任务的都另有线程池。&lt;/p&gt;
-&lt;h1 id=&quot;2-_Node_u7684_u5F02_u6B65IO&quot;&gt;&lt;a href=&quot;#2-_Node_u7684_u5F02_u6B65IO&quot; class=&quot;headerlink&quot; title=&quot;2. Node的异步IO&quot;&gt;&lt;/a&gt;2. Node的异步IO&lt;/h1&gt;&lt;h2 id=&quot;2-1__u4E8B_u4EF6_u5FAA_u73AF&quot;&gt;&lt;a href=&quot;#2-1__u4E8B_u4EF6_u5FAA_u73AF&quot; class=&quot;headerlink&quot; title=&quot;2.1 事件循环&quot;&gt;&lt;/a&gt;2.1 事件循环&lt;/h2&gt;&lt;p&gt;Node的执行模型实际上是&lt;strong&gt;事件循环&lt;/strong&gt;。在进程启动时，Node会创建一个无限循环，每一次执行循环体的过程成为一次Tick。每个Tick过程就是查看是否有事件等待处理，如果有则取出事件及其相关的回调函数，若存在关联的回调函数则执行它们，然后进入下一个循环。如果不再有事件处理，就退出进程。&lt;/p&gt;
-&lt;h2 id=&quot;2-2__u89C2_u5BDF_u8005&quot;&gt;&lt;a href=&quot;#2-2__u89C2_u5BDF_u8005&quot; class=&quot;headerlink&quot; title=&quot;2.2 观察者&quot;&gt;&lt;/a&gt;2.2 观察者&lt;/h2&gt;&lt;p&gt;每个事件循环中有若干个&lt;strong&gt;观察者&lt;/strong&gt;，通过向这些观察者询问来判断是否有事件要处理。事件循环是一个典型的&lt;em&gt;生产者/消费者模型&lt;/em&gt;。在Node中，事件主要来源于网络请求、文件I/O等，这些事件都有对应的网络I/O观察者、文件I/O观察者等，事件循环则从观察者那里取出事件并处理。&lt;/p&gt;
-&lt;h2 id=&quot;2-3__u8BF7_u6C42_u5BF9_u8C61&quot;&gt;&lt;a href=&quot;#2-3__u8BF7_u6C42_u5BF9_u8C61&quot; class=&quot;headerlink&quot; title=&quot;2.3 请求对象&quot;&gt;&lt;/a&gt;2.3 请求对象&lt;/h2&gt;&lt;p&gt;从Javascript发起调用到内核执行完I/O操作的过渡过程中，存在一种中间产物，叫做&lt;strong&gt;请求对象&lt;/strong&gt;。以最简单的Windows下&lt;code&gt;fs.open()&lt;/code&gt;方法（根据指定路径和参数去打开一个文件并得到一个文件描述符）为例，从JS调用到内建模块通过libuv进行系统调用，实际上是调用了&lt;code&gt;uv_fs_open()&lt;/code&gt;方法。在调用过程中，创建了一个&lt;code&gt;FSReqWrap&lt;/code&gt;请求对象，从JS层传入的参数和方法都封装在这个请求对象中，其中我们最为关注的回调函数被设置在这个对象的&lt;code&gt;oncompete_sym&lt;/code&gt;属性上。对象包装完毕后，将&lt;code&gt;FSReqWrap&lt;/code&gt;对象推入线程池中等待执行。&lt;/p&gt;
+&lt;h1 id=&quot;2-Node的异步IO&quot;&gt;&lt;a href=&quot;#2-Node的异步IO&quot; class=&quot;headerlink&quot; title=&quot;2. Node的异步IO&quot;&gt;&lt;/a&gt;2. Node的异步IO&lt;/h1&gt;&lt;h2 id=&quot;2-1-事件循环&quot;&gt;&lt;a href=&quot;#2-1-事件循环&quot; class=&quot;headerlink&quot; title=&quot;2.1 事件循环&quot;&gt;&lt;/a&gt;2.1 事件循环&lt;/h2&gt;&lt;p&gt;Node的执行模型实际上是&lt;strong&gt;事件循环&lt;/strong&gt;。在进程启动时，Node会创建一个无限循环，每一次执行循环体的过程成为一次Tick。每个Tick过程就是查看是否有事件等待处理，如果有则取出事件及其相关的回调函数，若存在关联的回调函数则执行它们，然后进入下一个循环。如果不再有事件处理，就退出进程。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-观察者&quot;&gt;&lt;a href=&quot;#2-2-观察者&quot; class=&quot;headerlink&quot; title=&quot;2.2 观察者&quot;&gt;&lt;/a&gt;2.2 观察者&lt;/h2&gt;&lt;p&gt;每个事件循环中有若干个&lt;strong&gt;观察者&lt;/strong&gt;，通过向这些观察者询问来判断是否有事件要处理。事件循环是一个典型的&lt;em&gt;生产者/消费者模型&lt;/em&gt;。在Node中，事件主要来源于网络请求、文件I/O等，这些事件都有对应的网络I/O观察者、文件I/O观察者等，事件循环则从观察者那里取出事件并处理。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-请求对象&quot;&gt;&lt;a href=&quot;#2-3-请求对象&quot; class=&quot;headerlink&quot; title=&quot;2.3 请求对象&quot;&gt;&lt;/a&gt;2.3 请求对象&lt;/h2&gt;&lt;p&gt;从Javascript发起调用到内核执行完I/O操作的过渡过程中，存在一种中间产物，叫做&lt;strong&gt;请求对象&lt;/strong&gt;。以最简单的Windows下&lt;code&gt;fs.open()&lt;/code&gt;方法（根据指定路径和参数去打开一个文件并得到一个文件描述符）为例，从JS调用到内建模块通过libuv进行系统调用，实际上是调用了&lt;code&gt;uv_fs_open()&lt;/code&gt;方法。在调用过程中，创建了一个&lt;code&gt;FSReqWrap&lt;/code&gt;请求对象，从JS层传入的参数和方法都封装在这个请求对象中，其中我们最为关注的回调函数被设置在这个对象的&lt;code&gt;oncompete_sym&lt;/code&gt;属性上。对象包装完毕后，将&lt;code&gt;FSReqWrap&lt;/code&gt;对象推入线程池中等待执行。&lt;/p&gt;
 &lt;p&gt;至此，JS调用立即返回，JS线程可以继续执行后续操作。当前的I/O操作在线程池中等待执行，这就完成了异步调用的第一阶段。&lt;/p&gt;
-&lt;h2 id=&quot;2-4__u6267_u884C_u56DE_u8C03&quot;&gt;&lt;a href=&quot;#2-4__u6267_u884C_u56DE_u8C03&quot; class=&quot;headerlink&quot; title=&quot;2.4 执行回调&quot;&gt;&lt;/a&gt;2.4 执行回调&lt;/h2&gt;&lt;p&gt;回调通知是异步I/O的第二阶段。线程池中的I/O操作调用完毕后，会将获取的结果储存起来，然后通知IOCP当前对象操作已完成，并将线程归还线程池。在每次Tick的执行中，事件循环的I/O观察者会调用相关的方法检查线程池中是否有执行完的请求，如果存在，会将请求对象加入到I/O观察者的队列中，然后将其当做事件处理。&lt;/p&gt;
+&lt;h2 id=&quot;2-4-执行回调&quot;&gt;&lt;a href=&quot;#2-4-执行回调&quot; class=&quot;headerlink&quot; title=&quot;2.4 执行回调&quot;&gt;&lt;/a&gt;2.4 执行回调&lt;/h2&gt;&lt;p&gt;回调通知是异步I/O的第二阶段。线程池中的I/O操作调用完毕后，会将获取的结果储存起来，然后通知IOCP当前对象操作已完成，并将线程归还线程池。在每次Tick的执行中，事件循环的I/O观察者会调用相关的方法检查线程池中是否有执行完的请求，如果存在，会将请求对象加入到I/O观察者的队列中，然后将其当做事件处理。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E5%BC%82%E6%AD%A5IO%E6%B5%81%E7%A8%8B.jpg&quot; alt=&quot;Node异步I/O流程&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;3-__u975EIO_u7684_u5F02_u6B65API&quot;&gt;&lt;a href=&quot;#3-__u975EIO_u7684_u5F02_u6B65API&quot; class=&quot;headerlink&quot; title=&quot;3. 非IO的异步API&quot;&gt;&lt;/a&gt;3. 非IO的异步API&lt;/h1&gt;&lt;p&gt;Node中还存在一些与I/O无关的异步API，例如定时器&lt;code&gt;setTimeout()&lt;/code&gt;、&lt;code&gt;setInterval()&lt;/code&gt;，立即异步执行任务的&lt;code&gt;process.nextTick()&lt;/code&gt;和&lt;code&gt;setImmdiate()&lt;/code&gt;等，这里略微介绍一下。&lt;/p&gt;
-&lt;h2 id=&quot;3-1__u5B9A_u65F6_u5668API&quot;&gt;&lt;a href=&quot;#3-1__u5B9A_u65F6_u5668API&quot; class=&quot;headerlink&quot; title=&quot;3.1 定时器API&quot;&gt;&lt;/a&gt;3.1 定时器API&lt;/h2&gt;&lt;p&gt;&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;浏览器端的API是一致的，它们的实现原理与异步I/O类似，只是不需要I/O线程池的参与。调用定时器API创建的定时器会被插入到定时器观察者内部的一棵红黑树中，每次事件循环的Tick都会从红黑树中迭代取出定时器对象，检查是否超过定时时间，若超过就形成一个事件，回调函数立即被执行。定时器的主要问题在于它的定时时间并非特别精确（毫秒级，在容忍范围内）。&lt;/p&gt;
-&lt;h2 id=&quot;3-2__u7ACB_u5373_u5F02_u6B65_u6267_u884C_u4EFB_u52A1API&quot;&gt;&lt;a href=&quot;#3-2__u7ACB_u5373_u5F02_u6B65_u6267_u884C_u4EFB_u52A1API&quot; class=&quot;headerlink&quot; title=&quot;3.2 立即异步执行任务API&quot;&gt;&lt;/a&gt;3.2 立即异步执行任务API&lt;/h2&gt;&lt;p&gt;在Node出现之前，很多人也许为了立即异步执行一个任务，会这样调用：&lt;/p&gt;
+&lt;h1 id=&quot;3-非IO的异步API&quot;&gt;&lt;a href=&quot;#3-非IO的异步API&quot; class=&quot;headerlink&quot; title=&quot;3. 非IO的异步API&quot;&gt;&lt;/a&gt;3. 非IO的异步API&lt;/h1&gt;&lt;p&gt;Node中还存在一些与I/O无关的异步API，例如定时器&lt;code&gt;setTimeout()&lt;/code&gt;、&lt;code&gt;setInterval()&lt;/code&gt;，立即异步执行任务的&lt;code&gt;process.nextTick()&lt;/code&gt;和&lt;code&gt;setImmdiate()&lt;/code&gt;等，这里略微介绍一下。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-定时器API&quot;&gt;&lt;a href=&quot;#3-1-定时器API&quot; class=&quot;headerlink&quot; title=&quot;3.1 定时器API&quot;&gt;&lt;/a&gt;3.1 定时器API&lt;/h2&gt;&lt;p&gt;&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;浏览器端的API是一致的，它们的实现原理与异步I/O类似，只是不需要I/O线程池的参与。调用定时器API创建的定时器会被插入到定时器观察者内部的一棵红黑树中，每次事件循环的Tick都会从红黑树中迭代取出定时器对象，检查是否超过定时时间，若超过就形成一个事件，回调函数立即被执行。定时器的主要问题在于它的定时时间并非特别精确（毫秒级，在容忍范围内）。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-立即异步执行任务API&quot;&gt;&lt;a href=&quot;#3-2-立即异步执行任务API&quot; class=&quot;headerlink&quot; title=&quot;3.2 立即异步执行任务API&quot;&gt;&lt;/a&gt;3.2 立即异步执行任务API&lt;/h2&gt;&lt;p&gt;在Node出现之前，很多人也许为了立即异步执行一个任务，会这样调用：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;setTimeout(function() {
     // TODO
 }, 0);
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于事件循环的特点，定时器的精确度不够，而且采用定时器需要使用红黑树，各种操作时间复杂度为$O(\log (n))$。而&lt;code&gt;process.nextTick()&lt;/code&gt;方法只会将回调函数放入队列中，在下一轮Tick时取出执行，复杂度为$O(1)$更为高效。&lt;/p&gt;
 &lt;p&gt;此外还有一个&lt;code&gt;setImmediate()&lt;/code&gt;方法和上述方法类似，都是将回调函数延迟执行。不过前者的优先级要比后者高，这是因为事件循环对观察者的检查是有先后顺序的。另外，前者的回调函数保存在一个数组中，每轮Tick会将数组中的所有回调函数全部执行完；后者结果保存在链表中，每轮Tick只会执行一个回调函数。&lt;/p&gt;
-&lt;h1 id=&quot;4-__u4E8B_u4EF6_u9A71_u52A8_u4E0E_u9AD8_u6027_u80FD_u670D_u52A1_u5668&quot;&gt;&lt;a href=&quot;#4-__u4E8B_u4EF6_u9A71_u52A8_u4E0E_u9AD8_u6027_u80FD_u670D_u52A1_u5668&quot; class=&quot;headerlink&quot; title=&quot;4. 事件驱动与高性能服务器&quot;&gt;&lt;/a&gt;4. 事件驱动与高性能服务器&lt;/h1&gt;&lt;p&gt;前面以&lt;code&gt;fs.open()&lt;/code&gt;为例阐述了Node如何实现异步I/O。事实上对网络套接字的处理，Node也应用了异步I/O，这也是Node构建Web服务器的基础。经典的服务器模型有：&lt;/p&gt;
+&lt;h1 id=&quot;4-事件驱动与高性能服务器&quot;&gt;&lt;a href=&quot;#4-事件驱动与高性能服务器&quot; class=&quot;headerlink&quot; title=&quot;4. 事件驱动与高性能服务器&quot;&gt;&lt;/a&gt;4. 事件驱动与高性能服务器&lt;/h1&gt;&lt;p&gt;前面以&lt;code&gt;fs.open()&lt;/code&gt;为例阐述了Node如何实现异步I/O。事实上对网络套接字的处理，Node也应用了异步I/O，这也是Node构建Web服务器的基础。经典的服务器模型有：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;同步式：一次只能处理一个请求，其余请求都处于等待状态&lt;/li&gt;
 &lt;li&gt;每进程/每请求：为每个请求启动一个进程，但系统资源有限，不具备扩展性&lt;/li&gt;
