@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-02-14T05:51:54.054Z</updated>
+  <updated>2016-03-18T07:21:10.715Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,106 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>新版Hexo主题Raytaylorism v2发布</title>
+    <link href="http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/"/>
+    <id>http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/</id>
+    <published>2016-03-18T03:28:32.000Z</published>
+    <updated>2016-03-18T07:21:10.715Z</updated>
+    
+    <content type="html">&lt;p&gt;时隔两年多，我自制的Hexo主题Raytaylorism（&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github地址&lt;/a&gt;）终于喜迎v2版本的发布。这个项目可以说是我在学生时代Web前端领域中的收官之作，因此在本次升级主题的过程中，一切都尽量做到精细。例如所有的页面都经过重新设计，采用清新的的响应式的Material Design风格，加入了个性化的“读书”“关于”页面，以及皮肤自定义、分类目录、正文滚动目录、打赏等等特色功能，并且该主题支持最新的Hexo 3.1版本。由于主题的功能较为复杂，所有的安装说明和配置事项都写在了Github项目的README中，需要使用主题的同学请&lt;strong&gt;认真仔细阅读README&lt;/strong&gt;哦，&lt;strong&gt;特别是&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#启用重要&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;启用&lt;/a&gt;那一节的说明很重要！很重要！很重要！一定要照做否则你会发现hexo启动不起来或最终效果和截图上的不一样。&lt;/strong&gt; 使用过程中有任何问题欢迎给我开issue。下面正文将介绍主题在Github上没有详细解释但又非常有特色的功能。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-换肤功能&quot;&gt;&lt;a href=&quot;#1-换肤功能&quot; class=&quot;headerlink&quot; title=&quot;1. 换肤功能&quot;&gt;&lt;/a&gt;1. 换肤功能&lt;/h1&gt;&lt;p&gt;我个人非常喜欢Material Design这种简洁清新的设计风格，也非常喜欢其定义的各种颜色。博客主题是一种非常个性化的东西，我喜欢的配色方案（包括主题默认的indigo-pink方案）不一定是你喜欢的，因此raytaylorism在几乎所有带颜色的区域都预留了配置的接口（具体参见&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#样式&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-样式-主题颜色配置&lt;/a&gt;）。不过，总有一些设计感不强的同学不知道如何下手，所以下面给出了3款参考的皮肤配置方案，大家可以各取所需随意发挥。配色的一个基本原则，就是选好一种主色和强调色。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-夏日甜橙&quot;&gt;&lt;a href=&quot;#1-1-夏日甜橙&quot; class=&quot;headerlink&quot; title=&quot;1.1 夏日甜橙&quot;&gt;&lt;/a&gt;1.1 夏日甜橙&lt;/h2&gt;&lt;p&gt;主色：blue 强调色：deep-orange&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fblue_deeporange.jpg&quot; alt=&quot;夏日甜橙&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: indigo
+    footer: indigo
+    page_nav: indigo
+    side_nav: indigo darken-1
+    tag: green accent-4
+    link: indigo
+    pagination: green
+    tab: green
+    archive_item: grey
+    fab: green
+    fab_2: blue
+    fab_3: orange
+    new: pink
+    about_header: indigo
+    about_title: indigo
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2-绿野仙踪&quot;&gt;&lt;a href=&quot;#1-2-绿野仙踪&quot; class=&quot;headerlink&quot; title=&quot;1.2 绿野仙踪&quot;&gt;&lt;/a&gt;1.2 绿野仙踪&lt;/h2&gt;&lt;p&gt;主色：green 强调色：red&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fgreen_red.jpg&quot; alt=&quot;绿野仙踪&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: green
+    footer: green
+    page_nav: green
+    side_nav: green darken-1
+    tag: red lighten-1
+    article_title_link: green
+    link: red
+    pagination: red
+    tab: red
+    archive_item: grey
+    fab: red
+    fab_2: cyan
+    fab_3: light-green
+    new: red
+    about_header: green
+    about_title: green
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-3-林地木屋&quot;&gt;&lt;a href=&quot;#1-3-林地木屋&quot; class=&quot;headerlink&quot; title=&quot;1.3 林地木屋&quot;&gt;&lt;/a&gt;1.3 林地木屋&lt;/h2&gt;&lt;p&gt;主色：brown 强调色：light-green&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fbrown_lightgreen.jpg&quot; alt=&quot;林地木屋&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: brown darken-1
+    footer: brown darken-1
+    page_nav: brown darken-1
+    side_nav: brown darken-1
+    tag: light-green
+    article_title_link: brown
+    link: light-green
+    pagination: light-green
+    tab: light-green
+    archive_item: grey
+    fab: light-green
+    fab_2: red
+    fab_3: purple
+    new: light-green
+    about_header: brown darken-1
+    about_title: brown
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-文章分类目录&quot;&gt;&lt;a href=&quot;#2-文章分类目录&quot; class=&quot;headerlink&quot; title=&quot;2. 文章分类目录&quot;&gt;&lt;/a&gt;2. 文章分类目录&lt;/h1&gt;&lt;p&gt;如果点击我的博客菜单中的“分类”按钮，会发现左侧侧滑栏会出来一个带有多个层级的文章分类列表。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-category.png&quot; alt=&quot;主题的分类目录&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果你也想要得到类似的效果（包括标签tag），需要按照&lt;a href=&quot;https://hexo.io/docs/front-matter.html#Categories-amp-Tags&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo官方的categories/tags说明文档&lt;/a&gt;给你的博客文章设置正确的&lt;code&gt;categories&lt;/code&gt;和&lt;code&gt;tags&lt;/code&gt;配置项。也就是说你的每一篇博文的markdown文件中，需要设置类似于下方的几行配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;categories:
+- 一级目录
+- 二级目录
+- 三级目录
+tags:
+- 第一个标签
+- 第二个标签
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;准确设置后，启动hexo时主题会自动解析所有文章并形成分类树，最终生成上图那样的分类层次。&lt;/p&gt;
+&lt;h1 id=&quot;3-读书页面&quot;&gt;&lt;a href=&quot;#3-读书页面&quot; class=&quot;headerlink&quot; title=&quot;3. 读书页面&quot;&gt;&lt;/a&gt;3. 读书页面&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-reading.png&quot; alt=&quot;读书页面截图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#数据&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-数据-读书页面&lt;/a&gt;中其实已经说明了如何配置读书页面的数据，照着例子来改就行了。值得注意的是，“已读”“在读”“想读”这些标签的文字是可以通过&lt;code&gt;reading.json&lt;/code&gt;中的&lt;code&gt;define&lt;/code&gt;字段来修改的，甚至你还可以仿照读书页面，扩展出自己的专属页面，例如“作品”页面等。只要是满足这种列表条目的数据均可以在其上自由发挥。&lt;/p&gt;
+&lt;h1 id=&quot;4-关于页面&quot;&gt;&lt;a href=&quot;#4-关于页面&quot; class=&quot;headerlink&quot; title=&quot;4. 关于页面&quot;&gt;&lt;/a&gt;4. 关于页面&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-about.png&quot; alt=&quot;关于页面截图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#数据&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-数据-关于页面&lt;/a&gt;中也说明了个&lt;code&gt;about.json&lt;/code&gt;中各个字段的含义，照着例子改就行了。&lt;/p&gt;
+&lt;p&gt;另外关于页面的末尾还有一个“打赏”功能，点开后会出现微信和支付宝的二维码，这个需要你自己去制作自己的付款二维码，然后把&lt;code&gt;reward&lt;/code&gt;字段的两个图片链接替换掉。如果暂时不需要的话请将该字段设为null，&lt;strong&gt;千万不要傻乎乎地把主题照搬让别人给我的账号打赏了=。=&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关于主题任何使用上的疑问，欢迎在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Issues&lt;/a&gt;上提问。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;时隔两年多，我自制的Hexo主题Raytaylorism（&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism&quot;&gt;Github地址&lt;/a&gt;）终于喜迎v2版本的发布。这个项目可以说是我在学生时代Web前端领域中的收官之作，因此在本次升级主题的过程中，一切都尽量做到精细。例如所有的页面都经过重新设计，采用清新的的响应式的Material Design风格，加入了个性化的“读书”“关于”页面，以及皮肤自定义、分类目录、正文滚动目录、打赏等等特色功能，并且该主题支持最新的Hexo 3.1版本。由于主题的功能较为复杂，所有的安装说明和配置事项都写在了Github项目的README中，需要使用主题的同学请&lt;strong&gt;认真仔细阅读README&lt;/strong&gt;哦，&lt;strong&gt;特别是&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#启用重要&quot;&gt;启用&lt;/a&gt;那一节的说明很重要！很重要！很重要！一定要照做否则你会发现hexo启动不起来或最终效果和截图上的不一样。&lt;/strong&gt; 使用过程中有任何问题欢迎给我开issue。下面正文将介绍主题在Github上没有详细解释但又非常有特色的功能。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日常" scheme="http://raytaylorlin.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="Hexo" scheme="http://raytaylorlin.com/tags/Hexo/"/>
+    
+      <category term="博客" scheme="http://raytaylorlin.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>2015年秋季学期总结</title>
@@ -1675,73 +1775,6 @@ exports.leak = function() {
     
     
       <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node.js学习笔记：异步I/O</title>
-    <link href="http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/"/>
-    <id>http://raytaylorlin.com/tech/web/nodejs/node-asynchronous-io/</id>
-    <published>2014-10-13T01:32:49.000Z</published>
-    <updated>2016-02-13T07:01:45.387Z</updated>
-    
-    <content type="html">&lt;p&gt;“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。&lt;/p&gt;
-&lt;p&gt;在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-基本概念&quot;&gt;&lt;a href=&quot;#1-基本概念&quot; class=&quot;headerlink&quot; title=&quot;1. 基本概念&quot;&gt;&lt;/a&gt;1. 基本概念&lt;/h1&gt;&lt;p&gt;“异步”与“非阻塞”听起来似乎是一回事，从实际效果而言，这两者都达到了并行的目的。但是从计算机内核I/O而言，只有两种方式：阻塞与非阻塞。因此异步/同步和阻塞/非阻塞实际上是两回事。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-阻塞IO与非阻塞IO&quot;&gt;&lt;a href=&quot;#1-1-阻塞IO与非阻塞IO&quot; class=&quot;headerlink&quot; title=&quot;1.1 阻塞IO与非阻塞IO&quot;&gt;&lt;/a&gt;1.1 阻塞IO与非阻塞IO&lt;/h2&gt;&lt;p&gt;阻塞I/O的一个特点是&lt;strong&gt;调用之后一定要等到系统内核层面完成所有操作后，调用才结束&lt;/strong&gt;。以读取磁盘上的一个文件为例，系统内核在完成磁盘寻道、读取数据、复制数据到内存中后，这个调用才结束。&lt;/p&gt;
-&lt;p&gt;阻塞I/O造成CPU等待I/O，浪费等待时间，CPU的处理能力不能得到充分利用。非阻塞I/O的特点就是&lt;strong&gt;调用之后会立即返回，返回后CPU的时间片可以用来处理其他事务&lt;/strong&gt;。由于完整的I/O并没有完成，立即返回的并不是业务层期待的数据，而仅仅是当前调用的状态。为了获取完整的数据，应用程序需要重复调用I/O操作来确认是否完成（即轮询）。轮询技术要以下几种：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;read：通过重复调用来检查I/O状态，是最原始性能最低的一种方式&lt;/li&gt;
-&lt;li&gt;select：对read的改进，通过对文件描述符上的事件状态来进行判断。缺点是文件描述符最大的数量有限制&lt;/li&gt;
-&lt;li&gt;poll：对select的改进，采用链表的方式避免最大数量限制，但描述符较多时，性能还是十分低下&lt;/li&gt;
-&lt;li&gt;epoll：进入轮询时若没有检查到I/O事件，将会进行休眠，直到事件发生将其唤醒。这是当前Linux下效率最高的I/O事件通知机制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;轮询满足了非阻塞I/O确保获取完整数据的需求，但对于应用程序而言，它仍然只能算作一种同步，因为依然需要等待I/O完全返回。等待期间，CPU要么用于遍历文件描述符的状态，要么用于休眠等待事件发生。&lt;/p&gt;
-&lt;h2 id=&quot;1-2-理想与现实中的异步IO&quot;&gt;&lt;a href=&quot;#1-2-理想与现实中的异步IO&quot; class=&quot;headerlink&quot; title=&quot;1.2 理想与现实中的异步IO&quot;&gt;&lt;/a&gt;1.2 理想与现实中的异步IO&lt;/h2&gt;&lt;p&gt;完美的异步I/O应该是应用程序发起非阻塞调用，无需通过轮询就可以直接处理下一个任务，只需在I/O完成后通过信号或回调将数据传递给应用程序即可。&lt;/p&gt;
-&lt;p&gt;现实中的异步I/O在不同操作系统下有不同的实现，如*nix平台采用自定义的线程池，Windows平台采用IOCP模型。Node提供了libuv作为抽象封装层来封装平台兼容性判断，并保证上层Node与下层各平台异步I/O的实现各自独立。另外需要强调的是我们经常提到Node是单线程的，这仅仅是指Javascript的执行在单线程中，实际在Node内部完成I/O任务的都另有线程池。&lt;/p&gt;
-&lt;h1 id=&quot;2-Node的异步IO&quot;&gt;&lt;a href=&quot;#2-Node的异步IO&quot; class=&quot;headerlink&quot; title=&quot;2. Node的异步IO&quot;&gt;&lt;/a&gt;2. Node的异步IO&lt;/h1&gt;&lt;h2 id=&quot;2-1-事件循环&quot;&gt;&lt;a href=&quot;#2-1-事件循环&quot; class=&quot;headerlink&quot; title=&quot;2.1 事件循环&quot;&gt;&lt;/a&gt;2.1 事件循环&lt;/h2&gt;&lt;p&gt;Node的执行模型实际上是&lt;strong&gt;事件循环&lt;/strong&gt;。在进程启动时，Node会创建一个无限循环，每一次执行循环体的过程成为一次Tick。每个Tick过程就是查看是否有事件等待处理，如果有则取出事件及其相关的回调函数，若存在关联的回调函数则执行它们，然后进入下一个循环。如果不再有事件处理，就退出进程。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-观察者&quot;&gt;&lt;a href=&quot;#2-2-观察者&quot; class=&quot;headerlink&quot; title=&quot;2.2 观察者&quot;&gt;&lt;/a&gt;2.2 观察者&lt;/h2&gt;&lt;p&gt;每个事件循环中有若干个&lt;strong&gt;观察者&lt;/strong&gt;，通过向这些观察者询问来判断是否有事件要处理。事件循环是一个典型的&lt;em&gt;生产者/消费者模型&lt;/em&gt;。在Node中，事件主要来源于网络请求、文件I/O等，这些事件都有对应的网络I/O观察者、文件I/O观察者等，事件循环则从观察者那里取出事件并处理。&lt;/p&gt;
-&lt;h2 id=&quot;2-3-请求对象&quot;&gt;&lt;a href=&quot;#2-3-请求对象&quot; class=&quot;headerlink&quot; title=&quot;2.3 请求对象&quot;&gt;&lt;/a&gt;2.3 请求对象&lt;/h2&gt;&lt;p&gt;从Javascript发起调用到内核执行完I/O操作的过渡过程中，存在一种中间产物，叫做&lt;strong&gt;请求对象&lt;/strong&gt;。以最简单的Windows下&lt;code&gt;fs.open()&lt;/code&gt;方法（根据指定路径和参数去打开一个文件并得到一个文件描述符）为例，从JS调用到内建模块通过libuv进行系统调用，实际上是调用了&lt;code&gt;uv_fs_open()&lt;/code&gt;方法。在调用过程中，创建了一个&lt;code&gt;FSReqWrap&lt;/code&gt;请求对象，从JS层传入的参数和方法都封装在这个请求对象中，其中我们最为关注的回调函数被设置在这个对象的&lt;code&gt;oncompete_sym&lt;/code&gt;属性上。对象包装完毕后，将&lt;code&gt;FSReqWrap&lt;/code&gt;对象推入线程池中等待执行。&lt;/p&gt;
-&lt;p&gt;至此，JS调用立即返回，JS线程可以继续执行后续操作。当前的I/O操作在线程池中等待执行，这就完成了异步调用的第一阶段。&lt;/p&gt;
-&lt;h2 id=&quot;2-4-执行回调&quot;&gt;&lt;a href=&quot;#2-4-执行回调&quot; class=&quot;headerlink&quot; title=&quot;2.4 执行回调&quot;&gt;&lt;/a&gt;2.4 执行回调&lt;/h2&gt;&lt;p&gt;回调通知是异步I/O的第二阶段。线程池中的I/O操作调用完毕后，会将获取的结果储存起来，然后通知IOCP当前对象操作已完成，并将线程归还线程池。在每次Tick的执行中，事件循环的I/O观察者会调用相关的方法检查线程池中是否有执行完的请求，如果存在，会将请求对象加入到I/O观察者的队列中，然后将其当做事件处理。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fnodejs%2FNode%E5%BC%82%E6%AD%A5IO%E6%B5%81%E7%A8%8B.jpg&quot; alt=&quot;Node异步I/O流程&quot;&gt;&lt;/p&gt;
-&lt;h1 id=&quot;3-非IO的异步API&quot;&gt;&lt;a href=&quot;#3-非IO的异步API&quot; class=&quot;headerlink&quot; title=&quot;3. 非IO的异步API&quot;&gt;&lt;/a&gt;3. 非IO的异步API&lt;/h1&gt;&lt;p&gt;Node中还存在一些与I/O无关的异步API，例如定时器&lt;code&gt;setTimeout()&lt;/code&gt;、&lt;code&gt;setInterval()&lt;/code&gt;，立即异步执行任务的&lt;code&gt;process.nextTick()&lt;/code&gt;和&lt;code&gt;setImmdiate()&lt;/code&gt;等，这里略微介绍一下。&lt;/p&gt;
-&lt;h2 id=&quot;3-1-定时器API&quot;&gt;&lt;a href=&quot;#3-1-定时器API&quot; class=&quot;headerlink&quot; title=&quot;3.1 定时器API&quot;&gt;&lt;/a&gt;3.1 定时器API&lt;/h2&gt;&lt;p&gt;&lt;code&gt;setTimeout()&lt;/code&gt;和&lt;code&gt;setInterval()&lt;/code&gt;浏览器端的API是一致的，它们的实现原理与异步I/O类似，只是不需要I/O线程池的参与。调用定时器API创建的定时器会被插入到定时器观察者内部的一棵红黑树中，每次事件循环的Tick都会从红黑树中迭代取出定时器对象，检查是否超过定时时间，若超过就形成一个事件，回调函数立即被执行。定时器的主要问题在于它的定时时间并非特别精确（毫秒级，在容忍范围内）。&lt;/p&gt;
-&lt;h2 id=&quot;3-2-立即异步执行任务API&quot;&gt;&lt;a href=&quot;#3-2-立即异步执行任务API&quot; class=&quot;headerlink&quot; title=&quot;3.2 立即异步执行任务API&quot;&gt;&lt;/a&gt;3.2 立即异步执行任务API&lt;/h2&gt;&lt;p&gt;在Node出现之前，很多人也许为了立即异步执行一个任务，会这样调用：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;setTimeout(function() {
-    // TODO
-}, 0);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于事件循环的特点，定时器的精确度不够，而且采用定时器需要使用红黑树，各种操作时间复杂度为$O(\log (n))$。而&lt;code&gt;process.nextTick()&lt;/code&gt;方法只会将回调函数放入队列中，在下一轮Tick时取出执行，复杂度为$O(1)$更为高效。&lt;/p&gt;
-&lt;p&gt;此外还有一个&lt;code&gt;setImmediate()&lt;/code&gt;方法和上述方法类似，都是将回调函数延迟执行。不过前者的优先级要比后者高，这是因为事件循环对观察者的检查是有先后顺序的。另外，前者的回调函数保存在一个数组中，每轮Tick会将数组中的所有回调函数全部执行完；后者结果保存在链表中，每轮Tick只会执行一个回调函数。&lt;/p&gt;
-&lt;h1 id=&quot;4-事件驱动与高性能服务器&quot;&gt;&lt;a href=&quot;#4-事件驱动与高性能服务器&quot; class=&quot;headerlink&quot; title=&quot;4. 事件驱动与高性能服务器&quot;&gt;&lt;/a&gt;4. 事件驱动与高性能服务器&lt;/h1&gt;&lt;p&gt;前面以&lt;code&gt;fs.open()&lt;/code&gt;为例阐述了Node如何实现异步I/O。事实上对网络套接字的处理，Node也应用了异步I/O，这也是Node构建Web服务器的基础。经典的服务器模型有：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;同步式：一次只能处理一个请求，其余请求都处于等待状态&lt;/li&gt;
-&lt;li&gt;每进程/每请求：为每个请求启动一个进程，但系统资源有限，不具备扩展性&lt;/li&gt;
-&lt;li&gt;每线程/每请求：为每个请求启动一个线程。线程比进程要轻量，但每个线程都占用一定内存，当大并发请求到来时，内存很快就会用光&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;著名的Apache采用的就是每线程/每请求的形式，这也是它难以应对高并发的原因。Node通过事件驱动方式处理请求，可以省掉创建和销毁线程的开销，同时操作系统在调度任务时因为线程较少，上下文切换的代价也很低。即使在大量连接的情况下，Node也能有条不紊地处理请求。&lt;/p&gt;
-&lt;p&gt;知名服务器Nginx也摒弃了多线程的方式，采用和Node一样的事件驱动方式。如今Nginx大有取代Apache之势。Nginx采用纯C编写，性能较高，但是它仅适合做Web服务器，用于反向代理或负载均衡等。Node可以构建与Nginx相同的功能，也可以处理各种具体业务，自身性能也不错。在实际项目中，我们可以结合它们各自有点，以达到应用的最佳性能。&lt;/p&gt;
-&lt;p&gt;参考资料：《深入浅出NodeJS》第三章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。&lt;/p&gt;
-&lt;p&gt;在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
-    
-    
-      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
-    
-      <category term="异步I/O" scheme="http://raytaylorlin.com/tags/%E5%BC%82%E6%AD%A5I-O/"/>
     
   </entry>
   

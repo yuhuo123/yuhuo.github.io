@@ -334,7 +334,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">7 篇</span></a>
+                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -389,6 +389,48 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="blue-link-context"><a href="/tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a></h1>
+    
+
+
+                </div>
+
+                <time class="orange-link-context" datetime="2014-06-25T08:22:05.000Z"><a href="/tech/algorithm/divide-and-conquer/">2014-06-25</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+        
+            <a href="/tags/分治法/" class="chip orange lighten-1">分治法</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry orange-link-context">
+                        <p>在计算机科学中，分治法是一种很重要的算法。分治法字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题，直到最后子问题可以简单地直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如归并排序、快速傅立叶变换等。</p>
+<p>本文将简要介绍分治法的基本步骤，再以归并排序为例，介绍分治法的具体应用以及如何分析其时间复杂度。最后再介绍几个用分治法解决的算法案例。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action orange-link-context">
+                <a href="tech/algorithm/divide-and-conquer/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -766,45 +808,6 @@
 </article>
 
     
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-message/">HTTP学习笔记：HTTP报文</a></h1>
-    
-
-
-                </div>
-
-                <time class="orange-link-context" datetime="2014-04-04T11:03:05.000Z"><a href="/tech/web/http/HTTP-message/">2014-04-04</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry orange-link-context">
-                        <p>如果说HTTP是因特网的信使，那么HTTP报文就是运送的包裹。所有的HTTP程序都是通过互相发送报文来完成工作的。本文将介绍HTTP报文的流动方式，报文的组成部分，请求和响应报文之间的区别等。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action orange-link-context">
-                <a href="tech/web/http/HTTP-message/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
 
     <ul class="pagination center-align">
     <li class="">
@@ -922,10 +925,10 @@
         var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
-        // $imgs.addClass('materialboxed')
-        //     .each(function(i, el) {
-        //         $(this).attr('data-caption', $(this).attr('alt'));
-        //     }).materialbox();
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
 
         // 首页幻灯片
         $('.slider').slider({

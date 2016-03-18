@@ -334,7 +334,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">7 篇</span></a>
+                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -389,6 +389,45 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="blue-link-context"><a href="/daily/2012-autumn-summary/">2012年秋季学期总结</a></h1>
+    
+
+
+                </div>
+
+                <time class="orange-link-context" datetime="2013-01-24T07:08:29.000Z"><a href="/daily/2012-autumn-summary/">2013-01-24</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/日常/" class="chip orange lighten-1">日常</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry orange-link-context">
+                        <p>学期末了，做点简短的总结，以回顾一下这半年都做了什么东西。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action orange-link-context">
+                <a href="daily/2012-autumn-summary/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -704,10 +743,10 @@
         var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
-        // $imgs.addClass('materialboxed')
-        //     .each(function(i, el) {
-        //         $(this).attr('data-caption', $(this).attr('alt'));
-        //     }).materialbox();
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
 
         // 首页幻灯片
         $('.slider').slider({

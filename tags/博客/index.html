@@ -334,7 +334,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">7 篇</span></a>
+                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -365,6 +365,12 @@
 
 
     <div class="collection mt-0">
+        
+            <a href="/daily/hexo-theme-raytaylorism-v2/" class="collection-item grey-text text-darken-1">
+                <time datetime="2016-03-18T03:28:32.000Z">2016-03-18</time>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                新版Hexo主题Raytaylorism v2发布
+            </a>
         
             <a href="/daily/hexo-theme-raytaylorism/" class="collection-item grey-text text-darken-1">
                 <time datetime="2013-08-25T14:10:32.000Z">2013-08-25</time>
@@ -477,10 +483,10 @@
         var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
-        // $imgs.addClass('materialboxed')
-        //     .each(function(i, el) {
-        //         $(this).attr('data-caption', $(this).attr('alt'));
-        //     }).materialbox();
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
 
         // 首页幻灯片
         $('.slider').slider({

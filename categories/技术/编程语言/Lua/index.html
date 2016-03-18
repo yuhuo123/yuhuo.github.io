@@ -334,7 +334,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">7 篇</span></a>
+                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -501,10 +501,10 @@
         var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
 
         // 给图片加上点击放大效果（materialbox插件）
-        // $imgs.addClass('materialboxed')
-        //     .each(function(i, el) {
-        //         $(this).attr('data-caption', $(this).attr('alt'));
-        //     }).materialbox();
+        $imgs.addClass('materialboxed')
+            .each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
 
         // 首页幻灯片
         $('.slider').slider({
