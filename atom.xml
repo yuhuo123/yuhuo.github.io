@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-03-18T07:21:10.715Z</updated>
+  <updated>2016-03-21T02:10:05.064Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -20,10 +20,11 @@
     <link href="http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/"/>
     <id>http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/</id>
     <published>2016-03-18T03:28:32.000Z</published>
-    <updated>2016-03-18T07:21:10.715Z</updated>
+    <updated>2016-03-21T02:10:05.064Z</updated>
     
     <content type="html">&lt;p&gt;时隔两年多，我自制的Hexo主题Raytaylorism（&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github地址&lt;/a&gt;）终于喜迎v2版本的发布。这个项目可以说是我在学生时代Web前端领域中的收官之作，因此在本次升级主题的过程中，一切都尽量做到精细。例如所有的页面都经过重新设计，采用清新的的响应式的Material Design风格，加入了个性化的“读书”“关于”页面，以及皮肤自定义、分类目录、正文滚动目录、打赏等等特色功能，并且该主题支持最新的Hexo 3.1版本。由于主题的功能较为复杂，所有的安装说明和配置事项都写在了Github项目的README中，需要使用主题的同学请&lt;strong&gt;认真仔细阅读README&lt;/strong&gt;哦，&lt;strong&gt;特别是&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#启用重要&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;启用&lt;/a&gt;那一节的说明很重要！很重要！很重要！一定要照做否则你会发现hexo启动不起来或最终效果和截图上的不一样。&lt;/strong&gt; 使用过程中有任何问题欢迎给我开issue。下面正文将介绍主题在Github上没有详细解释但又非常有特色的功能。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TTGTextTagCollectionView *tagCollectionView = [[TTGTextTagCollectionView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[self.view addSubview:tagCollectionView];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[tagCollectionView addTags:@[@&amp;quot;TTG&amp;quot;, @&amp;quot;Tag&amp;quot;, @&amp;quot;collection&amp;quot;, @&amp;quot;view&amp;quot;]];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h1 id=&quot;1-换肤功能&quot;&gt;&lt;a href=&quot;#1-换肤功能&quot; class=&quot;headerlink&quot; title=&quot;1. 换肤功能&quot;&gt;&lt;/a&gt;1. 换肤功能&lt;/h1&gt;&lt;p&gt;我个人非常喜欢Material Design这种简洁清新的设计风格，也非常喜欢其定义的各种颜色。博客主题是一种非常个性化的东西，我喜欢的配色方案（包括主题默认的indigo-pink方案）不一定是你喜欢的，因此raytaylorism在几乎所有带颜色的区域都预留了配置的接口（具体参见&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#样式&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-样式-主题颜色配置&lt;/a&gt;）。不过，总有一些设计感不强的同学不知道如何下手，所以下面给出了3款参考的皮肤配置方案，大家可以各取所需随意发挥。配色的一个基本原则，就是选好一种主色和强调色。&lt;/p&gt;
 &lt;h2 id=&quot;1-1-夏日甜橙&quot;&gt;&lt;a href=&quot;#1-1-夏日甜橙&quot; class=&quot;headerlink&quot; title=&quot;1.1 夏日甜橙&quot;&gt;&lt;/a&gt;1.1 夏日甜橙&lt;/h2&gt;&lt;p&gt;主色：blue 强调色：deep-orange&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fblue_deeporange.jpg&quot; alt=&quot;夏日甜橙&quot;&gt;&lt;/p&gt;
@@ -109,9 +110,9 @@ tags:
       <category term="日常" scheme="http://raytaylorlin.com/categories/%E6%97%A5%E5%B8%B8/"/>
     
     
-      <category term="Hexo" scheme="http://raytaylorlin.com/tags/Hexo/"/>
-    
       <category term="博客" scheme="http://raytaylorlin.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="http://raytaylorlin.com/tags/Hexo/"/>
     
   </entry>
   

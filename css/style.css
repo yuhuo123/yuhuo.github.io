@@ -752,8 +752,6 @@ article pre {
   font-family: Consolas, "微软雅黑", Monaco, Menlo, Courier New, monospace;
   color: #333;
   font-size: 1em;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 article p code,
 article li code {
@@ -847,12 +845,14 @@ pre .deletion {
 figure.highlight {
   margin-left: 0;
   margin-right: 0;
+  overflow: auto;
 }
 figure.highlight td {
   padding: 0;
 }
 figure.highlight pre {
   margin: 0;
+  overflow: auto;
 }
 figure.highlight figcaption a {
   position: absolute;
