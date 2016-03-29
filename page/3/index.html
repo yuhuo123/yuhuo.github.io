@@ -38,7 +38,7 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="blue">
+    <nav class="indigo">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
@@ -50,6 +50,7 @@
                     <li>
                         <a class="menu-home " href="/" >
                             <i class="fa fa-home "></i>
+                            
                             首页
                         </a>
                     </li>
@@ -57,6 +58,7 @@
                     <li>
                         <a class="menu-archive " href="/archives" >
                             <i class="fa fa-archive "></i>
+                            
                             归档
                         </a>
                     </li>
@@ -64,6 +66,7 @@
                     <li>
                         <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
                             <i class="fa fa-bookmark "></i>
+                            
                             分类
                         </a>
                     </li>
@@ -71,6 +74,7 @@
                     <li>
                         <a class="menu-reading " href="/reading" >
                             <i class="fa fa-book "></i>
+                            
                             读书
                         </a>
                     </li>
@@ -78,13 +82,14 @@
                     <li>
                         <a class="menu-about " href="/about" >
                             <i class="fa fa-user "></i>
+                            
                             关于
                         </a>
                     </li>
                 
             </ul>
             <div>
-    <ul class="side-nav blue darken-1" id="main-menu">
+    <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
@@ -105,6 +110,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-home " href="/" >
                     <i class="fa fa-home "></i>
+                    
                     首页
                 </a>
             </li>
@@ -112,6 +118,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-archive " href="/archives" >
                     <i class="fa fa-archive "></i>
+                    
                     归档
                 </a>
             </li>
@@ -119,6 +126,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
                     <i class="fa fa-bookmark "></i>
+                    
                     分类
                 </a>
             </li>
@@ -126,6 +134,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-reading " href="/reading" >
                     <i class="fa fa-book "></i>
+                    
                     读书
                 </a>
             </li>
@@ -133,24 +142,21 @@
             <li class="no-padding">
                 <a class="waves-effect menu-about " href="/about" >
                     <i class="fa fa-user "></i>
+                    
                     关于
                 </a>
             </li>
         
     </ul>
 
-    <ul class="side-nav blue darken-1" id="category-menu">
-        <!--<li class="">
-            <h5 class="black-text">分类目录</h5>
-        </li>-->
-
+    <ul class="side-nav indigo darken-1" id="category-menu">
     
 
             
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">58 篇</span></a>
+                    技术 <span class="right">59 篇</span></a>
                 </a>
             </li>
 
@@ -198,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">5 篇</span></a>
+                    综合 <span class="right">6 篇</span></a>
                 </a>
             </li>
 
@@ -231,6 +237,14 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/项目/">
                     项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -396,27 +410,67 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/nodejs/node-asynchronous-io/">Node.js学习笔记：异步I/O</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/nodejs/node-memory-control/">Node.js学习笔记：内存控制</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-10-13T01:32:49.000Z"><a href="/tech/web/nodejs/node-asynchronous-io/">2014-10-13</a></time>
+                <time class="green-link-context" datetime="2014-11-06T02:22:49.000Z"><a href="/tech/web/nodejs/node-memory-control/">2014-11-06</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="chip orange lighten-1">Node.js</a>
-        
-            <a href="/tags/异步I-O/" class="chip orange lighten-1">异步I/O</a>
+            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
+                        <p>在过去很长一段时间内，Javascript开发者很少会在开发过程中遇到需要对内存精确控制的场景，也缺乏控制的手段。那些短时间执行的场景，如网页应用、命令行工具等，运行时间短内存很快地释放，即使内存使用过多或内存泄漏也只会影响到终端用户。但随着Node在服务器端的广泛应用，内存控制问题就暴露出来了。</p>
+<p>基于无阻塞、事件驱动的Node服务，具有内存消耗低，适合处理海量网络请求的优点。服务器端的资源向来是寸土寸金，要为海量用户服务，就得使一切资源都要高效利用。本文将介绍Node如何合理高效地使用内存。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/web/nodejs/node-memory-control/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/web/nodejs/node-asynchronous-io/">Node.js学习笔记：异步I/O</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2014-10-13T01:32:49.000Z"><a href="/tech/web/nodejs/node-asynchronous-io/">2014-10-13</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
+        
+            <a href="/tags/异步I-O/" class="chip green lighten-1">异步I/O</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
                         <p>“异步”这个名词的大规模流行是在Web 2.0浪潮中，它伴随着Javascript和AJAX席卷了Web。但在绝大多数高级编程语言中，异步并不多见。PHP最能体现这个特点：它不仅屏蔽了异步，甚至连多线程也不提供，PHP都是以同步阻塞的方式来执行。这样的优点利于程序猿顺序编写业务逻辑，但在复杂的网络应用中，阻塞导致它无法更好地并发。</p>
 <p>在服务器端，I/O非常昂贵，分布式I/O更加昂贵，只有后端能快速响应资源，前端的体验才能变得更好。Node.js是首个将异步作为主要编程方式和设计理念的平台，伴随着异步I/O的还有事件驱动和单线程，它们构成Node的基调。本文将介绍Node是如何实现异步I/O的。</p>
                     </div>
@@ -424,7 +478,7 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/nodejs/node-asynchronous-io/">READ MORE</a>
             </div>
             
@@ -438,34 +492,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/nodejs/node-module/">Node.js学习笔记：模块机制</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/nodejs/node-module/">Node.js学习笔记：模块机制</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-10-08T08:22:53.000Z"><a href="/tech/web/nodejs/node-module/">2014-10-08</a></time>
+                <time class="green-link-context" datetime="2014-10-08T08:22:53.000Z"><a href="/tech/web/nodejs/node-module/">2014-10-08</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="chip orange lighten-1">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
         
-            <a href="/tags/模块化/" class="chip orange lighten-1">模块化</a>
+            <a href="/tags/模块化/" class="chip green lighten-1">模块化</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>Javascript自诞生以来，曾经没有人拿它当做一门编程语言。在Web 1.0时代，这种脚本语言主要被用来做表单验证和网页特效。直到Web 2.0时代，前端工程师利用它大大提升了网页上的用户体验，JS才被广泛重视起来。在JS逐渐流行的过程中，它大致经历了工具类库、组件库、前端框架、前端应用的变迁。Javascript先天就缺乏一项功能：模块，而CommonJS规范的出现则弥补了这一缺陷。本文将介绍CommonJS规范及Node的模块机制。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/nodejs/node-module/">READ MORE</a>
             </div>
             
@@ -479,32 +533,32 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/nodejs/node-introduction/">Node.js学习笔记：简介</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/nodejs/node-introduction/">Node.js学习笔记：简介</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-09-30T07:00:12.000Z"><a href="/tech/web/nodejs/node-introduction/">2014-09-30</a></time>
+                <time class="green-link-context" datetime="2014-09-30T07:00:12.000Z"><a href="/tech/web/nodejs/node-introduction/">2014-09-30</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/Node-js/" class="chip orange lighten-1">Node.js</a>
+            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>Node.js应该是当今最火热的技术之一。本文主要介绍Node.js的特点及应用场景。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/nodejs/node-introduction/">READ MORE</a>
             </div>
             
@@ -518,34 +572,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/css/css-visualization-model/">CSS学习笔记：可视化格式模型</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/css/css-visualization-model/">CSS学习笔记：可视化格式模型</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-08-02T13:21:34.000Z"><a href="/tech/web/css/css-visualization-model/">2014-08-02</a></time>
+                <time class="green-link-context" datetime="2014-08-02T13:21:34.000Z"><a href="/tech/web/css/css-visualization-model/">2014-08-02</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/CSS/" class="chip orange lighten-1">CSS</a>
+            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
         
-            <a href="/tags/盒模型/" class="chip orange lighten-1">盒模型</a>
+            <a href="/tags/盒模型/" class="chip green lighten-1">盒模型</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>浮动、定位和盒模型是CSS三个最重要的基础概念，也是非常容易混淆和难掌握的概念。这些概念用于控制在页面上摆放和显示元素的方式，形成CSS基本布局。本文将介绍盒模型概念，外边距叠加，绝对定位和相对定位的差异，以及浮动和清理如何工作等。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/css/css-visualization-model/">READ MORE</a>
             </div>
             
@@ -559,34 +613,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/css/css-selector/">CSS学习笔记：选择器</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/css/css-selector/">CSS学习笔记：选择器</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-07-31T14:01:34.000Z"><a href="/tech/web/css/css-selector/">2014-07-31</a></time>
+                <time class="green-link-context" datetime="2014-07-31T14:01:34.000Z"><a href="/tech/web/css/css-selector/">2014-07-31</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/CSS/" class="chip orange lighten-1">CSS</a>
+            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
         
-            <a href="/tags/选择器/" class="chip orange lighten-1">选择器</a>
+            <a href="/tags/选择器/" class="chip green lighten-1">选择器</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/css/css-selector/">READ MORE</a>
             </div>
             
@@ -600,32 +654,32 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/css/css-basic-principles/">CSS学习笔记：基本原则</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/css/css-basic-principles/">CSS学习笔记：基本原则</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-07-29T01:38:05.000Z"><a href="/tech/web/css/css-basic-principles/">2014-07-29</a></time>
+                <time class="green-link-context" datetime="2014-07-29T01:38:05.000Z"><a href="/tech/web/css/css-basic-principles/">2014-07-29</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/CSS/" class="chip orange lighten-1">CSS</a>
+            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>本文记录一些CSS的基本的但常常被误解的概念，并讨论如何让HTML和CSS保持清晰且结构良好，内容包括设计代码的结构、有意义文档的重要性、命名约定、何时使用ID和类名、文档类型和浏览器模式等。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/css/css-basic-principles/">READ MORE</a>
             </div>
             
@@ -639,27 +693,27 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/algorithm/order-statistics/">算法学习笔记：顺序统计量</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/order-statistics/">算法学习笔记：顺序统计量</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-07-14T02:24:05.000Z"><a href="/tech/algorithm/order-statistics/">2014-07-14</a></time>
+                <time class="green-link-context" datetime="2014-07-14T02:24:05.000Z"><a href="/tech/algorithm/order-statistics/">2014-07-14</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
         
-            <a href="/tags/顺序统计量/" class="chip orange lighten-1">顺序统计量</a>
+            <a href="/tags/顺序统计量/" class="chip green lighten-1">顺序统计量</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>在一个由n个元素组成的集合中，第i个<em>顺序统计量（order statistics）</em>是该集合中第i小的元素，例如第1个顺序统计量是最小值，第n/2个顺序统计量是中位数（当n是偶数时，中位数一般指i=n/2的那个数）。顺序统计量问题就是给定包含n个（互异的）数的集合和整数i，找出第i小的数。</p>
 <p>解决这个问题最直接的办法就是先排序，再直接找出第i个元素即可，排序最快的时间复杂度是$O(n \log n)$。但其实还可以更快地找到第i个顺序统计量，本文将主要介绍一个实用的随机算法和确定性算法，它们都可以在$O(n)$的时间内解决这个问题。</p>
                     </div>
@@ -667,7 +721,7 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/algorithm/order-statistics/">READ MORE</a>
             </div>
             
@@ -681,34 +735,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/algorithm/heap-sort/">算法学习笔记：堆排序</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/heap-sort/">算法学习笔记：堆排序</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-07-10T03:11:05.000Z"><a href="/tech/algorithm/heap-sort/">2014-07-10</a></time>
+                <time class="green-link-context" datetime="2014-07-10T03:11:05.000Z"><a href="/tech/algorithm/heap-sort/">2014-07-10</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
         
-            <a href="/tags/堆排序/" class="chip orange lighten-1">堆排序</a>
+            <a href="/tags/堆排序/" class="chip green lighten-1">堆排序</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>相比归并排序和快速排序，本文将介绍另一种平均时间复杂度是$O(n \log n)$的排序方法——堆排序（Heap Sort）。堆排序使用了一种被称为“堆”的数据结构，这也是它相比其他两种排序方法的特殊之处。堆这种数据结构不仅可以用于排序，也可以用来维护优先级队列。本文最后还简要对比了快速排序和堆排序的优缺点。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/algorithm/heap-sort/">READ MORE</a>
             </div>
             
@@ -722,27 +776,27 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/algorithm/quick-sort/">算法学习笔记：快速排序</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/quick-sort/">算法学习笔记：快速排序</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-07-05T03:11:05.000Z"><a href="/tech/algorithm/quick-sort/">2014-07-05</a></time>
+                <time class="green-link-context" datetime="2014-07-05T03:11:05.000Z"><a href="/tech/algorithm/quick-sort/">2014-07-05</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
         
-            <a href="/tags/快速排序/" class="chip orange lighten-1">快速排序</a>
+            <a href="/tags/快速排序/" class="chip green lighten-1">快速排序</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>通常算法初学者都会接触到形形色色的排序算法，例如插入排序、选择排序、冒泡排序等等，这些排序算法都非常容易理解和上手，但是它们的时间复杂度是$O(n^2)$的。本文将介绍快速排序，同归并排序一样，它的时间复杂度是$O(n \log n)$。</p>
 <p>对于包含n个数的输入数组来说，快速排序是一种最坏情况运行时间为$O(n^2)$的算法，但<strong>它通常是实际应用中最常用的排序算法</strong>，因为它的平均性能是$O(n \log n)$的，而且隐含的常数因子非常小，并能够进行原址排序。</p>
                     </div>
@@ -750,50 +804,8 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/algorithm/quick-sort/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="blue-link-context"><a href="/tech/algorithm/master-method/">算法学习笔记：主方法</a></h1>
-    
-
-
-                </div>
-
-                <time class="orange-link-context" datetime="2014-06-27T03:11:05.000Z"><a href="/tech/algorithm/master-method/">2014-06-27</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
-        
-            <a href="/tags/主方法/" class="chip orange lighten-1">主方法</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry orange-link-context">
-                        <p>上一篇<a href="/Tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a>中，介绍了分治法及一些常见的分治法案例。其中递归式与分治方法是紧密相关的，因为使用递归式可以很自然地刻画分治算法的运行时间。一般来说，求解递归式有“代入法”，“递归树法”和“主方法”。其中主方法用于方便地求解形如$T(n)=aT(n/b)+f(n)$的递归式。</p>
-<p>本文将介绍主方法的一个“简化版本”，虽然是简化的，但它依然可以满足日常大多数的算法分析，并且更好理解其含义，最后再给出一个主方法的简要证明过程。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action orange-link-context">
-                <a href="tech/algorithm/master-method/">READ MORE</a>
             </div>
             
         </div>
@@ -811,7 +823,7 @@
     
         <li class="waves-effect"><a href="/page/2">2</a></li>
     
-        <li class="active orange"><a href="/page/3">3</a></li>
+        <li class="active green"><a href="/page/3">3</a></li>
     
         <li class="waves-effect"><a href="/page/4">4</a></li>
     
@@ -830,17 +842,17 @@
 </div>
 
         <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large orange">
+    <a class="btn-floating btn-large green">
       <i class="fa fa-caret-square-o-up"></i>
     </a>
     <ul>
-      <li><a class="btn-return-top btn-floating waves-effect indigo" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
-      <li><a class="btn-floating waves-effect button-collapse green"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+      <li><a class="btn-return-top btn-floating waves-effect pink" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
     </ul>
   </div>
 
     </main>
-    <footer class="page-footer blue darken-1">
+    <footer class="page-footer indigo darken-1">
     
     <div class="container">
         <div class="row">
@@ -885,7 +897,7 @@
     </div>
     
 
-    <div class="footer-copyright orange-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
             © 2016 example.com, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
@@ -921,6 +933,9 @@
             .each(function(i, el) {
                 $(this).attr('data-caption', $(this).attr('alt') || ' ');
             }).materialbox();
+
+        // 优化表格的显示
+        $('table').addClass('responsive-table striped bordered');
 
         // 首页幻灯片
         $('.slider').slider({
@@ -964,11 +979,11 @@
         $('li.tab a').hover(function() {
             $(this).toggleClass('text-lighten-4');
         });
-        $('.indicator').addClass('orange lighten-2');
+        $('.indicator').addClass('green lighten-2');
 
         
         // 添加new标签
-        $('.menu-about').append('<span class="new badge orange"></span>');
+        $('.menu-about').append('<span class="new badge green"></span>');
         
     });
 })(jQuery);

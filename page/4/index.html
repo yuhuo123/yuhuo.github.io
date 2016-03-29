@@ -38,7 +38,7 @@
 <body>
     <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
 
-    <nav class="blue">
+    <nav class="indigo">
     <div class="nav-wrapper">
         <a href="#" data-activates="main-menu" class="button-collapse">
             <i class="fa fa-navicon"></i>
@@ -50,6 +50,7 @@
                     <li>
                         <a class="menu-home " href="/" >
                             <i class="fa fa-home "></i>
+                            
                             首页
                         </a>
                     </li>
@@ -57,6 +58,7 @@
                     <li>
                         <a class="menu-archive " href="/archives" >
                             <i class="fa fa-archive "></i>
+                            
                             归档
                         </a>
                     </li>
@@ -64,6 +66,7 @@
                     <li>
                         <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
                             <i class="fa fa-bookmark "></i>
+                            
                             分类
                         </a>
                     </li>
@@ -71,6 +74,7 @@
                     <li>
                         <a class="menu-reading " href="/reading" >
                             <i class="fa fa-book "></i>
+                            
                             读书
                         </a>
                     </li>
@@ -78,13 +82,14 @@
                     <li>
                         <a class="menu-about " href="/about" >
                             <i class="fa fa-user "></i>
+                            
                             关于
                         </a>
                     </li>
                 
             </ul>
             <div>
-    <ul class="side-nav blue darken-1" id="main-menu">
+    <ul class="side-nav indigo darken-1" id="main-menu">
         
         <li class="side-user">
             <div class="row">
@@ -105,6 +110,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-home " href="/" >
                     <i class="fa fa-home "></i>
+                    
                     首页
                 </a>
             </li>
@@ -112,6 +118,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-archive " href="/archives" >
                     <i class="fa fa-archive "></i>
+                    
                     归档
                 </a>
             </li>
@@ -119,6 +126,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
                     <i class="fa fa-bookmark "></i>
+                    
                     分类
                 </a>
             </li>
@@ -126,6 +134,7 @@
             <li class="no-padding">
                 <a class="waves-effect menu-reading " href="/reading" >
                     <i class="fa fa-book "></i>
+                    
                     读书
                 </a>
             </li>
@@ -133,24 +142,21 @@
             <li class="no-padding">
                 <a class="waves-effect menu-about " href="/about" >
                     <i class="fa fa-user "></i>
+                    
                     关于
                 </a>
             </li>
         
     </ul>
 
-    <ul class="side-nav blue darken-1" id="category-menu">
-        <!--<li class="">
-            <h5 class="black-text">分类目录</h5>
-        </li>-->
-
+    <ul class="side-nav indigo darken-1" id="category-menu">
     
 
             
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">58 篇</span></a>
+                    技术 <span class="right">59 篇</span></a>
                 </a>
             </li>
 
@@ -198,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">5 篇</span></a>
+                    综合 <span class="right">6 篇</span></a>
                 </a>
             </li>
 
@@ -231,6 +237,14 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/项目/">
                     项目 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -396,27 +410,69 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/master-method/">算法学习笔记：主方法</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-06-25T08:22:05.000Z"><a href="/tech/algorithm/divide-and-conquer/">2014-06-25</a></time>
+                <time class="green-link-context" datetime="2014-06-27T03:11:05.000Z"><a href="/tech/algorithm/master-method/">2014-06-27</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
         
-            <a href="/tags/分治法/" class="chip orange lighten-1">分治法</a>
+            <a href="/tags/主方法/" class="chip green lighten-1">主方法</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
+                        <p>上一篇<a href="/Tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a>中，介绍了分治法及一些常见的分治法案例。其中递归式与分治方法是紧密相关的，因为使用递归式可以很自然地刻画分治算法的运行时间。一般来说，求解递归式有“代入法”，“递归树法”和“主方法”。其中主方法用于方便地求解形如$T(n)=aT(n/b)+f(n)$的递归式。</p>
+<p>本文将介绍主方法的一个“简化版本”，虽然是简化的，但它依然可以满足日常大多数的算法分析，并且更好理解其含义，最后再给出一个主方法的简要证明过程。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/algorithm/master-method/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/divide-and-conquer/">算法学习笔记：分治法</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2014-06-25T08:22:05.000Z"><a href="/tech/algorithm/divide-and-conquer/">2014-06-25</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
+        
+            <a href="/tags/分治法/" class="chip green lighten-1">分治法</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
                         <p>在计算机科学中，分治法是一种很重要的算法。分治法字面上的解释是“分而治之”，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题，直到最后子问题可以简单地直接求解，原问题的解即子问题的解的合并。这个技巧是很多高效算法的基础，如归并排序、快速傅立叶变换等。</p>
 <p>本文将简要介绍分治法的基本步骤，再以归并排序为例，介绍分治法的具体应用以及如何分析其时间复杂度。最后再介绍几个用分治法解决的算法案例。</p>
                     </div>
@@ -424,7 +480,7 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/algorithm/divide-and-conquer/">READ MORE</a>
             </div>
             
@@ -438,27 +494,27 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/algorithm/asymptotic-analysis/">算法学习笔记：渐进分析</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/asymptotic-analysis/">算法学习笔记：渐进分析</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-06-20T08:22:05.000Z"><a href="/tech/algorithm/asymptotic-analysis/">2014-06-20</a></time>
+                <time class="green-link-context" datetime="2014-06-20T08:22:05.000Z"><a href="/tech/algorithm/asymptotic-analysis/">2014-06-20</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/算法/" class="chip orange lighten-1">算法</a>
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
         
-            <a href="/tags/渐进分析/" class="chip orange lighten-1">渐进分析</a>
+            <a href="/tags/渐进分析/" class="chip green lighten-1">渐进分析</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>当算法问题的规模很小的时候，基本上在任何一台机器上都会以很快的速度计算出来，只有在问题规模较大的时候分析算法的效率才显得有意义。因此我们要研究算法的<strong>渐进</strong>效率，也就是关心问题的输入规模趋向无穷大时，算法的运行时间是如何增长的。</p>
 <p>本文将以插入排序为例，简要分析其运行时间。这种分析将引入一种关注时间如何随着输入规模增加而增加的记号。在此基础上，再给出几种标准方法来简化算法的渐进分析。</p>
                     </div>
@@ -466,7 +522,7 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/algorithm/asymptotic-analysis/">READ MORE</a>
             </div>
             
@@ -480,36 +536,36 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/complex/presentation/fe-workflow-automation-presentation/">【演示】前端自动化工作流简介</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/complex/presentation/fe-workflow-automation-presentation/">【演示】前端自动化工作流简介</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-30T02:47:05.000Z"><a href="/tech/complex/presentation/fe-workflow-automation-presentation/">2014-05-30</a></time>
+                <time class="green-link-context" datetime="2014-05-30T02:47:05.000Z"><a href="/tech/complex/presentation/fe-workflow-automation-presentation/">2014-05-30</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/前端工作流/" class="chip orange lighten-1">前端工作流</a>
+            <a href="/tags/前端工作流/" class="chip green lighten-1">前端工作流</a>
         
-            <a href="/tags/自动化/" class="chip orange lighten-1">自动化</a>
+            <a href="/tags/自动化/" class="chip green lighten-1">自动化</a>
         
-            <a href="/tags/演示/" class="chip orange lighten-1">演示</a>
+            <a href="/tags/演示/" class="chip green lighten-1">演示</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>本文附带了2014年5月29日ELWG讲座《前端自动化工作流简介》的PPT。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/complex/presentation/fe-workflow-automation-presentation/">READ MORE</a>
             </div>
             
@@ -523,36 +579,36 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/complex/presentation/javascript-module-presentation/">【演示】Javascript模块化实战</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/complex/presentation/javascript-module-presentation/">【演示】Javascript模块化实战</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-29T02:47:05.000Z"><a href="/tech/complex/presentation/javascript-module-presentation/">2014-05-29</a></time>
+                <time class="green-link-context" datetime="2014-05-29T02:47:05.000Z"><a href="/tech/complex/presentation/javascript-module-presentation/">2014-05-29</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/演示/" class="chip orange lighten-1">演示</a>
+            <a href="/tags/演示/" class="chip green lighten-1">演示</a>
         
-            <a href="/tags/Javascript/" class="chip orange lighten-1">Javascript</a>
+            <a href="/tags/Javascript/" class="chip green lighten-1">Javascript</a>
         
-            <a href="/tags/模块化/" class="chip orange lighten-1">模块化</a>
+            <a href="/tags/模块化/" class="chip green lighten-1">模块化</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>本文附带了2014年5月28日ELWG讲座《Javascript模块化实战》的PPT。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/complex/presentation/javascript-module-presentation/">READ MORE</a>
             </div>
             
@@ -566,34 +622,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/tool/IDE/console2-better-windows-cmd/">Console2：Windows命令行威力加强版</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/tool/IDE/console2-better-windows-cmd/">Console2：Windows命令行威力加强版</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-15T07:36:29.000Z"><a href="/tech/tool/IDE/console2-better-windows-cmd/">2014-05-15</a></time>
+                <time class="green-link-context" datetime="2014-05-15T07:36:29.000Z"><a href="/tech/tool/IDE/console2-better-windows-cmd/">2014-05-15</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/Shell/" class="chip orange lighten-1">Shell</a>
+            <a href="/tags/Shell/" class="chip green lighten-1">Shell</a>
         
-            <a href="/tags/控制台/" class="chip orange lighten-1">控制台</a>
+            <a href="/tags/控制台/" class="chip green lighten-1">控制台</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>作为一个Windows重度用户+程序猿，日常开发中免不了要经常使用命令行工具。但是Windows下默认的cmd提供的功能实在有限。今天无意间发现了一款很不错的命令行工具前端Console2，瞬间就被其深深地吸引，赶紧记下来分享一下。本文将简单介绍Console2及其配置方法，让你可以快速地配置出一个类似Linux终端的装逼利器。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/tool/IDE/console2-better-windows-cmd/">READ MORE</a>
             </div>
             
@@ -607,27 +663,27 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-cache/">HTTP学习笔记：缓存</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/http/HTTP-cache/">HTTP学习笔记：缓存</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-14T02:47:05.000Z"><a href="/tech/web/http/HTTP-cache/">2014-05-14</a></time>
+                <time class="green-link-context" datetime="2014-05-14T02:47:05.000Z"><a href="/tech/web/http/HTTP-cache/">2014-05-14</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
         
-            <a href="/tags/缓存/" class="chip orange lighten-1">缓存</a>
+            <a href="/tags/缓存/" class="chip green lighten-1">缓存</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>Web缓存是可以自动保存常见文档副本的HTTP设备。当Web请求抵达缓存时，如果本地有“已缓存的”副本，就可以从本地存储设备而不是原始服务器中提取这个文档。使用缓存可以减少冗余的数据传输，环节网络瓶颈的问题，降低对原始服务器的要求以及降低距离时延。</p>
 <p>本文解释了缓存怎样提供性能降低费用，如何去衡量其有效性以及将缓存置于何处可以发挥它的最大作用。此外还会解释HTTP如何保持已缓存副本的新鲜度，缓存如何与其他缓存和服务器通信等问题。</p>
                     </div>
@@ -635,7 +691,7 @@
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/http/HTTP-cache/">READ MORE</a>
             </div>
             
@@ -649,34 +705,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-proxy/">HTTP学习笔记：代理</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/http/HTTP-proxy/">HTTP学习笔记：代理</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-08T14:48:05.000Z"><a href="/tech/web/http/HTTP-proxy/">2014-05-08</a></time>
+                <time class="green-link-context" datetime="2014-05-08T14:48:05.000Z"><a href="/tech/web/http/HTTP-proxy/">2014-05-08</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
         
-            <a href="/tags/代理/" class="chip orange lighten-1">代理</a>
+            <a href="/tags/代理/" class="chip green lighten-1">代理</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>Web代理（proxy）服务器时网络的中间实体。代理位于客户端和服务器之间，扮演“中间人”的角色，在各端点之间来回传送HTTP报文。本文介绍与HTTP代理服务器有关的内容，包括：代理能做什么，代理一般位于何处，与代理请求有关的一些问题以及如何追踪报文等等。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/http/HTTP-proxy/">READ MORE</a>
             </div>
             
@@ -690,34 +746,34 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-web-server/">HTTP学习笔记：Web服务器</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/http/HTTP-web-server/">HTTP学习笔记：Web服务器</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-05-04T07:48:05.000Z"><a href="/tech/web/http/HTTP-web-server/">2014-05-04</a></time>
+                <time class="green-link-context" datetime="2014-05-04T07:48:05.000Z"><a href="/tech/web/http/HTTP-web-server/">2014-05-04</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
         
-            <a href="/tags/Web服务器/" class="chip orange lighten-1">Web服务器</a>
+            <a href="/tags/Web服务器/" class="chip green lighten-1">Web服务器</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>Web服务器每天会分发出数十亿的Web页面，它是万维网的骨干。Web服务器实现了HTTP和相关的TCP连接处理，管理着Web资源，并负责提供管理功能。本文将一步一步解释Web服务器时如何处理HTTP事务的。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/http/HTTP-web-server/">READ MORE</a>
             </div>
             
@@ -731,77 +787,35 @@
                 <div class="article-title">
                     
     
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-connection-management/">HTTP学习笔记：连接管理</a></h1>
+        <h1 class="indigo-link-context"><a href="/tech/web/http/HTTP-connection-management/">HTTP学习笔记：连接管理</a></h1>
     
 
 
                 </div>
 
-                <time class="orange-link-context" datetime="2014-04-24T07:48:05.000Z"><a href="/tech/web/http/HTTP-connection-management/">2014-04-24</a></time>
+                <time class="green-link-context" datetime="2014-04-24T07:48:05.000Z"><a href="/tech/web/http/HTTP-connection-management/">2014-04-24</a></time>
 
                 
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
+            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
         
-            <a href="/tags/TCP/" class="chip orange lighten-1">TCP</a>
+            <a href="/tags/TCP/" class="chip green lighten-1">TCP</a>
         
     </div>
 
 
 
                 
-                    <div class="entry orange-link-context">
+                    <div class="entry green-link-context">
                         <p>HTTP规范对HTTP报文解释得很清楚，但对HTTP连接介绍并不多，而HTTP连接时HTTP报文传输的关键通道。本文将介绍HTTP是如何使用TCP连接，HTTP的优化以及管理连接时应该注意的问题等。</p>
                     </div>
                 
             </div>
 
             
-            <div class="card-action orange-link-context">
+            <div class="card-action green-link-context">
                 <a href="tech/web/http/HTTP-connection-management/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="blue-link-context"><a href="/tech/web/http/HTTP-HTTPS/">HTTP学习笔记：HTTPS</a></h1>
-    
-
-
-                </div>
-
-                <time class="orange-link-context" datetime="2014-04-10T11:03:05.000Z"><a href="/tech/web/http/HTTP-HTTPS/">2014-04-10</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/HTTP/" class="chip orange lighten-1">HTTP</a>
-        
-            <a href="/tags/HTTPS/" class="chip orange lighten-1">HTTPS</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry orange-link-context">
-                        <p>HTTPS是最常见的HTTP安全版本。HTTPS将HTTP协议与一组强大的对称、非对称和基于证书的加密技术结合在一起，使得HTTPS不仅很安全，而且很灵活，很容易在处于无序状态的、分散的全球互联网上进行管理，因此得到很广泛的应用。</p>
-<p>目前它得到很广泛的应用，所有主要的商业浏览器和服务器都提供HTTPS。目前它已经成为基于Web的电子商务快速成长的主要推动力。本文将介绍HTTPS的相关知识。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action orange-link-context">
-                <a href="tech/web/http/HTTP-HTTPS/">READ MORE</a>
             </div>
             
         </div>
@@ -821,7 +835,7 @@
     
         <li class="waves-effect"><a href="/page/3">3</a></li>
     
-        <li class="active orange"><a href="/page/4">4</a></li>
+        <li class="active green"><a href="/page/4">4</a></li>
     
         <li class="waves-effect"><a href="/page/5">5</a></li>
     
@@ -838,17 +852,17 @@
 </div>
 
         <div class="fixed-action-btn float-sitemap">
-    <a class="btn-floating btn-large orange">
+    <a class="btn-floating btn-large green">
       <i class="fa fa-caret-square-o-up"></i>
     </a>
     <ul>
-      <li><a class="btn-return-top btn-floating waves-effect indigo" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
-      <li><a class="btn-floating waves-effect button-collapse green"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+      <li><a class="btn-return-top btn-floating waves-effect pink" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
     </ul>
   </div>
 
     </main>
-    <footer class="page-footer blue darken-1">
+    <footer class="page-footer indigo darken-1">
     
     <div class="container">
         <div class="row">
@@ -893,7 +907,7 @@
     </div>
     
 
-    <div class="footer-copyright orange-link-context">
+    <div class="footer-copyright green-link-context">
         <div class="container">
             © 2016 example.com, All rights reserved.
             <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
@@ -929,6 +943,9 @@
             .each(function(i, el) {
                 $(this).attr('data-caption', $(this).attr('alt') || ' ');
             }).materialbox();
+
+        // 优化表格的显示
+        $('table').addClass('responsive-table striped bordered');
 
         // 首页幻灯片
         $('.slider').slider({
@@ -972,11 +989,11 @@
         $('li.tab a').hover(function() {
             $(this).toggleClass('text-lighten-4');
         });
-        $('.indicator').addClass('orange lighten-2');
+        $('.indicator').addClass('green lighten-2');
 
         
         // 添加new标签
-        $('.menu-about').append('<span class="new badge orange"></span>');
+        $('.menu-about').append('<span class="new badge green"></span>');
         
     });
 })(jQuery);
