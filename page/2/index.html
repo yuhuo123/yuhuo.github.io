@@ -156,7 +156,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">59 篇</span></a>
+                    技术 <span class="right">60 篇</span></a>
                 </a>
             </li>
 
@@ -204,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">6 篇</span></a>
+                    综合 <span class="right">7 篇</span></a>
                 </a>
             </li>
 
@@ -235,16 +235,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">2 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -368,6 +368,16 @@
     <ul class="slides">
     
        <li>
+           <a href="javascript:;">
+               <img class="slider-image" src="http://7d9rl0.com1.z0.glb.clouddn.com/image/slider/weixin_public.jpg">
+               <div class="caption left-align">
+                 <h4>博客微信公众号</h3>
+                 <h5 class="light grey-text text-lighten-3">扫一扫关注，获得最新博客动态</h5>
+               </div>
+           </a>
+       </li>
+    
+       <li>
            <a href="/about">
                <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2Fabout.png">
                <div class="caption right-align">
@@ -403,6 +413,45 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/language/lua/lua-note-6/">Lua学习笔记（6）——环境与模块</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2015-05-10T02:39:41.000Z"><a href="/tech/language/lua/lua-note-6/">2015-05-10</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/Lua/" class="chip green lighten-1">Lua</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/language/lua/lua-note-6/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -765,48 +814,6 @@
 </article>
 
     
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="indigo-link-context"><a href="/tech/web/nodejs/node-process-and-cluster/">Node.js学习笔记：进程与集群</a></h1>
-    
-
-
-                </div>
-
-                <time class="green-link-context" datetime="2014-11-11T02:24:05.000Z"><a href="/tech/web/nodejs/node-process-and-cluster/">2014-11-11</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
-        
-            <a href="/tags/进程/" class="chip green lighten-1">进程</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry green-link-context">
-                        <p>Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。</p>
-<p>本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action green-link-context">
-                <a href="tech/web/nodejs/node-process-and-cluster/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
 
     <ul class="pagination center-align">
     <li class="">
@@ -1016,8 +1023,8 @@ MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 });
 </script>
-<script type="text/javascript"
-    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
 

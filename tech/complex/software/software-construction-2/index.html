@@ -7,7 +7,7 @@
 
     
 
-    <title>Linux | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
+    <title>软件构建（二）——架构与设计 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="Ray Taylor Lin">
     
     <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="软件构建（二）——架构与设计"/>
     <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
 
     
@@ -363,36 +363,192 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/综合/">综合</a><a class="breadcrumb" href="/categories/技术/综合/软件工程/">软件工程</a>
+
 
         
-            <a class="breadcrumb" href="/tags/Linux/">Linux</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>软件构建（二）——架构与设计</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="green-link-context" datetime="2016-04-01T03:37:35.000Z"><a href="/tech/complex/software/software-construction-2/">2016-04-01</a></time>
+
+            
+    <div class="tags-row">
         
-            <a href="/tech/linux/linux-user-and-file-manage/" class="collection-item grey-text text-darken-1">
-                <time datetime="2015-02-19T11:38:05.000Z">2015-02-19</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Linux学习笔记——用户及文件权限管理
-            </a>
+            <a href="/tags/软件构建/" class="chip green lighten-1">软件构建</a>
         
-            <a href="/tech/linux/linux-base/" class="collection-item grey-text text-darken-1">
-                <time datetime="2015-02-11T01:38:05.000Z">2015-02-11</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Linux学习笔记——基本概念及操作
-            </a>
+            <a href="/tags/软件工程/" class="chip green lighten-1">软件工程</a>
         
     </div>
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-软件构建的主要活动"><span class="section table-of-contents-text">1. 软件构建的主要活动</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-软件架构的概念"><span class="section table-of-contents-text">1.1 软件架构的概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-架构的典型组成部分"><span class="section table-of-contents-text">1.2 架构的典型组成部分</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-软件构建中设计的基础"><span class="section table-of-contents-text">2. 软件构建中设计的基础</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-理解设计的挑战"><span class="section table-of-contents-text">2.1 理解设计的挑战</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-关键的设计概念"><span class="section table-of-contents-text">2.2 关键的设计概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-理想的设计特征"><span class="section table-of-contents-text">2.3 理想的设计特征</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4-设计的层次"><span class="section table-of-contents-text">2.4 设计的层次</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-软件构建中设计的方法"><span class="section table-of-contents-text">3. 软件构建中设计的方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-启发式方法"><span class="section table-of-contents-text">3.1 启发式方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-设计实践"><span class="section table-of-contents-text">3.2 设计实践</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>软件架构（software architecture）是软件设计的高层部分，是用于支撑更细节的设计的框架。本文关注的并不是如何开发一个软件的架构，而是设计一个架构时应该关注的部分。此外，设计就是把需求分析和编码调试连在一起的活动，好的高层设计能提供一个可以稳妥容纳多个较低层次设计的结构，其对于小型项目非常有用，对大型项目更是不可或缺。因此，本文将总结软件构建中设计的基础概念及基本方法。</p>
+<a id="more"></a>
+<h1 id="1-软件构建的主要活动"><a href="#1-软件构建的主要活动" class="headerlink" title="1. 软件构建的主要活动"></a>1. 软件构建的主要活动</h1><h2 id="1-1-软件架构的概念"><a href="#1-1-软件架构的概念" class="headerlink" title="1.1 软件架构的概念"></a>1.1 软件架构的概念</h2><p>一个经过慎重考虑的架构为“从顶层到底层维护系统的概念完整性”提供了必备的结构和体系，它为程序员提供了指引，将工作分为几个部分，使多个开发者可以独立工作。好的架构使得构建活动变得更容易。糟糕的架构则使构建活动几乎寸步难行。在构建期间或者更晚的时候进行架构变更，代价也是高昂的。</p>
+<h2 id="1-2-架构的典型组成部分"><a href="#1-2-架构的典型组成部分" class="headerlink" title="1.2 架构的典型组成部分"></a>1.2 架构的典型组成部分</h2><ul>
+<li>程序组织：定义程序的主要构造块（子系统或模块），它们的责任以及它们之间的通信规则</li>
+<li>主要的类：指出每个主要的类的责任，以及该类如何与其他类交互（继承体系、状态转换、对象持久化等）</li>
+<li>数据设计：描述所用到的主要数据文件和数据表的设计</li>
+<li>业务规则：描述某些特殊的业务规则对系统设计的影响</li>
+<li>用户界面设计：架构应模块化，以便替换UI部分</li>
+<li>资源管理：描述管理稀缺资源（数据库连接、线程、内存等）的计划</li>
+<li>安全性：描述实现设计层面和代码层面的安全性的方法，并建立威胁模型</li>
+<li>性能：如果需要关注性能，就应该在需求中详细定义性能目标</li>
+<li>可伸缩性：描述系统如何应对未来需求的增长（如用户数量、服务器数量、网络节点数量等等）</li>
+<li>国际化/本地化：考虑典型的字符串和字符集问题</li>
+<li>输入/输出：定义数据的读取和写入策略</li>
+<li>错误处理：确定一种“一致处理错误”的策略（纠正还是检测错误？主动还是被动检测错误？程序如何传播错误？程序在什么层次处理错误？等等）</li>
+<li>容错性：考虑系统在出错时，让系统转入“部分运转”状态，还是某种“功能退化”状态，甚至自动关闭或重启</li>
+<li>架构的可行性：必须论证系统在技术上是否可实现</li>
+<li>关于“买”还是“造”的决策：决定购买组件，使用第三方组件，还是自己造轮子</li>
+<li>关于复用的决策：说明如何对复用的软件进行加工，使之符合其他架构目标</li>
+<li>变更策略：考虑如何让架构足够灵活，能够适应可能出现的变化</li>
+</ul>
+<p><strong><a href="http://www.kancloud.cn/raytaylorlin/code-complete-checklist/133369" target="_blank" rel="external">核对表：架构</a></strong></p>
+<h1 id="2-软件构建中设计的基础"><a href="#2-软件构建中设计的基础" class="headerlink" title="2. 软件构建中设计的基础"></a>2. 软件构建中设计的基础</h1><h2 id="2-1-理解设计的挑战"><a href="#2-1-理解设计的挑战" class="headerlink" title="2.1 理解设计的挑战"></a>2.1 理解设计的挑战</h2><ul>
+<li>设计是一个险恶的问题：必须首先把这个问题“解决”一遍以便能够明确地定义它，然后再次解决该问题</li>
+<li>设计是个了无章法的过程：设计过程中会犯很多错，并且很难判断设计何时算是“足够好”</li>
+<li>设计就是确定取舍和调整顺序的过程</li>
+<li>设计受到诸多限制：时间、资源、空间等等</li>
+<li>设计是不确定的：让三个人设计同一套程序，可能会做出三套截然不同而且都不错的设计</li>
+<li>设计是一个启发式过程：由于充满不确定性，设计是具有探索性的不是能保证产生预期结果的可重复过程</li>
+</ul>
+<h2 id="2-2-关键的设计概念"><a href="#2-2-关键的设计概念" class="headerlink" title="2.2 关键的设计概念"></a>2.2 关键的设计概念</h2><p><strong>软件的首要技术使命便是管理复杂度。</strong>在软件架构的层次上，可以通过把整个系统分解为多个子系统来降低问题的复杂度。子系统间的相互依赖越少，就越容易在同一时间里专注问题的一小部分。精心设计的对象关系使关注点相互分离，从而使你能在每个时刻只专注于一件事情。可以用这两种方法来管理复杂度：把任何人在同一时间需要处理的本质复杂度的量减到最少；不要让偶然性的复杂度无谓地快速增长。一旦你能理解软件开发中任何其他技术目标都不如管理复杂度重要时，众多设计上的考虑就都变得直截了当了。</p>
+<h2 id="2-3-理想的设计特征"><a href="#2-3-理想的设计特征" class="headerlink" title="2.3 理想的设计特征"></a>2.3 理想的设计特征</h2><ul>
+<li>最小的复杂度：设计要简单且易于理解</li>
+<li>易维护：为做维护工作的程序猿着想</li>
+<li>松散耦合：让程序的各个组成部分之间关联最小</li>
+<li>可扩展性：增强系统的功能而无须破坏其底层结构</li>
+<li>可重用性：系统的组成部分能在其他系统中重复使用</li>
+<li>高扇入：让大量的类使用某个给定的类（系统很好地利用了在较低层次上的工具类）</li>
+<li>低扇出：让一个类里少量或适中地使用其他的类</li>
+<li>可移植性：方便移植到其他环境中</li>
+<li>精简性：系统没有多余的部分</li>
+<li>层次性：保持系统各个分解层的层次性，使你能在任意的层面观察系统，并得到某种具有一致性的看法</li>
+<li>标准技术：尽量用标准化的、常用的方法，而不是依赖许多外来的稀奇古怪的技术或组件</li>
+</ul>
+<h2 id="2-4-设计的层次"><a href="#2-4-设计的层次" class="headerlink" title="2.4 设计的层次"></a>2.4 设计的层次</h2><p><img src="http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E4%B8%80%E4%B8%AA%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%B1%82%E6%AC%A1.png" alt="一个软件系统的设计层次"></p>
+<h1 id="3-软件构建中设计的方法"><a href="#3-软件构建中设计的方法" class="headerlink" title="3. 软件构建中设计的方法"></a>3. 软件构建中设计的方法</h1><h2 id="3-1-启发式方法"><a href="#3-1-启发式方法" class="headerlink" title="3.1 启发式方法"></a>3.1 启发式方法</h2><p>由于软件设计是非确定性的，因此灵活熟练地运用一组有效的启发式方法（试探法），便成了合理的软件设计的核心工作。下面根据管理软件复杂度的原则，给出了一些参考的启发式设计方法。</p>
+<ul>
+<li>找出现实世界中的对象<ul>
+<li>辨识对象及其属性（数据）</li>
+<li>确定可以对各个对象进行的操作（方法）</li>
+<li>确定各个对象能对其他对象进行的操作</li>
+<li>确定对象的哪些部分对其他对象不可见</li>
+<li>定义每个对象的公开接口</li>
+</ul>
+</li>
+<li>形成一致的抽象：注意参考2.4中层次对系统分层抽象，抽象可以让你忽略无关的细节</li>
+<li>封装实现细节：抽象可以“让你从高层的细节来看待一个对象”，而封装则让你“不能看到对象的任何其他细节层次”</li>
+<li>信息隐藏<ul>
+<li>类的接口应该尽可能少地暴露其内部工作机制</li>
+<li>隐藏复杂度，包括复杂的数据类型、文件结构、布尔判断以及晦涩的算法</li>
+<li>隐藏变化源，当变化发生时，其影响就能被限制在局部范围内</li>
+</ul>
+</li>
+<li>当继承能简化设计时就继承：继承很强大，但如果使用不当，也有极大的弊端</li>
+<li>找出容易改变的区域<ul>
+<li>应对变化的措施：找出看起来容易变化的部分，单独划分成类，并设计好类接口将变化隔离开来</li>
+<li>容易变化的区域：业务规则、对硬件的依赖、输入输出、非标准的编程语言特性、困难的设计区域和构建区域、状态变量、数据量的限制等等</li>
+</ul>
+</li>
+<li>保持松散耦合<ul>
+<li>衡量模块间耦合度的参考标准：规模（模块间的连接数）、可见性（模块间连接的显著程度）、灵活性（模块间的连接是否容易改动）</li>
+<li>耦合的种类：简单数据参数耦合（模块间传简单类型数据，<strong>正常</strong>）、简单对象耦合（一个模块实例化一个对象，<strong>正常</strong>）、对象参数耦合（模块间传对象参数，<strong>谨慎</strong>）、语义上的耦合（必须知道另一个模块内部工作细节才能使用，<strong>危险</strong>）</li>
+</ul>
+</li>
+<li>查阅常用的设计模式<ul>
+<li>通过提供现成的抽象来减少复杂度</li>
+<li>通过把常见解决方案的细节予以制度化来减少出错</li>
+<li>通过提供多种设计方案而带来启发性的价值</li>
+<li>通过把设计对话提升到一个更高的层次上来简化与同事间的交流</li>
+</ul>
+</li>
+<li>其他启发式方法<ul>
+<li>高内聚性：使类所达到的目标（内聚性）尽可能高</li>
+<li>为测试而设计：思考诸如“如果为了便于测试而设计这个系统，那么系统会是什么样子”的问题很有益处</li>
+<li>避免失误：充分考虑系统可能的失败模式</li>
+<li>画一个图：图可以在一个更高的抽象层次上表达问题</li>
+<li>创建中央控制点</li>
+<li>考虑使用蛮力突破</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-2-设计实践"><a href="#3-2-设计实践" class="headerlink" title="3.2 设计实践"></a>3.2 设计实践</h2><ul>
+<li>迭代：在备选的设计方案之中<strong>循环并且尝试一些不同的做法</strong>时，将同时从高层和低层的不同视角去审视问题。</li>
+<li>分而治之：把程序分解为不同的关注区域，然后分别处理每一个区域。</li>
+<li>自上而下和自下而上：前者始于抽象，逐步向底层分解；后者始于细节，向一般性延伸。两者并不冲突，可以相互协作。</li>
+<li>建立试验性原型：写出用于<strong>回答特定设计问题的、量最少且能够随时扔掉</strong>的代码。注意不要把原型用在最终产品中。</li>
+<li>合作设计：与同事讨论，审查，甚至共同设计</li>
+<li>要做多少设计才够：若编码前还判断不了应该坐多深入的设计，宁可继续做更详细的设计，也不要事后才发现设计得还不够。</li>
+<li>记录设计成果：把设计文档插入到代码里、用Wiki来记录设计讨论和决策、写总结邮件、拍照、保留设计挂图、使用CRC（类、职责、合作者）卡片、在适当的细节层创建UML图</li>
+</ul>
+<p><strong><a href="http://www.kancloud.cn/raytaylorlin/code-complete-checklist/134109" target="_blank" rel="external">核对表：软件构造中的设计</a></strong></p>
+<p>参考文献：电子工业出版社《代码大全（第2版）》3.5节，第5章</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div class="card">
+            <div class="card-content">
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="ds-thread" data-thread-key="tech/complex/software/software-construction-2/" data-title="软件构建（二）——架构与设计" data-url="http://raytaylorlin.com/tech/complex/software/software-construction-2/"></div>
+
+                <script type="text/javascript">
+                    console.log(document.querySelector('.ds-thread'));
+                    var duoshuoQuery = {
+                        short_name: 'raytaylorlin'
+                    };
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:'
+                            ? 'https:'
+                            : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+    </section>
+
 
 
 </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-03-29T06:59:19.601Z</updated>
+  <updated>2016-04-01T03:27:53.374Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,137 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件构建（二）——架构与设计</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-2/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-2/</id>
+    <published>2016-04-01T03:37:35.000Z</published>
+    <updated>2016-04-01T03:27:53.374Z</updated>
+    
+    <content type="html">&lt;p&gt;软件架构（software architecture）是软件设计的高层部分，是用于支撑更细节的设计的框架。本文关注的并不是如何开发一个软件的架构，而是设计一个架构时应该关注的部分。此外，设计就是把需求分析和编码调试连在一起的活动，好的高层设计能提供一个可以稳妥容纳多个较低层次设计的结构，其对于小型项目非常有用，对大型项目更是不可或缺。因此，本文将总结软件构建中设计的基础概念及基本方法。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-软件构建的主要活动&quot;&gt;&lt;a href=&quot;#1-软件构建的主要活动&quot; class=&quot;headerlink&quot; title=&quot;1. 软件构建的主要活动&quot;&gt;&lt;/a&gt;1. 软件构建的主要活动&lt;/h1&gt;&lt;h2 id=&quot;1-1-软件架构的概念&quot;&gt;&lt;a href=&quot;#1-1-软件架构的概念&quot; class=&quot;headerlink&quot; title=&quot;1.1 软件架构的概念&quot;&gt;&lt;/a&gt;1.1 软件架构的概念&lt;/h2&gt;&lt;p&gt;一个经过慎重考虑的架构为“从顶层到底层维护系统的概念完整性”提供了必备的结构和体系，它为程序员提供了指引，将工作分为几个部分，使多个开发者可以独立工作。好的架构使得构建活动变得更容易。糟糕的架构则使构建活动几乎寸步难行。在构建期间或者更晚的时候进行架构变更，代价也是高昂的。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-架构的典型组成部分&quot;&gt;&lt;a href=&quot;#1-2-架构的典型组成部分&quot; class=&quot;headerlink&quot; title=&quot;1.2 架构的典型组成部分&quot;&gt;&lt;/a&gt;1.2 架构的典型组成部分&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;程序组织：定义程序的主要构造块（子系统或模块），它们的责任以及它们之间的通信规则&lt;/li&gt;
+&lt;li&gt;主要的类：指出每个主要的类的责任，以及该类如何与其他类交互（继承体系、状态转换、对象持久化等）&lt;/li&gt;
+&lt;li&gt;数据设计：描述所用到的主要数据文件和数据表的设计&lt;/li&gt;
+&lt;li&gt;业务规则：描述某些特殊的业务规则对系统设计的影响&lt;/li&gt;
+&lt;li&gt;用户界面设计：架构应模块化，以便替换UI部分&lt;/li&gt;
+&lt;li&gt;资源管理：描述管理稀缺资源（数据库连接、线程、内存等）的计划&lt;/li&gt;
+&lt;li&gt;安全性：描述实现设计层面和代码层面的安全性的方法，并建立威胁模型&lt;/li&gt;
+&lt;li&gt;性能：如果需要关注性能，就应该在需求中详细定义性能目标&lt;/li&gt;
+&lt;li&gt;可伸缩性：描述系统如何应对未来需求的增长（如用户数量、服务器数量、网络节点数量等等）&lt;/li&gt;
+&lt;li&gt;国际化/本地化：考虑典型的字符串和字符集问题&lt;/li&gt;
+&lt;li&gt;输入/输出：定义数据的读取和写入策略&lt;/li&gt;
+&lt;li&gt;错误处理：确定一种“一致处理错误”的策略（纠正还是检测错误？主动还是被动检测错误？程序如何传播错误？程序在什么层次处理错误？等等）&lt;/li&gt;
+&lt;li&gt;容错性：考虑系统在出错时，让系统转入“部分运转”状态，还是某种“功能退化”状态，甚至自动关闭或重启&lt;/li&gt;
+&lt;li&gt;架构的可行性：必须论证系统在技术上是否可实现&lt;/li&gt;
+&lt;li&gt;关于“买”还是“造”的决策：决定购买组件，使用第三方组件，还是自己造轮子&lt;/li&gt;
+&lt;li&gt;关于复用的决策：说明如何对复用的软件进行加工，使之符合其他架构目标&lt;/li&gt;
+&lt;li&gt;变更策略：考虑如何让架构足够灵活，能够适应可能出现的变化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/133369&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;核对表：架构&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-软件构建中设计的基础&quot;&gt;&lt;a href=&quot;#2-软件构建中设计的基础&quot; class=&quot;headerlink&quot; title=&quot;2. 软件构建中设计的基础&quot;&gt;&lt;/a&gt;2. 软件构建中设计的基础&lt;/h1&gt;&lt;h2 id=&quot;2-1-理解设计的挑战&quot;&gt;&lt;a href=&quot;#2-1-理解设计的挑战&quot; class=&quot;headerlink&quot; title=&quot;2.1 理解设计的挑战&quot;&gt;&lt;/a&gt;2.1 理解设计的挑战&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;设计是一个险恶的问题：必须首先把这个问题“解决”一遍以便能够明确地定义它，然后再次解决该问题&lt;/li&gt;
+&lt;li&gt;设计是个了无章法的过程：设计过程中会犯很多错，并且很难判断设计何时算是“足够好”&lt;/li&gt;
+&lt;li&gt;设计就是确定取舍和调整顺序的过程&lt;/li&gt;
+&lt;li&gt;设计受到诸多限制：时间、资源、空间等等&lt;/li&gt;
+&lt;li&gt;设计是不确定的：让三个人设计同一套程序，可能会做出三套截然不同而且都不错的设计&lt;/li&gt;
+&lt;li&gt;设计是一个启发式过程：由于充满不确定性，设计是具有探索性的不是能保证产生预期结果的可重复过程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-关键的设计概念&quot;&gt;&lt;a href=&quot;#2-2-关键的设计概念&quot; class=&quot;headerlink&quot; title=&quot;2.2 关键的设计概念&quot;&gt;&lt;/a&gt;2.2 关键的设计概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;软件的首要技术使命便是管理复杂度。&lt;/strong&gt;在软件架构的层次上，可以通过把整个系统分解为多个子系统来降低问题的复杂度。子系统间的相互依赖越少，就越容易在同一时间里专注问题的一小部分。精心设计的对象关系使关注点相互分离，从而使你能在每个时刻只专注于一件事情。可以用这两种方法来管理复杂度：把任何人在同一时间需要处理的本质复杂度的量减到最少；不要让偶然性的复杂度无谓地快速增长。一旦你能理解软件开发中任何其他技术目标都不如管理复杂度重要时，众多设计上的考虑就都变得直截了当了。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-理想的设计特征&quot;&gt;&lt;a href=&quot;#2-3-理想的设计特征&quot; class=&quot;headerlink&quot; title=&quot;2.3 理想的设计特征&quot;&gt;&lt;/a&gt;2.3 理想的设计特征&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最小的复杂度：设计要简单且易于理解&lt;/li&gt;
+&lt;li&gt;易维护：为做维护工作的程序猿着想&lt;/li&gt;
+&lt;li&gt;松散耦合：让程序的各个组成部分之间关联最小&lt;/li&gt;
+&lt;li&gt;可扩展性：增强系统的功能而无须破坏其底层结构&lt;/li&gt;
+&lt;li&gt;可重用性：系统的组成部分能在其他系统中重复使用&lt;/li&gt;
+&lt;li&gt;高扇入：让大量的类使用某个给定的类（系统很好地利用了在较低层次上的工具类）&lt;/li&gt;
+&lt;li&gt;低扇出：让一个类里少量或适中地使用其他的类&lt;/li&gt;
+&lt;li&gt;可移植性：方便移植到其他环境中&lt;/li&gt;
+&lt;li&gt;精简性：系统没有多余的部分&lt;/li&gt;
+&lt;li&gt;层次性：保持系统各个分解层的层次性，使你能在任意的层面观察系统，并得到某种具有一致性的看法&lt;/li&gt;
+&lt;li&gt;标准技术：尽量用标准化的、常用的方法，而不是依赖许多外来的稀奇古怪的技术或组件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-4-设计的层次&quot;&gt;&lt;a href=&quot;#2-4-设计的层次&quot; class=&quot;headerlink&quot; title=&quot;2.4 设计的层次&quot;&gt;&lt;/a&gt;2.4 设计的层次&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E4%B8%80%E4%B8%AA%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%B1%82%E6%AC%A1.png&quot; alt=&quot;一个软件系统的设计层次&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;3-软件构建中设计的方法&quot;&gt;&lt;a href=&quot;#3-软件构建中设计的方法&quot; class=&quot;headerlink&quot; title=&quot;3. 软件构建中设计的方法&quot;&gt;&lt;/a&gt;3. 软件构建中设计的方法&lt;/h1&gt;&lt;h2 id=&quot;3-1-启发式方法&quot;&gt;&lt;a href=&quot;#3-1-启发式方法&quot; class=&quot;headerlink&quot; title=&quot;3.1 启发式方法&quot;&gt;&lt;/a&gt;3.1 启发式方法&lt;/h2&gt;&lt;p&gt;由于软件设计是非确定性的，因此灵活熟练地运用一组有效的启发式方法（试探法），便成了合理的软件设计的核心工作。下面根据管理软件复杂度的原则，给出了一些参考的启发式设计方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;找出现实世界中的对象&lt;ul&gt;
+&lt;li&gt;辨识对象及其属性（数据）&lt;/li&gt;
+&lt;li&gt;确定可以对各个对象进行的操作（方法）&lt;/li&gt;
+&lt;li&gt;确定各个对象能对其他对象进行的操作&lt;/li&gt;
+&lt;li&gt;确定对象的哪些部分对其他对象不可见&lt;/li&gt;
+&lt;li&gt;定义每个对象的公开接口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;形成一致的抽象：注意参考2.4中层次对系统分层抽象，抽象可以让你忽略无关的细节&lt;/li&gt;
+&lt;li&gt;封装实现细节：抽象可以“让你从高层的细节来看待一个对象”，而封装则让你“不能看到对象的任何其他细节层次”&lt;/li&gt;
+&lt;li&gt;信息隐藏&lt;ul&gt;
+&lt;li&gt;类的接口应该尽可能少地暴露其内部工作机制&lt;/li&gt;
+&lt;li&gt;隐藏复杂度，包括复杂的数据类型、文件结构、布尔判断以及晦涩的算法&lt;/li&gt;
+&lt;li&gt;隐藏变化源，当变化发生时，其影响就能被限制在局部范围内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;当继承能简化设计时就继承：继承很强大，但如果使用不当，也有极大的弊端&lt;/li&gt;
+&lt;li&gt;找出容易改变的区域&lt;ul&gt;
+&lt;li&gt;应对变化的措施：找出看起来容易变化的部分，单独划分成类，并设计好类接口将变化隔离开来&lt;/li&gt;
+&lt;li&gt;容易变化的区域：业务规则、对硬件的依赖、输入输出、非标准的编程语言特性、困难的设计区域和构建区域、状态变量、数据量的限制等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;保持松散耦合&lt;ul&gt;
+&lt;li&gt;衡量模块间耦合度的参考标准：规模（模块间的连接数）、可见性（模块间连接的显著程度）、灵活性（模块间的连接是否容易改动）&lt;/li&gt;
+&lt;li&gt;耦合的种类：简单数据参数耦合（模块间传简单类型数据，&lt;strong&gt;正常&lt;/strong&gt;）、简单对象耦合（一个模块实例化一个对象，&lt;strong&gt;正常&lt;/strong&gt;）、对象参数耦合（模块间传对象参数，&lt;strong&gt;谨慎&lt;/strong&gt;）、语义上的耦合（必须知道另一个模块内部工作细节才能使用，&lt;strong&gt;危险&lt;/strong&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;查阅常用的设计模式&lt;ul&gt;
+&lt;li&gt;通过提供现成的抽象来减少复杂度&lt;/li&gt;
+&lt;li&gt;通过把常见解决方案的细节予以制度化来减少出错&lt;/li&gt;
+&lt;li&gt;通过提供多种设计方案而带来启发性的价值&lt;/li&gt;
+&lt;li&gt;通过把设计对话提升到一个更高的层次上来简化与同事间的交流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;其他启发式方法&lt;ul&gt;
+&lt;li&gt;高内聚性：使类所达到的目标（内聚性）尽可能高&lt;/li&gt;
+&lt;li&gt;为测试而设计：思考诸如“如果为了便于测试而设计这个系统，那么系统会是什么样子”的问题很有益处&lt;/li&gt;
+&lt;li&gt;避免失误：充分考虑系统可能的失败模式&lt;/li&gt;
+&lt;li&gt;画一个图：图可以在一个更高的抽象层次上表达问题&lt;/li&gt;
+&lt;li&gt;创建中央控制点&lt;/li&gt;
+&lt;li&gt;考虑使用蛮力突破&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;3-2-设计实践&quot;&gt;&lt;a href=&quot;#3-2-设计实践&quot; class=&quot;headerlink&quot; title=&quot;3.2 设计实践&quot;&gt;&lt;/a&gt;3.2 设计实践&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;迭代：在备选的设计方案之中&lt;strong&gt;循环并且尝试一些不同的做法&lt;/strong&gt;时，将同时从高层和低层的不同视角去审视问题。&lt;/li&gt;
+&lt;li&gt;分而治之：把程序分解为不同的关注区域，然后分别处理每一个区域。&lt;/li&gt;
+&lt;li&gt;自上而下和自下而上：前者始于抽象，逐步向底层分解；后者始于细节，向一般性延伸。两者并不冲突，可以相互协作。&lt;/li&gt;
+&lt;li&gt;建立试验性原型：写出用于&lt;strong&gt;回答特定设计问题的、量最少且能够随时扔掉&lt;/strong&gt;的代码。注意不要把原型用在最终产品中。&lt;/li&gt;
+&lt;li&gt;合作设计：与同事讨论，审查，甚至共同设计&lt;/li&gt;
+&lt;li&gt;要做多少设计才够：若编码前还判断不了应该坐多深入的设计，宁可继续做更详细的设计，也不要事后才发现设计得还不够。&lt;/li&gt;
+&lt;li&gt;记录设计成果：把设计文档插入到代码里、用Wiki来记录设计讨论和决策、写总结邮件、拍照、保留设计挂图、使用CRC（类、职责、合作者）卡片、在适当的细节层创建UML图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/134109&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;核对表：软件构造中的设计&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》3.5节，第5章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;软件架构（software architecture）是软件设计的高层部分，是用于支撑更细节的设计的框架。本文关注的并不是如何开发一个软件的架构，而是设计一个架构时应该关注的部分。此外，设计就是把需求分析和编码调试连在一起的活动，好的高层设计能提供一个可以稳妥容纳多个较低层次设计的结构，其对于小型项目非常有用，对大型项目更是不可或缺。因此，本文将总结软件构建中设计的基础概念及基本方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（一）——软件构建基础</title>
@@ -1698,122 +1829,6 @@ ruby_tree.visit_all {|node| puts &amp;quot;Node: #{node.node_name}&amp;quot;}
       <category term="HTML5" scheme="http://raytaylorlin.com/tags/HTML5/"/>
     
       <category term="高性能" scheme="http://raytaylorlin.com/tags/%E9%AB%98%E6%80%A7%E8%83%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node.js学习笔记：进程与集群</title>
-    <link href="http://raytaylorlin.com/tech/web/nodejs/node-process-and-cluster/"/>
-    <id>http://raytaylorlin.com/tech/web/nodejs/node-process-and-cluster/</id>
-    <published>2014-11-11T02:24:05.000Z</published>
-    <updated>2016-02-09T12:31:40.127Z</updated>
-    
-    <content type="html">&lt;p&gt;Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。&lt;/p&gt;
-&lt;p&gt;本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-服务器模型的变迁&quot;&gt;&lt;a href=&quot;#1-服务器模型的变迁&quot; class=&quot;headerlink&quot; title=&quot;1. 服务器模型的变迁&quot;&gt;&lt;/a&gt;1. 服务器模型的变迁&lt;/h1&gt;&lt;p&gt;Web服务器的架构至今已经历了几次变迁：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;同步：最早的服务器的执行模型是同步的，其一次只为一个请求服务，其余请求都处于耽误的状态。这类架构如今已基本淘汰，只在一些无并发要求的应用中存在。&lt;/li&gt;
-&lt;li&gt;复制进程：每有一个连接，就复制一个进程来提供服务。这个模型不具备伸缩性，一旦并发请求过高，内存会随着进程数的增长耗尽。&lt;/li&gt;
-&lt;li&gt;多线程：类似多进程模式，对每一个连接都创建一个线程去服务。线程相对进程开销要小很多，而且线程间可以共享数据。但是多线程还是会随着并发数的增多而耗尽内存，缺乏强大的伸缩性。&lt;/li&gt;
-&lt;li&gt;事件驱动：单线程的事件驱动避免了不必要的内存开销和上下文切换开销，不受资源上限的影响，伸缩性远比前两者高。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;2-多进程架构&quot;&gt;&lt;a href=&quot;#2-多进程架构&quot; class=&quot;headerlink&quot; title=&quot;2. 多进程架构&quot;&gt;&lt;/a&gt;2. 多进程架构&lt;/h1&gt;&lt;h2 id=&quot;2-1-创建子进程&quot;&gt;&lt;a href=&quot;#2-1-创建子进程&quot; class=&quot;headerlink&quot; title=&quot;2.1 创建子进程&quot;&gt;&lt;/a&gt;2.1 创建子进程&lt;/h2&gt;&lt;p&gt;面对单进程单线程对多核利用不足的问题，前人的经验是启动多个进程即可，理想状态下每个进程各自利用一个CPU。Node提供的child_process模块的&lt;code&gt;fork()&lt;/code&gt;、&lt;code&gt;spawn()&lt;/code&gt;、&lt;code&gt;exec()&lt;/code&gt;、&lt;code&gt;execFile()&lt;/code&gt;函数可以实现子进程的创建。以下代码会根据当前机器上的CPU数复制（fork）出对应的Node进程。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/* master.js */
-var fork = require(&amp;apos;child_process&amp;apos;).fork;
-var cpus = require(&amp;apos;os&amp;apos;).cpus();
-for (var i = 0; i &amp;lt; cpus.length; i++) {
-    fork(&amp;apos;./worker.js&amp;apos;);    // worker.js为启动HTTP服务器的代码
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这就是著名的Master-Worker（主从）模式，是典型的分布式架构中用于处理业务的模式，具备较好的可伸缩性和稳定性。主进程只负责调度或管理工作进程，工作进程只负责具体的业务处理。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-进程间通信&quot;&gt;&lt;a href=&quot;#2-2-进程间通信&quot; class=&quot;headerlink&quot; title=&quot;2.2 进程间通信&quot;&gt;&lt;/a&gt;2.2 进程间通信&lt;/h2&gt;&lt;p&gt;主从进程通过&lt;code&gt;send()&lt;/code&gt;和&lt;code&gt;message&lt;/code&gt;事件实现进程间通信，如下面的代码所示：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/* master.js */
-var subProc = require(&amp;apos;child_process&amp;apos;).fork(&amp;apos;./worker.js&amp;apos;);
-subProc.send({hehe: &amp;apos;123&amp;apos;});
-subProc.on(&amp;apos;message&amp;apos;, function(msg) {
-    console.log(&amp;apos;MASTER got message:&amp;apos;, msg);
-});
-
-/* worker.js */
-process.on(&amp;apos;message&amp;apos;, function(msg) {
-    console.log(&amp;apos;WORKER got message:&amp;apos;, msg);
-});
-process.send({foo: &amp;apos;bar&amp;apos;});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;主从进程之间的通信实际上通过IPC（Inter-Process Communication）通道来传递信息的。Node中实现IPC通道的具体细节由libuv提供，在Windows下由命名管道实现，*nix系统采用Unix Domain Socket实现。&lt;strong&gt;父进程在创建子进程之前，会创建IPC通道并监听它，然后才真正创建子进程，并通过环境变量NODE_CHANNEL_FD告诉子进程这个IPC通道的文件描述符。子进程在启动的过程中，根据文件描述符去连接这个IPC通道，从而完成父子进程之间的链接。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;2-3-句柄传递&quot;&gt;&lt;a href=&quot;#2-3-句柄传递&quot; class=&quot;headerlink&quot; title=&quot;2.3 句柄传递&quot;&gt;&lt;/a&gt;2.3 句柄传递&lt;/h2&gt;&lt;p&gt;通常如果让多个进程监听同一个端口，会抛出EADDRINUE异常。要解决多进程监听同个端口，其中一种做法是主进程监听主端口（如80），对外接收所有网络请求，再分别代理到不同端口的进程上。这样既能监听同个端口，甚至可以在代理进程上做适当的负载均衡，缺点是会浪费掉一倍数量的文件描述符。&lt;/p&gt;
-&lt;p&gt;为了解决上述问题，Node在版本v0.5.9引入了进程间发送句柄的功能，&lt;code&gt;send()&lt;/code&gt;方法的第一个参数是要发送的数据，第二个可选参数就是句柄。目前可以发送的句柄包括：net.Socket、net.Server、net.Native、dgram.Socket、dgram.Native。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/* master.js */
-var cp = require(&amp;apos;child_process&amp;apos;);
-var child1 = cp.fork(&amp;apos;./worker.js&amp;apos;);
-var child2 = cp.fork(&amp;apos;./worker.js&amp;apos;);
-
-var server = require(&amp;apos;net&amp;apos;).createServer();
-server.listen(1337, function() {
-    child1.send(&amp;apos;server&amp;apos;, server);
-    child2.send(&amp;apos;server&amp;apos;, server);
-    // 关掉服务器是关键
-    server.close();
-});
-
-/* worker.js */
-var server = require(&amp;apos;http&amp;apos;).createServer(function(req, res) {
-    res.writeHead(200, {&amp;apos;Content-Type&amp;apos;: &amp;apos;text/plain&amp;apos;});
-    res.end(&amp;apos;Handled by child, pid = &amp;apos; + process.pid + &amp;apos;\n&amp;apos;);
-});
-process.on(&amp;apos;message&amp;apos;, function(msg, tcp) {
-    if (msg === &amp;apos;server&amp;apos;) {
-        tcp.on(&amp;apos;connection&amp;apos;, function(socket) {
-            server.emit(&amp;apos;connection&amp;apos;, socket);
-        });
-    }
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;启动master.js，每次请求&lt;code&gt;http://localhost:1337&lt;/code&gt;时，得到的都是可能不一样的pid进程的响应，所有请求都由子进程来处理了。要特别注意的是，上述代码看似把&lt;code&gt;server&lt;/code&gt;对象发送到了子进程，实际上传递的只是文件描述符和消息，子进程根据message.type创建对应的服务器对象， 然后监听到文件描述符上。&lt;/p&gt;
-&lt;h1 id=&quot;3-构建稳定的集群&quot;&gt;&lt;a href=&quot;#3-构建稳定的集群&quot; class=&quot;headerlink&quot; title=&quot;3. 构建稳定的集群&quot;&gt;&lt;/a&gt;3. 构建稳定的集群&lt;/h1&gt;&lt;p&gt;前面搭建集群的方法充分利用了多核CPU资源，但每个工作进程依旧是在单线程上执行的，它的稳定性还不能得到完全的保障，需要建立一个健全的机制来保障Node应用的健壮性和稳定性。&lt;/p&gt;
-&lt;h2 id=&quot;3-1-进程事件&quot;&gt;&lt;a href=&quot;#3-1-进程事件&quot; class=&quot;headerlink&quot; title=&quot;3.1 进程事件&quot;&gt;&lt;/a&gt;3.1 进程事件&lt;/h2&gt;&lt;p&gt;子进程对象除了message事件外，还有一些表示异常或错误的事件：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;error：子进程无法被复制创建、无法被杀死、无法发送消息时触发&lt;/li&gt;
-&lt;li&gt;exit：子进程退出时触发&lt;/li&gt;
-&lt;li&gt;close：在子进程的标准输入输出流中止时触发&lt;/li&gt;
-&lt;li&gt;disconnect：调用&lt;code&gt;disconnect()&lt;/code&gt;方法时触发，调用该方法会关闭IPC通道&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;除了上一章中提到的&lt;code&gt;send()&lt;/code&gt;方法外，还能通过&lt;code&gt;kill()&lt;/code&gt;方法给子进程发送消息，该方法并不是真正将子进程杀死，而是给子进程发送一个系统信号SIGTERM，子进程收到后才做出约定的行为，如退出进程。&lt;/p&gt;
-&lt;h2 id=&quot;3-2-自动重启&quot;&gt;&lt;a href=&quot;#3-2-自动重启&quot; class=&quot;headerlink&quot; title=&quot;3.2 自动重启&quot;&gt;&lt;/a&gt;3.2 自动重启&lt;/h2&gt;&lt;p&gt;可以通过监听子进程的exit事件来获知其退出的信息。当因为有bug导致工作进程退出，需要仔细处理这种异常，最好是工作进程在得知自己要退出时，向主进程发送一个“自杀信号”，然后才停止接收新的连接，当所有连接断开后才退出。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;process.on(&amp;apos;uncaughtException&amp;apos;, function(err) {
-    logger.error(err);    // 记录日志，因为出现未能捕获的异常是不合格的
-    process.send({act: &amp;apos;suicide&amp;apos;});
-    // 停止接收新的连接
-    woker.close(function() {
-        // 所有已有连接断开后，才退出进程
-        process.exit(1);
-    });
-    // 设置超时时间，专门应对长连接这种情况
-    setTimeout(function() {
-        process.exit(1);
-    }, 5000);
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;此时主进程要监听message事件，一旦接收到自杀信号，就要重新启动一个新的工作进程来顶替出异常即将退出的进程，这样就能使应用平滑地应对用户的请求。工作进程也不能无限地被重启，因为如果在启动的过程或启动后收到连接就发生了错误，会导致工作进程被频繁重启，所以应该有一种机制来限制单位时间内重启的次数，超过限制就触发giveup事件告知主进程放弃重启。通常来说，giveup是比uncaughtException更严重的异常，必须严格监控并避免。&lt;/p&gt;
-&lt;h2 id=&quot;3-3-状态共享&quot;&gt;&lt;a href=&quot;#3-3-状态共享&quot; class=&quot;headerlink&quot; title=&quot;3.3 状态共享&quot;&gt;&lt;/a&gt;3.3 状态共享&lt;/h2&gt;&lt;p&gt;Node进程不宜存放太多数据，因为这会加重垃圾回收的负担，同时Node也不允许多个进程间共享数据。在实际业务中，解决数据共享最直接简单的方案就是使用第三方存储，如数据库、磁盘文件、缓存服务（Redis等）。如果采用这种方式，需要一种机制在数据发生改变时通知到各个子进程。一种方式是子进程去向第三方定时轮询；另一种方式是额外增加一个通知进程来轮询第三方，当有数据变化时主动通知所有子进程。主动通知机制如果按进程间信号传递，在跨多台服务器时会失效，所以可以考虑采用TCP或UDP的方案。&lt;/p&gt;
-&lt;h2 id=&quot;3-4-Cluster模块&quot;&gt;&lt;a href=&quot;#3-4-Cluster模块&quot; class=&quot;headerlink&quot; title=&quot;3.4 Cluster模块&quot;&gt;&lt;/a&gt;3.4 Cluster模块&lt;/h2&gt;&lt;p&gt;前文从原理层面介绍了child_process模块的一些细节，事实上Node在v0.8版本新增的cluster模块提供了更简洁强大的API来解决上述问题，详情可以参见&lt;a href=&quot;http://nodejs.org/api/cluster.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node cluster API文档&lt;/a&gt;，此处不再赘述。&lt;/p&gt;
-&lt;p&gt;参考资料：《深入浅出NodeJS》第九章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Node中的Javascript运行在单进程单线程上带来了很多好处：程序状态单一，没有多线程的锁、线程同步问题，操作系统调度因为较少的上下文切换开销，可以很好地提高CPU的使用率。但是这种模型并非是完美的，尤其是如今CPU基本都是多核的，一个Node进程只能利用一个核。此外，一旦单线程上抛出的异常没有被捕获，将会引起整个进程的崩溃。&lt;/p&gt;
-&lt;p&gt;本文将叙述Node如何应对“如何充分利用多核CPU服务器”及“如何保证进程的健壮性和稳定性”这两个问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="Web前端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="NodeJS" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Web%E5%89%8D%E7%AB%AF/NodeJS/"/>
-    
-    
-      <category term="Node.js" scheme="http://raytaylorlin.com/tags/Node-js/"/>
-    
-      <category term="进程" scheme="http://raytaylorlin.com/tags/%E8%BF%9B%E7%A8%8B/"/>
     
   </entry>
   
