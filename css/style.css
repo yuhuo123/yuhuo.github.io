@@ -395,7 +395,13 @@ article .card-content .entry p:last-child {
 }
 article .card-content .entry ul,
 article .card-content .entry ol {
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+}
+article .card-content .entry ul ul,
+article .card-content .entry ol ul,
+article .card-content .entry ul ol,
+article .card-content .entry ol ol {
+  margin-bottom: 0;
 }
 article .card-content .entry h1,
 article .card-content .entry h2,
