@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-04-08T01:52:18.773Z</updated>
+  <updated>2016-04-11T07:59:50.581Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -16,11 +16,144 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>软件构建（五）——各种数据类型的使用原则</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-5/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-5/</id>
+    <published>2016-04-11T06:58:29.000Z</published>
+    <updated>2016-04-11T07:59:50.581Z</updated>
+    
+    <content type="html">&lt;p&gt;几乎所有的常见编程语言，都包含了整数、浮点数、字符串、布尔等等数据类型，而通过基本的数据类型又可以复合出各种数据结构。本文总结了常用的数据类型（整数、浮点数、字符、字符串、布尔、枚举、数组等等）以及一些不常见的数据类型（结构体、指针等等）的使用原则。最后总结了关于全局数据的一些风险和使用原则。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-常用的数据类型使用原则&quot;&gt;&lt;a href=&quot;#1-常用的数据类型使用原则&quot; class=&quot;headerlink&quot; title=&quot;1. 常用的数据类型使用原则&quot;&gt;&lt;/a&gt;1. 常用的数据类型使用原则&lt;/h1&gt;&lt;h2 id=&quot;1-1-使用数值的原则&quot;&gt;&lt;a href=&quot;#1-1-使用数值的原则&quot; class=&quot;headerlink&quot; title=&quot;1.1 使用数值的原则&quot;&gt;&lt;/a&gt;1.1 使用数值的原则&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;普遍原则&lt;ul&gt;
+&lt;li&gt;避免使用“神秘数值”，即硬编码数字：这是为了使修改变得可靠容易，并更有可读性&lt;/li&gt;
+&lt;li&gt;如果需要，可以使用硬编码的0和1：通常用于增减量或循环的第一个元素&lt;/li&gt;
+&lt;li&gt;预防除零错误&lt;/li&gt;
+&lt;li&gt;使类型转换变得明显：不要依赖隐式类型转换&lt;/li&gt;
+&lt;li&gt;避免混合类型的比较：同样不要依赖隐式类型转换，确保比较的两个数是同种类型的&lt;/li&gt;
+&lt;li&gt;注意编译器的警告&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;整数&lt;ul&gt;
+&lt;li&gt;检查整数除法：小心&lt;strong&gt;整数除&lt;/strong&gt;和现实除法的差异&lt;/li&gt;
+&lt;li&gt;检查整数溢出和中间结果溢出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;浮点数&lt;ul&gt;
+&lt;li&gt;避免数量级相差巨大的数之间的加减运算：由于精度问题，对于32位浮点数，小心1000000.00 + 0.1得到的结果和期望不同。如果要把一系列差异巨大的数相加，解决方法是先排序，再从最小值开始加起，这样可以把影响减少到最低限度&lt;/li&gt;
+&lt;li&gt;避免直接进行等量比较：应自己编写equals函数判断两者之差是否小于某阈值&lt;/li&gt;
+&lt;li&gt;处理舍入误差问题：考虑换用更高精度的类型，或者把浮点数放大n倍用整型类型做计算&lt;/li&gt;
+&lt;li&gt;使用语言和函数库对特定数据类型的支持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-字符和字符串&quot;&gt;&lt;a href=&quot;#1-2-字符和字符串&quot; class=&quot;headerlink&quot; title=&quot;1.2 字符和字符串&quot;&gt;&lt;/a&gt;1.2 字符和字符串&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;避免使用神秘字符和字符串：除了数值所提到的理由之外，还有这些理由：分离字符串到字符串资源文件更容易实现i18n，字符串字面量会占用较多的存储空间&lt;/li&gt;
+&lt;li&gt;了解你的语言和开发环境是如何支持Unicode的&lt;/li&gt;
+&lt;li&gt;在程序生命期中尽早决定国际化/本地化策略&lt;/li&gt;
+&lt;li&gt;如果你知道只需要支持一种文字的语言，考虑使用ISO8859字符集，否则使用Unicode&lt;/li&gt;
+&lt;li&gt;采用某种一致的字符串类型转换策略&lt;/li&gt;
+&lt;li&gt;针对C语言字符串的建议：&lt;ul&gt;
+&lt;li&gt;注意字符串指针和字符数组之间的差异：警惕任何包含字符串和等号的表达式；通过命名规则区分变量是字符数组还是字符串指针&lt;/li&gt;
+&lt;li&gt;把C-style字符串的长度声明为&lt;code&gt;STRING_LENGTH + 1&lt;/code&gt;：统一约定这条规则，有助于减少脑力消耗以及编程失误&lt;/li&gt;
+&lt;li&gt;用null初始化字符串以避免没有终端的字符串&lt;/li&gt;
+&lt;li&gt;如果内存不是限制性的因素，就用字符数组取代C中的指针&lt;/li&gt;
+&lt;li&gt;用strncpy()取代strcpy()以避免无终端的字符串&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-3-布尔变量&quot;&gt;&lt;a href=&quot;#1-3-布尔变量&quot; class=&quot;headerlink&quot; title=&quot;1.3 布尔变量&quot;&gt;&lt;/a&gt;1.3 布尔变量&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;用布尔变量对程序加以文档说明，并用来简化复杂的判断。&lt;/strong&gt;通过下面的例子来了解布尔变量的正确用法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 目的不明确的布尔判断，咋一看根本不知道要判断什么
+if ( (elementindex &amp;lt; 0 ) || (MAX_ELEMENTS &amp;lt; elementIndex) || (elementIndex == lastElementIndex) ) { ... }
+
+// 目的明确的布尔判断
+bool finished = (elementindex &amp;lt; 0 ) || (MAX_ELEMENTS &amp;lt; elementIndex);
+bool repeatedEntry = (elementIndex == lastElementIndex);
+if (finished || repeatedEntry) { ... }
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-4-枚举类型&quot;&gt;&lt;a href=&quot;#1-4-枚举类型&quot; class=&quot;headerlink&quot; title=&quot;1.4 枚举类型&quot;&gt;&lt;/a&gt;1.4 枚举类型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用枚举类型来提高可读性和可靠性：如果仅使用具名常量，编译器无法知道是否使用了非法的数值&lt;/li&gt;
+&lt;li&gt;将枚举类型作为布尔变量的替换方案：有时布尔变量无法充分表达它所需要表达的含义（比如出错信息），那么用枚举&lt;/li&gt;
+&lt;li&gt;定义出枚举的第一项和最后一项，以使用于循环边界，把枚举类型的第一个元素留做非法值：如&lt;code&gt;enum Country {InvalidFirst = 0, First = 1, China = 1, England = 2, Usa = 3, Last = 4}&lt;/code&gt;，但是这样做也可能造成混乱，一定要&lt;strong&gt;明确定义项目代码编写标准，并在使用时保持一致，否则就不要用&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;警惕给枚举元素明确赋值而带来的失误：当定义0，1，2，4，8这样的枚举值时，不要去遍历&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-5-数组&quot;&gt;&lt;a href=&quot;#1-5-数组&quot; class=&quot;headerlink&quot; title=&quot;1.5 数组&quot;&gt;&lt;/a&gt;1.5 数组&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;确认所有的数组下标都没有超出数组的边界&lt;/li&gt;
+&lt;li&gt;考虑用合适的容器（栈、队列、集合、列表等等）来取代数组&lt;/li&gt;
+&lt;li&gt;检查数组的边界点&lt;/li&gt;
+&lt;li&gt;如果数组是多维的，确认下标的&lt;strong&gt;使用顺序&lt;/strong&gt;是正确的：如很容易把&lt;code&gt;array[i][j]&lt;/code&gt;搞混成&lt;code&gt;array[j][i]&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;提防下标串话：如把&lt;code&gt;array[i]&lt;/code&gt;写成&lt;code&gt;array[j]&lt;/code&gt;，和上一条一样，如果使用比i和j更有意义的下标名，这种错误就很难发生&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-不常见的数据类型&quot;&gt;&lt;a href=&quot;#2-不常见的数据类型&quot; class=&quot;headerlink&quot; title=&quot;2. 不常见的数据类型&quot;&gt;&lt;/a&gt;2. 不常见的数据类型&lt;/h1&gt;&lt;h2 id=&quot;2-1-结构体&quot;&gt;&lt;a href=&quot;#2-1-结构体&quot; class=&quot;headerlink&quot; title=&quot;2.1 结构体&quot;&gt;&lt;/a&gt;2.1 结构体&lt;/h2&gt;&lt;p&gt;在Java和C++里面，类有时表现得也像结构体一样（当类完全由公用的数据成员组成，而不包含公用子程序的时候）。通常情况下，你会希望创建类而非结构体，下面列出了一些使用结构体的理由：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用结构体来明确数据关系&lt;/li&gt;
+&lt;li&gt;用结构体简化对数据块的操作&lt;/li&gt;
+&lt;li&gt;用结构体来简化参数列表&lt;/li&gt;
+&lt;li&gt;用结构体来减少维护&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-指针&quot;&gt;&lt;a href=&quot;#2-2-指针&quot; class=&quot;headerlink&quot; title=&quot;2.2 指针&quot;&gt;&lt;/a&gt;2.2 指针&lt;/h2&gt;&lt;p&gt;指针的使用是现代编程中最容易出错的领域之一，即便你的语言不要求你使用指针，很好地理解指针也会有助于你理解你的编程语言是如何工作的。从概念上看，每一个指针都包含两个部分：内存中的某处位置（实质是一个整数值，常用16进制表示），以及如何解释指针所指的内容（由指针的基类型决定）。&lt;/p&gt;
+&lt;p&gt;通常，指针错误都产生于指针指向了它不应该指向的位置。因此，更正指针错误的大部分工作量便是找出它的位置。正确地使用指针要求程序员采用一种双向策略，首先要避免造成指针错误，其次在编写代码之后尽快地检测出指针错误来。下面说明如何实现这些目标。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;把指针操作限制在子程序或者类里面&lt;/li&gt;
+&lt;li&gt;同时声明和定义指针&lt;/li&gt;
+&lt;li&gt;在与指针分配相同的作用域中删除指针&lt;/li&gt;
+&lt;li&gt;在使用指针之前确保指针所指向的内存位置是合理的&lt;/li&gt;
+&lt;li&gt;先检查指针所引用的变量内容再使用它&lt;/li&gt;
+&lt;li&gt;用标记字段来检测损毁的内存：分配内存时多分配4个字节，将前4个字节设为标记字段，返回这4个字节后的内存的指针，到了需要删除该指针的时候，检查这个标记，如果标记的值是正确的，就把它设为NULL，最后删除该指针&lt;/li&gt;
+&lt;li&gt;增加明显的冗余：将某些特定字段重复两次，以此替代标记字段的方案，但是这样会带来很高的成本&lt;/li&gt;
+&lt;li&gt;用额外的指针变量来提高代码清晰度：如不要写绕口的诸如&lt;code&gt;pointer-&amp;gt;next-&amp;gt;last-&amp;gt;next&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;画一个图理清指针之间的结构关系&lt;/li&gt;
+&lt;li&gt;按照正确的顺序删除链表中的指针&lt;/li&gt;
+&lt;li&gt;分配一片保留的内存后备区域：如果使用动态内存，最好预先分配一片内存后备，防止程序忽然用尽内存&lt;/li&gt;
+&lt;li&gt;在删除或者释放指针之后把它们设为空值&lt;/li&gt;
+&lt;li&gt;在删除变量之前检查非法指针&lt;/li&gt;
+&lt;li&gt;跟踪指针分配情况：维护一份你已经分配的指针的列表&lt;/li&gt;
+&lt;li&gt;编写覆盖子程序，集中实现避免指针问题的策略：如编写&lt;code&gt;SAFE_NEW&lt;/code&gt;和&lt;code&gt;SAFE_DELETE&lt;/code&gt;宏来统一包装指针的操作&lt;/li&gt;
+&lt;li&gt;采用非指针的技术&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还有一些特定的针对C++和C语言的指针使用技巧，此处不赘述。&lt;/p&gt;
+&lt;h1 id=&quot;3-全局数据&quot;&gt;&lt;a href=&quot;#3-全局数据&quot; class=&quot;headerlink&quot; title=&quot;3. 全局数据&quot;&gt;&lt;/a&gt;3. 全局数据&lt;/h1&gt;&lt;p&gt;全局数据可以在程序中任意一个位置访问，这一概念有时被延伸到作用域比局部变量更广的变量，例如可以在一个包或一个命名空间内任意位置访问。一般来说，使用全局数据的风险比使用局部数据大，只有在万不得已时才使用，如果要用也应该遵循一些使用原则来降低风险。&lt;/p&gt;
+&lt;h2 id=&quot;3-1-使用全局数据的风险&quot;&gt;&lt;a href=&quot;#3-1-使用全局数据的风险&quot; class=&quot;headerlink&quot; title=&quot;3.1 使用全局数据的风险&quot;&gt;&lt;/a&gt;3.1 使用全局数据的风险&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;无意间修改了全局数据&lt;/li&gt;
+&lt;li&gt;与全局数据有关的别名问题：当一个全局变量被传递给一个子程序，然后该子程序将它既用作全局变量又用作参数使用的情况下会出现这种问题&lt;/li&gt;
+&lt;li&gt;多线程下风险很大&lt;/li&gt;
+&lt;li&gt;全局数据阻碍代码重用&lt;/li&gt;
+&lt;li&gt;与全局数据有关的非确定的初始化顺序事直&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;全局数据破坏了模块化和智力上的可管理性&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;3-2-全局数据的使用原则&quot;&gt;&lt;a href=&quot;#3-2-全局数据的使用原则&quot; class=&quot;headerlink&quot; title=&quot;3.2 全局数据的使用原则&quot;&gt;&lt;/a&gt;3.2 全局数据的使用原则&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;创建一种命名规则来突出全局变量：例如使用g_前缀&lt;/li&gt;
+&lt;li&gt;为全部的全局变量创建一份注释良好的清单&lt;/li&gt;
+&lt;li&gt;不要用全局变量来存放中间结果&lt;/li&gt;
+&lt;li&gt;不要把所有的数据都放在一个大对象中并到处传递，以说明你没有使用全局变量：这纯粹是一种负担，如果要用全局数据，就大胆公开地用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第12、13章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;几乎所有的常见编程语言，都包含了整数、浮点数、字符串、布尔等等数据类型，而通过基本的数据类型又可以复合出各种数据结构。本文总结了常用的数据类型（整数、浮点数、字符、字符串、布尔、枚举、数组等等）以及一些不常见的数据类型（结构体、指针等等）的使用原则。最后总结了关于全局数据的一些风险和使用原则。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>软件构建（四）——变量的使用原则</title>
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-4/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-4/</id>
     <published>2016-04-08T06:11:59.000Z</published>
-    <updated>2016-04-08T01:52:18.773Z</updated>
+    <updated>2016-04-08T01:59:30.832Z</updated>
     
     <content type="html">&lt;p&gt;变量的好与坏就在很大程度上取决于它的命名的好坏，在给变量命名的时候需要小心谨慎。本文首先详细讲述构建活动中的基本组成成分，即变量的使用原则，接着再讲述适用于为变量——对象和基本数据——命名的原则。这些原则也适用于类、包、文件及其他的编程实体。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1791,175 +1924,6 @@ Io&amp;gt; false xor true
       <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
     
       <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ruby语言特性（下）</title>
-    <link href="http://raytaylorlin.com/tech/language/other/ruby-language-2/"/>
-    <id>http://raytaylorlin.com/tech/language/other/ruby-language-2/</id>
-    <published>2015-01-09T08:22:50.000Z</published>
-    <updated>2016-02-09T12:31:39.924Z</updated>
-    
-    <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/ruby-language-1/&quot;&gt;《Ruby语言特性（上）》&lt;/a&gt;讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-模块与混入（Mixin）&quot;&gt;&lt;a href=&quot;#1-模块与混入（Mixin）&quot; class=&quot;headerlink&quot; title=&quot;1. 模块与混入（Mixin）&quot;&gt;&lt;/a&gt;1. 模块与混入（Mixin）&lt;/h1&gt;&lt;p&gt;面向对象语言利用继承，将行为传播到相似的对象上。若一个对象像继承多种行为，一种做法是用多继承，如C++；Java采用接口解决这一问题，Ruby采用模块Mixin。模块是函数和常量的集合，若在类中包含一个模块，那么该模块的行为和常量也会成为类的一部分。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 定义模块ToFile
-module ToFile
-  # 获取文件名
-  def filename
-    &amp;quot;object_name.txt&amp;quot;
-  end
-
-  # 创建文件
-  def to_f
-    File.open(filename, &amp;apos;w&amp;apos;) {|f| f.write(to_s)}  # 注意这里to_s在其他地方定义！
-  end
-end
-
-# 定义用户类
-class Person
-  include ToFile
-  attr_accessor :name
-
-  def initialize(name)
-    @name = name
-  end
-
-  def to_s
-    name
-  end
-end
-
-Person.new(&amp;apos;matz&amp;apos;).to_f  # 创建了一个文件object_name.txt，里面包含内容matz
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的代码很好理解，只是有一点要注意：&lt;code&gt;to_s&lt;/code&gt;在模块中使用，在类中实现，但定义模块的时候，实现它的类甚至还没有定义。这正是鸭子类型的精髓所在。&lt;strong&gt;写入文件的能力，和Person这个类没有一点关系（一个类就应该做属于它自己的事情）&lt;/strong&gt;，但实际开发又需要把Person类写入文件这种额外功能，这时候mixin就可以轻松胜任这种要求。&lt;/p&gt;
-&lt;p&gt;Ruby有两个重要的mixin：枚举（enumerable）和比较（comparable）。若想让类可枚举，必须实现each方法；若想让类可比较，必须实现&lt;code&gt;&amp;lt;=&amp;gt;&lt;/code&gt;（太空船）操作符（比较a,b两操作数，返回1、0或-1）。Ruby的字符串可以这样比较：&lt;code&gt;&amp;#39;begin&amp;#39; &amp;lt;=&amp;gt; &amp;#39;end =&amp;gt; -1&lt;/code&gt;。数组有很多好用的方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a = [5, 3, 4, 1]
-a.sort =&amp;gt; [1, 3, 4, 5]  # 整数已通过Fixnum类实现太空船操作符，因此可比较可排序
-a.any? {|i| i &amp;gt; 4} =&amp;gt; true
-a.all? {|i| i &amp;gt; 0} =&amp;gt; true
-a.collect {|i| i * 2} =&amp;gt; [10, 6, 8, 2]
-a.select {|i| i % 2 == 0} =&amp;gt; [4]
-a.member?(2) =&amp;gt; false
-a.inject {|product, i| product * i} =&amp;gt; 60  # 第一个参数是代码块上一次执行的结果，若不设初始值，则使用列表第一个值作为初始值
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-元编程（metaprogramming）&quot;&gt;&lt;a href=&quot;#2-元编程（metaprogramming）&quot; class=&quot;headerlink&quot; title=&quot;2. 元编程（metaprogramming）&quot;&gt;&lt;/a&gt;2. 元编程（metaprogramming）&lt;/h1&gt;&lt;p&gt;所谓元编程，说白了就是“写能写程序的程序”，这说起来有点拗口，下面会通过实例来讲解。&lt;/p&gt;
-&lt;h2 id=&quot;2-1-开放类&quot;&gt;&lt;a href=&quot;#2-1-开放类&quot; class=&quot;headerlink&quot; title=&quot;2.1 开放类&quot;&gt;&lt;/a&gt;2.1 开放类&lt;/h2&gt;&lt;p&gt;可以重定义Ruby中的任何类，并给它们扩充任何你想要的方法，甚至能让Ruby完全瘫痪，比如重定义Class.new方法。对于开发类来说，这种权衡主要考虑了自由，有这种重定义任何类或对象的自由，就能写出即为通俗易懂的代码，但也要明白，自由越大、能力越强，担负的责任也越重。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Numeric
-  def inches
-    self
-  end
-  def feet
-    self * 12.inches
-  end
-  def miles
-    self * 5280.feet
-  end
-  def back
-    self * -1
-  end
-  def forward
-    self
-  end
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面的代码通过开放Numeric类，就可以像这样采用最简单的语法实现用英寸表示距离：&lt;code&gt;puts 10.miles.back&lt;/code&gt;，&lt;code&gt;puts 2.feet.forward&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-使用method-missing&quot;&gt;&lt;a href=&quot;#2-2-使用method-missing&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用method_missing&quot;&gt;&lt;/a&gt;2.2 使用method_missing&lt;/h2&gt;&lt;p&gt;Ruby找不到某个方法时，会调用一个特殊的回调方法&lt;code&gt;method_missing&lt;/code&gt;显示诊断信息。通过覆盖这个特殊方法，可以实现一些非常有趣且强大的功能。下面这个示例展示了如何用简洁的语法来实现罗马数字。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;class Roman
-  # 覆盖self.method_missing方法
-  def self.method_missing name, *args
-    roman = name.to_s
-    roman.gsub!(&amp;quot;IV&amp;quot;, &amp;quot;IIII&amp;quot;)
-    roman.gsub!(&amp;quot;IX&amp;quot;, &amp;quot;VIIII&amp;quot;)
-    roman.gsub!(&amp;quot;XL&amp;quot;, &amp;quot;XXXX&amp;quot;)
-    roman.gsub!(&amp;quot;XC&amp;quot;, &amp;quot;LXXXX&amp;quot;)
-
-    (roman.count(&amp;quot;I&amp;quot;) +
-     roman.count(&amp;quot;V&amp;quot;) * 5 +
-     roman.count(&amp;quot;X&amp;quot;) * 10 +
-     roman.count(&amp;quot;L&amp;quot;) * 50 +
-     roman.count(&amp;quot;C&amp;quot;) * 100)
-  end
-end
-
-puts Roman.III  # =&amp;gt; 3
-puts Roman.XII  # =&amp;gt; 12
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们没有给Roman类定义什么实际的方法，但已经可以Roman类来表示任何罗马数字！其原理就是在没有找到定义方法时，把方法名称和参数传给&lt;code&gt;method_missing&lt;/code&gt;执行。首先调用&lt;code&gt;to_s&lt;/code&gt;把方法名转为字符串，然后将罗马数字“左减”特殊形式转换为“右加”形式（更容易计数），最后统计各个符号的个数和加权。&lt;/p&gt;
-&lt;p&gt;当然，如此强有力的工具也有其代价：类调试起来会更加困难，因为Ruby再也不会告诉你找不到某个方法。因此&lt;code&gt;method_missing&lt;/code&gt;是一把双刃剑，它确实可以让语法大大简化，但是要以人为地加强程序的健壮性为前提。&lt;/p&gt;
-&lt;h2 id=&quot;2-3-使用模块&quot;&gt;&lt;a href=&quot;#2-3-使用模块&quot; class=&quot;headerlink&quot; title=&quot;2.3 使用模块&quot;&gt;&lt;/a&gt;2.3 使用模块&lt;/h2&gt;&lt;p&gt;Ruby最流行的元编程方式，非模块莫属。下面的代码讲述如何用模块的方式扩展一个可以读取csv文件的类。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;module ActsAsCsv
-
-  # 只要某个模块被另一模块include，就会调用被include模块的included方法
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
-  module ClassMethods
-    def acts_as_csv
-      include InstanceMethods
-    end
-  end
-
-  module InstanceMethods
-    attr_accessor :headers, :csv_contents
-
-    def initialize
-      read
-    end
-
-    def read
-      @csv_contents = []
-      filename = self.class.to_s.downcase + &amp;apos;.txt&amp;apos;
-      file = File.new(filename)
-      @headers = file.gets.chomp.split(&amp;apos;, &amp;apos;)  # String的chomp方法去除字符串末尾的回车换行符
-      file.each do |row|
-        @csv_contents &amp;lt;&amp;lt; row.chomp.split(&amp;apos;, &amp;apos;)
-      end
-    end
-  end
-
-end  # end of module ActsAsCsv
-
-class RubyCsv    # 没有继承，可以自由添加
-  include ActsAsCsv
-  acts_as_csv
-end
-
-m = RubyCsv.new
-puts m.headers.inspect
-puts m.csv_contents.inspect
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上述代码中RubyCsv包含了ActsAsCsv，所以ActsAsCsv的included方法中，base就指RubyCsv，ActsAsCsv模块给RubyCsv类添加了唯一一个类方法&lt;code&gt;acts_as_csv&lt;/code&gt;，这个方法又打开RubyCsv类，并在类中包含了所有实例方法。如此这般，就写了一个会写程序的程序（通过模块来动态添加类方法）。&lt;/p&gt;
-&lt;p&gt;一些出色的Ruby框架，如Builder和ActiveRecord，都会为了改善可读性而特别依赖元编程。借助元编程的威力，可以做到尽量缩短正确的Ruby语法与日常用于之间的距离。注意一切都是为了提升代码可读性而服务。&lt;/p&gt;
-&lt;h1 id=&quot;3-总结&quot;&gt;&lt;a href=&quot;#3-总结&quot; class=&quot;headerlink&quot; title=&quot;3. 总结&quot;&gt;&lt;/a&gt;3. 总结&lt;/h1&gt;&lt;p&gt;Ruby的纯面向对象可以让你用一致的方式来处理对象。鸭子类型根据对象可提供的方法，而不是对象的继承层次，实现了更切合实际的多态设计。Ruby的模块和开放类，使程序员能把行为紧密结合到语法上，大大超越了类中定义的传统方法和实例变量。&lt;/p&gt;
-&lt;p&gt;核心优势：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;优雅的语法和强大的灵活性&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;脚本：Ruby是一门梦幻般的脚本语言，可以出色地完成许多任务。Ruby许多语法糖可以大幅提高生产效率，各种各样的库和gem（Ruby包）可以满足绝大多数日常需要。&lt;/li&gt;
-&lt;li&gt;Web开发：很多人学Ruby最终就是为了用Ruby on Rails框架来进行Web开发。作为一个极其成功的MVC框架，其有着广泛的社区支持及优雅的语法。Twitter最初就是用Ruby实现的，借助Ruby无比强大的生产力，可以快速地开发出一个可推向市场的合格产品。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;不足之处：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;性能&lt;/strong&gt;：这是Ruby的最大弱点。随着时代的发展，Ruby的速度确实是越来越快。当然，Ruby是创建目的为了改善程序员的体验，在对性能要求不高的应用场景下，性能换来生产效率的大幅提升无疑是值得的。&lt;/li&gt;
-&lt;li&gt;并发和面向对象编程：面向对象是建立在状态包装一系列行为的基础上，但通常状态是会改变的。程序中存在并发时，这种编程策略就会引发严重问题。&lt;/li&gt;
-&lt;li&gt;类型安全：静态类型可提供一整套工具，可以更轻松地构造语法树，也因此能实现各种IDE。对Ruby这种动态类型语言来说，实现IDE就困难得多。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考资料：《七周七语言》第2章Ruby&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/ruby-language-1/&quot;&gt;《Ruby语言特性（上）》&lt;/a&gt;讲述Ruby语言的核心语言特性，包括Mixin、模块、开放类等等，并使用Ruby来定义自己的语法。这些特性都是重点和难点，透过这些特性可以感受到Ruby是一门灵活性极高的语言。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
-    
-      <category term="Ruby" scheme="http://raytaylorlin.com/tags/Ruby/"/>
     
   </entry>
   

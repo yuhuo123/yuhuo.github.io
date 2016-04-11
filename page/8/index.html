@@ -7,7 +7,7 @@
 
     
 
-    <title>修改文件后Node.js应用自动重新启动 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
+    <title>第 8 页 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="Ray Taylor Lin">
     
     <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="修改文件后Node.js应用自动重新启动"/>
+    
     <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
 
     
@@ -362,123 +362,125 @@
 </nav>
 
     <main>
-        <div class="container main-container">
-    <nav class="page-nav hide-on-small-only">
-    <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（分类目录）</span>
-        
-            
-    
-    
-    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/NodeJS/">NodeJS</a>
-
-
         
 
-        
-    </div>
-</nav>
-
-<article>
-    <div class="card">
-        <div class="card-content">
-            
-
-            <div class="article-title">
-                
+<div class="slider">
+    <ul class="slides">
     
-        <h1>修改文件后Node.js应用自动重新启动</h1>
+       <li>
+           <a href="javascript:;">
+               <img class="slider-image" src="http://7d9rl0.com1.z0.glb.clouddn.com/image/slider/weixin_public.jpg">
+               <div class="caption left-align">
+                 <h4>博客微信公众号</h3>
+                 <h5 class="light grey-text text-lighten-3">扫一扫关注，获得最新博客动态</h5>
+               </div>
+           </a>
+       </li>
     
-
-
-            </div>
-            <time class="green-link-context" datetime="2013-11-20T01:21:33.000Z"><a href="/tech/web/nodejs/nodejs-restart-on-file-change/">2013-11-20</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Node-js/" class="chip green lighten-1">Node.js</a>
-        
-    </div>
-
-
-            <div class="toc green-link-context hide-on-med-and-down">
+       <li>
+           <a href="/about">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2Fabout.png">
+               <div class="caption right-align">
+                 <h4>新版“关于”页面</h3>
+                 <h5 class="light grey-text text-lighten-3">了解我的技术之路</h5>
+               </div>
+           </a>
+       </li>
     
-</div>
-
-
-            <div class="entry green-link-context">
-                <p>在开发或调试Node.js应用程序的时候，当你修改js文件后，总是要按下CTRL+C终止程序，然后再重新启动，即使是修改一点小小的参数，也总是要不断地重复这几个很烦人的操作。有没有办法做到当文件修改之后，Node.js自动重新启动（或重新加载文件）以节省时间呢？一开始我是想到用grunt的watch模块来监控文件变化，但后来在网上一查，原来我们想到的，别人早已想到，并且已经做得很好。<a href="https://github.com/isaacs/node-supervisor" target="_blank" rel="external">Node Supervisor</a>正是这样一个可以实现这种需求的Node.js模块。</p>
-<a id="more"></a>
-<p>根据Github上的说明，Node Supervisor原本是用于服务器上Node.js应用崩溃的时候，自己重新启动。当然它也可以监控你的项目的js（或CoffeeScript）文件变化，进而重启来方便我们调试应用程序。</p>
-<p>安装方法（以全局模块安装）：</p>
-<pre><code>npm install supervisor -g
-</code></pre><p>假设你的Node.js程序主入口是app.js，那么只需要执行以下命令，即可开始监控文件变化。</p>
-<pre><code>supervisor app.js
-</code></pre><p>Supervisor还支持多种参数，列举如下：</p>
-<pre><code>//要监控的文件夹或js文件，默认为&apos;.&apos;
--w|--watch &lt;watchItems&gt;
-
-//要忽略监控的文件夹或js文件  
--i|--ignore &lt;ignoreItems&gt;
-
-//监控文件变化的时间间隔（周期），默认为Node.js内置的时间
--p|--poll-interval &lt;milliseconds&gt;
-
-//要监控的文件扩展名，默认为&apos;node|js&apos;
--e|--extensions &lt;extensions&gt;
-
-//要执行的主应用程序，默认为&apos;node&apos;
--x|--exec &lt;executable&gt;
-
-//开启debug模式（用--debug flag来启动node）
---debug
-
-//安静模式，不显示DEBUG信息
--q|--quiet
-</code></pre><p>例子：</p>
-<pre><code>supervisor myapp.js
-supervisor -w py_scripts -e &apos;py&apos; -x python myapp.py
-supervisor -w lib, server.js, config.js, server.js
-</code></pre><p>实现同样功能的类似产品还有<a href="https://github.com/DTrejo/run.js" target="_blank" rel="external">Run.js</a>和<a href="https://github.com/remy/nodemon" target="_blank" rel="external">Nodeman</a>，这两个我都没用过。但是从文档上来看，前者和Supervisor一样都是极简的5分钟就可以上手的那种，功能比Supervisor稍弱；后者的feature比较多，对应的文档就特别长，估计要研究透也得至少半个小时。选择哪一个，全看项目需求和个人喜好。</p>
-<p>参考文献：<a href="http://www.hacksparrow.com/node-js-restart-on-file-change.html" target="_blank" rel="external">Node.js Restart on File Change</a></p>
-
-            </div>
-        </div>
-    </div>
-</article>
+       <li>
+           <a href="/daily/2015-autumn-summary/">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2F2015summary_1.png">
+               <div class="caption center-align">
+                 <h4>2015年秋季 学期总结</h3>
+                 <h5 class="light grey-text text-lighten-3"></h5>
+               </div>
+           </a>
+       </li>
+    
+       <li>
+           <a href="javascript:;">
+               <img class="slider-image" src="http://raytaylorlin-blog.qiniudn.com/image%2Fslider%2Fblogv3.png">
+               <div class="caption left-align">
+                 <h4>个人博客v3正式上线！</h3>
+                 <h5 class="light grey-text text-lighten-3">清爽简约，新年再续高B格</h5>
+               </div>
+           </a>
+       </li>
+    
+   </ul>
+ </div>
 
 
 
-
-    <section id="comment">
+<div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
         <div class="card">
             <div class="card-content">
-                <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="tech/web/nodejs/nodejs-restart-on-file-change/" data-title="修改文件后Node.js应用自动重新启动" data-url="http://raytaylorlin.com/tech/web/nodejs/nodejs-restart-on-file-change/"></div>
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/daily/welcome/">Welcome to Ray Taylor Lin&#39;s world</a></h1>
+    
 
-                <script type="text/javascript">
-                    console.log(document.querySelector('.ds-thread'));
-                    var duoshuoQuery = {
-                        short_name: 'raytaylorlin'
-                    };
-                    (function() {
-                        var ds = document.createElement('script');
-                        ds.type = 'text/javascript';
-                        ds.async = true;
-                        ds.src = (document.location.protocol == 'https:'
-                            ? 'https:'
-                            : 'http:') + '//static.duoshuo.com/embed.js';
-                        ds.charset = 'UTF-8';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-                    })();
-                </script>
-                <!-- Duoshuo Comment END -->
+
+                </div>
+
+                <time class="green-link-context" datetime="2012-07-07T10:04:04.000Z"><a href="/daily/welcome/">2012-07-07</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/博客/" class="chip green lighten-1">博客</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>大家好，我是林寿山，欢迎来到我的个人博客！</p>
+                    </div>
+                
             </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="daily/welcome/">READ MORE</a>
+            </div>
+            
         </div>
-    </section>
+</article>
 
+    
 
+    <ul class="pagination center-align">
+    <li class="">
+        <a href="/page/7/"><i class="fa fa-angle-left"></i></a>
+    </li>
+    
+    
+        <li class="waves-effect"><a href="/">1</a></li>
+    
+        <li class="waves-effect"><a href="/page/2">2</a></li>
+    
+        <li class="waves-effect"><a href="/page/3">3</a></li>
+    
+        <li class="waves-effect"><a href="/page/4">4</a></li>
+    
+        <li class="waves-effect"><a href="/page/5">5</a></li>
+    
+        <li class="waves-effect"><a href="/page/6">6</a></li>
+    
+        <li class="waves-effect"><a href="/page/7">7</a></li>
+    
+        <li class="active green"><a href="/page/8">8</a></li>
+    
+    
+    <li class="disabled">
+        <a href="/"><i class="fa fa-angle-right"></i></a>
+    </li>
+ </ul>
 
 </div>
 
