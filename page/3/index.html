@@ -156,7 +156,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">63 篇</span></a>
+                    技术 <span class="right">64 篇</span></a>
                 </a>
             </li>
 
@@ -204,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">10 篇</span></a>
+                    综合 <span class="right">11 篇</span></a>
                 </a>
             </li>
 
@@ -228,7 +228,7 @@
 
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">5 篇</span></a>
+                    软件工程 <span class="right">6 篇</span></a>
                 </a>
             </li>
 
@@ -413,6 +413,47 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/language/other/io-language-1/">Io语言特性（上）</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2015-01-11T13:21:34.000Z"><a href="/tech/language/other/io-language-1/">2015-01-11</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/编程范型/" class="chip green lighten-1">编程范型</a>
+        
+            <a href="/tags/Io-language/" class="chip green lighten-1">Io language</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>Io同Javascript、Lua一样，是一种原型语言，这意味着每个对象都是另一个对象的复制品。如今的大多数Io社区，都致力于把这门语言作为带有微型虚拟机和丰富并发特性的可嵌入语言来推广。它的简单语法和原型编程模型都值得我们重点关注，在了解Io之后，也可以让你对Javascript的运行机制的理解变得更透彻。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/language/other/io-language-1/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -782,47 +823,6 @@
 </article>
 
     
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="indigo-link-context"><a href="/tech/web/css/css-selector/">CSS学习笔记：选择器</a></h1>
-    
-
-
-                </div>
-
-                <time class="green-link-context" datetime="2014-07-31T14:01:34.000Z"><a href="/tech/web/css/css-selector/">2014-07-31</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
-        
-            <a href="/tags/选择器/" class="chip green lighten-1">选择器</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry green-link-context">
-                        <p>要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action green-link-context">
-                <a href="tech/web/css/css-selector/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
 
     <ul class="pagination center-align">
     <li class="">
@@ -948,7 +948,13 @@
             }).materialbox();
 
         // 优化表格的显示
-        $('table').addClass('responsive-table striped bordered');
+        $('table').each(function() {
+            var $table = $(this);
+            // 除去多行代码的情况
+            if ($table.find('pre').length == 0) {
+                $table.addClass('responsive-table striped bordered');
+            }
+        });
 
         // 首页幻灯片
         $('.slider').slider({

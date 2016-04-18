@@ -319,16 +319,6 @@ main {
     padding: 0 10px;
   }
 }
-.search-wrapper input[type=text] {
-  width: auto;
-  line-height: 3rem;
-  border-bottom-color: transparent;
-}
-.search-wrapper input[type=text]:focus {
-  border-bottom-color: transparent;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
 .simple-article {
   margin-bottom: 30px;
 }

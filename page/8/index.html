@@ -156,7 +156,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">63 篇</span></a>
+                    技术 <span class="right">64 篇</span></a>
                 </a>
             </li>
 
@@ -204,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">10 篇</span></a>
+                    综合 <span class="right">11 篇</span></a>
                 </a>
             </li>
 
@@ -228,7 +228,7 @@
 
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">5 篇</span></a>
+                    软件工程 <span class="right">6 篇</span></a>
                 </a>
             </li>
 
@@ -420,6 +420,45 @@
                 <div class="article-title">
                     
     
+        <h1 class="indigo-link-context"><a href="/tech/language/lua/lua-note-1/">Lua学习笔记（1）——开始Lua</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2012-09-13T03:31:24.000Z"><a href="/tech/language/lua/lua-note-1/">2012-09-13</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/Lua/" class="chip green lighten-1">Lua</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>Lua 是一种小巧的脚本语言。其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。Lua由标准C编写而成，几乎在所有操作系统和平台上都可以编译，运行。本文是Lua学习笔记系列的开篇。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/language/lua/lua-note-1/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
         <h1 class="indigo-link-context"><a href="/daily/welcome/">Welcome to Ray Taylor Lin&#39;s world</a></h1>
     
 
@@ -578,7 +617,13 @@
             }).materialbox();
 
         // 优化表格的显示
-        $('table').addClass('responsive-table striped bordered');
+        $('table').each(function() {
+            var $table = $(this);
+            // 除去多行代码的情况
+            if ($table.find('pre').length == 0) {
+                $table.addClass('responsive-table striped bordered');
+            }
+        });
 
         // 首页幻灯片
         $('.slider').slider({

@@ -156,7 +156,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">63 篇</span></a>
+                    技术 <span class="right">64 篇</span></a>
                 </a>
             </li>
 
@@ -204,7 +204,7 @@
 
             <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">10 篇</span></a>
+                    综合 <span class="right">11 篇</span></a>
                 </a>
             </li>
 
@@ -228,7 +228,7 @@
 
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">5 篇</span></a>
+                    软件工程 <span class="right">6 篇</span></a>
                 </a>
             </li>
 
@@ -413,6 +413,47 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/web/css/css-selector/">CSS学习笔记：选择器</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2014-07-31T14:01:34.000Z"><a href="/tech/web/css/css-selector/">2014-07-31</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/CSS/" class="chip green lighten-1">CSS</a>
+        
+            <a href="/tags/选择器/" class="chip green lighten-1">选择器</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>要将CSS样式应用于特定的HTML元素，需要想办法找到这个元素。在CSS中，执行这一任务的样式规则成为样式选择器（selector）。本文将介绍CSS常用选择器、高级选择器，层叠与特殊性计算，以及如何组织和维护样式表等内容。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/web/css/css-selector/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -790,47 +831,6 @@
 </article>
 
     
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="indigo-link-context"><a href="/tech/tool/IDE/console2-better-windows-cmd/">Console2：Windows命令行威力加强版</a></h1>
-    
-
-
-                </div>
-
-                <time class="green-link-context" datetime="2014-05-15T07:36:29.000Z"><a href="/tech/tool/IDE/console2-better-windows-cmd/">2014-05-15</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/Shell/" class="chip green lighten-1">Shell</a>
-        
-            <a href="/tags/控制台/" class="chip green lighten-1">控制台</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry green-link-context">
-                        <p>作为一个Windows重度用户+程序猿，日常开发中免不了要经常使用命令行工具。但是Windows下默认的cmd提供的功能实在有限。今天无意间发现了一款很不错的命令行工具前端Console2，瞬间就被其深深地吸引，赶紧记下来分享一下。本文将简单介绍Console2及其配置方法，让你可以快速地配置出一个类似Linux终端的装逼利器。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action green-link-context">
-                <a href="tech/tool/IDE/console2-better-windows-cmd/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
 
     <ul class="pagination center-align">
     <li class="">
@@ -956,7 +956,13 @@
             }).materialbox();
 
         // 优化表格的显示
-        $('table').addClass('responsive-table striped bordered');
+        $('table').each(function() {
+            var $table = $(this);
+            // 除去多行代码的情况
+            if ($table.find('pre').length == 0) {
+                $table.addClass('responsive-table striped bordered');
+            }
+        });
 
         // 首页幻灯片
         $('.slider').slider({
