@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-04-17T15:23:13.185Z</updated>
+  <updated>2016-04-20T09:32:37.390Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,81 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件构建（七）——防御式编程</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-7/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-7/</id>
+    <published>2016-04-20T09:28:57.000Z</published>
+    <updated>2016-04-20T09:32:37.390Z</updated>
+    
+    <content type="html">&lt;p&gt;防御式编程这一概念来自防御式驾驶。在防御式驾驶中要建立这样一种思维，那就是你永远也不能确定另一位司机将要做什么。这样才能确保在其他人做出危险动作时你也不会受到伤害。你要承担起保护自己的责任，哪怕是其他司机犯的错误。本文将讲述如何面对严酷的非法数据的世界、在遇到“绝不会发生”的事件以及其他程序员犯下的错误时保护你自己。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-防御式编程&quot;&gt;&lt;a href=&quot;#1-防御式编程&quot; class=&quot;headerlink&quot; title=&quot;1. 防御式编程&quot;&gt;&lt;/a&gt;1. 防御式编程&lt;/h1&gt;&lt;p&gt;防御式编程的主要思想是：子程序应该不因传入错误数据而被破坏，哪怕是由其他子程序产生的错误数据。更一般地说，其核心想法是要承认程序都会有问题，都需要被修改。防御式编码的最佳方式就是在一开始不要在代码中引入错误。使用途代式设计、编码前先写伪代码、写代码前先写测试用例、低层设计检查等活动，都有助于防止引入错误。因此，要在防御式编程之前优先运用这些技术。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-保护程序免遭非法输入数据的破坏&quot;&gt;&lt;a href=&quot;#1-1-保护程序免遭非法输入数据的破坏&quot; class=&quot;headerlink&quot; title=&quot;1.1 保护程序免遭非法输入数据的破坏&quot;&gt;&lt;/a&gt;1.1 保护程序免遭非法输入数据的破坏&lt;/h2&gt;&lt;p&gt;对已形成产品的软件而言，应该做到“垃圾进，什么都不出”、“进来垃圾，出去是出错提示”或“不许垃圾进来”。通常有三种方法来处理进来垃圾的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查所有来源于外部的数据的值：检查从文件、用户、网络或其他外部接口中获取的数据&lt;/li&gt;
+&lt;li&gt;检查子程序所有输入参数的值&lt;/li&gt;
+&lt;li&gt;决定如何处理错误的输入数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-使用断言（assert）&quot;&gt;&lt;a href=&quot;#1-2-使用断言（assert）&quot; class=&quot;headerlink&quot; title=&quot;1.2 使用断言（assert）&quot;&gt;&lt;/a&gt;1.2 使用断言（assert）&lt;/h2&gt;&lt;p&gt;断言可以用于在代码中说明各种假定，澄清各种不希望的情形。但通常断言只是在开发阶段用于帮助查清相互矛盾的假定、预料之外的情况以及传给子程序的错误数据等。在生成产品代码时，不要把断言编译进目标代码，以免降低性能和让用户看到断言报错信息。下面是关于使用断言的一些指导性建议。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用错误处理代码来处理预期会发生的状况，用断言来处理绝不应该发生的状况&lt;/li&gt;
+&lt;li&gt;避免把需要执行的代码放到断言中：断言只检查变量的值，而不要在断言中&lt;strong&gt;运行&lt;/strong&gt;函数&lt;/li&gt;
+&lt;li&gt;用断言来注解并验证前条件和后条件：所谓前条件是子程序或类的调用方代码在调用子程序或实例化对象之前要确保为真的属性，后条件是子程序或类在执行结束后要确保为真的属性&lt;/li&gt;
+&lt;li&gt;对于高健壮性的代码，应该先使用断言再处理错误&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-3-错误处理技术&quot;&gt;&lt;a href=&quot;#1-3-错误处理技术&quot; class=&quot;headerlink&quot; title=&quot;1.3 错误处理技术&quot;&gt;&lt;/a&gt;1.3 错误处理技术&lt;/h2&gt;&lt;p&gt;有很多种解决方案用于处理那些预料中可能要发生的错误，下面列举一些可用的方案，实际中还经常把这些技术集合起来使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;返回中立值：遇到错误时继续执行操作并简单地返回一个没有危害的数值。但对于关键领域（如医疗、航天），关闭程序也比显示错误的数据要好&lt;/li&gt;
+&lt;li&gt;换用下一个正确的数据：如读数据库时发现一条损坏的记录，则继续读下去直到找到一条正确记录为止&lt;/li&gt;
+&lt;li&gt;返回与前次相同的数据：在前后变化不会太大的场景使用，如游戏重绘使用上一帧的图像&lt;/li&gt;
+&lt;li&gt;换用最接近的合法值：如小于0的值用0代替&lt;/li&gt;
+&lt;li&gt;把警告信息记录到日志文件中&lt;/li&gt;
+&lt;li&gt;返回一个错误码：简单地报告有错误发生，并信任调用链上游的某个子程序会处理该错误&lt;/li&gt;
+&lt;li&gt;调用全局的错误处理子程序或对象&lt;/li&gt;
+&lt;li&gt;当错误发生时显示出错消息以提高用户体验：采用这种做法时要考虑模块划分，多语言化，还要小心不要告诉系统的潜在攻击者太多东西&lt;/li&gt;
+&lt;li&gt;用最妥当的方式在局部处理错误&lt;/li&gt;
+&lt;li&gt;关闭程序：适用于人身安全攸关的应用程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-4-异常&quot;&gt;&lt;a href=&quot;#1-4-异常&quot; class=&quot;headerlink&quot; title=&quot;1.4 异常&quot;&gt;&lt;/a&gt;1.4 异常&lt;/h2&gt;&lt;p&gt;异常是把代码中的错误或异常事件传递给调用方代码的一种特殊手段。如果在一个子程序中遇到了预料之外的情况，但不知道该如何处理的话，它就可以抛出一个异常，就好比是举起双手说“我不知道该怎么处理它一一我真希望有谁知道该怎么办！” 一样。对出错的前因后果不甚了解的代码，可以把对控制权转交给系统中其他能更好地解释错误并采取措施的部分。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用异常通知程序的其他部分，发生了不可忽略的错误&lt;/li&gt;
+&lt;li&gt;只在真正例外的情况下才抛出异常：仅在其他编码实践方法无法解决的情况下才使用异常&lt;/li&gt;
+&lt;li&gt;不能用异常来推卸责任：如果某种的错误情况可以在局部处理，那就应该在局部处理掉它&lt;/li&gt;
+&lt;li&gt;避免在构造函数和析构函数中抛出异常，除非你在同一地方把它们捕获&lt;/li&gt;
+&lt;li&gt;在恰当的抽象层次抛出异常&lt;/li&gt;
+&lt;li&gt;在异常消息中加入关于导致异常发生的全部信息&lt;/li&gt;
+&lt;li&gt;避免使用空的catch语句：不要试图敷衍一个不知该如何处理的异常&lt;/li&gt;
+&lt;li&gt;了解所所用函数库可能抛出的异常&lt;/li&gt;
+&lt;li&gt;考虑创建一个集中的异常报告机制&lt;/li&gt;
+&lt;li&gt;把项目中对异常的使用标准化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-5-在架构上设置隔栏来隔离错误&quot;&gt;&lt;a href=&quot;#1-5-在架构上设置隔栏来隔离错误&quot; class=&quot;headerlink&quot; title=&quot;1.5 在架构上设置隔栏来隔离错误&quot;&gt;&lt;/a&gt;1.5 在架构上设置隔栏来隔离错误&lt;/h2&gt;&lt;p&gt;隔栏是一种容损策略，这与与船体外壳上装备隔离舱或者建筑物中的防火墙是类似的。以防御式编程为目的而进行隔离的一种方法，是把某些接口选定为“安全”区域的边界。对穿越安全区域边界的数据进行合法性校验，并当数据非法时做出敏锐的反映。可以把这种方法看做是手术室里使用的一种技术——任何东西在允许进入手术室之前都要经过消毒处理。因此手术室内的任何东西都可以认为是安全的。这其中最核心的设计决策是规定什么可以进入手术室，什么不可以进入，还有把手术室的门设在哪里。&lt;/p&gt;
+&lt;h2 id=&quot;1-6-编写辅助调试的代码&quot;&gt;&lt;a href=&quot;#1-6-编写辅助调试的代码&quot; class=&quot;headerlink&quot; title=&quot;1.6 编写辅助调试的代码&quot;&gt;&lt;/a&gt;1.6 编写辅助调试的代码&lt;/h2&gt;&lt;p&gt;防御式编程的另一重要方面是使用辅助调试的代码，可以用于帮助快速地检测错误。一般人除非被某个错误反复纠缠，否则是懒得花精力去写这些辅助调试代码的，但如果越早引入辅助调试的代码，它能够提供的帮助也越大。还有一种“进攻时编程”的方式来处理异常情况：在开发阶段让错误显现出来，而在产品代码运行时能够自我修复——在开发时惨痛地失败，能让你在发布产品后不会败得太惨。&lt;/p&gt;
+&lt;p&gt;如果使用了辅助调试的代码，那要做好清理的计划。例如使用类似ant或make这样的编译控制工具，或者使用内置的预处理器（如C/C++的&lt;code&gt;#define&lt;/code&gt;的，如果语言不支持预编译器就考虑用变通方法写自己的预处理器），在发布的产品代码中剔除掉调试代码。&lt;/p&gt;
+&lt;p&gt;说了这么多防御式编程的手段，但是过度地防御也会引起问题，例如引入的额外代码增加了软件的复杂度，引入的代码也可能引入其他bug。因此，要考虑好什么地方你需要进行防御，然后因地制宜地调整你进行防御式编程的优先级。&lt;/p&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第8章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;防御式编程这一概念来自防御式驾驶。在防御式驾驶中要建立这样一种思维，那就是你永远也不能确定另一位司机将要做什么。这样才能确保在其他人做出危险动作时你也不会受到伤害。你要承担起保护自己的责任，哪怕是其他司机犯的错误。本文将讲述如何面对严酷的非法数据的世界、在遇到“绝不会发生”的事件以及其他程序员犯下的错误时保护你自己。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（六）——语句</title>
@@ -1769,183 +1844,6 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     
     
       <category term="Linux" scheme="http://raytaylorlin.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Io语言特性（下）</title>
-    <link href="http://raytaylorlin.com/tech/language/other/io-language-2/"/>
-    <id>http://raytaylorlin.com/tech/language/other/io-language-2/</id>
-    <published>2015-01-27T08:25:34.000Z</published>
-    <updated>2016-02-09T12:31:39.912Z</updated>
-    
-    <content type="html">&lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/io-language-1/&quot;&gt;《Io语言特性（上）》&lt;/a&gt;，讲述Io语言的消息，反射和并发。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-消息&quot;&gt;&lt;a href=&quot;#1-消息&quot; class=&quot;headerlink&quot; title=&quot;1. 消息&quot;&gt;&lt;/a&gt;1. 消息&lt;/h1&gt;&lt;h2 id=&quot;1-1-消息反射与call方法&quot;&gt;&lt;a href=&quot;#1-1-消息反射与call方法&quot; class=&quot;headerlink&quot; title=&quot;1.1 消息反射与call方法&quot;&gt;&lt;/a&gt;1.1 消息反射与call方法&lt;/h2&gt;&lt;p&gt;Io语言中除了注释符和参数之间的逗号外，&lt;strong&gt;一切事物都是消息&lt;/strong&gt;。消息反射是Io一项很重要的能力，可以通过反射查询任何消息的任何特性，再对它们执行适当的操作。&lt;/p&gt;
-&lt;p&gt;消息由三部分组成：发送者（sender）、目标（target）和参数（arguments），消息由发送者发送至目标，然后由目标执行该消息。可以用&lt;code&gt;call&lt;/code&gt;方法访问任何消息的元信息。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Io&amp;gt; postOffice := Object clone
-// 下面的各个方法可以获取消息的各种元信息
-Io&amp;gt; postOffice packageSender := method(call sender)
-Io&amp;gt; postOffice messageTarget := method(call target)
-Io&amp;gt; postOffice messageArgs := method(call message arguments)
-Io&amp;gt; postOffice messageName := method(call message name)
-
-// 定义一个可以发送消息的mailer对象
-Io&amp;gt; mailer := Object clone
-==&amp;gt; Object_0x1005bfda0    // 注意这里尾号为0bfda0是mailer对象
-Io&amp;gt; mailer deliver := method(postOffice packageSender)
-Io&amp;gt; mailer deliver
-==&amp;gt; Object_0x1005bfda0:
-  deliver = method(...)    // 可以看出消息发送者是deliver方法
-
-Io&amp;gt; postOffice messageTarget
-==&amp;gt; Object_0x1004ce658:
-  messageTarget = method(...)
-  packageSender = method(...)   // 从槽名可以看出消息目标是postOffice
-Io&amp;gt; postOffice messageArgs(&amp;quot;one&amp;quot;, 2, :three)
-==&amp;gt; list(&amp;quot;one&amp;quot;, 2, :three)    // 直接输出了参数
-Io&amp;gt; postOffice messageName
-==&amp;gt; messageName    // 消息本身的名字
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;大多数语言都将参数作为栈上的值传递，例如Java在调用方法时先计算参数的每个值，然后把值放到栈上。Io就不是这样，Io传递的事消息本身和上下文，再由接收者对消息求值。Io的if，形式是&lt;code&gt;if(booleanExpression, trueBlock, falseBlock)&lt;/code&gt;，现在如果要再实现一个&lt;code&gt;unless&lt;/code&gt;，实现方法可以是下面这样：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 这种方法是不行的，因为调用unless的时候，else和then都会被马上执行，实际我们需要的是当cond为true时，执行else，否则执行then
-Object unless := method(cond, then, else,
-    if(cond, else, then))
-// 正确的延迟执行实现
-Object unless := method(
-    (call sender doMessage(call message argAt(0))) ifFalse(
-    call sender doMessage(call message argAt(1))) ifTrue(
-    call sender doMessage(call message argAt(2)))
-}
-unless(1 == 2, write(&amp;quot;One is not two\n&amp;quot;), write(&amp;quot;one is two\n&amp;quot;))  // 输出One is not two
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面代码中的&lt;code&gt;doMessage&lt;/code&gt;可以执行任意消息，有点类似于其他语言里面的&lt;code&gt;eval&lt;/code&gt;。Io会对消息参数进行解释，但会延迟绑定和执行。&lt;/p&gt;
-&lt;h2 id=&quot;1-2-对象反射&quot;&gt;&lt;a href=&quot;#1-2-对象反射&quot; class=&quot;headerlink&quot; title=&quot;1.2 对象反射&quot;&gt;&lt;/a&gt;1.2 对象反射&lt;/h2&gt;&lt;p&gt;下面的代码给Object定义了一个ancestors方法，这个方法会沿着原型链向上查找，输出每个原型的名称以及带有的槽名，直到Object为止。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Object ancestors := method(
-    prototype := self proto
-    if(prototype != Object,
-        writeln(&amp;quot;Slots of &amp;quot;, prototype type, &amp;quot;\n------------&amp;quot;)
-        prototype slotNames foreach(slotName, writeln(slotName))
-        writeln
-        prototype ancestors
-    )
-)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;1.1的例子是消息反射的例子，处理消息的发送者、目标和消息体；这个例子是对象反射的例子，处理对象和对象的槽。&lt;/p&gt;
-&lt;h1 id=&quot;2-其他特性&quot;&gt;&lt;a href=&quot;#2-其他特性&quot; class=&quot;headerlink&quot; title=&quot;2. 其他特性&quot;&gt;&lt;/a&gt;2. 其他特性&lt;/h1&gt;&lt;h2 id=&quot;2-1-领域特定语言（DSL）&quot;&gt;&lt;a href=&quot;#2-1-领域特定语言（DSL）&quot; class=&quot;headerlink&quot; title=&quot;2.1 领域特定语言（DSL）&quot;&gt;&lt;/a&gt;2.1 领域特定语言（DSL）&lt;/h2&gt;&lt;p&gt;Io在定义DSL方面的能力非常强大，据说用Io实现C语言的一个子集仅需约40行代码！Io提供了非常多的控制方法来解析语言本身。假如我们想要解析一个普通的&lt;code&gt;test.json&lt;/code&gt;文件：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;{
-    &amp;quot;name&amp;quot;: &amp;quot;Ray Taylor&amp;quot;,
-    &amp;quot;lucky_numbers&amp;quot;: [33, 6],
-    &amp;quot;job&amp;quot;: {
-        &amp;quot;title&amp;quot;: &amp;quot;Web Front End Developer&amp;quot;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果是其他语言的话，可能会写一个语法分析器识别上面这段文本中不同元素，然后生成一个Io可理解的结构。但通过Io的强大特性，我们可以通过下面这段代码对Io做些改动（注释中已包含完整的解释），改动完之后Io就会认为上面这段文本的语法是正确的，并且构建出相应的散列表来。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 把一个“:”运算符添加到Io的赋值运算符表中，现在只要Io代码遇到“:”，就会把它转换成atPutNumber。所以遇到key:value时就会转换成atPutNumber(&amp;quot;key&amp;quot;, value)
-OperatorTable addAssignOperator(&amp;quot;:&amp;quot;, &amp;quot;atPutNumber&amp;quot;)  
-
-// Io代码遇到大括号（{}），就会调用curlyBrackets方法
-curlyBrackets := method(
-    // 创建一个空散列表，供存放数据
-    data := Map clone
-    // call message正是json大括号中的代码，arguments则是由逗号“,”分隔的参数列表。循环遍历参数列表就相当于处理json对象中的每一行
-    call message arguments foreach(arg,
-        // 以第1个arg（&amp;quot;name&amp;quot;: &amp;quot;Ray Taylor&amp;quot;）举例，data doMessage(arg)相当于执行data &amp;quot;name&amp;quot;: &amp;quot;Ray Taylor&amp;quot;，冒号翻译成atPutNumber，所以代码就相当于data atPutNumber(&amp;quot;name&amp;quot;, &amp;quot;Ray Taylor&amp;quot;)
-        data doMessage(arg)
-    )
-    // 最后相当于把data返回
-    data
-)
-
-// 解析中括号（[]），原理跟上面的基本一样，不再赘述
-squareBrackets := method(
-    arr := list()
-    call message arguments foreach(arg,
-        arr push(call sender doMessage(arg))
-    )
-    arr
-)  
-
-// 在Map对象上扩展一个atPutNumber
-Map atPutNumber := method(
-    // 其实算法的核心就是调用Map atPut槽
-    self atPut(
-        // 注意key:value总是会转换为atPutNumber(&amp;quot;key&amp;quot;, value)（key有字符串包围），所以要去掉原key的头尾字符串。由于消息是不可变的，为了去掉引号，要使用asMutable转化为一个可变值
-        call evalArgAt(0) asMutable removePrefix(&amp;quot;\&amp;quot;&amp;quot;) removeSuffix(&amp;quot;\&amp;quot;&amp;quot;),
-        call evalArgAt(1)
-    )
-)  
-
-// File是Io与文件交互的原型，with指定了文件名并返回一个文件对象，openForReading打开该文件并返回该文件对象，而contents返回该文件的内容
-s := File with(&amp;quot;test.json&amp;quot;) openForReading contents
-// doString把字符串求值为Io代码
-json := doString(s)
-json at(&amp;quot;name&amp;quot;) println  // Ray Taylor
-json at(&amp;quot;lucky_numbers&amp;quot;) println  // list(6, 13)
-json at(&amp;quot;job&amp;quot;) at(&amp;quot;title&amp;quot;) println   // Web Front End Developer
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从上面的例子可以看到Io中可以随心所欲把运算符重定义为组成DSL的符号，从而改变Io的语法。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-forward方法&quot;&gt;&lt;a href=&quot;#2-2-forward方法&quot; class=&quot;headerlink&quot; title=&quot;2.2 forward方法&quot;&gt;&lt;/a&gt;2.2 forward方法&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;当你把消息发送给对象时，对象会计算所有参数（参数其实就是消息），获取消息的名称、目标和发送者，然后尝试用目标上的消息名称读取槽。如果槽存在，则返回其数据或触发其包含的方法；否则把消息转发给原型。&lt;/strong&gt;当槽名不存在时，实际会调用系统的forward方法把消息转发给原型，这有点类似Ruby的method_missing，但因为Io没有类，所以改变forward会改变从Object获得基本行为的方式。所以覆盖forward方法的风险要更高一些，但如果用得恰当，会产生非常巧妙的效果。&lt;/p&gt;
-&lt;p&gt;下面的代码将构造一种新语法来对XML进行处理。这种新语法及对应的XML如图所示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/Script/利用Io代码来表示XML.png&quot; alt=&quot;利用Io代码来表示XML&quot;&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Builder := Object clone
-// 覆盖forward，使其可以接收任意方法
-Builder forward := method(
-    // 使用消息反射，输出开标签
-    writeln(&amp;quot;&amp;lt;&amp;quot;, call message name, &amp;quot;&amp;gt;&amp;quot;)
-    // 遍历消息的每个参数
-    call message arguments foreach(arg,
-        // 递归调用
-        content := self doMessage(arg);
-        // 如果消息是个字符串（字符串的类型是Sequence序列），则直接输出
-        if(content type == &amp;quot;Sequence&amp;quot;, writeln(content))
-    )
-    // 使用消息反射，输出闭标签
-    writeln(&amp;quot;&amp;lt;/&amp;quot;, call message name, &amp;quot;&amp;gt;&amp;quot;)
-)
-
-Builder ul(
-          li(&amp;quot;Io&amp;quot;),
-          li(&amp;quot;Lua&amp;quot;),
-          li(&amp;quot;Javascript&amp;quot;))   // 输出看起来像HTML ul和li标签的内容
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然这种新语法未必比传统的XML有多大程度的提高，但这例子还是很有指导意义。你可以完全改变一个Io原型的继承运行机制，甚至定义自己的Object原型，并以这个新对象为基础创建其他原型，从而创建出一门和Io行为截然不同的新语言。&lt;/p&gt;
-&lt;h2 id=&quot;2-3-并发&quot;&gt;&lt;a href=&quot;#2-3-并发&quot; class=&quot;headerlink&quot; title=&quot;2.3 并发&quot;&gt;&lt;/a&gt;2.3 并发&lt;/h2&gt;&lt;h3 id=&quot;2-3-1-协程&quot;&gt;&lt;a href=&quot;#2-3-1-协程&quot; class=&quot;headerlink&quot; title=&quot;2.3.1 协程&quot;&gt;&lt;/a&gt;2.3.1 协程&lt;/h3&gt;&lt;p&gt;协程是并发的基础，它提供了进程的自动挂起和恢复执行的机制。可以把协程想象为带有多个入口和出口的函数，每次遇到&lt;code&gt;yield&lt;/code&gt;都会自动挂起当前进程，把控制权转到另一进程中。通过在消息前加上@或@@，可以异步触发消息，前者返回future（下文讲述），后者返回nil，并在其自身线程中触发消息。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;lilei := Object clone
-lilei talk := method(
-    &amp;quot;Hello.&amp;quot; println
-    yield
-    &amp;quot;Fine, thank you. And you?&amp;quot; println
-    yield
-)
-hanmeimei := Object clone
-hanmeimei talk := method(
-    yield
-    &amp;quot;How are you?&amp;quot; println
-    yield
-    &amp;quot;I am fine, thanks.&amp;quot; println
-)
-
-// 异步触发两个人的方法
-lilei @@talk; hanmeimei @@talk
-// 这一行用来等待所有异步消息执行完毕，然后退出程序
-Coroutine currentCoroutine pause
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上面这段程序不难理解。通过异步触发两个人的talk，使两个不相干的Object实例并发执行，用yield消息在指定时刻自动把控制权交给另一方法，从而让两个需要彼此协作的进程轻松实现“对话”任务。&lt;/p&gt;
-&lt;h3 id=&quot;2-3-2-actor&quot;&gt;&lt;a href=&quot;#2-3-2-actor&quot; class=&quot;headerlink&quot; title=&quot;2.3.2 actor&quot;&gt;&lt;/a&gt;2.3.2 actor&lt;/h3&gt;&lt;p&gt;actor是通用的并发原语，它可以发送消息、处理消息以及创建其它actor。actor接收到的消息是并发的。一个actor改变其自身的状态，并通过严格控制的队列接触其它actor&lt;/p&gt;
-&lt;p&gt;参考资料：《七周七语言》第3章Io&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文将接着上一篇&lt;a href=&quot;/tech/language/other/io-language-1/&quot;&gt;《Io语言特性（上）》&lt;/a&gt;，讲述Io语言的消息，反射和并发。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="其它语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E5%85%B6%E5%AE%83%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="编程范型" scheme="http://raytaylorlin.com/tags/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B/"/>
-    
-      <category term="Io language" scheme="http://raytaylorlin.com/tags/Io-language/"/>
     
   </entry>
   
