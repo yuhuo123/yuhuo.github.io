@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-04-20T09:32:37.390Z</updated>
+  <updated>2016-04-24T14:29:06.951Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件构建（八）——表驱动法与一般控制问题</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-8/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-8/</id>
+    <published>2016-04-24T14:24:03.000Z</published>
+    <updated>2016-04-24T14:29:06.951Z</updated>
+    
+    <content type="html">&lt;p&gt;表驱动法是一种编程模式——从表里面查找信息而不使用逻辑语句（if和case）。事实上，凡是能通过逻辑语句来选择的事物，都可以通过查表来选择。本文将介绍直接访问表、索引访问表和阶梯访问表三种常见的表驱动法。最后，本文将记录一些控制问题（如布尔表达式的使用、空语句、深层嵌套问题等等）上的使用原则，这一部分内容比较简单而且与前面的章节有一些重叠，因此将快速带过。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-表驱动法&quot;&gt;&lt;a href=&quot;#1-表驱动法&quot; class=&quot;headerlink&quot; title=&quot;1. 表驱动法&quot;&gt;&lt;/a&gt;1. 表驱动法&lt;/h1&gt;&lt;p&gt;例如当使用复杂的if-elseif逻辑对字符分类时，可以用一个查询表（数组或字典）来代替查询，当然，查询表要事先创建好。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-直接访问表&quot;&gt;&lt;a href=&quot;#1-1-直接访问表&quot; class=&quot;headerlink&quot; title=&quot;1.1 直接访问表&quot;&gt;&lt;/a&gt;1.1 直接访问表&lt;/h2&gt;&lt;p&gt;使用直接访问法的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个月中的天数：建立含12个整数的数组，把月份当下标查询&lt;/li&gt;
+&lt;li&gt;保险费率：费率随年龄、性别、婚姻状况等变化，可以以这几个维度建立多维数组，从外部读入数据&lt;/li&gt;
+&lt;li&gt;灵活的消息格式：假定一份文件中有几百条消息，消息种类约20种，每种消息都有若干字段。可以把消息种类构造为查询表，并把每种字段对应的行为用多态实现，这样可以大幅简化对消息种类和字段进行判断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用直接访问法查表时，关键是能直接得到查询的键值。有时像保险费率中的年龄，可能小于18岁，18-65岁，超过65岁是三种不一样的费率，这时可以使用以下这些方法将其转换为可查询的键值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复制信息：查询表填充18个18岁以下的费率，47个18-65岁的费率，以此类推，缺点是复制的冗余会浪费空间，而且表中存在错误的可能性也会增加&lt;/li&gt;
+&lt;li&gt;转换键值：将一个区间通过某个函数转换为一个值，例如&lt;code&gt;max(min(66, age), 17)&lt;/code&gt;可以生成一个位于17到66之间的键值，这种方法要精心设计转换函数&lt;/li&gt;
+&lt;li&gt;把键值转换提取成独立子程序：上面的转换键值方法其实不太适用于年龄转换这种复杂情况，编写一个&lt;code&gt;KeyFromAge()&lt;/code&gt;方法里面写几个if判断将年龄转换为键值更加清晰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-索引访问表&quot;&gt;&lt;a href=&quot;#1-2-索引访问表&quot; class=&quot;headerlink&quot; title=&quot;1.2 索引访问表&quot;&gt;&lt;/a&gt;1.2 索引访问表&lt;/h2&gt;&lt;p&gt;使用索引的时候，先用一个基本类型的数据从一张索引表中查出一个键值，然后再用这一键值查出你感兴趣的主数据。下图解释了这种技术的具体原理：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7d9rl0.com1.z0.glb.clouddn.com/image/software/%E7%B4%A2%E5%BC%95%E8%AE%BF%E9%97%AE%E8%A1%A8%E7%9A%84%E5%8E%9F%E7%90%86.jpg&quot; alt=&quot;索引访问表的原理&quot;&gt;&lt;/p&gt;
+&lt;p&gt;索引访问技术有几个主要优点：首先，如果主查询表中的每一条记录都很大，那么创建一个浪费了很多空间的&lt;strong&gt;索引数组&lt;/strong&gt;所用的空间，就要比创建一个浪费了很多空间的&lt;strong&gt;主查询表&lt;/strong&gt;所用的空间小得多；其次，即使用了索引以后没有节省内存空间，操作位于索引中的记录有时也要比操作位于主表中的记录更方便廉价；最后，索引访问技术在可维护性上所具有的普遍优点，编写到表里面的数据比嵌入代码中的数据更容易维护。&lt;/p&gt;
+&lt;h2 id=&quot;1-3-阶梯访问表&quot;&gt;&lt;a href=&quot;#1-3-阶梯访问表&quot; class=&quot;headerlink&quot; title=&quot;1.3 阶梯访问表&quot;&gt;&lt;/a&gt;1.3 阶梯访问表&lt;/h2&gt;&lt;p&gt;阶梯结构的基本想法是，表中的记录对于不同的数据范围有效，而不是对不同的数据点有效。最常见的例子是按分数段（浮点数）评定ABCDF等级。由于是浮点数划分范围，用数据转换函数或索引都不适合。为了使用阶梯方法，要把每一区间的上限写入一张表里，然后写一个循环，按照各区间的上限来检查分数，当分数第一次超过某个区间的上限时，就知道相应的等级了。除此之外，还可以将这种方法应用在概率分布的统计（这在游戏中的抽奖相当常见），这种无规则分布的数据是不可能用一个函数把它们整齐地转换成表键值的。使用阶梯访问表需要注意一些细节：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;留心端点：充分考虑每一个阶梯区间的上界，不要把&amp;lt;误用为&amp;lt;=&lt;/li&gt;
+&lt;li&gt;考虑用“准”二分查找取代顺序查找&lt;/li&gt;
+&lt;li&gt;考虑用索引访问采取代阶梯技术：如果执行速度很重要，应考虑用空间换时间的索引表技术&lt;/li&gt;
+&lt;li&gt;把阶梯表查询操作提取成单独的子程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-一般控制问题&quot;&gt;&lt;a href=&quot;#2-一般控制问题&quot; class=&quot;headerlink&quot; title=&quot;2. 一般控制问题&quot;&gt;&lt;/a&gt;2. 一般控制问题&lt;/h1&gt;&lt;h2 id=&quot;2-1-布尔表达式的使用&quot;&gt;&lt;a href=&quot;#2-1-布尔表达式的使用&quot; class=&quot;headerlink&quot; title=&quot;2.1 布尔表达式的使用&quot;&gt;&lt;/a&gt;2.1 布尔表达式的使用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用true和false做布尔判断，而不要用0和1等数值&lt;/li&gt;
+&lt;li&gt;隐式地比较布尔值：即使用&lt;code&gt;while (!done)&lt;/code&gt;而不要写成&lt;code&gt;while (done == false)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;简化复杂的表达式：可以通过拆分复杂的判断并引入新的布尔变量，把复杂的表达式提取成布尔函数，用决策表代替复杂的条件等方法&lt;/li&gt;
+&lt;li&gt;编写肯定形式的布尔表达式：在变量命名上尽量采用肯定形式，if语句的布尔表达式尽量&lt;strong&gt;不用not形式&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;用&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%BE%B7%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;德摩根定理&lt;/a&gt;简化否定的布尔判断&lt;/li&gt;
+&lt;li&gt;用括号便布尔表达式更清晰&lt;/li&gt;
+&lt;li&gt;理解布尔表达式是如何求值的：主要是要充分理解所用编程语言中&lt;strong&gt;“短路求值”&lt;/strong&gt;的用法&lt;/li&gt;
+&lt;li&gt;按照数轴的顺序编写数值比较表达式&lt;/li&gt;
+&lt;li&gt;与0比较时应该：隐式地比较逻辑变量，显式地把数字和0相比较，显式地把指针与NULL相比较，在C语言中显示地比较字符和&lt;code&gt;\0&lt;/code&gt;终止符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-空语句&quot;&gt;&lt;a href=&quot;#2-2-空语句&quot; class=&quot;headerlink&quot; title=&quot;2.2 空语句&quot;&gt;&lt;/a&gt;2.2 空语句&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;万非得以使用空语句时，要突出这种用法：空语句并不多见，应该让其独占一行，加以缩进，用成对的花括号括住空语句以表强调&lt;/li&gt;
+&lt;li&gt;为主语句创建一个DoNothing()预处理宏或者内联函数&lt;/li&gt;
+&lt;li&gt;考虑如果换用一个非空的循环体，是否会让代码更清晰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-深层嵌套问题&quot;&gt;&lt;a href=&quot;#2-3-深层嵌套问题&quot; class=&quot;headerlink&quot; title=&quot;2.3 深层嵌套问题&quot;&gt;&lt;/a&gt;2.3 深层嵌套问题&lt;/h2&gt;&lt;p&gt;过分深层的缩进（嵌套）是产生混乱代码的罪魁祸首之一。有研究表明，应避免使用超过3到4层的嵌套。下面给出一些用于避免深层嵌套的方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过重复检测条件中的某一部分来简化嵌套的if语句&lt;/li&gt;
+&lt;li&gt;在循环中用break块来简化嵌套if&lt;/li&gt;
+&lt;li&gt;把嵌套if转换成一组if-else-if语句或case语句&lt;/li&gt;
+&lt;li&gt;把深层嵌套的代码抽取出来放进单独的子程序&lt;/li&gt;
+&lt;li&gt;对于复杂的case语句，可以考虑面向对象的手段来简化&lt;/li&gt;
+&lt;li&gt;重新设计深层嵌套的代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-4-控制结构与复杂度&quot;&gt;&lt;a href=&quot;#2-4-控制结构与复杂度&quot; class=&quot;headerlink&quot; title=&quot;2.4 控制结构与复杂度&quot;&gt;&lt;/a&gt;2.4 控制结构与复杂度&lt;/h2&gt;&lt;p&gt;降低软件复杂度首先要知道如何度量复杂度，其中最著名的方法是计算子程序中“决策点”的数量：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从1开始，一直往下筒骨哦程序&lt;/li&gt;
+&lt;li&gt;一旦遇到&lt;code&gt;if&lt;/code&gt;、&lt;code&gt;while&lt;/code&gt;、&lt;code&gt;repeat&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;and&lt;/code&gt;、&lt;code&gt;or&lt;/code&gt;这些关键字或同类的词，就加1&lt;/li&gt;
+&lt;li&gt;给case语句中每一种情况都加1&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过下面的评分来分析子程序的复杂度：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;0-5：子程序可能还不错&lt;/li&gt;
+&lt;li&gt;6-10：得想办法简化子程序了&lt;/li&gt;
+&lt;li&gt;10+：把子程序的某一部分拆分成另一个子程序并调用它&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;把子程序的一部分提取成另一个子程序，不会降低整个程序的复杂度，只是把决策点移到其他地方。但是这样做可以降低你在同一时间必须关注的复杂度水平。由于重点是要降低你需要在头脑中同时考虑的项目的数量，所以降低一个给定子程序的复杂度是有价值的。10个决策点的上限并不是绝对的。应该把决策点的数量当作一个警示，该警示说明某个子程序可能需要重新设计了，不要死守决策点上限这个规则。&lt;/p&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第18、19章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;表驱动法是一种编程模式——从表里面查找信息而不使用逻辑语句（if和case）。事实上，凡是能通过逻辑语句来选择的事物，都可以通过查表来选择。本文将介绍直接访问表、索引访问表和阶梯访问表三种常见的表驱动法。最后，本文将记录一些控制问题（如布尔表达式的使用、空语句、深层嵌套问题等等）上的使用原则，这一部分内容比较简单而且与前面的章节有一些重叠，因此将快速带过。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（七）——防御式编程</title>
@@ -1701,140 +1793,6 @@ function f(x) return x or g(x)    -- 必须调整为一个返回值
     <summary type="html">
     
       &lt;p&gt;Linux是一个可以实现多用户登录的操作系统，本文记录了Linux的用户管理，包括查看、创建用户和用户组，以及文件的权限机制。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="Linux" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://raytaylorlin.com/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux学习笔记——基本概念及操作</title>
-    <link href="http://raytaylorlin.com/tech/linux/linux-base/"/>
-    <id>http://raytaylorlin.com/tech/linux/linux-base/</id>
-    <published>2015-02-11T01:38:05.000Z</published>
-    <updated>2016-02-09T12:31:39.959Z</updated>
-    
-    <content type="html">&lt;p&gt;本文记录了Linux终端的一些常用快捷键，通配符意义及如何在命令行中获取帮助。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;Linux终端&quot;&gt;&lt;a href=&quot;#Linux终端&quot; class=&quot;headerlink&quot; title=&quot;Linux终端&quot;&gt;&lt;/a&gt;Linux终端&lt;/h1&gt;&lt;h2 id=&quot;常用快捷键&quot;&gt;&lt;a href=&quot;#常用快捷键&quot; class=&quot;headerlink&quot; title=&quot;常用快捷键&quot;&gt;&lt;/a&gt;常用快捷键&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;按键&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;作用&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+d&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;键盘输入结束或退出终端&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+s&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;暂定当前程序，暂停后按下任意键恢复运行&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+z&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;将当前程序放到后台运行，恢复到前台为命令fg&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+a&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;将光标移至输入行头，相当于Home键&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+e&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;将光标移至输入行末，相当于End键&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Ctrl+k&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;删除从光标所在位置到行末&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Alt+Backspace&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;向前删除一个单词&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Shift+PgUp&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;将终端显示向上滚动&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;Shift+PgDn&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;将终端显示向下滚动&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;通配符&quot;&gt;&lt;a href=&quot;#通配符&quot; class=&quot;headerlink&quot; title=&quot;通配符&quot;&gt;&lt;/a&gt;通配符&lt;/h2&gt;&lt;p&gt;终端里面输入的通配符是由shell处理的，不是由所涉及到命令语句处理的，它只会出现在命令的“参数值”里。当shell在“参数值”中遇到了通配符时，shell会将其当作路径或文件名去在磁盘上搜寻可能的匹配：若符合要求的匹配存在，则进行代换（路径扩展）；否则就将该通配符作为一个普通字符传递给“命令”，然后再由命令进行处理。总之，通配符 实际上就是一种shell实现的路径扩展功能。在通配符被处理后，shell会先完成该命令的重组，然后再继续处理重组后的命令，直至执行该命令。&lt;/p&gt;
-&lt;p&gt;例如：&lt;code&gt;touch love_{1..10}_linux.txt&lt;/code&gt;可以创建love_1_linux.txt到love_10_linux.txt共10个文件。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;字符&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;*&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配0 或多个字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;?&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配任意一个字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;[list]&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配 list 中的任意单一字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;[!list]&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配 除list 中的任意单一字符以外的字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;[c1-c2]&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;{string1,string2,…}&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配 sring1 或 string2 (或更多)其一字符串&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;{c2..c2}&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;匹配 c1-c2 中全部字符 如{1..10}&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;在命令行中获取帮助&quot;&gt;&lt;a href=&quot;#在命令行中获取帮助&quot; class=&quot;headerlink&quot; title=&quot;在命令行中获取帮助&quot;&gt;&lt;/a&gt;在命令行中获取帮助&lt;/h2&gt;&lt;p&gt;&lt;code&gt;$ man &amp;lt;command_name&amp;gt;&lt;/code&gt;可以获得某个命令的说明和使用方式的详细介绍。&lt;code&gt;man&lt;/code&gt;命令是Manual page的缩写。使用这个命令显示手册时会进入一个类似VIM的编辑界面，可以使用VIM的快捷键来导航，如&lt;code&gt;/&amp;lt;你要搜索的关键字&amp;gt;&lt;/code&gt;，查找到后你可以使用&lt;code&gt;n&lt;/code&gt;键切换到下一个关键字所在处，&lt;code&gt;shift+n&lt;/code&gt;为上一个关键字所在处。使用&lt;code&gt;Space&lt;/code&gt;翻页，&lt;code&gt;Enter&lt;/code&gt;向下滚动一行，或者使用&lt;code&gt;j&lt;/code&gt;或&lt;code&gt;k&lt;/code&gt;（vim编辑器的移动键）进行向前向后滚动一行。按下&lt;code&gt;h&lt;/code&gt;键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下&lt;code&gt;q&lt;/code&gt;退出。&lt;/p&gt;
-&lt;p&gt;man手册的内容很多，为了便于查找，是做了分册（分区段）处理的，在Research Unix、BSD、OS X和Linux中，手册通常被分为8个区段，安排如下：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;一般命令&lt;/li&gt;
-&lt;li&gt;系统调用&lt;/li&gt;
-&lt;li&gt;库函数，涵盖了C标准函数库&lt;/li&gt;
-&lt;li&gt;特殊文件（通常是/dev中的设备）和驱动程序&lt;/li&gt;
-&lt;li&gt;文件格式和约定&lt;/li&gt;
-&lt;li&gt;游戏和屏保&lt;/li&gt;
-&lt;li&gt;杂项&lt;/li&gt;
-&lt;li&gt;系统管理命令和守护进程&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;要查看相应区段的内容，就在man后面加上相应区段的数字即可，如：&lt;code&gt;$ man 3 printf&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;所有的手册页遵循一个常见的布局，其为通过简单的ASCII文本展示而优化，而这种情况下可能没有任何形式的高亮或字体控制。一般包括以下部分内容：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NAME（名称）：该命令或函数的名称，接着是一行简介。&lt;/li&gt;
-&lt;li&gt;SYNOPSIS（概要）：对于命令，正式的描述它如何运行，以及需要什么样的命令行参数。对于函数，介绍函数所需的参数，以及哪个头文件包含该函数的定义。&lt;/li&gt;
-&lt;li&gt;DESCRIPTION（说明）：命令或函数功能的文本描述。&lt;/li&gt;
-&lt;li&gt;EXAMPLES（示例）：常用的一些示例。&lt;/li&gt;
-&lt;li&gt;SEE ALSO（参见）：相关命令或函数的列表。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用–help参数，大部分命令都会带有这个参数。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文记录了Linux终端的一些常用快捷键，通配符意义及如何在命令行中获取帮助。&lt;/p&gt;
     
     </summary>
     
