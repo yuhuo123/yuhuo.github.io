@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-04-29T08:21:42.558Z</updated>
+  <updated>2016-05-03T02:16:13.897Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,106 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件构建（十一）——代码性能的调整</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-11/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-11/</id>
+    <published>2016-05-03T02:16:11.000Z</published>
+    <updated>2016-05-03T02:16:13.897Z</updated>
+    
+    <content type="html">&lt;p&gt;本文首先概述了程序运行性能应该考虑的一些问题，然后从策略上和技术上两个方面来探讨代码性能的调整问题。技术上的代码调整并没有什么万金油的方法，也不是灵丹妙药，唯一可以信赖的法则就是每次都应当在具体的环境下评估代码调整所带来的效果，而本文所列的调整方法则仅供参考。此外，追求性能的背后往往伴随着牺牲程序的可读性和可维护性，而&lt;strong&gt;在很多情况下，代码的可读性和可维护性都要比运行速度或资源占用更为重要。&lt;/strong&gt;因此在调整代码时一定要考虑这样的性能提升是否真的必要。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-性能概述&quot;&gt;&lt;a href=&quot;#1-性能概述&quot; class=&quot;headerlink&quot; title=&quot;1. 性能概述&quot;&gt;&lt;/a&gt;1. 性能概述&lt;/h1&gt;&lt;p&gt;现实中，相对于代码质量和纯粹的性能，用户更关心的是程序的外在特性和处理能力。性能同代码速度之间存在着很松散的联系。如果只是关注于代码的运行速度，你的工作不免顾此失彼。要特别当心放弃其他功能去让你的代码跑得更快。如果过分强调速度，程序的整体性能（表现）常常不升反降。&lt;/p&gt;
+&lt;p&gt;如果要追求程序的效率，可以从以下几个方面来思考问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;性能需求：客户要求的系统响应时间有时决定了设计方案的复杂度和成本，在花费时间处理一个性能问题之前，要想清楚是否真的需要满足这样的需求&lt;/li&gt;
+&lt;li&gt;程序架构：优先考虑整体性能，然后再为每个子系统和类设置要达到的性能目标&lt;/li&gt;
+&lt;li&gt;类和子程序设计：在这一层次，数据结构和算法将对性能产生重要影响&lt;/li&gt;
+&lt;li&gt;与操作系统的交互：考虑系统I/O，系统调用等性能&lt;/li&gt;
+&lt;li&gt;代码编译：这一层次由编译器和转化后的机器码决定，通常程序员无法干预&lt;/li&gt;
+&lt;li&gt;硬件：有时直接升级硬件是最直接了当的提升性能的办法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-策略上的代码调整&quot;&gt;&lt;a href=&quot;#2-策略上的代码调整&quot; class=&quot;headerlink&quot; title=&quot;2. 策略上的代码调整&quot;&gt;&lt;/a&gt;2. 策略上的代码调整&lt;/h1&gt;&lt;h2 id=&quot;2-1-佩雷托法则&quot;&gt;&lt;a href=&quot;#2-1-佩雷托法则&quot; class=&quot;headerlink&quot; title=&quot;2.1 佩雷托法则&quot;&gt;&lt;/a&gt;2.1 佩雷托法则&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%B8%95%E9%9B%B7%E6%89%98%E6%B3%95%E5%88%99&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;帕雷托法则&lt;/a&gt;即是众所周知的80/20法则，其对程序性能优化也是有效的，即程序中20%的子程序耗费了80%的执行时间。因此程序员们应当衡量代码的各个部分（如使用性能分析器），找出最需要关注的地方，然后集中火力来对付占用了绝大部分资源的少量代码。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-代码调整的一些误区&quot;&gt;&lt;a href=&quot;#2-2-代码调整的一些误区&quot; class=&quot;headerlink&quot; title=&quot;2.2 代码调整的一些误区&quot;&gt;&lt;/a&gt;2.2 代码调整的一些误区&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;在高级语言中，减少代码的行数就可以提升所生成的机器代码的运行速度，或是减少其资源占用——&lt;strong&gt;错误！&lt;/strong&gt;：实际上高级语言代码行数和程序最终的资源占用和运行速度之间并没有必然联系&lt;/li&gt;
+&lt;li&gt;特定运算可能比其他的快，代码规模也较小——&lt;strong&gt;错误！&lt;/strong&gt;：程序性能受语言、编译器种类、编译器版本、库种类、库版本、中央处理器、机器内存等等环境的影响&lt;/li&gt;
+&lt;li&gt;应当随时随地进行优化——&lt;strong&gt;错误！&lt;/strong&gt;：应该在整个系统完成之后综合分析，才能最准确快速地找到瓶颈&lt;/li&gt;
+&lt;li&gt;程序的运行速度同其正确性同等重要——&lt;strong&gt;错误！&lt;/strong&gt;：程序要先保证正确运行，再考虑运行速度&lt;/li&gt;
+&lt;li&gt;编译器的优化功能可能比你想象的要强大得多：在编写代码时自作聪明，编译器在优化这些代码的时候会痛苦不堪，结果是你的程序倒霉，&lt;strong&gt;应该使用直白的代码&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-常见的性能瓶颈&quot;&gt;&lt;a href=&quot;#2-3-常见的性能瓶颈&quot; class=&quot;headerlink&quot; title=&quot;2.3 常见的性能瓶颈&quot;&gt;&lt;/a&gt;2.3 常见的性能瓶颈&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;输入/输出操作：包括文件、数据库、网络等等的读写&lt;/li&gt;
+&lt;li&gt;操作系统内存分页时的缺页中断&lt;/li&gt;
+&lt;li&gt;系统调用：考虑编写自己的服务程序来替代，或者减少不必要的系统调用等等&lt;/li&gt;
+&lt;li&gt;解释型语言&lt;/li&gt;
+&lt;li&gt;代码中的错误：如没有去掉调试代码，忘记释放内存，数据库表设计失误，轮询并不存在的设备，超时等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-4-性能测量&quot;&gt;&lt;a href=&quot;#2-4-性能测量&quot; class=&quot;headerlink&quot; title=&quot;2.4 性能测量&quot;&gt;&lt;/a&gt;2.4 性能测量&lt;/h2&gt;&lt;p&gt;在优化代码的过程中，一定要使用工具来进行性能测量，特别是对代码进行改进之后要实际测量一下看有没有改进。一个的典型的案例是C++对矩阵元素求和，通常的写法是二重循环遍历行列求和，但有的人可能会觉得数组访问和循环条件判断会花掉很多时间，对于一个100×100的矩阵会产生一万次乘法和加法，于是考虑改成一重循环用指针访问数组（但这样会牺牲代码可读性）。但实际测量结果时修改后性能&lt;strong&gt;没有任何变化&lt;/strong&gt;，原因是编译器早已将数组访问改为用指针实现。这个案例告诉我们，&lt;strong&gt;性能问题的很多方面都是违反直觉的，而且经验对性能优化也没有太大的帮助。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;找出性能瓶颈之后，应该结合多种优化方法反复对代码进行迭代和调整，尽管每种方法单独实施起来收效并不大，但把所有方法结合起来将可以优化出非常好的结果。&lt;/p&gt;
+&lt;h1 id=&quot;3-技术上的代码调整&quot;&gt;&lt;a href=&quot;#3-技术上的代码调整&quot; class=&quot;headerlink&quot; title=&quot;3. 技术上的代码调整&quot;&gt;&lt;/a&gt;3. 技术上的代码调整&lt;/h1&gt;&lt;p&gt;再次重申，&lt;strong&gt;在很多情况下，代码的可读性和可维护性都要比运行速度或资源占用更为重要。&lt;/strong&gt;因此在调整代码时一定要考虑这样的性能提升是否真的必要。而且调整完之后一定要用工具测量一下性能的提升到底有没有起效。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;逻辑判断的调整&lt;ul&gt;
+&lt;li&gt;在知道答案后停止判断：利用好“短路求值”的语言特性中断and的条件判断，或者在循环遍历查找时找到后break退出&lt;/li&gt;
+&lt;li&gt;按照出现频率来调整if-elseif的顺序，让运行最快和判断结果最有可能为真的判断首先被执行&lt;/li&gt;
+&lt;li&gt;用查询表替代复杂表达式&lt;/li&gt;
+&lt;li&gt;使用惰性求值：仅到必须使用的时候才去处理数据，例如有一张大数据表，程序仅仅用到很小一部分，与其在程序启动时生成表的所有内容，不如放到需要的时候再计算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;循环的调整&lt;ul&gt;
+&lt;li&gt;将循环中的判断往外提，避免每次在循环中做重复的判断&lt;/li&gt;
+&lt;li&gt;当两个循环的下标变化相同时，可以考虑合并成一个循环，但要确保代码先后顺序一致&lt;/li&gt;
+&lt;li&gt;将循环展开（减少了循环条件判断）：会严重影响可读性，而且只对少量元素的循环适用&lt;/li&gt;
+&lt;li&gt;尽可能减少在循环内部做的工作：例如将重复计算的常量移到循环外&lt;/li&gt;
+&lt;li&gt;在线性查找循环中，使用“哨兵值”来替代多次条件判断&lt;/li&gt;
+&lt;li&gt;把最忙的（即循环次数多的）循环放在最内层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;数据变换的调整&lt;ul&gt;
+&lt;li&gt;使用整数而不是浮点数&lt;/li&gt;
+&lt;li&gt;尽可能减少数组维度：例如考虑用一维数组来表示二维的矩阵&lt;/li&gt;
+&lt;li&gt;尽可能减少数组引用&lt;/li&gt;
+&lt;li&gt;使用辅助索引：添加相关数据，使得对某种数据类型的访问更为高效。例如，如果数据类型中的条目很大或是存于磁盘上难于移动，可以创建一个存放关键码和指向详细信息的指针的辅助索引，在内存中对索引进行排序或查找，最后进行一次代价高昂的访问即可&lt;/li&gt;
+&lt;li&gt;使用缓存机制：缓存常用的或者需要耗费大量时间计算的值。创建新元素的代价越大，请求相同信息的次数越多，那么缓存就越有价值，风险是增加程序的复杂性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;表达式的调整&lt;ul&gt;
+&lt;li&gt;利用代数恒等式：例如&lt;code&gt;not (a or b)&lt;/code&gt;比&lt;code&gt;not a and not b&lt;/code&gt;省一次not操作，判断&lt;code&gt;x &amp;lt; y&lt;/code&gt;要比判断&lt;code&gt;sqrt(x) &amp;lt; sqrt(y)&lt;/code&gt;省上几十甚至上百倍的时间&lt;/li&gt;
+&lt;li&gt;削弱运算强度：如用加法替代乘法，乘法代替乘幂，移位替代乘除，三角恒等式代换等价的三角函数，单精度数代替双精度数等等&lt;/li&gt;
+&lt;li&gt;编译期初始化：把代价高昂的常量计算提前定义成常量&lt;/li&gt;
+&lt;li&gt;如果系统函数提供的功能过于复杂，考虑自己写一个：例如计算以2为底且是整数的对数函数，与其使用官方的浮点log函数计算，不如自己写一个穷举整数范围的Log2函数&lt;/li&gt;
+&lt;li&gt;删除重复使用的公共子表达式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;子程序的调整&lt;ul&gt;
+&lt;li&gt;将子程序重写为内联（C++）&lt;/li&gt;
+&lt;li&gt;用低级语言重写核心代码：应先用高级语言编写整个应用程序，经过完整测试验证正确性后，如果需要改进性能，再考虑用少量的低级语言去重写核心部分。例如某些语言可能不擅长处理位操作，此时将这部分直接翻译成汇编是不错的选择&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;4-总结&quot;&gt;&lt;a href=&quot;#4-总结&quot; class=&quot;headerlink&quot; title=&quot;4. 总结&quot;&gt;&lt;/a&gt;4. 总结&lt;/h1&gt;&lt;p&gt;研究表明，任何特定优化的效果实际上都不可预测：每一步代码调整所产生的影响都受制于编程语言、编译器、编译器的版本、代码&lt;br&gt;库、库版本以及编译器设置等各种因素。此外，代码调整无可避免地为性能改善的良好愿望而付出复杂性、可读性、简单性、可维护性方面的代价。由于每一次调整后需要对性能进行重新评估，代码调整还引入了巨额的管理维护开销。&lt;/p&gt;
+&lt;p&gt;进行代码调整时，应该恪守“对每一次的改进进行量化”的准则。如果某项优化非常重要，值得为它付出剖析和对优化效果进行量化测量的代价，那么只要优化有效，我们还是可以去做的。&lt;/p&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第25、26章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文首先概述了程序运行性能应该考虑的一些问题，然后从策略上和技术上两个方面来探讨代码性能的调整问题。技术上的代码调整并没有什么万金油的方法，也不是灵丹妙药，唯一可以信赖的法则就是每次都应当在具体的环境下评估代码调整所带来的效果，而本文所列的调整方法则仅供参考。此外，追求性能的背后往往伴随着牺牲程序的可读性和可维护性，而&lt;strong&gt;在很多情况下，代码的可读性和可维护性都要比运行速度或资源占用更为重要。&lt;/strong&gt;因此在调整代码时一定要考虑这样的性能提升是否真的必要。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（十）——测试与重构</title>
@@ -1829,81 +1929,6 @@ end
     <summary type="html">
     
       &lt;p&gt;模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
-    
-    
-      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lua学习笔记（5）——迭代器，错误处理</title>
-    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-5/"/>
-    <id>http://raytaylorlin.com/tech/language/lua/lua-note-5/</id>
-    <published>2015-05-07T05:05:11.000Z</published>
-    <updated>2016-02-09T12:31:39.886Z</updated>
-    
-    <content type="html">&lt;p&gt;本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-迭代器&quot;&gt;&lt;a href=&quot;#1-迭代器&quot; class=&quot;headerlink&quot; title=&quot;1. 迭代器&quot;&gt;&lt;/a&gt;1. 迭代器&lt;/h1&gt;&lt;h2 id=&quot;1-1-泛型for原理&quot;&gt;&lt;a href=&quot;#1-1-泛型for原理&quot; class=&quot;headerlink&quot; title=&quot;1.1 泛型for原理&quot;&gt;&lt;/a&gt;1.1 泛型for原理&lt;/h2&gt;&lt;p&gt;迭代器是一种可以遍历集合中所有元素的机制，在Lua中通常将迭代器表示为函数，每调用一次函数，就返回集合中“下一个”元素。每个迭代器都需要在每次成功调用之间保持一些状态，这样才能知道它所在的位置及如何步进到下一个位置，closure就可以完成此项工作。下面的示例是列表的一个简单的迭代器：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function values(t)
-    local i = 0
-    return function() i = i + 1; return t[i] end
-end
-
--- 循环调用
-t = {10, 20, 30}
-iter = values(t)
-while true do
-    local el = iter()
-    if el == nil then break end
-    print(el)
-end
-
--- 泛型for调用
-for el in values(t) do print(el) end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;泛型for为一次迭代循环做了所有的簿记工作。它在内部保存了迭代器函数，并在每次迭代时调用迭代器，在迭代器返回nil时结束循环。实际上泛型for保存了3个值：迭代器函数f、恒定状态s、控制变量a。&lt;strong&gt;for做的第一件事就是对in后面的表达式求值，并返回3个值供for保存；接着for会以s和a来调用f。在循环过程中控制变量的值依次为&lt;code&gt;a1 = f(s, a0)&lt;/code&gt;，&lt;code&gt;a2 = f(s, a1)&lt;/code&gt;，依次类推，直至ai为nil结束循环。&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;1-2-迭代器的状态&quot;&gt;&lt;a href=&quot;#1-2-迭代器的状态&quot; class=&quot;headerlink&quot; title=&quot;1.2 迭代器的状态&quot;&gt;&lt;/a&gt;1.2 迭代器的状态&lt;/h2&gt;&lt;p&gt;无状态的迭代器本身不保存任何状态，for循环只会用恒定状态和控制变量来调用迭代器函数。这类迭代器典型例子就是ipairs，下面是ipairs的Lua实现：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;local function iter(s, i)
-    i = i + 1
-    local v = s[i]
-    if v then return i, v end
-end
-function ipairs(s)
-    return iter, s, 0
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当for循环调用ipairs(list)时，会获得3个值，然后Lua调用iter(list, 0)得到list, list[1]，调用iter(list, 1)得到list, list[2]，知道得到一个nil为止。&lt;/p&gt;
-&lt;p&gt;虽然泛型for只提供一个恒定状态和一个控制变量用于状态的保存，但有时需要保存许多其他状态。这时可以用closure来保存，或者将所需的状态打包为一个table，并保存在恒定状态中。&lt;/p&gt;
-&lt;h1 id=&quot;2-编译与错误机制&quot;&gt;&lt;a href=&quot;#2-编译与错误机制&quot; class=&quot;headerlink&quot; title=&quot;2. 编译与错误机制&quot;&gt;&lt;/a&gt;2. 编译与错误机制&lt;/h1&gt;&lt;h2 id=&quot;2-1-编译&quot;&gt;&lt;a href=&quot;#2-1-编译&quot; class=&quot;headerlink&quot; title=&quot;2.1 编译&quot;&gt;&lt;/a&gt;2.1 编译&lt;/h2&gt;&lt;p&gt;尽管Lua是一种解释型语言，但它确实允许在运行代码前，先将代码预编译为一种中间形式。其实，&lt;strong&gt;区别解释型语言的主要特征并不在于是否能编译它们，而在于编译器是否是语言运行时库的一部分，即是否有能力执行动态生成的代码。&lt;/strong&gt;可以说正因为存在了诸如&lt;code&gt;dofile&lt;/code&gt;这样的函数，才可以将Lua称为解释型语言。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;dofile&lt;/code&gt;用于运行Lua代码块，而&lt;code&gt;loadfile&lt;/code&gt;会从一个文件加载Lua代码块，然后编译代码，把编译结果作为一个函数返回。要注意&lt;code&gt;loadfile&lt;/code&gt;不会引发错误，它只是返回错误值但不处理错误。&lt;code&gt;dofile&lt;/code&gt;的基本原理如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function dofile(filename)
-    local f = assert(loadfile(filename))
-    return f()
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;loadstring&lt;/code&gt;是从一个字符串读取代码，并返回一个对应的函数。注意，&lt;code&gt;loadstring&lt;/code&gt;总是在全局环境中编译它的字符串。此外，这些函数不会带来任何副作用，它们只是将程序块编译为一种中间表示，然后将结果作为一个匿名函数返回。此时如果不将此匿名函数赋值给一个变量并调用，是不会产生任何结果的。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-错误处理与异常&quot;&gt;&lt;a href=&quot;#2-2-错误处理与异常&quot; class=&quot;headerlink&quot; title=&quot;2.2 错误处理与异常&quot;&gt;&lt;/a&gt;2.2 错误处理与异常&lt;/h2&gt;&lt;p&gt;Lua遇到任何非预期条件都会引发一个错误，我们也可以显式地调用&lt;code&gt;error&lt;/code&gt;函数并传入一个错误消息得参数来引发一个错误。像&lt;code&gt;if not &amp;lt;condition&amp;gt; then error(&amp;lt;anything&amp;gt;) end&lt;/code&gt;这样的组合是非常通用的代码，所以可以用&lt;code&gt;assert(&amp;lt;condition&amp;gt;, &amp;lt;msg&amp;gt;)&lt;/code&gt;来完成此类工作。另外一种处理的方式是返回错误代码（如nil）。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;pcall&lt;/code&gt;函数以一种“保护模式”来调用它的第一个参数，并捕获所有执行中引发的错误。如果没有发生错误，pcall会返回true及函数调用的返回值，否则返回false及错误消息。因此可以用error来抛出一个异常或使用pcall来捕获异常，错误消息则可以标识出错误的类型或内容。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;if pcall(function()
-    &amp;lt;受保护的代码&amp;gt;
-end) then
-    &amp;lt;常规代码&amp;gt;
-else
-    &amp;lt;错误处理代码&amp;gt;
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-3-追溯错误&quot;&gt;&lt;a href=&quot;#2-3-追溯错误&quot; class=&quot;headerlink&quot; title=&quot;2.3 追溯错误&quot;&gt;&lt;/a&gt;2.3 追溯错误&lt;/h2&gt;&lt;p&gt;当&lt;code&gt;pcall&lt;/code&gt;返回其错误消息时，它已经销毁了调用栈的部分内容（pcall到错误发生点之间的这部分调用）。而&lt;code&gt;xpcall&lt;/code&gt;函数除了接受一个需要被调用的函数外，还接受一个&lt;em&gt;错误处理函数&lt;/em&gt;。当发生错误时，Lua会在调用栈展开前调用这个错误处理函数，里面可以用debug库来获取错误的额外信息。如&lt;code&gt;debug.debug&lt;/code&gt;会提供一个Lua提示符，让用户检查错误原因，&lt;code&gt;debug.traceback&lt;/code&gt;获取当前执行的调用栈。&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《Lua程序设计（第2版）》第7-8章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文首先介绍如何编写适用于泛型for的迭代器，再介绍Lua的编译、执行与错误处理相关的内容。&lt;/p&gt;
     
     </summary>
     
