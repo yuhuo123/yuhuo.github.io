@@ -172,7 +172,7 @@
 
             <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
-                    技术 <span class="right">69 篇</span></a>
+                    技术 <span class="right">70 篇</span></a>
                 </a>
             </li>
 
@@ -203,24 +203,24 @@
         
 
             <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/算法/">
+                    算法 <span class="right">6 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/Linux/">
+                    Linux <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
                 <a class="no-padding" href="/categories/技术/综合/">
-                    综合 <span class="right">16 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">11 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/杂项/">
-                    杂项 <span class="right">1 篇</span></a>
+                    综合 <span class="right">17 篇</span></a>
                 </a>
             </li>
 
@@ -229,6 +229,14 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/综合/设计模式/">
                     设计模式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/综合/杂项/">
+                    杂项 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -250,17 +258,9 @@
 
         
 
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/技术/算法/">
-                    算法 <span class="right">6 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-1" collapse-level="1">
-                <a class="no-padding" href="/categories/技术/Linux/">
-                    Linux <span class="right">2 篇</span></a>
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">12 篇</span></a>
                 </a>
             </li>
 
@@ -283,16 +283,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/编程语言/其它语言/">
-                    其它语言 <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/编程语言/Python/">
+                    Python <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/编程语言/Python/">
-                    Python <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/编程语言/其它语言/">
+                    其它语言 <span class="right">4 篇</span></a>
                 </a>
             </li>
 
@@ -307,16 +307,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -443,6 +443,48 @@
 
 
 <div id="article-list" class="container main-container">
+    
+        <article class="simple-article">
+        <div class="card">
+            <div class="card-content">
+                <div class="article-title">
+                    
+    
+        <h1 class="indigo-link-context"><a href="/tech/algorithm/quick-sort/">算法学习笔记：快速排序</a></h1>
+    
+
+
+                </div>
+
+                <time class="green-link-context" datetime="2014-07-05T03:11:05.000Z"><a href="/tech/algorithm/quick-sort/">2014-07-05</a></time>
+
+                
+    <div class="tags-row">
+        
+            <a href="/tags/算法/" class="chip green lighten-1">算法</a>
+        
+            <a href="/tags/快速排序/" class="chip green lighten-1">快速排序</a>
+        
+    </div>
+
+
+
+                
+                    <div class="entry green-link-context">
+                        <p>通常算法初学者都会接触到形形色色的排序算法，例如插入排序、选择排序、冒泡排序等等，这些排序算法都非常容易理解和上手，但是它们的时间复杂度是$O(n^2)$的。本文将介绍快速排序，同归并排序一样，它的时间复杂度是$O(n \log n)$。</p>
+<p>对于包含n个数的输入数组来说，快速排序是一种最坏情况运行时间为$O(n^2)$的算法，但<strong>它通常是实际应用中最常用的排序算法</strong>，因为它的平均性能是$O(n \log n)$的，而且隐含的常数因子非常小，并能够进行原址排序。</p>
+                    </div>
+                
+            </div>
+
+            
+            <div class="card-action green-link-context">
+                <a href="tech/algorithm/quick-sort/">READ MORE</a>
+            </div>
+            
+        </div>
+</article>
+
     
         <article class="simple-article">
         <div class="card">
@@ -815,47 +857,6 @@
             
             <div class="card-action green-link-context">
                 <a href="tech/web/http/HTTP-web-server/">READ MORE</a>
-            </div>
-            
-        </div>
-</article>
-
-    
-        <article class="simple-article">
-        <div class="card">
-            <div class="card-content">
-                <div class="article-title">
-                    
-    
-        <h1 class="indigo-link-context"><a href="/tech/web/http/HTTP-connection-management/">HTTP学习笔记：连接管理</a></h1>
-    
-
-
-                </div>
-
-                <time class="green-link-context" datetime="2014-04-24T07:48:05.000Z"><a href="/tech/web/http/HTTP-connection-management/">2014-04-24</a></time>
-
-                
-    <div class="tags-row">
-        
-            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
-        
-            <a href="/tags/TCP/" class="chip green lighten-1">TCP</a>
-        
-    </div>
-
-
-
-                
-                    <div class="entry green-link-context">
-                        <p>HTTP规范对HTTP报文解释得很清楚，但对HTTP连接介绍并不多，而HTTP连接时HTTP报文传输的关键通道。本文将介绍HTTP是如何使用TCP连接，HTTP的优化以及管理连接时应该注意的问题等。</p>
-                    </div>
-                
-            </div>
-
-            
-            <div class="card-action green-link-context">
-                <a href="tech/web/http/HTTP-connection-management/">READ MORE</a>
             </div>
             
         </div>

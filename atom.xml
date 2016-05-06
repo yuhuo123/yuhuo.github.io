@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-05-03T02:16:13.897Z</updated>
+  <updated>2016-05-06T09:06:33.805Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,86 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件构建（十二）——软件的规模与管理</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-12/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-12/</id>
+    <published>2016-05-06T09:00:40.000Z</published>
+    <updated>2016-05-06T09:06:33.805Z</updated>
+    
+    <content type="html">&lt;p&gt;软件开发的规模扩大并不是像“拿一个小项目来，然后增大它的每一部分”那样简单。如果要开发大型软件，就必须了解软件规模对构建的影响。此外，本文将记录与构建直接相关的一些特定管理问题。如果你是一名开发人员，本文将帮助你了解管理者需要考虑的一些问题；如果你是一名管理者，本文将帮助你了解开发人员是如何看待管理者的，以及如何才能有效地管理构建。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-程序规模对构建的影响&quot;&gt;&lt;a href=&quot;#1-程序规模对构建的影响&quot; class=&quot;headerlink&quot; title=&quot;1. 程序规模对构建的影响&quot;&gt;&lt;/a&gt;1. 程序规模对构建的影响&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;成员交流与项目规模的关系：交流路径越多，花在交流上的时间就越多（见下图），因交流而出错的机会也就越大，改善交流效率的常用方法是采用正式的文挡&lt;ul&gt;
+&lt;li&gt;&lt;img src=&quot;http://7d9rl0.com1.z0.glb.clouddn.com/image/software/%E6%88%90%E5%91%98%E4%BA%A4%E6%B5%81%E4%B8%8E%E9%A1%B9%E7%9B%AE%E8%A7%84%E6%A8%A1%E7%9A%84%E5%85%B3%E7%B3%BB.png&quot; alt=&quot;成员交流与项目规模的关系&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;项目规模对错误的影响：在小项目中，构建错误大约占所有被发现错误的75%，在更大的项目中，构建错误占错误总数的比例逐步下降到50%左右，而需求错误和架构错误则弥补了其中差额。缺陷密度（每1000行代码所包含的缺陷数量）会随项目规模增大而增加&lt;/li&gt;
+&lt;li&gt;顶目规模对生产率的影响：小项目的生产率会比大项目高出2至3倍，并且最小的项目和最大的项目的生产率差距可能达到5到10倍之巨&lt;/li&gt;
+&lt;li&gt;顶目规模对开发活动的影响：对小型项目，构建占差不多65%的开发实践，随着项目规模增大，构建的比重逐渐减小，架构、设计、集成和测试占更多时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-管理构建&quot;&gt;&lt;a href=&quot;#2-管理构建&quot; class=&quot;headerlink&quot; title=&quot;2. 管理构建&quot;&gt;&lt;/a&gt;2. 管理构建&lt;/h1&gt;&lt;h2 id=&quot;2-1-鼓励良好的编码实践&quot;&gt;&lt;a href=&quot;#2-1-鼓励良好的编码实践&quot; class=&quot;headerlink&quot; title=&quot;2.1 鼓励良好的编码实践&quot;&gt;&lt;/a&gt;2.1 鼓励良好的编码实践&lt;/h2&gt;&lt;p&gt;从管理的角度出发，强制采用一套严格的技术标准并不是个好主意。如果项目中有人要制定标准，那么应该由一位受人尊敬的架构师来做，而不应该由管理者来做。下面给出一些编码实践，这些实践比呆板的编码标准更容易实行：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给项目的每一部分分派两个人：结对编程，导师带学生等等&lt;/li&gt;
+&lt;li&gt;同行复查代码：包括程序员本人和至少两名评审员的复查，可以为改善代码质量提供压力&lt;/li&gt;
+&lt;li&gt;要求代码签名：在认定代码完成之前，高级技术人员要在代码清单上签字&lt;/li&gt;
+&lt;li&gt;安排一些好的代码示例供人参考&lt;/li&gt;
+&lt;li&gt;强调代码是公有财产&lt;/li&gt;
+&lt;li&gt;奖励好代码：给予程序员想要的奖励，只有非常出色的代码才应得到奖励&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-配置管理&quot;&gt;&lt;a href=&quot;#2-2-配置管理&quot; class=&quot;headerlink&quot; title=&quot;2.2 配置管理&quot;&gt;&lt;/a&gt;2.2 配置管理&lt;/h2&gt;&lt;p&gt;配置管理即“变更控制”。如果你不对需求变更加以控制，那么就会为系统中某些最终会被去除的部件编写代码，也会去写出一些可能与系统中新的部件不兼容的代码；可能会修改某个别人也正在修改的子程序，把两个人的改动合并导致出现问题。总之，配置管理就是使用评估提交的更改、追踪更改、保留系统在不同时间点的历史版本等等技术来对软件项目的变化进行控制。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需求变更和设计变更&lt;ul&gt;
+&lt;li&gt;遵循某种系统化的变更控制手续&lt;/li&gt;
+&lt;li&gt;成组地处理变更请求：先记下所有的想法和建议，直到有时间再去整体处理它们，以防总是在中途突然变卦&lt;/li&gt;
+&lt;li&gt;评估每项变更的成本：重新设计和编码，修改用户文档，评估代码复查，重新测试等等各种时间成本&lt;/li&gt;
+&lt;li&gt;提防大量的变更请求：有时这可能是一个表明需求、架构或上层设计做的不够好导致无法支持变更的警报&lt;/li&gt;
+&lt;li&gt;成立变更控制委员会或者类似机构&lt;/li&gt;
+&lt;li&gt;警惕官僚主义，但也不要因为害怕官僚主义而排斥有效的变更控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;软件代码变更：使用合适的版本控制软件&lt;/li&gt;
+&lt;li&gt;工具版本：可能有些项目需要“重新构造出‘创建软件的各个特定版本’的原样环境”的能力，这时需要把编译器、链接器、代码库等也纳入版本控制中&lt;/li&gt;
+&lt;li&gt;机器配置：使用标准化的开发机器配置和操作系统映像，可以省掉许多开发前配置的麻烦&lt;/li&gt;
+&lt;li&gt;备份计划：项目过程中应定期备份代码、文档、图表以及保存介质；要测试备份过程，确保所需的全部数据能正确恢复；昨晚项目后及时归档&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-评估构建进度&quot;&gt;&lt;a href=&quot;#2-3-评估构建进度&quot; class=&quot;headerlink&quot; title=&quot;2.3 评估构建进度&quot;&gt;&lt;/a&gt;2.3 评估构建进度&lt;/h2&gt;&lt;p&gt;对于项目预估进度和实际进度，有调查表明，开发人员的估计值比实际值要乐观20%~30%。评估项目规模的方法有很多种，例如使用评估软件，使用算法方法，聘请外界的评估专家，评估项目的每一部分并加起来等等。下面是一套评估项目的参考原则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;建立目标：理清评估的目的、内容、准确度、乐观评估和悲观评估结果等&lt;/li&gt;
+&lt;li&gt;为评估留出时间，并且做出计划&lt;/li&gt;
+&lt;li&gt;清楚地说明软件需求&lt;/li&gt;
+&lt;li&gt;在底层细节层面（划分为多个小块并分别）进行评估&lt;/li&gt;
+&lt;li&gt;使用若干不同的评估方法，并且比较其结果&lt;/li&gt;
+&lt;li&gt;在项目推进过程中定期做重新评估&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了按时完成软件项目而做的“计划”中，评估是很重要的组成部分。然而，最初评估的准确度的重要性远远比不上“随后为了完成进度而成功地&lt;strong&gt;控制资源&lt;/strong&gt;”的重要性。如果项目进度落后了，人们经常会产生一些错觉：“我们后面一定会加班加点把时间补回来”，调查显示越接近项目后期，延误和超支的现象就越严重；“扩充团队来加速开发”，新手需要先花时间熟悉项目，占用现有人员的培训时间，然后才能发挥出生产率，而且仅仅增加人员数量，会导致项目交流的复杂度和数量增加，除非项目的任务是可分割的才能通过增加人手完成。&lt;/p&gt;
+&lt;p&gt;缩减项目范围是在进度落后时的有效手段。最初做产品计划的时候，要把产品的功能划分成“必须有”、“有了更好”和“可选择”三类。如果进度落后了，那么就调整“可选择”和“有了更好”的优先级，并扔掉那些最不重要的功能。&lt;/p&gt;
+&lt;h2 id=&quot;2-4-把程序员当人看&quot;&gt;&lt;a href=&quot;#2-4-把程序员当人看&quot; class=&quot;headerlink&quot; title=&quot;2.4 把程序员当人看&quot;&gt;&lt;/a&gt;2.4 把程序员当人看&lt;/h2&gt;&lt;p&gt;首先要了解程序员的时间分配。研究表明一个程序员大约有30%的时间花费在“对项目没有直接好处”的非技术活动之上：步行、个人事务等，学习和编写代码占约30%。&lt;/p&gt;
+&lt;p&gt;其次是了解程序员的信仰问题。这些信仰涉及编程语言、编码风格、编程工具、编程方法论等等。作为一个管理者，要清楚地知道信仰是一个敏感的问题，对这些领域要使用“建议”或者“指导原则”（避免僵硬的“规则”或“标准”），并让程序员们制定他们自己的标准。当然，如果有人因可读性差等影响整个项目的实践行为，为了提高代码质量，不要怕引发一些摩擦。&lt;/p&gt;
+&lt;p&gt;最后，要了解物理环境对程序员生产率有着巨大的影响。这些环境包括桌子、椅子、电脑、书籍、键盘，以及办公氛围、不经常被打扰的环境等等。如果你的工作环境属于最差的那25%，那么你有机会给生产率带来100%的提升，办法是把环境改善为最佳的那25%。&lt;/p&gt;
+&lt;h2 id=&quot;2-5-管理你的管理者&quot;&gt;&lt;a href=&quot;#2-5-管理你的管理者&quot; class=&quot;headerlink&quot; title=&quot;2.5 管理你的管理者&quot;&gt;&lt;/a&gt;2.5 管理你的管理者&lt;/h2&gt;&lt;p&gt;在软件开发中，如果你需要面对非技术出身的管理者，你可能要肩负起“管理你的管理者”的责任。其要点在于，你要表现得使你的管理者认为他仍然在管理你。有这么一些应对管理者的方法：把你希望做什么的念头先藏起来，等着你的管理者组织一场有关你希望什么的头脑风暴/集体讨论；把做事情的正确方法传授给你的管理者；关注你的管理者的兴趣，按照他的真正意图去做；拒绝按照你的管理者所说的去做，坚持用正确的方法做自己的事；换工作。&lt;/p&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第27、28章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;软件开发的规模扩大并不是像“拿一个小项目来，然后增大它的每一部分”那样简单。如果要开发大型软件，就必须了解软件规模对构建的影响。此外，本文将记录与构建直接相关的一些特定管理问题。如果你是一名开发人员，本文将帮助你了解管理者需要考虑的一些问题；如果你是一名管理者，本文将帮助你了解开发人员是如何看待管理者的，以及如何才能有效地管理构建。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（十一）——代码性能的调整</title>
@@ -1860,75 +1940,6 @@ end
     <summary type="html">
     
       &lt;p&gt;Lua中的table就是一种对象，因为它和对象一样可以拥有状态，也拥有一个独立于其值的标识（一个self），也和对象一样具有独立于创建者的生命周期。但是Lua中没有类的概念，只能用元表来实现原型，用原型来模拟类和继承等面向对象特性。本文将介绍Lua关于面向对象编程的内容。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="编程语言" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="Lua" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Lua/"/>
-    
-    
-      <category term="Lua" scheme="http://raytaylorlin.com/tags/Lua/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lua学习笔记（6）——环境与模块</title>
-    <link href="http://raytaylorlin.com/tech/language/lua/lua-note-6/"/>
-    <id>http://raytaylorlin.com/tech/language/lua/lua-note-6/</id>
-    <published>2015-05-10T02:39:41.000Z</published>
-    <updated>2016-02-09T12:31:39.892Z</updated>
-    
-    <content type="html">&lt;p&gt;模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-环境&quot;&gt;&lt;a href=&quot;#1-环境&quot; class=&quot;headerlink&quot; title=&quot;1. 环境&quot;&gt;&lt;/a&gt;1. 环境&lt;/h1&gt;&lt;p&gt;Lua将环境table保存在一个全局变量&lt;code&gt;_G&lt;/code&gt;中，可以对其访问和设置。有时我们想操作一个全局变量，而它的名称却存储在另一个变量中，或者需要通过运行时的计算才能得到，可以通过&lt;code&gt;value = _G[varname]&lt;/code&gt;来获得动态名字的全局变量。&lt;/p&gt;
-&lt;p&gt;关于“环境”的一大问题是它是全局的，任何对它的修改都会影响程序的所有部分。Lua 5允许每个函数拥有一个子集的环境来查找全局变量，可以通过&lt;code&gt;setfenv&lt;/code&gt;来改变一个函数的环境，第一个参数若是1则表示当前函数，2则表示调用当前函数的函数（依次类推），第二个参数是一个新的环境table。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a = 1
-setfenv(1, {})
-print(a) -- 会报错，print是一个nil。这是因为一旦改变环境，所有的全局访问都会使用新的table
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了避免上述问题，可以使用&lt;code&gt;setfenv(1, {_G = _G})&lt;/code&gt;将原来的环境保存起来，然后用&lt;code&gt;_G.print&lt;/code&gt;来引用。另一种组装新环境的方法是使用继承，下面的代码新环境从源环境中继承了print和a，任何赋值都发生在新的table中。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;a = 1
-local newgt = {}
-setmetatable(newgt, {__index = _G})
-setfenv(1, newgt)
-print(a)
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-模块与包&quot;&gt;&lt;a href=&quot;#2-模块与包&quot; class=&quot;headerlink&quot; title=&quot;2. 模块与包&quot;&gt;&lt;/a&gt;2. 模块与包&lt;/h1&gt;&lt;h2 id=&quot;2-1-调用模块&quot;&gt;&lt;a href=&quot;#2-1-调用模块&quot; class=&quot;headerlink&quot; title=&quot;2.1 调用模块&quot;&gt;&lt;/a&gt;2.1 调用模块&lt;/h2&gt;&lt;p&gt;要调用模块mod中的foo方法，可以用&lt;code&gt;require&lt;/code&gt;函数来加载，如：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;require &amp;quot;mod&amp;quot;
-mod.foo()
--- 或者
-local m = require &amp;quot;mod&amp;quot;
-m.foo()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;require&lt;/code&gt;函数的行为： （关于require使用的路径查找策略不赘述）&lt;br&gt;在&lt;code&gt;package.loaded&lt;/code&gt;这个table中检查模块是否已加载&lt;br&gt;=&amp;gt; 已加载，就返回相应的值（可见一个模块只会加载一次）&lt;br&gt;=&amp;gt; 未加载，就试着在&lt;code&gt;package.preload&lt;/code&gt;中查询传入的模块名&lt;br&gt;===&amp;gt; 找到一个函数，就以该函数作为模块的加载器&lt;br&gt;===&amp;gt; 找不到，则尝试从Lua文件或C程序库中加载模块&lt;br&gt;=====&amp;gt; 找到Lua文件，通过&lt;code&gt;loadfile&lt;/code&gt;来加载文件&lt;br&gt;=====&amp;gt; 找到C程序库，通过&lt;code&gt;loadlib&lt;/code&gt;来加载文件&lt;/p&gt;
-&lt;h2 id=&quot;2-2-使用环境&quot;&gt;&lt;a href=&quot;#2-2-使用环境&quot; class=&quot;headerlink&quot; title=&quot;2.2 使用环境&quot;&gt;&lt;/a&gt;2.2 使用环境&lt;/h2&gt;&lt;p&gt;下面的代码说明了如何用环境来创建一个复数（complex）模块：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-- 模块设置
-local modname = &amp;quot;complex&amp;quot;
-local M = {}
-_G[modname] = M
-package.loaded[modname] = M
-
--- 声明模块从外界所需的所有东西
-local _G = _G  -- 保留旧环境的引用，使用时需要像_G.print这样用
-local io = io
-
--- 运行这句之后环境就变了
-setfenv(1, M)
-
-function new(r, i) return {r=r, i=i} end
-
-function add(c1, c2)
-    return new(c1.r + c2.r, c1.i + c2.i)
-end
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样声明函数add时，就成为了&lt;code&gt;complex.add&lt;/code&gt;，调用同一模块的其他函数也不需要加前缀。&lt;/p&gt;
-&lt;h2 id=&quot;2-3-module函数&quot;&gt;&lt;a href=&quot;#2-3-module函数&quot; class=&quot;headerlink&quot; title=&quot;2.3 module函数&quot;&gt;&lt;/a&gt;2.3 module函数&lt;/h2&gt;&lt;p&gt;Lua 5.1提供了一个新函数&lt;code&gt;module&lt;/code&gt;，囊括了上面一系列定义环境的功能。在开始编写一个模块时，可以直接用&lt;code&gt;module(&amp;quot;modname&amp;quot;, package.seeall)&lt;/code&gt;来取代前面的设置代码。在一个模块文件开头有这句调用后，后续所有代码都不需要限定模块名和外部名字，同样也不需要返回模块table了。&lt;/p&gt;
-&lt;h2 id=&quot;2-4-子模块与包&quot;&gt;&lt;a href=&quot;#2-4-子模块与包&quot; class=&quot;headerlink&quot; title=&quot;2.4 子模块与包&quot;&gt;&lt;/a&gt;2.4 子模块与包&lt;/h2&gt;&lt;p&gt;Lua支持具有层级的模块名，用一个点来分隔名称中的层级。例如一个模块名为&lt;code&gt;mod.sub&lt;/code&gt;，就是mod的一个子模块。一个包（package）就是一个完整的模块树，它是Lua中发型的单位。注意，当搜索一个子模块文件时，require会把点号当做目录分隔符来搜索，也就是说调用&lt;code&gt;require &amp;quot;a.b&amp;quot;&lt;/code&gt;会尝试打开&lt;code&gt;./a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b.lua&lt;/code&gt;，&lt;code&gt;/usr/local/lua/a/b/init.lua&lt;/code&gt;。通过这种加载策略，可以将包的所有模块组织到一个目录中。&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《Lua程序设计（第2版）》第14-15章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;模块就是一个程序库，而包是一系列模块。Lua中可以通过require来加载模块，然后得到一个全局变量表示一个table。Lua将其所有的全局变量保存在一个被称为“环境”的常规table中。本文首先介绍环境的一些实用技术，然后介绍如何引用模块及编写模块的基本方法。&lt;/p&gt;
     
     </summary>
     
