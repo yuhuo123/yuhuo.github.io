@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-05-09T07:38:59.898Z</updated>
+  <updated>2016-05-12T13:16:22.704Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -16,11 +16,157 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>软件构建（十四）——代码布局与自说明代码</title>
+    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-14/"/>
+    <id>http://raytaylorlin.com/tech/complex/software/software-construction-14/</id>
+    <published>2016-05-12T13:17:18.000Z</published>
+    <updated>2016-05-12T13:16:22.704Z</updated>
+    
+    <content type="html">&lt;p&gt;本文关注的是计算机编程的美学话题——程序源代码的布局和自说明性。尽管这些技巧并不影响执行速度、内存使用量等方面的程序性能，但它却会让你日后理解、检查以及修改代码变得更容易，也使其他人在你缺位的时候更容易阅读、理解和修改你的代码。&lt;/p&gt;
+&lt;p&gt;需要注意的是，形成良好的代码布局，并让代码具备自说明性，需要始终贯穿项目的生命期，晚了就很难做好了。要想完全实现这些细节规定，在最初建构时就要着手去做。如果你干的是合作项目，更是要在开始编码之前统一大家的风格。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-代码布局&quot;&gt;&lt;a href=&quot;#1-代码布局&quot; class=&quot;headerlink&quot; title=&quot;1. 代码布局&quot;&gt;&lt;/a&gt;1. 代码布局&lt;/h1&gt;&lt;h2 id=&quot;1-1-良好布局的目标&quot;&gt;&lt;a href=&quot;#1-1-良好布局的目标&quot; class=&quot;headerlink&quot; title=&quot;1.1 良好布局的目标&quot;&gt;&lt;/a&gt;1.1 良好布局的目标&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;准确表现代码的逻辑结构：例如利用缩进、空行等空白来表达逻辑关系&lt;/li&gt;
+&lt;li&gt;始终如一地表现代码的逻辑结构&lt;/li&gt;
+&lt;li&gt;改善可读性：如果有一种缩进策略合乎逻辑，但却令程序更难看懂，那么它就毫无用处&lt;/li&gt;
+&lt;li&gt;经得起修改：好的布局应该在修改某行时不必连带修改其他行的代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-常用布局技术与风格&quot;&gt;&lt;a href=&quot;#1-2-常用布局技术与风格&quot; class=&quot;headerlink&quot; title=&quot;1.2 常用布局技术与风格&quot;&gt;&lt;/a&gt;1.2 常用布局技术与风格&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;空白：包括空格、制表符、换行、空行等等。程序中的空白就像书籍中划分章节、段落、句子一样向读者展示组织主题的思路&lt;ul&gt;
+&lt;li&gt;分组：确保相关的语句成组放在一起，用空行分隔，就像文章中的一段话一样&lt;/li&gt;
+&lt;li&gt;空行：将不相关的语句分隔开，就像文章中段与段的分隔一样&lt;/li&gt;
+&lt;li&gt;缩进：显示程序的逻辑结构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;括号：对包含两个以上的项的表达式，应该用括号去澄清&lt;/li&gt;
+&lt;li&gt;控制结构布局&lt;ul&gt;
+&lt;li&gt;别让begin和end对两次缩进&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单条语句&lt;/strong&gt;的代码块的格式要前后统一&lt;/li&gt;
+&lt;li&gt;对于复杂的表达式，将条件分隔放在几行上&lt;/li&gt;
+&lt;li&gt;case语句不要有行尾布局的例外&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;单条语句布局&lt;ul&gt;
+&lt;li&gt;各种标点符号两侧使用空格会让逻辑表达式更易读&lt;/li&gt;
+&lt;li&gt;使用空格让数组引用，子程序参数更易读&lt;/li&gt;
+&lt;li&gt;单条语句过长时，应分行，并让续行显得更明显，通常在行尾以&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;、&lt;code&gt;||&lt;/code&gt;、&lt;code&gt;+-*/&lt;/code&gt;等符号为结尾&lt;/li&gt;
+&lt;li&gt;续行要以标准的空格数缩进&lt;/li&gt;
+&lt;li&gt;不要将赋值语句按等号对齐&lt;/li&gt;
+&lt;li&gt;每行仅写一条语句（C++中不要让一行里有多个副作用操作（如&lt;code&gt;++a&lt;/code&gt;））&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;数据声明布局&lt;ul&gt;
+&lt;li&gt;每行只声明一个变量&lt;/li&gt;
+&lt;li&gt;合理组织声明顺序：建议按类型分类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释布局&lt;ul&gt;
+&lt;li&gt;注释的缩进要与相应代码一致&lt;/li&gt;
+&lt;li&gt;每行注释用至少一个空行分开&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;子程序布局&lt;ul&gt;
+&lt;li&gt;用空行分隔子程序的各部分&lt;/li&gt;
+&lt;li&gt;将子程序参数按标准缩进，如果参数过多，可以考虑一行放一个参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;类布局&lt;ul&gt;
+&lt;li&gt;类的内容按以下顺序排布：说明类及其完整用法的头部注释、类数据、构造函数与析构函数、public子程序、protected子程序、private子程序&lt;/li&gt;
+&lt;li&gt;一个文件应只有一个类，文件的命名应与类名有关&lt;/li&gt;
+&lt;li&gt;在文件中清晰地分隔各子程序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于块结构和花括号指定的块边界，不同语言有不一样的规范。书中所提规范放在某些语言也不适用，实际使用应遵循相应的规范，此处不赘述书中所提的布局与风格。&lt;/p&gt;
+&lt;h1 id=&quot;2-自说明代码&quot;&gt;&lt;a href=&quot;#2-自说明代码&quot; class=&quot;headerlink&quot; title=&quot;2. 自说明代码&quot;&gt;&lt;/a&gt;2. 自说明代码&lt;/h1&gt;&lt;h2 id=&quot;2-1-编程风格的重要性&quot;&gt;&lt;a href=&quot;#2-1-编程风格的重要性&quot; class=&quot;headerlink&quot; title=&quot;2.1 编程风格的重要性&quot;&gt;&lt;/a&gt;2.1 编程风格的重要性&lt;/h2&gt;&lt;p&gt;自说明代码代表了易读性的最高水平，而且一般是&lt;strong&gt;由良好的编码风格决定&lt;/strong&gt;，很大程度&lt;strong&gt;与注释无关&lt;/strong&gt;。对于精心编写的代码而言， 注释不过是美丽衣裳上的小饰物而已。关于自说明代码所体现出的编码风格，请参见&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/150866&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;核对表：自说明代码&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-2-高效注释&quot;&gt;&lt;a href=&quot;#2-2-高效注释&quot; class=&quot;headerlink&quot; title=&quot;2.2 高效注释&quot;&gt;&lt;/a&gt;2.2 高效注释&lt;/h2&gt;&lt;p&gt;注释的作用分为六种：重复代码（用文字把代码的工作又描述一次，&lt;strong&gt;这种注释是废话，应杜绝&lt;/strong&gt;）、解释代码（通常是因为代码含糊不清，此时应&lt;strong&gt;改进代码&lt;/strong&gt;而不是添加注释）、代码标记（提示工作未做完，待修复等等）、概述代码（用一两句话把若干行代码的意思说出来）、代码意图说明（指出一段代码要解决的问题，而非解决问题的方法）、传达代码无法表述的信息（如版权声明、保密要求、doc注释符号等等）。&lt;strong&gt;对于完工的代码，只允许有的三种注释类型：概述代码、代码说明意图和代码无法表达的信息。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注释占用太多时间通常归因于两点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注释的风格可能耗时或枯燥乏味。如果这样，请另谋新的风格。需要庞大工作量的注释风格维护起来也会令人头痛。如果注释不便修改，人们就不愿意修改。于是注释就会变得不准确，起到误导作用，反而还不如没有注释&lt;/li&gt;
+&lt;li&gt;说明程序干什么的话不好想出来。这通常是你没有真正理解程序的信号。“写注释”所占用的时间其实都用在了更好地理解程序上面，而不管你写不写注释，这些时间注定是得花的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下面是高效注释的几条指导原则。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;采用不会打断或抑制修改的注释凤格：不要为了美观而使用大量的&lt;code&gt;.-*&lt;/code&gt;符号排版的注释，例如用星号围成一个矩形的注释，每加入一行都得小心维护右边的星号。如果花大量时间增删符号只是为了对齐，你就不是在编程，而是浪费时光&lt;/li&gt;
+&lt;li&gt;用伪代码编程法减少注释时间&lt;/li&gt;
+&lt;li&gt;将注释集成到你的开发过程中：不要项目快结束时才开始写注释，也不要把注释当做专门的任务，而应该边写代码边注释。&lt;/li&gt;
+&lt;li&gt;性能不是逃避注释的好借口：像Javascript的注释会增大网络传输的流量，但这不是理由，解决方案应该是构建不包含注释的发布版代码，区别于开发版代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-注释技术&quot;&gt;&lt;a href=&quot;#2-3-注释技术&quot; class=&quot;headerlink&quot; title=&quot;2.3 注释技术&quot;&gt;&lt;/a&gt;2.3 注释技术&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;注释单行&lt;ul&gt;
+&lt;li&gt;不要随意添加无关的注释&lt;/li&gt;
+&lt;li&gt;尽量不要使用行尾注释，因为写行尾难以格式化和维护，也经常是重复说明本行代码的废话。这几种例外情况可以使用行尾注释：用于数据声明，或标记代码块尾部（如end while，end if）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释代码段&lt;ul&gt;
+&lt;li&gt;注释应表达代码段的意图，指出代码本身说不清的本意。TIPS：在给代码段写意图注释时，想象这段代码转换成一个子程序，应该命名什么名字，这个名字很有可能就是意图&lt;/li&gt;
+&lt;li&gt;注释应注重“为何做（why）”而不是“怎么做（how）”&lt;/li&gt;
+&lt;li&gt;用注释为后面的内容做铺垫：好的注释会让读者只要浏览注释就能了解代码在做什么，去哪找特定的操作&lt;/li&gt;
+&lt;li&gt;说明非常规做法（trick）&lt;/li&gt;
+&lt;li&gt;代码错误或语言环境独特点都要加注释&lt;/li&gt;
+&lt;li&gt;给出不得不故意违背良好编程风格的理由&lt;/li&gt;
+&lt;li&gt;不要为投机取巧的代码加注释说明，应重写之&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释数据声明&lt;ul&gt;
+&lt;li&gt;注释数据的单位（包括单位所处的背景环境）和取值范围（包括输入数据的限制）&lt;/li&gt;
+&lt;li&gt;注释枚举类型各个值的含义，注释bit位标识的含义&lt;/li&gt;
+&lt;li&gt;注释全局数据：指出该数据的目的，为何必须是全局数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释控制结构&lt;ul&gt;
+&lt;li&gt;应在每个if、case、循环前加上注释，阐明控制结构的意图&lt;/li&gt;
+&lt;li&gt;在长控制结构或嵌套控制结构结尾处加上注释&lt;/li&gt;
+&lt;li&gt;如果用到了上一条规则，那么应将控制结构结束处的注释看成是代码太复杂的征兆：最好办法就是重写代码，使之不再复杂到需要费劲注释的程度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释子程序&lt;ul&gt;
+&lt;li&gt;在子程序上部用一两句话说明其意图，如果参数很复杂要在声明参数处注释这些参数（如果参数涉及输出，还要特别说明）&lt;/li&gt;
+&lt;li&gt;利用诸如Javadoc之类的代码说明工具，则可以替代上一条&lt;/li&gt;
+&lt;li&gt;注释接口假设：例如假设传入的数组是有序的，传入的对象是初始化过的等等，都应该描述清楚&lt;/li&gt;
+&lt;li&gt;对子程序的局限性作注释：例如指出结果的精确度，子程序碰到麻烦时的默认行为，对程序做什么修改会损坏此子程序等等&lt;/li&gt;
+&lt;li&gt;说明子程序对全局数据的操作，如果有的话&lt;/li&gt;
+&lt;li&gt;记录所用算法的来源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注释类和文件&lt;ul&gt;
+&lt;li&gt;说明类的设计方法，局限性、用法假设，不要在类接口处说明实现细节&lt;/li&gt;
+&lt;li&gt;在文件开头处用注释块说明文件的意图和内容&lt;/li&gt;
+&lt;li&gt;在文件注释块中包含作者姓名、电子邮件、电话号码、版本控制标记、法律通告等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第31、32章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文关注的是计算机编程的美学话题——程序源代码的布局和自说明性。尽管这些技巧并不影响执行速度、内存使用量等方面的程序性能，但它却会让你日后理解、检查以及修改代码变得更容易，也使其他人在你缺位的时候更容易阅读、理解和修改你的代码。&lt;/p&gt;
+&lt;p&gt;需要注意的是，形成良好的代码布局，并让代码具备自说明性，需要始终贯穿项目的生命期，晚了就很难做好了。要想完全实现这些细节规定，在最初建构时就要着手去做。如果你干的是合作项目，更是要在开始编码之前统一大家的风格。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+    
+      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>软件构建（十三）——代码集成</title>
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-13/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-13/</id>
     <published>2016-05-09T07:35:29.000Z</published>
-    <updated>2016-05-09T07:38:59.898Z</updated>
+    <updated>2016-05-12T13:13:50.400Z</updated>
     
     <content type="html">&lt;p&gt;集成是指将一些独立的软件组件组合为一个完整系统。对大项目，集成也许要花数周或数月时间，把一组程序编织为一个整体。本文将首先介绍不太常用的阶段式集成，然后再介绍更为常用的增量集成，其中集成的策略是讨论的重点。最后每日构建与冒烟测试的使用原则。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -119,6 +265,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -126,7 +274,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-12/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-12/</id>
     <published>2016-05-06T09:00:40.000Z</published>
-    <updated>2016-05-06T09:06:33.805Z</updated>
+    <updated>2016-05-12T13:14:52.322Z</updated>
     
     <content type="html">&lt;p&gt;软件开发的规模扩大并不是像“拿一个小项目来，然后增大它的每一部分”那样简单。如果要开发大型软件，就必须了解软件规模对构建的影响。此外，本文将记录与构建直接相关的一些特定管理问题。如果你是一名开发人员，本文将帮助你了解管理者需要考虑的一些问题；如果你是一名管理者，本文将帮助你了解开发人员是如何看待管理者的，以及如何才能有效地管理构建。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -199,6 +347,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -206,7 +356,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-11/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-11/</id>
     <published>2016-05-03T02:16:11.000Z</published>
-    <updated>2016-05-03T02:16:13.897Z</updated>
+    <updated>2016-05-12T13:14:47.660Z</updated>
     
     <content type="html">&lt;p&gt;本文首先概述了程序运行性能应该考虑的一些问题，然后从策略上和技术上两个方面来探讨代码性能的调整问题。技术上的代码调整并没有什么万金油的方法，也不是灵丹妙药，唯一可以信赖的法则就是每次都应当在具体的环境下评估代码调整所带来的效果，而本文所列的调整方法则仅供参考。此外，追求性能的背后往往伴随着牺牲程序的可读性和可维护性，而&lt;strong&gt;在很多情况下，代码的可读性和可维护性都要比运行速度或资源占用更为重要。&lt;/strong&gt;因此在调整代码时一定要考虑这样的性能提升是否真的必要。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -299,6 +449,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -306,7 +458,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-10/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-10/</id>
     <published>2016-04-29T08:19:39.000Z</published>
-    <updated>2016-04-29T08:21:42.558Z</updated>
+    <updated>2016-05-12T13:14:44.045Z</updated>
     
     <content type="html">&lt;p&gt;测试可以由开发人员或专门的测试人员进行。按层级分，测试可以分为单元测试、组件测试、继承测试、回归测试、系统测试；按是否了解对象内部工作机制分，测试可以分为黑盒测试和白盒测试。本文关注的是开发人员所进行的白盒测试。重构是“在不改变软件外部行为的前提下，对其内部结构进行改变，使之更容易理解并便于修改”的过程。本文将讲述软件演化以及重构的一些理念。&lt;/p&gt;
 &lt;p&gt;测试和重构都是非常大的话题，大到足以各用一本经典著作来阐述，如&lt;a href=&quot;https://book.douban.com/subject/1801050/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《软件测试》&lt;/a&gt;和&lt;a href=&quot;https://book.douban.com/subject/4262627/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《重构：改善既有代码的设计》&lt;/a&gt;。因此本文也仅是记录一些要点，如果要深入了解，还是要阅读相关的书籍为好。&lt;/p&gt;
@@ -433,6 +585,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -440,7 +594,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-9/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-9/</id>
     <published>2016-04-26T04:59:05.000Z</published>
-    <updated>2016-04-26T04:59:09.480Z</updated>
+    <updated>2016-05-12T13:14:41.223Z</updated>
     
     <content type="html">&lt;p&gt;所有的协同构建技术都试图通过这样或那样的途径，将展示你工作的过程正式化，以便把错误暴露出来。软件构建不可避免地都会伴随着调试，在一些项目中，调试可能占到整个开发周期的50%。对很多程序员来说，调试是程序设计中最为困难的部分。本文的前半部分将介绍协同构建的一些实践方法，后半部分将介绍一些科学的调试手段以节省更多精力。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -542,6 +696,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -549,7 +705,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-8/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-8/</id>
     <published>2016-04-24T14:24:03.000Z</published>
-    <updated>2016-04-24T14:29:06.951Z</updated>
+    <updated>2016-05-12T13:14:38.160Z</updated>
     
     <content type="html">&lt;p&gt;表驱动法是一种编程模式——从表里面查找信息而不使用逻辑语句（if和case）。事实上，凡是能通过逻辑语句来选择的事物，都可以通过查表来选择。本文将介绍直接访问表、索引访问表和阶梯访问表三种常见的表驱动法。最后，本文将记录一些控制问题（如布尔表达式的使用、空语句、深层嵌套问题等等）上的使用原则，这一部分内容比较简单而且与前面的章节有一些重叠，因此将快速带过。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -634,6 +790,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -641,7 +799,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-7/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-7/</id>
     <published>2016-04-20T09:28:57.000Z</published>
-    <updated>2016-04-26T05:04:39.793Z</updated>
+    <updated>2016-05-12T13:14:34.788Z</updated>
     
     <content type="html">&lt;p&gt;防御式编程这一概念来自防御式驾驶。在防御式驾驶中要建立这样一种思维，那就是你永远也不能确定另一位司机将要做什么。这样才能确保在其他人做出危险动作时你也不会受到伤害。你要承担起保护自己的责任，哪怕是其他司机犯的错误。本文将讲述如何面对严酷的非法数据的世界、在遇到“绝不会发生”的事件以及其他程序员犯下的错误时保护你自己。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -709,6 +867,8 @@
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -716,7 +876,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-6/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-6/</id>
     <published>2016-04-16T13:54:28.000Z</published>
-    <updated>2016-04-17T15:23:13.185Z</updated>
+    <updated>2016-05-12T13:14:31.519Z</updated>
     
     <content type="html">&lt;p&gt;本文开始从以数据为中心的编程观点转到以语句为中心的观点上。常用的编程语句有顺序、控制和循环三种基本结构，本文将依次介绍这三种基本结构的使用原则。最后，还总结了一些不太常见的控制结构，如子程序多处返回、递归、关于goto语句的讨论。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -856,6 +1016,8 @@ if (!encryptionKey.valid()) {
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -863,7 +1025,7 @@ if (!encryptionKey.valid()) {
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-5/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-5/</id>
     <published>2016-04-11T06:58:29.000Z</published>
-    <updated>2016-04-13T07:50:44.236Z</updated>
+    <updated>2016-05-12T13:14:24.685Z</updated>
     
     <content type="html">&lt;p&gt;几乎所有的常见编程语言，都包含了整数、浮点数、字符串、布尔等等数据类型，而通过基本的数据类型又可以复合出各种数据结构。本文总结了常用的数据类型（整数、浮点数、字符、字符串、布尔、枚举、数组等等）以及一些不常见的数据类型（结构体、指针等等）的使用原则。最后总结了关于全局数据的一些风险和使用原则。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -989,6 +1151,8 @@ if (finished || repeatedEntry) { ... }
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -996,7 +1160,7 @@ if (finished || repeatedEntry) { ... }
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-4/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-4/</id>
     <published>2016-04-08T06:11:59.000Z</published>
-    <updated>2016-04-08T01:59:30.832Z</updated>
+    <updated>2016-05-12T13:14:28.423Z</updated>
     
     <content type="html">&lt;p&gt;变量的好与坏就在很大程度上取决于它的命名的好坏，在给变量命名的时候需要小心谨慎。本文首先详细讲述构建活动中的基本组成成分，即变量的使用原则，接着再讲述适用于为变量——对象和基本数据——命名的原则。这些原则也适用于类、包、文件及其他的编程实体。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1139,6 +1303,8 @@ titleBar.color = ReadTitleBarColor();
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -1146,7 +1312,7 @@ titleBar.color = ReadTitleBarColor();
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-3/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-3/</id>
     <published>2016-04-05T06:11:59.000Z</published>
-    <updated>2016-04-05T08:13:52.278Z</updated>
+    <updated>2016-05-12T13:14:20.579Z</updated>
     
     <content type="html">&lt;p&gt;在计算时代的早期，程序员基于语句思考编程问题。到了20世纪七八十年代，程序员开始基于子程序去思考编程。进入21世纪，程序员以类为基础思考编程问题。类是由一组数据和子程序构成的集合，这些数据和子程序共同拥有一组内聚的、明确定义的职责。由此可见类和子程序在现代编程中的地位。本文将就如何创建高质量的类和子程序提供一些建议。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1296,6 +1462,8 @@ points = DeviceUnitsToPoints(deviceUnits);
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -1303,7 +1471,7 @@ points = DeviceUnitsToPoints(deviceUnits);
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-2/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-2/</id>
     <published>2016-04-01T03:37:35.000Z</published>
-    <updated>2016-04-01T03:27:53.374Z</updated>
+    <updated>2016-05-12T13:14:17.308Z</updated>
     
     <content type="html">&lt;p&gt;软件架构（software architecture）是软件设计的高层部分，是用于支撑更细节的设计的框架。本文关注的并不是如何开发一个软件的架构，而是设计一个架构时应该关注的部分。此外，设计就是把需求分析和编码调试连在一起的活动，好的高层设计能提供一个可以稳妥容纳多个较低层次设计的结构，其对于小型项目非常有用，对大型项目更是不可或缺。因此，本文将总结软件构建中设计的基础概念及基本方法。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1427,6 +1595,8 @@ points = DeviceUnitsToPoints(deviceUnits);
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
   </entry>
   
   <entry>
@@ -1434,7 +1604,7 @@ points = DeviceUnitsToPoints(deviceUnits);
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-1/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-1/</id>
     <published>2016-03-29T08:17:53.000Z</published>
-    <updated>2016-03-29T06:59:19.601Z</updated>
+    <updated>2016-05-12T13:14:11.842Z</updated>
     
     <content type="html">&lt;p&gt;开发计算机软件是一个非常复杂的过程，而软件“构建”是指建设过程中“动手”的部分，其中不仅仅包括“写代码”，还包含了计划、设计、测试、集成等等其他工作。本文首先总结软件构建的含义以及其主要活动；接着列举了一个比较合理的隐喻——建造房子——来理解软件开发；最后阐述了软件构建的前期准备工作的重要性，阐述了定义问题和分析需求的重要性，以及应该准备哪些事情。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1523,6 +1693,8 @@ points = DeviceUnitsToPoints(deviceUnits);
       <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
     
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
     
   </entry>
   
@@ -1926,69 +2098,6 @@ tags:
     
     
       <category term="Cocos2d-x" scheme="http://raytaylorlin.com/tags/Cocos2d-x/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式六大原则</title>
-    <link href="http://raytaylorlin.com/tech/complex/DP/design-pattern-principles/"/>
-    <id>http://raytaylorlin.com/tech/complex/DP/design-pattern-principles/</id>
-    <published>2015-05-15T12:22:31.000Z</published>
-    <updated>2016-02-09T12:31:39.801Z</updated>
-    
-    <content type="html">&lt;p&gt;设计模式除了常见的23种模式之外，还有六大原则。对这六个原则的遵守并非是和否的问题，而是多和少的问题。制定这六个原则的目的并不是要我们刻板的遵守，而需要根据实际情况灵活运用。&lt;/p&gt;
-&lt;p&gt;设计模式经常要涉及到UML类图，这里附上&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;图说设计模式&lt;/a&gt;中的一章&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/read_uml.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;看懂UML类图和时序图&lt;/a&gt;，以方便快速复习UML类图中各种符号的含义。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-单一职责原则（SRP&quot;&gt;&lt;a href=&quot;#1-单一职责原则（SRP&quot; class=&quot;headerlink&quot; title=&quot;1. 单一职责原则（SRP)&quot;&gt;&lt;/a&gt;1. 单一职责原则（SRP)&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义： 就一个类而言，应该仅有一个引起它变化的原因。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受到意向不到的破坏。如果能够想到多于一个的动机去改变一个类，那么这个类就具有多于一个的职责。&lt;/p&gt;
-&lt;h1 id=&quot;2-里氏替换原则&quot;&gt;&lt;a href=&quot;#2-里氏替换原则&quot; class=&quot;headerlink&quot; title=&quot;2. 里氏替换原则&quot;&gt;&lt;/a&gt;2. 里氏替换原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：子类必须能够替换掉它们的父类&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;软件里把父类替换成它的子类，程序的行为没有变化。只有当子类可以替换掉父类，软件单位的功能不受到影响时，父类才能真正被复用，而子类也能够在父类的基础上增加新的行为。&lt;/p&gt;
-&lt;p&gt;例子：一个鸟类，一个企鹅类。鸟有“飞”的行为，企鹅不会飞，所以企鹅不能以父类——鸟的身份出现，即企鹅类不能继承鸟类。&lt;/p&gt;
-&lt;h1 id=&quot;3-依赖倒置原则&quot;&gt;&lt;a href=&quot;#3-依赖倒置原则&quot; class=&quot;headerlink&quot; title=&quot;3. 依赖倒置原则&quot;&gt;&lt;/a&gt;3. 依赖倒置原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：高层模块不应该依赖底层模块，两者都应该依赖抽象；抽象不应该依赖细节，细节应该依赖抽象。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;要针对接口编程，不要对实现编程。在Java或C#语言中的表现就是：实现类之间不发生直接的依赖关系，依赖关系是通过接口产生的。依赖倒置是面向对象设计的标志，如果程序中所有的依赖关系都终止于抽象类或接口，就是面向对象的设计。&lt;/p&gt;
-&lt;p&gt;例子：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;CPU、内存等都是针对接口设计的，如果针对实现来设计，内存就要对应到具体的某个品牌的主板，就会出现换内存也要把主板换了的尴尬。&lt;/li&gt;
-&lt;li&gt;做项目大多要访问数据库，把访问数据库的代码写成函数，每次做新项目时去调用这些函数，这就叫高层模块依赖低层模块。做新项目时，发现业务逻辑的高层模块都是一样的额，但客户却希望使用不同的数据库，高层模块与低层的访问数据库绑定在一起，没办法复用高层模块。应该两者都依赖约定的接口。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;4-接口隔离原则&quot;&gt;&lt;a href=&quot;#4-接口隔离原则&quot; class=&quot;headerlink&quot; title=&quot;4. 接口隔离原则&quot;&gt;&lt;/a&gt;4. 接口隔离原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：客户端不应该依赖它不需要的接口（接口尽量细化），类见的依赖关系应该建立在最小的接口上。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;接口“小”是要有限度的，首先不能违反单一职责原则，其次是要高内聚。一个接口只服务于一个子模块或业务逻辑，通过业务逻辑压缩接口中的public方法。&lt;/p&gt;
-&lt;h1 id=&quot;5-迪米特法则&quot;&gt;&lt;a href=&quot;#5-迪米特法则&quot; class=&quot;headerlink&quot; title=&quot;5. 迪米特法则&quot;&gt;&lt;/a&gt;5. 迪米特法则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：如果两个类不必彼此直接通信，那么这两个类就不应该发生直接的相互作用。一个对象应该对其他对象有最少的了解。&lt;/strong&gt;如果一个类需要调用另一个类的某一个方法，可以通过第三者转发这个调用。&lt;/p&gt;
-&lt;p&gt;该法则的根本思想，是强调了类之间的松耦合。一个类公开的public属性或方法越多，修改时涉及的面和风险也就越大。在设计时需要反复衡量：是否还可以再减少public方法和属性。&lt;em&gt;实践中，如果一个类跳转两次以上才能访问到另一个类，就说明系统过于复杂，需要想办法进行重构了。&lt;/em&gt;&lt;/p&gt;
-&lt;h1 id=&quot;6-开闭原则&quot;&gt;&lt;a href=&quot;#6-开闭原则&quot; class=&quot;headerlink&quot; title=&quot;6. 开闭原则&quot;&gt;&lt;/a&gt;6. 开闭原则&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;定义：软件实体（类、模块、函数等等）应该可以扩展开放，对修改封闭。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;面对需求变化，对程序的改动是通过增加新代码进行的，而不是更改现有的代码。但在最初编写代码时，难以预测到变化的产生，这就要求变化发生时，就创建抽象来隔离以后发生的同类变化。开发人员应该仅对程序中呈现出频繁变化的那些部分作出抽象，拒绝不成熟的抽象和抽象本身一样重要。&lt;/p&gt;
-&lt;p&gt;例子：书店管理图书，&lt;code&gt;IBook&lt;/code&gt;接口有&lt;code&gt;getName&lt;/code&gt;、&lt;code&gt;getPrice&lt;/code&gt;、&lt;code&gt;getAuthor&lt;/code&gt;方法，实现类&lt;code&gt;NovelBook&lt;/code&gt;实现&lt;code&gt;IBook&lt;/code&gt;接口，客户端类&lt;code&gt;BookStore&lt;/code&gt;关联&lt;code&gt;IBook&lt;/code&gt;接口。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;当&lt;em&gt;获取原价格&lt;/em&gt;的业务变化成&lt;em&gt;获取打折处理后的价格&lt;/em&gt;时，应该扩展一个子类（继承&lt;code&gt;NovelBook&lt;/code&gt;）&lt;code&gt;OffNovelBook&lt;/code&gt;，覆写&lt;code&gt;getPrice&lt;/code&gt;方法来获取打折价格。&lt;/li&gt;
-&lt;li&gt;若要新增一种计算机类图书，且可以获取其领域，可以新增&lt;code&gt;IComputerBook&lt;/code&gt;接口继承&lt;code&gt;IBook&lt;/code&gt;，其中包含&lt;code&gt;getScope&lt;/code&gt;方法，再增加一个&lt;code&gt;ComputerBook&lt;/code&gt;实现类。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;最后总结一下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;单一职责原则告诉我们实现类要职责单一&lt;/li&gt;
-&lt;li&gt;里氏替换原则告诉我们不要破坏继承体系&lt;/li&gt;
-&lt;li&gt;依赖倒置原则告诉我们要面向接口编程&lt;/li&gt;
-&lt;li&gt;接口隔离原则告诉我们在设计接口的时候要精简单一&lt;/li&gt;
-&lt;li&gt;迪米特法则告诉我们要降低耦合&lt;/li&gt;
-&lt;li&gt;开闭原则是总纲，它告诉我们要对扩展开放，对修改关闭&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考文献：《设计模式之禅（第2版）》第1-6章、《大话设计模式》&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;设计模式除了常见的23种模式之外，还有六大原则。对这六个原则的遵守并非是和否的问题，而是多和少的问题。制定这六个原则的目的并不是要我们刻板的遵守，而需要根据实际情况灵活运用。&lt;/p&gt;
-&lt;p&gt;设计模式经常要涉及到UML类图，这里附上&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/index.html&quot;&gt;图说设计模式&lt;/a&gt;中的一章&lt;a href=&quot;http://design-patterns.readthedocs.org/zh_CN/latest/read_uml.html&quot;&gt;看懂UML类图和时序图&lt;/a&gt;，以方便快速复习UML类图中各种符号的含义。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="设计模式" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="http://raytaylorlin.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
