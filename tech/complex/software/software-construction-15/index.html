@@ -7,7 +7,7 @@
 
     
 
-    <title>HTTP学习笔记：缓存 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
+    <title>软件构建（十五）——尾声 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="Ray Taylor Lin">
     
     <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="HTTP学习笔记：缓存"/>
+    <meta property="og:title" content="软件构建（十五）——尾声"/>
     <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
 
     
@@ -400,7 +400,7 @@
             
     
     
-    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/Web前端/">Web前端</a><a class="breadcrumb" href="/categories/技术/Web前端/HTTP协议/">HTTP协议</a>
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/综合/">综合</a><a class="breadcrumb" href="/categories/技术/综合/软件工程/">软件工程</a>
 
 
         
@@ -417,91 +417,94 @@
             <div class="article-title">
                 
     
-        <h1>HTTP学习笔记：缓存</h1>
+        <h1>软件构建（十五）——尾声</h1>
     
 
 
             </div>
-            <time class="green-link-context" datetime="2014-05-14T02:47:05.000Z"><a href="/tech/web/http/HTTP-cache/">2014-05-14</a></time>
+            <time class="green-link-context" datetime="2016-05-14T14:21:15.000Z"><a href="/tech/complex/software/software-construction-15/">2016-05-14</a></time>
 
             
     <div class="tags-row">
         
-            <a href="/tags/HTTP/" class="chip green lighten-1">HTTP</a>
+            <a href="/tags/软件构建/" class="chip green lighten-1">软件构建</a>
         
-            <a href="/tags/缓存/" class="chip green lighten-1">缓存</a>
+            <a href="/tags/软件工程/" class="chip green lighten-1">软件工程</a>
+        
+            <a href="/tags/代码大全/" class="chip green lighten-1">代码大全</a>
         
     </div>
 
 
             <div class="toc green-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-使用缓存的意义"><span class="section table-of-contents-text">1. 使用缓存的意义</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-缓存命中"><span class="section table-of-contents-text">2. 缓存命中</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-缓存的拓扑结构"><span class="section table-of-contents-text">3. 缓存的拓扑结构</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-缓存的处理步骤"><span class="section table-of-contents-text">4. 缓存的处理步骤</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#5-保持副本的新鲜"><span class="section table-of-contents-text">5. 保持副本的新鲜</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#6-控制缓存"><span class="section table-of-contents-text">6. 控制缓存</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-1-响应首部"><span class="section table-of-contents-text">6.1 响应首部</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-2-请求首部"><span class="section table-of-contents-text">6.2 请求首部</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-3-控制Apache的HTTP首部"><span class="section table-of-contents-text">6.3 控制Apache的HTTP首部</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-4-通过HTML的http-equiv控制HTML缓存"><span class="section table-of-contents-text">6.4 通过HTML的http-equiv控制HTML缓存</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-个人性格"><span class="section table-of-contents-text">1. 个人性格</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-个人性格对编程的影响"><span class="section table-of-contents-text">1.1 个人性格对编程的影响</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-不如你想象中那样起作用的性格因素"><span class="section table-of-contents-text">1.2 不如你想象中那样起作用的性格因素</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-软件开发艺术的有关问题"><span class="section table-of-contents-text">2. 软件开发艺术的有关问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-书单"><span class="section table-of-contents-text">3. 书单</span></a></li></ol>
 </div>
 
 
             <div class="entry green-link-context">
-                <p>Web缓存是可以自动保存常见文档副本的HTTP设备。当Web请求抵达缓存时，如果本地有“已缓存的”副本，就可以从本地存储设备而不是原始服务器中提取这个文档。使用缓存可以减少冗余的数据传输，环节网络瓶颈的问题，降低对原始服务器的要求以及降低距离时延。</p>
-<p>本文解释了缓存怎样提供性能降低费用，如何去衡量其有效性以及将缓存置于何处可以发挥它的最大作用。此外还会解释HTTP如何保持已缓存副本的新鲜度，缓存如何与其他缓存和服务器通信等问题。</p>
+                <p>本文是《代码大全》学习笔记系列的最后一篇。书中最后几章是一些杂项主题，本文将简要记录这几个主题的内容，包括个人性格对编程的影响，软件开发艺术的有关问题，以及关于软件工程的推荐书单。</p>
 <a id="more"></a>
-<h1 id="1-使用缓存的意义"><a href="#1-使用缓存的意义" class="headerlink" title="1. 使用缓存的意义"></a>1. 使用缓存的意义</h1><p>很多客户端访问一个流行的原始服务器页面时，服务器会多次传输同一份文档，一些相同的字节会在网络中一遍遍地传输。这些冗余的数据传输会消耗昂贵的网络带宽，降低传输速度。有了缓存，就可以保留第一条服务器响应的副本，后继请求就可以由缓存副本来应对了。缓存还可以缓解网络的瓶颈问题，因为本地网络提供的带宽远比远程服务器的带宽要宽，所以如果本地网络中有缓存，则可以显著提高性能。此外，缓存在应对“瞬间拥塞”即短时间内访问量激增的情况显得非常重要。</p>
-<p>每台网络路由器都会增加因特网流量的时延，即使客户端和服务器之间没有太多的路由器，光速自身也会造成显著的时延。这种时延尤其体现在跨国之间的数据传输，而一份在附近机房的缓存可以将文件传输距离从数千公里缩短为数十米。</p>
-<h1 id="2-缓存命中"><a href="#2-缓存命中" class="headerlink" title="2. 缓存命中"></a>2. 缓存命中</h1><p>缓存不能保存世界上每份文档的副本。当可以用已有的副本为某些到达缓存的请求提供服务，则称为<strong>缓存命中</strong>（cache hit），到达缓存的请求可能因为没有副本可用而被转发到原始服务器，称为<strong>缓存未命中</strong>（cache miss）。原始服务器的内容可能随时发生变化，缓存要不时对其进行检测看保存的副本是否仍是服务器上最新的副本，这种“新鲜度检测”称为<strong>HTTP再验证</strong>（revalidatioin）。</p>
-<p>缓存进行再验证时，最常用的是将If-Modified-Since首部加到GET请求中。服务器收到该请求会发生以下三种情况：</p>
-<ul>
-<li>再验证命中：如果内容未被修改，服务器会以304 Not Modified响应，只要缓存知道副本仍然有效，就会再次将副本标识为暂时新鲜，并将副本提供给客户端。</li>
-<li>再验证未命中：服务器向客户端发送一条普通的带有完整内容的HTTP 200 OK响应</li>
-<li>对象被删除：如果服务器对象已被删除，服务器会回送404 Not Found，缓存也会将副本删除。</li>
+<h1 id="1-个人性格"><a href="#1-个人性格" class="headerlink" title="1. 个人性格"></a>1. 个人性格</h1><p>编程过程非常耗用脑力，这种特性使得个人性格显得很重要。而编程工作本质上是项无法监督的工作，因为没人真正清楚你正在做什么。老板也无法强迫你成为好的程序员，很多时候他甚至无法判断你是否合格，一切都只能靠自己。你无法提升自己的聪明程度，但性格在一定程度上能够改进。事实证明，个人性格对于造就出程序员高手更具有决定性意义。</p>
+<h2 id="1-1-个人性格对编程的影响"><a href="#1-1-个人性格对编程的影响" class="headerlink" title="1.1 个人性格对编程的影响"></a>1.1 个人性格对编程的影响</h2><ul>
+<li>聪明和谦虚：高智商与优秀程序员之间并无太密切的联系。实际上许多好的编程做法都是为了减轻脑力负担，例如将系统分解是为了使之易于理解，进行审查、评审和测试是为了减少人为失误，通过各种各样的规范是为了将思路从相对繁琐的编程事务中解放出来。精通编程的人是那些了解自己头脑有多大局限性的人，都很谦虚。</li>
+<li>求知欲：技术环境的特定特征每5到10年就变化一番，如果没有足够的求知欲来跟上这些变化，就会面临落伍的威胁，下面是一些培养求知欲的方法<ul>
+<li>在开发过程中建立自我意识</li>
+<li>不断用小程序来试验技术点</li>
+<li>阅读解决问题的有关方法</li>
+<li>在行动之前做分析和计划</li>
+<li>学习成功项目的开发经验，阅读高手的代码</li>
+<li>认真阅读文档和其他书本期刊</li>
+<li>同专业人士交往</li>
+<li>向专业开发看齐：专业开发可分为这样四个等级：入门级（会使用某语言的基本功能和特性），中级（已度过入门期，能使用多种 语言，并得心应手使用至少一种语言），熟练级（对语言或环境有着专业技能，通常是公司的核心开发，很多程序员不能超越该层次），技术带头人级（具有熟练级的专业技能，也明白写代码是给人看而非给机器看）</li>
 </ul>
-<p>由缓存提供服务的请求所占的比例称为<strong>缓存命中率</strong>。对现在中等规模的Web缓存来说，40%的命中率是比较合理的。还有一种<strong>字节命中率</strong>表示缓存提供的字节在传输的所有字节所占的比例。文档命中率说明阻止了多少通往外部网络的Web事务，字节命中率说明阻止了多少字节传向因特网，提高字节命中率对节省带宽很有利。</p>
-<p>HTTP没有为用户提供一种手段来区分响应是否来自缓存。可以使用Date首部来间接地判断，如果响应中的日期值比当前时间早，则可以认为这是一条缓存的响应。</p>
-<h1 id="3-缓存的拓扑结构"><a href="#3-缓存的拓扑结构" class="headerlink" title="3. 缓存的拓扑结构"></a>3. 缓存的拓扑结构</h1><p>缓存可以是单个用户专用的私有缓存，也可以是包含某个用户团体常用页面的公有缓存。私有缓存不需要很大的存储空间，可以将其做得很小很便宜，比如很多Web浏览器都有内建的私有缓存。公有缓存是特殊的共享代理服务器，它会接受来自多个用户的访问，可以更好地减少冗余流量。</p>
-<p>在实际应用中，层次化的缓存是很有意义的。在较小的缓存中未命中的请求会被导向较大的父缓存，在靠近客户端的地方使用小型廉价缓存，更高层次中逐步采用更大，功能更强的缓存来装载多用户共享的文档。此外还有更加复杂的网状缓存，它们会根据URL在父缓存或原始服务器之间进行动态选择，也会决定选择何种路由对内容进行访问、管理和传送。</p>
-<h1 id="4-缓存的处理步骤"><a href="#4-缓存的处理步骤" class="headerlink" title="4. 缓存的处理步骤"></a>4. 缓存的处理步骤</h1><p>Web缓存的基本处理步骤包括7个步骤，如下图所示。</p>
-<p><img src="http://raytaylorlin-blog.qiniudn.com/image/HTTP/Web%E7%BC%93%E5%AD%98%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%A4%84%E7%90%86%E6%AD%A5%E9%AA%A4.jpg" alt="Web缓存的基本处理步骤"></p>
-<ol>
-<li>接收：缓存检测到一条网络连接上的活动，读取输入数据。高性能的缓存会同时从多条输入连接上读取数据，在整条报文抵达之前开始处理事务。</li>
-<li>解析：将请求报文解析为片段，将首部各个部分放入易于操作的数据结构中。</li>
-<li>查找：查找本地副本（可能位于内存、本地磁盘甚至另一台计算机中）。专业级的缓存会使用快速算法来确定本地缓存中是否有某个对象。</li>
-<li>新鲜度检测：缓存会将服务器文档的副本保留一段时间，在“新鲜度限值”的时间之内都认为文档是“新鲜的”。超过限值的要和服务器进行再验证，以查看文档是否发生变化。新鲜度检测是一个非常复杂的问题，本文剩余部分将讨论这个问题。</li>
-<li>创建响应：缓存会对服务器响应的基础首部进行修改和扩充，例如将低版本的HTTP转换成HTTP/1.1响应。缓存还会向首部插入新鲜度信息（Cache-Control、Age、Expires首部等）。</li>
-<li>发送：高性能缓存会尽力高效发送数据，通常可以避免在本地缓存和网络I/O缓冲区之间进行文档内容的复制。</li>
-<li>日志：保存于缓存使用有关的一些统计数据，如更新缓存命中和未命中数目数据等。</li>
-</ol>
-<h1 id="5-保持副本的新鲜"><a href="#5-保持副本的新鲜" class="headerlink" title="5. 保持副本的新鲜"></a>5. 保持副本的新鲜</h1><p>不是所有的缓存副本都与服务器上的文档一致，因为服务器上的文档可能随时都会变化，缓存数据必须要与服务器保持一致。HTTP有一些简单的机制可以在<em>不要求服务器记住有哪些缓存拥有其文档副本的情况下</em>，保持已缓存数据与服务器之间充分一致。通过特殊的HTTP <code>Cache-Control:max-age</code>（HTTP/1.1首部，定义了文档的最大试用期）和<code>Exipires</code>（HTTP/1.0+首部，指定一个绝对的过期日期）首部，原始服务器向每个文档附加一个“过期日期”，说明了再多长时间内可以将这些内容视为新鲜的。</p>
-<p>过了过期日期之后只是意味着缓存要和服务器进行再验证。若再验证显示内容发生了变化，缓存会获取一份新的副本并存储在旧文档的位置上；若没有发生变化，缓存只需要获取新的过期日期并更新就可以了。</p>
-<p>正如第2节所说的，缓存可以向原始服务器发送一个“条件GET”来进行再验证。最常见的缓存再验证首部是<code>If-Modified-Since:Date</code>（IMS请求）。只有自某个日期之后资源发生了变化，GET才会成功执行回送新的文档。该首部可以与<code>Last-Modified</code>服务器响应首部配合工作。原始服务器会将最后的修改日期附加到所提供的文档上去。当缓存要再验证时，就会发送携带最后修改日期的IMS请求。</p>
-<p>有一些情况仅使用最后修改日期进行再验证是不够的，例如：有的文档可能会被周期性地重写，尽管内容没变，但修改日期会变；有的文档可能被修改了，但所做修改没必要让世界范围内的缓存都重新获取数据；有的服务器无法准确判定其页面的最后修改日期；有的服务器提供的文档会在秒级以内发生变化，以一秒为粒度的修改日期可能不够用。为了解决这些问题，HTTP允许用户对<strong>实体标签ETag</strong>进行比较。当发布者对文档进行修改时，可以修改文档的实体标签来说明这个新的版本，缓存可以用<code>If-None-Match</code>条件首部来GET文档的新副本。</p>
-<p>如果服务器回送一个ETag，客户端就必须使用实体标签验证器；如果服务器只回送一个Last-Modified值，客户端就可以使用If-Modified-Since验证。如果两者都提供，客户端就应该使用两种验证方案。当服务器同时收到两种方案的请求，只有当两个条件都满足时，才能返回304 Not Modified响应。</p>
-<h1 id="6-控制缓存"><a href="#6-控制缓存" class="headerlink" title="6. 控制缓存"></a>6. 控制缓存</h1><h2 id="6-1-响应首部"><a href="#6-1-响应首部" class="headerlink" title="6.1 响应首部"></a>6.1 响应首部</h2><p>服务器可以通过HTTP定义的几种方式来指定在文档过期之前可以将其缓存多长时间。按照优先级递减的顺序，以下给出了这些控制缓存的首部。</p>
-<ul>
-<li>Cache-Control:no-store：禁止缓存对响应进行复制。缓存会向客户端转发一条no-store响应，然后删除对象。</li>
-<li>Cache-Control:no-cache：实际上可以存储在本地缓存区。只是在与原始服务器进行新鲜度再验证之前，缓存不能将其提供给客户端使用。</li>
-<li>Cache-Control:must-revalidate：缓存是可以提供一些过期的对象的（保存在缓存上的副本有多个版本）。原始服务器可以用这个首部告诉缓存，在事先没有再验证的情况下，不能提供这个对象的过期副本。缓存仍然可以随意提供新鲜的副本。</li>
-<li>Cache-Control:max-age：表示从服务器将文档传来之时起，可以认为此文档处于新鲜状态的秒数。若为0，每次访问都不缓存。</li>
-<li>Expires：指定实际（绝对）的过期日期。但由于很多服务器的时钟不同步或不正确，最好还是使用max-age剩余秒数来表示过期时间。</li>
+</li>
+<li>诚实：通常表现为：不是高手时不假装是高手；乐于承认错误；力图理解编译器的警告，而非弃之不理；透彻理解自己的程序，而不要只是编译看看能否运行；提供实际的状况报告；提供现实的进度方案，在上司面前坚持自己的意见</li>
+<li>交流与合作：真正优秀的程序员知道怎样同别人融洽地工作和娱乐，并且会把提高代码可读性和修改你代码的人放在心上</li>
+<li>创造力和纪律：不要把各种标准和规范的纪律看成是对创造力的约束，相反，许多有很强创造力的人都极其遵守纪律和规范</li>
+<li>偷懒：通常表现为拖延不喜欢的任务（没有任何益处），迅速做完不喜欢的任务以摆脱之（尽管是偷懒，但毕竟用最少时间完成了任务），<strong>编写某个工具来完成不喜欢的任务以便再也不用做这样的事情</strong>（一劳永逸的懒，无疑是最具产值的偷懒形式）</li>
+<li>习惯：优秀的程序员早就养成了编程各方面的良好习惯，而不是最近才培养的。初涉某事时，就应端正态度来学，干了一段时间后，“习惯的力量”就开始起作用。如果没养成最有效的习惯，或者想改掉坏习惯，应该用良好的新习惯去取代，而不是强行杜绝掉坏习惯</li>
 </ul>
-<p>如果响应中没有说明过期时间的首部，缓存可以通过一些算法来计算出一个试探性最大使用期。比如LM-Factor算法利用文档的最后修改日期来计算过期时间。</p>
-<h2 id="6-2-请求首部"><a href="#6-2-请求首部" class="headerlink" title="6.2 请求首部"></a>6.2 请求首部</h2><p>Web浏览器也可以用Cache-Control请求首部来强化或放松对过期时间的限制，下面列举这些首部。</p>
+<h2 id="1-2-不如你想象中那样起作用的性格因素"><a href="#1-2-不如你想象中那样起作用的性格因素" class="headerlink" title="1.2 不如你想象中那样起作用的性格因素"></a>1.2 不如你想象中那样起作用的性格因素</h2><p>注意以下列举的性格都是<strong>反面因素</strong>。</p>
 <ul>
-<li>Cache-Control:max-stale=s：缓存可以随意提供过期的文件。如果指定了参数s，在这段时间内文档就不能过期。这条指令放松了缓存规则。</li>
-<li>Cache-Control:min-fresh=s：至少在未来s秒内文档要保持新鲜。这条指令使缓存规则更加严格。</li>
-<li>Cache-Control:no-cache：除非资源进行了再验证，否则这个客户端不会接受已缓存的资源。</li>
-<li>Cache-Control:no-store：缓存应该尽快从存储器中删除文档的所有痕迹。</li>
-<li>Cache-Control:only-if-cached：只有当缓存中有副本存在时，客户端才会获取一份副本。</li>
+<li>坚持：多数时候软件开发中的坚持其实就是没有好处的“固执”，当在某段新代码上卡壳时，不妨另辟蹊径，尝试重新设计类，或者绕过去，以后回头再试。花好几个小时干掉某一错误确实会有满足感，但实际上早点放弃固有的思路，换个角度可能可以节省更多时间。</li>
+<li>经验：由于软件技术更新换代太快，所谓的“经验”很快就会落伍，程序员要持续学些，保持与时俱进。</li>
+<li>编程狂人：彻夜编程让你感觉像是世上最好的程序员，却要花几个星期去纠正你在短暂辉煌时埋下的失误。可以热爱编程，但热情不能代替熟练的能力，请想明白什么更重要。</li>
 </ul>
-<h2 id="6-3-控制Apache的HTTP首部"><a href="#6-3-控制Apache的HTTP首部" class="headerlink" title="6.3 控制Apache的HTTP首部"></a>6.3 控制Apache的HTTP首部</h2><p>Apache Web服务器提供了几种设置HTTP缓存控制首部的机制，其中很多机制在默认情况下是没有启动的（需要手动启动或自行安装扩展模块）。</p>
+<h1 id="2-软件开发艺术的有关问题"><a href="#2-软件开发艺术的有关问题" class="headerlink" title="2. 软件开发艺术的有关问题"></a>2. 软件开发艺术的有关问题</h1><p>这一章相当于对全书介绍的各种细节背后所折射出的哲学思想做出一个总结。</p>
 <ul>
-<li>mod_headers：该模块可以对单独的首部进行配置，还可以将这些配置与Apache的常用表达式及过滤器结合在一起使用</li>
-<li>mod_expires：可以自动生成带有正确过期日期的Expires首部。</li>
-<li>mod_cern_meta：可以将一个包含HTTP首部的文件与特定的对象联系起来。</li>
+<li>克服复杂性：《代码大全》绝大部分的篇幅都用于阐述如何划分系统模块，抽象类和接口，遵循什么样的编程规范等等，归根结底是为了降低软件的复杂性。</li>
+<li>精选开发过程：对于小的项目，程序员的个人才能对软件质量影响最大，对于多人项目，组织性的重要程度超过了个人技能。关于开发过程的重要性，一个明显的例子是看看在需求还未确定就开始设计和编码的后果。其他有用的开发过程，如增量开发，先设计后编码，先粗调后优化，伪代码编码并不断添加注释等等，均在之前的文章提到过，不再赘述。</li>
+<li>首先为人写程序，其次才是为机器：可读的代码写起来并不比含糊的代码多花时间，得到的好处是巨大的。自己维护，后期重构，复审代码，别人修改程序，统统都要读到代码，因此一次性编写可读性强的代码，是非常经济划算的。即便是自写自用的私有代码，也应该认真对待，因为这是一种优秀的习惯（习惯在上述个人性格中提到过）。</li>
+<li>深入一门语言去编程，不浮于表面：要先考虑要干什么，然后采用手头的工具去实现目标。如果你所用的语言不支持某种你想要的特性，可以尝试用一些变通的方法以最大限度地遵循编程规范，因为规范能帮助你理清环境中的危险特性。</li>
+<li>借助规范集中注意力：规范能够节省程序员回答同样问题的麻烦，能精确地传达重要信息，免除各种编码的危险做法，还能弥补语言的某些不足之处</li>
+<li>基于问题域编程：顶层的代码要说明想解决的问题，而不要充斥各种与文件、数据结构、数据类型有关的操作细节。设计程序时，应考虑下图这样的抽象层次<ul>
+<li><img src="http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%B1%82%E6%AC%A1.png" alt="程序的抽象层次"></li>
 </ul>
-<h2 id="6-4-通过HTML的http-equiv控制HTML缓存"><a href="#6-4-通过HTML的http-equiv控制HTML缓存" class="headerlink" title="6.4 通过HTML的http-equiv控制HTML缓存"></a>6.4 通过HTML的http-equiv控制HTML缓存</h2><p>为了让开发者在无需与服务器配置文件进行交互的情况下，能够更容易地为所提供的HTML文档分配HTTP首部信息，可以使用一个meta标签来控制HTML缓存。例如下面的代码将HTML文档标记为非缓存的。</p>
-<pre><code>&lt;head&gt;
-    &lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-cache&quot;&gt;
-&lt;/head&gt;
-</code></pre><p>但是，通过meta标签并不是控制文档缓存特性的好方法，因为这个可选特性会增加服务器的额外负载，很多服务器或代理也不支持此特性。由经过正确配置的服务器发送的HTTP首部来交流对文档的缓存控制请求是唯一可靠的方法。</p>
-<p>注：本文略过了原书“7.11详细算法”缓存使用期和新鲜度计算算法的内容以及“7.12缓存和广告”的内容。</p>
-<p>参考文献：人民邮电出版社《HTTP权威指南》第7章</p>
+</li>
+<li>留心警告信号：当你或其他人说“这段代码暗藏玄机”时，或者类中含有比平均数目更多的错误，或者发现子程序中有许多判断点、嵌套，或者发现代码有重复，或者发现代码不容易写注释和命名变量，或者编译时出现警告等等，这些都是警告信号。任何警告信号都应让你质疑程序的质量，并促使你去寻求更满意的解决之道。</li>
+<li>一次又一次迭代：需求、设计、开发、测试，软件开发从头到尾每一步都充斥着迭代并逐步精化的过程。所以不要追求所谓的“一步登天”。</li>
+<li><strong>不要</strong>存在软件信仰（即坚持某种做法）<ul>
+<li>折中主义：要对编程问题找出最有效的解决方案时，盲目迷信某种方法只会缩小你的选择余地。折中主义是一种有益的态度，对于每个特定问题，应该将多种方法视为工具箱中的工具。多数时候工具的选择关系不大，但有些场合需要自己判断权衡，挑选最好的工具</li>
+<li>试验：要想有效地试验，应能基于试验结果改变思路。许多顽固的方法源于对错误的畏惧心理，“试图没有错误”是最大的错误。软件开发的各方面，你都应保待开放的心态</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-书单"><a href="#3-书单" class="headerlink" title="3. 书单"></a>3. 书单</h1><p>书中最后一章作者给出了一些建议阅读的经典著作，下面挑选了一部分有中译版本的书（有一些书再版了多次，链接给出的都是最新的版本）组成一个参考书单，供以后学习。</p>
+<ul>
+<li>软件构建类<ul>
+<li><a href="https://book.douban.com/subject/5387402/" target="_blank" rel="external">《程序员修炼之道》</a>（《The Pragmatic Programmer》，Andrew Hunt / David Thomas）</li>
+<li><a href="https://book.douban.com/subject/3227098/" target="_blank" rel="external">《编程珠玑》</a>（《Programming Pearls》，Jon Bentley）</li>
+<li><a href="https://book.douban.com/subject/6524000/" target="_blank" rel="external">《程序设计实践<strong>（评注版）</strong>》</a>（《The Practice of Programming》，Brian W. Kernighan / Rob Pike），注意这本书市面上没有很好的中译本，只有最新的这本评注版</li>
+</ul>
+</li>
+<li>软件工程综述类<ul>
+<li><a href="https://book.douban.com/subject/26419766/" target="_blank" rel="external">《软件开发心理学》</a>（《The Psychology of Computer Programming》，Gerald M. Weinberg）</li>
+<li><a href="https://book.douban.com/subject/2230248/" target="_blank" rel="external">《人月神话》</a>（《The Mythical Man-Month》，Frederick P.Brooks）</li>
+<li><a href="https://book.douban.com/subject/6047742/" target="_blank" rel="external">《软件工程：实践者的研究方法》</a>（《The Mythical Man-Month》，Roger S.Pressman）</li>
+</ul>
+</li>
+</ul>
+<p>参考文献：电子工业出版社《代码大全（第2版）》第33、34、35章</p>
 
             </div>
         </div>
@@ -515,7 +518,7 @@
         <div class="card">
             <div class="card-content">
                 <!-- Duoshuo Comment BEGIN -->
-                <div class="ds-thread" data-thread-key="tech/web/http/HTTP-cache/" data-title="HTTP学习笔记：缓存" data-url="http://raytaylorlin.com/tech/web/http/HTTP-cache/"></div>
+                <div class="ds-thread" data-thread-key="tech/complex/software/software-construction-15/" data-title="软件构建（十五）——尾声" data-url="http://raytaylorlin.com/tech/complex/software/software-construction-15/"></div>
 
                 <script type="text/javascript">
                     console.log(document.querySelector('.ds-thread'));
