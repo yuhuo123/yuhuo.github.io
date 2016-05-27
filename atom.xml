@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-05-14T14:25:11.990Z</updated>
+  <updated>2016-05-27T09:20:51.758Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>游戏引擎架构总览</title>
+    <link href="http://raytaylorlin.com/tech/game/engine/game-engine-architecture-preview/"/>
+    <id>http://raytaylorlin.com/tech/game/engine/game-engine-architecture-preview/</id>
+    <published>2016-05-27T09:07:53.000Z</published>
+    <updated>2016-05-27T09:20:51.758Z</updated>
+    
+    <content type="html">&lt;p&gt;游戏引擎通常由运行时组件和工具套件两部分构成。本文先探讨运行时部分的架构，给出了一个不包含工具的极其庞大的总览图（如果时间有限仅看此图即可），并对图中每一组件进行描述，最后再阐述工具方面的内容。如同所有软件系统，游戏引擎也是以软件层构建的，而且通常上层依赖下层，下层不依赖上层。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-运行时引擎架构&quot;&gt;&lt;a href=&quot;#1-运行时引擎架构&quot; class=&quot;headerlink&quot; title=&quot;1. 运行时引擎架构&quot;&gt;&lt;/a&gt;1. 运行时引擎架构&lt;/h1&gt;&lt;p&gt;下图为游戏运行时引擎架构的总览图，本图相对原书标上了序号，以方便下面各节阐述时对应其位置，并省略了一些细节的组成部分。&lt;strong&gt;图片较大，建议在新标签页中打开图片查看。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fengine%2F%E6%B8%B8%E6%88%8F%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84.png&quot; alt=&quot;游戏运行时引擎架构&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-1-硬件与操作系统&quot;&gt;&lt;a href=&quot;#1-1-硬件与操作系统&quot; class=&quot;headerlink&quot; title=&quot;1.1 硬件与操作系统&quot;&gt;&lt;/a&gt;1.1 硬件与操作系统&lt;/h2&gt;&lt;p&gt;图中的A1为目标硬件层，代表用来执行游戏的计算机系统或游戏主机。典型平台包括基于微软Windows或Linux的PC、苹果的iPhone及Machintosh、微软的Xbox360、索尼的PS4/PSP、任天堂的NDS/Wii等等。&lt;/p&gt;
+&lt;p&gt;图中的A2是设备驱动程序，是由操作系统或硬件厂商提供的最低阶软件组件。驱动程序负责管理硬件资源，也隔离了操作系统及上层引擎，使上层的软件无须理解不同硬件版本的通信细节差异。&lt;/p&gt;
+&lt;p&gt;图中的A3是操作系统。在PC上操作系统是一直运行的，PC游戏不能假设拥有硬件的所有控制权；而在游戏主机上，操作系统通常只是个轻量级的库，链接到游戏的执行档里。不过像Xbox 360和PS3这些新主机中，操作系统也会中断游戏的执行，接管某些系统资源以显示在线信息。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-第三方软件开发包和中间件&quot;&gt;&lt;a href=&quot;#1-2-第三方软件开发包和中间件&quot; class=&quot;headerlink&quot; title=&quot;1.2 第三方软件开发包和中间件&quot;&gt;&lt;/a&gt;1.2 第三方软件开发包和中间件&lt;/h2&gt;&lt;p&gt;图中的B表明大多数游戏引擎会借用第三方SDK及中间件（middleware），SDK提供基于函数或基于类的API。下面是一些常见的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据结构及算法：如STL、STLport、Boost、Loki。因为PC上有虚拟内存系统，所以可以无碍使用STL，而游戏主机上，只有有限的（甚至没有）虚拟内存功能，而且缓存命中失败的代价极高，所以最好编写自定义的数据结构&lt;/li&gt;
+&lt;li&gt;图形：如DirextX、OpenGL、libgcm、Edge等&lt;/li&gt;
+&lt;li&gt;碰撞和物理：如Havok、PhysX、ODE（Open Dynamics Engine）等&lt;/li&gt;
+&lt;li&gt;角色动画：如Granny、Havok Animation、Edge等&lt;/li&gt;
+&lt;li&gt;人工智能：如Kynapse，提供低阶的AI构件，例如路径搜寻、静态和动态物体回避、空间内的脆弱点辨认，以及相当好的AI和动画间接口&lt;/li&gt;
+&lt;li&gt;生物力学角色模型：如Endorphin、Euphoria等，利用了真实人类运动的高阶生物力学模型，去产生角色动作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-3-平台独立层&quot;&gt;&lt;a href=&quot;#1-3-平台独立层&quot; class=&quot;headerlink&quot; title=&quot;1.3 平台独立层&quot;&gt;&lt;/a&gt;1.3 平台独立层&lt;/h2&gt;&lt;p&gt;图中的C为平台独立层。大部分游戏引擎需要运行于不同的平台上，该层包装了常用的标准C语言库、操作系统调用及其他基础API，确保包装了的接口在所有硬件平台上均为一致。&lt;/p&gt;
+&lt;h2 id=&quot;1-4-核心系统&quot;&gt;&lt;a href=&quot;#1-4-核心系统&quot; class=&quot;headerlink&quot; title=&quot;1.4 核心系统&quot;&gt;&lt;/a&gt;1.4 核心系统&lt;/h2&gt;&lt;p&gt;游戏引擎以及其他大规模复杂C++应用软件，都需要一些有用的实用软件（utility)，统称为“核心系统”，即图中的D。以下是一些核心系统层的常见功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内存管理：几乎每个游戏引擎都有若干个自定义内存分配系统，以保证高速的内存分配及释放，并控制内存碎片所造成的负面影响&lt;/li&gt;
+&lt;li&gt;数学库：游戏本质上就是高度数学密集的，所以每个游戏引擎都有若干个数学库，提供矢量、矩阵、四元数旋转、三角学、数值积分、解方程组，以及其他游戏程序员需要的功能&lt;/li&gt;
+&lt;li&gt;自定义数据结构及算法：除非引擎设计者想完全依靠第三方软件包，否则引擎通常要提供一组工具去管理基础数据结构和算法，以减少或完全消去动态内存分配，并保证在目标平台上的运行效率为最优&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-5-资源管理&quot;&gt;&lt;a href=&quot;#1-5-资源管理&quot; class=&quot;headerlink&quot; title=&quot;1.5 资源管理&quot;&gt;&lt;/a&gt;1.5 资源管理&lt;/h2&gt;&lt;p&gt;图中的E为资源管理器，提供一组统一的接口去访问任何类型的游戏资产及其他引擎输入数据。有些引擎使用高度集中及一致的方式（例如虚幻的包package、OGRE的ResourceManager类）。其他引擎使用专案（ad hoc）方法，比如让程序员直接读取磁盘的或压缩的文件（如雷神之锤引擎使用的PAK文件）。&lt;/p&gt;
+&lt;h2 id=&quot;1-6-渲染引擎&quot;&gt;&lt;a href=&quot;#1-6-渲染引擎&quot; class=&quot;headerlink&quot; title=&quot;1.6 渲染引擎&quot;&gt;&lt;/a&gt;1.6 渲染引擎&lt;/h2&gt;&lt;p&gt;任何游戏引擎中，渲染引擎是最大及最复杂的组件之一。渲染器有很多不同的架构方式，通常采用分层架构。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;低阶渲染器（图中F1）：包含引擎中全部原始的渲染功能，着重于高速渲染丰富的几何图元集合&lt;ul&gt;
+&lt;li&gt;图形设备接口：使用图形SDK（如DirectX及OpenGL），都需要编写不少代码去枚举图形设备，初始化设备，建立渲染表面等，这些工作通常由图形设备接口组件负责&lt;/li&gt;
+&lt;li&gt;其他渲染器组件：目的是要收集须提交的几何图元，包括网格、线表、点表、例子、地形块、字符串等等。低阶渲染器还提供视区（viewport）抽象、材质系统及动态光照系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;场景图/剔除优化（图中F2）：该层基于某些可视性判别算法去限制低阶渲染器提交的图元数量。非常小的游戏世界可能只需要简单的平截头体剔除算法，比较大的游戏世界则可能需要较高阶的空间细分数据结构，令渲染更有效率&lt;/li&gt;
+&lt;li&gt;视觉效果（图中F3）：支持广泛的视觉效果，例如粒子系统（烟、火、水花等）、贴花系统（弹孔、脚印等），还有一些全屏幕后期处理，例如高动态范围光照（HDR）、敷霜效果、全屏抗锯齿（FSAA）、颜色校正等等&lt;/li&gt;
+&lt;li&gt;前端（图中F4）：该层主要用于显示2D图形，如平视显示器（HUD）、GUI界面等等，通常会用附有纹理的四边形结合正射投影来渲染，或者用完全三维的四边形公告板（billboard）渲染&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-7-剖析与调试工具&quot;&gt;&lt;a href=&quot;#1-7-剖析与调试工具&quot; class=&quot;headerlink&quot; title=&quot;1.7 剖析与调试工具&quot;&gt;&lt;/a&gt;1.7 剖析与调试工具&lt;/h2&gt;&lt;p&gt;图中的G用于剖析调优性能，分析内存。还包含了游戏内置调试功能，包括调试用绘图、内置菜单、主控台、录制回放游戏过程等。市场上有很多优良的通用软件剖析工具，如VTune、Quantify、Purify等等，但是多数游戏也会加入自制的剖析与调试工具以应对特殊需求。&lt;/p&gt;
+&lt;h2 id=&quot;1-8-碰撞和物理&quot;&gt;&lt;a href=&quot;#1-8-碰撞和物理&quot; class=&quot;headerlink&quot; title=&quot;1.8 碰撞和物理&quot;&gt;&lt;/a&gt;1.8 碰撞和物理&lt;/h2&gt;&lt;p&gt;图中的H为碰撞与物理组件。游戏中如果没有碰撞检测，物体会互相穿透，并且无法在虚拟世界里合理地互动。碰撞和物理系统一般是紧密联系的，因为当碰撞发生时，碰撞几乎总是由物理积分及约束满足逻辑来解决。一些游戏还包含真实或半真实的刚体动力学模拟。时至今日，游戏引擎通常使用第三方的物理SDK，如Havok、PhysX和ODE。&lt;/p&gt;
+&lt;h2 id=&quot;1-9-动画&quot;&gt;&lt;a href=&quot;#1-9-动画&quot; class=&quot;headerlink&quot; title=&quot;1.9 动画&quot;&gt;&lt;/a&gt;1.9 动画&lt;/h2&gt;&lt;p&gt;图中的I为动画系统，游戏常会用到精灵/纹理动画、刚体层次结构动画、骨骼动画、每顶点动画、变形目标动画5种基本动画。现今游戏&lt;br&gt;中，骨骼动画是最盛行的动画方式。此外，骨骼网格渲染组件是连接渲染器和动画系统的桥梁，这些组件合作渲染的过程称为蒙皮（skinning）。&lt;/p&gt;
+&lt;p&gt;当使用布娃娃系统时，动画和物理系统便产生紧密耦合，这是因为布娃娃是无力的（经常是死了的）角色，其运动完全由物理系统模拟。物理系统把布娃娃当作受约束的刚体系统，用模拟来决定身体每部分的位置及方向。&lt;/p&gt;
+&lt;h2 id=&quot;1-10-人体学接口设备&quot;&gt;&lt;a href=&quot;#1-10-人体学接口设备&quot; class=&quot;headerlink&quot; title=&quot;1.10 人体学接口设备&quot;&gt;&lt;/a&gt;1.10 人体学接口设备&lt;/h2&gt;&lt;p&gt;图中的J用于处理玩家输入，包括键盘鼠标、游戏手柄及其他专用游戏控制器（如方向盘、跳舞毯、Wii遥控器等）。除了输入功能，一些设备也提供输出，如游戏手柄的震动、Wii遥控器的音频输出等。&lt;/p&gt;
+&lt;p&gt;在架构HID引擎时，通常让硬件的低阶细节与高阶游戏操作脱钩。HID引擎从硬件取得原始数据，为控制器的每个摇杆设置环绕中心点的死&lt;br&gt;区，去除按钮抖动，检测按下和释放按钮事件，演绎加速计的输入并使该输入平滑。HID引擎也可能包含一个系统，负责检测弦（chord）（即数个按钮一起按下）、序列（即接钮在时限内顺序按下）、手势（即按钮、摇杆、加速计等输入的序列）。&lt;/p&gt;
+&lt;h2 id=&quot;1-11-音频&quot;&gt;&lt;a href=&quot;#1-11-音频&quot; class=&quot;headerlink&quot; title=&quot;1.11 音频&quot;&gt;&lt;/a&gt;1.11 音频&lt;/h2&gt;&lt;p&gt;图中的K为音频引擎。一些游戏团队会为这些引擎加入自定义功能，或用内部方案替换，例如微软为DirectX平台提供一个名为XACT的优秀的音频工具包，艺电也开发了内部的音频引擎SoundR!OT。然而，即使游戏团队用既有的音频引擎，开发每个游戏时仍然需要大量的定制软件开发、整合工作及注意细节，才可以制作出有高质量音频的最终产品。&lt;/p&gt;
+&lt;h2 id=&quot;1-12-在线多人-网络&quot;&gt;&lt;a href=&quot;#1-12-在线多人-网络&quot; class=&quot;headerlink&quot; title=&quot;1.12 在线多人/网络&quot;&gt;&lt;/a&gt;1.12 在线多人/网络&lt;/h2&gt;&lt;p&gt;图中的L为在线多人/网络组件。多人游戏有单屏多人、切割平多人、网络多人、大型多人在线等多种基本形式。支持多人游戏，会深切影响到游戏世界对象模型、人体学接口设备系统、玩家控制系统、动画系统等多个组件的设计。把一个现有的担任引擎改装成多人引擎的难度是非常大的，但如果反过来则比较简单——许多游戏引擎把单人游戏模式当做是一个玩家参与的多人游戏。&lt;/p&gt;
+&lt;h2 id=&quot;1-13-游戏性基础系统&quot;&gt;&lt;a href=&quot;#1-13-游戏性基础系统&quot; class=&quot;headerlink&quot; title=&quot;1.13 游戏性基础系统&quot;&gt;&lt;/a&gt;1.13 游戏性基础系统&lt;/h2&gt;&lt;p&gt;游戏性（gameplay）是指：游戏内进行的活动、支配游戏虚拟世界的规则、玩家角色的能力（也称为玩家机制）、其他角色和对象的能力、玩家的长短期目标。游戏性编程除了用引擎的原生语言，通常还会使用高阶的脚本语言，为了连接低阶的引擎子系统和游戏性代码，多数游戏引擎会引入一个软件层，即图中的M。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;游戏世界和游戏对象模型：游戏世界含动态与静态的元素，而典型的游戏对象有静态背景几何物体（如建筑、地形）、动态刚体（如石头、椅子）、玩家角色、NPC、武器、抛射物、载具、光源、摄像机&lt;/li&gt;
+&lt;li&gt;事件系统：事件驱动架构常用于游戏对象间的通信&lt;/li&gt;
+&lt;li&gt;脚本系统：使用脚本语言来编写游戏独有的游戏性规则和内容，可以快速开发，避免重新编译链接&lt;/li&gt;
+&lt;li&gt;人工智能基础：像Kynapse这种商用AI引擎，抽象了大多数AI系统共有的模式，在这个基础层上可以很容易地开发个别游戏的逻辑。其功能包括用路径节点和漫游体积组成网络定义AI角色可行走的地区和路径，在漫游地区边界周围的简化碰撞信息，A*路径搜寻，联系碰撞系统及世界模型进行视线追踪及其他感知，AI决策层架构等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-14-个别游戏专用子系统&quot;&gt;&lt;a href=&quot;#1-14-个别游戏专用子系统&quot; class=&quot;headerlink&quot; title=&quot;1.14 个别游戏专用子系统&quot;&gt;&lt;/a&gt;1.14 个别游戏专用子系统&lt;/h2&gt;&lt;p&gt;如图中的N，每个游戏都有若干自身特有的游戏性系统。如果可以清楚地分开引擎和游戏，这条分界线会位于特定游戏专用子系统和游戏性基础软件层之间。实际上，这条分界线永远不会是完美的。一些游戏的特定知识，总是会向下渗透到游戏基础软件层中，更有甚者会延伸至引擎核心。&lt;/p&gt;
+&lt;h1 id=&quot;2-工具套件&quot;&gt;&lt;a href=&quot;#2-工具套件&quot; class=&quot;headerlink&quot; title=&quot;2. 工具套件&quot;&gt;&lt;/a&gt;2. 工具套件&lt;/h1&gt;&lt;h2 id=&quot;2-1-数字内容创作工具&quot;&gt;&lt;a href=&quot;#2-1-数字内容创作工具&quot; class=&quot;headerlink&quot; title=&quot;2.1 数字内容创作工具&quot;&gt;&lt;/a&gt;2.1 数字内容创作工具&lt;/h2&gt;&lt;p&gt;游戏本质上是多媒体应用。游戏引擎的输入数据形式广泛，例如三维网格数据、纹理位图、动画数据、音频文件等。所有源数据皆由美术或音效师等专业人员使用数字内容创作（Digital Content Creation，DCC）应用软件制作，如Maya、3ds Max、Photoshop、SoundForge等等。有些游戏引擎提供专门的设计游戏世界的编辑器，而有的团队会在现有软件像3ds Max的基础上开发插件去设计场景，甚至用简单的位图编辑器去制作地形高度图。总之，游戏团队想要及时开发高完成度的产品，工具必须&lt;strong&gt;相对易用&lt;/strong&gt;，并且&lt;strong&gt;绝对可靠&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-资产（asset）调节管道&quot;&gt;&lt;a href=&quot;#2-2-资产（asset）调节管道&quot; class=&quot;headerlink&quot; title=&quot;2.2 资产（asset）调节管道&quot;&gt;&lt;/a&gt;2.2 资产（asset）调节管道&lt;/h2&gt;&lt;p&gt;DCC所生成的数据格式，很少有直接用于游戏中的，原因有两点：生成的数据格式通常比游戏所需的复杂得多，游戏引擎只需其中一小部分信息；直接读取速度过慢，而且有些格式是不公开的专有格式。因此，DCC软件制作的数据，通常要导出为容易读取的标准格式或自定义格式，有时还需要针对不同平台进行再处理，以便在游戏中使用。从DCC到游戏引擎的管道，就是所谓的资产调节管道。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-常见的游戏资产数据&quot;&gt;&lt;a href=&quot;#2-3-常见的游戏资产数据&quot; class=&quot;headerlink&quot; title=&quot;2.3 常见的游戏资产数据&quot;&gt;&lt;/a&gt;2.3 常见的游戏资产数据&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;几何图形数据&lt;ul&gt;
+&lt;li&gt;笔刷集合图形：由凸包集合定义，每个凸包则由多个平面定义。其优点是制作迅速简单，便于设计师建立粗略的原型，也可用作碰撞体积；缺点是分辨率低难以制作复杂图形，不能支持有关节的物体或运动角色&lt;/li&gt;
+&lt;li&gt;三维模型/网格：由三角形和顶点组成，每个网格使用若干个材质。网格通常在三维建模软件里制作，并且需要专用的导出器来导出游戏引擎可读的格式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;骨骼动画数据：骨骼网格是一种为关节动画而绑定到骨骼层次结构之上的特殊网格，游戏引擎需要网格本身、骨骼层次结构和若干动画片段3种数据来渲染骨骼网络&lt;/li&gt;
+&lt;li&gt;音频数据：由专业的音频制作工具导出，有不同格式和采样率。音频文件通常组织成音频库，以方便管理，载入及串流。&lt;/li&gt;
+&lt;li&gt;粒子系统数据：由视觉特效设计师使用第三方工具（如Houdini）或引擎自带的粒子效果编辑工具制作&lt;/li&gt;
+&lt;li&gt;游戏世界数据：不少商用游戏引擎会提供优良的世界编辑器，用于编辑游戏世界&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考文献：电子工业出版社《游戏引擎架构》第1.6、1.7节&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;游戏引擎通常由运行时组件和工具套件两部分构成。本文先探讨运行时部分的架构，给出了一个不包含工具的极其庞大的总览图（如果时间有限仅看此图即可），并对图中每一组件进行描述，最后再阐述工具方面的内容。如同所有软件系统，游戏引擎也是以软件层构建的，而且通常上层依赖下层，下层不依赖上层。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="架构" scheme="http://raytaylorlin.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>软件构建（十五）——尾声</title>
@@ -2043,80 +2136,6 @@ tags:
     <summary type="html">
     
       &lt;p&gt;游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="服务器端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
-    
-    
-      <category term="网络游戏编程" scheme="http://raytaylorlin.com/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络游戏编程基础知识</title>
-    <link href="http://raytaylorlin.com/tech/game/server/network-programming/"/>
-    <id>http://raytaylorlin.com/tech/game/server/network-programming/</id>
-    <published>2015-11-11T02:27:40.000Z</published>
-    <updated>2016-02-09T12:31:39.857Z</updated>
-    
-    <content type="html">&lt;p&gt;本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-开发者需了解的网络编程基础&quot;&gt;&lt;a href=&quot;#1-开发者需了解的网络编程基础&quot; class=&quot;headerlink&quot; title=&quot;1. 开发者需了解的网络编程基础&quot;&gt;&lt;/a&gt;1. 开发者需了解的网络编程基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-网络游戏对应的OSI模型&quot;&gt;&lt;a href=&quot;#1-1-网络游戏对应的OSI模型&quot; class=&quot;headerlink&quot; title=&quot;1.1 网络游戏对应的OSI模型&quot;&gt;&lt;/a&gt;1.1 网络游戏对应的OSI模型&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏对应的OSI模型.png&quot; alt=&quot;网络游戏对应的OSI模型&quot;&gt;&lt;/p&gt;
-&lt;p&gt;一般来说，第4层以下的分层，交由操作系统来处理即可。第4层大多使用TCP，只有在有必要的情况下才使用UDP（例如&lt;strong&gt;发送那些与可靠性相比到达速度更为重要的数据&lt;/strong&gt;（如FPS游戏），实现NAT遍历功能等等）。由于游戏类型和策划内容千差万别无法统一，第5层及以上的功能需要网游开发人员自己实现。&lt;/p&gt;
-&lt;h2 id=&quot;1-2-网络编程特性与游戏架构的关系&quot;&gt;&lt;a href=&quot;#1-2-网络编程特性与游戏架构的关系&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络编程特性与游戏架构的关系&quot;&gt;&lt;/a&gt;1.2 网络编程特性与游戏架构的关系&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;C/S架构游戏（C/S MMO、C/S MO）：高性能高功能服务器端编程+一般程度的客户端编程&lt;/li&gt;
-&lt;li&gt;P2P架构游戏（P2P MO）：一般程度的服务器编程+高性能高功能呢的客户端编程（因为客户端要扮演服务器的角色）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;高性能高功能服务器的特性：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;小带宽：每秒几次至20几次，达到几百位通信量的持续连接&lt;/li&gt;
-&lt;li&gt;极高的连接数：每台服务器需要维持数千至数万个连接&lt;/li&gt;
-&lt;li&gt;低延迟：处理并返回结果的延迟，只能在几毫秒至20毫秒以内&lt;/li&gt;
-&lt;li&gt;稳定：服务器端保持游戏状态、敌人等可以移动的物体实时地持续行动&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;与服务器端相比，客户端的连接数较少，但是需要进行渲染等重要处理，还必须在延迟很低的情况下进行通信，并应对网络状况的多样性（如防火墙、各ISP的策略间差异等等）。&lt;/p&gt;
-&lt;h1 id=&quot;2-套接字API&quot;&gt;&lt;a href=&quot;#2-套接字API&quot; class=&quot;headerlink&quot; title=&quot;2. 套接字API&quot;&gt;&lt;/a&gt;2. 套接字API&lt;/h1&gt;&lt;h2 id=&quot;2-1-网络游戏中的套接字API&quot;&gt;&lt;a href=&quot;#2-1-网络游戏中的套接字API&quot; class=&quot;headerlink&quot; title=&quot;2.1 网络游戏中的套接字API&quot;&gt;&lt;/a&gt;2.1 网络游戏中的套接字API&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/Berkeley%E5%A5%97%E6%8E%A5%E5%AD%97&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BSD套接字API&lt;/a&gt;（即Scoket API）是为了实现互联网连接而开发的API，是在所有操作系统上进行网络开发的首选。关于套接字API编程基础可见WIKI及网上各种资料。&lt;/p&gt;
-&lt;p&gt;使用第4层的套接字API，可以在不具可靠性的IP协议上实现两种类型的通信：一种是&lt;strong&gt;面向连接的流式（Stream）通信&lt;/strong&gt;，在简历了连接的两台主机间维持通信线路畅通，保证通信持续进行；另一种是&lt;strong&gt;无连接的数据报（DGram）通信&lt;/strong&gt;，只进行一次数据报交换，不维持主机间的通信线路。&lt;/p&gt;
-&lt;p&gt;套接字API中的&lt;code&gt;accept()&lt;/code&gt;函数在“新的连接请求到来前一直等待着”，显然不能满足网络游戏服务器为多个客户端同时提供服务的要求。为了解决这个问题必须处理多个并发连接，方法大致有：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;每次连接时启动一个进程：&lt;strong&gt;不可用&lt;/strong&gt;，因为网络游戏中需要多个用户连接实时共享同一个游戏状态&lt;/li&gt;
-&lt;li&gt;使用线程并行进行同步处理：&lt;strong&gt;不可用&lt;/strong&gt;，几千个连接启动几千个线程会使服务器性能大幅下降&lt;/li&gt;
-&lt;li&gt;异步多重输入输出：使用&lt;code&gt;select&lt;/code&gt;函数事先查询所带的消息（数据及连接请求）是否已经到达，即轮询。（使用&lt;code&gt;poll&lt;/code&gt;及更高速的&lt;code&gt;epoll&lt;/code&gt;函数也可实现同样的功能&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;网络游戏编程中同时处理数千个可移动物体是很平常的，因此客户端和服务器端通常都使用select（或poll/epoll）在&lt;strong&gt;单线程&lt;/strong&gt;中实现简单的&lt;strong&gt;事件驱动&lt;/strong&gt;的&lt;strong&gt;非阻塞&lt;/strong&gt;模式。通过这种模式，还可以充分发挥出&lt;strong&gt;多核&lt;/strong&gt;服务器的性能。&lt;/p&gt;
-&lt;p&gt;实现服务器端的最佳程序库是&lt;a href=&quot;http://libevent.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;libevent&lt;/a&gt;，这是一个跨平台的基于事件和回调的库，全世界应用广泛，不管是性能还是稳定性都比较成熟。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-多核处理器与网络吞吐量&quot;&gt;&lt;a href=&quot;#2-2-多核处理器与网络吞吐量&quot; class=&quot;headerlink&quot; title=&quot;2.2 多核处理器与网络吞吐量&quot;&gt;&lt;/a&gt;2.2 多核处理器与网络吞吐量&lt;/h2&gt;&lt;p&gt;服务器通常用以太网连接至数据中心的网络中，通信速度为1Gbit。但是网游中经常会发送大量的小数据包，由于以太网在发送IP数据包时会向数据包中添加IP数据意外的信息一起发送，所以实际上应用程序能够使用的带宽要更小。&lt;/p&gt;
-&lt;p&gt;根据经验，将理论值的1/10作为基准，1Gbit/s以太网每秒可以发送100MB的数据，能够发送的数据包最好以每秒10W-15W为上限。如果在有10个内核的机器使用1Gbit/s以太网，每个内核可以处理大约1W个数据包，若同时连接数为每个内核1000个连接，则每个连接必须设计为发送频率限制在10次/s以内；或者，安装多个网络适配器，连接4根LAN电缆来实现4倍的吞吐量。&lt;/p&gt;
-&lt;h1 id=&quot;3-RPC通信中间件&quot;&gt;&lt;a href=&quot;#3-RPC通信中间件&quot; class=&quot;headerlink&quot; title=&quot;3. RPC通信中间件&quot;&gt;&lt;/a&gt;3. RPC通信中间件&lt;/h1&gt;&lt;p&gt;远程过程调用协议RPC（Remote Procedure Call），将与通信有关的一些复杂细节封装起来，与一般的函数调用形式相同，是确保与远程主机进行简单、安全通信的一种方法。有了RPC，就不需要直接使用复杂的套接字API进行网络编程了。&lt;/p&gt;
-&lt;h2 id=&quot;3-1-通信库的必要性&quot;&gt;&lt;a href=&quot;#3-1-通信库的必要性&quot; class=&quot;headerlink&quot; title=&quot;3.1 通信库的必要性&quot;&gt;&lt;/a&gt;3.1 通信库的必要性&lt;/h2&gt;&lt;p&gt;单纯使用套接字API之所以会很复杂，是因为会根据网络状况产生这些问题：不一定能成功收发期望数据，之后需要再次调用；可能会发生错误；发送缓存满了的话，write()函数会等待；发送了不完整的内容。&lt;/p&gt;
-&lt;p&gt;套接字API中的send在发送成功前不会阻塞，每次编写错误处理造成的代码重复也是引起很多错误的根源。因此需要一个能独自负责这些工作的程序库，这个库应首先针对网络的IO要求装入缓存中，接着准确地执行，再将数据发送出去直至完成，若一段时间内无法发送则返回错误信息。总而言之，通信库会对诸如&lt;code&gt;send&lt;/code&gt;这样的函数进行封装，并确定像&lt;code&gt;[数据类型代码][数据内容]&lt;/code&gt;的数据格式，来收发数据。&lt;/p&gt;
-&lt;h2 id=&quot;3-2-网游中使用的RPC整体结构&quot;&gt;&lt;a href=&quot;#3-2-网游中使用的RPC整体结构&quot; class=&quot;headerlink&quot; title=&quot;3.2 网游中使用的RPC整体结构&quot;&gt;&lt;/a&gt;3.2 网游中使用的RPC整体结构&lt;/h2&gt;&lt;p&gt;RPC的基本原理是在本地模拟远程主机的函数调用，主要通过将数据流进行编码后发送出去，远程主机接收数据并解码，然后调用相应的函数。下图展示了网游中RPC的基本模式。注意到调用侧应用程序调用了&lt;code&gt;attackAtEnemy&lt;/code&gt;函数，该函数定义在源文件“RPC存根代码”中，存根代码是用工具自动生成的，不需要手工编写。其中“123”固定值表示要调用&lt;code&gt;attackAtEnemy&lt;/code&gt;这个函数，“99”表示要攻击id为99的敌人。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/server/网络游戏中使用的RPC模式.jpg&quot; alt=&quot;网络游戏中使用的RPC模式&quot;&gt;&lt;/p&gt;
-&lt;p&gt;RPC存根代码文件中调用方和被调用方的函数参数列表必须完全一致，如果有大量函数，应该采用RPC工具来自动生成。通常使用Ruby或Python等很容易进行DSL（领域特定语言）定义的语言来设计&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%8E%A5%E5%8F%A3%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;IDL（接口描述语言）&lt;/a&gt;，然后执行脚本生成存根函数的源代码和头文件。&lt;/p&gt;
-&lt;h1 id=&quot;4-确保开发效率和可移植性&quot;&gt;&lt;a href=&quot;#4-确保开发效率和可移植性&quot; class=&quot;headerlink&quot; title=&quot;4. 确保开发效率和可移植性&quot;&gt;&lt;/a&gt;4. 确保开发效率和可移植性&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;正式服务器采用Linux，但开发环境则是在Windows下用Visual Studio以高效地开发&lt;/li&gt;
-&lt;li&gt;服务器端和客户端在碰撞检测等方面使用相同的游戏处理代码，确保可移植性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;为了降低操作系统的差异性，需要对以下这些基础API进行封装以保持可移植性：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;内存管理：malloc几乎在所有的操作系统中都会使用，所以很容易封装&lt;/li&gt;
-&lt;li&gt;套接字API：Windows和UNIX系统（包括iOS）有所不同&lt;/li&gt;
-&lt;li&gt;线程：封装pthread的基本API即可&lt;/li&gt;
-&lt;li&gt;信号：远程管理服务器的情况下需要使用信号，但这是一种可移植性很低的方法，并不推荐&lt;/li&gt;
-&lt;li&gt;事件与计时：使用libevent&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;网络编程中，对所有套接字调用select函数进行轮询，对于需要处理的内容执行read和write操作，调用回调函数来逐个处理；在客户端游戏编程中，对所有可移动物体以帧为单位进行轮询，对于需要进行处理的物体调用回调函数来使其行动。因此，无论是服务器端还是客户端，大多使用&lt;strong&gt;单线程&lt;/strong&gt;来完成开发。&lt;/p&gt;
-&lt;p&gt;参考文献：人民邮电出版社《网络游戏核心技术与实战》第0章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文首先介绍网络游戏开发者需了解的网络编程基础，包括对应的OSI七层分层模型，与游戏架构的关系。然后介绍套接字API及RPC相关的内容。&lt;/p&gt;
     
     </summary>
     
