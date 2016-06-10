@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-05-27T09:20:51.758Z</updated>
+  <updated>2016-06-10T14:11:50.638Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,102 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>游戏引擎支持系统（上）</title>
+    <link href="http://raytaylorlin.com/tech/game/engine/engine-support-system-1/"/>
+    <id>http://raytaylorlin.com/tech/game/engine/engine-support-system-1/</id>
+    <published>2016-06-10T14:02:07.000Z</published>
+    <updated>2016-06-10T14:11:50.638Z</updated>
+    
+    <content type="html">&lt;p&gt;每个游戏都需要一些底层支持系统，以管理一些例行却关键的任务，例如启动及终止引擎、存取文件系统、存取各种不同资产类型（网格、纹理、动画、音频等），以及为游戏团队提供调试工具。本文（分上下篇）重点讨论多数游戏引擎中都会出现的底层支持系统，为后续探索大型的核心系统做准备。其中上篇将讨论子系统的启动和终止的顺序管理，以及各种动态内存分配器和碎片整理等内存管理问题。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-子系统的启动和终止&quot;&gt;&lt;a href=&quot;#1-子系统的启动和终止&quot; class=&quot;headerlink&quot; title=&quot;1. 子系统的启动和终止&quot;&gt;&lt;/a&gt;1. 子系统的启动和终止&lt;/h1&gt;&lt;p&gt;游戏引擎是复杂软件，由多个互相合作的子系统结合而成。各子系统间的相互依赖关系，隐含地定义了每个子系统所需的启动次序，例如子系统B依赖子系统A，那么先启动A，再启动B，而各子系统的终止顺序则相反。&lt;/p&gt;
+&lt;p&gt;多数游戏引擎都是采用C++为编程语言，所以应该考虑C++原生的语法如何供启动及终止子系统所用。通常，每个子系统会被设计为单例（或称为管理器manager）。最有效的简单方法是，每个单例管理器的构造和析构函数不做任何事，而是自定义各自的&lt;code&gt;startUp()&lt;/code&gt;和&lt;code&gt;shutDown()&lt;/code&gt;方法，然后在main函数中调用控制各系统启动和终止的顺序。&lt;/p&gt;
+&lt;p&gt;还有更优雅的实现方式，例如让各管理器把自己登记在一个全局的优先队列，之后再按恰当次序逐一启动；或者让每个管理器列举其依赖的管理器，定义一个管理器间的依赖图，再计算最优的启动次序。总之，蛮力法虽然粗暴，但是简单容易实现，非常容易调试和维护，是首选的方法。&lt;/p&gt;
+&lt;h1 id=&quot;2-内存管理&quot;&gt;&lt;a href=&quot;#2-内存管理&quot; class=&quot;headerlink&quot; title=&quot;2. 内存管理&quot;&gt;&lt;/a&gt;2. 内存管理&lt;/h1&gt;&lt;p&gt;任何软件的性能，不仅受算法的选择和算法编码的效率所支配，程序如何运用内存也是重要因素。内存对性能的影响有动态内存分配、内存碎片和缓存等方面。&lt;/p&gt;
+&lt;h2 id=&quot;2-1-优化动态内存分配&quot;&gt;&lt;a href=&quot;#2-1-优化动态内存分配&quot; class=&quot;headerlink&quot; title=&quot;2.1 优化动态内存分配&quot;&gt;&lt;/a&gt;2.1 优化动态内存分配&lt;/h2&gt;&lt;p&gt;通过malloc()/free()或C++的new/delete运算符动态分配内存通常是非常慢的，原因有两个：堆分配器是通用设施，可以处理任何大小的分配请求，需要大量的管理开销；多数操作系统上分配内存会在用户模式和内核模式来回切换，这些上下文切换可能会耗费很多时间。因此，游戏开发中一个常见的经验法则是：&lt;strong&gt;维持最低限度的堆分配，并且永不在紧凑循环中使用堆分配。&lt;/strong&gt; 当然，任何游戏引擎都无法完全避免动态内存分配，所以会实现若干个定制分配器。定制分配器比原生分配器更高效的原因有两个：从预分配的内存中完成分配请求（顶分配内存来自new），完全避免了上下文切换；对内存的使用模式做出多种假设，会比通用的堆分配器高效得多。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-1-基于堆栈的分配器&quot;&gt;&lt;a href=&quot;#2-1-1-基于堆栈的分配器&quot; class=&quot;headerlink&quot; title=&quot;2.1.1 基于堆栈的分配器&quot;&gt;&lt;/a&gt;2.1.1 基于堆栈的分配器&lt;/h3&gt;&lt;p&gt;许多关卡类的游戏，载入关卡时就会为关卡分配内存，关卡载入后，就会很少甚至不会动态分配内存。在玩家完成关卡之际，关卡的数据会被卸下，所有关卡占用的内存也可被释放。这类内存分配非常适合采用堆栈分配器。这种分配器要分配一大块连续内存，通过移动一个指向堆栈顶端的指针来“模拟”内存的分配和释放。释放时按分配的相反次序，不容许释放个别的内存块，而是释放从回滚点（标记）至目前堆栈顶端之间的所有内存。&lt;/p&gt;
+&lt;p&gt;双端堆栈分配器（即一个分配器从内存块底端往上分配，另一个从内存块顶端往下分配）可以更有效地运用内存。一种非常优秀的从不会产生内存碎片问题的分配方案：所有内存分配自单个巨大内存块，以双端堆栈分配器管理，底堆栈用来载入及卸下游戏关卡，顶堆栈则用来分配临时内存块，这些临时内存会在每帧中分配及释放。堆栈分配器的实现模型见下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fengine%2F%E5%A0%86%E6%A0%88%E5%88%86%E9%85%8D%E5%99%A8%E7%9A%84%E5%88%86%E9%85%8D%E6%A8%A1%E5%BC%8F.png&quot; alt=&quot;堆栈分配器的分配模式&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-1-2-池分配器&quot;&gt;&lt;a href=&quot;#2-1-2-池分配器&quot; class=&quot;headerlink&quot; title=&quot;2.1.2 池分配器&quot;&gt;&lt;/a&gt;2.1.2 池分配器&lt;/h3&gt;&lt;p&gt;矩阵、迭代器、链表中的节点、可渲染的网格实例等会分配大量同等尺寸的小块内存。池分配器是此类分配模式的完美选择。其工作方式为：首先预分配一大块内存，大小刚好是分配元素的倍数（例如每元素4字节的4×4矩阵池的大小设为64字节的倍数），池内每个元素会加到一个存放自由元素的链表。池分配器收到分配请求时，就会把自由链表的下一个元素取出，并传回该元素；释放元素之时，只需简单地把元素插回自由链表中。这些分配和释放都是O(1)的操作。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-3-含对齐功能的分配器&quot;&gt;&lt;a href=&quot;#2-1-3-含对齐功能的分配器&quot; class=&quot;headerlink&quot; title=&quot;2.1.3 含对齐功能的分配器&quot;&gt;&lt;/a&gt;2.1.3 含对齐功能的分配器&lt;/h3&gt;&lt;p&gt;为了提高内存的吞吐量和效率，所有内存分配器都必须能传回&lt;strong&gt;字节对齐&lt;/strong&gt;的内存块。只要在分配内存时，分配比请求所需多一点的内存，再向上调整地址至适当的对齐，最后传回调整后的地址。大多数情况下，额外分配的字节等于对齐字节。例如，若请求为16字节对齐的内存块，就可以额外分配多16字节，最坏的情况下要把地址往上移动15字节。多出的1字节可以用来存储偏移量，以便于正确释放分配的内存。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-4-单帧和双缓冲分配器&quot;&gt;&lt;a href=&quot;#2-1-4-单帧和双缓冲分配器&quot; class=&quot;headerlink&quot; title=&quot;2.1.4 单帧和双缓冲分配器&quot;&gt;&lt;/a&gt;2.1.4 单帧和双缓冲分配器&lt;/h3&gt;&lt;p&gt;几乎所有游戏都会在游戏循环中分配一些临时用数据，这些数据要么可在循环迭代结束时丢弃，要么可在下一迭代结束时丢弃。这种模式适用于以下两种分配模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;单帧分配器：先预留一块内存，并以简单堆栈分配器管理。在每帧开始时，都把堆栈的顶端指针重置到内存块的底端地址。在该帧中，分配要求会使堆栈向上成长。优点是极其高效，分配了的内存永远不需要手动释放，因为每帧开始时分配器会自动清除所有内存。最大缺点在于，程序员必须有不错的自制能力，并意识到内存块只在目前的帧里有效，&lt;strong&gt;绝不能把指向单帧内存块的指针跨帧使用&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;双缓冲分配器：第i帧分配的内存块用于第(i+1)帧。实现方法就是建立两个相同尺寸的单帧堆栈分配器，并在每帧交替使用（见下方代码）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;class DoubleBufferedAllocater {
+    U32 m_curStack;
+    StackAllocator m_stack[2];
+public:
+    void swapBuffers() {
+        m_curStack = (U32)!m_curStack;
+    }
+
+    void clearCurrentBuffer() {
+        m_stack[m_curStack].clear();
+    }
+
+    void *alloc(U32 mBytes) {
+        return m_stack[m_curStack].alloc(nBytes)
+    }
+}
+
+DoubleBufferedAllocator g_doubleBufAllocator;
+// 主游戏循环
+while (true) {
+    // 每帧清除单帧分配器的缓冲区
+    g_singleFrameAllocator.clear();
+    // 对双缓冲分配器交换现行和无效的缓冲区
+    g_doubleBufAllocator.swapBuffers();
+    // 清空新的现行缓冲区，保留前帧的缓冲不变
+    g_doubleBufAllocator.clearCurrentBuffer();
+
+    // ...
+
+    // 从双缓冲分配器分配内存，不影响前帧的数据，要确保这些内存仅在本帧或次帧中使用
+    void* p = g_doubleFrameAllocator.alloc(nBytes);
+
+    // ...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-2-内存碎片&quot;&gt;&lt;a href=&quot;#2-2-内存碎片&quot; class=&quot;headerlink&quot; title=&quot;2.2 内存碎片&quot;&gt;&lt;/a&gt;2.2 内存碎片&lt;/h2&gt;&lt;p&gt;当经过非常多次随机次序的分配及释放不同尺寸的内存块，堆中就会出现许多内存“孔洞”，这就是内存碎片状态。由于分配的内存必须是连续的，所以内存碎片会导致分配请求经常失败。在支持虚拟内存的操作系统上，内存碎片并非大问题。对当代的游戏机而言，虽然技术上能支持虚拟内存，但由于其导致的开销，多数游戏引擎不会使用虚拟内存。&lt;/p&gt;
+&lt;h3 id=&quot;2-2-1-用堆钱和池分配器避免内存碎片&quot;&gt;&lt;a href=&quot;#2-2-1-用堆钱和池分配器避免内存碎片&quot; class=&quot;headerlink&quot; title=&quot;2.2.1 用堆钱和池分配器避免内存碎片&quot;&gt;&lt;/a&gt;2.2.1 用堆钱和池分配器避免内存碎片&lt;/h3&gt;&lt;p&gt;使用堆栈分配器分配到的内存块总是连续的，可以完全避免内存碎片。池分配器虽然会产生碎片，但因为每个内存块都一样大，所以不会因缺乏足够大的连续内存块而造成分配失败&lt;/p&gt;
+&lt;h3 id=&quot;2-2-2-碎片整理及重定位&quot;&gt;&lt;a href=&quot;#2-2-2-碎片整理及重定位&quot; class=&quot;headerlink&quot; title=&quot;2.2.2 碎片整理及重定位&quot;&gt;&lt;/a&gt;2.2.2 碎片整理及重定位&lt;/h3&gt;&lt;p&gt;若要以随机次序分配及释放不同大小的对象，以上两种也不适用。这时可以对堆定期进行碎片整理，即把每个“洞”搬移至高位，最后所有己分配内存块都会连续地凑在堆内存空间的底端。移动内存是简单的事，但背后的副作用是&lt;strong&gt;移动了己分配的内存块，若有指针指向这些内存块，这些指针便会失效。&lt;/strong&gt;其中一个解决方案就是把指向这些内存块的指针逐一更新，使移动内存块后这些指针能指到新的地址，这个过程称为指针重定位。&lt;/p&gt;
+&lt;p&gt;由于C/C++不支持搜寻所有指向某地址范围的指针，若要在游戏引擎中支持碎片整理功能，程序员必须小心手动维护所有指针，另一个选择是采用智能指针或句柄（使用索引指向句柄表内的元素，每个元素储存指针，句柄的值不变，移动内存块时要修改指针）来替代。重定位的另一难题是，使用一些第三方库，该库本身不使用智能指针或句柄，那么指向库内数据结构的指针就不能被重定位。最好的办法是，让这些库在另一个特别缓冲区里分配内存，此缓冲区位于可重定位内存范围以外。或者干脆容许一些内存块不能被重定位，若这种内存块数量少且体积小，重定位系统仍可运行得相当好。&lt;/p&gt;
+&lt;h3 id=&quot;2-2-3-分摊碎片整理整本&quot;&gt;&lt;a href=&quot;#2-2-3-分摊碎片整理整本&quot; class=&quot;headerlink&quot; title=&quot;2.2.3 分摊碎片整理整本&quot;&gt;&lt;/a&gt;2.2.3 分摊碎片整理整本&lt;/h3&gt;&lt;p&gt;碎片整理要复制内存块，其过程可能很慢。然而可以把碎片整理分摊至多个帧，例如容许容许每帧进行多达N次内存块移动（N是小数目，如8或16），只要分配及释放的次数低于碎片整理的移动次数，那么堆就会经常保持接近完全整理的状态。此方法只对细小的内存块有效，使移动内存块的时间短于每帧配给的重定位时间。若要重定位非常大的内存块，有时候可以把它分拆为两个或更多的小块，而每个小块可以独立被重定位。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-缓存一致性&quot;&gt;&lt;a href=&quot;#2-3-缓存一致性&quot; class=&quot;headerlink&quot; title=&quot;2.3 缓存一致性&quot;&gt;&lt;/a&gt;2.3 缓存一致性&lt;/h2&gt;&lt;p&gt;为了降低读写主内存的平均时间，现代处理器会采用高速缓存。每当出现缓存命中失败，程序便要被逼暂停，等待缓存线自主内存更新后才能继续运行。因为数据始终要在缓存和主内存之间移动，所以无法完全避免缓存命中失败。高效计算的诀窍在于，以最优的方式安排内存中的数据及为算法编码，尽量减少缓存命中失败的次数。&lt;/p&gt;
+&lt;h3 id=&quot;2-3-1-硬件层面上的缓存&quot;&gt;&lt;a href=&quot;#2-3-1-硬件层面上的缓存&quot; class=&quot;headerlink&quot; title=&quot;2.3.1 硬件层面上的缓存&quot;&gt;&lt;/a&gt;2.3.1 硬件层面上的缓存&lt;/h3&gt;&lt;p&gt;现代的CPU架构上出现了一级L1和二级L2高速缓存，其存取方向为“CPU←→L1缓存←→L2缓存←→主内存”，存取速度依次减慢，L2缓存命中失败通常比L1的成本高。有一种特别差的缓存命中失败称为load-hit-store，此问题在PowerPC架构上（如Xbox360和PS3）极为普遍。其出现过程是，CPU往某内存地址写入数据，随即又读取该地址，而此时要等待L1缓存写回数据至主内存，造成CPU的流水线停顿。具体可以参见&lt;a href=&quot;http://assemblyrequired.crashworks.org/load-hit-stores-and-the-__restrict-keyword/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这篇文章&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;此外还需要意识到大多数处理器会在物理上独立分开指令缓存和数据缓存，前者会预载即将执行的机器码，后者则用来加速内存读写数据。因此程序变慢，要考虑是指令还是数据缓存命中失败。&lt;/p&gt;
+&lt;h3 id=&quot;2-3-2-软件层面上避免缓冲命中失败&quot;&gt;&lt;a href=&quot;#2-3-2-软件层面上避免缓冲命中失败&quot; class=&quot;headerlink&quot; title=&quot;2.3.2 软件层面上避免缓冲命中失败&quot;&gt;&lt;/a&gt;2.3.2 软件层面上避免缓冲命中失败&lt;/h3&gt;&lt;p&gt;避免&lt;strong&gt;数据&lt;/strong&gt;缓存命中失败的最佳办法就是，&lt;strong&gt;把数据编排进连续的内存块中，尺寸越小越好，并且要顺序访问这些数据&lt;/strong&gt;。当数据是连续的（即不会经常在内存中“跳来跳去”），那么单次命中失败便会把尽可能最多的相关数据载入单个缓存线。&lt;/p&gt;
+&lt;p&gt;要避免&lt;strong&gt;指令&lt;/strong&gt;缓存命中失败，需要了解C/C++链接器的一些简单规则，例如编译器和链接器按函数在cpp文件中的出现次序排列内存布局；单个函数的机器码几乎总是置于连续的内存；位于一个翻译单元内的函数总是置于连续内存中。据此可以使用以下经验法则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高效能代码的体积越小越好，体积以机器码指令数目为单位&lt;/li&gt;
+&lt;li&gt;在性能关键的代码段中，&lt;strong&gt;避免调用函数&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;若要调用某函数，就把该函数置于&lt;strong&gt;最接近&lt;/strong&gt;调用函数的地方，最好是紧接调用函数的前后，而不要把该函数置于另一翻译单元（cpp文件）&lt;/li&gt;
+&lt;li&gt;谨慎使用内联函数。内联小型函数能增进效能，然而过多的内联会增大代码体积，使性能关键代码再不能完全装进缓存。若循环内的代码不能完全装进缓存，应重新考虑算法及其代码实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考文献：电子工业出版社《游戏引擎架构》第5.1、5.2节&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每个游戏都需要一些底层支持系统，以管理一些例行却关键的任务，例如启动及终止引擎、存取文件系统、存取各种不同资产类型（网格、纹理、动画、音频等），以及为游戏团队提供调试工具。本文（分上下篇）重点讨论多数游戏引擎中都会出现的底层支持系统，为后续探索大型的核心系统做准备。其中上篇将讨论子系统的启动和终止的顺序管理，以及各种动态内存分配器和碎片整理等内存管理问题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="架构" scheme="http://raytaylorlin.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>游戏引擎架构总览</title>
@@ -113,7 +209,7 @@
     <link href="http://raytaylorlin.com/tech/complex/software/software-construction-15/"/>
     <id>http://raytaylorlin.com/tech/complex/software/software-construction-15/</id>
     <published>2016-05-14T14:21:15.000Z</published>
-    <updated>2016-05-14T14:25:11.990Z</updated>
+    <updated>2016-05-19T02:30:35.465Z</updated>
     
     <content type="html">&lt;p&gt;本文是《代码大全》学习笔记系列的最后一篇。书中最后几章是一些杂项主题，本文将简要记录这几个主题的内容，包括个人性格对编程的影响，软件开发艺术的有关问题，以及关于软件工程的推荐书单。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -2073,80 +2169,6 @@ tags:
       <category term="Markdown" scheme="http://raytaylorlin.com/tags/Markdown/"/>
     
       <category term="论文" scheme="http://raytaylorlin.com/tags/%E8%AE%BA%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络游戏的基本架构</title>
-    <link href="http://raytaylorlin.com/tech/game/server/network-game-architecture/"/>
-    <id>http://raytaylorlin.com/tech/game/server/network-game-architecture/</id>
-    <published>2015-11-23T08:09:57.000Z</published>
-    <updated>2016-02-09T13:12:29.195Z</updated>
-    
-    <content type="html">&lt;p&gt;游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-网络游戏编程的特性&quot;&gt;&lt;a href=&quot;#1-网络游戏编程的特性&quot; class=&quot;headerlink&quot; title=&quot;1. 网络游戏编程的特性&quot;&gt;&lt;/a&gt;1. 网络游戏编程的特性&lt;/h1&gt;&lt;h2 id=&quot;1-1-游戏客户端的特性&quot;&gt;&lt;a href=&quot;#1-1-游戏客户端的特性&quot; class=&quot;headerlink&quot; title=&quot;1.1 游戏客户端的特性&quot;&gt;&lt;/a&gt;1.1 游戏客户端的特性&lt;/h2&gt;&lt;p&gt;视频游戏的最大特点是：为了最大限度发挥其可玩性，必须流畅地持续进行实时的高速处理，网络游戏程序还必须始终保持高速响应。为了达到这种要求，一般会将实时的数据存放在内存中（而不是在数据库中），这是因为：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;游戏数据要在“16毫秒”即1帧这一短暂的时间内持续变化&lt;/li&gt;
-&lt;li&gt;需要同时显示大量对象&lt;/li&gt;
-&lt;li&gt;不知道玩家会在什么时候进行操作，所以无法事先计算&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-2-网络游戏客户端的特性&quot;&gt;&lt;a href=&quot;#1-2-网络游戏客户端的特性&quot; class=&quot;headerlink&quot; title=&quot;1.2 网络游戏客户端的特性&quot;&gt;&lt;/a&gt;1.2 网络游戏客户端的特性&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;通信延迟低：不同类型的游戏对延迟的要求不同，但均无法避免由地域距离所带来的延迟&lt;/li&gt;
-&lt;li&gt;控制带宽传输量：C/S MMO每人10kbit/s~100kbit/s，P2P MO为前者的3倍&lt;/li&gt;
-&lt;li&gt;服务器成本估算：C/S MMO每台服务器有1000~3000个并发连接，P2P MO为前者的3~5倍&lt;/li&gt;
-&lt;li&gt;安全性：防作弊，放破坏&lt;ol&gt;
-&lt;li&gt;动机：纯粹个人利益、与其他玩家相关的利益、与运营公司相关的利益&lt;/li&gt;
-&lt;li&gt;作弊手段：内存破解、数据包破解、数据文件破解、时钟破解、UI工具自动模拟、服务器攻击、伪造客户端&lt;/li&gt;
-&lt;li&gt;作弊的操作对象：本地内存和文件、其他玩家的内存和文件、数据中心服务器的内存和文件、本地和其他玩家之间的数据包、本地和中心服务器之间的数据包&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-物理架构详解&quot;&gt;&lt;a href=&quot;#2-物理架构详解&quot; class=&quot;headerlink&quot; title=&quot;2. 物理架构详解&quot;&gt;&lt;/a&gt;2. 物理架构详解&lt;/h1&gt;&lt;p&gt;主流的网络游戏物理架构，大致可以分为C/S架构和P2P架构。网络拓扑结构主要使用星型（包括总线型）以及全网状结构（每个节点均和其他所有节点连接）。采用这些结构，主要是因为相对于游戏的容错性和吞吐量，优先级最高的还是要把通信延迟降至最低。&lt;/p&gt;
-&lt;p&gt;对于C/S架构，又分为纯服务器型和反射型，前者服务器会对各个客户端发送来的数据进行检测，后者只是单纯转发数据。对于P2P架构，有同步和异步两种方式。此外，还有C/S+P2P混合型架构和ad-hoc模式，因为比较少见，不赘述。&lt;/p&gt;
-&lt;h1 id=&quot;3-逻辑架构详解&quot;&gt;&lt;a href=&quot;#3-逻辑架构详解&quot; class=&quot;headerlink&quot; title=&quot;3. 逻辑架构详解&quot;&gt;&lt;/a&gt;3. 逻辑架构详解&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;MO（Multiplayer Online）：同时在线人数2~100人，游戏时间较短，一般在几个小时，每次开始游戏时，游戏状态都会被重置，游戏数据时一次性的。适用于FPS、RTS等在线人数较少，实时性很高的游戏。&lt;/li&gt;
-&lt;li&gt;MMO（Massively Multiplayer Online）：同时在线人数达数百、数千以上，游戏时间长达几十个小时，也不能重置游戏数据，游戏数据时永久性的。&lt;/li&gt;
-&lt;li&gt;MMO和MO混合：根据游戏策划内容，有时需要采用这种混合架构，例如在MMO游戏的某些供少数人在短时间内重复进行游戏的特殊地图，会采用MO架构。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;3-1-MO架构&quot;&gt;&lt;a href=&quot;#3-1-MO架构&quot; class=&quot;headerlink&quot; title=&quot;3.1 MO架构&quot;&gt;&lt;/a&gt;3.1 MO架构&lt;/h2&gt;&lt;h3 id=&quot;3-1-1-同步方式与全网状架构&quot;&gt;&lt;a href=&quot;#3-1-1-同步方式与全网状架构&quot; class=&quot;headerlink&quot; title=&quot;3.1.1 同步方式与全网状架构&quot;&gt;&lt;/a&gt;3.1.1 同步方式与全网状架构&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;参与游戏的所有终端都拥有主数据，这些终端只互相传输所有的控制设备输入信息&lt;/strong&gt;，在获得所有终端的输入数据之前，游戏始终处于等待状态。这种架构要成立，必须满足这些条件：初始状态完全相同；所有输入信息数据包都确确实实毫无遗漏地发送到其他所有终端；游戏过程数据不会随机变化（伪随机数没有问题）；游戏过程数据变化不会发生波动。要满足这些条件并不苦难，但这种架构依旧有如下问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;人数增加后，收发信息完整性极易崩溃。根据“混沌理论”，即使是细微的差异，经过不断重复单纯的规则，最终也会产生截然不同的结果。&lt;/li&gt;
-&lt;li&gt;最慢的终端会拖长整体的传输时间（同步方式都会存在）&lt;/li&gt;
-&lt;li&gt;不能中途加入游戏（同步方式都会存在）。因为在中途加入游戏的一刻，为了传输游戏状态数据，所有玩家都必须长时间暂停游戏。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;3-1-2-同步方式与星型架构&quot;&gt;&lt;a href=&quot;#3-1-2-同步方式与星型架构&quot; class=&quot;headerlink&quot; title=&quot;3.1.2 同步方式与星型架构&quot;&gt;&lt;/a&gt;3.1.2 同步方式与星型架构&lt;/h3&gt;&lt;p&gt;网络中的一个玩家终端A充当服务器，客户端将控制设备上的输入信息发送至服务器，服务器在接收完所有数据前一直处于等待状态，接收完成后将信息同时发送给所有客户端。这种方式的最大优点就是，所需增加的传输线路与所增加的玩家数成正比，传输线路不会爆发性增长。但依旧有如下问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;响应较慢&lt;/li&gt;
-&lt;li&gt;若玩家A中途离线，游戏无法恢复，只能强行终止&lt;/li&gt;
-&lt;li&gt;程序结构比全网状结构稍微复杂&lt;/li&gt;
-&lt;li&gt;玩家A终端上的传输负荷比其他终端高出很多，不公平&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;3-1-3-异步方式&quot;&gt;&lt;a href=&quot;#3-1-3-异步方式&quot; class=&quot;headerlink&quot; title=&quot;3.1.3 异步方式&quot;&gt;&lt;/a&gt;3.1.3 异步方式&lt;/h3&gt;&lt;p&gt;异步方式下，各个终端的游戏状态是不同的，必须在游戏数据的一致性方面做出妥协。由于这种妥协，异步方式下可以使用更加不稳定和延迟更大的传输线路，也可以支持更多的同时在线数。另一方面，程序相比同步方式会略显复杂，且有些情况下游戏体验更差一些。在实现方面，对游戏数据做出何种妥协完全依赖于游戏的具体内容。异步实现的指导方针是：将游戏世界的基本要素分为三大类，即自己的状态，对手的状态和环境状态。这三大类之间的两两关系又需要分别对待处理，此处不赘述。（具体参见《网络游戏核心技术与实战》3.4.7-3.4.13）&lt;/p&gt;
-&lt;h2 id=&quot;3-2-MMO架构——浏览器方式&quot;&gt;&lt;a href=&quot;#3-2-MMO架构——浏览器方式&quot; class=&quot;headerlink&quot; title=&quot;3.2 MMO架构——浏览器方式&quot;&gt;&lt;/a&gt;3.2 MMO架构——浏览器方式&lt;/h2&gt;&lt;p&gt;MMO游戏也被称为“持久的游戏”，因为其累计的游戏时长可能高达数千个小时。为此必须在服务器的内存和磁盘上准确无误地完整地保存各种游戏数据，当玩家需要时瞬间取出来展现给玩家。因为数据一致性方面的要求非常严苛，所以在构建系统时要&lt;strong&gt;将客户端和服务器完全分离&lt;/strong&gt;。在MMO架构中，&lt;strong&gt;客户端将控制设备输入信息发送给服务器，服务器只想客户端发送游戏过程中的结果，客户端则把游戏结果可视化展现给玩家。&lt;/strong&gt;这就是逻辑架构中所谓的浏览器方式。&lt;/p&gt;
-&lt;p&gt;在这种架构下，即使没有客户端，游戏也会在服务器上持续运行，所有的逻辑都在服务器上处理，而客户端只进行与渲染、音效、输入有关的处理。&lt;/p&gt;
-&lt;p&gt;最后，总结比较一下3种逻辑架构之间的差异：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;浏览器方式和同步方式：最大差异在“传输内容”，即同步方式下收发的都是玩家输入信息（原因），而在浏览器方式下，客户端发送玩家输入信息（原因），服务器发送游戏过程的结果。&lt;/li&gt;
-&lt;li&gt;同步方式和异步方式：两种方式下，所有终端都共享游戏过程的所有主数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考文献：人民邮电出版社《网络游戏核心技术与实战》第3章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;游戏的最大价值就是可玩性，为了保持游戏的可玩性，游戏必须具备能够“顺畅进行”的特性，而网游还需要能够“快速响应”。本文前半部分先讨论如何维持网络游戏的可玩性，后半部分说明了网络游戏常用的物理架构（C/S、P2P）和逻辑架构（MO、MMO）。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="服务器端" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF/"/>
-    
-    
-      <category term="网络游戏编程" scheme="http://raytaylorlin.com/tags/%E7%BD%91%E7%BB%9C%E6%B8%B8%E6%88%8F%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   

@@ -1,3 +1,8 @@
+/*!
+ * Materialize v0.97.6 (http://materializecss.com)
+ * Copyright 2014-2015 Materialize
+ * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
+ */
 // Check for jQuery.
 if (typeof(jQuery) === 'undefined') {
   var jQuery;
@@ -689,7 +694,10 @@ if ($) {
   $.fn.extend({
     openModal: function(options) {
 
-      $('body').css('overflow', 'hidden');
+      var $body = $('body');
+      var oldWidth = $body.innerWidth();
+      $body.css('overflow', 'hidden');
+      $body.width(oldWidth);
 
       var defaults = {
         opacity: 0.5,
@@ -793,8 +801,11 @@ if ($) {
 
       options = $.extend(defaults, options);
 
-      // Disable scrolling
-      $('body').css('overflow', '');
+      // Enable scrolling
+      $('body').css({
+        overflow: '',
+        width: ''
+      });
 
       $modal.find('.modal-close').off('click.close');
       $(document).off('keyup.leanModal' + overlayID);
@@ -2079,7 +2090,10 @@ $(document).ready(function(){
           panning = false;
           menuOut = false;
           // Reenable scrolling
-          $('body').css('overflow', '');
+          $('body').css({
+            overflow: '',
+            width: ''
+          });
 
           $('#sidenav-overlay').velocity({opacity: 0}, {duration: 200,
               queue: false, easing: 'easeOutQuad',
@@ -2145,7 +2159,10 @@ $(document).ready(function(){
             var velocityX = e.gesture.velocityX;
 
             // Disable Scrolling
-            $('body').css('overflow', 'hidden');
+            var $body = $('body');
+            var oldWidth = $body.innerWidth();
+            $body.css('overflow', 'hidden');
+            $body.width(oldWidth);
 
             // If overlay does not exist, create one and if it is clicked, close menu
             if ($('#sidenav-overlay').length === 0) {
@@ -2227,7 +2244,10 @@ $(document).ready(function(){
               }
               else if (!menuOut || velocityX > 0.3) {
                 // Enable Scrolling
-                $('body').css('overflow', '');
+                $('body').css({
+                  overflow: '',
+                  width: ''
+                });
                 // Slide menu closed
                 menu_id.velocity({'translateX': [-1 * options.menuWidth - 10, leftPos]}, {duration: 200, queue: false, easing: 'easeOutQuad'});
                 $('#sidenav-overlay').velocity({opacity: 0 }, {duration: 200, queue: false, easing: 'easeOutQuad',
@@ -2245,7 +2265,11 @@ $(document).ready(function(){
               }
               else if (!menuOut || velocityX < -0.3) {
                 // Enable Scrolling
-                $('body').css('overflow', '');
+                $('body').css({
+                  overflow: '',
+                  width: ''
+                });
+
                 // Slide menu closed
                 menu_id.velocity({'translateX': [options.menuWidth + 10, rightPos]}, {duration: 200, queue: false, easing: 'easeOutQuad'});
                 $('#sidenav-overlay').velocity({opacity: 0 }, {duration: 200, queue: false, easing: 'easeOutQuad',
@@ -2268,7 +2292,11 @@ $(document).ready(function(){
             else {
 
               // Disable Scrolling
-              $('body').css('overflow', 'hidden');
+              var $body = $('body');
+              var oldWidth = $body.innerWidth();
+              $body.css('overflow', 'hidden');
+              $body.width(oldWidth);
+
               // Push current drag target on top of DOM tree
               $('body').append(dragTarget);
 
@@ -2714,7 +2742,7 @@ $(document).ready(function(){
         $(this).addClass('tabbed');
         var $this = $(this);
         $this.one('blur', function(e) {
-          console.log(e);
+          
           $(this).removeClass('tabbed');
         });
         return;
@@ -2931,6 +2959,7 @@ $(document).ready(function(){
       var appendOptionWithIcon = function(select, option, type) {
         // Add disabled attr if disabled
         var disabledClass = (option.is(':disabled')) ? 'disabled ' : '';
+        var optgroupClass = (type === 'optgroup-option') ? 'optgroup-option ' : '';
 
         // add icons
         var icon_url = option.data('icon');
@@ -2943,7 +2972,7 @@ $(document).ready(function(){
           if (type === 'multiple') {
             options.append($('<li class="' + disabledClass + '"><img src="' + icon_url + '"' + classString + '><span><input type="checkbox"' + disabledClass + '/><label></label>' + option.html() + '</span></li>'));
           } else {
-            options.append($('<li class="' + disabledClass + '"><img src="' + icon_url + '"' + classString + '><span>' + option.html() + '</span></li>'));
+            options.append($('<li class="' + disabledClass + optgroupClass + '"><img src="' + icon_url + '"' + classString + '><span>' + option.html() + '</span></li>'));
           }
           return true;
         }
@@ -2952,7 +2981,7 @@ $(document).ready(function(){
         if (type === 'multiple') {
           options.append($('<li class="' + disabledClass + '"><span><input type="checkbox"' + disabledClass + '/><label></label>' + option.html() + '</span></li>'));
         } else {
-          options.append($('<li class="' + disabledClass + '"><span>' + option.html() + '</span></li>'));
+          options.append($('<li class="' + disabledClass + optgroupClass + '"><span>' + option.html() + '</span></li>'));
         }
       };
 
@@ -2973,7 +3002,7 @@ $(document).ready(function(){
             options.append($('<li class="optgroup"><span>' + $(this).attr('label') + '</span></li>'));
 
             selectOptions.each(function() {
-              appendOptionWithIcon($select, $(this));
+              appendOptionWithIcon($select, $(this), 'optgroup-option');
             });
           }
         });
@@ -3432,7 +3461,7 @@ $(document).ready(function(){
             panning = false;
             curr_index = $slider.find('.active').index();
 
-            if (!swipeRight && !swipeLeft) {
+            if (!swipeRight && !swipeLeft || $slides.length <=1) {
               // Return to original spot
               $curr_slide.velocity({ translateX: 0
                   }, {duration: 300, queue: false, easing: 'easeOutQuad'});
@@ -3527,7 +3556,8 @@ $(document).ready(function(){
         $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.tooltip' );
       }
     }; // Plugin end
-}( jQuery ));;(function ($) {
+}( jQuery ));
+;(function ($) {
   $(document).ready(function() {
 
     $(document).on('click.card', '.card', function (e) {
@@ -3896,8 +3926,12 @@ $(document).ready(function(){
 
               if (windowScroll > (elementOffset + offset)) {
                 if (value.done !== true) {
-                  var callbackFunc = new Function(callback);
-                  callbackFunc();
+                  if (typeof(callback) === 'function') {
+                    callback.call(this);
+                  } else if (typeof(callback) === 'string') {
+                    var callbackFunc = new Function(callback);
+                    callbackFunc();
+                  }
                   value.done = true;
                 }
               }
