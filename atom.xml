@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-06-12T12:27:14.786Z</updated>
+  <updated>2016-06-12T12:32:17.245Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://raytaylorlin.com/tech/game/engine/engine-support-system-2/"/>
     <id>http://raytaylorlin.com/tech/game/engine/engine-support-system-2/</id>
     <published>2016-06-12T14:02:07.000Z</published>
-    <updated>2016-06-12T12:27:14.786Z</updated>
+    <updated>2016-06-12T12:32:17.245Z</updated>
     
-    <content type="html">&lt;p&gt;游戏编程中需要使用各种各样的集合型数据结构，称为容器或集合。字符串看似是个简单基本的数据类型，但在游戏引擎中会涉及许多涉及问题和限制。此外，游戏引擎总是伴随大量可调校的选项，有的通过游戏中的选项菜单给玩家调校，有的则只为游戏开发团队设置，在正式发行时被隐掉或去除。&lt;/p&gt;
+    <content type="html">&lt;p&gt;游戏编程中需要使用各种各样的集合型数据结构，称为容器或集合。字符串看似是个简单基本的数据类型，但在游戏引擎中会涉及许多设计问题和限制。此外，游戏引擎总是伴随大量可调校的选项，有的通过游戏中的选项菜单给玩家调校，有的则只为游戏开发团队设置，在正式发行时被隐掉或去除。&lt;/p&gt;
 &lt;p&gt;本文将接着&lt;a href=&quot;/tech/game/engine/engine-support-system-1/&quot;&gt;上一篇&lt;/a&gt;，从游戏引擎的角度描述容器、字符串和引擎配置等游戏引擎支持系统。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;1-容器&quot;&gt;&lt;a href=&quot;#1-容器&quot; class=&quot;headerlink&quot; title=&quot;1. 容器&quot;&gt;&lt;/a&gt;1. 容器&lt;/h1&gt;&lt;p&gt;常见的容器类型包括但不限于：数组、动态数组（可变长）、链表 、堆栈、队列、双端队列、优先队列（二叉堆）、树、二叉查找树（红黑树、伸展树、AVL树等）、字典、集合、图、有向非循环图。常见操作有：插入、移除、顺序访问/迭代、随机访问、查找、排序等等。&lt;/p&gt;
@@ -140,7 +140,7 @@ void someFunction() {
     
     <summary type="html">
     
-      &lt;p&gt;游戏编程中需要使用各种各样的集合型数据结构，称为容器或集合。字符串看似是个简单基本的数据类型，但在游戏引擎中会涉及许多涉及问题和限制。此外，游戏引擎总是伴随大量可调校的选项，有的通过游戏中的选项菜单给玩家调校，有的则只为游戏开发团队设置，在正式发行时被隐掉或去除。&lt;/p&gt;
+      &lt;p&gt;游戏编程中需要使用各种各样的集合型数据结构，称为容器或集合。字符串看似是个简单基本的数据类型，但在游戏引擎中会涉及许多设计问题和限制。此外，游戏引擎总是伴随大量可调校的选项，有的通过游戏中的选项菜单给玩家调校，有的则只为游戏开发团队设置，在正式发行时被隐掉或去除。&lt;/p&gt;
 &lt;p&gt;本文将接着&lt;a href=&quot;/tech/game/engine/engine-support-system-1/&quot;&gt;上一篇&lt;/a&gt;，从游戏引擎的角度描述容器、字符串和引擎配置等游戏引擎支持系统。&lt;/p&gt;
     
     </summary>
