@@ -96,6 +96,39 @@
     </entry>
     
     <entry>
+      <title><![CDATA[游戏循环的实现方式]]></title>
+      <url>http://raytaylorlin.com/tech/game/engine/game-loop/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h1 id="1-基本游戏循环"><a href="#1-基本游戏循环" class="headerlink" title="1. 基本游戏循环"></a>1. 基本游戏循环</h1><p>在游戏运行时，多数游戏引擎子系统都需要周期性地提供服务，而它们所需的服务频率各有不同。动画子系统通常需要30Hz或60Hz的更新率，和渲染子系统同步。动力学模拟可能需要更频繁地更新（如120Hz）。像人工智能这种更高级的系统，可能只需要每秒1-2次更新，而且完全不需要和渲染循环同步。</p>
+<h2 id="1-1-渲染循环"><a href="#1-1-渲染循环" class="headerlink" title="1.1 渲染循环"></a>1.1 渲染循环</h2><p>相比于Windows的GUI采用矩形失效技术仅让屏幕有改动的部位重绘，现代3D游戏采用和电影相同的方式产生运动的错觉和互动性——对观众快速连续地显示一连串静止映像，即渲染循环，其最简单的结构如下：</p>
+<pre><code>while (!quit) {
+    // 基于输入或预设的路径更新摄像机变换
+    updateCamera();
+    // 更新场景中所有动态元素的位置、定向及其他相关的视觉状态
+    updateSceneElements();
+    // 把静止的场景渲染至屏幕外的帧缓冲（称为“背景缓冲”）
+    renderScene();
+    // 交换背景缓冲和前景缓冲，令最近渲染的影像显示于屏幕之上
+    // （或是在视窗模式下，把背景缓冲复制至前景缓冲）
+    swapBuffers();
+}
+</code></pre><h2 id="1-2-游戏循环的架构风格"><a href="#1-2-游戏循环的架构风格" class="headerlink" title="1.2 游戏循环的架构风格"></a>1.2 游戏循环的架构风格</h2><p>最简单的游戏循环，是采用<strong>单一循环更新所有子系统</strong>，即在一个无限循环中计算逻辑并渲染画面。此外还有其他常见的架构风格，核心由若干个简单循环组成，再加上不同的修饰。</p>
+<h3 id="1-2-1-视窗消息泵"><a href="#1-2-1-视窗消息泵" class="headerlink" title="1.2.1 视窗消息泵"></a>1.2.1 视窗消息泵</h3><p>Windows平台下，游戏除了要服务引擎本身的子系统，还要处理来自操作系统的消息。因此需要一段成为消息泵的代码来处理，基本原理是先处理来自Windows的消息，无消息时才执行引擎的任务。这种方法的副作用是设置了处理Windows消息为先，渲染和模拟游戏为后的优先次序，导致当玩家在桌面上改变游戏的视窗大小或移动视窗时，游戏就会愣住不动。典型消息泵代码如下：</p>
+<pre><code>while (true) {
+    // 处理所有Windows消息
+    MSG msg;
+    while (PeekMessage(&amp;msg, NULL, 0, 0) &gt; 0) {
+        TranslateMessage(&amp;msg);
+        DispatchMessage(&amp;msg);
+    }
+    // 再无Windows消息需要处理，执行“真正”的游戏循环迭代一次
+    RunOneIterationOfGameLoop();
+}
+</code></pre><h3 id="1-2-2-回调驱动框架"><a href="#1-2-2-回调驱动框架" class="headerlink" title="1.2.2 回调驱动框架"></a>1.2.2 回调驱动框架</h3><h3 id="1-2-3-基于事件的更新"><a href="#1-2-3-基于事件的更新" class="headerlink" title="1.2.3 基于事件的更新"></a>1.2.3 基于事件的更新</h3><p>参考文献：电子工业出版社《游戏引擎架构》第6章</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[游戏引擎支持系统（下）]]></title>
       <url>http://raytaylorlin.com/tech/game/engine/engine-support-system-2/</url>
       <content type="html"><![CDATA[<p>游戏编程中需要使用各种各样的集合型数据结构，称为容器或集合。字符串看似是个简单基本的数据类型，但在游戏引擎中会涉及许多设计问题和限制。此外，游戏引擎总是伴随大量可调校的选项，有的通过游戏中的选项菜单给玩家调校，有的则只为游戏开发团队设置，在正式发行时被隐掉或去除。</p>
@@ -5549,6 +5582,19 @@ context.rotate(radius)
   
     
     <entry>
+      <title><![CDATA[读书]]></title>
+      <url>http://raytaylorlin.com/reading/index.html</url>
+      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[读书]]></title>
+      <url>http://raytaylorlin.com/sale/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于]]></title>
       <url>http://raytaylorlin.com/about/index.html</url>
       <content type="html"><![CDATA[<p>大家好，我是林寿山，人称“寿寿”。欢迎来到我的个人技术博客。</p>
@@ -5562,13 +5608,6 @@ context.rotate(radius)
 <li>研二至研三：找工作时突然决定要转游戏开发，于是抛弃最精通的Web前端，开始速学C++、Cocos2d-x、Unity3D，并做出勉强可以拿出手的作品。几经周折拿到了理想公司的offer，标识着正式转型最热爱的游戏开发。</li>
 <li><strong>未来</strong>：借着Unity3D引擎的盛行，未来入职后应该会重拾老本行C#，这也说明了技多不压身。虽然从Web前端转型到游戏开发跨度有点大，但我相信曾经扎实的前端基础将会成为一笔不小的财富。游戏开发是一个全新的技术领域，未来将有许多新东西，如图形学、引擎、AI等等，等着我去学习。</li>
 </ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/reading/index.html</url>
-      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
 ]]></content>
     </entry>
     
