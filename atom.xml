@@ -130,62 +130,6 @@
   </entry>
   
   <entry>
-    <title>游戏循环的实现方式</title>
-    <link href="http://raytaylorlin.com/tech/game/engine/game-loop/"/>
-    <id>http://raytaylorlin.com/tech/game/engine/game-loop/</id>
-    <published>2016-06-17T06:10:20.000Z</published>
-    <updated>2016-06-17T09:27:02.547Z</updated>
-    
-    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-基本游戏循环&quot;&gt;&lt;a href=&quot;#1-基本游戏循环&quot; class=&quot;headerlink&quot; title=&quot;1. 基本游戏循环&quot;&gt;&lt;/a&gt;1. 基本游戏循环&lt;/h1&gt;&lt;p&gt;在游戏运行时，多数游戏引擎子系统都需要周期性地提供服务，而它们所需的服务频率各有不同。动画子系统通常需要30Hz或60Hz的更新率，和渲染子系统同步。动力学模拟可能需要更频繁地更新（如120Hz）。像人工智能这种更高级的系统，可能只需要每秒1-2次更新，而且完全不需要和渲染循环同步。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-渲染循环&quot;&gt;&lt;a href=&quot;#1-1-渲染循环&quot; class=&quot;headerlink&quot; title=&quot;1.1 渲染循环&quot;&gt;&lt;/a&gt;1.1 渲染循环&lt;/h2&gt;&lt;p&gt;相比于Windows的GUI采用矩形失效技术仅让屏幕有改动的部位重绘，现代3D游戏采用和电影相同的方式产生运动的错觉和互动性——对观众快速连续地显示一连串静止映像，即渲染循环，其最简单的结构如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;while (!quit) {
-    // 基于输入或预设的路径更新摄像机变换
-    updateCamera();
-    // 更新场景中所有动态元素的位置、定向及其他相关的视觉状态
-    updateSceneElements();
-    // 把静止的场景渲染至屏幕外的帧缓冲（称为“背景缓冲”）
-    renderScene();
-    // 交换背景缓冲和前景缓冲，令最近渲染的影像显示于屏幕之上
-    // （或是在视窗模式下，把背景缓冲复制至前景缓冲）
-    swapBuffers();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2-游戏循环的架构风格&quot;&gt;&lt;a href=&quot;#1-2-游戏循环的架构风格&quot; class=&quot;headerlink&quot; title=&quot;1.2 游戏循环的架构风格&quot;&gt;&lt;/a&gt;1.2 游戏循环的架构风格&lt;/h2&gt;&lt;p&gt;最简单的游戏循环，是采用&lt;strong&gt;单一循环更新所有子系统&lt;/strong&gt;，即在一个无限循环中计算逻辑并渲染画面。此外还有其他常见的架构风格，核心由若干个简单循环组成，再加上不同的修饰。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-1-视窗消息泵&quot;&gt;&lt;a href=&quot;#1-2-1-视窗消息泵&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 视窗消息泵&quot;&gt;&lt;/a&gt;1.2.1 视窗消息泵&lt;/h3&gt;&lt;p&gt;Windows平台下，游戏除了要服务引擎本身的子系统，还要处理来自操作系统的消息。因此需要一段成为消息泵的代码来处理，基本原理是先处理来自Windows的消息，无消息时才执行引擎的任务。这种方法的副作用是设置了处理Windows消息为先，渲染和模拟游戏为后的优先次序，导致当玩家在桌面上改变游戏的视窗大小或移动视窗时，游戏就会愣住不动。典型消息泵代码如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;while (true) {
-    // 处理所有Windows消息
-    MSG msg;
-    while (PeekMessage(&amp;amp;msg, NULL, 0, 0) &amp;gt; 0) {
-        TranslateMessage(&amp;amp;msg);
-        DispatchMessage(&amp;amp;msg);
-    }
-    // 再无Windows消息需要处理，执行“真正”的游戏循环迭代一次
-    RunOneIterationOfGameLoop();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;1-2-2-回调驱动框架&quot;&gt;&lt;a href=&quot;#1-2-2-回调驱动框架&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 回调驱动框架&quot;&gt;&lt;/a&gt;1.2.2 回调驱动框架&lt;/h3&gt;&lt;h3 id=&quot;1-2-3-基于事件的更新&quot;&gt;&lt;a href=&quot;#1-2-3-基于事件的更新&quot; class=&quot;headerlink&quot; title=&quot;1.2.3 基于事件的更新&quot;&gt;&lt;/a&gt;1.2.3 基于事件的更新&lt;/h3&gt;&lt;p&gt;参考文献：电子工业出版社《游戏引擎架构》第6章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-基本游戏循环&quot;&gt;&lt;a href=&quot;#1-基本游戏循环&quot; class=&quot;headerlink&quot; title=&quot;1. 基本游戏循环&quot;&gt;&lt;/a&gt;1. 基本游戏循环&lt;/h1&gt;&lt;p&gt;在游戏运行时，多数游戏引擎子系统都需要周期性地提供服
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
-    
-      <category term="游戏引擎" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
-    
-    
-      <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
-    
-      <category term="架构" scheme="http://raytaylorlin.com/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
     <title>游戏引擎支持系统（下）</title>
     <link href="http://raytaylorlin.com/tech/game/engine/engine-support-system-2/"/>
     <id>http://raytaylorlin.com/tech/game/engine/engine-support-system-2/</id>
@@ -2292,6 +2236,106 @@ points = DeviceUnitsToPoints(deviceUnits);
       <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
       <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新版Hexo主题Raytaylorism v2发布</title>
+    <link href="http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/"/>
+    <id>http://raytaylorlin.com/daily/hexo-theme-raytaylorism-v2/</id>
+    <published>2016-03-18T03:28:32.000Z</published>
+    <updated>2016-03-29T07:03:33.085Z</updated>
+    
+    <content type="html">&lt;p&gt;时隔两年多，我自制的Hexo主题Raytaylorism（&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github地址&lt;/a&gt;）终于喜迎v2版本的发布。这个项目可以说是我在学生时代Web前端领域中的收官之作，因此在本次升级主题的过程中，一切都尽量做到精细。例如所有的页面都经过重新设计，采用清新的的响应式的Material Design风格，加入了个性化的“读书”“关于”页面，以及皮肤自定义、分类目录、正文滚动目录、打赏等等特色功能，并且该主题支持最新的Hexo 3.1版本。由于主题的功能较为复杂，所有的安装说明和配置事项都写在了Github项目的README中，需要使用主题的同学请&lt;strong&gt;认真仔细阅读README&lt;/strong&gt;哦，&lt;strong&gt;特别是&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#启用重要&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;启用&lt;/a&gt;那一节的说明很重要！很重要！很重要！一定要照做否则你会发现hexo启动不起来或最终效果和截图上的不一样。&lt;/strong&gt; 使用过程中有任何问题欢迎给我开issue。下面正文将介绍主题在Github上没有详细解释但又非常有特色的功能。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-换肤功能&quot;&gt;&lt;a href=&quot;#1-换肤功能&quot; class=&quot;headerlink&quot; title=&quot;1. 换肤功能&quot;&gt;&lt;/a&gt;1. 换肤功能&lt;/h1&gt;&lt;p&gt;我个人非常喜欢Material Design这种简洁清新的设计风格，也非常喜欢其定义的各种颜色。博客主题是一种非常个性化的东西，我喜欢的配色方案（包括主题默认的indigo-pink方案）不一定是你喜欢的，因此raytaylorism在几乎所有带颜色的区域都预留了配置的接口（具体参见&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#样式&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-样式-主题颜色配置&lt;/a&gt;）。不过，总有一些设计感不强的同学不知道如何下手，所以下面给出了3款参考的皮肤配置方案，大家可以各取所需随意发挥。配色的一个基本原则，就是选好一种主色和强调色。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-夏日甜橙&quot;&gt;&lt;a href=&quot;#1-1-夏日甜橙&quot; class=&quot;headerlink&quot; title=&quot;1.1 夏日甜橙&quot;&gt;&lt;/a&gt;1.1 夏日甜橙&lt;/h2&gt;&lt;p&gt;主色：blue 强调色：deep-orange&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fblue_deeporange.jpg&quot; alt=&quot;夏日甜橙&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: indigo
+    footer: indigo
+    page_nav: indigo
+    side_nav: indigo darken-1
+    tag: green accent-4
+    link: indigo
+    pagination: green
+    tab: green
+    archive_item: grey
+    fab: green
+    fab_2: blue
+    fab_3: orange
+    new: pink
+    about_header: indigo
+    about_title: indigo
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-2-绿野仙踪&quot;&gt;&lt;a href=&quot;#1-2-绿野仙踪&quot; class=&quot;headerlink&quot; title=&quot;1.2 绿野仙踪&quot;&gt;&lt;/a&gt;1.2 绿野仙踪&lt;/h2&gt;&lt;p&gt;主色：green 强调色：red&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fgreen_red.jpg&quot; alt=&quot;绿野仙踪&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: green
+    footer: green
+    page_nav: green
+    side_nav: green darken-1
+    tag: red lighten-1
+    article_title_link: green
+    link: red
+    pagination: red
+    tab: red
+    archive_item: grey
+    fab: red
+    fab_2: cyan
+    fab_3: light-green
+    new: red
+    about_header: green
+    about_title: green
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;1-3-林地木屋&quot;&gt;&lt;a href=&quot;#1-3-林地木屋&quot; class=&quot;headerlink&quot; title=&quot;1.3 林地木屋&quot;&gt;&lt;/a&gt;1.3 林地木屋&lt;/h2&gt;&lt;p&gt;主色：brown 强调色：light-green&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fbrown_lightgreen.jpg&quot; alt=&quot;林地木屋&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;color:
+    header: brown darken-1
+    footer: brown darken-1
+    page_nav: brown darken-1
+    side_nav: brown darken-1
+    tag: light-green
+    article_title_link: brown
+    link: light-green
+    pagination: light-green
+    tab: light-green
+    archive_item: grey
+    fab: light-green
+    fab_2: red
+    fab_3: purple
+    new: light-green
+    about_header: brown darken-1
+    about_title: brown
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;2-文章分类目录&quot;&gt;&lt;a href=&quot;#2-文章分类目录&quot; class=&quot;headerlink&quot; title=&quot;2. 文章分类目录&quot;&gt;&lt;/a&gt;2. 文章分类目录&lt;/h1&gt;&lt;p&gt;如果点击我的博客菜单中的“分类”按钮，会发现左侧侧滑栏会出来一个带有多个层级的文章分类列表。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-category.png&quot; alt=&quot;主题的分类目录&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果你也想要得到类似的效果（包括标签tag），需要按照&lt;a href=&quot;https://hexo.io/docs/front-matter.html#Categories-amp-Tags&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo官方的categories/tags说明文档&lt;/a&gt;给你的博客文章设置正确的&lt;code&gt;categories&lt;/code&gt;和&lt;code&gt;tags&lt;/code&gt;配置项。也就是说你的每一篇博文的markdown文件中，需要设置类似于下方的几行配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;categories:
+- 一级目录
+- 二级目录
+- 三级目录
+tags:
+- 第一个标签
+- 第二个标签
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;准确设置后，启动hexo时主题会自动解析所有文章并形成分类树，最终生成上图那样的分类层次。&lt;/p&gt;
+&lt;h1 id=&quot;3-读书页面&quot;&gt;&lt;a href=&quot;#3-读书页面&quot; class=&quot;headerlink&quot; title=&quot;3. 读书页面&quot;&gt;&lt;/a&gt;3. 读书页面&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-reading.png&quot; alt=&quot;读书页面截图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#数据&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-数据-读书页面&lt;/a&gt;中其实已经说明了如何配置读书页面的数据，照着例子来改就行了。值得注意的是，“已读”“在读”“想读”这些标签的文字是可以通过&lt;code&gt;reading.json&lt;/code&gt;中的&lt;code&gt;define&lt;/code&gt;字段来修改的，甚至你还可以仿照读书页面，扩展出自己的专属页面，例如“作品”页面等。只要是满足这种列表条目的数据均可以在其上自由发挥。&lt;/p&gt;
+&lt;h1 id=&quot;4-关于页面&quot;&gt;&lt;a href=&quot;#4-关于页面&quot; class=&quot;headerlink&quot; title=&quot;4. 关于页面&quot;&gt;&lt;/a&gt;4. 关于页面&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fdaily%2Fraytaylorism-about.png&quot; alt=&quot;关于页面截图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#数据&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;README-数据-关于页面&lt;/a&gt;中也说明了个&lt;code&gt;about.json&lt;/code&gt;中各个字段的含义，照着例子改就行了。&lt;/p&gt;
+&lt;p&gt;另外关于页面的末尾还有一个“打赏”功能，点开后会出现微信和支付宝的二维码，这个需要你自己去制作自己的付款二维码，然后把&lt;code&gt;reward&lt;/code&gt;字段的两个图片链接替换掉。如果暂时不需要的话请将该字段设为null，&lt;strong&gt;千万不要傻乎乎地把主题照搬让别人给我的账号打赏了=。=&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;关于主题任何使用上的疑问，欢迎在&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Issues&lt;/a&gt;上提问。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;时隔两年多，我自制的Hexo主题Raytaylorism（&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism&quot;&gt;Github地址&lt;/a&gt;）终于喜迎v2版本的发布。这个项目可以说是我在学生时代Web前端领域中的收官之作，因此在本次升级主题的过程中，一切都尽量做到精细。例如所有的页面都经过重新设计，采用清新的的响应式的Material Design风格，加入了个性化的“读书”“关于”页面，以及皮肤自定义、分类目录、正文滚动目录、打赏等等特色功能，并且该主题支持最新的Hexo 3.1版本。由于主题的功能较为复杂，所有的安装说明和配置事项都写在了Github项目的README中，需要使用主题的同学请&lt;strong&gt;认真仔细阅读README&lt;/strong&gt;哦，&lt;strong&gt;特别是&lt;a href=&quot;https://github.com/raytaylorlin/hexo-theme-raytaylorism#启用重要&quot;&gt;启用&lt;/a&gt;那一节的说明很重要！很重要！很重要！一定要照做否则你会发现hexo启动不起来或最终效果和截图上的不一样。&lt;/strong&gt; 使用过程中有任何问题欢迎给我开issue。下面正文将介绍主题在Github上没有详细解释但又非常有特色的功能。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="日常" scheme="http://raytaylorlin.com/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+      <category term="博客" scheme="http://raytaylorlin.com/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="http://raytaylorlin.com/tags/Hexo/"/>
     
   </entry>
   
