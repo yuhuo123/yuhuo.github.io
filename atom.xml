@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-06-24T07:35:04.279Z</updated>
+  <updated>2016-06-28T08:30:05.929Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实时游戏的时间模拟</title>
+    <link href="http://raytaylorlin.com/tech/game/engine/real-time-simulation/"/>
+    <id>http://raytaylorlin.com/tech/game/engine/real-time-simulation/</id>
+    <published>2016-06-28T08:29:02.000Z</published>
+    <updated>2016-06-28T08:30:05.929Z</updated>
+    
+    <content type="html">&lt;p&gt;游戏是实时的、动态的、互动的计算机模拟，所以&lt;strong&gt;时间&lt;/strong&gt;在电子游戏中担当非常重要的角色。游戏中有不同种类的时间——实时、游戏时间、动画的本地时间线、某函数实际消耗的CPU周期等。本文谈及实时、动态模拟软件如何运作，并探讨这类模拟中运用时间的常见方法。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-抽象时间线&quot;&gt;&lt;a href=&quot;#1-抽象时间线&quot; class=&quot;headerlink&quot; title=&quot;1. 抽象时间线&quot;&gt;&lt;/a&gt;1. 抽象时间线&lt;/h1&gt;&lt;p&gt;时间线是连续的一维轴，其原点（t=0）可以设置为系统中其他时间线的任何相对位置。时间线可以用简单的时钟变量实现，以整数或浮点数格式储存绝对时间值。时间线可能存在如下几种形式。&lt;/p&gt;
+&lt;h2 id=&quot;1-1-真实时间线&quot;&gt;&lt;a href=&quot;#1-1-真实时间线&quot; class=&quot;headerlink&quot; title=&quot;1.1 真实时间线&quot;&gt;&lt;/a&gt;1.1 真实时间线&lt;/h2&gt;&lt;p&gt;可以直接使用CPU的高分辨率计时寄存器来量度时间。此时间线的原点定义为计算机上次启动或重置之时。这种时间的度量单位是CPU周期（或其倍数），但其实只要简单地乘以CPU的高分辨率计时器频率，此单位便可以转换为秒数。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-游戏时间线&quot;&gt;&lt;a href=&quot;#1-2-游戏时间线&quot; class=&quot;headerlink&quot; title=&quot;1.2 游戏时间线&quot;&gt;&lt;/a&gt;1.2 游戏时间线&lt;/h2&gt;&lt;p&gt;在正常情况下，游戏时间和真实时间是一致的。但若希望暂停游戏，就可以简单地临时停止对游戏时间的更新，若要把游戏变成慢动作，可以把游戏时钟更新得慢于实时时钟。&lt;/p&gt;
+&lt;p&gt;控制游戏时间是很有用的调试工具。例如在追查不正常的渲染时，可以暂停游戏时间，冻结所有动作，然后使用另外时钟的渲染引擎及调试用飞行摄像机继续运作，就能以任意角度观察问题所在。也可以在暂停模式下，手动“逐步更新”推前帧率来调试。要注意这种调试方法暂停游戏时，游戏循环是持续进行的，仅仅是游戏时钟停止，而通过对暂停的时钟加上1/30s去实现单步更新。&lt;/p&gt;
+&lt;h2 id=&quot;1-3-局部与全局时间线&quot;&gt;&lt;a href=&quot;#1-3-局部与全局时间线&quot; class=&quot;headerlink&quot; title=&quot;1.3 局部与全局时间线&quot;&gt;&lt;/a&gt;1.3 局部与全局时间线&lt;/h2&gt;&lt;p&gt;可以想象每个动画或音频片段都含有一个局部时间线，其原点定义为片段的开始。在游戏中播放片段时，正常播放、加速、减速、反转等效果可以视觉化为局部到全局时间线的映射。下图给出了几种映射的情况，其中在做缩放播放时，播放速率记为R。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/engine/%E5%B1%80%E9%83%A8%E5%88%B0%E5%85%A8%E5%B1%80%E6%97%B6%E9%97%B4%E7%BA%BF%E6%98%A0%E5%B0%84%E7%9A%84%E5%90%84%E7%A7%8D%E6%83%85%E5%86%B5.jpg&quot; alt=&quot;局部到全局时间线映射的各种情况&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-测量及处理时间&quot;&gt;&lt;a href=&quot;#2-测量及处理时间&quot; class=&quot;headerlink&quot; title=&quot;2. 测量及处理时间&quot;&gt;&lt;/a&gt;2. 测量及处理时间&lt;/h1&gt;&lt;h2 id=&quot;2-1-帧率与时间增量&quot;&gt;&lt;a href=&quot;#2-1-帧率与时间增量&quot; class=&quot;headerlink&quot; title=&quot;2.1 帧率与时间增量&quot;&gt;&lt;/a&gt;2.1 帧率与时间增量&lt;/h2&gt;&lt;p&gt;时间增量Δt（delta time）在游戏中非常重要，其值为FPS的倒数（若为60FPS则Δt=16.6ms/f）。假设一个游戏物体以恒定速率v（单位m/s）运行，乘以一帧的时间增量（单位s/f），就能得出该物体每帧的位置变化Δx=vΔt（单位m/f）。&lt;strong&gt;游戏中物体的感知速度依赖于帧时间Δt，因此计算Δt的值是游戏编程的核心问题之一。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-1-1-受CPU速度影响&quot;&gt;&lt;a href=&quot;#2-1-1-受CPU速度影响&quot; class=&quot;headerlink&quot; title=&quot;2.1.1 受CPU速度影响&quot;&gt;&lt;/a&gt;2.1.1 受CPU速度影响&lt;/h3&gt;&lt;p&gt;早期的游戏中，程序员不会尝试在游戏循环中准确量度真实经过的时间，即忽略Δt，以Δx=v计算位置变化。这样的后果是，游戏中物体看上去的速度完全依赖于CPU的速度所产生的帧率。若在较快的CPU上运行这类游戏，游戏看上去就会像快速进带一样。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-2-基于经过时间的更新&quot;&gt;&lt;a href=&quot;#2-1-2-基于经过时间的更新&quot; class=&quot;headerlink&quot; title=&quot;2.1.2 基于经过时间的更新&quot;&gt;&lt;/a&gt;2.1.2 基于经过时间的更新&lt;/h3&gt;&lt;p&gt;要开发和CPU速度脱钩的游戏，就要以某种方法度量Δt，只需&lt;em&gt;将CPU的高分辨率计时器取值两次——一次于帧开始时，一次于帧结束时，然后取二者之差就能精确度量上一帧的Δt&lt;/em&gt;。绝大部分的游戏引擎都是用这种方法，但它最大的问题是：使用第k帧度量出的Δt去估计第k+1帧的所需时间，这么做不一定准确。有时甚至会产生非常坏的效果，某一帧特别慢导致预测的Δt越来越大，进入低帧率的恶性循环。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-3-使用移动平均&quot;&gt;&lt;a href=&quot;#2-1-3-使用移动平均&quot; class=&quot;headerlink&quot; title=&quot;2.1.3 使用移动平均&quot;&gt;&lt;/a&gt;2.1.3 使用移动平均&lt;/h3&gt;&lt;p&gt;游戏循环中每帧之间是有一些连贯性的。例如，若本帧中摄像机对着含许多渲染耗时物体的走廊，那么下一帧有很大机会仍然对着该走廊。因此可以&lt;em&gt;计算连续几帧的平均时间，用来估计下一帧的Δt&lt;/em&gt;。此方法能使游戏适应转变中的帧率，同时缓和瞬间帧率尖峰所带来的影响。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-4-调控帧率&quot;&gt;&lt;a href=&quot;#2-1-4-调控帧率&quot; class=&quot;headerlink&quot; title=&quot;2.1.4 调控帧率&quot;&gt;&lt;/a&gt;2.1.4 调控帧率&lt;/h3&gt;&lt;p&gt;上述方法都是预测下一帧Δt的做法，难免有误差。预期尝试估算下一帧的经过时间，不如尝试保证每帧都准确耗时固定时间，即帧率调控。首先仍然要度量本帧的耗时，&lt;em&gt;若耗时比目标时间短，则让主线程休眠，直至到达目的时间；若耗时比目标时间长，那么只好白等下一个目标时间&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;当游戏的平均帧率接近目标帧率，此方法才有效。若因经常遇到“慢”帧，就会明显降低游戏质量。因此，仍然需要让将引擎系统设计成能接受任意的Δt。在开发时，引擎停留在“可变帧率”模式，实际运行中，游戏若能一贯地达到目标帧率，就开启帧率调控获其好处。使帧率连续维持稳定对游戏多方面都很重要，例如物理模拟使用的数值积分以固定时间更新运作最佳，或者使游戏录播功能更可靠。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;【题外】&lt;/strong&gt;游戏录播的实现方式：需要记录游戏进行时的所有相关事件，并把这些事件及其时间戳储存下来。然后在播放时，使用相同的初始条件和随机种子，就能准确地按时间重播那些事件。理论上，这么做能产生和原来游戏过程一模一样的重播。然而，若帧率不稳定，事情可能以不完全相同的次序发生。此问题的简单解决方法是，同时记录每帧的Δt，使游戏性的逻辑模拟部分能完全重播录制时的状态。若播放时的帧率不能维持原来的速度，可选择以较慢的速度播放，或选择略过渲染一些帧。&lt;/p&gt;
+&lt;h3 id=&quot;2-1-5-垂直消隐区间&quot;&gt;&lt;a href=&quot;#2-1-5-垂直消隐区间&quot; class=&quot;headerlink&quot; title=&quot;2.1.5 垂直消隐区间&quot;&gt;&lt;/a&gt;2.1.5 垂直消隐区间&lt;/h3&gt;&lt;p&gt;画面撕裂这种显示异常现象，是指由于CRT显示器的电子枪在扫描中途交换背景和前景缓冲区，导致屏幕上半部分显示了旧的影像，而下半部分则显示了新的影像。为避免画面撕裂，许多渲染引擎会在交换缓冲区之前，等待显示器的垂直消隐区间。等待垂直消隐区间是另一种帧率调控，实际上能限制主游戏循环的帧率，使其必然为屏幕刷新率的倍数。例如，在以60Hz刷新的NTSC显示器上，游戏的真实更新率实际会被量化为1/60s的倍数。若两帧之间的时间超过1/60s，便必须等待下一次垂直消隐区间，即该帧共花了2/60s（30FPS）。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-高分辨率计时器&quot;&gt;&lt;a href=&quot;#2-2-高分辨率计时器&quot; class=&quot;headerlink&quot; title=&quot;2.2 高分辨率计时器&quot;&gt;&lt;/a&gt;2.2 高分辨率计时器&lt;/h2&gt;&lt;p&gt;标准C程序库函数time()分辨率为秒，不适合度量游戏帧率。度量时间游戏使用的是现代CPU的高分辨率计时器，这种计时器通常会实现&lt;br&gt;为硬件寄存器，其分辨率为纳秒，如3GHz的奔腾处理器上，计时器每秒递增30亿次。奔腾的&lt;code&gt;rdtsc&lt;/code&gt;指令，Win32 API的&lt;code&gt;QueryPerformanceCounter()&lt;/code&gt;，一些PowerPC架构的&lt;code&gt;mftb&lt;/code&gt;指令等等，都可以查询分辨率计时器。&lt;/p&gt;
+&lt;p&gt;要特别注意在一些多核处理器中，每个核有其独立的高分辨率计时器，这些计时器可能会彼此漂移。若比较不同核读取的绝对计算器读数，可能会出现一些奇异情况——甚至是负数的经过时间。&lt;/p&gt;
+&lt;h2 id=&quot;2-3-时间单位和时钟变量&quot;&gt;&lt;a href=&quot;#2-3-时间单位和时钟变量&quot; class=&quot;headerlink&quot; title=&quot;2.3 时间单位和时钟变量&quot;&gt;&lt;/a&gt;2.3 时间单位和时钟变量&lt;/h2&gt;&lt;p&gt;大多数计时器都是64位的无符号整数时钟，可以支持非常高的精度及很大的数值范围（3GHz CPU每周期0.333ns，约195年才循环一次），这是最具弹性的表示法。当要度量高精度但较短的时间，例如剖析一段代码的性能，可用32位整数时钟。注意仍然用64位整数变量储存起始和结束时刻，中间的差值才用32位整数变量。&lt;/p&gt;
+&lt;p&gt;另一常见方法是把较小的持续时间以秒为单位储存为浮点数，即把以CPU周期为单位的时间度量除以CPU时钟频率。由于32位IEEE浮点数的限制（整数部分占用较少位），应小心避免用浮点时钟变量储存很长的持续时间，最多度量几分钟。若要储存绝对值的浮点时钟，需要定期将其重置为零，以免累加至很大的数值。&lt;/p&gt;
+&lt;p&gt;有些游戏引擎支持把时间值设定为自定义单位，如以1/300秒为时间单位，优点是：许多情况下足够精确；约165.7天才会溢出；同时是NTSC和PAL制刷新率的倍数。不过这种时间单位对处理动画时间缩放精度仍不够，但对于处理像枪械每次发射间的空档时间、由AI控制的角色要等多久才开始巡逻这些问题就足够了。&lt;/p&gt;
+&lt;h2 id=&quot;2-4-应付断点&quot;&gt;&lt;a href=&quot;#2-4-应付断点&quot; class=&quot;headerlink&quot; title=&quot;2.4 应付断点&quot;&gt;&lt;/a&gt;2.4 应付断点&lt;/h2&gt;&lt;p&gt;当游戏在运行时遇到调试断点，游戏循环会暂停，但CPU实时时钟仍在继续累加，当程序员继续执行程序时，该帧的持续时间会度量出一个巨大的值，显然不适合传到引擎各子系统。最简单的方法就是，在主循环中，若度量到某帧的持续时间超过阈值（如1/10s），则可假定游戏刚从断点恢复执行，于是把增量时间人工设为1/30s或1/60s（或其他目标帧率）。&lt;/p&gt;
+&lt;h2 id=&quot;2-5-一个简单的时钟类&quot;&gt;&lt;a href=&quot;#2-5-一个简单的时钟类&quot; class=&quot;headerlink&quot; title=&quot;2.5 一个简单的时钟类&quot;&gt;&lt;/a&gt;2.5 一个简单的时钟类&lt;/h2&gt;&lt;p&gt;以下给出一个简单时钟类的实现。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Clock {
+    U64 m_timeCycles;    // 时钟周期
+    F32 m_timeScale;    // 时间缩放因子
+    bool m_isPaused;    // 是否暂停
+    static F32 s_cyclesPerSecond;    // CPU每秒的周期数
+
+    // 将秒数转换为周期数
+    static inline U64 secondsToCycle(F32 timeSeconds) {
+        return (U64) (timeSeconds * s_cyclesPerSecond);
+    }
+
+public:
+    // 游戏启动时调用此初始化
+    static void init() {
+        s_cyclesPerSecond = (F32)readHiResTimerFrequency();
+    }
+
+    // 构建一个时钟
+    explicit Clock(F32 startTimeSeconds = 0.0f) :
+        m_timeCycles(secondToCycles(startTimeSeconds)), m_timeScale(1.Of), m_isPaused(false)
+    { }
+
+    // 以周期为单位返回当前时间
+    U64 getTimeCycles() const {
+        return m_timeCycles;
+    }
+
+    // 应在每帧调此函数一次，并给予真实度量帧时间（以秒为单位）
+    void update(F32 dtRealSeconds) {
+        // 非暂停才更新时钟变量
+        if (!m_isPaused) {
+            U64 dtScaledCycles = secondsToCycles(dtRealSeconds * m_timeScale);    // 乘以缩放因子，实现时间缩放
+            m_timeCycles += dtScaledCycles;
+        }
+    }
+
+    /* 省略其余简单成员函数 */
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;参考文献：电子工业出版社《游戏引擎架构》第7.4、7.5节&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;游戏是实时的、动态的、互动的计算机模拟，所以&lt;strong&gt;时间&lt;/strong&gt;在电子游戏中担当非常重要的角色。游戏中有不同种类的时间——实时、游戏时间、动画的本地时间线、某函数实际消耗的CPU周期等。本文谈及实时、动态模拟软件如何运作，并探讨这类模拟中运用时间的常见方法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="架构" scheme="http://raytaylorlin.com/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>游戏循环的实现方式</title>
@@ -2194,105 +2284,6 @@ points = DeviceUnitsToPoints(deviceUnits);
     <summary type="html">
     
       &lt;p&gt;软件架构（software architecture）是软件设计的高层部分，是用于支撑更细节的设计的框架。本文关注的并不是如何开发一个软件的架构，而是设计一个架构时应该关注的部分。此外，设计就是把需求分析和编码调试连在一起的活动，好的高层设计能提供一个可以稳妥容纳多个较低层次设计的结构，其对于小型项目非常有用，对大型项目更是不可或缺。因此，本文将总结软件构建中设计的基础概念及基本方法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（一）——软件构建基础</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-1/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-1/</id>
-    <published>2016-03-29T08:17:53.000Z</published>
-    <updated>2016-05-12T13:14:11.842Z</updated>
-    
-    <content type="html">&lt;p&gt;开发计算机软件是一个非常复杂的过程，而软件“构建”是指建设过程中“动手”的部分，其中不仅仅包括“写代码”，还包含了计划、设计、测试、集成等等其他工作。本文首先总结软件构建的含义以及其主要活动；接着列举了一个比较合理的隐喻——建造房子——来理解软件开发；最后阐述了软件构建的前期准备工作的重要性，阐述了定义问题和分析需求的重要性，以及应该准备哪些事情。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-软件构建的主要活动&quot;&gt;&lt;a href=&quot;#1-软件构建的主要活动&quot; class=&quot;headerlink&quot; title=&quot;1. 软件构建的主要活动&quot;&gt;&lt;/a&gt;1. 软件构建的主要活动&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%BB%E8%A6%81%E6%B4%BB%E5%8A%A8.png&quot; alt=&quot;软件构建的主要活动（阴影覆盖的部分）&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如图所示，软件构建活动主要是编码与调试，但也涉及详细设计、规划构建、单元测试、集成、集成测试等其他活动。下面列出一些具体的构建活动中的任务：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;验证有关的基础工作已经完成，因此构建活动可以顺利地进行下去&lt;/li&gt;
-&lt;li&gt;确定如何测试所写的代码&lt;/li&gt;
-&lt;li&gt;设计并编写类和子程序&lt;/li&gt;
-&lt;li&gt;创建并命名变量和具名常量&lt;/li&gt;
-&lt;li&gt;选择控制结构，组织语句块&lt;/li&gt;
-&lt;li&gt;对代码进行单元测试和集成测试，并排除其中的错误&lt;/li&gt;
-&lt;li&gt;评审开发团队其他成员的底层设计和代码，并让他们评审你的工作&lt;/li&gt;
-&lt;li&gt;润饰代码，仔细进行代码的格式化和注释&lt;/li&gt;
-&lt;li&gt;将单独开发的多个软件组件集成为一体&lt;/li&gt;
-&lt;li&gt;调整代码，让它更快、更省资源&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-用隐喻来更充分地理解软件开发&quot;&gt;&lt;a href=&quot;#2-用隐喻来更充分地理解软件开发&quot; class=&quot;headerlink&quot; title=&quot;2. 用隐喻来更充分地理解软件开发&quot;&gt;&lt;/a&gt;2. 用隐喻来更充分地理解软件开发&lt;/h1&gt;&lt;p&gt;当向一个非程序员解释什么是软件开发的时候，最好的办法就是通过某种隐喻或类比来解释。隐喻把软件开发过程与其他你熟系的活动联系在一起，帮助你更好地理解。不同的隐喻彼此并不排斥，应当使用对你最有益处的某种隐喻组合。&lt;/p&gt;
-&lt;p&gt;使用&lt;strong&gt;建造房子&lt;/strong&gt;是一个很好的隐喻，此处做个引用摘录：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;首先你要决定准备建一个什么类型的房子一一在软件开发里的类似事项称为问题定义。接下来，你必须和某个建筑师探讨这一总体设计，并得到批准。这跟软件架构设计十分相似。然后你画出详细的蓝图，雇一个承包人，就像软件的详细设计。再然后，你要准备好建造地点，打好地基，搭建房屋框架，砌好边墙，盖好房顶，通好水、电、煤气等。这就如同是软件的构建一样。在房子大部分完成之后，庭院设计师、油漆匠和装修工还要来把你新盖的家以及里面的家什美化一番。这就好比软件的优化过程。在整个过程中，还会有各种监查人员来检查工地、地基、框架、布线以及其他需要检查的地方。这相当于软件复查评审。&lt;/p&gt;
-&lt;p&gt;建造一个房子的时候，你不会去试着建造那些能买得到的现成的东西。你会买洗衣机、烘干机、洗碗机、电冰箱以及冷藏柜……当开发软件时，你会大量使用高级语言所提供的功能，而不会自己去编写操作系统层次的代码。你可能还要用些现成的程序库，比如说一些容器类、科学计算函数、用户界面组件、数据库访问组件，等等。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;3-前期准备&quot;&gt;&lt;a href=&quot;#3-前期准备&quot; class=&quot;headerlink&quot; title=&quot;3. 前期准备&quot;&gt;&lt;/a&gt;3. 前期准备&lt;/h1&gt;&lt;h2 id=&quot;3-1-前期准备的重要性&quot;&gt;&lt;a href=&quot;#3-1-前期准备的重要性&quot; class=&quot;headerlink&quot; title=&quot;3.1 前期准备的重要性&quot;&gt;&lt;/a&gt;3.1 前期准备的重要性&lt;/h2&gt;&lt;p&gt;就像修建建筑物一样，项目的成败很大程度上在构建活动开始之前就已经注定了。建造住宅小区的施工人员，在开始建造第一栋房子之前，并不需要知道小区里面每一栋房子的每一个细节。但他会调查施工场所，制定下水道和电线的走向等。如果施工人员准备不充分，那么建造过程很可能会因为“需要在某所已经造好的房子的地下挖一条下水道”而延误。&lt;/p&gt;
-&lt;p&gt;准备工作的中心目标就是降低风险：一个好的项目规划者能够尽可能早地将主要的风险清除掉，以便项目的大部分工作能够尽可能平稳地进行。有时候用户在一开始并不完全确定自己想要的是什么，因此值得花费比理想情况下更多的力气，找出他们真正想要的东西。但这至少比“先做一个错误的东西出来，然后扔掉，并从头来过”的成本要低廉。&lt;/p&gt;
-&lt;h2 id=&quot;3-2-准备工作和构建活动的平衡&quot;&gt;&lt;a href=&quot;#3-2-准备工作和构建活动的平衡&quot; class=&quot;headerlink&quot; title=&quot;3.2 准备工作和构建活动的平衡&quot;&gt;&lt;/a&gt;3.2 准备工作和构建活动的平衡&lt;/h2&gt;&lt;p&gt;真实项目大致可以分为“商业系统”（Web站点、游戏、信息管理系统等），“使命攸关的系统”（软件工具、盒装软件、Web服务等）和“使命攸关的嵌入式系统”（航空软件、医疗设备、操作系统等）三大类。不同种类的软件项目，需要在“准备工作”和“构建活动”之间做出不同的平衡。你应该首先确定哪些前期准备活动适合你的项目。有些项目在前期准备土面花的时间太少了，结果使得在构建活动中遇到大量不必要的反复修改，同时阻碍了项目的稳步前进。有些项目则预先做了太多的事情，固执地坚持原有的需求和计划，后来事实证明这些需求和计划是无效的，这同样阻止了构建活动的顺利进展。此外，项目的实际情况也决定了哪一种开发方法更加合适，下表给出了参考。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;需求&lt;/th&gt;
-&lt;th&gt;设计&lt;/th&gt;
-&lt;th&gt;领域熟悉程度&lt;/th&gt;
-&lt;th&gt;项目风险&lt;/th&gt;
-&lt;th&gt;后期改动代价&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;序列式开发&lt;/td&gt;
-&lt;td&gt;稳定&lt;/td&gt;
-&lt;td&gt;直截了当&lt;/td&gt;
-&lt;td&gt;熟悉&lt;/td&gt;
-&lt;td&gt;小&lt;/td&gt;
-&lt;td&gt;昂贵&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;迭代式开发&lt;/td&gt;
-&lt;td&gt;不稳定&lt;/td&gt;
-&lt;td&gt;复杂，有挑战性&lt;/td&gt;
-&lt;td&gt;不熟悉&lt;/td&gt;
-&lt;td&gt;大&lt;/td&gt;
-&lt;td&gt;较低&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;3-3-明确问题和需求&quot;&gt;&lt;a href=&quot;#3-3-明确问题和需求&quot; class=&quot;headerlink&quot; title=&quot;3.3 明确问题和需求&quot;&gt;&lt;/a&gt;3.3 明确问题和需求&lt;/h2&gt;&lt;p&gt;在开始构建之前，必须对这个系统要解决的&lt;strong&gt;问题&lt;/strong&gt;做出清楚的描述。“问题定义”只定义了“问题是什么”，应该从客户的角度用客户的语言来描述问题，而不应该用计算机的专业术语叙述（除非需要解决的就是与计算机本身相关的问题）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;需求&lt;/strong&gt; 详细描述软件系统应该做什么。明确的需求有助于确保是用户（而不是程序员〉驾驭系统的功能，有助于减少开始编程开发之后的系统变更情况，有助于避免争论。但是在构建期间，需求通常会有25%的变化，要更好地应对需求变更，可以采用以下方式：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;使用&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/132375&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;需求核对表&lt;/a&gt;来评估你的需求的质量&lt;/li&gt;
-&lt;li&gt;确保每一个人都知道需求变更的代价&lt;/li&gt;
-&lt;li&gt;建立一套变更控制程序&lt;/li&gt;
-&lt;li&gt;使用能适应变更的开发方法（如演进原型、演进交付）&lt;/li&gt;
-&lt;li&gt;考虑项目的商业价值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;3-4-花费在前期准备上的时间&quot;&gt;&lt;a href=&quot;#3-4-花费在前期准备上的时间&quot; class=&quot;headerlink&quot; title=&quot;3.4 花费在前期准备上的时间&quot;&gt;&lt;/a&gt;3.4 花费在前期准备上的时间&lt;/h2&gt;&lt;p&gt;一般说来，一个运作良好的项目会在需求、架构以及其他前期计划方面投入10%~20%的工作量和20%~30%的时间。如果需求不稳定，同时你从事的是一个大型正式项目，那你就很可能需要为“与需求分析师协商”预留一些时间，以解决构建活动早期指出的需求问题；如果从事的是小型非正式项目，要预留足够的时间，将需求定义足够清晰，让需求的不稳定性对构建活动的负面影响降至最低。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这就好比你是一名承包商，有人请你建一栋房子。客户问你：“完成这项工作要花多少钱？”你会合理地询间：“你想要我做什么？”客户说：“我不能告诉你，不过我想知道需要花费多少钱？”你该明智地感谢他浪费了你的时间，然后转身回家。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第1-4章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;开发计算机软件是一个非常复杂的过程，而软件“构建”是指建设过程中“动手”的部分，其中不仅仅包括“写代码”，还包含了计划、设计、测试、集成等等其他工作。本文首先总结软件构建的含义以及其主要活动；接着列举了一个比较合理的隐喻——建造房子——来理解软件开发；最后阐述了软件构建的前期准备工作的重要性，阐述了定义问题和分析需求的重要性，以及应该准备哪些事情。&lt;/p&gt;
     
     </summary>
     
