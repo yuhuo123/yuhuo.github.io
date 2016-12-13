@@ -171,6 +171,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
                     技术 <span class="right">80 篇</span></a>
                 </a>
@@ -259,16 +267,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">15 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">15 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -315,16 +323,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -365,14 +373,6 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/Web前端/NodeJS/">
                     NodeJS <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -431,6 +431,11 @@
 
             </div>
             <time class="green-link-context" datetime="2013-12-10T09:04:16.000Z"><a href="/tech/web/nodejs/socket-io-advanced/">2013-12-10</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
 
             
     <div class="tags-row">
@@ -528,7 +533,24 @@ io.sockets.manager.roomClients[socket.id]
 <p>Socket.IO的进阶用法介绍基本就到这里。个人感觉在日常使用的时候这些基本API已经够用了，这也体现了Socket.IO极其简洁易用的设计哲学。本文只是抛砖引玉，当在实际运用中遇到解决不了的问题时，再去查看官方详细的WIKI会比较好。</p>
 <p>参考文献：<a href="https://github.com/learnboost/socket.io/wiki" target="_blank" rel="external">Socket.IO官方WIKI</a></p>
 
+                
+<p class="green-link-context">
+    <a href="/daily/2013-autumn-summary/" rel="next" title="2013年秋季学期总结">
+    上一篇：2013年秋季学期总结
+  </a>
+</p>
+
+
+
+<p class="green-link-context">
+    <a href="/tech/web/nodejs/socket-io-tutorial/" rel="next" title="Socket.IO入门">
+    下一篇：Socket.IO入门
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -583,7 +605,7 @@ io.sockets.manager.roomClients[socket.id]
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
@@ -598,11 +620,22 @@ io.sockets.manager.roomClients[socket.id]
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
@@ -644,6 +677,8 @@ io.sockets.manager.roomClients[socket.id]
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
     (function($) {

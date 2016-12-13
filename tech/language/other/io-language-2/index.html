@@ -171,6 +171,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
                     技术 <span class="right">80 篇</span></a>
                 </a>
@@ -259,16 +267,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">15 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">15 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -315,16 +323,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -365,14 +373,6 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/Web前端/NodeJS/">
                     NodeJS <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -431,6 +431,11 @@
 
             </div>
             <time class="green-link-context" datetime="2015-01-27T08:25:34.000Z"><a href="/tech/language/other/io-language-2/">2015-01-27</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
 
             
     <div class="tags-row">
@@ -598,7 +603,24 @@ Coroutine currentCoroutine pause
 <h3 id="2-3-2-actor"><a href="#2-3-2-actor" class="headerlink" title="2.3.2 actor"></a>2.3.2 actor</h3><p>actor是通用的并发原语，它可以发送消息、处理消息以及创建其它actor。actor接收到的消息是并发的。一个actor改变其自身的状态，并通过严格控制的队列接触其它actor</p>
 <p>参考资料：《七周七语言》第3章Io</p>
 
+                
+<p class="green-link-context">
+    <a href="/tech/linux/linux-base/" rel="next" title="Linux学习笔记——基本概念及操作">
+    上一篇：Linux学习笔记——基本概念及操作
+  </a>
+</p>
+
+
+
+<p class="green-link-context">
+    <a href="/tech/language/other/io-language-1/" rel="next" title="Io语言特性（上）">
+    下一篇：Io语言特性（上）
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -653,7 +675,7 @@ Coroutine currentCoroutine pause
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
@@ -668,11 +690,22 @@ Coroutine currentCoroutine pause
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
@@ -714,6 +747,8 @@ Coroutine currentCoroutine pause
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
     (function($) {

@@ -171,6 +171,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
                     技术 <span class="right">80 篇</span></a>
                 </a>
@@ -259,16 +267,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">15 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">15 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -315,16 +323,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -365,14 +373,6 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/Web前端/NodeJS/">
                     NodeJS <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -431,6 +431,11 @@
 
             </div>
             <time class="green-link-context" datetime="2014-11-11T02:24:05.000Z"><a href="/tech/web/nodejs/node-process-and-cluster/">2014-11-11</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
 
             
     <div class="tags-row">
@@ -536,7 +541,24 @@ process.on(&apos;message&apos;, function(msg, tcp) {
 <h2 id="3-4-Cluster模块"><a href="#3-4-Cluster模块" class="headerlink" title="3.4 Cluster模块"></a>3.4 Cluster模块</h2><p>前文从原理层面介绍了child_process模块的一些细节，事实上Node在v0.8版本新增的cluster模块提供了更简洁强大的API来解决上述问题，详情可以参见<a href="http://nodejs.org/api/cluster.html" target="_blank" rel="external">Node cluster API文档</a>，此处不再赘述。</p>
 <p>参考资料：《深入浅出NodeJS》第九章</p>
 
+                
+<p class="green-link-context">
+    <a href="/tech/web/html5/pro-html5-performance-base/" rel="next" title="HTML5高性能基础">
+    上一篇：HTML5高性能基础
+  </a>
+</p>
+
+
+
+<p class="green-link-context">
+    <a href="/tech/web/nodejs/node-memory-control/" rel="next" title="Node.js学习笔记：内存控制">
+    下一篇：Node.js学习笔记：内存控制
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -591,7 +613,7 @@ process.on(&apos;message&apos;, function(msg, tcp) {
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
@@ -606,11 +628,22 @@ process.on(&apos;message&apos;, function(msg, tcp) {
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
@@ -652,6 +685,8 @@ process.on(&apos;message&apos;, function(msg, tcp) {
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
     (function($) {

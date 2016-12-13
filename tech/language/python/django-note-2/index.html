@@ -171,6 +171,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
                     技术 <span class="right">80 篇</span></a>
                 </a>
@@ -259,16 +267,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">15 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">15 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -315,16 +323,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -365,14 +373,6 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/Web前端/NodeJS/">
                     NodeJS <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -431,6 +431,11 @@
 
             </div>
             <time class="green-link-context" datetime="2014-02-03T07:21:11.000Z"><a href="/tech/language/python/django-note-2/">2014-02-03</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
 
             
     <div class="tags-row">
@@ -567,7 +572,24 @@ a = Author.objects.get(name=&apos;Adrian&apos;)
 a.book_set.all()
 </code></pre><h1 id="4-结语"><a href="#4-结语" class="headerlink" title="4. 结语"></a>4. 结语</h1><p>从上面的介绍可以看到Django的模型已经帮我们干了非常多的事情，比如我们可以通过访问对象的属性和方法来操作数据库，这种技术叫做<a href="http://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84" target="_blank" rel="external">对象关系映射</a>（ORM，Object Relational Mapping）。本文仅仅介绍了Django模型最基础的部分，其他高级的用法比如增加额外的Manager方法，添加修改数据库字段等应用可以参照<a href="http://djangobook.py3k.cn/2.0/chapter10/" target="_blank" rel="external">这里</a>。虽然Django给我们提供了如此方便的工具，但它还是需要一定的学习成本的，比如以前你简简单单写个SQL语句就可以搞定的事情，现在要转换为对象的思维，然后去定义模型，学习模型的API。而且听别人说，在涉及到比较复杂的数据库查询和优化的时候，ORM会显得力不从心，所幸Django可以支持原始SQL查询（同样请参见上面的链接）。在日常使用和中小型应用中，使用Django的ORM已经游刃有余，毕竟开发效率才是王道。</p>
 
+                
+<p class="green-link-context">
+    <a href="/tech/language/python/django-note-3/" rel="next" title="Django学习笔记（3）——Django的模板">
+    上一篇：Django学习笔记（3）——Django的模板
+  </a>
+</p>
+
+
+
+<p class="green-link-context">
+    <a href="/tech/language/python/django-note-1/" rel="next" title="Django学习笔记（1）——开始Django">
+    下一篇：Django学习笔记（1）——开始Django
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -622,7 +644,7 @@ a.book_set.all()
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
@@ -637,11 +659,22 @@ a.book_set.all()
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
@@ -683,6 +716,8 @@ a.book_set.all()
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
     (function($) {

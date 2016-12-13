@@ -171,6 +171,14 @@
             
 
             <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/日常/">
+                    日常 <span class="right">8 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
                 <a class="no-padding" href="/categories/技术/">
                     技术 <span class="right">80 篇</span></a>
                 </a>
@@ -259,16 +267,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/项目/">
-                    项目 <span class="right">1 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/软件工程/">
+                    软件工程 <span class="right">15 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/综合/软件工程/">
-                    软件工程 <span class="right">15 篇</span></a>
+                <a class="no-padding" href="/categories/技术/综合/项目/">
+                    项目 <span class="right">1 篇</span></a>
                 </a>
             </li>
 
@@ -315,16 +323,16 @@
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/IDE/">
-                    IDE <span class="right">2 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/Git/">
+                    Git <span class="right">4 篇</span></a>
                 </a>
             </li>
 
         
 
             <li class="collapse-level-2" collapse-level="2">
-                <a class="no-padding" href="/categories/技术/工具/Git/">
-                    Git <span class="right">4 篇</span></a>
+                <a class="no-padding" href="/categories/技术/工具/IDE/">
+                    IDE <span class="right">2 篇</span></a>
                 </a>
             </li>
 
@@ -365,14 +373,6 @@
             <li class="collapse-level-2" collapse-level="2">
                 <a class="no-padding" href="/categories/技术/Web前端/NodeJS/">
                     NodeJS <span class="right">9 篇</span></a>
-                </a>
-            </li>
-
-        
-
-            <li class="collapse-level-0" collapse-level="0">
-                <a class="no-padding" href="/categories/日常/">
-                    日常 <span class="right">8 篇</span></a>
                 </a>
             </li>
 
@@ -431,6 +431,11 @@
 
             </div>
             <time class="green-link-context" datetime="2014-07-10T03:11:05.000Z"><a href="/tech/algorithm/heap-sort/">2014-07-10</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
 
             
     <div class="tags-row">
@@ -523,7 +528,24 @@
 <p>可见快速排序的比较次数和交换次数都要比堆排序少，性能更优，这也是为什么多数商业应用选择快速排序作为排序算法的原因。然而，当实际应用中<strong>需要保证一定的响应时间</strong>时，就不应该使用快速排序，因为它最坏情况下是一个$O(n^2)$的算法（要记住在某些应用中最坏情况是会经常出现的，这时候你就不能依赖快速排序的平均性能）。如果数据规模n比较少，插入排序是更好的选择，因为它的代码非常简单，而且常数因子也更小。如果n很大，毫无疑问应该选择堆排序，它保证了$O(n \log n)$的时间复杂度。在一些像医疗监控、航天航空、工业生产等有关键任务的行业系统中，必须总是考虑最坏情况的出现，而不是平均情况。</p>
 <p>参考文献：机械工业出版社《算法导论（第3版）》第6章  </p>
 
+                
+<p class="green-link-context">
+    <a href="/tech/algorithm/order-statistics/" rel="next" title="算法学习笔记：顺序统计量">
+    上一篇：算法学习笔记：顺序统计量
+  </a>
+</p>
+
+
+
+<p class="green-link-context">
+    <a href="/tech/algorithm/quick-sort/" rel="next" title="算法学习笔记：快速排序">
+    下一篇：算法学习笔记：快速排序
+  </a>
+</p>
+
+
             </div>
+			
         </div>
     </div>
 </article>
@@ -578,7 +600,7 @@
     <div class="container">
         <div class="row">
             
-            <div class="social-group col m3 s12">
+            <div class="social-group col m4 s12">
                 <h5 class="white-text">社交</h5>
                 
                     <a class="social-link" href="http://weibo.com/1956184117" target="_blank">
@@ -593,11 +615,22 @@
                         <i class="fa fa-2x fa-rss"></i>
                     </a>
                 
+                <div class="site-visitors-container white-text">
+                    <span>
+                        <i class="fa fa-user"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+                    </span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>
+                        <i class="fa fa-eye"></i>
+                        <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+                    </span>
+                </div>
             </div>
             
 
             
-            <div class="col m9 s12">
+            <div class="col m8 s12">
                 <h5 class="white-text">友情链接</h5>
                 
                     <a class="social-link" href="http://tutuge.me/" target="_blank">土土哥的技术博客</a>
@@ -639,6 +672,8 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/materialize.min.js"></script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 
 <script>
     (function($) {

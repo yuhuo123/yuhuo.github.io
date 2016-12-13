@@ -732,6 +732,15 @@ article .gallery .next:before {
   padding: 0 30px;
   color: #fff;
 }
+.read-times-container {
+  margin-left: 15px;
+}
+.read-times-container .fa {
+  margin-right: 0;
+}
+.site-visitors-container {
+  margin-top: 10px;
+}
 @-moz-keyframes noscript-slide {
   0% {
     top: -100px;
@@ -778,6 +787,10 @@ article .gallery .next:before {
 }
 article pre {
   padding: 10px 16px;
+}
+article .line:after {
+  content: '';
+  display: inline-block;
 }
 article code,
 article pre {
