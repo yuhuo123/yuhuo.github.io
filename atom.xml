@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2016-07-13T08:54:40.612Z</updated>
+  <updated>2016-12-21T13:52:04.015Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>游戏引擎的游戏性系统简介</title>
+    <link href="http://raytaylorlin.com/tech/game/engine/gameplay-system-introduction/"/>
+    <id>http://raytaylorlin.com/tech/game/engine/gameplay-system-introduction/</id>
+    <published>2016-12-21T08:45:32.000Z</published>
+    <updated>2016-12-21T13:52:04.015Z</updated>
+    
+    <content type="html">&lt;p&gt;游戏引擎是复杂的多层软件系统，而游戏的本质，并非在于其使用的引擎或技术，而是其游戏性（gameplay）。游戏机制（game mechanics）一词，可以把游戏性这个概念变得更为具体。游戏机制通常定义为一些规则，这些规则主宰了游戏中多个实体之间的互动，如定义玩家的目标、成败的准则、角色的各种能力、游戏体验的整体流程等等。本文将简单介绍用于定义及管理游戏机制的引擎系统及相关工具。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-剖析游戏世界&quot;&gt;&lt;a href=&quot;#1-剖析游戏世界&quot; class=&quot;headerlink&quot; title=&quot;1. 剖析游戏世界&quot;&gt;&lt;/a&gt;1. 剖析游戏世界&lt;/h1&gt;&lt;p&gt;游戏类型虽然五花八门，但大多数会有一种基本的结构模式，通常由以下部分组成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;世界元素&lt;ul&gt;
+&lt;li&gt;静态元素：地形、建筑等等几乎不会动或主动与游戏性交互的物体&lt;/li&gt;
+&lt;li&gt;动态元素：角色、NPC、道具、粒子特效、动态光源、区域等等&lt;/li&gt;
+&lt;li&gt;区分静态和动态元素，主要是用于优化性能——静态元素都可以预先计算或忽略，减少运行时游戏世界中动态元素的运算&lt;/li&gt;
+&lt;li&gt;有一些游戏含有可破坏环境，算是模糊静态和动态元素分界的例子，说明元素是否静态并不是绝对的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;世界组块：庞大的游戏世界通常会被拆分成为独立可玩的区域，可以演化成关卡、地图、地区等等。分割关卡有几个原因，首先是内存限制；其次它也是一个控制游戏整体流程的方便机制；最后它可以作为分工的单位，方便开发团队分别构建及管理。&lt;/li&gt;
+&lt;li&gt;高级游戏流程：指由玩家&lt;strong&gt;目标&lt;/strong&gt;所组成的序列、树或图，可演化成任务、关卡、波（如塔防波次）、胜利条件或失败惩罚。在故事驱动的游戏中，流程可能也包含多个游戏内置电影、过场动画。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;2-游戏世界编辑器&quot;&gt;&lt;a href=&quot;#2-游戏世界编辑器&quot; class=&quot;headerlink&quot; title=&quot;2. 游戏世界编辑器&quot;&gt;&lt;/a&gt;2. 游戏世界编辑器&lt;/h1&gt;&lt;h2 id=&quot;2-1-典型功能&quot;&gt;&lt;a href=&quot;#2-1-典型功能&quot; class=&quot;headerlink&quot; title=&quot;2.1 典型功能&quot;&gt;&lt;/a&gt;2.1 典型功能&lt;/h2&gt;&lt;p&gt;游戏性内容对应的创作工具便是游戏世界编辑器，其用于定义世界组块，并填入静态及动态元素。所有商用游戏引擎都有某种形式的世界编辑工具，大部分会提供以下列出的主要功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;世界组块创建及管理：除了组块管理基本功能外，还可以连接若干静态网格，以及AI用的导航地图、可攀抓边缘信息等等静态数据。有的还提供专门的地形编辑器用于编辑地形（或解析高度场地形）和水体。&lt;/li&gt;
+&lt;li&gt;可视化游戏世界：可让开发者大幅提高开发效率，通常3D游戏提供顶、侧、正视图和三维透视视图4部分，2D游戏提供正射视角。有的编辑器直接整合自制的渲染引擎至工具中，有的把自身整合至第三方3D软件，有的会通过与实际的游戏引擎通信，利用游戏引擎来渲染三维视图，甚至整合至游戏引擎本身。&lt;/li&gt;
+&lt;li&gt;导航：提供滚动、放大缩小、聚焦某个对象旋转、摄像机飞行模式、记录历史摄像机位置并跳转等等方便开发的功能。&lt;/li&gt;
+&lt;li&gt;选取：在编辑器中可以选取个别或框选多个游戏对象，并对它们批量操作。使用光线投射方式选取三维对象时，编辑器可让用户循环选取与光线相交的所有对象，而不是总选取最近者。&lt;/li&gt;
+&lt;li&gt;图层：把对象用预设或用户自定义的图层来分组，把游戏世界中的内容有条理地组织起来。图层也是分工的重要工具，多人可以在同个世界组块上的不同图层工作而不冲突。&lt;/li&gt;
+&lt;li&gt;属性网格：如下图所示，可视化编辑游戏对象的属性（一般是键值对），不仅可以编辑常见的数值和字符串，还能支持下拉框、复选框、滑块、颜色选取器等控件编辑。&lt;ul&gt;
+&lt;li&gt;选取多个对象后的编辑方式：此高级特性把选中的对象的共有属性混合在一起显示。在网格中编辑公共值时，会把新值更新至所有选取对象的属性中。&lt;/li&gt;
+&lt;li&gt;自由格式属性：通常这种属性集会关联到某个用户自定义的对象，以形成新的“自由格式”属性，如光源属性集包含位置、方向、颜色、强度及光源类型属性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/engine/%E5%B1%9E%E6%80%A7%E7%BD%91%E6%A0%BC%E7%A4%BA%E4%BE%8B.jpg&quot; alt=&quot;属性网格示例&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安放对象及对齐辅助工具：除了基本的平移、旋转、缩放工具外，有的编辑器还提供对齐至网格，对齐至地形，对齐至对象，多个对象分布或对齐等功能。&lt;/li&gt;
+&lt;li&gt;特殊对象类型&lt;ul&gt;
+&lt;li&gt;光源：通常用特殊图标表示，因为光源没有网格。编辑器可能会尝试模拟光源对场景的照明效果，让设计师能实时调整并能看到场景的最终大致效果。&lt;/li&gt;
+&lt;li&gt;粒子发射器：若编辑器是独立于渲染引擎之上，则可简单用图标表示，或尝试在编辑器中模拟效果；若编辑器是内置于游戏引擎，则可以实际模拟调整，达到“所见即所得”的效果。&lt;/li&gt;
+&lt;li&gt;区域：即空间中的体积，供游戏侦测相关事件用（如Unity中的trigger）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读/写世界组块：有的引擎把每个组块储存为单个文件，有的可以独立读/写个别的图层；有的引擎使用自定义的二进制文件格式，有的使用如XML的文本格式。&lt;/li&gt;
+&lt;li&gt;快速迭代：优秀的编辑器会支持某程度的动态微调功能以供快速迭代。有的编辑器在游戏本身内执行，让用户即时看到改动的效果，有的连接至运行中的游戏，或完全脱机运行。具体的机制并不重要，最重要的是给用户足够短的往返迭代时间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-集成资产管理工具&quot;&gt;&lt;a href=&quot;#2-2-集成资产管理工具&quot; class=&quot;headerlink&quot; title=&quot;2.2 集成资产管理工具&quot;&gt;&lt;/a&gt;2.2 集成资产管理工具&lt;/h2&gt;&lt;p&gt;有些引擎的编辑器会整合游戏资产数据库的其他方面功能，例如设定网格/材质的属性、设定动画/混合树/动画状态机、设置对象的碰撞/物理属性、管理材质资源等，著名的例子有UnrealEd和Unity。它们能对用户提供统一、实时、所见即所得的资产管理视图，促进快速高效的游戏开发过程。&lt;/p&gt;
+&lt;p&gt;不同的工具对资产的优化时间点也不一样。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UnrealEd在导入资产时就会对资产优化，这样在关卡设计上能缩短法代时间，但是改动网格、动画、音频等来源资产会变得更痛苦。&lt;/li&gt;
+&lt;li&gt;Source及雷神之锤引擎，把资产优化延后至烘焙关卡、执行游戏之前。&lt;/li&gt;
+&lt;li&gt;《光环（Halo）》给用户选择在任意时刻转换原始资源——这些资源在第一次载入至引擎前转换至优化格式并缓存，避免每次执行游戏时都要再做无意义的转换。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;3-游戏性基础系统的组件&quot;&gt;&lt;a href=&quot;#3-游戏性基础系统的组件&quot; class=&quot;headerlink&quot; title=&quot;3. 游戏性基础系统的组件&quot;&gt;&lt;/a&gt;3. 游戏性基础系统的组件&lt;/h1&gt;&lt;p&gt;如果可以合理地画出游戏与游戏引擎的分界线，那么游戏性基础系统就是刚刚位于该线之下。理论上，我们可以建立一个游戏性基础系统，其大部分是各个游戏皆通用的。实际上不同引擎之间有许多共有模式，以下列出一些常用组件，后续的文章就会逐渐记录这些组件的功能和设计方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;运行时游戏对象（runtime game object）模型&lt;/li&gt;
+&lt;li&gt;实时更新对象模型&lt;/li&gt;
+&lt;li&gt;关卡管理及串流&lt;/li&gt;
+&lt;li&gt;目标及游戏流程管理&lt;/li&gt;
+&lt;li&gt;消息及事件处理&lt;/li&gt;
+&lt;li&gt;脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考文献：电子工业出版社《游戏引擎架构》第13章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;游戏引擎是复杂的多层软件系统，而游戏的本质，并非在于其使用的引擎或技术，而是其游戏性（gameplay）。游戏机制（game mechanics）一词，可以把游戏性这个概念变得更为具体。游戏机制通常定义为一些规则，这些规则主宰了游戏中多个实体之间的互动，如定义玩家的目标、成败的准则、角色的各种能力、游戏体验的整体流程等等。本文将简单介绍用于定义及管理游戏机制的引擎系统及相关工具。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+    
+      <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="游戏性系统" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E6%80%A7%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>人体学接口设备（HID）</title>
@@ -2124,165 +2208,6 @@ titleBar.color = ReadTitleBarColor();
     <summary type="html">
     
       &lt;p&gt;变量的好与坏就在很大程度上取决于它的命名的好坏，在给变量命名的时候需要小心谨慎。本文首先详细讲述构建活动中的基本组成成分，即变量的使用原则，接着再讲述适用于为变量——对象和基本数据——命名的原则。这些原则也适用于类、包、文件及其他的编程实体。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（三）——高质量的类和子程序</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-3/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-3/</id>
-    <published>2016-04-05T06:11:59.000Z</published>
-    <updated>2016-05-12T13:14:20.579Z</updated>
-    
-    <content type="html">&lt;p&gt;在计算时代的早期，程序员基于语句思考编程问题。到了20世纪七八十年代，程序员开始基于子程序去思考编程。进入21世纪，程序员以类为基础思考编程问题。类是由一组数据和子程序构成的集合，这些数据和子程序共同拥有一组内聚的、明确定义的职责。由此可见类和子程序在现代编程中的地位。本文将就如何创建高质量的类和子程序提供一些建议。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-高质量的类&quot;&gt;&lt;a href=&quot;#1-高质量的类&quot; class=&quot;headerlink&quot; title=&quot;1. 高质量的类&quot;&gt;&lt;/a&gt;1. 高质量的类&lt;/h1&gt;&lt;h2 id=&quot;1-1-类的基础：抽象数据类型（ADT）&quot;&gt;&lt;a href=&quot;#1-1-类的基础：抽象数据类型（ADT）&quot; class=&quot;headerlink&quot; title=&quot;1.1 类的基础：抽象数据类型（ADT）&quot;&gt;&lt;/a&gt;1.1 类的基础：抽象数据类型（ADT）&lt;/h2&gt;&lt;p&gt;要想理解面向对象编程，首先要理解ADT（Abstract Data Type）。ADT是指一些数据以及对这些数据所进行的操作的集合。这些操作既向程序的其余部分描述了这些数据是怎么样的，也允许程序的其余部分改变这些数据。抽象数据类型可以让你像在现实世界中一样操作实体，而不必纠结在低层如何实现上。&lt;/p&gt;
-&lt;h3 id=&quot;1-1-1-使用ADT的好处&quot;&gt;&lt;a href=&quot;#1-1-1-使用ADT的好处&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 使用ADT的好处&quot;&gt;&lt;/a&gt;1.1.1 使用ADT的好处&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;可以隐藏实现细节&lt;/li&gt;
-&lt;li&gt;改动不会影响到整个程序&lt;/li&gt;
-&lt;li&gt;让接口能提供更多信息&lt;/li&gt;
-&lt;li&gt;更容易提高性能&lt;/li&gt;
-&lt;li&gt;程序更具自我说明性&lt;/li&gt;
-&lt;li&gt;无须在程序内到处传递数据&lt;/li&gt;
-&lt;li&gt;可以像在现实世界中那样操作实体，而不用在底层实现上操作它&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;1-1-2-使用ADT的指导建议&quot;&gt;&lt;a href=&quot;#1-1-2-使用ADT的指导建议&quot; class=&quot;headerlink&quot; title=&quot;1.1.2 使用ADT的指导建议&quot;&gt;&lt;/a&gt;1.1.2 使用ADT的指导建议&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;把常见的底层数据类型创建为ADT并使用这些ADT，而不再使用底层数据类型（要尽可能选择最高的抽象层次）&lt;/li&gt;
-&lt;li&gt;把像文件这样的常用对象当成ADT&lt;/li&gt;
-&lt;li&gt;简单的事物也可当做ADT（如灯的“开”“关”操作可以放到单独的方法）&lt;/li&gt;
-&lt;li&gt;不要让ADT依赖于其存储介质&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-2-良好的类接口&quot;&gt;&lt;a href=&quot;#1-2-良好的类接口&quot; class=&quot;headerlink&quot; title=&quot;1.2 良好的类接口&quot;&gt;&lt;/a&gt;1.2 良好的类接口&lt;/h2&gt;&lt;p&gt;上一节所讲的ADT构成了类的基础，类可以看成是抽象数据类型再加上继承和多态两个概念。创建高质量的类最重要的一步是创建一个好的接口，包括通过接口来展现良好的抽象，并确保细节被很好地封装在类中。封装是一个比抽象更强的概念：抽象通过提供一个可以让你忽略实现细节的模型来管理复杂度，而封装则强制阻止你看到细节。一般来说，抽象和封装要么两者皆有，要么两者皆无。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-1-良好的抽象&quot;&gt;&lt;a href=&quot;#1-2-1-良好的抽象&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 良好的抽象&quot;&gt;&lt;/a&gt;1.2.1 良好的抽象&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;类的接口应该展现一致的抽象层次：每一个类应该&lt;strong&gt;只实现一个ADT&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;一定要理解类所实现的抽象是什么&lt;/li&gt;
-&lt;li&gt;提供成对的服务：例如开和关，添加和删除，但一定要考虑是否真的需要，不要盲目创建相反的操作&lt;/li&gt;
-&lt;li&gt;把不相关的信息转移到其他类&lt;/li&gt;
-&lt;li&gt;尽可能让接口可编程，而不是表达语义：可编程的部分能被编译器检查，但语义部分是由“本接口将会被怎样使用”的假定组成（比如“ RoutineA必须在RoutineB之前被调用”或“如果dataMember未经初始化就传给RoutineA的话，将会导致RoutineA崩溃”）&lt;/li&gt;
-&lt;li&gt;谨防在修改时破坏接口的抽象：在对类进行修改和扩展时要特别注意&lt;/li&gt;
-&lt;li&gt;不要添加与接口抽象不一致的公用成员&lt;/li&gt;
-&lt;li&gt;同时考虑抽象性和内聚性&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;1-2-2-良好的封装&quot;&gt;&lt;a href=&quot;#1-2-2-良好的封装&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 良好的封装&quot;&gt;&lt;/a&gt;1.2.2 良好的封装&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;尽可能地限制类和成员的可访问性&lt;/li&gt;
-&lt;li&gt;不要公开暴露成员数据：使用get、set访问器来访问&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;避免把私用的实现细节放入类的接口中&lt;/em&gt;（特指C++）：应尽量避免在类的头文件中查看private的内容。《Efective C++》第2版第34条建议，把类的接口与类的实现隔离开，并在类的声明中包含一个指针，让该指针指向类的实现，但不能包含任何其他实现细节。&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;避免使用友元类&lt;/em&gt;（特指C++）&lt;/li&gt;
-&lt;li&gt;不要因为一个子程序里仅使用公用子程序，就把它归入公开接口&lt;/li&gt;
-&lt;li&gt;不要对类的使用者做出任何假设，要格外警惕从语义上破坏封装：&lt;strong&gt;每当你发现自己是通过查看类的内部实现来得知该如何使用这个类的时候，你就不是在针对接口编程了，而是在透过接口针对内部实现编程了&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-3-有关设计和实现类的问题&quot;&gt;&lt;a href=&quot;#1-3-有关设计和实现类的问题&quot; class=&quot;headerlink&quot; title=&quot;1.3 有关设计和实现类的问题&quot;&gt;&lt;/a&gt;1.3 有关设计和实现类的问题&lt;/h2&gt;&lt;p&gt;通常类和类之间的关系，有“包含”和“继承”两种。继承需要更多的技巧，而且更容易出错，包含才是面向对象编程中的主力技术。以下是一些关于包含和继承技术的参考原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;警惕包含超过约7个数据成员的类&lt;/li&gt;
-&lt;li&gt;要么使用继承并进行详细说明，要么就不要用它：如果某个类并未设计为可被继承，要明确声明不可被继承&lt;/li&gt;
-&lt;li&gt;遵循&lt;a href=&quot;http://baike.baidu.com/view/1688346.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;里氏替换原则&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;确保只继承需要继承的部分：注意父类方法的&lt;strong&gt;默认实现&lt;/strong&gt;和子类方法的&lt;strong&gt;覆盖（override）性&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;不要“覆盖”一个不可覆盖的成员函数：换种说法，即子类方法不要和父类的private方法同名&lt;/li&gt;
-&lt;li&gt;把共用的接口、数据及操作放到继承树中尽可能高的位置&lt;/li&gt;
-&lt;li&gt;只有一个实例的类是值得怀疑的：可以考虑用单例模式&lt;/li&gt;
-&lt;li&gt;只有一个派生类的基类也值得怀疑：不要“提前设计”任何非绝对必要的继承结构&lt;/li&gt;
-&lt;li&gt;派生后覆盖了某个子程序，但在其中没做任何操作，这种情况也值得怀：这表明基类的设计有错误&lt;/li&gt;
-&lt;li&gt;避免让继承体系过深&lt;/li&gt;
-&lt;li&gt;尽量使用多态，避免大量的类型检查：警惕频繁重复出现的switch case语句&lt;/li&gt;
-&lt;li&gt;避免创建万能类/避免用动词命名的类/消除无关紧要的类&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;关于类的数据和方法（包括构造函数）的参考原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;让类中子程序的数量尽可能少&lt;/li&gt;
-&lt;li&gt;禁止隐式地产生你不需要的成员函数和运算符&lt;/li&gt;
-&lt;li&gt;减少类所使用的不同子程序的数量&lt;/li&gt;
-&lt;li&gt;对其他类的子程序的间接调用要尽可能少&lt;/li&gt;
-&lt;li&gt;如果可能，应该在所有的构造函数中初始化所有的数据成员&lt;/li&gt;
-&lt;li&gt;用private构造函数来强制实现单例属性&lt;/li&gt;
-&lt;li&gt;优先采用深拷贝，除非论证可行才使用浅拷贝&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/135274&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;核对表：类的质量&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;2-高质量的子程序&quot;&gt;&lt;a href=&quot;#2-高质量的子程序&quot; class=&quot;headerlink&quot; title=&quot;2. 高质量的子程序&quot;&gt;&lt;/a&gt;2. 高质量的子程序&lt;/h1&gt;&lt;h2 id=&quot;2-1-创建子程序的理由&quot;&gt;&lt;a href=&quot;#2-1-创建子程序的理由&quot; class=&quot;headerlink&quot; title=&quot;2.1 创建子程序的理由&quot;&gt;&lt;/a&gt;2.1 创建子程序的理由&lt;/h2&gt;&lt;p&gt;创建子程序的理由包括但不限于：降低复杂度，引入中间的、易懂的抽象，避免代码重复，支持子类化，隐藏顺序，隐藏指针操作，提高可移植性，简化复杂的逻辑判断，改善性能。同样很多创建类的理由也是创建子程序的理由。&lt;/p&gt;
-&lt;p&gt;注意一些过于简单的看上去似乎没必要写成子程序的操作，写一个只有两三行代码的子程序看起来有些大才小用，经常会成为心理障碍。但实际上小的子程序有许多优点，可以看看以下这个例子。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;/* 不使用子程序：经常可以看到以下代码出现在十几处地方 */
-// 从设备单位（device unit）到磅数（point）的转换计算
-points = deviceUnits * （POINTS_PER_INCH / DeviceUnitsPerInch());
-
-/* 使用子程序：不仅更具可读性（甚至达到自我注解的程度），可以更易于维护和测试 */
-int DeviceUnitsToPoints(int deviceUnits) {
-    if (DeviceUnitsPerInch() != 0)
-        return deviceUnits * （POINTS_PER_INCH / DeviceUnitsPerInch();
-    else
-        return 0;
-}
-points = DeviceUnitsToPoints(deviceUnits);
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-2-好的子程序名字&quot;&gt;&lt;a href=&quot;#2-2-好的子程序名字&quot; class=&quot;headerlink&quot; title=&quot;2.2 好的子程序名字&quot;&gt;&lt;/a&gt;2.2 好的子程序名字&lt;/h2&gt;&lt;p&gt;一个子程序由名字、参数列表和程序体组成。一个好的名字能清晰地描述子程序所做的一切，是一个好的子程序的起点。子程序命名应该遵循如下原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;描述子程序所做的&lt;strong&gt;所有&lt;/strong&gt;事情&lt;/li&gt;
-&lt;li&gt;避免使用无意义的、模糊或表述不清的动词：像&lt;code&gt;Handle&lt;/code&gt;、&lt;code&gt;Perform&lt;/code&gt;、&lt;code&gt;Process&lt;/code&gt;等等动词都没有精确地描述操作，例如把&lt;code&gt;HandleOutput()&lt;/code&gt;改为&lt;code&gt;FormatAndPrintOutput()&lt;/code&gt;就能更容易看清楚子程序的功能。&lt;/li&gt;
-&lt;li&gt;不要仅通过数字来形成不同的子程序各字：不要出现像&lt;code&gt;OutputUser1&lt;/code&gt;、&lt;code&gt;OutputUser2&lt;/code&gt;子程序然后将它们组成一个大程序的情况。&lt;/li&gt;
-&lt;li&gt;根据需要确定子程序名字的长度：变量名的最佳长度是9到15个字符，而子程序要更复杂些，长短要视该名字是否清晰易懂而定。&lt;/li&gt;
-&lt;li&gt;给函数命名时要对返回值有所描述：&lt;code&gt;customerid.Next()&lt;/code&gt;、&lt;code&gt;printer.IsReady()&lt;/code&gt;、&lt;code&gt;pen.CurrentColor()&lt;/code&gt;等都是不错的例子。&lt;/li&gt;
-&lt;li&gt;给过程起名时使用语气强烈的动词加宾语的形式：如&lt;code&gt;PrintDocument()&lt;/code&gt;、&lt;code&gt;CheckOrderInfo()&lt;/code&gt;。对于面向对象语言是特例，因为对象（宾语）本身已经包含在调用语句中了，如&lt;code&gt;document.Print()&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;为常用操作确立命名规则：在实际项目中，约定一套语义命名规则。避免出现不同人写出像&lt;code&gt;employee.id.Get()&lt;/code&gt;，&lt;code&gt;employee.GetId()&lt;/code&gt;，&lt;code&gt;employee.id()&lt;/code&gt;这样难以记住的细节。&lt;/li&gt;
-&lt;li&gt;准确使用对仗词：有助于保持一致性和可读性&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;add/remove&lt;/code&gt;，&lt;code&gt;open/close&lt;/code&gt;，&lt;code&gt;begin/end&lt;/code&gt;，&lt;code&gt;insert/delete&lt;/code&gt;，&lt;code&gt;show/hide&lt;/code&gt;，&lt;code&gt;create/destroy&lt;/code&gt;，&lt;code&gt;source/target&lt;/code&gt;，&lt;code&gt;first/last&lt;/code&gt;，&lt;code&gt;min/max&lt;/code&gt;，&lt;code&gt;start/stop&lt;/code&gt;，&lt;code&gt;get/set&lt;/code&gt;，&lt;code&gt;next/previous&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3-写好子程序的参数&quot;&gt;&lt;a href=&quot;#2-3-写好子程序的参数&quot; class=&quot;headerlink&quot; title=&quot;2.3 写好子程序的参数&quot;&gt;&lt;/a&gt;2.3 写好子程序的参数&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;按照输入-修改-输出的顺序排列参数：不要随机地或按字母顺序排列参数&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;考虑自己创建IN和OUT关键字&lt;/em&gt;（特指C++）：定义无值的宏扩展C++语言，在项目中要极其谨慎&lt;/li&gt;
-&lt;li&gt;如果几个子程序都用了类似的一些参数，应该让这些参数的排列顺序保持一致：如C语言中的&lt;code&gt;fprintf()/printf()&lt;/code&gt;，&lt;code&gt;strncpy()/memcpy()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;使用所有的参数：既然往子程序中传递了一个参数，就一定要用到这个参数。&lt;em&gt;使用条件编译而忽略了某一些参数的情况除外。&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;把状态或出错变量放在最后&lt;/li&gt;
-&lt;li&gt;不要把子程序的参数用做工作变量：&lt;strong&gt;不要修改任何输入参数&lt;/strong&gt;，应明确引入一些中间的工作变量&lt;/li&gt;
-&lt;li&gt;在接口中对参数的假定加以说明：用注释甚至断言，说明参数的单位、状态或错误值的含义、数值的范围、不该出现的特定数值等等&lt;/li&gt;
-&lt;li&gt;把子程序的参数个数限制在大约7个以内：若传参过多，说明子程序之间的耦合过紧，应重新设计子程序&lt;/li&gt;
-&lt;li&gt;考虑对参数采用某种表示输入、修改、输出的命名规则：如i&lt;em&gt;、m&lt;/em&gt;、Output_等前缀&lt;/li&gt;
-&lt;li&gt;为子程序传递用以维持其接口抽象的变量或对象：考虑传入的是若干底层数据，还是一个包装对象&lt;/li&gt;
-&lt;li&gt;确保实际参数与形式参数的类型相匹配：注意传入参数时可能发生的隐式类型转换&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-4-子程序的内容&quot;&gt;&lt;a href=&quot;#2-4-子程序的内容&quot; class=&quot;headerlink&quot; title=&quot;2.4 子程序的内容&quot;&gt;&lt;/a&gt;2.4 子程序的内容&lt;/h2&gt;&lt;p&gt;关于子程序的长度没有定论。与其对子程序的长度强加限制，还不如让下面这些因素——如子程序的内聚性、嵌套的层次、变量的数量、决策点的数量、解释子程序用意所需的注释数量以及其他些跟复杂度相关的考虑事项等——来决定子程度的长度。但是，这里要引用一下《代码整洁之道》3.1节“短小”中的内容来辅助参考子程序应该达到的长度。我个人总结，决定子程序的长短的唯一标准，是&lt;strong&gt;一个函数只做一件事&lt;/strong&gt;。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;……经过漫长的试错，经验告诉我，函数就该小……函数也不该有100行那么长，20行封顶最佳……每个函数都一目了然。每个函数都只说一件事。而且，每个函数都依序把你带到下一个函数。这就是函数应该达到的短小程度！……通常来说，应该短于代码清单3-2中的函数（该函数有10行）……&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;在子程序的设计上，应该注重其内聚性，即子程序中各种操作之间联系的紧密程度。我们的目标是让&lt;strong&gt;每个子程序只把一件事做好，不再做任何其他事情&lt;/strong&gt;。理解下面几个关于内聚性层次的概念有助于思考如何让子程序尽可能地内聚。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;最好的内聚&lt;ul&gt;
-&lt;li&gt;功能的内聚性：如&lt;code&gt;GetCustomerName()&lt;/code&gt;、&lt;code&gt;EraseFile()&lt;/code&gt;，前提是子程序所执行的操作与其名字相符。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;不够理想的内聚&lt;ul&gt;
-&lt;li&gt;顺序上的内聚性：子程序内包含有需要按特定顺序执行的操作，这些步骤需要共享数据，而且只有在全部执行完毕后才完成了一项完整的功能。&lt;/li&gt;
-&lt;li&gt;通信上的内聚性：一个子程序中的不同操作使用了同样的数据，但不存在其他任何联系。&lt;/li&gt;
-&lt;li&gt;临时的内聚性：含有一些因为需要同时执行才放到一起的操作的子程序，如&lt;code&gt;Startup()&lt;/code&gt;中塞进一堆互不相关的初始化代码，应该把临时性的子程序看做是一系列事件的组织者，并去调用其他子程序。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;不可取的内聚&lt;ul&gt;
-&lt;li&gt;过程上的内聚性：一个子程序中的操作是按特定的顺序进行的。&lt;/li&gt;
-&lt;li&gt;逻辑上的内聚性：若干操作被放入同一个子程序中，通过传入的控制标志（由if/else或switch/case控制）选择执行其中的一项操作。这种情况下子程序唯一的功能应该是发布各种命令调用底层子程序，其自身并不做任何处理。&lt;/li&gt;
-&lt;li&gt;巧合的内聚性：指子程序中的各个操作之间没有任何可以看到的关联。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.kancloud.cn/raytaylorlin/code-complete-checklist/135273&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;核对表：高质量的子程序&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第6、7章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在计算时代的早期，程序员基于语句思考编程问题。到了20世纪七八十年代，程序员开始基于子程序去思考编程。进入21世纪，程序员以类为基础思考编程问题。类是由一组数据和子程序构成的集合，这些数据和子程序共同拥有一组内聚的、明确定义的职责。由此可见类和子程序在现代编程中的地位。本文将就如何创建高质量的类和子程序提供一些建议。&lt;/p&gt;
     
     </summary>
     
