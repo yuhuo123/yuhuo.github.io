@@ -5840,15 +5840,15 @@ context.rotate(radius)
     
     <entry>
       <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/sale/index.html</url>
-      <content type="html"></content>
+      <url>http://raytaylorlin.com/reading/index.html</url>
+      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
+]]></content>
     </entry>
     
     <entry>
       <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/reading/index.html</url>
-      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
-]]></content>
+      <url>http://raytaylorlin.com/sale/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
