@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-01-29T13:28:53.581Z</updated>
+  <updated>2017-01-30T13:42:20.807Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>状态模式与状态机</title>
+    <link href="http://raytaylorlin.com/tech/complex/DP/fsm-and-state-pattern/"/>
+    <id>http://raytaylorlin.com/tech/complex/DP/fsm-and-state-pattern/</id>
+    <published>2017-01-30T13:42:47.000Z</published>
+    <updated>2017-01-30T13:42:20.807Z</updated>
+    
+    <content type="html">&lt;p&gt;状态管理是几乎所有游戏开发都会做的一个事情——大到场景管理，小到角色的逻辑状态和动画切换。如果你面对日益增长的复杂的状态分支判断代码而不知所措，状态模式和状态机可能就是救星。状态模式是一个非常简单实用的模式，本文将介绍其基本用法，并结合游戏中的有限状态机（FSM）介绍其各种实际应用和特殊状态机。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-有限状态机&quot;&gt;&lt;a href=&quot;#1-有限状态机&quot; class=&quot;headerlink&quot; title=&quot;1. 有限状态机&quot;&gt;&lt;/a&gt;1. 有限状态机&lt;/h1&gt;&lt;p&gt;状态在游戏里面非常常见。想象一个横版过关游戏的主角有如下图状态转换。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/engine/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B8%B8%E6%88%8F%E8%A7%92%E8%89%B2%E7%8A%B6%E6%80%81%E4%BE%8B%E5%AD%90.jpg&quot; alt=&quot;一个简单的游戏角色状态例子&quot;&gt;&lt;/p&gt;
+&lt;p&gt;FSM有以下特性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;拥有一组状态，它们之间可以互相切换&lt;/li&gt;
+&lt;li&gt;状态机同一时刻只能处于一种状态（事实上防止同时存在两个状态正是使用FSM的原因）&lt;/li&gt;
+&lt;li&gt;状态机会接收一组输入或事件&lt;/li&gt;
+&lt;li&gt;每个状态有一组转换，每一个转换都关联一个输入并指向另一个状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最普通（也是不可取）的做法，是&lt;em&gt;先用if/else分支来判断输入，再用各种bool变量来标记当前是否处于某种状态&lt;/em&gt;。随着功能和状态的增加，会不经意破坏已有代码的功能，并引入更多的标记变量使逻辑更加复杂。&lt;/p&gt;
+&lt;p&gt;更进一步的做法是将每种状态定义为枚举，颠倒一下上面的处理顺序，&lt;em&gt;先用switch/case判断状态，再在状态中判断输入并做状态切换&lt;/em&gt;。如果状态非常少而且不太可能扩展，这是实现状态机最简单有效的做法。&lt;/p&gt;
+&lt;p&gt;当问题满足以下几点要求时，FSM将会非常有用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个实体的行为基于它内部状态而改变&lt;/li&gt;
+&lt;li&gt;这些状态被严格划分为数量较少的小集合&lt;/li&gt;
+&lt;li&gt;实体随着时间变化会响应用户输入或一些特殊事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-状态模式&quot;&gt;&lt;a href=&quot;#2-状态模式&quot; class=&quot;headerlink&quot; title=&quot;2. 状态模式&quot;&gt;&lt;/a&gt;2. 状态模式&lt;/h1&gt;&lt;p&gt;状态模式实际上就是&lt;strong&gt;将复杂的各个分支判断分离出来成为一个个单独的状态类（继承同个状态基类），然后在业务类中维护状态基类指针m_state，通过多态来分发和切换&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;为了修改一个状态，之前的做法是给m_state赋值新的枚举值（或常量数字），而将状态抽象为类之后，有两种做法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;静态状态：如果一个状态对象没有数据成员，可以在状态基类（或其他地方）定义static状态对象。【进一步的，若状态仅包含一个虚函数方法，可以用状态函数来替代状态类，这样m_state就编程函数指针】&lt;/li&gt;
+&lt;li&gt;实例化状态：若同类的状态会被多个对象维护，就不能使用静态状态了，只能在状态切换时动态创建实例（要留意清理老的状态实例）。此外，在状态类的处理虚函数中，可以返回一个新的状态实例表示下一个要切换的状态（返回null则状态不变），这样业务类就能根据返回的结果修改m_state的值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;3-特殊种类的状态机&quot;&gt;&lt;a href=&quot;#3-特殊种类的状态机&quot; class=&quot;headerlink&quot; title=&quot;3. 特殊种类的状态机&quot;&gt;&lt;/a&gt;3. 特殊种类的状态机&lt;/h1&gt;&lt;h2 id=&quot;3-1-并发状态机&quot;&gt;&lt;a href=&quot;#3-1-并发状态机&quot; class=&quot;headerlink&quot; title=&quot;3.1 并发状态机&quot;&gt;&lt;/a&gt;3.1 并发状态机&lt;/h2&gt;&lt;p&gt;设想一个角色有跑、跳、躲避等状态，现在要添加持枪功能（包括不开火和开火两种状态）。如果执着于传统的FSM，则可能需要跑动和跑动开火等n*m种状态。如果使用并行的两个状态机，则只需要n+m种状态。&lt;/p&gt;
+&lt;p&gt;具体实现上，只需要定义多一个状态成员变量，在响应事件多派发一次即可。这种实现适用于两个状态互相独立。若两个状态有依赖，例如不能在跳跃过程中开火，则可能需要在特定的状态中做一些简单的if判断，必要时还需要引用另一个状态。&lt;/p&gt;
+&lt;h2 id=&quot;3-2-层次状态机&quot;&gt;&lt;a href=&quot;#3-2-层次状态机&quot; class=&quot;headerlink&quot; title=&quot;3.2 层次状态机&quot;&gt;&lt;/a&gt;3.2 层次状态机&lt;/h2&gt;&lt;p&gt;假设一个角色无论处于站立、走路、跑动、滑动哪个状态，按下B时都要跳跃，按下↓方向键都要躲避。若只用简单的FSM，则会重复不少代码（比如这个例子需要处理4*2个状态转换）。可以在状态模式的基础上，采用继承的方式来复用代码，例如定义OnGroundState来处理跳跃和躲避的状态，四种状态从OnGroundState继承。当有一个事件进来时，如果子状态不处理，则将事件传递给父状态处理。&lt;/p&gt;
+&lt;p&gt;不过要注意，这种方法&lt;strong&gt;仅仅只是为了复用代码而去继承，并不符合继承的语义&lt;/strong&gt;，像上例中WalkState“是”（is-a）一种OnGroundState吗？因此选用这种“继承层次”的状态机要慎重。&lt;/p&gt;
+&lt;h2 id=&quot;3-3-下推自动机&quot;&gt;&lt;a href=&quot;#3-3-下推自动机&quot; class=&quot;headerlink&quot; title=&quot;3.3 下推自动机&quot;&gt;&lt;/a&gt;3.3 下推自动机&lt;/h2&gt;&lt;p&gt;这种状态机使用一个状态&lt;strong&gt;栈&lt;/strong&gt;，来解决FSM没有历史记录的问题。举个例子，角色可以从任一状态切换到开火状态，该状态会播放动画，发射子弹并显示一些特效，合理来说开火完成之后应该回到之前的状态。若只用简单的FSM，则需要为每个状态定义一个反向的转换。而使用状态栈时，通过push和pop来记录新状态和恢复历史状态。记住当前状态永远在栈顶，如果不需要历史记录，则切换状态时，总把栈顶的状态修改为最新的状态即可。&lt;/p&gt;
+&lt;p&gt;参考文献：《游戏编程模式》第7章&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;状态管理是几乎所有游戏开发都会做的一个事情——大到场景管理，小到角色的逻辑状态和动画切换。如果你面对日益增长的复杂的状态分支判断代码而不知所措，状态模式和状态机可能就是救星。状态模式是一个非常简单实用的模式，本文将介绍其基本用法，并结合游戏中的有限状态机（FSM）介绍其各种实际应用和特殊状态机。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="设计模式" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://raytaylorlin.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="状态模式" scheme="http://raytaylorlin.com/tags/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="状态机" scheme="http://raytaylorlin.com/tags/%E7%8A%B6%E6%80%81%E6%9C%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>游戏开发中单例模式的一些思考</title>
@@ -375,7 +436,7 @@ public:
     <link href="http://raytaylorlin.com/tech/game/engine/gameplay-system-introduction/"/>
     <id>http://raytaylorlin.com/tech/game/engine/gameplay-system-introduction/</id>
     <published>2016-12-21T08:45:32.000Z</published>
-    <updated>2016-12-21T13:52:04.015Z</updated>
+    <updated>2016-12-25T13:21:42.410Z</updated>
     
     <content type="html">&lt;p&gt;游戏引擎是复杂的多层软件系统，而游戏的本质，并非在于其使用的引擎或技术，而是其游戏性（gameplay）。游戏机制（game mechanics）一词，可以把游戏性这个概念变得更为具体。游戏机制通常定义为一些规则，这些规则主宰了游戏中多个实体之间的互动，如定义玩家的目标、成败的准则、角色的各种能力、游戏体验的整体流程等等。本文将简单介绍用于定义及管理游戏机制的引擎系统及相关工具。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -1956,100 +2017,6 @@ while (true) {
     <summary type="html">
     
       &lt;p&gt;所有的协同构建技术都试图通过这样或那样的途径，将展示你工作的过程正式化，以便把错误暴露出来。软件构建不可避免地都会伴随着调试，在一些项目中，调试可能占到整个开发周期的50%。对很多程序员来说，调试是程序设计中最为困难的部分。本文的前半部分将介绍协同构建的一些实践方法，后半部分将介绍一些科学的调试手段以节省更多精力。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（八）——表驱动法与一般控制问题</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-8/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-8/</id>
-    <published>2016-04-24T14:24:03.000Z</published>
-    <updated>2016-05-12T13:14:38.160Z</updated>
-    
-    <content type="html">&lt;p&gt;表驱动法是一种编程模式——从表里面查找信息而不使用逻辑语句（if和case）。事实上，凡是能通过逻辑语句来选择的事物，都可以通过查表来选择。本文将介绍直接访问表、索引访问表和阶梯访问表三种常见的表驱动法。最后，本文将记录一些控制问题（如布尔表达式的使用、空语句、深层嵌套问题等等）上的使用原则，这一部分内容比较简单而且与前面的章节有一些重叠，因此将快速带过。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-表驱动法&quot;&gt;&lt;a href=&quot;#1-表驱动法&quot; class=&quot;headerlink&quot; title=&quot;1. 表驱动法&quot;&gt;&lt;/a&gt;1. 表驱动法&lt;/h1&gt;&lt;p&gt;例如当使用复杂的if-elseif逻辑对字符分类时，可以用一个查询表（数组或字典）来代替查询，当然，查询表要事先创建好。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-直接访问表&quot;&gt;&lt;a href=&quot;#1-1-直接访问表&quot; class=&quot;headerlink&quot; title=&quot;1.1 直接访问表&quot;&gt;&lt;/a&gt;1.1 直接访问表&lt;/h2&gt;&lt;p&gt;使用直接访问法的例子：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;一个月中的天数：建立含12个整数的数组，把月份当下标查询&lt;/li&gt;
-&lt;li&gt;保险费率：费率随年龄、性别、婚姻状况等变化，可以以这几个维度建立多维数组，从外部读入数据&lt;/li&gt;
-&lt;li&gt;灵活的消息格式：假定一份文件中有几百条消息，消息种类约20种，每种消息都有若干字段。可以把消息种类构造为查询表，并把每种字段对应的行为用多态实现，这样可以大幅简化对消息种类和字段进行判断&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;使用直接访问法查表时，关键是能直接得到查询的键值。有时像保险费率中的年龄，可能小于18岁，18-65岁，超过65岁是三种不一样的费率，这时可以使用以下这些方法将其转换为可查询的键值：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;复制信息：查询表填充18个18岁以下的费率，47个18-65岁的费率，以此类推，缺点是复制的冗余会浪费空间，而且表中存在错误的可能性也会增加&lt;/li&gt;
-&lt;li&gt;转换键值：将一个区间通过某个函数转换为一个值，例如&lt;code&gt;max(min(66, age), 17)&lt;/code&gt;可以生成一个位于17到66之间的键值，这种方法要精心设计转换函数&lt;/li&gt;
-&lt;li&gt;把键值转换提取成独立子程序：上面的转换键值方法其实不太适用于年龄转换这种复杂情况，编写一个&lt;code&gt;KeyFromAge()&lt;/code&gt;方法里面写几个if判断将年龄转换为键值更加清晰&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-2-索引访问表&quot;&gt;&lt;a href=&quot;#1-2-索引访问表&quot; class=&quot;headerlink&quot; title=&quot;1.2 索引访问表&quot;&gt;&lt;/a&gt;1.2 索引访问表&lt;/h2&gt;&lt;p&gt;使用索引的时候，先用一个基本类型的数据从一张索引表中查出一个键值，然后再用这一键值查出你感兴趣的主数据。下图解释了这种技术的具体原理：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7d9rl0.com1.z0.glb.clouddn.com/image/software/%E7%B4%A2%E5%BC%95%E8%AE%BF%E9%97%AE%E8%A1%A8%E7%9A%84%E5%8E%9F%E7%90%86.jpg&quot; alt=&quot;索引访问表的原理&quot;&gt;&lt;/p&gt;
-&lt;p&gt;索引访问技术有几个主要优点：首先，如果主查询表中的每一条记录都很大，那么创建一个浪费了很多空间的&lt;strong&gt;索引数组&lt;/strong&gt;所用的空间，就要比创建一个浪费了很多空间的&lt;strong&gt;主查询表&lt;/strong&gt;所用的空间小得多；其次，即使用了索引以后没有节省内存空间，操作位于索引中的记录有时也要比操作位于主表中的记录更方便廉价；最后，索引访问技术在可维护性上所具有的普遍优点，编写到表里面的数据比嵌入代码中的数据更容易维护。&lt;/p&gt;
-&lt;h2 id=&quot;1-3-阶梯访问表&quot;&gt;&lt;a href=&quot;#1-3-阶梯访问表&quot; class=&quot;headerlink&quot; title=&quot;1.3 阶梯访问表&quot;&gt;&lt;/a&gt;1.3 阶梯访问表&lt;/h2&gt;&lt;p&gt;阶梯结构的基本想法是，表中的记录对于不同的数据范围有效，而不是对不同的数据点有效。最常见的例子是按分数段（浮点数）评定ABCDF等级。由于是浮点数划分范围，用数据转换函数或索引都不适合。为了使用阶梯方法，要把每一区间的上限写入一张表里，然后写一个循环，按照各区间的上限来检查分数，当分数第一次超过某个区间的上限时，就知道相应的等级了。除此之外，还可以将这种方法应用在概率分布的统计（这在游戏中的抽奖相当常见），这种无规则分布的数据是不可能用一个函数把它们整齐地转换成表键值的。使用阶梯访问表需要注意一些细节：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;留心端点：充分考虑每一个阶梯区间的上界，不要把&amp;lt;误用为&amp;lt;=&lt;/li&gt;
-&lt;li&gt;考虑用“准”二分查找取代顺序查找&lt;/li&gt;
-&lt;li&gt;考虑用索引访问采取代阶梯技术：如果执行速度很重要，应考虑用空间换时间的索引表技术&lt;/li&gt;
-&lt;li&gt;把阶梯表查询操作提取成单独的子程序&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-一般控制问题&quot;&gt;&lt;a href=&quot;#2-一般控制问题&quot; class=&quot;headerlink&quot; title=&quot;2. 一般控制问题&quot;&gt;&lt;/a&gt;2. 一般控制问题&lt;/h1&gt;&lt;h2 id=&quot;2-1-布尔表达式的使用&quot;&gt;&lt;a href=&quot;#2-1-布尔表达式的使用&quot; class=&quot;headerlink&quot; title=&quot;2.1 布尔表达式的使用&quot;&gt;&lt;/a&gt;2.1 布尔表达式的使用&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;用true和false做布尔判断，而不要用0和1等数值&lt;/li&gt;
-&lt;li&gt;隐式地比较布尔值：即使用&lt;code&gt;while (!done)&lt;/code&gt;而不要写成&lt;code&gt;while (done == false)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;简化复杂的表达式：可以通过拆分复杂的判断并引入新的布尔变量，把复杂的表达式提取成布尔函数，用决策表代替复杂的条件等方法&lt;/li&gt;
-&lt;li&gt;编写肯定形式的布尔表达式：在变量命名上尽量采用肯定形式，if语句的布尔表达式尽量&lt;strong&gt;不用not形式&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;用&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%BE%B7%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;德摩根定理&lt;/a&gt;简化否定的布尔判断&lt;/li&gt;
-&lt;li&gt;用括号便布尔表达式更清晰&lt;/li&gt;
-&lt;li&gt;理解布尔表达式是如何求值的：主要是要充分理解所用编程语言中&lt;strong&gt;“短路求值”&lt;/strong&gt;的用法&lt;/li&gt;
-&lt;li&gt;按照数轴的顺序编写数值比较表达式&lt;/li&gt;
-&lt;li&gt;与0比较时应该：隐式地比较逻辑变量，显式地把数字和0相比较，显式地把指针与NULL相比较，在C语言中显示地比较字符和&lt;code&gt;\0&lt;/code&gt;终止符&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-2-空语句&quot;&gt;&lt;a href=&quot;#2-2-空语句&quot; class=&quot;headerlink&quot; title=&quot;2.2 空语句&quot;&gt;&lt;/a&gt;2.2 空语句&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;万非得以使用空语句时，要突出这种用法：空语句并不多见，应该让其独占一行，加以缩进，用成对的花括号括住空语句以表强调&lt;/li&gt;
-&lt;li&gt;为主语句创建一个DoNothing()预处理宏或者内联函数&lt;/li&gt;
-&lt;li&gt;考虑如果换用一个非空的循环体，是否会让代码更清晰&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3-深层嵌套问题&quot;&gt;&lt;a href=&quot;#2-3-深层嵌套问题&quot; class=&quot;headerlink&quot; title=&quot;2.3 深层嵌套问题&quot;&gt;&lt;/a&gt;2.3 深层嵌套问题&lt;/h2&gt;&lt;p&gt;过分深层的缩进（嵌套）是产生混乱代码的罪魁祸首之一。有研究表明，应避免使用超过3到4层的嵌套。下面给出一些用于避免深层嵌套的方法。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;通过重复检测条件中的某一部分来简化嵌套的if语句&lt;/li&gt;
-&lt;li&gt;在循环中用break块来简化嵌套if&lt;/li&gt;
-&lt;li&gt;把嵌套if转换成一组if-else-if语句或case语句&lt;/li&gt;
-&lt;li&gt;把深层嵌套的代码抽取出来放进单独的子程序&lt;/li&gt;
-&lt;li&gt;对于复杂的case语句，可以考虑面向对象的手段来简化&lt;/li&gt;
-&lt;li&gt;重新设计深层嵌套的代码&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-4-控制结构与复杂度&quot;&gt;&lt;a href=&quot;#2-4-控制结构与复杂度&quot; class=&quot;headerlink&quot; title=&quot;2.4 控制结构与复杂度&quot;&gt;&lt;/a&gt;2.4 控制结构与复杂度&lt;/h2&gt;&lt;p&gt;降低软件复杂度首先要知道如何度量复杂度，其中最著名的方法是计算子程序中“决策点”的数量：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;从1开始，一直往下筒骨哦程序&lt;/li&gt;
-&lt;li&gt;一旦遇到&lt;code&gt;if&lt;/code&gt;、&lt;code&gt;while&lt;/code&gt;、&lt;code&gt;repeat&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;and&lt;/code&gt;、&lt;code&gt;or&lt;/code&gt;这些关键字或同类的词，就加1&lt;/li&gt;
-&lt;li&gt;给case语句中每一种情况都加1&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;通过下面的评分来分析子程序的复杂度：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;0-5：子程序可能还不错&lt;/li&gt;
-&lt;li&gt;6-10：得想办法简化子程序了&lt;/li&gt;
-&lt;li&gt;10+：把子程序的某一部分拆分成另一个子程序并调用它&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;把子程序的一部分提取成另一个子程序，不会降低整个程序的复杂度，只是把决策点移到其他地方。但是这样做可以降低你在同一时间必须关注的复杂度水平。由于重点是要降低你需要在头脑中同时考虑的项目的数量，所以降低一个给定子程序的复杂度是有价值的。10个决策点的上限并不是绝对的。应该把决策点的数量当作一个警示，该警示说明某个子程序可能需要重新设计了，不要死守决策点上限这个规则。&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第18、19章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;表驱动法是一种编程模式——从表里面查找信息而不使用逻辑语句（if和case）。事实上，凡是能通过逻辑语句来选择的事物，都可以通过查表来选择。本文将介绍直接访问表、索引访问表和阶梯访问表三种常见的表驱动法。最后，本文将记录一些控制问题（如布尔表达式的使用、空语句、深层嵌套问题等等）上的使用原则，这一部分内容比较简单而且与前面的章节有一些重叠，因此将快速带过。&lt;/p&gt;
     
     </summary>
     
