@@ -9,7 +9,7 @@
       <content type="html"><![CDATA[<p>状态管理是几乎所有游戏开发都会做的一个事情——大到场景管理，小到角色的逻辑状态和动画切换。如果你面对日益增长的复杂的状态分支判断代码而不知所措，状态模式和状态机可能就是救星。状态模式是一个非常简单实用的模式，本文将介绍其基本用法，并结合游戏中的有限状态机（FSM）介绍其各种实际应用和特殊状态机。</p>
 <a id="more"></a>
 <h1 id="1-有限状态机"><a href="#1-有限状态机" class="headerlink" title="1. 有限状态机"></a>1. 有限状态机</h1><p>状态在游戏里面非常常见。想象一个横版过关游戏的主角有如下图状态转换。</p>
-<p><img src="http://raytaylorlin-blog.qiniudn.com/image/engine/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B8%B8%E6%88%8F%E8%A7%92%E8%89%B2%E7%8A%B6%E6%80%81%E4%BE%8B%E5%AD%90.jpg" alt="一个简单的游戏角色状态例子"></p>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/engine/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E6%B8%B8%E6%88%8F%E8%A7%92%E8%89%B2%E7%8A%B6%E6%80%81%E4%BE%8B%E5%AD%90.jpg" alt="一个简单的游戏角色状态例子" title="avatar"></p>
 <p>FSM有以下特性：</p>
 <ul>
 <li>拥有一组状态，它们之间可以互相切换</li>
@@ -6144,9 +6144,8 @@ context.rotate(radius)
     
     <entry>
       <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/reading/index.html</url>
-      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
-]]></content>
+      <url>http://raytaylorlin.com/sale/index.html</url>
+      <content type="html"></content>
     </entry>
     
     <entry>
@@ -6168,8 +6167,9 @@ context.rotate(radius)
     
     <entry>
       <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/sale/index.html</url>
-      <content type="html"></content>
+      <url>http://raytaylorlin.com/reading/index.html</url>
+      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
+]]></content>
     </entry>
     
   
