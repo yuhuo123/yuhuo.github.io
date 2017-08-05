@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-04-29T03:03:59.249Z</updated>
+  <updated>2017-08-05T06:16:03.747Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,102 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NGUI源码学习——UICamera</title>
+    <link href="http://raytaylorlin.com/tech/game/unity/ngui-code-uicamera/"/>
+    <id>http://raytaylorlin.com/tech/game/unity/ngui-code-uicamera/</id>
+    <published>2017-03-10T14:02:07.000Z</published>
+    <updated>2017-08-05T06:16:03.747Z</updated>
+    
+    <content type="html">&lt;p&gt;UICamera是NGUI中专门用于捕获和分发交互事件的脚本，和UI渲染无关，需要挂在UI摄像机上。其核心思想是在Update中检测Input的各种输入情况，并对屏幕做raycast投射，以决定是哪个go的collider触发事件，最终将事件分发出去。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.8.1】&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-核心数据结构或类型&quot;&gt;&lt;a href=&quot;#1-核心数据结构或类型&quot; class=&quot;headerlink&quot; title=&quot;1. 核心数据结构或类型&quot;&gt;&lt;/a&gt;1. 核心数据结构或类型&lt;/h1&gt;&lt;p&gt;有许多公共静态属性，如currentXXX，用于存放当前触发事件的摄像机、ray等等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EventType：分World_3D、UI_3D、World_2D、UI_2D，其中3D用&lt;code&gt;Physics.Raycast&lt;/code&gt;实现，2D用&lt;code&gt;Physics.OverlapPoint&lt;/code&gt;实现；World会根据触发点的世界距离排序（常用于游戏摄像机），UI会根据widget depth排序（常用于UI界面）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;enum ControlScheme&lt;/code&gt;：有鼠标、触摸、手柄三种类型，触发事件时会根据这个类型做相应的调整（如hover或selected事件的分发在不同设备是不一样的）&lt;/li&gt;
+&lt;li&gt;MouseOrTouch数据结构：在事件触发之前会设置一些鼠标或触摸信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;public class MouseOrTouch
+{
+    public Vector2 pos;               // 当前鼠标或触摸的位置
+    public Vector2 lastPos;           // 上一次鼠标或触摸的位置
+    public Vector2 delta;             // 当前帧与上一帧的偏移
+    public Vector2 totalDelta;        // delta的累积，通常用于drag事件
+
+    public Camera pressedCam;         // OnPress(true)触发时对应的捕获事件的摄像机
+
+    public GameObject last;           // 上一个触发触摸或鼠标事件的go
+    public GameObject current;        // 当前触发触摸或鼠标事件的go
+    public GameObject pressed;        // 上一个接收OnPress的go
+    public GameObject dragged;        // 正在被拖拽的go
+
+    public float clickTime = 0f;      // 上一次click事件的时间（通常用于判断doubleClick）
+
+    public ClickNotification clickNotification = ClickNotification.Always;  // OnClick的触发条件，None为不触发，Always为总是触发，BasedOnDelta为根据位置移动的偏移量来决定是否发生（偏移量和Thresholds参数有关）
+    public bool touchBegan = true;    // Touch模式下标识一个触摸是否为开始
+    public bool pressStarted = false; // 标识是否开始按住
+    public bool dragStarted = false;  // 标识是否开始拖拽
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下图为UICamera脚本的配置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/unity/UICamera%E8%84%9A%E6%9C%AC%E7%9A%84%E9%85%8D%E7%BD%AE.jpg&quot; alt=&quot;UICamera脚本的配置&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;2-核心方法&quot;&gt;&lt;a href=&quot;#2-核心方法&quot; class=&quot;headerlink&quot; title=&quot;2. 核心方法&quot;&gt;&lt;/a&gt;2. 核心方法&lt;/h1&gt;&lt;h2 id=&quot;2-1-Notify-GameObject-go-string-funcName-object-obj&quot;&gt;&lt;a href=&quot;#2-1-Notify-GameObject-go-string-funcName-object-obj&quot; class=&quot;headerlink&quot; title=&quot;2.1 Notify(GameObject go, string funcName, object obj)&quot;&gt;&lt;/a&gt;2.1 Notify(GameObject go, string funcName, object obj)&lt;/h2&gt;&lt;p&gt;本质上是调用&lt;code&gt;go.SendMessage(funcName, obj)&lt;/code&gt;，这样就能&lt;strong&gt;触发到具体的UI控件中与funcName同名的方法&lt;/strong&gt;（正因为是通过这种特殊方式来调用，所以控件源码中一部分方法会查找不到引用，和反射的道理类似）。&lt;/p&gt;
+&lt;p&gt;同时也会发一份消息到genericEventHandler这个用户自己设置的全局go，相当于一个全局的事件接收器。&lt;/p&gt;
+&lt;h2 id=&quot;2-2-Update&quot;&gt;&lt;a href=&quot;#2-2-Update&quot; class=&quot;headerlink&quot; title=&quot;2.2 Update&quot;&gt;&lt;/a&gt;2.2 Update&lt;/h2&gt;&lt;p&gt;本质上是对UnityEngine.Input的封装和处理。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;根据useTouch或useMouse标记（在Awake中根据当前平台设置，如手机只有touch），选择执行&lt;code&gt;ProcessTouches&lt;/code&gt;或&lt;code&gt;ProcessMouse&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;调用用户自定义的委托&lt;code&gt;onCustomInput&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ProcessOthers&lt;/code&gt;处理键盘和手柄&lt;/li&gt;
+&lt;li&gt;处理tooltip相关逻辑&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以&lt;code&gt;ProcessTouches&lt;/code&gt;为例，该方法中用&lt;code&gt;Input.GetTouch&lt;/code&gt;获取每个touch分别做如下处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建MouseOrTouch结构并设置数据&lt;/li&gt;
+&lt;li&gt;调用&lt;code&gt;ProcessTouch&lt;/code&gt;分发事件&lt;/li&gt;
+&lt;li&gt;若touch数目为0，则转为&lt;code&gt;ProcessMouse&lt;/code&gt;或&lt;code&gt;ProcessFakeTouches&lt;/code&gt;（用于编辑器用鼠标模拟触摸）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ProcessTouch&lt;/code&gt;：根据传入的pressed，向&lt;code&gt;currentTouch.pressed&lt;/code&gt;分发OnPress事件；根据&lt;code&gt;currentTouch.delta&lt;/code&gt;或touch前后go是否不同，向&lt;code&gt;currentTouch.dragged&lt;/code&gt;和&lt;code&gt;currentTouch.last&lt;/code&gt;分发OnDragStart和OnDragOver事件；后续还有一段处理各种drag start、over、out的逻辑。根据传入的unpressed，分发OnClick、OnSelect、OnHover等事件。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ProcessOthers&lt;/code&gt;：处理submit（如回车和手柄的按键）、方向键、返回键、tab键的情况，并对mCurrentSelection分发OnKey事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-RayCast（Vector3-inPos）&quot;&gt;&lt;a href=&quot;#2-3-RayCast（Vector3-inPos）&quot; class=&quot;headerlink&quot; title=&quot;2.3 RayCast（Vector3 inPos）&quot;&gt;&lt;/a&gt;2.3 RayCast（Vector3 inPos）&lt;/h2&gt;&lt;p&gt;给定位置判断有没有与控件产生交互，最终要得到hoveredObject这个结果。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;currentCamera.ScreenToViewportPoint(inPos)&lt;/code&gt;算出viewport的坐标，并排除一些异常情况&lt;ul&gt;
+&lt;li&gt;【注：屏幕坐标左下角是(0,0)，右上角是(pixelWidth,pixelHeight)】，viewport坐标右上角是(1,1)】&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;currentCamera.ScreenPointToRay(inPos)&lt;/code&gt;将屏幕坐标转换为ray。UICamera有个表示射线长度的参数rangeDistance，默认为摄像机远近裁剪面的距离；eventReceiverMask表示摄像机投射ray时哪些层可以响应&lt;/li&gt;
+&lt;li&gt;接下来根据EventType采用不同的算法来算ray射到的物体，以两种3D模式为例：&lt;ul&gt;
+&lt;li&gt;World_3D：&lt;code&gt;if (Physics.Raycast(ray, out lastHit, dist, mask)) hoveredObject = lastHit.collider.gameObject&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;UI_3D：&lt;code&gt;Physics.RaycastAll(ray, dist, mask)&lt;/code&gt;获取射线穿到的所有hit，取每个hit对应的collider的go，计算其raycastDepth，并按从大到小排序&lt;/li&gt;
+&lt;li&gt;hoveredObject = 上述最大的，且对应panel可见的hit对应的go&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;【定义：UIWidget.raycastDepth = 自身depth + 所属panel.depth * 1000】&lt;br&gt;【定义：&lt;code&gt;NGUITools.CalculateRaycastDepth(go)&lt;/code&gt;计算go下所有可用widget的raycastDepth的最小值】&lt;/p&gt;
+&lt;p&gt;参考文献：&lt;a href=&quot;http://www.yarpee.com/?p=150&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Yarpee的博文《UICamera》&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;UICamera是NGUI中专门用于捕获和分发交互事件的脚本，和UI渲染无关，需要挂在UI摄像机上。其核心思想是在Update中检测Input的各种输入情况，并对屏幕做raycast投射，以决定是哪个go的collider触发事件，最终将事件分发出去。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.8.1】&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/"/>
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/NGUI/"/>
+    
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/tags/NGUI/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/tags/Unity/"/>
+    
+  </entry>
   
   <entry>
     <title>状态模式与状态机</title>
@@ -1906,117 +2002,6 @@ while (true) {
     
       &lt;p&gt;测试可以由开发人员或专门的测试人员进行。按层级分，测试可以分为单元测试、组件测试、继承测试、回归测试、系统测试；按是否了解对象内部工作机制分，测试可以分为黑盒测试和白盒测试。本文关注的是开发人员所进行的白盒测试。重构是“在不改变软件外部行为的前提下，对其内部结构进行改变，使之更容易理解并便于修改”的过程。本文将讲述软件演化以及重构的一些理念。&lt;/p&gt;
 &lt;p&gt;测试和重构都是非常大的话题，大到足以各用一本经典著作来阐述，如&lt;a href=&quot;https://book.douban.com/subject/1801050/&quot;&gt;《软件测试》&lt;/a&gt;和&lt;a href=&quot;https://book.douban.com/subject/4262627/&quot;&gt;《重构：改善既有代码的设计》&lt;/a&gt;。因此本文也仅是记录一些要点，如果要深入了解，还是要阅读相关的书籍为好。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（九）——协同构建与调试</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-9/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-9/</id>
-    <published>2016-04-26T04:59:05.000Z</published>
-    <updated>2016-05-12T13:14:41.223Z</updated>
-    
-    <content type="html">&lt;p&gt;所有的协同构建技术都试图通过这样或那样的途径，将展示你工作的过程正式化，以便把错误暴露出来。软件构建不可避免地都会伴随着调试，在一些项目中，调试可能占到整个开发周期的50%。对很多程序员来说，调试是程序设计中最为困难的部分。本文的前半部分将介绍协同构建的一些实践方法，后半部分将介绍一些科学的调试手段以节省更多精力。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-协同构建&quot;&gt;&lt;a href=&quot;#1-协同构建&quot; class=&quot;headerlink&quot; title=&quot;1. 协同构建&quot;&gt;&lt;/a&gt;1. 协同构建&lt;/h1&gt;&lt;h2 id=&quot;1-1-协同开发实践概要&quot;&gt;&lt;a href=&quot;#1-1-协同开发实践概要&quot; class=&quot;headerlink&quot; title=&quot;1.1 协同开发实践概要&quot;&gt;&lt;/a&gt;1.1 协同开发实践概要&lt;/h2&gt;&lt;p&gt;“协同构建”包括结对编程、正式检查、非正式技术复查、文档阅读，以及其他让开发人员共同承担创建代码及其他工作产品责任的技术。各种协同构建技术之间尽管存在着一些差异，但它们都基于一个相同的思想，那就是在工作中开发人员总会对某些错误点视而不见，而其他人不会有相同的盲点，所以开发人员让其他人来检查自己的工作是很有好处的。&lt;/p&gt;
-&lt;p&gt;大量研究和数据表明，协同开发在捕获错误方面比测试的效能更高，而且让人们意识到他们的工作会被复查，这样他们会小心谨慎地检查自己的工作。此外，协同构建有利于传授公司文化以及编程专业知识，复查是老人培养新人人以提高其代码质量的好方法。&lt;/p&gt;
-&lt;h2 id=&quot;1-2-结对编程&quot;&gt;&lt;a href=&quot;#1-2-结对编程&quot; class=&quot;headerlink&quot; title=&quot;1.2 结对编程&quot;&gt;&lt;/a&gt;1.2 结对编程&lt;/h2&gt;&lt;p&gt;在进行结对编程的时候，一位程序员敲代码，另外一位注意有没有出现错误，并考虑某些策略性的问题，例如代码的编写是否正确，正在编写的代码是否所需等。全程采用结对编程的成本可能比单人开发要高大约10%~25%，但开发周期大概会缩短45%。结对编程与单独开发相比，能够使人们在压力之下保持更好的状态，能够改善代码质量，缩短进度时间表等等。要从结对编程中获益，需要遵守以下几条准则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用编码规范来支持结对编程：应提前制定标准，避免两个人把时间浪费在争论代码风格上&lt;/li&gt;
-&lt;li&gt;不要让结对编程变成旁观：不掌握键盘的那个人应该主动参与到编程当中，例如分析代码，提前思考接下来的代码应该做些什么，对设计进行评估，并对如何测试代码做出计划&lt;/li&gt;
-&lt;li&gt;不要强迫在简单的问题上使用结对编程&lt;/li&gt;
-&lt;li&gt;有规律地对结对人员和分配的工作任务进行轮换&lt;/li&gt;
-&lt;li&gt;鼓励双方跟上对方的步伐&lt;/li&gt;
-&lt;li&gt;确认两个人都能够看清楚显示器中的代码&lt;/li&gt;
-&lt;li&gt;不要强迫程序员与自己关系紧张的人结对&lt;/li&gt;
-&lt;li&gt;避免新手组合&lt;/li&gt;
-&lt;li&gt;指定一个协调工作分配的组长，其对结果和项目外其他人的联系负责&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-3-正式检查&quot;&gt;&lt;a href=&quot;#1-3-正式检查&quot; class=&quot;headerlink&quot; title=&quot;1.3 正式检查&quot;&gt;&lt;/a&gt;1.3 正式检查&lt;/h2&gt;&lt;p&gt;正式检查（详查）是一种特殊的复查，与普通复查的区别是：详查关注的是复查者过去所遇到的问题，专注于缺陷的检测而非修正；复查人员要为详查会议做好预先准备，并且带来一份他们所发现的己知问题的列表；详查的主持人不是被检查产品的作者，且应该已经接受过主持详查会议方面的培训；只有在参与者都做好充分准备之后才会召开详查会议，每个参与者都赋予了明确的角色（主持人、代码作者、详查评论员、记录员、只了解结果的经理）；每次详查所收集的数据都会被应用到以后的详查当中，以便对详查进行改进；高层管理人员不参加详查会议，除非你们正在详查一个项目的计划，或者其他管理方面的资料，但技术负责人可能参加。&lt;/p&gt;
-&lt;p&gt;详查由以下几个阶段组成：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;计划：作者提交设计或代码，主持人决定参与的人员和时间地点&lt;/li&gt;
-&lt;li&gt;概述：当评论员不熟悉他们所要详查的项目时，作者可以花大约一个小时来描述一下这些设计或代码的技术背景&lt;/li&gt;
-&lt;li&gt;准备：每一个评论员独立地对设计或者代码进行详查，找出其中的错误。给评论员赋予特定视角或待详查场景，可以有效提高复查的效率&lt;/li&gt;
-&lt;li&gt;详查会议：评论员阐述设计或阅读代码，记录员记录发现的错误。不要在开会的过程当中讨论解决方案，小组应该把注意力保持在识别缺陷上。详查速度，可以参考系统级代码每小时90行，应用级代码每小时500行&lt;/li&gt;
-&lt;li&gt;详查报告：主持人总结报告，列出每个缺陷及其类型和严重级别&lt;/li&gt;
-&lt;li&gt;返工：主持人将缺陷分配给作者修复&lt;/li&gt;
-&lt;li&gt;跟进：主持人负责监督在详查过程中分配的返工任务&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;对于作者来说，详查的过程应该是正面的，所有参与者都是一个学习的过程。作者也应该预料到他会听到对某些缺陷的批评，不应该试图为正在被检查的工作辩护，在复查之后，作者可以独自对每一个问题进行思考，判断它是否真的是一个缺陷。&lt;/p&gt;
-&lt;h2 id=&quot;1-4-走查&quot;&gt;&lt;a href=&quot;#1-4-走查&quot; class=&quot;headerlink&quot; title=&quot;1.4 走查&quot;&gt;&lt;/a&gt;1.4 走查&lt;/h2&gt;&lt;p&gt;走查是一种很流行的&lt;strong&gt;非正式&lt;/strong&gt;复查方式，同时也是一种宽松的定义。既然是一种较为“随意”的复查形式，其找出程序的错误概率也相对较低，而当项目的压力增加的时候，走查更是变得几乎不可能。与走查相比，详查在消除错误方面似乎更有效。但如果你有个很大的复查团队，或者由其他组织的评审员参与，或许走查会更适合。&lt;/p&gt;
-&lt;h1 id=&quot;2-调试&quot;&gt;&lt;a href=&quot;#2-调试&quot; class=&quot;headerlink&quot; title=&quot;2. 调试&quot;&gt;&lt;/a&gt;2. 调试&lt;/h1&gt;&lt;p&gt;调试本身并不是改进代码质量的方法，而是诊断代码缺陷的一种方法。软件的质量必须从开始逐步建立：开发高质量软件产品的最佳途径是精确描述需求，完善设计，并使用高质量的代码编写规范。&lt;strong&gt;调试只是迫不得已时采用的手段。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;程序不可能没有缺陷，关键是掌握避免缺陷产生的方法，并从以往的缺陷中学习。程序员在调试过程中应该理解正在编写的程序，明确犯了哪种类型的错误，从代码阅读者的角度分析代码质量，审视自己解决问题和修正缺陷的方法。&lt;/p&gt;
-&lt;h2 id=&quot;2-1-效率低下的调试万法&quot;&gt;&lt;a href=&quot;#2-1-效率低下的调试万法&quot; class=&quot;headerlink&quot; title=&quot;2.1 效率低下的调试万法&quot;&gt;&lt;/a&gt;2.1 效率低下的调试万法&lt;/h2&gt;&lt;p&gt;下面列举的是调试的魔鬼指南，注意这些是&lt;strong&gt;让程序员们受尽折磨的传统的调试方法，应该引以为戒&lt;/strong&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;凭猜测找出缺陷：把print语句随机地散布在程序中，凭输出来确定缺陷到底在哪里。如果通过print语句还是不能找到缺陷，那就在程序中修改点什么，知道有些东西好像能干活了&lt;/li&gt;
-&lt;li&gt;不要把时间浪费在理解问题上：要解决它们并不需要彻底弄懂程序，只要找出问题就行了&lt;/li&gt;
-&lt;li&gt;用最唾手可得的方式修正错误&lt;/li&gt;
-&lt;li&gt;迷信式调试：也许你会遇到这样一种程序员，他们经常碰到各种奇怪问题——不听话的机器，奇怪的编译器错误，月圆时才会出现的编程语言的隐藏缺陷，失效的数据……&lt;strong&gt;要知道，如果你写的程序出了问题，那就是你的原因，不是计算机的&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-2-科学的调试方法&quot;&gt;&lt;a href=&quot;#2-2-科学的调试方法&quot; class=&quot;headerlink&quot; title=&quot;2.2 科学的调试方法&quot;&gt;&lt;/a&gt;2.2 科学的调试方法&lt;/h2&gt;&lt;p&gt;下面给出一种寻找缺陷的有效方法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;将错误状态稳定下来&lt;/li&gt;
-&lt;li&gt;确定错误的来源&lt;br&gt; a. 收集产生缺陷的相关数据&lt;br&gt; b. 分析所收集的数据，并构造对缺陷的假设&lt;br&gt; c. 确定怎样去证实或证伪这个假设，可以对程序进行测试或是通过检查代码&lt;br&gt; d. 按照2(c)确定的方法对假设做出最终结论&lt;/li&gt;
-&lt;li&gt;修补缺陷&lt;/li&gt;
-&lt;li&gt;对所修补的地方进行测试&lt;/li&gt;
-&lt;li&gt;查找是否还有类似的错误&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如果一个错误无法重现，这通常会是一个变量初始化错误，或者是一个同时间有关的问题，或者是悬空指针问题。要将一个错误的发生稳定下来，要构造一个尽可能简单的测试用例，并假定一些产生错误的因素，用测试用例一个一个排除掉无关的因素，不断缩小错误因素的范围。一些寻找错误的小建议：在构造假设时考虑所有的可用数据，提炼产生错误的测试用例，采用多种不同的方法重现错误，用更多的数据生成更多的假设，将代码分而治之缩小嫌疑代码的范围，对之前出现过缺陷的代码和最近修改过的代码保持警惕。&lt;/p&gt;
-&lt;p&gt;在必要时，也可以采用蛮力调试。人们往往出于投机心理都宁愿去用一种有可能在五分钟内发现缺陷的高风险方法，也不愿意为某种保证能找出缺陷的方法花上半个小时。实际上当你被这种心理绕进去时，有可能几个小时甚至几天就这样浪费了。如果打算通过捷径摘取胜利果实，那么应该为尝试捷径的时间设置一个上限。&lt;strong&gt;如果耗时超过了上限，就应老老实实地承认问题比你最初想象的要更加难于分析，应该转到蛮力（彻查代码甚至重写）的路上重新开始。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;对于语法错误，虽然编译器现在做得越来越好，这个问题不应成为一个很大的障碍，但也应该注意一些编译器的坑，例如：不要过分信任编译器信息中的行号，有时问题可能出在那一行的前后；不要迷信编译器给出的错误信息；不要轻信编译器的第二条信息，如果无法迅速找出第二条或第三条错误信息的源头，先把第一条处理了再重新编译看看。&lt;/p&gt;
-&lt;h2 id=&quot;2-3-修正缺陷&quot;&gt;&lt;a href=&quot;#2-3-修正缺陷&quot; class=&quot;headerlink&quot; title=&quot;2.3 修正缺陷&quot;&gt;&lt;/a&gt;2.3 修正缺陷&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;在动手之前先要真正理解问题&lt;/li&gt;
-&lt;li&gt;理解程序本身，而不仅仅是问题&lt;/li&gt;
-&lt;li&gt;花点时间编写测试用例，验证对错误的假设&lt;/li&gt;
-&lt;li&gt;修改错误后不要急着提交，可以先放松一下，等到充分考虑了这样的修改完全无误后再提交&lt;/li&gt;
-&lt;li&gt;保存最初的源代码，以方便对照&lt;/li&gt;
-&lt;li&gt;治本，而不是治标，不要用特例去绕过程序的错误&lt;/li&gt;
-&lt;li&gt;修改代码时一定要有恰当的理由&lt;/li&gt;
-&lt;li&gt;一次只做一个改动&lt;/li&gt;
-&lt;li&gt;检查自己的改动并增加能暴露问题的单元测试&lt;/li&gt;
-&lt;li&gt;修正缺陷后，搜索类似的缺陷&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-4-调试工具简介&quot;&gt;&lt;a href=&quot;#2-4-调试工具简介&quot; class=&quot;headerlink&quot; title=&quot;2.4 调试工具简介&quot;&gt;&lt;/a&gt;2.4 调试工具简介&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;源代码比较工具：如&lt;a href=&quot;http://linux.die.net/man/1/diff&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;diff&lt;/a&gt;、&lt;a href=&quot;http://www.scootersoftware.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Beyond Compare&lt;/a&gt;等，常用于比较新旧代码的差异以唤醒记忆&lt;/li&gt;
-&lt;li&gt;编译器&lt;ul&gt;
-&lt;li&gt;将编译器的警告级别设置为最高级，尽可能不放过任何一个警告&lt;/li&gt;
-&lt;li&gt;用对待错误的态度来处理警告：一些编译器允许将警告当做错误报告&lt;/li&gt;
-&lt;li&gt;在项目组范围内使用统一的编译设置&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;增强的语法检查和逻辑检查：如各种语言的lint工具（一般许多高级的编辑器都有对应插件）&lt;/li&gt;
-&lt;li&gt;性能分析器：有时花上几分钟来研究某个程序的性能分析结果，或许可以让你发现一些令人惊奇的隐藏错误&lt;/li&gt;
-&lt;li&gt;测试框架/脚手架：各种语言都有对应的测试框架&lt;/li&gt;
-&lt;li&gt;调试器：利用好编译器可能具有的以下功能：&lt;ul&gt;
-&lt;li&gt;设置断点，某行代码执行n次或变量被赋予特定值时中断，监控变量，逐行运行代码，记录特定语句的执行&lt;/li&gt;
-&lt;li&gt;检查结构化和动态分配的数据，智能地适应用户定义的数据类型，在运行过程中修改值并继续运行&lt;/li&gt;
-&lt;li&gt;查看高级语言生成的汇编代码，查看调用链&lt;/li&gt;
-&lt;li&gt;针对每个单独的程序保存调试参数（如断点、监视变量等）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第21、23章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;所有的协同构建技术都试图通过这样或那样的途径，将展示你工作的过程正式化，以便把错误暴露出来。软件构建不可避免地都会伴随着调试，在一些项目中，调试可能占到整个开发周期的50%。对很多程序员来说，调试是程序设计中最为困难的部分。本文的前半部分将介绍协同构建的一些实践方法，后半部分将介绍一些科学的调试手段以节省更多精力。&lt;/p&gt;
     
     </summary>
     
