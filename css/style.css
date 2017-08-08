@@ -358,16 +358,16 @@ article .article-title h1 {
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 10px;
-  color: #333;
+  color: color-entry-subtitle;
 }
 article a:not(.chip) {
-  color: #1976d2;
+  color: color-a;
 }
 article a:not(.chip):hover {
-  color: #42a5f5;
+  color: color-a-hover;
 }
 article .simple-article-title h1 {
-  font-size: 1.4em;
+  font-size: simple-title-font-size;
   padding: 5px 0;
 }
 article .tags-row {
@@ -392,13 +392,13 @@ article header {
   margin-bottom: 10px;
 }
 article header time {
-  font: 0.9em "微软雅黑", "Droid Serif", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font: 0.9em font-title;
   margin-bottom: 5px;
   display: block;
   line-height: 1;
 }
 article header:hover {
-  color: #069;
+  color: color-link;
 }
 article .card-content .entry {
   font-size: 16px;
@@ -441,18 +441,18 @@ article .card-content .entry h6 {
 }
 article .card-content .entry h1 {
   font-size: 1.6em;
-  color: #333;
+  color: color-entry-subtitle;
 }
 article .card-content .entry h2 {
   font-size: 1.4em;
-  color: #333;
+  color: color-entry-subtitle;
 }
 article .card-content .entry h3,
 article .card-content .entry h4,
 article .card-content .entry h5,
 article .card-content .entry h6 {
   font-size: 1.2em;
-  color: #333;
+  color: color-entry-subtitle;
 }
 article .card-content .entry.nstyle {
   -webkit-border-radius: 0;
@@ -804,7 +804,7 @@ article .line:after {
 }
 article code,
 article pre {
-  font-family: Consolas, "微软雅黑", Monaco, Menlo, Courier New, monospace;
+  font-family: font-mono;
   color: #333;
   font-size: 1em;
 }
