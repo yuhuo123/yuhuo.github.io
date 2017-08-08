@@ -6280,6 +6280,19 @@ context.rotate(radius)
   
     
     <entry>
+      <title><![CDATA[读书]]></title>
+      <url>http://raytaylorlin.com/sale/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[读书]]></title>
+      <url>http://raytaylorlin.com/reading/index.html</url>
+      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于]]></title>
       <url>http://raytaylorlin.com/about/index.html</url>
       <content type="html"><![CDATA[<p>大家好，我是林寿山，人称“寿寿”。欢迎来到我的个人技术博客。</p>
@@ -6293,19 +6306,6 @@ context.rotate(radius)
 <li>研二至研三：找工作时突然决定要转游戏开发，于是抛弃最精通的Web前端，开始速学C++、Cocos2d-x、Unity3D，并做出勉强可以拿出手的作品。几经周折拿到了理想公司的offer，标识着正式转型最热爱的游戏开发。</li>
 <li><strong>未来</strong>：借着Unity3D引擎的盛行，未来入职后应该会重拾老本行C#，这也说明了技多不压身。虽然从Web前端转型到游戏开发跨度有点大，但我相信曾经扎实的前端基础将会成为一笔不小的财富。游戏开发是一个全新的技术领域，未来将有许多新东西，如图形学、引擎、AI等等，等着我去学习。</li>
 </ul>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/sale/index.html</url>
-      <content type="html"></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[读书]]></title>
-      <url>http://raytaylorlin.com/reading/index.html</url>
-      <content type="html"><![CDATA[<p>读书栏目终于上线了，以后就在这里跟大家交流一些好书。（博主很懒什么都不想写=。=）</p>
 ]]></content>
     </entry>
     
