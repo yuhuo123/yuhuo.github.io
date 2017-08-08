@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-08-05T06:16:03.747Z</updated>
+  <updated>2017-08-08T16:09:21.477Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,97 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NGUI源码学习——UILabel</title>
+    <link href="http://raytaylorlin.com/tech/game/unity/ngui-code-uilabel/"/>
+    <id>http://raytaylorlin.com/tech/game/unity/ngui-code-uilabel/</id>
+    <published>2017-04-05T14:02:07.000Z</published>
+    <updated>2017-08-08T16:09:21.477Z</updated>
+    
+    <content type="html">&lt;p&gt;UILabel是NGUI中用于显示文字的控件。其核心思想是遍历每个字符，将其转化为字体贴图的数据。本篇会抛开BBCode解析，表情符symbol解析，特殊效果（阴影、描边等）等细节，只记录几个渲染字体的核心方法。NGUI有独立的一套BMFont管理工具和类，等以后再另开篇章讲解。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-基础要点&quot;&gt;&lt;a href=&quot;#1-基础要点&quot; class=&quot;headerlink&quot; title=&quot;1. 基础要点&quot;&gt;&lt;/a&gt;1. 基础要点&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;基本上只要设置了某个属性，都会使shouldBeProcessed变成true。在必要的时候，例如设置text、fontSize、fontStyle、alignment、OnValidate()，或者在获取父类UIWidget的一些属性，如localSize、drawingDimensions、worldCorners等等，才会根据shouldBeProcessed去调用&lt;code&gt;ProcessText&lt;/code&gt;重绘字体。&lt;/li&gt;
+&lt;li&gt;NGUIText作为中转处理的静态类，包含了大量的公共静态属性供缓存&lt;/li&gt;
+&lt;li&gt;字体方案有两种：Unity自带的动态字体（TTF）和NGUI的BitmapFont（即图字&lt;a href=&quot;http://www.angelcode.com/products/bmfont/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BMFont&lt;/a&gt;）。后者在获取glyph信息时会多考虑当前字符与上一个字符的字距。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;2-核心方法&quot;&gt;&lt;a href=&quot;#2-核心方法&quot; class=&quot;headerlink&quot; title=&quot;2. 核心方法&quot;&gt;&lt;/a&gt;2. 核心方法&lt;/h1&gt;&lt;h2 id=&quot;2-1-ProcessText-bool-legacyMode-bool-full&quot;&gt;&lt;a href=&quot;#2-1-ProcessText-bool-legacyMode-bool-full&quot; class=&quot;headerlink&quot; title=&quot;2.1 ProcessText(bool legacyMode, bool full)&quot;&gt;&lt;/a&gt;2.1 ProcessText(bool legacyMode, bool full)&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;NGUIText.Update(false)&lt;/code&gt;：计算最终字体尺寸、space大小、行高&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NGUIText.WrapText&lt;/code&gt;：根据rectHeight、maxLines、finalLineHeight算出在widget最多可以容纳多少行。遍历每个字符，依旧获取glyph信息，并维护剩余宽度remainingWidth来决定是否截断显示字符串。该方法还会对空格和换行做一些特殊处理。最后输出fits表示rect是否能容纳得下应该显示的字符串，finalText表示最终显示的字符串&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NGUIText.CalculatePrintedSize(mProcessedText)&lt;/code&gt;：计算最终字符显示的区域大小，结果可从printedSize属性获取（小于等于rect大小）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;几种Overflow模式的基本原理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ShrinkContent缩放原理：循环从ps = mPrintedSize = defaultFontSize开始往下递减，直到ps可以满足在当前rect里容纳显示所有字符。例如当一个240×30的label不能一行显示字号为60的“New\nlabel”，则ps可能会递减到30左右，&lt;code&gt;NGUIText.WrapText&lt;/code&gt;计算出可以fit整个rect了，才停止循环。&lt;/li&gt;
+&lt;li&gt;ClampContent裁切原理：实际上这种方式没有做任何处理，因为在&lt;code&gt;NGUIText.WrapText&lt;/code&gt;的时候就已经按rect大小做截断了&lt;/li&gt;
+&lt;li&gt;ResizeFreely自适应原理：一开始先把rect和region设得足够大，WrapText之后再重算printedSize&lt;/li&gt;
+&lt;li&gt;ResizeHeight：同ResizeFreely，但只会重设高度，不会重设宽度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-2-OnFill-BetterList-verts-BetterList-uvs-BetterList-cols&quot;&gt;&lt;a href=&quot;#2-2-OnFill-BetterList-verts-BetterList-uvs-BetterList-cols&quot; class=&quot;headerlink&quot; title=&quot;2.2 OnFill(BetterList verts, BetterList uvs, BetterList cols)&quot;&gt;&lt;/a&gt;2.2 OnFill(BetterList&lt;vector3&gt; verts, BetterList&lt;vector2&gt; uvs, BetterList&lt;color32&gt; cols)&lt;/color32&gt;&lt;/vector2&gt;&lt;/vector3&gt;&lt;/h2&gt;&lt;p&gt;在UIWidget调用UpdateGeometry时用到。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;UpdateNGUIText&lt;/code&gt;：将label的各种属性复制到NGUIText的公共静态属性中&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NGUIText.Print(text, verts, uvs, cols)&lt;/code&gt;将文本内容输出到列表中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ApplyOffset&lt;/code&gt;用偏移值变换顶点：原理是根据pivotOffset（锚点相对偏移，右上角为(1,1)）和label的宽高插值出offset，然后应用到顶点列表的每个顶点，最后返回offset&lt;/li&gt;
+&lt;li&gt;如果有开启阴影，则调用一次ApplyShadow【增加一些顶点】；如果开启描边，则再调用3次ApplyShadow，实质上就是用四个方向的阴影包围来模拟描边&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;2-3-NGUIText-Print-text-verts-uvs-cols&quot;&gt;&lt;a href=&quot;#2-3-NGUIText-Print-text-verts-uvs-cols&quot; class=&quot;headerlink&quot; title=&quot;2.3 NGUIText.Print(text, verts, uvs, cols)&quot;&gt;&lt;/a&gt;2.3 NGUIText.Print(text, verts, uvs, cols)&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Prepare(text)&lt;/code&gt;：当使用动态字体时，调用Unity API &lt;code&gt;Font.RequestCharactersInTexture&lt;/code&gt;刷新所需字符的纹理&lt;/li&gt;
+&lt;li&gt;遍历text的每个字符 =&amp;gt;&lt;/li&gt;
+&lt;li&gt;处理换行符号，略过非法字符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ParseSymbol&lt;/code&gt;解析BBCode，该函数有很多ref参数，用于存放解析结果（如加粗、斜体、下划线等等）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GetSymbol(text, i, textLength)&lt;/code&gt;获取有没有图字符号（新版本NGUI label支持表情符解析），有符号走符号分支，否则进入普通字符分支。【下面只讲解普通字符分支】&lt;/li&gt;
+&lt;li&gt;处理alignment为居中或右侧的情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;普通字符处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GetGlyph(ch, prev)&lt;/code&gt;：根据当前字符ch和上一个字符prev，会根据使用的是位图字体还是动态字体，计算出对应的UV坐标。【得到的GlyphInfo数据结构见下方解释】&lt;/li&gt;
+&lt;li&gt;计算subscriptMode不为0（即上标或下标）的情况，算法：glyph.v0和glyph.v1乘以sizeShrinkage常量，然后根据上下标情况，上下偏移y坐标&lt;/li&gt;
+&lt;li&gt;若x + w &amp;gt; regionWidth，则将字符换行&lt;/li&gt;
+&lt;li&gt;若字符为空格：若BBCode对应是下划线，则替换为“下划线”；若对应中划线，则替换为“减号”；都不对应，则continue&lt;/li&gt;
+&lt;li&gt;处理纹理坐标&lt;/li&gt;
+&lt;li&gt;根据glyph.channel以不同方式计算顶点颜色&lt;/li&gt;
+&lt;li&gt;处理粗体和斜体的情况&lt;/li&gt;
+&lt;li&gt;处理下划线或中划线的情况&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;该方法最终会为每个字符，在uvs、cols、verts添加4个顶点数据，顺序为左下、左上、右上、右下&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;public class GlyphInfo
+{
+    public Vector2 v0;          // 字形在生成的text mesh中左下角屏幕坐标
+    public Vector2 v1;          // 字形在生成的text mesh中的右上角屏幕坐标
+    public Vector2 u0;          // UV左下角坐标
+    public Vector2 u1;          // UV右上角坐标
+    public float advance = 0f;  // 从本字符到下个字符的步进宽度
+    public int channel = 0;     // RGBA通道值，通常为15（1+2+4+8）
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意在输出顶点数据前，已经调用&lt;code&gt;UpdateNGUIText&lt;/code&gt;确保NGUIText中已保存所需的数据。&lt;/p&gt;
+&lt;h1 id=&quot;3-一些要注意的点&quot;&gt;&lt;a href=&quot;#3-一些要注意的点&quot; class=&quot;headerlink&quot; title=&quot;3. 一些要注意的点&quot;&gt;&lt;/a&gt;3. 一些要注意的点&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;使用动态字体时，Unity会生成要用到的字符的纹理，可能一开始是128×128的FontTexture就够了。若后面纹理不够用会重新生成一张新的更大的，触发&lt;a href=&quot;https://docs.unity3d.com/460/Documentation/ScriptReference/Font-textureRebuildCallback.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;textureRebuildCallback&lt;/a&gt;，对应到&lt;code&gt;UILabel.OnFontTextureChanged&lt;/code&gt;。这个方法会将所有引用到的label的字符，通过font.&lt;a href=&quot;https://docs.unity3d.com/460/Documentation/ScriptReference/Font.RequestCharactersInTexture.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RequestCharactersInTexture&lt;/a&gt;这个API去把所有字符都推到新的字体纹理中。接着再把所有label从panel移除再添加回去。【字体破碎现象很可能就是因为字体纹理重建引起的）&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;UILabel是NGUI中用于显示文字的控件。其核心思想是遍历每个字符，将其转化为字体贴图的数据。本篇会抛开BBCode解析，表情符symbol解析，特殊效果（阴影、描边等）等细节，只记录几个渲染字体的核心方法。NGUI有独立的一套BMFont管理工具和类，等以后再另开篇章讲解。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/"/>
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/NGUI/"/>
+    
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/tags/NGUI/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/tags/Unity/"/>
+    
+  </entry>
   
   <entry>
     <title>NGUI源码学习——UICamera</title>
@@ -1866,142 +1957,6 @@ while (true) {
     <summary type="html">
     
       &lt;p&gt;本文首先概述了程序运行性能应该考虑的一些问题，然后从策略上和技术上两个方面来探讨代码性能的调整问题。技术上的代码调整并没有什么万金油的方法，也不是灵丹妙药，唯一可以信赖的法则就是每次都应当在具体的环境下评估代码调整所带来的效果，而本文所列的调整方法则仅供参考。此外，追求性能的背后往往伴随着牺牲程序的可读性和可维护性，而&lt;strong&gt;在很多情况下，代码的可读性和可维护性都要比运行速度或资源占用更为重要。&lt;/strong&gt;因此在调整代码时一定要考虑这样的性能提升是否真的必要。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（十）——测试与重构</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-10/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-10/</id>
-    <published>2016-04-29T08:19:39.000Z</published>
-    <updated>2016-05-12T13:14:44.045Z</updated>
-    
-    <content type="html">&lt;p&gt;测试可以由开发人员或专门的测试人员进行。按层级分，测试可以分为单元测试、组件测试、继承测试、回归测试、系统测试；按是否了解对象内部工作机制分，测试可以分为黑盒测试和白盒测试。本文关注的是开发人员所进行的白盒测试。重构是“在不改变软件外部行为的前提下，对其内部结构进行改变，使之更容易理解并便于修改”的过程。本文将讲述软件演化以及重构的一些理念。&lt;/p&gt;
-&lt;p&gt;测试和重构都是非常大的话题，大到足以各用一本经典著作来阐述，如&lt;a href=&quot;https://book.douban.com/subject/1801050/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《软件测试》&lt;/a&gt;和&lt;a href=&quot;https://book.douban.com/subject/4262627/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《重构：改善既有代码的设计》&lt;/a&gt;。因此本文也仅是记录一些要点，如果要深入了解，还是要阅读相关的书籍为好。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-开发者测试&quot;&gt;&lt;a href=&quot;#1-开发者测试&quot; class=&quot;headerlink&quot; title=&quot;1. 开发者测试&quot;&gt;&lt;/a&gt;1. 开发者测试&lt;/h1&gt;&lt;h2 id=&quot;1-1-开发者测试在软件质量中的角色&quot;&gt;&lt;a href=&quot;#1-1-开发者测试在软件质量中的角色&quot; class=&quot;headerlink&quot; title=&quot;1.1 开发者测试在软件质量中的角色&quot;&gt;&lt;/a&gt;1.1 开发者测试在软件质量中的角色&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;测试的目标是找出错误，与其他开发活动背道而驰&lt;/li&gt;
-&lt;li&gt;测试永远不可能彻底证明程序中没有错误&lt;/li&gt;
-&lt;li&gt;测试本身并不能改善软件的质量，只能用来指示&lt;/li&gt;
-&lt;li&gt;测试时要求你假设会在代码里面找到错误&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;根据项目大小和复杂程度的不同，开发者测试应该占整个项目时间的8%~25%。测试得出的结果，可以用来评估产品的可靠性，并指导对软件的修正。&lt;/p&gt;
-&lt;h2 id=&quot;1-2-推荐方法&quot;&gt;&lt;a href=&quot;#1-2-推荐方法&quot; class=&quot;headerlink&quot; title=&quot;1.2 推荐方法&quot;&gt;&lt;/a&gt;1.2 推荐方法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;对每一项相关的需求进行测试，以确保需求都已经被实现：最好在需求阶段就计划好这一部分的测试用例，并注意测试安全级别、数据存储、安装过程及系统可靠性等这些厂被忽略的测试点&lt;/li&gt;
-&lt;li&gt;对每一项相关的设计关注点进行测试，以确保设计已经被实现&lt;/li&gt;
-&lt;li&gt;使用一个检查表，其中记录着你在本项目迄今为止所犯的，以及在过去的项目中所犯的错误类型&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;推荐先写测试用例再写代码&lt;/strong&gt;：可以更早地把需求问题暴露出来，迫使你写代码前思考一下设计，并更早地发现代码中的缺陷&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;1-2-1-结构化基础测试&quot;&gt;&lt;a href=&quot;#1-2-1-结构化基础测试&quot; class=&quot;headerlink&quot; title=&quot;1.2.1 结构化基础测试&quot;&gt;&lt;/a&gt;1.2.1 结构化基础测试&lt;/h3&gt;&lt;p&gt;一个子程序所需的测试用例的&lt;strong&gt;最少数量&lt;/strong&gt;可以用下面的简单方法计算：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;对通过子程序的直路，开始的时候记1&lt;/li&gt;
-&lt;li&gt;遇到if、while、repeat、for、and以及or关键字或者其等价物时，加1&lt;/li&gt;
-&lt;li&gt;遇到每一个case语句就加1，如果case语句没有缺省情况，则再加1&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;假设一个子程序有5个if或for语句，那么至少需要6个测试用例，其中1个测试所有布尔条件都为真的正常情况，其余5个测试每一种假的情况。不过，结构化基础测试能够向你保证所有的代码都得到执行，但它并不能说明数据的变化情况。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-2-数据流测试&quot;&gt;&lt;a href=&quot;#1-2-2-数据流测试&quot; class=&quot;headerlink&quot; title=&quot;1.2.2 数据流测试&quot;&gt;&lt;/a&gt;1.2.2 数据流测试&lt;/h3&gt;&lt;p&gt;编写数据流测试用例的关键是要对所有可能的&lt;strong&gt;定义-使用&lt;/strong&gt;路径进行测试，即对每一个变量测试所有在某处定义而在另一处使用的组合。因此添加完整的“己定义-已使用”所需的用例可以覆盖到结构化基础测试所覆盖不到的情况。&lt;/p&gt;
-&lt;h3 id=&quot;1-2-3-其他测试建议&quot;&gt;&lt;a href=&quot;#1-2-3-其他测试建议&quot; class=&quot;headerlink&quot; title=&quot;1.2.3 其他测试建议&quot;&gt;&lt;/a&gt;1.2.3 其他测试建议&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;猜测错误：猜测程序会在哪里出错的基础之上建立测试用例，通常基于直觉或者过去的经验&lt;/li&gt;
-&lt;li&gt;边界值分析：除了分析边界点、允许的最大最小值之外，还应该注意多个变量互相关联时的边界&lt;/li&gt;
-&lt;li&gt;测试几类坏数据：数据太少（没有数据），数据太多，无效数据，长度错误的数据，未初始化的数据&lt;/li&gt;
-&lt;li&gt;测试几类好数据：正常的情形（所期望的值），最小和最大的正常情况，与旧数据的兼容性&lt;/li&gt;
-&lt;li&gt;采用容易手工检查的测试用例&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-3-改善测试过程&quot;&gt;&lt;a href=&quot;#1-3-改善测试过程&quot; class=&quot;headerlink&quot; title=&quot;1.3 改善测试过程&quot;&gt;&lt;/a&gt;1.3 改善测试过程&lt;/h2&gt;&lt;h3 id=&quot;1-3-1-测试支持工具&quot;&gt;&lt;a href=&quot;#1-3-1-测试支持工具&quot; class=&quot;headerlink&quot; title=&quot;1.3.1 测试支持工具&quot;&gt;&lt;/a&gt;1.3.1 测试支持工具&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;为测试各个类构造脚手架：使用“模仿对象（mock object）”或“桩函数（stub routine）”来模拟测试&lt;/li&gt;
-&lt;li&gt;Diff工具：将程序输出重定向到一个文件，并与预计输出文件作比较&lt;/li&gt;
-&lt;li&gt;测试数据生成器：正确设计的随机数据生成器可以产生不寻常的测试数据组合，并且比手工构造数据更能彻底对程序进行测试&lt;/li&gt;
-&lt;li&gt;覆盖率监视器：跟踪哪些代码己经测试过了，而哪些代码还没有&lt;/li&gt;
-&lt;li&gt;数据记录器/日志记录器：监视程序，并在错误发生的时候为收集程序状态信息；另外可考虑编写自己的数据记录工具，并编译进开发版本中&lt;/li&gt;
-&lt;li&gt;符号调试器：对代码进行单步调试，跟踪变量的值等等调试手段，可以作为测试和走查代码的辅助手段&lt;/li&gt;
-&lt;li&gt;系统干扰器：这类工具有内存填充、内存抖动、选择性内存失败（模拟内存不足的情况）、内存访问边界检查（监视指针操作）等系统功能&lt;/li&gt;
-&lt;li&gt;错误数据库：用于存放以往的错误，以便检查重复出现的错误&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;1-3-2-改善测试过程&quot;&gt;&lt;a href=&quot;#1-3-2-改善测试过程&quot; class=&quot;headerlink&quot; title=&quot;1.3.2 改善测试过程&quot;&gt;&lt;/a&gt;1.3.2 改善测试过程&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;有计划的测试：就重要性而言，测试应该于设计和编码平起平坐，这就要求项目重视测试并保障这一过程的质量&lt;/li&gt;
-&lt;li&gt;回归测试：要保证每次回归测试都&lt;strong&gt;使用相同的测试用例&lt;/strong&gt;，随着产品的不断发展，会添加新的测试用例，但仍应保留旧的用例&lt;/li&gt;
-&lt;li&gt;自动化测试：管理回归测试唯一可行的方法，就是将其变成一个自动化的过程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;1-3-3-保留测试记录&quot;&gt;&lt;a href=&quot;#1-3-3-保留测试记录&quot; class=&quot;headerlink&quot; title=&quot;1.3.3 保留测试记录&quot;&gt;&lt;/a&gt;1.3.3 保留测试记录&lt;/h3&gt;&lt;p&gt;为了确定所做的修改对整个项目的影响，通常可以收集这些数据以供参考：缺陷的管理方面描述（报告日期、人员、描述、修正错误日期等等），问题的完整描述，复现错误所需要的步骤，绕过该问题的建议，相关的缺陷，问题的严重程度，缺陷根源（需求、设计、编码还是测试），对编码缺陷的分类，修正错误所改变的类和子程序，缺陷所影响的代码行数，查找该错误所花的小时数，修正错误所花费的小时数等等。&lt;/p&gt;
-&lt;h1 id=&quot;2-重构&quot;&gt;&lt;a href=&quot;#2-重构&quot; class=&quot;headerlink&quot; title=&quot;2. 重构&quot;&gt;&lt;/a&gt;2. 重构&lt;/h1&gt;&lt;h2 id=&quot;2-1-软件的演化与重构&quot;&gt;&lt;a href=&quot;#2-1-软件的演化与重构&quot; class=&quot;headerlink&quot; title=&quot;2.1 软件的演化与重构&quot;&gt;&lt;/a&gt;2.1 软件的演化与重构&lt;/h2&gt;&lt;p&gt;软件演化就像生物进化一样，有些突变对物种是有益的，另外一些则是有害的。区分软件演化类型的关键，就是程序的质量在这一过程中是提高了还是降低了；第二个标准是演化是源于程序构建过程还是维护过程中的修改，毕竟构建时由最初开发人员完成，没有什么修正压力，而维护时的修改则需要面对已发布产品和用户的压力。&lt;/p&gt;
-&lt;p&gt;软件演化是无法避免且具有重要意义的现象。&lt;strong&gt;当你有机会或迫不得已需要对代码进行改变时，就努力对代码进行改进（重构），这样未来在开发中调整就会更容易。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;重构的理由有许多，如代码重复，冗长的子程序，过长或嵌套过深的循环，内聚性太差的类等等。无论是哪种情况，代码都会有一些警告信号，这就是所谓的代码的“坏味道”。关于重构的更详尽的理由在专门讲重构的书都列得非常清楚，此处不再赘述。&lt;/p&gt;
-&lt;h2 id=&quot;2-2-各层级的重构&quot;&gt;&lt;a href=&quot;#2-2-各层级的重构&quot; class=&quot;headerlink&quot; title=&quot;2.2 各层级的重构&quot;&gt;&lt;/a&gt;2.2 各层级的重构&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;数据级&lt;ul&gt;
-&lt;li&gt;用具名常量替代神秘数值&lt;/li&gt;
-&lt;li&gt;使变量的名字更为清晰且传递更多信息&lt;/li&gt;
-&lt;li&gt;用函数来代替表达式&lt;/li&gt;
-&lt;li&gt;用多个单一用途变量代替某个多用途变量&lt;/li&gt;
-&lt;li&gt;将一组类型码转化为类或枚举类型&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;语句级&lt;ul&gt;
-&lt;li&gt;将复杂布尔表达式转换成命名准确的布尔函数&lt;/li&gt;
-&lt;li&gt;合并条件语句不同部分中的重复代码片段&lt;/li&gt;
-&lt;li&gt;使用break或return而不是循环控制变量&lt;/li&gt;
-&lt;li&gt;在嵌套的if-else语句中一旦知道答案就立即返回，而不是去赋一个返回值&lt;/li&gt;
-&lt;li&gt;用多态来替代条件语句（尤其是重复的case语句）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;子程序级&lt;ul&gt;
-&lt;li&gt;将冗长的子程序转换为类&lt;/li&gt;
-&lt;li&gt;将查询操作从修改操作中独立出来&lt;/li&gt;
-&lt;li&gt;合并相似的子程序，通过参数区分它们的功能&lt;/li&gt;
-&lt;li&gt;简化或去除无用的参数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;类实现&lt;ul&gt;
-&lt;li&gt;如果一组派生类的差别仅仅是虚函数返回的常量不同，应用数据初始化替代虚函数&lt;/li&gt;
-&lt;li&gt;整理成员函数或成员数据的位置&lt;/li&gt;
-&lt;li&gt;将特殊代码提取为派生类，将相似的代码结合起来放置到基类中&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;类接口&lt;ul&gt;
-&lt;li&gt;将包含多个不同功能的类进行拆分&lt;/li&gt;
-&lt;li&gt;删除无所事事的类&lt;/li&gt;
-&lt;li&gt;去除多余的中间者调用&lt;/li&gt;
-&lt;li&gt;对暴露在外的成员变量进行封装&lt;/li&gt;
-&lt;li&gt;对于不能修改的类成员，删除相关的Set()成员函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;系统级&lt;ul&gt;
-&lt;li&gt;为无法控制的数据创建明确的索引源：例如GUI控件中维护的数据无法方便或一致地访问，可以创建一个类来映射其中的数据，并将此类作为该数据的明确来源&lt;/li&gt;
-&lt;li&gt;基于类型码创建对象时，用工厂模式而不是简单地实例化对象&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3-安全重构的方法&quot;&gt;&lt;a href=&quot;#2-3-安全重构的方法&quot; class=&quot;headerlink&quot; title=&quot;2.3 安全重构的方法&quot;&gt;&lt;/a&gt;2.3 安全重构的方法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;在开始重构之前，保存初始代码&lt;/li&gt;
-&lt;li&gt;缩小重构的步伐，不要一次性大动干戈&lt;/li&gt;
-&lt;li&gt;同一时间只做一项重构&lt;/li&gt;
-&lt;li&gt;把要做的事情列出来，并记录下在重构过程中发现的需要进行的另外一项重构任务&lt;/li&gt;
-&lt;li&gt;增加测试用例，重构完后重新测试&lt;/li&gt;
-&lt;li&gt;根据重构风险级别来调整重构方法：如果是高风险的重构，务必做好测试工作，请其他人来检查重构工作甚至采用结对编程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;重构是一剂良药，但也有被滥用的可能性，因此&lt;strong&gt;不要把重构当做先写后改的代名词&lt;/strong&gt;，也要&lt;strong&gt;避免用重构代替重写&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;关于重构的时机，如果拿捏不准，可以考虑这些建议：在增加子程序和类，在修补缺陷的时候进行重构；关注易于出错和高度复杂的模块；在维护环境下改善你手中正在处理的代码；定义清楚干净代码和拙劣代码之间的边界，然后尝试把代码一部分一部分移到理想的一边。&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第22、24章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;测试可以由开发人员或专门的测试人员进行。按层级分，测试可以分为单元测试、组件测试、继承测试、回归测试、系统测试；按是否了解对象内部工作机制分，测试可以分为黑盒测试和白盒测试。本文关注的是开发人员所进行的白盒测试。重构是“在不改变软件外部行为的前提下，对其内部结构进行改变，使之更容易理解并便于修改”的过程。本文将讲述软件演化以及重构的一些理念。&lt;/p&gt;
-&lt;p&gt;测试和重构都是非常大的话题，大到足以各用一本经典著作来阐述，如&lt;a href=&quot;https://book.douban.com/subject/1801050/&quot;&gt;《软件测试》&lt;/a&gt;和&lt;a href=&quot;https://book.douban.com/subject/4262627/&quot;&gt;《重构：改善既有代码的设计》&lt;/a&gt;。因此本文也仅是记录一些要点，如果要深入了解，还是要阅读相关的书籍为好。&lt;/p&gt;
     
     </summary>
     
