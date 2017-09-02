@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-08-25T15:24:04.017Z</updated>
+  <updated>2017-09-02T14:51:05.907Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NGUI源码学习——UIInput</title>
+    <link href="http://raytaylorlin.com/tech/game/unity/ngui-code-uiinput/"/>
+    <id>http://raytaylorlin.com/tech/game/unity/ngui-code-uiinput/</id>
+    <published>2017-06-01T14:33:44.000Z</published>
+    <updated>2017-09-02T14:51:05.907Z</updated>
+    
+    <content type="html">&lt;p&gt;UIInput是NGUI的输入控件，其在PC端表现为一个文本框，而在手机端则会拉起系统的键盘。本文主要记录其基本用法和原理，以及一些重要的实现和工具方法。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-基本用法和原理&quot;&gt;&lt;a href=&quot;#1-基本用法和原理&quot; class=&quot;headerlink&quot; title=&quot;1. 基本用法和原理&quot;&gt;&lt;/a&gt;1. 基本用法和原理&lt;/h1&gt;&lt;p&gt;必须和一个UILabel联动使用，用于显示输入的文字。在手机上，实际上封装了对&lt;code&gt;UnityEngine.TouchScreenKeyboard mKeyboard&lt;/code&gt;的引用用于控制操作系统的虚拟键盘，用MOBILE宏隔开（在非手机设备上用这个类会编译错误）。&lt;/p&gt;
+&lt;p&gt;UIInput在使用时一般还需要挂一个collider，以便响应UICamera的OnPress和OnDrag事件。这两个事件都是通过&lt;code&gt;GetCharUnderMouse()&lt;/code&gt;来获取字符索引位置，并更新selectionStart和selectionEnd，没有其他逻辑。&lt;/p&gt;
+&lt;h1 id=&quot;2-重要方法&quot;&gt;&lt;a href=&quot;#2-重要方法&quot; class=&quot;headerlink&quot; title=&quot;2. 重要方法&quot;&gt;&lt;/a&gt;2. 重要方法&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Validate&lt;/code&gt;：验证字符串（逐字符检查）并返回处理过的字符串。若设置了onValidate，则用它来验证，否则根据validation属性（有整形、浮点数、用户名等等选项）用内置的算法来检查字符。字符不合法则跳过该字符，最后根据characterLimit属性检查限制长度。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Update&lt;/code&gt;：&lt;strong&gt;当被选中时，才执行以下逻辑&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;等待mKeyboard.active&lt;/li&gt;
+&lt;li&gt;在input被激活时mSelectMe记录帧数，确保下面一步【打开键盘】操作只会被执行一次&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;打开键盘&lt;/strong&gt;：若在手机平台上，获取TouchScreenKeyboardType、InputType、当前值等并调用&lt;a href=&quot;https://docs.unity3d.com/ScriptReference/TouchScreenKeyboard.Open.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;TouchScreenKeyboard.Open&lt;/a&gt;打开与操作系统相关的键盘；若不在手机平台，则开启&lt;a href=&quot;https://docs.unity3d.com/ScriptReference/Input-imeCompositionMode.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Input.imeCompositionMode&lt;/a&gt;。最后return。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;手机上获取输入字符&lt;/strong&gt;：手机上通过&lt;code&gt;TouchScreenKeyboard.text&lt;/code&gt;来获取虚拟键盘中的字符，并调用Insert/DoBackspace方法【见下方具体算法】。接着再通过mKeyboard的API确定是否调用Submit方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PC上获取输入字符&lt;/strong&gt;：一般通过&lt;code&gt;Input.inputString&lt;/code&gt;来获取输入的字符，并调用Insert方法显示。当使用输入法时，会用到&lt;a href=&quot;https://docs.unity3d.com/ScriptReference/Input-compositionString.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Input.compositionString&lt;/a&gt;ime来更新用户已键入的字符并显示出来。（例如输出“呵呵”要输入“hehe”，后者即为ime）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;光标动画&lt;/strong&gt;：一个简单的时间判断，每0.5s切换一次mCaret的显示状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;UpdateLabel&lt;/code&gt;：&lt;strong&gt;核心方法&lt;/strong&gt;，更新label的显示，最终要显示的字符串存储在processed变量中&lt;ul&gt;
+&lt;li&gt;若input值为空，则&lt;code&gt;processed = selected ? &amp;quot;&amp;quot; : mDefaultText;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;若inputType为密码形式，则processed为相同字符数量的星号&lt;/li&gt;
+&lt;li&gt;处理label为ClampContent且限制为1行的情况：在这种模式下，移动光标或选区超出范围会可以自动滚动字符（类似scrollView）。通过&lt;code&gt;label.CalculateOffsetToFit(processed)&lt;/code&gt;计算label尺寸可以容纳下的字符偏移，再通过一些逻辑计算裁剪掉processed&lt;/li&gt;
+&lt;li&gt;创建（更新）选区和光标：先代码创建一个2×2的白色纹理，赋给挂在label底下的（也是代码创建）Highlight和Caret（均挂了UITexture）。最后调用&lt;code&gt;label.PrintOverlay(start, end, mCaret.geometry, mHighlight.geometry, caretColor, selectionColor);&lt;/code&gt;来绘制出选区和光标矩形，其中涉及到geometry添加顶点，算法逻辑较为复杂。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;3-工具方法&quot;&gt;&lt;a href=&quot;#3-工具方法&quot; class=&quot;headerlink&quot; title=&quot;3. 工具方法&quot;&gt;&lt;/a&gt;3. 工具方法&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Insert(string text)&lt;/code&gt;：先获取选取当前选区（或光标）左侧串left和右侧串right，再遍历text的每个字符，处理退格、characterLimit和validate的情况。最后还要再对right进行validate&lt;strong&gt;（防止插入的text破坏了后面的合法性）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DoBackspace()&lt;/code&gt;：原理是&lt;code&gt;Insert(&amp;quot;&amp;quot;)&lt;/code&gt;，最终所得字符串为当前selection左侧字符串+空串+右侧字符串，等价于删掉了selection所在的字符，方法非常巧妙&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ProcessEvent(Event ev)&lt;/code&gt;：处理各种特殊按键事件，如箭头、退格、回车等等，绝大多数都是mSelectionStart和mSelectionEnd的逻辑处理，算法较为简单&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;UIInput是NGUI的输入控件，其在PC端表现为一个文本框，而在手机端则会拉起系统的键盘。本文主要记录其基本用法和原理，以及一些重要的实现和工具方法。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/"/>
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/NGUI/"/>
+    
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/tags/NGUI/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/tags/Unity/"/>
+    
+  </entry>
   
   <entry>
     <title>NGUI源码学习——UIScrollView</title>
@@ -1893,88 +1953,6 @@ while (true) {
     <summary type="html">
     
       &lt;p&gt;集成是指将一些独立的软件组件组合为一个完整系统。对大项目，集成也许要花数周或数月时间，把一组程序编织为一个整体。本文将首先介绍不太常用的阶段式集成，然后再介绍更为常用的增量集成，其中集成的策略是讨论的重点。最后每日构建与冒烟测试的使用原则。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（十二）——软件的规模与管理</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-12/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-12/</id>
-    <published>2016-05-06T09:00:40.000Z</published>
-    <updated>2016-05-12T13:14:52.322Z</updated>
-    
-    <content type="html">&lt;p&gt;软件开发的规模扩大并不是像“拿一个小项目来，然后增大它的每一部分”那样简单。如果要开发大型软件，就必须了解软件规模对构建的影响。此外，本文将记录与构建直接相关的一些特定管理问题。如果你是一名开发人员，本文将帮助你了解管理者需要考虑的一些问题；如果你是一名管理者，本文将帮助你了解开发人员是如何看待管理者的，以及如何才能有效地管理构建。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-程序规模对构建的影响&quot;&gt;&lt;a href=&quot;#1-程序规模对构建的影响&quot; class=&quot;headerlink&quot; title=&quot;1. 程序规模对构建的影响&quot;&gt;&lt;/a&gt;1. 程序规模对构建的影响&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;成员交流与项目规模的关系：交流路径越多，花在交流上的时间就越多（见下图），因交流而出错的机会也就越大，改善交流效率的常用方法是采用正式的文挡&lt;ul&gt;
-&lt;li&gt;&lt;img src=&quot;http://7d9rl0.com1.z0.glb.clouddn.com/image/software/%E6%88%90%E5%91%98%E4%BA%A4%E6%B5%81%E4%B8%8E%E9%A1%B9%E7%9B%AE%E8%A7%84%E6%A8%A1%E7%9A%84%E5%85%B3%E7%B3%BB.png&quot; alt=&quot;成员交流与项目规模的关系&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;项目规模对错误的影响：在小项目中，构建错误大约占所有被发现错误的75%，在更大的项目中，构建错误占错误总数的比例逐步下降到50%左右，而需求错误和架构错误则弥补了其中差额。缺陷密度（每1000行代码所包含的缺陷数量）会随项目规模增大而增加&lt;/li&gt;
-&lt;li&gt;顶目规模对生产率的影响：小项目的生产率会比大项目高出2至3倍，并且最小的项目和最大的项目的生产率差距可能达到5到10倍之巨&lt;/li&gt;
-&lt;li&gt;顶目规模对开发活动的影响：对小型项目，构建占差不多65%的开发实践，随着项目规模增大，构建的比重逐渐减小，架构、设计、集成和测试占更多时间&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-管理构建&quot;&gt;&lt;a href=&quot;#2-管理构建&quot; class=&quot;headerlink&quot; title=&quot;2. 管理构建&quot;&gt;&lt;/a&gt;2. 管理构建&lt;/h1&gt;&lt;h2 id=&quot;2-1-鼓励良好的编码实践&quot;&gt;&lt;a href=&quot;#2-1-鼓励良好的编码实践&quot; class=&quot;headerlink&quot; title=&quot;2.1 鼓励良好的编码实践&quot;&gt;&lt;/a&gt;2.1 鼓励良好的编码实践&lt;/h2&gt;&lt;p&gt;从管理的角度出发，强制采用一套严格的技术标准并不是个好主意。如果项目中有人要制定标准，那么应该由一位受人尊敬的架构师来做，而不应该由管理者来做。下面给出一些编码实践，这些实践比呆板的编码标准更容易实行：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;给项目的每一部分分派两个人：结对编程，导师带学生等等&lt;/li&gt;
-&lt;li&gt;同行复查代码：包括程序员本人和至少两名评审员的复查，可以为改善代码质量提供压力&lt;/li&gt;
-&lt;li&gt;要求代码签名：在认定代码完成之前，高级技术人员要在代码清单上签字&lt;/li&gt;
-&lt;li&gt;安排一些好的代码示例供人参考&lt;/li&gt;
-&lt;li&gt;强调代码是公有财产&lt;/li&gt;
-&lt;li&gt;奖励好代码：给予程序员想要的奖励，只有非常出色的代码才应得到奖励&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-2-配置管理&quot;&gt;&lt;a href=&quot;#2-2-配置管理&quot; class=&quot;headerlink&quot; title=&quot;2.2 配置管理&quot;&gt;&lt;/a&gt;2.2 配置管理&lt;/h2&gt;&lt;p&gt;配置管理即“变更控制”。如果你不对需求变更加以控制，那么就会为系统中某些最终会被去除的部件编写代码，也会去写出一些可能与系统中新的部件不兼容的代码；可能会修改某个别人也正在修改的子程序，把两个人的改动合并导致出现问题。总之，配置管理就是使用评估提交的更改、追踪更改、保留系统在不同时间点的历史版本等等技术来对软件项目的变化进行控制。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;需求变更和设计变更&lt;ul&gt;
-&lt;li&gt;遵循某种系统化的变更控制手续&lt;/li&gt;
-&lt;li&gt;成组地处理变更请求：先记下所有的想法和建议，直到有时间再去整体处理它们，以防总是在中途突然变卦&lt;/li&gt;
-&lt;li&gt;评估每项变更的成本：重新设计和编码，修改用户文档，评估代码复查，重新测试等等各种时间成本&lt;/li&gt;
-&lt;li&gt;提防大量的变更请求：有时这可能是一个表明需求、架构或上层设计做的不够好导致无法支持变更的警报&lt;/li&gt;
-&lt;li&gt;成立变更控制委员会或者类似机构&lt;/li&gt;
-&lt;li&gt;警惕官僚主义，但也不要因为害怕官僚主义而排斥有效的变更控制&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;软件代码变更：使用合适的版本控制软件&lt;/li&gt;
-&lt;li&gt;工具版本：可能有些项目需要“重新构造出‘创建软件的各个特定版本’的原样环境”的能力，这时需要把编译器、链接器、代码库等也纳入版本控制中&lt;/li&gt;
-&lt;li&gt;机器配置：使用标准化的开发机器配置和操作系统映像，可以省掉许多开发前配置的麻烦&lt;/li&gt;
-&lt;li&gt;备份计划：项目过程中应定期备份代码、文档、图表以及保存介质；要测试备份过程，确保所需的全部数据能正确恢复；昨晚项目后及时归档&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3-评估构建进度&quot;&gt;&lt;a href=&quot;#2-3-评估构建进度&quot; class=&quot;headerlink&quot; title=&quot;2.3 评估构建进度&quot;&gt;&lt;/a&gt;2.3 评估构建进度&lt;/h2&gt;&lt;p&gt;对于项目预估进度和实际进度，有调查表明，开发人员的估计值比实际值要乐观20%~30%。评估项目规模的方法有很多种，例如使用评估软件，使用算法方法，聘请外界的评估专家，评估项目的每一部分并加起来等等。下面是一套评估项目的参考原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;建立目标：理清评估的目的、内容、准确度、乐观评估和悲观评估结果等&lt;/li&gt;
-&lt;li&gt;为评估留出时间，并且做出计划&lt;/li&gt;
-&lt;li&gt;清楚地说明软件需求&lt;/li&gt;
-&lt;li&gt;在底层细节层面（划分为多个小块并分别）进行评估&lt;/li&gt;
-&lt;li&gt;使用若干不同的评估方法，并且比较其结果&lt;/li&gt;
-&lt;li&gt;在项目推进过程中定期做重新评估&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;为了按时完成软件项目而做的“计划”中，评估是很重要的组成部分。然而，最初评估的准确度的重要性远远比不上“随后为了完成进度而成功地&lt;strong&gt;控制资源&lt;/strong&gt;”的重要性。如果项目进度落后了，人们经常会产生一些错觉：“我们后面一定会加班加点把时间补回来”，调查显示越接近项目后期，延误和超支的现象就越严重；“扩充团队来加速开发”，新手需要先花时间熟悉项目，占用现有人员的培训时间，然后才能发挥出生产率，而且仅仅增加人员数量，会导致项目交流的复杂度和数量增加，除非项目的任务是可分割的才能通过增加人手完成。&lt;/p&gt;
-&lt;p&gt;缩减项目范围是在进度落后时的有效手段。最初做产品计划的时候，要把产品的功能划分成“必须有”、“有了更好”和“可选择”三类。如果进度落后了，那么就调整“可选择”和“有了更好”的优先级，并扔掉那些最不重要的功能。&lt;/p&gt;
-&lt;h2 id=&quot;2-4-把程序员当人看&quot;&gt;&lt;a href=&quot;#2-4-把程序员当人看&quot; class=&quot;headerlink&quot; title=&quot;2.4 把程序员当人看&quot;&gt;&lt;/a&gt;2.4 把程序员当人看&lt;/h2&gt;&lt;p&gt;首先要了解程序员的时间分配。研究表明一个程序员大约有30%的时间花费在“对项目没有直接好处”的非技术活动之上：步行、个人事务等，学习和编写代码占约30%。&lt;/p&gt;
-&lt;p&gt;其次是了解程序员的信仰问题。这些信仰涉及编程语言、编码风格、编程工具、编程方法论等等。作为一个管理者，要清楚地知道信仰是一个敏感的问题，对这些领域要使用“建议”或者“指导原则”（避免僵硬的“规则”或“标准”），并让程序员们制定他们自己的标准。当然，如果有人因可读性差等影响整个项目的实践行为，为了提高代码质量，不要怕引发一些摩擦。&lt;/p&gt;
-&lt;p&gt;最后，要了解物理环境对程序员生产率有着巨大的影响。这些环境包括桌子、椅子、电脑、书籍、键盘，以及办公氛围、不经常被打扰的环境等等。如果你的工作环境属于最差的那25%，那么你有机会给生产率带来100%的提升，办法是把环境改善为最佳的那25%。&lt;/p&gt;
-&lt;h2 id=&quot;2-5-管理你的管理者&quot;&gt;&lt;a href=&quot;#2-5-管理你的管理者&quot; class=&quot;headerlink&quot; title=&quot;2.5 管理你的管理者&quot;&gt;&lt;/a&gt;2.5 管理你的管理者&lt;/h2&gt;&lt;p&gt;在软件开发中，如果你需要面对非技术出身的管理者，你可能要肩负起“管理你的管理者”的责任。其要点在于，你要表现得使你的管理者认为他仍然在管理你。有这么一些应对管理者的方法：把你希望做什么的念头先藏起来，等着你的管理者组织一场有关你希望什么的头脑风暴/集体讨论；把做事情的正确方法传授给你的管理者；关注你的管理者的兴趣，按照他的真正意图去做；拒绝按照你的管理者所说的去做，坚持用正确的方法做自己的事；换工作。&lt;/p&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第27、28章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;软件开发的规模扩大并不是像“拿一个小项目来，然后增大它的每一部分”那样简单。如果要开发大型软件，就必须了解软件规模对构建的影响。此外，本文将记录与构建直接相关的一些特定管理问题。如果你是一名开发人员，本文将帮助你了解管理者需要考虑的一些问题；如果你是一名管理者，本文将帮助你了解开发人员是如何看待管理者的，以及如何才能有效地管理构建。&lt;/p&gt;
     
     </summary>
     
