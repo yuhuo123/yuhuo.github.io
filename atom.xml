@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-09-02T14:51:05.907Z</updated>
+  <updated>2017-09-02T15:07:28.615Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,80 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NGUI源码学习——UISprite</title>
+    <link href="http://raytaylorlin.com/tech/game/unity/ngui-code-uisprite/"/>
+    <id>http://raytaylorlin.com/tech/game/unity/ngui-code-uisprite/</id>
+    <published>2017-06-17T14:33:44.000Z</published>
+    <updated>2017-09-02T15:07:28.615Z</updated>
+    
+    <content type="html">&lt;p&gt;UISprite是NGUI最基本的图片显示控件之一。它的基类UIBasicSprite承载了绝大多数的显示逻辑，本文记录其各种填充方法的原理。要显示一个sprite，必定会有一个管理sprite的图集，最后会记录UIAtlas的一些基本要点。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-基类UIBasicSprite-UIWidget&quot;&gt;&lt;a href=&quot;#1-基类UIBasicSprite-UIWidget&quot; class=&quot;headerlink&quot; title=&quot;1. 基类UIBasicSprite : UIWidget&quot;&gt;&lt;/a&gt;1. 基类UIBasicSprite : UIWidget&lt;/h1&gt;&lt;p&gt;核心是提供了一个总控Fill和一系列类型Fill方法（分为Simple、Sliced、Filled、Tiled、Advanced），供子类调用。Fill方法接收geometry的顶点、UV和颜色列表并填充相应数据。该方法会在UIWidget.UpdateGemoetry中调用OnFill时调用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;flip属性：有水平、垂直、两者皆翻转，通过交换uv坐标的位置来实现&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SimpleFill&lt;/code&gt;：获取drawingDimensions，drawingUVs，drawingColor属性，直接填充4个顶点、uv和颜色&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SlicedFill&lt;/code&gt;：九宫格填充，所以会绘制9个区域。核心填充方法见下图和代码。其中&lt;code&gt;mTempPos&lt;/code&gt;为图中所标4个点，通过左下角、右上角点和border计算所得；&lt;code&gt;mTempUVs&lt;/code&gt;为图中所标4个点的UV，通过outer和inner矩形及一个简单的工具方法&lt;code&gt;NGUIMath.ConvertToTexCoords&lt;/code&gt;计算所得。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/Unity/SlicedFill%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%A1%AB%E5%85%85%E5%8E%9F%E7%90%86.jpg&quot; alt=&quot;SlicedFill九宫格填充原理&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;for (int x = 0; x &amp;lt; 3; ++x)
+{
+    int x2 = x + 1;
+    for (int y = 0; y &amp;lt; 3; ++y)
+    {
+        if (centerType == AdvancedType.Invisible &amp;amp;&amp;amp; x == 1 &amp;amp;&amp;amp; y == 1) continue;
+        int y2 = y + 1;
+        // 分别填充顶点，UV，颜色
+        verts.Add(new Vector3(mTempPos[x].x, mTempPos[y].y));
+        verts.Add(new Vector3(mTempPos[x].x, mTempPos[y2].y));
+        verts.Add(new Vector3(mTempPos[x2].x, mTempPos[y2].y));
+        verts.Add(new Vector3(mTempPos[x2].x, mTempPos[y].y));
+        uvs.Add(new Vector2(mTempUVs[x].x, mTempUVs[y].y));
+        uvs.Add(new Vector2(mTempUVs[x].x, mTempUVs[y2].y));
+        uvs.Add(new Vector2(mTempUVs[x2].x, mTempUVs[y2].y));
+        uvs.Add(new Vector2(mTempUVs[x2].x, mTempUVs[y].y));
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;TiledFill&lt;/code&gt;：平铺填充。通过两层while循环，使用inner矩形（即九宫格的中间区域）一行一行地平铺填充&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FilledFill&lt;/code&gt;：主要由mfillDirection（填充方式）、mfillAmount（填充量，范围0-1代表0-90°）和mInvert（是否反转）来控制填充的效果，见下图示例。其中的计算涉及各种三角函数计算（&lt;code&gt;RadialCut&lt;/code&gt;方法），不赘述。Radial 180需要分左右画2个矩形，而Radial 360则需要分四块画4个矩形。显然，Radial 360可以实现类似技能CD的效果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/Unity/%E5%90%84%E7%A7%8DFilledFill%E7%B1%BB%E5%9E%8B%E5%AF%B9%E6%AF%94.jpg&quot; alt=&quot;各种FilledFill类型对比&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AdvancedFill&lt;/code&gt;：高级填充，可以对上下左右中分别单独设置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;而UISprite除了drawingDimesions这个属性有一些将宽高处理为偶数（pixel-perfect）的逻辑之外，本身没有什么特别的功能，绝大多数功能都在UIBasicSprite中。&lt;/p&gt;
+&lt;h1 id=&quot;2-UIAtlas&quot;&gt;&lt;a href=&quot;#2-UIAtlas&quot; class=&quot;headerlink&quot; title=&quot;2. UIAtlas&quot;&gt;&lt;/a&gt;2. UIAtlas&lt;/h1&gt;&lt;p&gt;每个sprite都是显示图集atlas中的一块，因此总会持有mAtlas的引用以便用mSpriteName快速获取UISpriteData数据。&lt;code&gt;UISpriteData&lt;/code&gt;类是个简单的数据结构，包含名字、图集所在坐标和尺寸、border（九宫格相关）、padding。&lt;/p&gt;
+&lt;p&gt;该类维护了一个&lt;code&gt;List&amp;lt;UISpriteData&amp;gt; mSprites&lt;/code&gt;和&lt;code&gt;Dictionary&amp;lt;string, int&amp;gt; mSpriteIndices&lt;/code&gt;（sprite名到index的映射）。&lt;code&gt;GetSprite&lt;/code&gt;方法会优先在字典中查索引，否则在mSprites列表中查。途中如果字典和列表不一致或查找不到时，调用&lt;code&gt;MarkSpriteListAsChanged&lt;/code&gt;，用mSprites去重建字典的索引。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;UISprite是NGUI最基本的图片显示控件之一。它的基类UIBasicSprite承载了绝大多数的显示逻辑，本文记录其各种填充方法的原理。要显示一个sprite，必定会有一个管理sprite的图集，最后会记录UIAtlas的一些基本要点。&lt;/p&gt;
+&lt;p&gt;【参考版本：NGUI 3.6.9】&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="游戏开发" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/"/>
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/Unity/NGUI/"/>
+    
+    
+      <category term="NGUI" scheme="http://raytaylorlin.com/tags/NGUI/"/>
+    
+      <category term="Unity" scheme="http://raytaylorlin.com/tags/Unity/"/>
+    
+  </entry>
   
   <entry>
     <title>NGUI源码学习——UIInput</title>
@@ -1845,114 +1919,6 @@ while (true) {
     
       &lt;p&gt;本文关注的是计算机编程的美学话题——程序源代码的布局和自说明性。尽管这些技巧并不影响执行速度、内存使用量等方面的程序性能，但它却会让你日后理解、检查以及修改代码变得更容易，也使其他人在你缺位的时候更容易阅读、理解和修改你的代码。&lt;/p&gt;
 &lt;p&gt;需要注意的是，形成良好的代码布局，并让代码具备自说明性，需要始终贯穿项目的生命期，晚了就很难做好了。要想完全实现这些细节规定，在最初建构时就要着手去做。如果你干的是合作项目，更是要在开始编码之前统一大家的风格。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（十三）——代码集成</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-13/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-13/</id>
-    <published>2016-05-09T07:35:29.000Z</published>
-    <updated>2016-05-12T13:13:50.400Z</updated>
-    
-    <content type="html">&lt;p&gt;集成是指将一些独立的软件组件组合为一个完整系统。对大项目，集成也许要花数周或数月时间，把一组程序编织为一个整体。本文将首先介绍不太常用的阶段式集成，然后再介绍更为常用的增量集成，其中集成的策略是讨论的重点。最后每日构建与冒烟测试的使用原则。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;集成是在开发人员完成开发者测试之后才进行的，而且集成过程是与系统测试一道进行的，所以集成有时也被认为是一种测试行为。然而，集成本身就足够复杂了，因此应该被看做一项独立的行动。程序集成有两种方式：阶段式集成和增量集成。&lt;/p&gt;
-&lt;h1 id=&quot;1-阶段式集成&quot;&gt;&lt;a href=&quot;#1-阶段式集成&quot; class=&quot;headerlink&quot; title=&quot;1. 阶段式集成&quot;&gt;&lt;/a&gt;1. 阶段式集成&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;设计、编码、测试、调试各个类，这一步称为“单元开发”&lt;/li&gt;
-&lt;li&gt;将这些类组合为一个庞大的系统，这一步成为“系统集成”&lt;/li&gt;
-&lt;li&gt;测试并调试整个系统，这一步成为“系统瓦解（system dis-integration）”&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这种集成的问题是，当第一次把系统中的类放到一起时，新的问题会不可避免地大量浮现，所有的类都有嫌疑导致出问题的位置难以确定。所以对绝大多数情况，阶段式集成都不是很适用。&lt;/p&gt;
-&lt;h1 id=&quot;2-增量集成&quot;&gt;&lt;a href=&quot;#2-增量集成&quot; class=&quot;headerlink&quot; title=&quot;2. 增量集成&quot;&gt;&lt;/a&gt;2. 增量集成&lt;/h1&gt;&lt;h2 id=&quot;2-1-方法&quot;&gt;&lt;a href=&quot;#2-1-方法&quot; class=&quot;headerlink&quot; title=&quot;2.1 方法&quot;&gt;&lt;/a&gt;2.1 方法&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;开发一个小的系统功能部件。它可能是最小的功能部件、最难的部件、关键部件、或者以上的某种组合，对它彻底地测试并调试。将它作为骨架，稍后附着肌肉、神经、皮肤等系统的其余部件&lt;/li&gt;
-&lt;li&gt;设计、编码、测试、调试某个类&lt;/li&gt;
-&lt;li&gt;将这个新的类集成到系统骨架上，测试并调试“骨架和新类的结合体”。在进一步添加任何新类之前，确保该结合体能工作。如果做完了剩余的所有工作，就回到步骤2开始重复这一过程&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;2-2-相对阶段式集成的优势&quot;&gt;&lt;a href=&quot;#2-2-相对阶段式集成的优势&quot; class=&quot;headerlink&quot; title=&quot;2.2 相对阶段式集成的优势&quot;&gt;&lt;/a&gt;2.2 相对阶段式集成的优势&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;易于定位错误：降低“多个问题之间相互影响”或“一个问题将另一个问题掩盖”的风险&lt;/li&gt;
-&lt;li&gt;及旱在项目里取得系统级的成果&lt;/li&gt;
-&lt;li&gt;改善对进度的监控：利于管理层判断进度和需求&lt;/li&gt;
-&lt;li&gt;更加充分地测试系统中的各个单元&lt;/li&gt;
-&lt;li&gt;能在更短的开发进度计划内建造出整个系统&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;2-3-策略&quot;&gt;&lt;a href=&quot;#2-3-策略&quot; class=&quot;headerlink&quot; title=&quot;2.3 策略&quot;&gt;&lt;/a&gt;2.3 策略&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;自顶向下集成&lt;ul&gt;
-&lt;li&gt;一般从主入口（Main函数、主窗体等等）开始，测试顶层类时需要一些存根（stub）类辅助，最终逐渐替换为实际的类&lt;/li&gt;
-&lt;li&gt;优点：能快速得到一个能部分工作的系统，并及早地暴露一些设计上的问题&lt;/li&gt;
-&lt;li&gt;缺点：棘手的系统接口的演练必须留到最后才进行，有问题的底层可能会反过来影响顶层&lt;/li&gt;
-&lt;li&gt;纯粹的自顶向下集成几乎是不可能的，大多时候使用混合方法集成，或用下图的在各个竖直划分的功能块中自顶向下集成&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E5%9C%A8%E5%90%84%E4%B8%AA%E7%AB%96%E7%9B%B4%E5%88%92%E5%88%86%E7%9A%84%E5%8A%9F%E8%83%BD%E5%9D%97%E4%B8%AD%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E9%9B%86%E6%88%90.png&quot; alt=&quot;在各个竖直划分的功能块中自顶向下集成&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;自底向上集成&lt;ul&gt;
-&lt;li&gt;首先要完成整个系统的设计，然后一个一个添加底层类向上层集成，最初需要编写驱动测试类&lt;/li&gt;
-&lt;li&gt;优点：容易定位错误，尽早演练“可能存在问题的系统接口”&lt;/li&gt;
-&lt;li&gt;缺点：如果高层存在概念上的设计问题，那么要把所有细节工作都做完才能发现&lt;/li&gt;
-&lt;li&gt;一般也很少用纯粹的自底向上集成&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;三明治集成&lt;ul&gt;
-&lt;li&gt;首先集成继承体系顶部的高层业务对象类，然后集成底部的与设备接口的类和广泛使用的工具类，最后集成中间层的类&lt;/li&gt;
-&lt;li&gt;结合了上述两种方式的优点，是现实的实用的方法&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;风险导向的集成&lt;ul&gt;
-&lt;li&gt;大顺序和三明治集成一致，但细节顺序，是优先考虑高风险的实现最有挑战的部件，如顶层接口、底层系统接口、未被透彻理解的算法的类等等&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;功能导向的集成&lt;ul&gt;
-&lt;li&gt;首先需要搭建好骨架，然后按照功能（模块）划分顺序来集成，如下图所示&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E5%8A%9F%E8%83%BD%E5%AF%BC%E5%90%91%E7%9A%84%E9%9B%86%E6%88%90%E7%A4%BA%E6%84%8F%E5%9B%BE.png&quot; alt=&quot;功能导向的集成示意图&quot;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;T型集成&lt;ul&gt;
-&lt;li&gt;先选中某个特定的“竖直块”及早开发并集成，这个功能块应该能从头到尾演练系统，并找出系统设计的全部主要问题。纠正所有问题后，就可以开始开发系统其它核心部件，如下图所示。这种方法常与风险导向和功能导向集成集合使用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2FT%E5%9E%8B%E9%9B%86%E6%88%90%E7%A4%BA%E6%84%8F%E5%9B%BE.png&quot; alt=&quot;T型集成示意图&quot;&gt;&lt;/p&gt;
-&lt;p&gt;集成顺序的策略有多种多样的形状和规模，没有哪一种对所有情况而言都是最佳的。&lt;strong&gt;最佳集成步骤随项目不同而变化，最佳解决方案总是为了满足特定项目的特定需求而制定的，不要像教条一样遵循前面提到的任何过程。&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;3-每日构建与冒烟测试&quot;&gt;&lt;a href=&quot;#3-每日构建与冒烟测试&quot; class=&quot;headerlink&quot; title=&quot;3. 每日构建与冒烟测试&quot;&gt;&lt;/a&gt;3. 每日构建与冒烟测试&lt;/h1&gt;&lt;p&gt;无论选用哪种集成策略，&lt;a href=&quot;http://baike.baidu.com/view/1704207.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;每日构建（daily build）&lt;/a&gt;和&lt;a href=&quot;http://baike.baidu.com/view/120001.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;冒烟测试&lt;/a&gt;都是软件集成的好方法。这些简单的过程可以降低出现低质量软件的风险，也便于诊断缺陷，并且每天的成果可以极大地鼓舞士气。以下是这两种方法的一些使用原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;关键是&lt;strong&gt;每一天&lt;/strong&gt;坚持build：某次build失败可以将错误锁定在一天之内&lt;/li&gt;
-&lt;li&gt;检查失败的build：每个项目要建立一套评定“什么才算是破坏了build”的质量标准&lt;/li&gt;
-&lt;li&gt;每天进行准确的冒烟测试：冒烟测试应彻底地从头到尾演练&lt;strong&gt;已完成的&lt;/strong&gt;系统的主要功能，不要认为是浪费时间的重复性工作&lt;/li&gt;
-&lt;li&gt;自动化：&lt;strong&gt;脱离自动化谈每日构建与冒烟测试是不切实际的&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;成立build小组&lt;/li&gt;
-&lt;li&gt;仅当有意义时，才将修订（revisions）加入build中……：因为通常开发者编写代码的速度不会快到使系统每天都有明显的进展&lt;/li&gt;
-&lt;li&gt;……但是别等太久才将修订加入进来：警惕某个开发人员接连两三天都不check in他做的改动，他很可能陷入一组牵扯到大量文件的修订中&lt;/li&gt;
-&lt;li&gt;要求开发人员在把他的代码添加到系统之前，进行本地冒烟测试&lt;/li&gt;
-&lt;li&gt;为即将添加到build的代码准备一块暂存区，在暂存区产生新的build并认为其可接受时，才合并到主源码中&lt;/li&gt;
-&lt;li&gt;惩罚破坏build的人：build失败是异常情况，应严肃对待&lt;/li&gt;
-&lt;li&gt;在早上发布build：测试人员可以当天测试，发现问题也能尽早找到开发者解决&lt;/li&gt;
-&lt;li&gt;即使有进度压力，也要保持daily build和冒烟测试&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第29章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;集成是指将一些独立的软件组件组合为一个完整系统。对大项目，集成也许要花数周或数月时间，把一组程序编织为一个整体。本文将首先介绍不太常用的阶段式集成，然后再介绍更为常用的增量集成，其中集成的策略是讨论的重点。最后每日构建与冒烟测试的使用原则。&lt;/p&gt;
     
     </summary>
     

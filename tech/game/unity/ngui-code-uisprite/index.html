@@ -7,7 +7,7 @@
 
     
 
-    <title>归档：2013/7 | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
+    <title>NGUI源码学习——UISprite | 林寿山的技术博客 Ray Taylor Lin&#39;s world</title>
     <meta name="author" content="Ray Taylor Lin">
     
     <meta name="description" content="水镜一人性，月读一波明。轻扬一宿星，枫过一帆灵。">
@@ -15,7 +15,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="NGUI源码学习——UISprite"/>
     <meta property="og:site_name" content="Ray Taylor Lin&#39;s world"/>
 
     
@@ -417,40 +417,141 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper indigo">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/游戏开发/">游戏开发</a><a class="breadcrumb" href="/categories/技术/游戏开发/Unity/">Unity</a><a class="breadcrumb" href="/categories/技术/游戏开发/Unity/NGUI/">NGUI</a>
+
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>NGUI源码学习——UISprite</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
+            </div>
+            <time class="green-link-context" datetime="2017-06-17T14:33:44.000Z"><a href="/tech/game/unity/ngui-code-uisprite/">2017-06-17</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/NGUI/" class="chip green lighten-1">NGUI</a>
         
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2013
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/daily/wordpress-to-hexo/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2013-07-11T03:21:04.000Z">2013-07-11</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                博客从Wordpress进化到Hexo啦
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
+            <a href="/tags/Unity/" class="chip green lighten-1">Unity</a>
         
-    </ul>
+    </div>
+
+
+            <div class="toc green-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-基类UIBasicSprite-UIWidget"><span class="section table-of-contents-text">1. 基类UIBasicSprite : UIWidget</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-UIAtlas"><span class="section table-of-contents-text">2. UIAtlas</span></a></li></ol>
+</div>
+
+
+            <div class="entry green-link-context">
+                <p>UISprite是NGUI最基本的图片显示控件之一。它的基类UIBasicSprite承载了绝大多数的显示逻辑，本文记录其各种填充方法的原理。要显示一个sprite，必定会有一个管理sprite的图集，最后会记录UIAtlas的一些基本要点。</p>
+<p>【参考版本：NGUI 3.6.9】</p>
+<a id="more"></a>
+<h1 id="1-基类UIBasicSprite-UIWidget"><a href="#1-基类UIBasicSprite-UIWidget" class="headerlink" title="1. 基类UIBasicSprite : UIWidget"></a>1. 基类UIBasicSprite : UIWidget</h1><p>核心是提供了一个总控Fill和一系列类型Fill方法（分为Simple、Sliced、Filled、Tiled、Advanced），供子类调用。Fill方法接收geometry的顶点、UV和颜色列表并填充相应数据。该方法会在UIWidget.UpdateGemoetry中调用OnFill时调用。</p>
+<ul>
+<li>flip属性：有水平、垂直、两者皆翻转，通过交换uv坐标的位置来实现</li>
+<li><code>SimpleFill</code>：获取drawingDimensions，drawingUVs，drawingColor属性，直接填充4个顶点、uv和颜色</li>
+<li><code>SlicedFill</code>：九宫格填充，所以会绘制9个区域。核心填充方法见下图和代码。其中<code>mTempPos</code>为图中所标4个点，通过左下角、右上角点和border计算所得；<code>mTempUVs</code>为图中所标4个点的UV，通过outer和inner矩形及一个简单的工具方法<code>NGUIMath.ConvertToTexCoords</code>计算所得。</li>
+</ul>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/Unity/SlicedFill%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%A1%AB%E5%85%85%E5%8E%9F%E7%90%86.jpg" alt="SlicedFill九宫格填充原理"></p>
+<pre><code>for (int x = 0; x &lt; 3; ++x)
+{
+    int x2 = x + 1;
+    for (int y = 0; y &lt; 3; ++y)
+    {
+        if (centerType == AdvancedType.Invisible &amp;&amp; x == 1 &amp;&amp; y == 1) continue;
+        int y2 = y + 1;
+        // 分别填充顶点，UV，颜色
+        verts.Add(new Vector3(mTempPos[x].x, mTempPos[y].y));
+        verts.Add(new Vector3(mTempPos[x].x, mTempPos[y2].y));
+        verts.Add(new Vector3(mTempPos[x2].x, mTempPos[y2].y));
+        verts.Add(new Vector3(mTempPos[x2].x, mTempPos[y].y));
+        uvs.Add(new Vector2(mTempUVs[x].x, mTempUVs[y].y));
+        uvs.Add(new Vector2(mTempUVs[x].x, mTempUVs[y2].y));
+        uvs.Add(new Vector2(mTempUVs[x2].x, mTempUVs[y2].y));
+        uvs.Add(new Vector2(mTempUVs[x2].x, mTempUVs[y].y));
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+    }
+}
+</code></pre><ul>
+<li><code>TiledFill</code>：平铺填充。通过两层while循环，使用inner矩形（即九宫格的中间区域）一行一行地平铺填充</li>
+<li><code>FilledFill</code>：主要由mfillDirection（填充方式）、mfillAmount（填充量，范围0-1代表0-90°）和mInvert（是否反转）来控制填充的效果，见下图示例。其中的计算涉及各种三角函数计算（<code>RadialCut</code>方法），不赘述。Radial 180需要分左右画2个矩形，而Radial 360则需要分四块画4个矩形。显然，Radial 360可以实现类似技能CD的效果。</li>
+</ul>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/Unity/%E5%90%84%E7%A7%8DFilledFill%E7%B1%BB%E5%9E%8B%E5%AF%B9%E6%AF%94.jpg" alt="各种FilledFill类型对比"></p>
+<ul>
+<li><code>AdvancedFill</code>：高级填充，可以对上下左右中分别单独设置</li>
+</ul>
+<p>而UISprite除了drawingDimesions这个属性有一些将宽高处理为偶数（pixel-perfect）的逻辑之外，本身没有什么特别的功能，绝大多数功能都在UIBasicSprite中。</p>
+<h1 id="2-UIAtlas"><a href="#2-UIAtlas" class="headerlink" title="2. UIAtlas"></a>2. UIAtlas</h1><p>每个sprite都是显示图集atlas中的一块，因此总会持有mAtlas的引用以便用mSpriteName快速获取UISpriteData数据。<code>UISpriteData</code>类是个简单的数据结构，包含名字、图集所在坐标和尺寸、border（九宫格相关）、padding。</p>
+<p>该类维护了一个<code>List&lt;UISpriteData&gt; mSprites</code>和<code>Dictionary&lt;string, int&gt; mSpriteIndices</code>（sprite名到index的映射）。<code>GetSprite</code>方法会优先在字典中查索引，否则在mSprites列表中查。途中如果字典和列表不一致或查找不到时，调用<code>MarkSpriteListAsChanged</code>，用mSprites去重建字典的索引。</p>
+
+                
+
+
+<p class="green-link-context">
+    <a href="/tech/game/unity/ngui-code-uiinput/" rel="next" title="NGUI源码学习——UIInput">
+    下一篇：NGUI源码学习——UIInput
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <section id="comment">
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function() {
+                this.page.url = 'http://raytaylorlin.com/tech/game/unity/ngui-code-uisprite/';
+                this.page.identifier = 'tech/game/unity/ngui-code-uisprite/';
+            };
+            (function() {
+                var d = document,
+                    s = d.createElement('script');
+                s.src = '//raytaylorlin.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+        </noscript>
+    </section>
+
 
 
 </div>
