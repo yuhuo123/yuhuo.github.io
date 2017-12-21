@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-12-21T15:35:45.048Z</updated>
+  <updated>2017-12-21T15:39:45.505Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://raytaylorlin.com/tech/tool/IDE/print-hightlight-code/"/>
     <id>http://raytaylorlin.com/tech/tool/IDE/print-hightlight-code/</id>
     <published>2017-12-21T14:42:29.000Z</published>
-    <updated>2017-12-21T15:35:45.048Z</updated>
+    <updated>2017-12-21T15:39:45.505Z</updated>
     
-    <content type="html">&lt;p&gt;Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3或Atom将其打印成PDF。&lt;/p&gt;
+    <content type="html">&lt;p&gt;Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3将其打印成PDF。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;Sublime-Text-3打印代码&quot;&gt;&lt;a href=&quot;#Sublime-Text-3打印代码&quot; class=&quot;headerlink&quot; title=&quot;Sublime Text 3打印代码&quot;&gt;&lt;/a&gt;Sublime Text 3打印代码&lt;/h1&gt;&lt;p&gt;ST3打印代码的原理是将代码（含样式）先转换成HTMl，再从浏览器中打印。&lt;/p&gt;
 &lt;ul&gt;
@@ -67,7 +67,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3或Atom将其打印成PDF。&lt;/p&gt;
+      &lt;p&gt;Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3将其打印成PDF。&lt;/p&gt;
     
     </summary>
     

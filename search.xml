@@ -6,7 +6,7 @@
     <entry>
       <title><![CDATA[使用Sublime编辑器打印高亮代码]]></title>
       <url>http://raytaylorlin.com/tech/tool/IDE/print-hightlight-code/</url>
-      <content type="html"><![CDATA[<p>Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3或Atom将其打印成PDF。</p>
+      <content type="html"><![CDATA[<p>Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3将其打印成PDF。</p>
 <a id="more"></a>
 <h1 id="Sublime-Text-3打印代码"><a href="#Sublime-Text-3打印代码" class="headerlink" title="Sublime Text 3打印代码"></a>Sublime Text 3打印代码</h1><p>ST3打印代码的原理是将代码（含样式）先转换成HTMl，再从浏览器中打印。</p>
 <ul>
