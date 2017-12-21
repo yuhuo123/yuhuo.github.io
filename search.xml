@@ -4,6 +4,53 @@
   
     
     <entry>
+      <title><![CDATA[使用Sublime编辑器打印高亮代码]]></title>
+      <url>http://raytaylorlin.com/tech/tool/IDE/print-hightlight-code/</url>
+      <content type="html"><![CDATA[<p>Sublime Text 3编辑器的代码高亮（主题）效果不错，本文介绍如何使用ST3或Atom将其打印成PDF。</p>
+<a id="more"></a>
+<h1 id="Sublime-Text-3打印代码"><a href="#Sublime-Text-3打印代码" class="headerlink" title="Sublime Text 3打印代码"></a>Sublime Text 3打印代码</h1><p>ST3打印代码的原理是将代码（含样式）先转换成HTMl，再从浏览器中打印。</p>
+<ul>
+<li>安装<a href="https://github.com/facelessuser/ExportHtml" target="_blank" rel="external">ExportHtml</a>插件</li>
+<li>菜单<code>Preferences-&gt;Package Settings-&gt;ExportHtml-&gt;Settings</code>，在右侧添加如下自定义设置并保存</li>
+</ul>
+<pre><code>{
+    &quot;html_panel&quot;: [
+        {
+            &quot;Browser Print - Custom&quot;: {
+                &quot;numbers&quot;: true,
+                &quot;wrap&quot;: 900,
+                &quot;browser_print&quot;: true,
+                &quot;multi_select&quot;: true,
+                &quot;color_scheme&quot;: &quot;Packages/Color Scheme - Default/Monokai.tmTheme&quot;,  // 使用ST默认的Monokai主题，这里可以换成自己安装的其他主题路径
+                &quot;style_gutter&quot;: true,
+                &quot;diable_nbsp&quot;: true
+            }
+        }
+    ]
+}
+</code></pre><ul>
+<li><code>Ctrl-Shift-P</code>，<code>Export To HTML: Show Export Menu</code>选择上面自定义的选项，这时会弹开浏览器的打印页，HTMl已经生成</li>
+<li>按下图设置打印选项，可以打印得更美观</li>
+</ul>
+<p><img src="http://raytaylorlin-blog.qiniudn.com/image/IDE/Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%8D%B0%E8%AE%BE%E7%BD%AE.png" alt="Chrome浏览器打印设置"></p>
+<h2 id="优化选项"><a href="#优化选项" class="headerlink" title="优化选项"></a>优化选项</h2><p>默认导出的HTML会带文件名，如果想要将其隐藏，可以修改插件的导出CSS：</p>
+<ul>
+<li>找到ExportHtml插件的路径：<code>Sublime Text Build 3143 x64\Data\Installed Packages\ExportHtml.sublime-package</code>，将插件文件当做压缩包解压出来</li>
+<li>将解压出来的<code>ExportHtml\css\export.css</code>复制到其他地方，例如<code>Sublime Text Build 3143 x64\Data\Packages\User</code>，在文件末尾加上一行代码：</li>
+</ul>
+<pre><code>#file_info { display: none; }
+</code></pre><p>修改上面的插件设置，使用自定义的CSS：</p>
+<pre><code>{
+    &quot;export_css&quot;: &quot;Packages/User/export.css&quot;,  // 这里填自定义的CSS路径
+    &quot;html_panel&quot;: [
+        // 保持原样，省略......
+    ]
+}
+</code></pre><p>重新导出，会发现烦人的文件名不显示了。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[NGUI源码学习——UISprite]]></title>
       <url>http://raytaylorlin.com/tech/game/unity/ngui-code-uisprite/</url>
       <content type="html"><![CDATA[<p>UISprite是NGUI最基本的图片显示控件之一。它的基类UIBasicSprite承载了绝大多数的显示逻辑，本文记录其各种填充方法的原理。要显示一个sprite，必定会有一个管理sprite的图集，最后会记录UIAtlas的一些基本要点。</p>
