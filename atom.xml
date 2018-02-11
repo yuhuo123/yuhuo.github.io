@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://raytaylorlin.com/"/>
-  <updated>2017-12-21T15:39:45.505Z</updated>
+  <updated>2018-02-11T16:01:25.858Z</updated>
   <id>http://raytaylorlin.com/</id>
   
   <author>
@@ -14,6 +14,142 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《看门狗》网络绕接玩法的实现</title>
+    <link href="http://raytaylorlin.com/tech/complex/project/watch-dog-network-bypass/"/>
+    <id>http://raytaylorlin.com/tech/complex/project/watch-dog-network-bypass/</id>
+    <published>2018-02-10T12:04:53.000Z</published>
+    <updated>2018-02-11T16:01:25.858Z</updated>
+    
+    <content type="html">&lt;p&gt;《看门狗》系列游戏中，网络绕接（Network Bypass）是其中一种解谜小玩法，其目标是通过旋转一些通路节点来打通通路，最终解锁目标节点。下图展示了一个游戏中的示例，看一遍应该就能明白。&lt;/p&gt;
+&lt;video src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E3%80%8A%E7%9C%8B%E9%97%A8%E7%8B%97%E3%80%8B%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%E7%A4%BA%E4%BE%8B.mp4&quot; type=&quot;video/mp4&quot; controls=&quot;controls&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/video&gt;
+
+&lt;p&gt;鉴于这个玩法非常简单，闲暇时正好拿来作为练手项目。本文描述了该项目大致的设计思路。&lt;a href=&quot;https://github.com/raytaylorlin/NetworkBypassPuzzle&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github项目地址&lt;/a&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-设计&quot;&gt;&lt;a href=&quot;#1-设计&quot; class=&quot;headerlink&quot; title=&quot;1. 设计&quot;&gt;&lt;/a&gt;1. 设计&lt;/h1&gt;&lt;h2 id=&quot;1-1-节点类型&quot;&gt;&lt;a href=&quot;#1-1-节点类型&quot; class=&quot;headerlink&quot; title=&quot;1.1 节点类型&quot;&gt;&lt;/a&gt;1.1 节点类型&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;起始节点（StartNode）：每个网络绕接玩法至少会有一个，这是所有网路通路的开端&lt;/li&gt;
+&lt;li&gt;终止节点（EndNode）：每个网络绕接玩法至少会有一个，且必定带锁，玩法的目标就是解开这个节点的锁&lt;/li&gt;
+&lt;li&gt;连接节点（ConnectionNode）：起到变向网络流的功能，给定一个方向的输入，会有其他方向的输出&lt;ul&gt;
+&lt;li&gt;直角型节点（RightAngleConnectionNode）&lt;/li&gt;
+&lt;li&gt;直线型节点（StraightConnectionNode）&lt;/li&gt;
+&lt;li&gt;T型节点（TConnectionNode）&lt;/li&gt;
+&lt;li&gt;十字型节点（CrossConnectionNode）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;转接节点（TransitionNode）：用于改变网络流的流动方向&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-2-节点共性&quot;&gt;&lt;a href=&quot;#1-2-节点共性&quot; class=&quot;headerlink&quot; title=&quot;1.2 节点共性&quot;&gt;&lt;/a&gt;1.2 节点共性&lt;/h2&gt;&lt;p&gt;下面一级列表列出各种节点的共同特性（父类）。一些特殊节点（子类）的具体实现方式列在二级列表。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个节点都有上下左右4个邻居节点（可空）&lt;/li&gt;
+&lt;li&gt;连接节点有4种旋转方向&lt;ul&gt;
+&lt;li&gt;像十字型无论怎么转都一样，直线型只有两种方向，但4个旋转方向对它们来说依旧适用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4个方向都可能有输入和输出&lt;ul&gt;
+&lt;li&gt;Start节点只有输出&lt;/li&gt;
+&lt;li&gt;End节点只有输入&lt;/li&gt;
+&lt;li&gt;连接节点根据自身旋转方向和输入方向，来确定朝哪个方向输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;都可以被激活或反激活&lt;ul&gt;
+&lt;li&gt;当连接节点的某个管道有输入时，即被激活&lt;/li&gt;
+&lt;li&gt;带锁节点（包括终止节点）的所有锁口有输入时，即被激活&lt;/li&gt;
+&lt;li&gt;当转接节点某个方向有输入时，即被激活&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;1-3-装饰器&quot;&gt;&lt;a href=&quot;#1-3-装饰器&quot; class=&quot;headerlink&quot; title=&quot;1.3 装饰器&quot;&gt;&lt;/a&gt;1.3 装饰器&lt;/h2&gt;&lt;p&gt;装饰器是用来给节点添加额外功能的，最常用的就是加锁（也是项目目前实现的唯一一种装饰器）。在实际的《看门狗》游戏中，还存在两种装饰器：倒计时装饰器（所装饰的节点被激活时开始倒计时，计时结束则重置整个网络绕接谜题，强迫玩家在限定时间内完成谜题），打乱装饰器（当某种条件达成时，例如某个节点被激活，则打乱所装饰节点的旋转方向，起到一种干扰作用）。&lt;/p&gt;
+&lt;p&gt;锁装饰器对于连接节点是可选的，但对于终止节点是强制要有的。锁也是定义了4个方向，当没有解锁之前，上了锁的节点会阻断其他输入流，当所有锁都解开时，其原本的节点功能才会恢复。&lt;/p&gt;
+&lt;p&gt;利用Unity天然的组件系统，各种装饰器可以轻松地做成Component并附加在节点上。&lt;/p&gt;
+&lt;h1 id=&quot;2-实现&quot;&gt;&lt;a href=&quot;#2-实现&quot; class=&quot;headerlink&quot; title=&quot;2. 实现&quot;&gt;&lt;/a&gt;2. 实现&lt;/h1&gt;&lt;h2 id=&quot;2-1-核心算法&quot;&gt;&lt;a href=&quot;#2-1-核心算法&quot; class=&quot;headerlink&quot; title=&quot;2.1 核心算法&quot;&gt;&lt;/a&gt;2.1 核心算法&lt;/h2&gt;&lt;p&gt;网络绕接的实现可以说是一个遍历有向图的过程。核心思想是从起始节点出发，&lt;strong&gt;沿着网络流广度优先遍历图的边&lt;/strong&gt;。算法的伪代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;void Init()
+{
+    遍历所有节点，在邻居节点之间创建NetworkFlow（边）;
+    初始化所有节点，并注册相关事件;
+}
+
+private Queue&amp;lt;NetworkFlow&amp;gt; flowQueue = new Queue&amp;lt;NetworkFlow&amp;gt;();
+// 遍历网络流，在玩法开始时执行一次，随后每次节点执行一次操作则再执行该方法
+void TraverseNetworkFlow()
+{
+    将所有的NetworkNode和NetworkFlow都清理一下（反激活）;
+    将起始节点周边有输出的通路，入队flowQueue;
+    while (flowQueue.Count &amp;gt; 0)
+    {
+        NetworkFlow flow = flowQueue.Dequeue();  // 当前处理的网络流
+        NetworkNode node = flow.FirstNode;       // node可理解为当前处理的节点
+        NetworkNode neighbor = flow.SecondNode;
+        激活flow;
+        设置neighbor的输入状态;
+
+        // 第一趟查找
+        将neighbor周边有输出的**没有被访问过的**通路，**而且该通路从来没有走过**，则入队flowQueue;
+
+        if (第一趟查找没有找到任何flow)
+        {
+            将neighbor周边有输出的通路，**而且仅被访问过一次（说明这一次是的流向是反向的）**，入队flowQueue;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;2-2-谜题编辑器&quot;&gt;&lt;a href=&quot;#2-2-谜题编辑器&quot; class=&quot;headerlink&quot; title=&quot;2.2 谜题编辑器&quot;&gt;&lt;/a&gt;2.2 谜题编辑器&lt;/h2&gt;&lt;p&gt;要实现这个玩法规则本身并不是很难，但此外还有一个要重点考虑的是如何让策划高效地编辑和测试各种谜题。为此特意对各种节点类型定制了Inspector，如下图所示，其作用应该也是一目了然。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%EF%BC%9A%E8%8A%82%E7%82%B9%E5%AE%9A%E5%88%B6%E7%9A%84Inspector.jpg&quot; alt=&quot;网络绕接玩法：节点定制的Inspector&quot;&gt;&lt;/p&gt;
+&lt;p&gt;下面的示意图演示了如何创建节点，摆放节点，以及给节点连线和设置参数。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%EF%BC%9A%E5%88%9B%E5%BB%BA%EF%BC%8C%E6%91%86%E6%94%BE%E8%8A%82%E7%82%B9.gif&quot; alt=&quot;网络绕接玩法：创建，摆放节点&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%EF%BC%9A%E7%BB%99%E8%8A%82%E7%82%B9%E8%BF%9E%E7%BA%BF%E5%92%8C%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0.gif&quot; alt=&quot;网络绕接玩法：给节点连线和设置参数&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-3-网络通路的噪声效果&quot;&gt;&lt;a href=&quot;#2-3-网络通路的噪声效果&quot; class=&quot;headerlink&quot; title=&quot;2.3 网络通路的噪声效果&quot;&gt;&lt;/a&gt;2.3 网络通路的噪声效果&lt;/h2&gt;&lt;p&gt;最开始的实现是直接用一个&lt;a href=&quot;https://docs.unity3d.com/Manual/class-LineRenderer.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Line Renderer&lt;/a&gt;实现的。后来尝试做出原版游戏的那种噪声效果，在网上找了一个随机生成雪花点的Shader，并自己修改成一个Shader动画，其Pass代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CGPROGRAM
+#pragma vertex vert_img
+#pragma fragment frag
+
+#include &amp;quot;UnityCG.cginc&amp;quot;
+
+// 这三个参数影响雪花点的分布，经我测试三个均使用5000可达到比较好的效果
+float _Factor1;
+float _Factor2;
+float _Factor3;
+// 雪花点闪烁的速度
+float _Speed;
+fixed4 _Color;
+
+float noise(half2 uv)
+{
+    float t = _Speed * _Time.y;
+    return frac(sin(dot(uv, float2(t * _Factor1, t * _Factor2))) * t * _Factor3);
+}
+
+fixed4 frag (v2f_img i) : SV_Target
+{
+    fixed4 col = noise(i.uv);
+    col.rgb *= _Color.rgb;
+    return col;
+}
+ENDCG
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最终效果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E5%99%AA%E5%A3%B0Shader%E5%8A%A8%E7%94%BB.gif&quot; alt=&quot;噪声Shader动画&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最后放一个比较复杂的且支持3D的案例演示：&lt;/p&gt;
+&lt;video src=&quot;http://raytaylorlin-blog.qiniudn.com/image/project/%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%EF%BC%9A%E5%A4%8D%E6%9D%82%E7%9A%843D%E7%A4%BA%E4%BE%8B.mp4&quot; type=&quot;video/mp4&quot; controls=&quot;controls&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;&lt;/video&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;《看门狗》系列游戏中，网络绕接（Network Bypass）是其中一种解谜小玩法，其目标是通过旋转一些通路节点来打通通路，最终解锁目标节点。下图展示了一个游戏中的示例，看一遍应该就能明白。&lt;/p&gt;
+&lt;video src=&#39;http://raytaylorlin-blog.qiniudn.com/image/project/%E3%80%8A%E7%9C%8B%E9%97%A8%E7%8B%97%E3%80%8B%E7%BD%91%E7%BB%9C%E7%BB%95%E6%8E%A5%E7%8E%A9%E6%B3%95%E7%A4%BA%E4%BE%8B.mp4&#39; type=&#39;video/mp4&#39; controls=&#39;controls&#39;  width=&#39;100%&#39; height=&#39;100%&#39;&gt;&lt;/video&gt;
+
+&lt;p&gt;鉴于这个玩法非常简单，闲暇时正好拿来作为练手项目。本文描述了该项目大致的设计思路。&lt;a href=&quot;https://github.com/raytaylorlin/NetworkBypassPuzzle&quot;&gt;Github项目地址&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
+    
+      <category term="项目" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="看门狗" scheme="http://raytaylorlin.com/tags/%E7%9C%8B%E9%97%A8%E7%8B%97/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Sublime编辑器打印高亮代码</title>
@@ -1764,99 +1900,6 @@ while (true) {
       <category term="游戏引擎" scheme="http://raytaylorlin.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/"/>
     
       <category term="架构" scheme="http://raytaylorlin.com/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件构建（十五）——尾声</title>
-    <link href="http://raytaylorlin.com/tech/complex/software/software-construction-15/"/>
-    <id>http://raytaylorlin.com/tech/complex/software/software-construction-15/</id>
-    <published>2016-05-14T14:21:15.000Z</published>
-    <updated>2016-05-19T02:30:35.465Z</updated>
-    
-    <content type="html">&lt;p&gt;本文是《代码大全》学习笔记系列的最后一篇。书中最后几章是一些杂项主题，本文将简要记录这几个主题的内容，包括个人性格对编程的影响，软件开发艺术的有关问题，以及关于软件工程的推荐书单。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h1 id=&quot;1-个人性格&quot;&gt;&lt;a href=&quot;#1-个人性格&quot; class=&quot;headerlink&quot; title=&quot;1. 个人性格&quot;&gt;&lt;/a&gt;1. 个人性格&lt;/h1&gt;&lt;p&gt;编程过程非常耗用脑力，这种特性使得个人性格显得很重要。而编程工作本质上是项无法监督的工作，因为没人真正清楚你正在做什么。老板也无法强迫你成为好的程序员，很多时候他甚至无法判断你是否合格，一切都只能靠自己。你无法提升自己的聪明程度，但性格在一定程度上能够改进。事实证明，个人性格对于造就出程序员高手更具有决定性意义。&lt;/p&gt;
-&lt;h2 id=&quot;1-1-个人性格对编程的影响&quot;&gt;&lt;a href=&quot;#1-1-个人性格对编程的影响&quot; class=&quot;headerlink&quot; title=&quot;1.1 个人性格对编程的影响&quot;&gt;&lt;/a&gt;1.1 个人性格对编程的影响&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;聪明和谦虚：高智商与优秀程序员之间并无太密切的联系。实际上许多好的编程做法都是为了减轻脑力负担，例如将系统分解是为了使之易于理解，进行审查、评审和测试是为了减少人为失误，通过各种各样的规范是为了将思路从相对繁琐的编程事务中解放出来。精通编程的人是那些了解自己头脑有多大局限性的人，都很谦虚。&lt;/li&gt;
-&lt;li&gt;求知欲：技术环境的特定特征每5到10年就变化一番，如果没有足够的求知欲来跟上这些变化，就会面临落伍的威胁，下面是一些培养求知欲的方法&lt;ul&gt;
-&lt;li&gt;在开发过程中建立自我意识&lt;/li&gt;
-&lt;li&gt;不断用小程序来试验技术点&lt;/li&gt;
-&lt;li&gt;阅读解决问题的有关方法&lt;/li&gt;
-&lt;li&gt;在行动之前做分析和计划&lt;/li&gt;
-&lt;li&gt;学习成功项目的开发经验，阅读高手的代码&lt;/li&gt;
-&lt;li&gt;认真阅读文档和其他书本期刊&lt;/li&gt;
-&lt;li&gt;同专业人士交往&lt;/li&gt;
-&lt;li&gt;向专业开发看齐：专业开发可分为这样四个等级：入门级（会使用某语言的基本功能和特性），中级（已度过入门期，能使用多种 语言，并得心应手使用至少一种语言），熟练级（对语言或环境有着专业技能，通常是公司的核心开发，很多程序员不能超越该层次），技术带头人级（具有熟练级的专业技能，也明白写代码是给人看而非给机器看）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;诚实：通常表现为：不是高手时不假装是高手；乐于承认错误；力图理解编译器的警告，而非弃之不理；透彻理解自己的程序，而不要只是编译看看能否运行；提供实际的状况报告；提供现实的进度方案，在上司面前坚持自己的意见&lt;/li&gt;
-&lt;li&gt;交流与合作：真正优秀的程序员知道怎样同别人融洽地工作和娱乐，并且会把提高代码可读性和修改你代码的人放在心上&lt;/li&gt;
-&lt;li&gt;创造力和纪律：不要把各种标准和规范的纪律看成是对创造力的约束，相反，许多有很强创造力的人都极其遵守纪律和规范&lt;/li&gt;
-&lt;li&gt;偷懒：通常表现为拖延不喜欢的任务（没有任何益处），迅速做完不喜欢的任务以摆脱之（尽管是偷懒，但毕竟用最少时间完成了任务），&lt;strong&gt;编写某个工具来完成不喜欢的任务以便再也不用做这样的事情&lt;/strong&gt;（一劳永逸的懒，无疑是最具产值的偷懒形式）&lt;/li&gt;
-&lt;li&gt;习惯：优秀的程序员早就养成了编程各方面的良好习惯，而不是最近才培养的。初涉某事时，就应端正态度来学，干了一段时间后，“习惯的力量”就开始起作用。如果没养成最有效的习惯，或者想改掉坏习惯，应该用良好的新习惯去取代，而不是强行杜绝掉坏习惯&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;1-2-不如你想象中那样起作用的性格因素&quot;&gt;&lt;a href=&quot;#1-2-不如你想象中那样起作用的性格因素&quot; class=&quot;headerlink&quot; title=&quot;1.2 不如你想象中那样起作用的性格因素&quot;&gt;&lt;/a&gt;1.2 不如你想象中那样起作用的性格因素&lt;/h2&gt;&lt;p&gt;注意以下列举的性格都是&lt;strong&gt;反面因素&lt;/strong&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;坚持：多数时候软件开发中的坚持其实就是没有好处的“固执”，当在某段新代码上卡壳时，不妨另辟蹊径，尝试重新设计类，或者绕过去，以后回头再试。花好几个小时干掉某一错误确实会有满足感，但实际上早点放弃固有的思路，换个角度可能可以节省更多时间。&lt;/li&gt;
-&lt;li&gt;经验：由于软件技术更新换代太快，所谓的“经验”很快就会落伍，程序员要持续学些，保持与时俱进。&lt;/li&gt;
-&lt;li&gt;编程狂人：彻夜编程让你感觉像是世上最好的程序员，却要花几个星期去纠正你在短暂辉煌时埋下的失误。可以热爱编程，但热情不能代替熟练的能力，请想明白什么更重要。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;2-软件开发艺术的有关问题&quot;&gt;&lt;a href=&quot;#2-软件开发艺术的有关问题&quot; class=&quot;headerlink&quot; title=&quot;2. 软件开发艺术的有关问题&quot;&gt;&lt;/a&gt;2. 软件开发艺术的有关问题&lt;/h1&gt;&lt;p&gt;这一章相当于对全书介绍的各种细节背后所折射出的哲学思想做出一个总结。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;克服复杂性：《代码大全》绝大部分的篇幅都用于阐述如何划分系统模块，抽象类和接口，遵循什么样的编程规范等等，归根结底是为了降低软件的复杂性。&lt;/li&gt;
-&lt;li&gt;精选开发过程：对于小的项目，程序员的个人才能对软件质量影响最大，对于多人项目，组织性的重要程度超过了个人技能。关于开发过程的重要性，一个明显的例子是看看在需求还未确定就开始设计和编码的后果。其他有用的开发过程，如增量开发，先设计后编码，先粗调后优化，伪代码编码并不断添加注释等等，均在之前的文章提到过，不再赘述。&lt;/li&gt;
-&lt;li&gt;首先为人写程序，其次才是为机器：可读的代码写起来并不比含糊的代码多花时间，得到的好处是巨大的。自己维护，后期重构，复审代码，别人修改程序，统统都要读到代码，因此一次性编写可读性强的代码，是非常经济划算的。即便是自写自用的私有代码，也应该认真对待，因为这是一种优秀的习惯（习惯在上述个人性格中提到过）。&lt;/li&gt;
-&lt;li&gt;深入一门语言去编程，不浮于表面：要先考虑要干什么，然后采用手头的工具去实现目标。如果你所用的语言不支持某种你想要的特性，可以尝试用一些变通的方法以最大限度地遵循编程规范，因为规范能帮助你理清环境中的危险特性。&lt;/li&gt;
-&lt;li&gt;借助规范集中注意力：规范能够节省程序员回答同样问题的麻烦，能精确地传达重要信息，免除各种编码的危险做法，还能弥补语言的某些不足之处&lt;/li&gt;
-&lt;li&gt;基于问题域编程：顶层的代码要说明想解决的问题，而不要充斥各种与文件、数据结构、数据类型有关的操作细节。设计程序时，应考虑下图这样的抽象层次&lt;ul&gt;
-&lt;li&gt;&lt;img src=&quot;http://raytaylorlin-blog.qiniudn.com/image%2Fsoftware%2F%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%8A%BD%E8%B1%A1%E5%B1%82%E6%AC%A1.png&quot; alt=&quot;程序的抽象层次&quot;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;留心警告信号：当你或其他人说“这段代码暗藏玄机”时，或者类中含有比平均数目更多的错误，或者发现子程序中有许多判断点、嵌套，或者发现代码有重复，或者发现代码不容易写注释和命名变量，或者编译时出现警告等等，这些都是警告信号。任何警告信号都应让你质疑程序的质量，并促使你去寻求更满意的解决之道。&lt;/li&gt;
-&lt;li&gt;一次又一次迭代：需求、设计、开发、测试，软件开发从头到尾每一步都充斥着迭代并逐步精化的过程。所以不要追求所谓的“一步登天”。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;不要&lt;/strong&gt;存在软件信仰（即坚持某种做法）&lt;ul&gt;
-&lt;li&gt;折中主义：要对编程问题找出最有效的解决方案时，盲目迷信某种方法只会缩小你的选择余地。折中主义是一种有益的态度，对于每个特定问题，应该将多种方法视为工具箱中的工具。多数时候工具的选择关系不大，但有些场合需要自己判断权衡，挑选最好的工具&lt;/li&gt;
-&lt;li&gt;试验：要想有效地试验，应能基于试验结果改变思路。许多顽固的方法源于对错误的畏惧心理，“试图没有错误”是最大的错误。软件开发的各方面，你都应保待开放的心态&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;3-书单&quot;&gt;&lt;a href=&quot;#3-书单&quot; class=&quot;headerlink&quot; title=&quot;3. 书单&quot;&gt;&lt;/a&gt;3. 书单&lt;/h1&gt;&lt;p&gt;书中最后一章作者给出了一些建议阅读的经典著作，下面挑选了一部分有中译版本的书（有一些书再版了多次，链接给出的都是最新的版本）组成一个参考书单，供以后学习。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;软件构建类&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/5387402/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《程序员修炼之道》&lt;/a&gt;（《The Pragmatic Programmer》，Andrew Hunt / David Thomas）&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/3227098/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《编程珠玑》&lt;/a&gt;（《Programming Pearls》，Jon Bentley）&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/6524000/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《程序设计实践&lt;strong&gt;（评注版）&lt;/strong&gt;》&lt;/a&gt;（《The Practice of Programming》，Brian W. Kernighan / Rob Pike），注意这本书市面上没有很好的中译本，只有最新的这本评注版&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;软件工程综述类&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/26419766/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《软件开发心理学》&lt;/a&gt;（《The Psychology of Computer Programming》，Gerald M. Weinberg）&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/2230248/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《人月神话》&lt;/a&gt;（《The Mythical Man-Month》，Frederick P.Brooks）&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://book.douban.com/subject/6047742/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;《软件工程：实践者的研究方法》&lt;/a&gt;（《The Mythical Man-Month》，Roger S.Pressman）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;参考文献：电子工业出版社《代码大全（第2版）》第33、34、35章&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文是《代码大全》学习笔记系列的最后一篇。书中最后几章是一些杂项主题，本文将简要记录这几个主题的内容，包括个人性格对编程的影响，软件开发艺术的有关问题，以及关于软件工程的推荐书单。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="综合" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/categories/%E6%8A%80%E6%9C%AF/%E7%BB%BC%E5%90%88/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-    
-      <category term="软件构建" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="软件工程" scheme="http://raytaylorlin.com/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-      <category term="代码大全" scheme="http://raytaylorlin.com/tags/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A8/"/>
     
   </entry>
   
